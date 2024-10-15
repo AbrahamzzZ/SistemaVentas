@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\herma\\source\\repos\\SistemaVenta\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F7BF48AD-C64C-43A2-A96C-7778E7A19AC9}|Presentacion\\Presentacion.csproj|c:\\users\\herma\\source\\repos\\sistemaventa\\presentacion\\capapresentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F7BF48AD-C64C-43A2-A96C-7778E7A19AC9}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\capapresentacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C53D0739-9AA6-4272-90B4-C3B667782B4B}|Datos\\Datos.csproj|C:\\Users\\herma\\source\\repos\\SistemaVenta\\datos\\capadatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C53D0739-9AA6-4272-90B4-C3B667782B4B}|Datos\\Datos.csproj|solutionrelative:datos\\capadatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{fbcae063-e2c0-4ab1-a516-996ea3dafb72}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CapaDatos.cs",
+              "DocumentMoniker": "C:\\Users\\herma\\source\\repos\\SistemaVenta\\Datos\\CapaDatos.cs",
+              "RelativeDocumentMoniker": "Datos\\CapaDatos.cs",
+              "ToolTip": "C:\\Users\\herma\\source\\repos\\SistemaVenta\\Datos\\CapaDatos.cs",
+              "RelativeToolTip": "Datos\\CapaDatos.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAswGIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-30T00:10:33.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CapaPresentacion.cs",
+              "DocumentMoniker": "C:\\Users\\herma\\source\\repos\\SistemaVenta\\Presentacion\\CapaPresentacion.cs",
+              "RelativeDocumentMoniker": "Presentacion\\CapaPresentacion.cs",
+              "ToolTip": "C:\\Users\\herma\\source\\repos\\SistemaVenta\\Presentacion\\CapaPresentacion.cs",
+              "RelativeToolTip": "Presentacion\\CapaPresentacion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:48:11.148Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

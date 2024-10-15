@@ -1,0 +1,11 @@
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Negocios.dll
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Negocios.pdb
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Datos.dll
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Entidad.dll
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Datos.pdb
+C:\Users\herma\source\repos\SistemaVenta\Negocios\bin\Debug\Entidad.pdb
+C:\Users\herma\source\repos\SistemaVenta\Negocios\obj\Debug\Negocios.csproj.AssemblyReference.cache
+C:\Users\herma\source\repos\SistemaVenta\Negocios\obj\Debug\Negocios.csproj.CoreCompileInputs.cache
+C:\Users\herma\source\repos\SistemaVenta\Negocios\obj\Debug\Negocios.csproj.Up2Date
+C:\Users\herma\source\repos\SistemaVenta\Negocios\obj\Debug\Negocios.dll
+C:\Users\herma\source\repos\SistemaVenta\Negocios\obj\Debug\Negocios.pdb

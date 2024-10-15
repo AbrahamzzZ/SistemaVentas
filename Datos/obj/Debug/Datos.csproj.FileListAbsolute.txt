@@ -1,0 +1,9 @@
+C:\Users\herma\source\repos\SistemaVenta\Datos\bin\Debug\Datos.dll
+C:\Users\herma\source\repos\SistemaVenta\Datos\bin\Debug\Datos.pdb
+C:\Users\herma\source\repos\SistemaVenta\Datos\bin\Debug\Entidad.dll
+C:\Users\herma\source\repos\SistemaVenta\Datos\bin\Debug\Entidad.pdb
+C:\Users\herma\source\repos\SistemaVenta\Datos\obj\Debug\Datos.csproj.AssemblyReference.cache
+C:\Users\herma\source\repos\SistemaVenta\Datos\obj\Debug\Datos.csproj.CoreCompileInputs.cache
+C:\Users\herma\source\repos\SistemaVenta\Datos\obj\Debug\Datos.csproj.Up2Date
+C:\Users\herma\source\repos\SistemaVenta\Datos\obj\Debug\Datos.dll
+C:\Users\herma\source\repos\SistemaVenta\Datos\obj\Debug\Datos.pdb
