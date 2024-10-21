@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Datos
 {
     public class CapaDatos
@@ -17,7 +19,7 @@ namespace Datos
             cn.Open();
             return cn;
         }
-        //Usuario
+        //Usuario AGURTO
         public List<Usuario> ingresarUsuario()
         {
             List<Usuario> listaUsuario = new List<Usuario>();
