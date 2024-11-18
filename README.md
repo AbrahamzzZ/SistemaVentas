@@ -65,7 +65,11 @@ En esta sección se explica el proceso de instalación de la base de datos.
 > ⚠ Recuerde tener instalado el [Sql Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
 
 ```sh
-sqlcmd -S localhost -U sa -P TuPassword -d master -i "./BD_Query/BD.sql"
+sqlcmd -S [nombre_servidor] -U [usuario] -P [contraseña]
+```
+
+```sh
+sqlcmd -S localhost -U sa -P TuPassword -d master -i "./BD_Query/DB.sql"
 ```
 
 > [!WARNING]  
@@ -75,6 +79,7 @@ sqlcmd -S localhost -U sa -P TuPassword -d master -i "./BD_Query/BD.sql"
 > ⚠ Recuerde cambiar el nombre del servidor por tu nombre
 
 ## 🚀 Ejecución del Proyecto
+
 En esta sección se explica el proceso de ejecución del proyecto.
 
 ```sh
