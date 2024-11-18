@@ -1,283 +1,345 @@
 CREATE DATABASE Sistema_Ventas;
-go
-ALTER DATABASE [Sistema_Ventas]
-ADD FILE (
-    NAME=Sistema_Ventas_File,
-    FILENAME='C:\Sistema_Ventas.ndf',
-    SIZE=10MB,
-    MAXSIZE = 500MB,
-    FILEGROWTH = 1MB
-)
-USE Sistema_Ventas
-go
-/*TABLAS*/
-CREATE TABLE ROL (ID_ROL int primary key identity,
-DESCRIPCION nvarchar(50),
-FECHA_CREACION datetime default getdate());
-go
 
-CREATE TABLE PERMISO (ID_PERMISO int primary key identity,
-ID_ROL int references ROL(ID_ROL),
-NOMBRE_MENU varchar(100),
-FECHA_CREACION datetime default getdate());
 go
+	ALTER DATABASE [Sistema_Ventas]
+ADD
+	FILE (
+		NAME = Sistema_Ventas_File,
+		FILENAME = 'C:\Sistema_Ventas.ndf',
+		SIZE = 10MB,
+		MAXSIZE = 500MB,
+		FILEGROWTH = 1MB
+	) USE Sistema_Ventas
+go
+	/*TABLAS*/
+	CREATE TABLE ROL (
+		ID_ROL int primary key identity,
+		DESCRIPCION nvarchar(50),
+		FECHA_CREACION datetime default getdate()
+	);
 
-CREATE TABLE PROVEEDOR (ID_PROVEEDOR int primary key identity,
-DOCUMENTO varchar(30),
-NOMBRES varchar(30),
-APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
-CORREO_ELECTRONICO nvarchar(50),
-ESTADO bit,
-FECHA_REGISTRO datetime default getdate()
-);
 go
+	CREATE TABLE PERMISO (
+		ID_PERMISO int primary key identity,
+		ID_ROL int references ROL(ID_ROL),
+		NOMBRE_MENU varchar(100),
+		FECHA_CREACION datetime default getdate()
+	);
 
-CREATE TABLE TRANSPORTISTA(ID_TRANSPORTISTA int primary key identity,
-DOCUMENTO varchar(30),
-NOMBRES varchar(30),
-APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
-CORREO_ELECTRONICO nvarchar(50),
-IMAGEN varbinary(max)NUll,
-ESTADO bit,
-FECHA_REGISTRO datetime default getdate()
-);
 go
+	CREATE TABLE PROVEEDOR (
+		ID_PROVEEDOR int primary key identity,
+		DOCUMENTO varchar(30),
+		NOMBRES varchar(30),
+		APELLIDOS varchar(30),
+		CEDULA varchar(10),
+		TELEFONO varchar(10),
+		CORREO_ELECTRONICO nvarchar(50),
+		ESTADO bit,
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE CLIENTE (ID_CLIENTE int primary key identity,
-DOCUMENTO varchar(30),
-NOMBRES varchar(30),
-APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
-CORREO_ELECTRONICO nvarchar(50),
-ESTADO bit,
-FECHA_REGISTRO datetime default getdate()
-);
 go
+	CREATE TABLE TRANSPORTISTA(
+		ID_TRANSPORTISTA int primary key identity,
+		DOCUMENTO varchar(30),
+		NOMBRES varchar(30),
+		APELLIDOS varchar(30),
+		CEDULA varchar(10),
+		TELEFONO varchar(10),
+		CORREO_ELECTRONICO nvarchar(50),
+		IMAGEN varbinary(max) NUll,
+		ESTADO bit,
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE USUARIO (ID_USUARIO int primary key identity,
-DOCUMENTO varchar(30),
-NOMBRE_COMPLETO varchar(50),
-CORREO_ELECTRONICO nvarchar(50),
-CLAVE varchar(30),
-ID_ROL int references ROL(ID_ROL),
-ESTADO bit,
-FECHA_CREACION datetime default getdate()
-);
 go
+	CREATE TABLE CLIENTE (
+		ID_CLIENTE int primary key identity,
+		DOCUMENTO varchar(30),
+		NOMBRES varchar(30),
+		APELLIDOS varchar(30),
+		CEDULA varchar(10),
+		TELEFONO varchar(10),
+		CORREO_ELECTRONICO nvarchar(50),
+		ESTADO bit,
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE CATEGORIA( ID_CATEGORIA int primary key identity,
-DESCRIPCION nvarchar(50),
-ESTADO bit,
-FECHA_CREACION datetime default getdate()
-);
 go
+	CREATE TABLE USUARIO (
+		ID_USUARIO int primary key identity,
+		DOCUMENTO varchar(30),
+		NOMBRE_COMPLETO varchar(50),
+		CORREO_ELECTRONICO nvarchar(50),
+		CLAVE varchar(30),
+		ID_ROL int references ROL(ID_ROL),
+		ESTADO bit,
+		FECHA_CREACION datetime default getdate()
+	);
 
-CREATE TABLE UNIDAD_MEDIDA (ID_UNIDAD_MEDIDA int primary key identity,
-DESCRIPCION nvarchar(50) NOT NULL,
-SIMBOLO nvarchar(10) NOT NULL,
-ESTADO bit,
-FECHA_CREACION datetime default getdate()
-);
 go
+	CREATE TABLE CATEGORIA(
+		ID_CATEGORIA int primary key identity,
+		DESCRIPCION nvarchar(50),
+		ESTADO bit,
+		FECHA_CREACION datetime default getdate()
+	);
 
-CREATE TABLE PRODUCTO( ID_PRODUCTO int primary key identity,
-CODIGO varchar(30),
-DESCRIPCION nvarchar(50),
-NOMBRE_PRODUCTO nvarchar(30),
-ID_CATEGORIA int references CATEGORIA(ID_CATEGORIA),
-ID_UNIDAD_MEDIDA int references UNIDAD_MEDIDA(ID_UNIDAD_MEDIDA),
-PAIS_ORIGEN varchar(30),
-STOCK int not null default 0,
-PRECIO_COMPRA decimal (10,2) default 0,
-PRECIO_VENTA decimal (10,2) default 0,
-ESTADO bit,
-);
 go
+	CREATE TABLE UNIDAD_MEDIDA (
+		ID_UNIDAD_MEDIDA int primary key identity,
+		DESCRIPCION nvarchar(50) NOT NULL,
+		SIMBOLO nvarchar(10) NOT NULL,
+		ESTADO bit,
+		FECHA_CREACION datetime default getdate()
+	);
 
-CREATE TABLE INVENTARIO (ID_INVENTARIO int identity primary key not null,
-ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
-CODIGO_PRODUCTO varchar(30),
-NOMBRE_PRODUCTO nvarchar(30),
-CANTIDAD int not null,
-UBICACION_ALMACEN varchar(30),
-ESTADO bit,
-FECHA_INGRESO datetime default getdate()
-);
 go
+	CREATE TABLE PRODUCTO(
+		ID_PRODUCTO int primary key identity,
+		CODIGO varchar(30),
+		DESCRIPCION nvarchar(50),
+		NOMBRE_PRODUCTO nvarchar(30),
+		ID_CATEGORIA int references CATEGORIA(ID_CATEGORIA),
+		ID_UNIDAD_MEDIDA int references UNIDAD_MEDIDA(ID_UNIDAD_MEDIDA),
+		PAIS_ORIGEN varchar(30),
+		STOCK int not null default 0,
+		PRECIO_COMPRA decimal (10, 2) default 0,
+		PRECIO_VENTA decimal (10, 2) default 0,
+		ESTADO bit,
+	);
 
-CREATE TABLE COMPRA (ID_COMPRA int identity primary key not null,
-ID_USUARIO int references USUARIO(ID_USUARIO),
-ID_PROVEEDOR int references PROVEEDOR(ID_PROVEEDOR),
-ID_TRANSPORTISTA int references TRANSPORTISTA(ID_TRANSPORTISTA),
-TIPO_DOCUMENTO varchar(50),
-NUMERO_DOCUMENTO varchar(50),
-MONTO_TOTAL decimal(10,2),
-FECHA_COMPRA datetime default getdate()
-);
 go
+	CREATE TABLE INVENTARIO (
+		ID_INVENTARIO int identity primary key not null,
+		ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
+		CODIGO_PRODUCTO varchar(30),
+		NOMBRE_PRODUCTO nvarchar(30),
+		CANTIDAD int not null,
+		UBICACION_ALMACEN varchar(30),
+		ESTADO bit,
+		FECHA_INGRESO datetime default getdate()
+	);
 
-CREATE TABLE DETALLE_COMPRA ( ID_DETALLE_COMPRA int primary key identity,
-ID_COMPRA int references COMPRA (ID_COMPRA),
-ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
-PRECIO_COMPRA decimal (10,2) default 0,
-PRECIO_VENTA decimal (10,2) default 0,
-CANTIDAD int,
-MONTO_TOTAL decimal (10,2),
-FECHA_REGISTRO datetime default getdate()
-);
 go
+	CREATE TABLE COMPRA (
+		ID_COMPRA int identity primary key not null,
+		ID_USUARIO int references USUARIO(ID_USUARIO),
+		ID_PROVEEDOR int references PROVEEDOR(ID_PROVEEDOR),
+		ID_TRANSPORTISTA int references TRANSPORTISTA(ID_TRANSPORTISTA),
+		TIPO_DOCUMENTO varchar(50),
+		NUMERO_DOCUMENTO varchar(50),
+		MONTO_TOTAL decimal(10, 2),
+		FECHA_COMPRA datetime default getdate()
+	);
 
-CREATE TABLE VENTA ( ID_VENTA int primary key identity,
-ID_USUARIO int references USUARIO (ID_USUARIO),
-TIPO_DOCUMENTO varchar(50),
-NUMERO_DOCUMENTO varchar(50),
-DOCUMENTO_CLIENTE varchar(30),
-NOMBRE_CLIENTE varchar(30),
-MONTO_PAGO decimal (10,2),
-MONTO_CAMBIO decimal (10,2),
-MONTO_TOTAL decimal (10,2),
-DESCUENTO decimal (10,2),
-FECHA_VENTA datetime default getdate()
-);
 go
+	CREATE TABLE DETALLE_COMPRA (
+		ID_DETALLE_COMPRA int primary key identity,
+		ID_COMPRA int references COMPRA (ID_COMPRA),
+		ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
+		PRECIO_COMPRA decimal (10, 2) default 0,
+		PRECIO_VENTA decimal (10, 2) default 0,
+		CANTIDAD int,
+		MONTO_TOTAL decimal (10, 2),
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE DETALLE_VENTA ( ID_DETALLE_VENTA int primary key identity,
-ID_VENTA int references VENTA (ID_VENTA),
-ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
-PRECIO_VENTA decimal (10,2),
-CANTIDAD_PRODUCTO int,
-SUBTOTAL decimal (10,2),
-DESCUENTO decimal (10,2),
-FECHA_REGISTRO datetime default getdate()
-);
 go
+	CREATE TABLE VENTA (
+		ID_VENTA int primary key identity,
+		ID_USUARIO int references USUARIO (ID_USUARIO),
+		TIPO_DOCUMENTO varchar(50),
+		NUMERO_DOCUMENTO varchar(50),
+		DOCUMENTO_CLIENTE varchar(30),
+		NOMBRE_CLIENTE varchar(30),
+		MONTO_PAGO decimal (10, 2),
+		MONTO_CAMBIO decimal (10, 2),
+		MONTO_TOTAL decimal (10, 2),
+		DESCUENTO decimal (10, 2),
+		FECHA_VENTA datetime default getdate()
+	);
 
-CREATE TABLE RECLAMO(ID_RECLAMO int primary key identity,
-ID_CLIENTE int references CLIENTE(ID_CLIENTE),
-NOMBRE_CLIENTE nvarchar(50),
-CORREO_ELECTRONICO_CLIENTE nvarchar(50),
-DESCRIPCION nvarchar(500),
-ESTADO bit,
-FECHA_REGISTRO datetime default getdate()
-); 
 go
+	CREATE TABLE DETALLE_VENTA (
+		ID_DETALLE_VENTA int primary key identity,
+		ID_VENTA int references VENTA (ID_VENTA),
+		ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
+		PRECIO_VENTA decimal (10, 2),
+		CANTIDAD_PRODUCTO int,
+		SUBTOTAL decimal (10, 2),
+		DESCUENTO decimal (10, 2),
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE NEGOCIO (ID_NEGOCIO int primary key,
-NOMBRE varchar (60),
-TELEFONO varchar (10),
-RUC varchar(10),
-DIRECCION varchar(60),
-CORREO_ELECTRONICO varchar(40),
-LOGO varbinary(max)NUll
-);
 go
+	CREATE TABLE RECLAMO(
+		ID_RECLAMO int primary key identity,
+		ID_CLIENTE int references CLIENTE(ID_CLIENTE),
+		NOMBRE_CLIENTE nvarchar(50),
+		CORREO_ELECTRONICO_CLIENTE nvarchar(50),
+		DESCRIPCION nvarchar(500),
+		ESTADO bit,
+		FECHA_REGISTRO datetime default getdate()
+	);
 
-CREATE TABLE OFERTA (ID_OFERTA INT PRIMARY KEY IDENTITY,
-ID_PRODUCTO int references PRODUCTO(ID_PRODUCTO),
-NOMBRE_OFERTA VARCHAR(50), 
-DESCRIPCION varchar(250),
-FECHA_INICIO varchar(20),
-FECHA_FIN varchar(20),
-DESCUENTO decimal(4) default 0,
-ESTADO bit,
-FECHA_CREACION datetime default getdate()
-);
 go
+	CREATE TABLE NEGOCIO (
+		ID_NEGOCIO int primary key,
+		NOMBRE varchar (60),
+		TELEFONO varchar (10),
+		RUC varchar(10),
+		DIRECCION varchar(60),
+		CORREO_ELECTRONICO varchar(40),
+		LOGO varbinary(max) NUll
+	);
 
-CREATE TABLE SUCURSAL(ID_SUCURSAL int primary key identity,
-NOMBRE_SUCURSAL varchar(30),
-DIRECCION_SUCURSAL varchar(250),
-LATITUD_SUCURSAL double precision,
-LONGITUD_SUCURSAL double precision,
-CIUDAD_SUCURSAL varchar(30),
-ESTADO bit
-);
 go
+	CREATE TABLE OFERTA (
+		ID_OFERTA INT PRIMARY KEY IDENTITY,
+		ID_PRODUCTO int references PRODUCTO(ID_PRODUCTO),
+		NOMBRE_OFERTA VARCHAR(50),
+		DESCRIPCION varchar(250),
+		FECHA_INICIO varchar(20),
+		FECHA_FIN varchar(20),
+		DESCUENTO decimal(4) default 0,
+		ESTADO bit,
+		FECHA_CREACION datetime default getdate()
+	);
 
-/*PROCEDIMIENTOS ALMACENADOS*/
 go
-CREATE PROC PA_REGISTRAR_USUARIO(
-@Documento varchar(30),
-@Nombre_Completo varchar(50),
-@Correo_Electronico varchar(50),
-@Clave varchar(30),
-@Id_Rol int,
-@Estado bit,
-@Id_Usuario_Resultado int output,
-@Mensaje varchar(500) output
-)
-as
-begin
-	set @Id_Usuario_Resultado = 0
-	set @Mensaje = ''
-	if not exists(SELECT * FROM USUARIO WHERE DOCUMENTO = @Documento)
-	begin
-		INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL, ESTADO) VALUES
-		(@Documento, @Nombre_Completo, @Correo_Electronico, @Clave, @Id_Rol, @Estado)
-		set @Id_Usuario_Resultado = SCOPE_IDENTITY()
-	end
-	else
-		set @Mensaje = 'No se puede repetir el documento para más de un usuario.'
+	CREATE TABLE SUCURSAL(
+		ID_SUCURSAL int primary key identity,
+		NOMBRE_SUCURSAL varchar(30),
+		DIRECCION_SUCURSAL varchar(250),
+		LATITUD_SUCURSAL double precision,
+		LONGITUD_SUCURSAL double precision,
+		CIUDAD_SUCURSAL varchar(30),
+		ESTADO bit
+	);
+
+go
+	/*PROCEDIMIENTOS ALMACENADOS*/
+go
+	CREATE PROC PA_REGISTRAR_USUARIO(
+		@Documento varchar(30),
+		@Nombre_Completo varchar(50),
+		@Correo_Electronico varchar(50),
+		@Clave varchar(30),
+		@Id_Rol int,
+		@Estado bit,
+		@Id_Usuario_Resultado int output,
+		@Mensaje varchar(500) output
+	) as begin
+set
+	@Id_Usuario_Resultado = 0
+set
+	@Mensaje = '' if not exists(
+		SELECT
+			*
+		FROM
+			USUARIO
+		WHERE
+			DOCUMENTO = @Documento
+	) begin
+INSERT INTO
+	USUARIO (
+		DOCUMENTO,
+		NOMBRE_COMPLETO,
+		CORREO_ELECTRONICO,
+		CLAVE,
+		ID_ROL,
+		ESTADO
+	)
+VALUES
+	(
+		@Documento,
+		@Nombre_Completo,
+		@Correo_Electronico,
+		@Clave,
+		@Id_Rol,
+		@Estado
+	)
+set
+	@Id_Usuario_Resultado = SCOPE_IDENTITY()
+end
+else
+set
+	@Mensaje = 'No se puede repetir el documento para mï¿½s de un usuario.'
 end
 go
-
-CREATE PROC PA_EDITAR_USUARIO(
-@Id_Usuario int,
-@Documento varchar(30),
-@Nombre_Completo varchar(50),
-@Correo_Electronico varchar(50),
-@Clave varchar(30),
-@Id_Rol int,
-@Estado bit,
-@Respuesta bit output,
-@Mensaje varchar(500) output
-)
-as
-begin
-	set @Respuesta = 0
-	set @Mensaje = ''
-	if not exists(SELECT * FROM USUARIO WHERE DOCUMENTO = @Documento and ID_USUARIO != @Id_Usuario)
-	begin
-		UPDATE USUARIO SET DOCUMENTO = @Documento, 
-		NOMBRE_COMPLETO = @Nombre_Completo, 
-		CORREO_ELECTRONICO = @Correo_Electronico, 
-		CLAVE = @Clave, 
-		ID_ROL = @Id_Rol, 
-		ESTADO = @Estado
-		WHERE ID_USUARIO =@Id_Usuario
-		set @Respuesta = 1
-	end
-	else
-		set @Mensaje = 'No se puede repetir el documento para más de un usuario'
+	CREATE PROC PA_EDITAR_USUARIO(
+		@Id_Usuario int,
+		@Documento varchar(30),
+		@Nombre_Completo varchar(50),
+		@Correo_Electronico varchar(50),
+		@Clave varchar(30),
+		@Id_Rol int,
+		@Estado bit,
+		@Respuesta bit output,
+		@Mensaje varchar(500) output
+	) as begin
+set
+	@Respuesta = 0
+set
+	@Mensaje = '' if not exists(
+		SELECT
+			*
+		FROM
+			USUARIO
+		WHERE
+			DOCUMENTO = @Documento
+			and ID_USUARIO != @Id_Usuario
+	) begin
+UPDATE
+	USUARIO
+SET
+	DOCUMENTO = @Documento,
+	NOMBRE_COMPLETO = @Nombre_Completo,
+	CORREO_ELECTRONICO = @Correo_Electronico,
+	CLAVE = @Clave,
+	ID_ROL = @Id_Rol,
+	ESTADO = @Estado
+WHERE
+	ID_USUARIO = @Id_Usuario
+set
+	@Respuesta = 1
+end
+else
+set
+	@Mensaje = 'No se puede repetir el documento para mï¿½s de un usuario'
 end
 go
-
-CREATE PROC PA_ELIMINAR_USUARIO(
-@Id_Usuario int,
-@Respuesta bit output,
-@Mensaje varchar(500) output
-)
-as
-begin
-	set @Respuesta = 0
-	set @Mensaje = ''
-	declare @paso_Reglas bit = 1
-	if exists (SELECT * FROM COMPRA c inner join USUARIO u on u.ID_USUARIO = c.ID_USUARIO WHERE u.ID_USUARIO = @Id_Usuario)
-	begin
-		set @paso_Reglas = 0
-		set @Respuesta = 0
-		set @Mensaje = @Mensaje+'No se puede eliminar este usuario porque se encuentra relacionado a una compra.\'
+	CREATE PROC PA_ELIMINAR_USUARIO(
+		@Id_Usuario int,
+		@Respuesta bit output,
+		@Mensaje varchar(500) output
+	) as begin
+set
+	@Respuesta = 0
+set
+	@Mensaje = '' declare @paso_Reglas bit = 1 if exists (
+		SELECT
+			*
+		FROM
+			COMPRA c
+			inner join USUARIO u on u.ID_USUARIO = c.ID_USUARIO
+		WHERE
+			u.ID_USUARIO = @Id_Usuario
+	) begin
+set
+	@paso_Reglas = 0
+set
+	@Respuesta = 0
+set
+	@Mensaje = @Mensaje + 'No se puede eliminar este usuario porque se encuentra relacionado a una compra.\'
 	end
 	if exists (SELECT * FROM VENTA v inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO WHERE u.ID_USUARIO = @Id_Usuario)
 	begin
 		set @paso_Reglas = 0
 		set @Respuesta = 0
-		set @Mensaje = @Mensaje+'No se puede eliminar este usuario porque se encuentra relacionado a una venta.\'
+		set @Mensaje = @Mensaje+' No se puede eliminar este usuario porque se encuentra relacionado a una venta.\ '
 	end
 	if(@paso_Reglas = 1)
 	begin
@@ -302,7 +364,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'No se puede repetir la descripción de una categoría'
+		set @Mensaje = ' No se puede repetir la descripci ï¿½ n de una categor ï¿½ a '
 end
 go
 
@@ -323,7 +385,7 @@ begin
 	else
 		begin
 			set @Resultado = 0
-			set @Mensaje = 'No se puede repetir la descripción de una categoría'
+			set @Mensaje = ' No se puede repetir la descripci ï¿½ n de una categor ï¿½ a '
 		end
 end
 go
@@ -343,7 +405,7 @@ begin
 	else
 		begin
 			set @Resultado = 0
-			set @Mensaje = 'La categoría ya se encuentra relacionada a un producto.'
+			set @Mensaje = ' La categor ï¿½ a ya se encuentra relacionada a un producto.'
 		end
 end
 go
@@ -369,7 +431,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje ='Ya existe un producto con el mismo código'
+		set @Mensaje =' Ya existe un producto con el mismo c ï¿½ digo '
 end
 go
 
@@ -401,7 +463,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'No se puede repetir la descripción del mismo código'
+		set @Mensaje = ' No se puede repetir la descripci ï¿½ n del mismo c ï¿½ digo '
 	end
 end
 go
@@ -420,25 +482,25 @@ begin
 	begin
 		set @Paso_Reglas = 0
 		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una Compra\n'
+		set @Mensaje = @Mensaje + ' No se puede eliminar porque se encuentra relacionado a una Compra \ n '
 	end
 	if exists (SELECT * FROM DETALLE_VENTA dv inner join PRODUCTO p ON p.ID_PRODUCTO = dv.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
 	begin
 		set @Paso_Reglas = 0
 		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una Venta\n'
+		set @Mensaje = @Mensaje + ' No se puede eliminar porque se encuentra relacionado a una Venta \ n '
 	end
 	if exists (SELECT * FROM INVENTARIO i inner join PRODUCTO p ON p.ID_PRODUCTO = i.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
 	begin
 		set @Paso_Reglas = 0
 		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado en el Inventario\n'
+		set @Mensaje = @Mensaje + ' No se puede eliminar porque se encuentra relacionado en el Inventario \ n '
 	end
 	if exists (SELECT * FROM OFERTA o inner join PRODUCTO p ON p.ID_PRODUCTO = o.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
 	begin
 		set @Paso_Reglas = 0
 		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a un Oferta\n'
+		set @Mensaje = @Mensaje + ' No se puede eliminar porque se encuentra relacionado a un Oferta \ n '
 	end
 	if(@Paso_Reglas = 1)
 	begin 
@@ -464,7 +526,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'No se puede repetir la descripción de una unidad de medida'
+		set @Mensaje = ' No se puede repetir la descripci ï¿½ n de una unidad de medida '
 end
 go
 
@@ -486,7 +548,7 @@ begin
 	else
 		begin
 			set @Resultado = 0
-			set @Mensaje = 'No se puede repetir la descripción de una unidad de medida'
+			set @Mensaje = ' No se puede repetir la descripci ï¿½ n de una unidad de medida '
 		end
 end
 go
@@ -506,7 +568,7 @@ begin
 	else
 		begin
 			set @Resultado = 0
-			set @Mensaje = 'La unidad de medida ya se encuentra relacionada a un producto.'
+			set @Mensaje = ' La unidad de medida ya se encuentra relacionada a un producto.'
 		end
 end
 go
@@ -532,16 +594,16 @@ begin
 			INSERT INTO INVENTARIO (ID_PRODUCTO, CODIGO_PRODUCTO, NOMBRE_PRODUCTO, CANTIDAD, UBICACION_ALMACEN, ESTADO)
 			VALUES (@ID_PRODUCTO, @CODIGO_PRODUCTO, @NOMBRE_PRODUCTO, @CANTIDAD, @UBICACION_ALMACEN, @ESTADO)
 			set @Resultado = SCOPE_IDENTITY()
-			set @Mensaje = 'Producto registrado en el inventario exitosamente.'
+			set @Mensaje = ' Producto registrado en el inventario exitosamente.'
 		end
 		else
 		begin
-			set @Mensaje = 'La cantidad ingresada de ese producto excede la cantidad comprada.';
+			set @Mensaje = ' La cantidad ingresada de ese producto excede la cantidad comprada.';
 		end
     end
     else
     begin
-        set @Mensaje = 'El producto ya existe en el inventario.'
+        set @Mensaje = ' El producto ya existe en el inventario.'
     end
 end
 go
@@ -574,7 +636,7 @@ begin
     else
     begin
         set @Resultado = 0
-        set @Mensaje = 'No se puede repetir la descripción del mismo código.'
+        set @Mensaje = ' No se puede repetir la descripci ï¿½ n del mismo c ï¿½ digo.'
     end
 end
 go
@@ -595,7 +657,7 @@ begin
     else
     begin
         set @Resultado = 0
-        set @Mensaje = 'El producto se encuentra relacionado en el inventario'
+        set @Mensaje = ' El producto se encuentra relacionado en el inventario '
     end
 end
 go
@@ -621,7 +683,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Resultado = 'El número de documento ya existe.'
+		set @Resultado = ' El n ï¿½ mero de documento ya existe.'
 end
 go
 
@@ -655,7 +717,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'El número de documento ya existe.'
+		set @Mensaje = ' El n ï¿½ mero de documento ya existe.'
 	end
 end
 go
@@ -682,7 +744,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'El número de documento ya existe.'
+		set @Mensaje = ' El n ï¿½ mero de documento ya existe.'
 end
 go
 
@@ -717,7 +779,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'El número de documento ya existe.'
+		set @Mensaje = ' El n ï¿½ mero de documento ya existe.'
 	end
 end
 go
@@ -737,7 +799,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'El proveedor se encuentra relacionado a una compra.'
+		set @Mensaje = ' El proveedor se encuentra relacionado a una compra.'
 	end
 end
 go
@@ -902,7 +964,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje ='Ya existe un producto con la misma oferta.'
+		set @Mensaje =' Ya existe un producto con la misma oferta.'
 end
 go
 
@@ -934,7 +996,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'No se puede repetir el nombre de la misma oferta.'
+		set @Mensaje = ' No se puede repetir el nombre de la misma oferta.'
 	end
 end
 go
@@ -950,12 +1012,12 @@ begin
     DELETE FROM OFERTA WHERE ID_OFERTA = @Id_Oferta;
     if @@ROWCOUNT > 0
     begin
-        set @Mensaje = 'La oferta ha sido eliminada exitosamente.';
+        set @Mensaje = ' La oferta ha sido eliminada exitosamente.';
     end
     else
     begin
         set @Resultado = 0;
-        set @Mensaje = 'No se encontró ninguna oferta con el ID especificado.';
+        set @Mensaje = ' No se encontr ï¿½ ninguna oferta con el ID especificado.';
     end
 end
 go
@@ -973,12 +1035,12 @@ begin
     if @@ROWCOUNT = 1
     begin
         set @Resultado = 1
-        set @Mensaje = 'El estado del reclamo ha sido actualizado exitosamente.'
+        set @Mensaje = ' El estado del reclamo ha sido actualizado exitosamente.'
     end
     else
     begin
         set @Resultado = 0
-        set @Mensaje = 'No se puede repetir el mismo ID del reclamo.'
+        set @Mensaje = ' No se puede repetir el mismo ID del reclamo.'
     end
 end
 go
@@ -994,12 +1056,12 @@ begin
     DELETE FROM RECLAMO WHERE ID_RECLAMO = @Id_Reclamo;
     if @@ROWCOUNT > 0
     begin
-        SET @Mensaje = 'El reclamo del cliente ha sido eliminada exitosamente.';
+        SET @Mensaje = ' El reclamo del cliente ha sido eliminada exitosamente.';
     end
     else
     begin
         set @Resultado = 0;
-        set @Mensaje = 'No se encontró ningun reclamo con el ID especificado.';
+        set @Mensaje = ' No se encontr ï¿½ ningun reclamo con el ID especificado.';
     end
 end
 go
@@ -1024,7 +1086,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'Ya existe una sucursal con el mismo nombre.'
+		set @Mensaje = ' Ya existe una sucursal con el mismo nombre.'
 end
 go
 
@@ -1054,7 +1116,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'No se puede repetir el mismo nombre de la sucursal.'
+		set @Mensaje = ' No se puede repetir el mismo nombre de la sucursal.'
 	end 
 end
 go
@@ -1070,12 +1132,12 @@ begin
     DELETE FROM SUCURSAL WHERE ID_SUCURSAL = @Id_Sucursal;
     if @@ROWCOUNT > 0
     begin
-        set @Mensaje = 'La sucursal ha sido eliminada exitosamente.';
+        set @Mensaje = ' La sucursal ha sido eliminada exitosamente.';
     end
     else
     begin
         set @Resultado = 0;
-        set @Mensaje = 'No se encontró ninguna sucursal con el ID especificado.';
+        set @Mensaje = ' No se encontr ï¿½ ninguna sucursal con el ID especificado.';
     end
 end
 go
@@ -1102,7 +1164,7 @@ begin
 		set @Resultado = SCOPE_IDENTITY()
 	end
 	else
-		set @Mensaje = 'Ya existe un transportista con ese documento.'
+		set @Mensaje = ' Ya existe un transportista con ese documento.'
 end
 go
 
@@ -1136,7 +1198,7 @@ begin
 	else
 	begin
 		set @Resultado = 0
-		set @Mensaje = 'El número de documento ya existe.'
+		set @Mensaje = ' El n ï¿½ mero de documento ya existe.'
 	end 
 end
 go
@@ -1152,141 +1214,143 @@ begin
     DELETE FROM TRANSPORTISTA WHERE ID_TRANSPORTISTA = @Id_Transportista;
     if @@ROWCOUNT > 0
     begin
-        set @Mensaje = 'El transportista ha sido eliminado exitosamente.';
+        set @Mensaje = ' El transportista ha sido eliminado exitosamente.';
     end
     else
     begin
         set @Resultado = 0;
-        set @Mensaje = 'No se encontró ninguna transportista con el ID especificado.';
+        set @Mensaje = ' No se encontr ï¿½ ninguna transportista con el ID especificado.';
     end
 end
 go
 
 /*INSERCIONES*/
 go
-INSERT INTO ROL (DESCRIPCION) VALUES('Administrador');
+INSERT INTO ROL (DESCRIPCION) VALUES(' Administrador ');
 go
-INSERT INTO ROL (DESCRIPCION) VALUES ('Empleado');
+INSERT INTO ROL (DESCRIPCION) VALUES (' Empleado ');
 go
-INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00001','Abraham Andres Farfan Sanchez','hermanosfarfan@gmail.com','jawi2010',1,1);
+INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES (' 00001 ',' Abraham Andres Farfan Sanchez ',' hermanosfarfan @gmail.com ',' jawi2010 ',1,1);
 go
-INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00002','Maria Belen Becerra Lopez','belencita@gmail.com','1234',2,1);
+INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES (' 00002 ',' Maria Belen Becerra Lopez ',' belencita @gmail.com ',' 1234 ',2,1);
 go
-INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00003','Mateo Juan Alvarado Noboa','luispro@gmail.com','insano',1,0);
+INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES (' 00003 ',' Mateo Juan Alvarado Noboa ',' luispro @gmail.com ',' insano ',1,0);
 go
-INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00004','Jose Maria Velazco Torres','jose@gmail.com','12',2,1);
+INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES (' 00004 ',' Jose Maria Velazco Torres ',' jose @gmail.com ',' 12 ',2,1);
 go
-INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00005','Esteban Leonardo Leon Marcillo','leonardo128@gmail.com','freefire',2,0);
-go
-INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
-(1,'menuUsuarios'),
-(1,'menuMantenimiento'),
-(1,'menuVentas'),
-(1,'menuCompras'),
-(1,'menuProveedores'),
-(1,'menuTransportistas'),
-(1,'menuSucursales'),
-(1,'menuClientes'),
-(1,'menuReportes'),
-(1,'menuOfertas'),
-(1,'menuReclamos'),
-(1,'menuAcercaDe');
+INSERT INTO USUARIO (DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES (' 00005 ',' Esteban Leonardo Leon Marcillo ',' leonardo128 @gmail.com ',' freefire ',2,0);
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
-(2,'menuVentas'),
-(2,'menuCompras'),
-(2,'menuProveedores'),
-(2,'menuTransportistas'),
-(2,'menuClientes'),
-(2,'menuOfertas'),
-(2,'menuReclamos'),
-(2,'menuAcercaDe');
+(1,' menuUsuarios '),
+(1,' menuMantenimiento '),
+(1,' menuVentas '),
+(1,' menuCompras '),
+(1,' menuProveedores '),
+(1,' menuTransportistas '),
+(1,' menuSucursales '),
+(1,' menuClientes '),
+(1,' menuReportes '),
+(1,' menuOfertas '),
+(1,' menuReclamos '),
+(1,' menuAcercaDe ');
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Frutas y Verduras',1);
+INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
+(2,' menuVentas '),
+(2,' menuCompras '),
+(2,' menuProveedores '),
+(2,' menuTransportistas '),
+(2,' menuClientes '),
+(2,' menuOfertas '),
+(2,' menuReclamos '),
+(2,' menuAcercaDe ');
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Despensa',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Frutas y Verduras ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Preparados',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Despensa ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Bebidas y Licores',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Preparados ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Refrigerados',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Bebidas y Licores ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Congelados',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Refrigerados ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Carnes',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Congelados ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Embutidos',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Carnes ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Panaderia',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Embutidos ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Mascotas',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Panaderia ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Cuidado Personal',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Mascotas ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Cuidado del Hogar',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Cuidado Personal ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Electrodomésticos',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Cuidado del Hogar ',1);
 go
-INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES ('Jarnideria y Plantas',1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Electrodom ï¿½ sticos ',1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Tonelada', 't', 1);
+INSERT INTO CATEGORIA(DESCRIPCION, ESTADO) VALUES (' Jarnideria y Plantas ',1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Quintal', 'q', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Tonelada ', ' t ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Kilogramo', 'kg', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Quintal ', ' q ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Libra', 'lb', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Kilogramo ', ' kg ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Gramo', 'g', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Libra ', ' lb ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Litro', 'L', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Gramo ', ' g ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Galón', 'G', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Litro ', ' L ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Metro', 'm', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Gal ï¿½ n ', ' G ', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES('Centímetro', 'cm', 1);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Metro ', ' m ', 1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1000','Papel Higienico','8 unidades',12,3,'Ecuador',0);
+INSERT INTO UNIDAD_MEDIDA (DESCRIPCION, SIMBOLO, ESTADO) VALUES(' Cent ï¿½ metro ', ' cm ', 1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1001','Cocina Indurama','Color gris',13,3,'China',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1000 ',' Papel Higienico ',' 8 unidades ',12,3,' Ecuador ',0);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1002','Caja de Banano','20 Kg',1,3,'Ecuador',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1001 ',' Cocina Indurama ',' Color gris ',13,3,' China ',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1003','Sillas Plasticas','Fibra de carbono',12,3,'Ecuador',0);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1002 ',' Caja de Banano ',' 20 Kg ',1,3,' Ecuador ',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1004','Vino Blanco','Elaborado en 1978',4,6,'España',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1003 ',' Sillas Plasticas ',' Fibra de carbono ',12,3,' Ecuador ',0);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1005','Television LG','Color negro',13,8,'Japón',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1004 ',' Vino Blanco ',' Elaborado en 1978 ',4,6,' Espa ï¿½ a ',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1006','Caja de Cereza','Cerezas extra grandes',1,3,'Chile',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1005 ',' Television LG ',' Color negro ',13,8,' Jap ï¿½ n ',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1007','Clorox','1 Litro',12,6,'Ecuador',0);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1006 ',' Caja de Cereza ',' Cerezas extra grandes ',1,3,' Chile ',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('1008','Semillas de Manzano','8 unidades',14,5,'Estados Unidos',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1007 ',' Clorox ',' 1 Litro ',12,6,' Ecuador ',0);
 go
-INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('100','Javier Mateo','Lopez Molina','0987654321','0912345678','javierito@gmail.com',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES(' 1008 ',' Semillas de Manzano ',' 8 unidades ',14,5,' Estados Unidos ',1);
 go
-INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('101','Julio Andres','Mata Rodriguez','0975312468','0986421357','julito@gmail.com',1);
+INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 100 ',' Javier Mateo ',' Lopez Molina ',' 0987654321 ',' 0912345678 ',' javierito @gmail.com ',1);
 go
-INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('102','Emily Sofia','Andrade Sanchez','0914237898','0957143210','emily@gmail.com',1);
+INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 101 ',' Julio Andres ',' Mata Rodriguez ',' 0975312468 ',' 0986421357 ',' julito @gmail.com ',1);
 go
-INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('100','Manolo Sebastian','Pilligua Montalvo','0981441455','0956262748','manolito@gmail.com',1);
+INSERT INTO CLIENTE (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 102 ',' Emily Sofia ',' Andrade Sanchez ',' 0914237898 ',' 0957143210 ',' emily @gmail.com ',1);
 go
-INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('101','Juan Manuel','Gago Perez','0975462351','0981893637','juanito@gmail.com',1);
+INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 100 ',' Manolo Sebastian ',' Pilligua Montalvo ',' 0981441455 ',' 0956262748 ',' manolito @gmail.com ',1);
 go
-INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('102','Sebastian Andres','Gonzales Lopez','0951135233','0936472943','sagl@gmail.com',1);
+INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 101 ',' Juan Manuel ',' Gago Perez ',' 0975462351 ',' 0981893637 ',' juanito @gmail.com ',1);
 go
-INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,'Supermercado Paradisia','0969810812','0102030405','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
+INSERT INTO PROVEEDOR (DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES (' 102 ',' Sebastian Andres ',' Gonzales Lopez ',' 0951135233 ',' 0936472943 ',' sagl @gmail.com ',1);
 go
-INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(1,'Javier Mateo','javierito@gmail.com','Compre unas cajas de bananos y algunas bananas me vinieron negras, exijo una devolucion.',1);
+INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,' Supermercado Paradisia ',' 0969810812 ',' 0102030405 ',' Mucho Lote 3 etapa ',' SupermercadoParadisia @gmail.com ');
 go
-INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,'Julio Andres','julito@gmail.com','El televisor LG que compre no me vino con el soporte y los tornillos para ponerlo en la pared.',0);
+INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(1,' Javier Mateo ',' javierito @gmail.com ',' Compre unas cajas de bananos y algunas bananas me vinieron negras,
+	exijo una devolucion.',1);
 go
-INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,'Julio Andres','julito@gmail.com','Cuando compre la cocina decia que venia con un set de ollas pero al momento de la entrega no me vino eso.',0);
+INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,' Julio Andres ',' julito @gmail.com ',' El televisor LG que compre no me vino con el soporte y los tornillos para ponerlo en la pared.',0);
 go
-INSERT INTO SUCURSAL (NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES ('GUAYAQUIL_9 DE OCT y LOS RIOS','AV. 9 DE OCTUBRE 803 Y LOS RIOS',-2.187746,-79.894365,'Guayaquil',1);
+INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,' Julio Andres ',' julito @gmail.com ',' Cuando compre la cocina decia que venia con un
+set
+	de ollas pero al momento de la entrega no me vino eso.',0);
 go
-INSERT INTO SUCURSAL (NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES ('GUAYAQUIL_ALBANBORJA','AV.CARLOS JULIO AROSEMENA S/N',-2.169321,-79.917047,'Guayaquil',0);
-
+INSERT INTO SUCURSAL (NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (' GUAYAQUIL_9 DE OCT y LOS RIOS ',' AV.9 DE OCTUBRE 803 Y LOS RIOS ',-2.187746,-79.894365,' Guayaquil ',1);
+go
+INSERT INTO SUCURSAL (NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (' GUAYAQUIL_ALBANBORJA ',' AV.CARLOS JULIO AROSEMENA S / N',-2.169321,-79.917047,' Guayaquil ',0);
