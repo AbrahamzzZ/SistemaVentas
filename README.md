@@ -24,6 +24,13 @@ Grupo de Construcion de Software Sof-Ve-6-2
 
 ## 📝 Tabla de Contenidos
 
+- [Instalacion](#-instalacion)
+  - [📦 Requerimientos de Instalacion](#-requerimientos-de-instalacion)
+  - [📝 Clonar Repositorio](#-clonar-repositorio)
+- [📦 Instalacion de base de datos](#-instalacion-de-base-de-datos)
+- [🚀 Ejecución del Proyecto](#-ejecuccion-del-proyecto)
+- [📝 Licencia](#-licencia)
+
 ## Instalacion
 
 En esta sección se explica el proceso de instalación de todas las dependencias necesarias para ejecutar el proyecto.
