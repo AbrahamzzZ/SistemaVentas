@@ -39,13 +39,6 @@ namespace Presentacion
             }
         }
 
-        private void lblHagaClicAqui_Click(object sender, EventArgs e)
-        {
-            vtnRecuperarClave recuperacion = new vtnRecuperarClave();
-            this.Hide();
-            recuperacion.ShowDialog();
-            this.Show();
-        }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txt1.Text) || string.IsNullOrWhiteSpace(txt2.Text))
@@ -110,6 +103,13 @@ namespace Presentacion
                 MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
+        }
+        private void lblHagaClicAqui_Click(object sender, EventArgs e)
+        {
+            vtnRecuperarClave recuperacion = new vtnRecuperarClave();
+            this.Hide();
+            recuperacion.ShowDialog();
+            this.Show();
         }
     }
 }
