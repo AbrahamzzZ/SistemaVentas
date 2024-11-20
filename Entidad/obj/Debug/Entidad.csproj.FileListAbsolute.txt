@@ -1,6 +1,0 @@
-C:\Users\herma\source\repos\SistemaVenta\Entidad\bin\Debug\Entidad.dll
-C:\Users\herma\source\repos\SistemaVenta\Entidad\bin\Debug\Entidad.pdb
-C:\Users\herma\source\repos\SistemaVenta\Entidad\obj\Debug\Entidad.csproj.AssemblyReference.cache
-C:\Users\herma\source\repos\SistemaVenta\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
-C:\Users\herma\source\repos\SistemaVenta\Entidad\obj\Debug\Entidad.dll
-C:\Users\herma\source\repos\SistemaVenta\Entidad\obj\Debug\Entidad.pdb
