@@ -15,15 +15,15 @@ namespace Test
             venta.oUsuario = new Usuario();
             venta.oUsuario.IdUsuario = 1;
 
-            venta.TipoDocumento = "01";
-            venta.NumeroDocumento = "123456789";
-            venta.DocumentoCliente = "123456789";
-            venta.NombreCliente = "Roberto Perez";
-            venta.MontoPago = 100;
-            venta.MontoCambio = 100;
-            venta.MontoTotal = 100;
-            venta.Descuento = 100;
-            venta.FechaVenta = "2024-11-22";
+            venta.TipoDocumento = "boleta";
+            venta.NumeroDocumento = "00001";
+            venta.DocumentoCliente = "102";
+            venta.NombreCliente = "Emily Sofia";
+            venta.MontoPago = 16.00m;
+            venta.MontoCambio = 1.00m;
+            venta.MontoTotal = 15.00m;
+            venta.Descuento = 0.00m;
+            venta.FechaVenta = "2024-11-22 12:00:00";
 
             // Detalle de venta
             //venta.oDetalle_Venta = new List<Detalle_Venta>();

@@ -52,6 +52,30 @@ namespace Test
 
             Assert.IsTrue(datos.eliminarProducto(productoEliminado, out mensaje));
         }
+
+        [TestMethod]
+        public void ActualizarProducto()
+        {
+
+            CapaDatos datos = new CapaDatos();
+            Producto productoActualizado = new Producto();
+            productoActualizado.IdProducto = 1;
+            productoActualizado.Codigo = "00001";
+            productoActualizado.Nombre = "Papel Higienico";
+            productoActualizado.Descripcion = "Papel higienico de 8 unidades";
+            productoActualizado.oCategoria = new Categoria();
+            productoActualizado.oCategoria.IdCategoria = 12;
+            productoActualizado.oUnidadMedida = new Unidad_Medida();
+            productoActualizado.oUnidadMedida.IdUnidadMedida = 3;
+            productoActualizado.PaisOrigen = "Ecuador";
+            productoActualizado.Stock = 0;
+            productoActualizado.PrecioCompra = 12.00m;
+            productoActualizado.PrecioVenta = 15.00m;
+            productoActualizado.Estado = "No Activo";
+            string mensaje = "";
+
+            Assert.IsTrue(datos.editarProducto(productoActualizado, out mensaje));
+        }
     }
 
 }
