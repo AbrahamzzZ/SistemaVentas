@@ -9,7 +9,7 @@ namespace Test
         [TestMethod]
         public void RegistrarUsuario()
         {
-            CapaDatos datos = new CapaDatos();
+            Conexion datos = new Conexion();
 
             string Documento = "00009";
             string NombreCompleto = "Roberto Perez";
@@ -28,21 +28,21 @@ namespace Test
             usuarioNuevo.oRol = rol;
             usuarioNuevo.Estado = estado;
 
-            Assert.IsTrue(datos.registrarUsuario(usuarioNuevo, out mensaje) > 0);
+            Assert.IsTrue(datos.RegistrarUsuario(usuarioNuevo, out mensaje) > 0);
             
         }
 
         [TestMethod]
         public void EliminarUsuario()
         {
-            CapaDatos datos = new CapaDatos();
-            int idUsuario = 12;
+            Conexion datos = new Conexion();
+            int idUsuario = 1015;
             string mensaje = "";
 
             Usuario usuarioEliminado = new Usuario();
             usuarioEliminado.IdUsuario = idUsuario;
 
-            Assert.IsTrue(datos.eliminarUsuario(usuarioEliminado, out mensaje));
+            Assert.IsTrue(datos.EliminarUsuario(usuarioEliminado, out mensaje));
         }
 
     }

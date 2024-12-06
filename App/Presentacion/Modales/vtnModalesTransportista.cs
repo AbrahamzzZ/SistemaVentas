@@ -32,7 +32,7 @@ namespace Presentacion.Modales
             cmb1.DisplayMember = "Texto";
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
-            List<Transportista> mostrarTransportista = new CapaNegocios().mostrSQL();
+            List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
             foreach (Transportista transportistas in mostrarTransportista)
             {
                 tablaTransportista.Rows.Add(new object[] { transportistas.IdTransportista, transportistas.Documento, transportistas.Nombres, transportistas.Estado });

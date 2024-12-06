@@ -15,10 +15,10 @@ namespace Presentacion
 {
     public partial class vtnCompra : Form
     {
-        private Usuario usuario;
+        private Usuario Usuario;
         public vtnCompra(Usuario oUsuario = null)
         {
-            usuario = oUsuario;
+            Usuario = oUsuario;
             InitializeComponent();
         }
 
@@ -182,12 +182,12 @@ namespace Presentacion
                         row.Cells["SubTotal"].Value.ToString()
                     });
             }
-            int idCorrelativo = new CapaNegocios().obtenerCorrelativoCompra();
+            int idCorrelativo = new CN_Compra().MostrarCorrelativoCompra();
             string numeroDocumento = string.Format("{0:00000}", idCorrelativo);
 
             Compra oCompra = new Compra()
             {
-                oUsuario = new Usuario() { IdUsuario = usuario.IdUsuario },
+                oUsuario = new Usuario() { IdUsuario = Usuario.IdUsuario },
                 oProveedor = new Proveedor() { IdProveedor = Convert.ToInt32(txt4.Text) },
                 oTransportista = new Transportista() { IdTransportista = Convert.ToInt32(txt12.Text)},
                 TipoDocumento = tipoDocumento,
@@ -195,10 +195,10 @@ namespace Presentacion
                 MontoTotal = Convert.ToDecimal(txt13.Text)
             };
             string mensaje = string.Empty;
-            bool respuesta = new CapaNegocios().rescoSQL(oCompra, detalla_compra, out mensaje);
+            bool respuesta = new CN_Compra().Registrar(oCompra, detalla_compra, out mensaje);
             if (respuesta)
             {
-                MessageBox.Show("Compra realizada exitosamente.", "Registrar Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Compra realizada exitosamente.", "Editar Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var a = MessageBox.Show("Numero de compra generado:\n" + numeroDocumento + "\n¿Desea copiar al cortapapeles?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (a == DialogResult.Yes)
                 {
@@ -253,7 +253,7 @@ namespace Presentacion
         {
             if (e.KeyData == Keys.Enter)
             {
-                Producto oProducto = new CapaNegocios().mospSQL().Where(p => p.Codigo == txt6.Text && p.Estado == true).FirstOrDefault();
+                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == txt6.Text && p.Estado == true).FirstOrDefault();
                 if (oProducto != null)
                 {
                     txt6.BackColor = Color.Honeydew;

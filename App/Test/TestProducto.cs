@@ -9,7 +9,7 @@ namespace Test
         [TestMethod]
         public void RegistrarProducto()
         {
-            CapaDatos datos = new CapaDatos();
+            Conexion datos = new Conexion();
 
             string Codigo = "1009";
             string Descripcion = "12 unidades";
@@ -41,10 +41,34 @@ namespace Test
         }
 
         [TestMethod]
+        public void ActualizarProducto()
+        {
+
+            Conexion datos = new Conexion();
+            Producto productoActualizado = new Producto();
+            productoActualizado.IdProducto = 1;
+            productoActualizado.Codigo = "00001";
+            productoActualizado.Nombre = "Papel Higienico";
+            productoActualizado.Descripcion = "8 unidades";
+            productoActualizado.oCategoria = new Categoria();
+            productoActualizado.oCategoria.IdCategoria = 12;
+            productoActualizado.oUnidadMedida = new Unidad_Medida();
+            productoActualizado.oUnidadMedida.IdUnidadMedida = 3;
+            productoActualizado.PaisOrigen = "Ecuador";
+            productoActualizado.Stock = 0;
+            productoActualizado.PrecioCompra = 12.00m;
+            productoActualizado.PrecioVenta = 15.00m;
+            productoActualizado.Estado = false;
+            string mensaje = "";
+
+            Assert.IsTrue(datos.editarProducto(productoActualizado, out mensaje));
+        }
+
+        [TestMethod]
         public void EliminarProducto()
         {
-            CapaDatos datos = new CapaDatos();
-            int idProducto = 12;
+            Conexion datos = new Conexion();
+            int idProducto = 15;
             string mensaje = "";
 
             Producto productoEliminado = new Producto();

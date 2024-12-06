@@ -359,7 +359,7 @@
             this.lblRegistrarCompra.Name = "lblRegistrarCompra";
             this.lblRegistrarCompra.Size = new System.Drawing.Size(1212, 540);
             this.lblRegistrarCompra.TabIndex = 117;
-            this.lblRegistrarCompra.Text = "Registrar Compra";
+            this.lblRegistrarCompra.Text = "Editar Compra";
             // 
             // groupBox2
             // 

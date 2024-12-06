@@ -38,8 +38,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos las unidades de medidas existentes en la tabla
-            List<Unidad_Medida> lista = new CapaNegocios().ListarUnidadesMedida();
+            List<Unidad_Medida> lista = new CN_Unidad_Medida().ListarUnidadesMedida();
             foreach (Unidad_Medida item in lista)
             {
                 tablaUnidadMedida.Rows.Add(new object[] { "", item.IdUnidadMedida, item.Descripcion, item.Simbolo, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
@@ -104,7 +103,7 @@ namespace Presentacion
                 };
                 if (agregarUnidadMedida.IdUnidadMedida == 0)
                 {
-                    int idUnidadMedidaIngresada = new CapaNegocios().resumSQL(agregarUnidadMedida, out mensaje);
+                    int idUnidadMedidaIngresada = new CN_Unidad_Medida().Registrar(agregarUnidadMedida, out mensaje);
                     if (idUnidadMedidaIngresada != 0)
                     {
                         // Verificar si los elementos seleccionados no son nulos
@@ -142,7 +141,7 @@ namespace Presentacion
                 Simbolo = txt4.Text,
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().ediumSQL(categoriaModificado, out mensaje);
+            bool modificar = new CN_Unidad_Medida().Editar(categoriaModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("La unidad de medida fue modificada correctamente.", "Modificar unidad de medida", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -178,7 +177,7 @@ namespace Presentacion
                         {
                             IdUnidadMedida = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().eliumSQL(unidadMedidaEliminada, out mensaje);
+                        bool respuesta = new CN_Unidad_Medida().Eliminar(unidadMedidaEliminada, out mensaje);
                         if (respuesta)
                         {
                             tablaUnidadMedida.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

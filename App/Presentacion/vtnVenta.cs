@@ -129,8 +129,8 @@ namespace Presentacion
             }
             if (!productoExistente)
             {
-                List<Oferta> listaOferta = new CapaNegocios().ListarOferta();
-                bool respuesta = new CapaNegocios().resstSQL(Convert.ToInt32(txt5.Text), Convert.ToInt32(numericUpDown1.Value.ToString()));
+                List<Oferta> listaOferta = new CN_Oferta().ListarOferta();
+                bool respuesta = new CN_Venta().RestarSotckProducto(Convert.ToInt32(txt5.Text), Convert.ToInt32(numericUpDown1.Value.ToString()));
                 if (respuesta)
                 {
                     decimal subTotal = numericUpDown1.Value * precio;
@@ -174,7 +174,7 @@ namespace Presentacion
             }
             if (txt13.Text == "")
             {
-                MessageBox.Show("Debe ingresar el valor a pagar.", "Registrar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar el valor a pagar.", "Editar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt13.Select();
             }
             else
@@ -195,7 +195,7 @@ namespace Presentacion
                         row.Cells["Descuento"].Value.ToString()
                     });
                 }
-                int idCorrelativo = new CapaNegocios().obtenerCorrelativoVenta();
+                int idCorrelativo = new CN_Venta().MostrarCorrelativoVenta();
                 string numeroDocumento = string.Format("{0:00000}", idCorrelativo);
                 calcularCambio();
                 Venta oVenta = new Venta()
@@ -212,10 +212,10 @@ namespace Presentacion
                 };
 
                 string mensaje = string.Empty;
-                bool respuesta = new CapaNegocios().resveSQL(oVenta, detalleVenta, out mensaje);
+                bool respuesta = new CN_Venta().Registrar(oVenta, detalleVenta, out mensaje);
                 if (respuesta)
                 {
-                    MessageBox.Show("Venta realizada exitosamente.", "Registrar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Venta realizada exitosamente.", "Editar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     var result = MessageBox.Show("Numero de venta generado:\n" + numeroDocumento + "\n\n ¿Dsea copiar al portapapeles?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
@@ -261,7 +261,7 @@ namespace Presentacion
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    bool respuesta = new CapaNegocios().sumstSQL(
+                    bool respuesta = new CN_Venta().SumarSotckProducto(
                     Convert.ToInt32(tablaVentas.Rows[indice].Cells["IdProducto"].Value.ToString()),
                     Convert.ToInt32(tablaVentas.Rows[indice].Cells["Cantidad"].Value.ToString()));
                     if (respuesta)
@@ -276,7 +276,7 @@ namespace Presentacion
         {
             if (e.KeyData == Keys.Enter)
             {
-                Producto oProducto = new CapaNegocios().mospSQL().Where(p => p.Codigo == txt6.Text && p.Estado == true).FirstOrDefault();
+                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == txt6.Text && p.Estado == true).FirstOrDefault();
                 if (oProducto != null)
                 {
                     txt6.BackColor = Color.Honeydew;

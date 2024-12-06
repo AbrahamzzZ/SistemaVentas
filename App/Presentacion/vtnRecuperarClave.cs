@@ -25,19 +25,19 @@ namespace Presentacion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string correoElectronico = txt1.Text;
-            Usuario usuario = new CapaNegocios().recSQL(correoElectronico);
+            Usuario usuario = new CN_Usuario().MostrarClave(correoElectronico);
             if (string.IsNullOrWhiteSpace(txt1.Text))
             {
                 MessageBox.Show("Por favor llene el campo. ", "Recuperación de clave.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (usuario != null)
             {
-                MessageBox.Show("La contraseña del usuario es: " + usuario.Clave, "Recupearación de clave", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La contraseña del Usuario es: " + usuario.Clave, "Recupearación de clave", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("No se encontró un usuario con el correo electrónico proporcionado.", "Recuperación de clave", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se encontró un Usuario con el correo electrónico proporcionado.", "Recuperación de clave", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

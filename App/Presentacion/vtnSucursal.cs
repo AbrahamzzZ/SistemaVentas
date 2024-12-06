@@ -61,8 +61,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos las sucursales existentes en la tabla
-            List<Sucursal> mostrarSucursal = new CapaNegocios().mossuSQL();
+            List<Sucursal> mostrarSucursal = new CN_Sucursal().ListarSucusal();
             foreach (Sucursal sucursal in mostrarSucursal)
             {
                 tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Nombre, sucursal.Direccion, sucursal.Latitud, sucursal.Longitud, sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
@@ -135,7 +134,7 @@ namespace Presentacion
                     Ciudad = txt7.Text,
                     Estado = valorCmb1 == 1
                 };
-                int idSucursalIngresado = new CapaNegocios().ressuSQL(agregarSucursal, out mensaje);
+                int idSucursalIngresado = new CN_Sucursal().Registrar(agregarSucursal, out mensaje);
                 if (idSucursalIngresado != 0)
                 {
                     // Verificar si los elementos seleccionados no son nulos
@@ -183,7 +182,7 @@ namespace Presentacion
                 Ciudad = txt7.Text,
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().edisuSQL(sucursalModificado, out mensaje);
+            bool modificar = new CN_Sucursal().Editar(sucursalModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("La sucursal fue modificado correctamente.", "Modificar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -225,7 +224,7 @@ namespace Presentacion
                             IdSucursal = Convert.ToInt32(txt2.Text),
                         };
 
-                        bool respuesta = new CapaNegocios().elisuSQL(sucursalEliminado, out mensaje);
+                        bool respuesta = new CN_Sucursal().Eliminar(sucursalEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaSucursal.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

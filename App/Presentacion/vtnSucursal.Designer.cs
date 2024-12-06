@@ -28,17 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Longitu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Latitu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mapa = new GMap.NET.WindowsForms.GMapControl();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.lblLatitud = new System.Windows.Forms.Label();
@@ -65,87 +56,17 @@
             this.txt9 = new System.Windows.Forms.TextBox();
             this.tablaSucursal = new System.Windows.Forms.DataGridView();
             this.txt4 = new System.Windows.Forms.RichTextBox();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Latitu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Longitu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaSucursal)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Estado
-            // 
-            this.Estado.FillWeight = 5.148833F;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 90;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
-            // Ciudad
-            // 
-            this.Ciudad.FillWeight = 5.148833F;
-            this.Ciudad.HeaderText = "Ciudad";
-            this.Ciudad.MinimumWidth = 6;
-            this.Ciudad.Name = "Ciudad";
-            this.Ciudad.ReadOnly = true;
-            this.Ciudad.Width = 90;
-            // 
-            // Longitu
-            // 
-            this.Longitu.HeaderText = "Longitud";
-            this.Longitu.MinimumWidth = 6;
-            this.Longitu.Name = "Longitu";
-            this.Longitu.ReadOnly = true;
-            this.Longitu.Width = 125;
-            // 
-            // Latitu
-            // 
-            this.Latitu.HeaderText = "Latitud";
-            this.Latitu.MinimumWidth = 6;
-            this.Latitu.Name = "Latitu";
-            this.Latitu.ReadOnly = true;
-            this.Latitu.Width = 125;
-            // 
-            // Direccion
-            // 
-            this.Direccion.FillWeight = 101.6525F;
-            this.Direccion.HeaderText = "Dirección";
-            this.Direccion.MinimumWidth = 6;
-            this.Direccion.Name = "Direccion";
-            this.Direccion.ReadOnly = true;
-            this.Direccion.Width = 200;
-            // 
-            // NombreSucursal
-            // 
-            this.NombreSucursal.FillWeight = 565.2406F;
-            this.NombreSucursal.HeaderText = "Nombre Sucursal";
-            this.NombreSucursal.MinimumWidth = 6;
-            this.NombreSucursal.Name = "NombreSucursal";
-            this.NombreSucursal.ReadOnly = true;
-            this.NombreSucursal.Width = 200;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id Sucursal";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 50;
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.FillWeight = 12.51156F;
-            this.btnSeleccionar.HeaderText = "";
-            this.btnSeleccionar.MinimumWidth = 6;
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.ReadOnly = true;
-            this.btnSeleccionar.Width = 30;
             // 
             // mapa
             // 
@@ -169,7 +90,7 @@
             this.mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.mapa.ShowTileGridLines = false;
-            this.mapa.Size = new System.Drawing.Size(665, 563);
+            this.mapa.Size = new System.Drawing.Size(665, 286);
             this.mapa.TabIndex = 157;
             this.mapa.Zoom = 0D;
             // 
@@ -434,15 +355,15 @@
             // 
             this.tablaSucursal.AllowUserToAddRows = false;
             this.tablaSucursal.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaSucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSucursal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -454,16 +375,16 @@
             this.Ciudad,
             this.EstadoValor,
             this.Estado});
-            this.tablaSucursal.Location = new System.Drawing.Point(1054, 311);
+            this.tablaSucursal.Location = new System.Drawing.Point(364, 311);
             this.tablaSucursal.MultiSelect = false;
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
             this.tablaSucursal.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaSucursal.RowTemplate.Height = 28;
-            this.tablaSucursal.Size = new System.Drawing.Size(323, 264);
+            this.tablaSucursal.Size = new System.Drawing.Size(1013, 264);
             this.tablaSucursal.TabIndex = 135;
             this.tablaSucursal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaSucursal_CellContentClick);
             this.tablaSucursal.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaSucursal_CellFormatting);
@@ -476,6 +397,85 @@
             this.txt4.Size = new System.Drawing.Size(278, 101);
             this.txt4.TabIndex = 158;
             this.txt4.Text = "";
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.FillWeight = 12.51156F;
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.MinimumWidth = 6;
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 30;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id Sucursal";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // NombreSucursal
+            // 
+            this.NombreSucursal.FillWeight = 565.2406F;
+            this.NombreSucursal.HeaderText = "Nombre Sucursal";
+            this.NombreSucursal.MinimumWidth = 6;
+            this.NombreSucursal.Name = "NombreSucursal";
+            this.NombreSucursal.ReadOnly = true;
+            this.NombreSucursal.Width = 200;
+            // 
+            // Direccion
+            // 
+            this.Direccion.FillWeight = 101.6525F;
+            this.Direccion.HeaderText = "Dirección";
+            this.Direccion.MinimumWidth = 6;
+            this.Direccion.Name = "Direccion";
+            this.Direccion.ReadOnly = true;
+            this.Direccion.Width = 200;
+            // 
+            // Latitu
+            // 
+            this.Latitu.HeaderText = "Latitud";
+            this.Latitu.MinimumWidth = 6;
+            this.Latitu.Name = "Latitu";
+            this.Latitu.ReadOnly = true;
+            this.Latitu.Width = 125;
+            // 
+            // Longitu
+            // 
+            this.Longitu.HeaderText = "Longitud";
+            this.Longitu.MinimumWidth = 6;
+            this.Longitu.Name = "Longitu";
+            this.Longitu.ReadOnly = true;
+            this.Longitu.Width = 125;
+            // 
+            // Ciudad
+            // 
+            this.Ciudad.FillWeight = 5.148833F;
+            this.Ciudad.HeaderText = "Ciudad";
+            this.Ciudad.MinimumWidth = 6;
+            this.Ciudad.Name = "Ciudad";
+            this.Ciudad.ReadOnly = true;
+            this.Ciudad.Width = 120;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "Estado valor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            this.EstadoValor.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.FillWeight = 5.148833F;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 90;
             // 
             // vtnSucursal
             // 
@@ -520,15 +520,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Longitu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Latitu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSucursal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private GMap.NET.WindowsForms.GMapControl mapa;
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Label lblLatitud;
@@ -555,5 +546,14 @@
         private System.Windows.Forms.TextBox txt9;
         private System.Windows.Forms.DataGridView tablaSucursal;
         private System.Windows.Forms.RichTextBox txt4;
+        private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSucursal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Latitu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Longitu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

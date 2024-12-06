@@ -27,7 +27,7 @@ namespace Presentacion
             cmb3.DisplayMember = "Texto";
             cmb3.ValueMember = "Valor";
             cmb3.SelectedIndex = 0;
-            List<Categoria> listaCategoria = new CapaNegocios().ListarCategoria();
+            List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
             foreach (Categoria categorias in listaCategoria)
             {
                 cmb1.Items.Add(new { Valor = categorias.IdCategoria, Texto = categorias.Descripcion });
@@ -43,7 +43,7 @@ namespace Presentacion
                 cmb1.Enabled = false;
             }
 
-            List<Unidad_Medida> listaUnidadMedida = new CapaNegocios().ListarUnidadesMedida();
+            List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
             foreach (Unidad_Medida unidades in listaUnidadMedida)
             {
                 cmb2.Items.Add(new { Valor = unidades.IdUnidadMedida, Texto = unidades.Descripcion });
@@ -71,7 +71,7 @@ namespace Presentacion
             cmb4.ValueMember = "Valor";
             cmb4.SelectedIndex = 0;
             //Mostrar todos los productos existentes en la tabla
-            List<Producto> mostrarProducto = new CapaNegocios().mospSQL();
+            List<Producto> mostrarProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in mostrarProducto)
             {
                 tablaProducto.Rows.Add(new object[] { "", productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.oCategoria.IdCategoria, productos.oCategoria.Descripcion, productos.oUnidadMedida.IdUnidadMedida, productos.oUnidadMedida.Descripcion, productos.PaisOrigen, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado == true ? 1 : 0, productos.Estado == true ? "Activo" : "No Activo" });
@@ -193,7 +193,7 @@ namespace Presentacion
                     oUnidadMedida = new Unidad_Medida { IdUnidadMedida = valorCmb2},
                     Estado = valorCmb3 == 1
                 };
-                List<Categoria> listaCategoria = new CapaNegocios().ListarCategoria();
+                List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
                 Categoria categoriaSeleccionada = listaCategoria.FirstOrDefault(c => c.IdCategoria == valorCmb1);
                 if (categoriaSeleccionada != null && !categoriaSeleccionada.Estado) 
                 {
@@ -201,7 +201,7 @@ namespace Presentacion
                     Limpiar();
                     return; 
                 }
-                List<Unidad_Medida> listaUnidadMedida = new CapaNegocios().ListarUnidadesMedida();
+                List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
                 Unidad_Medida unidadMedidaSeleccionada = listaUnidadMedida.FirstOrDefault(c => c.IdUnidadMedida == valorCmb2);
                 if (unidadMedidaSeleccionada != null && !unidadMedidaSeleccionada.Estado) 
                 {
@@ -209,7 +209,7 @@ namespace Presentacion
                     Limpiar();
                     return;
                 }
-                int idProductoIngresado = new CapaNegocios().respSQL(agregarProducto, out mensaje);
+                int idProductoIngresado = new CN_Producto().Registrar(agregarProducto, out mensaje);
                 if (idProductoIngresado != 0)
                 {
                 // Verificar si los elementos seleccionados no son nulos
@@ -256,7 +256,7 @@ namespace Presentacion
                 PaisOrigen = txt6.Text,
                 Estado = valorCmb3 == 1
             };
-            bool modificar = new CapaNegocios().edipSQL(productoModificado, out mensaje);
+            bool modificar = new CN_Producto().Editar(productoModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El producto fue modificado correctamente.", "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -297,7 +297,7 @@ namespace Presentacion
                         {
                             IdProducto = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().elipSQL(productoEliminado, out mensaje);
+                        bool respuesta = new CN_Producto().Eliminar(productoEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaProducto.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

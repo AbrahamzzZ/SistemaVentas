@@ -39,8 +39,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos los clientes existentes en la tabla
-            List<Cliente> mostrarCliente = new CapaNegocios().moscSQL();
+            List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente cliente in mostrarCliente)
             {
                 tablaCliente.Rows.Add(new object[] { "", cliente.IdCliente, cliente.Documento, cliente.Nombres, cliente.Apellidos, cliente.Cedula, cliente.Telefono, cliente.CorreoElectronico, cliente.Estado == true ? 1 : 0, cliente.Estado == true ? "Activo" : "No Activo" });
@@ -159,7 +158,7 @@ namespace Presentacion
                     CorreoElectronico = txt8.Text,
                     Estado = valorCmb1 == 1
                 };
-                int idClienteIngresado = new CapaNegocios().rescSQL(agregarCliente, out mensaje);
+                int idClienteIngresado = new CN_Cliente().Registrar(agregarCliente, out mensaje);
                 if (idClienteIngresado != 0)
                 {
                     // Verificar si los elementos seleccionados no son nulos
@@ -200,7 +199,7 @@ namespace Presentacion
                 CorreoElectronico = txt8.Text,
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().edicSQL(clienteModificado, out mensaje);
+            bool modificar = new CN_Cliente().Editar(clienteModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El cliente fue modificado correctamente.", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -240,7 +239,7 @@ namespace Presentacion
                         {
                             IdCliente = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().elicSQL(clienteEliminado, out mensaje);
+                        bool respuesta = new CN_Cliente().Eliminar(clienteEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaCliente.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

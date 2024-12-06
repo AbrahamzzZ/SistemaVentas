@@ -39,7 +39,7 @@ namespace Presentacion
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
             //Mostrar todos los reclamis existentes en la tabla
-            List<Reclamo> lista = new CapaNegocios().mosreSQL();
+            List<Reclamo> lista = new CN_Usuario().mosreSQL();
             foreach (Reclamo item in lista)
             {
                 tablaReclamo.Rows.Add(new object[] { "", item.IdReclamo, item.oCliente.IdCliente, item.oCliente.Documento, item.oCliente.Nombres, item.oCliente.CorreoElectronico, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Solucionado" : "No Solucionado" });
@@ -94,7 +94,7 @@ namespace Presentacion
                 IdReclamo = Convert.ToInt32(txt2.Text),
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().edireSQL(ReclamoModificado, out mensaje);
+            bool modificar = new CN_Usuario().edireSQL(ReclamoModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El reclamo fue modificado correctamente.", "Modificar reclamo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -123,7 +123,7 @@ namespace Presentacion
                         IdReclamo = Convert.ToInt32(txt2.Text),
                     };
 
-                    bool respuesta = new CapaNegocios().elireSQL(reclamoEliminada, out mensaje);
+                    bool respuesta = new CN_Usuario().elireSQL(reclamoEliminada, out mensaje);
                     if (respuesta)
                     {
                         tablaReclamo.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

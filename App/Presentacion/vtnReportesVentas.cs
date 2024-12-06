@@ -33,7 +33,7 @@ namespace Presentacion
         private void btnBuscar1_Click(object sender, EventArgs e)
         {
             List<Reporte_Venta> lista = new List<Reporte_Venta>();
-            lista = new CapaNegocios().revSQL(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"));
+            lista = new CN_Reporte().ReporteProductosVendidos(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"));
 
             tablaReporteVentas.Rows.Clear();
             if (lista.Count > 0) {

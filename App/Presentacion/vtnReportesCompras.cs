@@ -31,7 +31,7 @@ namespace Presentacion
                 valorCmb1 = selectedItemCmb1.Valor;
                 textoCmb1 = selectedItemCmb1.Texto;
             }
-            List<Proveedor> mostrarProveedor = new CapaNegocios().mosprSQL();
+            List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             cmb1.Items.Add(new { Valor = 0, Texto = "Todos" });
             foreach (Proveedor proveedor in mostrarProveedor)
             {
@@ -41,7 +41,7 @@ namespace Presentacion
             cmb1.DisplayMember = "Texto";
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
-            List<Transportista> mostrarTransportista = new CapaNegocios().ListarTransportista();
+            List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
             cmb2.Items.Add(new { Valor = 0, Texto = "Todos" });
             foreach (Transportista transportista in mostrarTransportista)
             {
@@ -66,7 +66,7 @@ namespace Presentacion
             int idProveedor = Convert.ToInt32((cmb1.SelectedItem as dynamic).Valor.ToString());
             int idTransportista = Convert.ToInt32((cmb2.SelectedItem as dynamic).Valor.ToString());
             List<Reporte_Compra> lista = new List<Reporte_Compra>();
-            lista = new CapaNegocios().recSQL(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"), idProveedor, idTransportista);
+            lista = new CN_Reporte().ReporteProductosComprados(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"), idProveedor, idTransportista);
 
             tablaReporteCompras.Rows.Clear();
             if (lista.Count > 0) {

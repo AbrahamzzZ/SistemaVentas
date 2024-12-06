@@ -29,7 +29,7 @@ namespace Presentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Venta oVenta = new CapaNegocios().obtvSQL(txt1.Text);
+            Venta oVenta = new CN_Venta().DetalleVenta(txt1.Text);
             if (oVenta.IdVenta != 0)
             {
                 txt2.Text = oVenta.FechaVenta;
@@ -79,7 +79,7 @@ namespace Presentacion
                 return;
             }
             string texto_html = Properties.Resources.ArchivoVenta.ToString();
-            Negocio oDatos = new CapaDatos().obtenerDatos();
+            Negocio oDatos = new CN_Negocio().ListarNegocio();
 
             texto_html = texto_html.Replace("@nombrenegocio", oDatos.Nombre.ToUpper());
             texto_html = texto_html.Replace("@telefono", oDatos.Telefono);
@@ -124,7 +124,7 @@ namespace Presentacion
                     pdfDoc.Open();
 
                     bool obtenido = true;
-                    byte[] byteImage = new CapaNegocios().obtlSQL(out obtenido);
+                    byte[] byteImage = new CN_Negocio().MostrarLogo(out obtenido);
                     if (obtenido)
                     {
                         iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(byteImage);

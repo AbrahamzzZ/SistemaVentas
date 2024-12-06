@@ -38,8 +38,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos las categorias existentes en la tabla
-            List<Categoria> lista = new CapaNegocios().ListarCategoria();
+            List<Categoria> lista = new CN_Categoria().ListarCategoria();
             foreach (Categoria item in lista)
             {
                 tablaCategoria.Rows.Add(new object[] { "", item.IdCategoria, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
@@ -101,7 +100,7 @@ namespace Presentacion
                 };
                 if (agregarCategoria.IdCategoria == 0)
                 {
-                    int idCategoriaIngresado = new CapaNegocios().rescSQL(agregarCategoria, out mensaje);
+                    int idCategoriaIngresado = new CN_Categoria().Registrar(agregarCategoria, out mensaje);
                     if (idCategoriaIngresado != 0)
                     {
                         // Verificar si los elementos seleccionados no son nulos
@@ -138,7 +137,7 @@ namespace Presentacion
                 Descripcion = txt3.Text,
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().edicSQL(categoriaModificado, out mensaje);
+            bool modificar = new CN_Categoria().Editar(categoriaModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("La categoría fue modificada correctamente.", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -172,7 +171,7 @@ namespace Presentacion
                         {
                             IdCategoria = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().elicSQL(categoriaEliminada, out mensaje);
+                        bool respuesta = new CN_Categoria().Eliminar(categoriaEliminada, out mensaje);
                         if (respuesta)
                         {
                             tablaCategoria.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
