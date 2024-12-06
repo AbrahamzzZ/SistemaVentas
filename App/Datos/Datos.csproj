@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapaDatos.cs" />
+    <Compile Include="Conexion.cs" />
+    <Compile Include="CD_Categoria.cs" />
+    <Compile Include="CD_Cliente.cs" />
+    <Compile Include="CD_Compra.cs" />
+    <Compile Include="CD_Negocio.cs" />
+    <Compile Include="CD_Oferta.cs" />
+    <Compile Include="CD_Permiso.cs" />
+    <Compile Include="CD_Producto.cs" />
+    <Compile Include="CD_Proveedor.cs" />
+    <Compile Include="CD_Reporte.cs" />
+    <Compile Include="CD_Rol.cs" />
+    <Compile Include="CD_Sucursal.cs" />
+    <Compile Include="CD_Transportista.cs" />
+    <Compile Include="CD_Unidad_Medida.cs" />
+    <Compile Include="CD_Usuario.cs" />
+    <Compile Include="CD_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
