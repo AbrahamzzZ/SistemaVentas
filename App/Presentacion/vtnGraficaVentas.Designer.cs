@@ -76,14 +76,14 @@
             this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
             this.btnCargarDatosVentas.Click += new System.EventHandler(this.btnCargarDatosVentas_Click);
             // 
-            // graficaVenta
+            // GraficaProductosVendidos
             // 
             chartArea1.Name = "ChartArea1";
             this.graficaVenta.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficaVenta.Legends.Add(legend1);
             this.graficaVenta.Location = new System.Drawing.Point(387, 29);
-            this.graficaVenta.Name = "graficaVenta";
+            this.graficaVenta.Name = "GraficaProductosVendidos";
             this.graficaVenta.Size = new System.Drawing.Size(984, 527);
             this.graficaVenta.TabIndex = 61;
             this.graficaVenta.Text = "chart1";

@@ -38,14 +38,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // graficaCompra
+            // GraficaCompra
             // 
             chartArea1.Name = "ChartArea1";
             this.graficaCompra.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficaCompra.Legends.Add(legend1);
             this.graficaCompra.Location = new System.Drawing.Point(387, 29);
-            this.graficaCompra.Name = "graficaCompra";
+            this.graficaCompra.Name = "GraficaCompra";
             this.graficaCompra.Size = new System.Drawing.Size(984, 527);
             this.graficaCompra.TabIndex = 65;
             this.graficaCompra.Text = "chart1";

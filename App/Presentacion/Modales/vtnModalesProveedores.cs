@@ -34,8 +34,7 @@ namespace Presentacion.Modales
             cmb1.DisplayMember = "Texto";
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
-            //Mostrar todos los proveedores existentes en la tabla
-            List<Proveedor> mostrarProveedor = new CapaNegocios().mosprSQL();
+            List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
                 tablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Documento, proveedor.Nombres , proveedor.Estado});

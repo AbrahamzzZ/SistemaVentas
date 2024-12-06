@@ -26,7 +26,7 @@ namespace Presentacion
 
         private void vtnMenu_Load(object sender, EventArgs e)
         {
-            List<Permiso> listaVerificar = new CapaNegocios().perSQL(nombreUsuarioActual.IdUsuario);
+            List<Permiso> listaVerificar = new CN_Permiso().Permisos(nombreUsuarioActual.IdUsuario);
 
             foreach (ToolStripMenuItem iconMenu in menu2.Items)
             {

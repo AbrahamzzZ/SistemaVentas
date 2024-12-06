@@ -34,7 +34,7 @@ namespace Presentacion.Modales
             cmb1.DisplayMember = "Texto";
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
-            List<Cliente> mostrarCliente = new CapaNegocios().moscSQL();
+            List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente clientes in mostrarCliente)
             {
                 tablaClientes.Rows.Add(new object[] { clientes.IdCliente, clientes.Documento, clientes.Nombres, clientes.Estado });

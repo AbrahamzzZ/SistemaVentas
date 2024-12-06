@@ -39,8 +39,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos los proveedores existentes en la tabla
-            List<Proveedor> mostrarProveedor = new CapaNegocios().mosprSQL();
+            List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
                 tablaProveedores.Rows.Add(new object[] { "", proveedor.IdProveedor, proveedor.Documento, proveedor.Nombres, proveedor.Apellidos, proveedor.Cedula, proveedor.Telefono, proveedor.CorreoElectronico, proveedor.Estado == true ? 1 : 0, proveedor.Estado == true ? "Activo" : "No Activo" });
@@ -160,7 +159,7 @@ namespace Presentacion
                     CorreoElectronico = txt8.Text,
                     Estado = valorCmb1 == 1
                 };
-                int idProveedorIngresado = new CapaNegocios().resprSQL(agregarProveedor, out mensaje);
+                int idProveedorIngresado = new CN_Proveedor().Registrar(agregarProveedor, out mensaje);
                 if (idProveedorIngresado != 0)
                 {
                     // Verificar si los elementos seleccionados no son nulos
@@ -201,7 +200,7 @@ namespace Presentacion
                 CorreoElectronico = txt8.Text,
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CapaNegocios().ediprSQL(proveedorModificado, out mensaje);
+            bool modificar = new CN_Proveedor().Editar(proveedorModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El proveedor fue modificado correctamente.", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -238,7 +237,7 @@ namespace Presentacion
                         {
                             IdProveedor = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().eliprSQL(proveedorEliminado, out mensaje);
+                        bool respuesta = new CN_Proveedor().Eliminar(proveedorEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaProveedores.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

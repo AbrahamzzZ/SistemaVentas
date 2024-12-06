@@ -95,7 +95,7 @@
             this.btnRegresar.FlatAppearance.BorderColor = System.Drawing.Color.Wheat;
             this.btnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegresar.Image = global::Presentacion.Properties.Resources.salir;
-            this.btnRegresar.Location = new System.Drawing.Point(1331, 78);
+            this.btnRegresar.Location = new System.Drawing.Point(1301, 78);
             this.btnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(81, 73);
@@ -127,7 +127,7 @@
             this.menuAcercaDe});
             this.menu2.Location = new System.Drawing.Point(0, 78);
             this.menu2.Name = "menu2";
-            this.menu2.Size = new System.Drawing.Size(1412, 73);
+            this.menu2.Size = new System.Drawing.Size(1382, 73);
             this.menu2.TabIndex = 13;
             this.menu2.Text = "menuStrip1";
             // 
@@ -149,7 +149,7 @@
             // 
             this.menuItemVerUsuarios.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerUsuarios.Name = "menuItemVerUsuarios";
-            this.menuItemVerUsuarios.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerUsuarios.Size = new System.Drawing.Size(187, 28);
             this.menuItemVerUsuarios.Text = "Ver usuarios";
             this.menuItemVerUsuarios.Click += new System.EventHandler(this.menuItemVerUsuarios_Click_1);
             // 
@@ -176,7 +176,7 @@
             // 
             this.menuItemInventario.BackColor = System.Drawing.Color.Wheat;
             this.menuItemInventario.Name = "menuItemInventario";
-            this.menuItemInventario.Size = new System.Drawing.Size(224, 28);
+            this.menuItemInventario.Size = new System.Drawing.Size(211, 28);
             this.menuItemInventario.Text = "Inventario";
             this.menuItemInventario.Click += new System.EventHandler(this.menuItemInventario_Click_1);
             // 
@@ -185,39 +185,39 @@
             this.toolStripSeparator1.BackColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
             // 
             // menuItemCategoría
             // 
             this.menuItemCategoría.BackColor = System.Drawing.Color.Wheat;
             this.menuItemCategoría.Name = "menuItemCategoría";
-            this.menuItemCategoría.Size = new System.Drawing.Size(224, 28);
+            this.menuItemCategoría.Size = new System.Drawing.Size(211, 28);
             this.menuItemCategoría.Text = "Categoría";
             this.menuItemCategoría.Click += new System.EventHandler(this.menuItemCategoría_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(208, 6);
             // 
             // menuItemProducto
             // 
             this.menuItemProducto.BackColor = System.Drawing.Color.Wheat;
             this.menuItemProducto.Name = "menuItemProducto";
-            this.menuItemProducto.Size = new System.Drawing.Size(224, 28);
+            this.menuItemProducto.Size = new System.Drawing.Size(211, 28);
             this.menuItemProducto.Text = "Producto";
             this.menuItemProducto.Click += new System.EventHandler(this.menuItemProducto_Click_1);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(208, 6);
             // 
             // menuItemUnidadesMedida
             // 
             this.menuItemUnidadesMedida.BackColor = System.Drawing.Color.Wheat;
             this.menuItemUnidadesMedida.Name = "menuItemUnidadesMedida";
-            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(224, 28);
+            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(211, 28);
             this.menuItemUnidadesMedida.Text = "Unidad Medida";
             this.menuItemUnidadesMedida.Click += new System.EventHandler(this.menuItemUnidadesMedida_Click);
             // 
@@ -240,20 +240,20 @@
             // 
             this.menuItemRealizarCompra.BackColor = System.Drawing.Color.Wheat;
             this.menuItemRealizarCompra.Name = "menuItemRealizarCompra";
-            this.menuItemRealizarCompra.Size = new System.Drawing.Size(224, 28);
+            this.menuItemRealizarCompra.Size = new System.Drawing.Size(216, 28);
             this.menuItemRealizarCompra.Text = "Realizar compra";
             this.menuItemRealizarCompra.Click += new System.EventHandler(this.menuItemRealizarCompra_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(213, 6);
             // 
             // menuItemVerDetallesCompra
             // 
             this.menuItemVerDetallesCompra.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerDetallesCompra.Name = "menuItemVerDetallesCompra";
-            this.menuItemVerDetallesCompra.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerDetallesCompra.Size = new System.Drawing.Size(216, 28);
             this.menuItemVerDetallesCompra.Text = "Ver detalles";
             this.menuItemVerDetallesCompra.Click += new System.EventHandler(this.menuItemVerDetallesCompra_Click);
             // 
@@ -276,20 +276,20 @@
             // 
             this.menuItemRealizarVenta.BackColor = System.Drawing.Color.Wheat;
             this.menuItemRealizarVenta.Name = "menuItemRealizarVenta";
-            this.menuItemRealizarVenta.Size = new System.Drawing.Size(224, 28);
+            this.menuItemRealizarVenta.Size = new System.Drawing.Size(200, 28);
             this.menuItemRealizarVenta.Text = "Realizar venta";
             this.menuItemRealizarVenta.Click += new System.EventHandler(this.menuItemRealizarVenta_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(197, 6);
             // 
             // menuItemVerDetallesVenta
             // 
             this.menuItemVerDetallesVenta.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerDetallesVenta.Name = "menuItemVerDetallesVenta";
-            this.menuItemVerDetallesVenta.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerDetallesVenta.Size = new System.Drawing.Size(200, 28);
             this.menuItemVerDetallesVenta.Text = "Ver detalles";
             this.menuItemVerDetallesVenta.Click += new System.EventHandler(this.menuItemVerDetallesVenta_Click);
             // 
@@ -301,8 +301,8 @@
             this.menuProveedores.Image = global::Presentacion.Properties.Resources.proveedor;
             this.menuProveedores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuProveedores.Name = "menuProveedores";
-            this.menuProveedores.Size = new System.Drawing.Size(102, 69);
-            this.menuProveedores.Text = "Proveedor";
+            this.menuProveedores.Size = new System.Drawing.Size(118, 69);
+            this.menuProveedores.Text = "Proveedores";
             this.menuProveedores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.menuProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -310,7 +310,7 @@
             // 
             this.menuItemVerProveedores.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerProveedores.Name = "menuItemVerProveedores";
-            this.menuItemVerProveedores.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerProveedores.Size = new System.Drawing.Size(218, 28);
             this.menuItemVerProveedores.Text = "Ver proveedores";
             this.menuItemVerProveedores.Click += new System.EventHandler(this.menuItemVerProveedores_Click);
             // 
@@ -322,8 +322,8 @@
             this.menuTransportistas.Image = global::Presentacion.Properties.Resources.transportista;
             this.menuTransportistas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menuTransportistas.Name = "menuTransportistas";
-            this.menuTransportistas.Size = new System.Drawing.Size(122, 69);
-            this.menuTransportistas.Text = "Transportista";
+            this.menuTransportistas.Size = new System.Drawing.Size(129, 69);
+            this.menuTransportistas.Text = "Transportistas";
             this.menuTransportistas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.menuTransportistas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -352,7 +352,7 @@
             // 
             this.menuItemVerSucursales.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerSucursales.Name = "menuItemVerSucursales";
-            this.menuItemVerSucursales.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerSucursales.Size = new System.Drawing.Size(201, 28);
             this.menuItemVerSucursales.Text = "Ver sucursales";
             this.menuItemVerSucursales.Click += new System.EventHandler(this.menuItemVerSucursales_Click);
             // 
@@ -373,7 +373,7 @@
             // 
             this.menuItemVerClientes.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerClientes.Name = "menuItemVerClientes";
-            this.menuItemVerClientes.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerClientes.Size = new System.Drawing.Size(181, 28);
             this.menuItemVerClientes.Text = "Ver clientes";
             this.menuItemVerClientes.Click += new System.EventHandler(this.menuItemVerClientes_Click);
             // 
@@ -460,7 +460,7 @@
             // 
             this.menuItemVerOfertas.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerOfertas.Name = "menuItemVerOfertas";
-            this.menuItemVerOfertas.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerOfertas.Size = new System.Drawing.Size(176, 28);
             this.menuItemVerOfertas.Text = "Ver ofertas";
             this.menuItemVerOfertas.Click += new System.EventHandler(this.menuItemVerOfertas_Click);
             // 
@@ -481,7 +481,7 @@
             // 
             this.menuItemVerReclamos.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerReclamos.Name = "menuItemVerReclamos";
-            this.menuItemVerReclamos.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerReclamos.Size = new System.Drawing.Size(192, 28);
             this.menuItemVerReclamos.Text = "Ver reclamos";
             this.menuItemVerReclamos.Click += new System.EventHandler(this.menuItemVerReclamos_Click);
             // 
@@ -543,7 +543,7 @@
             this.menu1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu1.Location = new System.Drawing.Point(0, 0);
             this.menu1.Name = "menu1";
-            this.menu1.Size = new System.Drawing.Size(1412, 78);
+            this.menu1.Size = new System.Drawing.Size(1382, 78);
             this.menu1.TabIndex = 14;
             // 
             // panel
@@ -551,7 +551,7 @@
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 151);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1412, 604);
+            this.panel.Size = new System.Drawing.Size(1382, 602);
             this.panel.TabIndex = 15;
             // 
             // lblTitulo
@@ -618,7 +618,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1412, 755);
+            this.ClientSize = new System.Drawing.Size(1382, 753);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.lblHora);

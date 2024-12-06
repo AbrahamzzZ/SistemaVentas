@@ -34,8 +34,7 @@ namespace Presentacion.Modales
             cmb1.DisplayMember = "Texto";
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
-            //Mostrar todos las ofertas existentes en la tabla
-            List<Oferta> mostrarOferta = new CapaNegocios().mosoSQL();
+            List<Oferta> mostrarOferta = new CN_Oferta().ListarOferta();
             foreach (Oferta ofertas in mostrarOferta)
             {
                 tablaOfertas.Rows.Add(new object[] { ofertas.IdOferta, ofertas.NombreOferta, ofertas.oProducto.Nombre, ofertas.Descuento, ofertas.Estado });

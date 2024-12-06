@@ -21,7 +21,7 @@ namespace Presentacion
 
         private void btnCargarDatosVentas_Click(object sender, EventArgs e)
         {
-            DataTable dt = new CapaNegocios().gracSQL();
+            DataTable dt = new CN_Compra().GraficaCompra();
             if (dt.Rows.Count > 0) {
                 graficaCompra.Titles.Add("Productos Comprados");
                 foreach (DataRow row in dt.Rows)

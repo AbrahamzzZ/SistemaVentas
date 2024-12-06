@@ -35,7 +35,7 @@ namespace Presentacion.Modales
             cmb1.ValueMember = "Valor";
             cmb1.SelectedIndex = 0;
             //Mostrar todos los productos existentes en la tabla
-            List<Producto> mostrarProducto = new CapaNegocios().mospSQL();
+            List<Producto> mostrarProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in mostrarProducto)
             {
                 tablaProductos.Rows.Add(new object[] { productos.IdProducto, productos.Codigo, productos.Nombre, productos.oCategoria.Descripcion, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado });

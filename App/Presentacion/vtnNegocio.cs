@@ -23,12 +23,12 @@ namespace Presentacion
         private void vtnNegocio_Load(object sender, EventArgs e)
         {
             bool obtenido = true;
-            byte[] byteImage = new CapaNegocios().obtlSQL(out obtenido);
+            byte[] byteImage = new CN_Negocio().MostrarLogo(out obtenido);
             if (obtenido)
             {
                 pictureBox1.Image = ByteImage(byteImage);
             }
-            Negocio datos = new CapaNegocios().ListarNegocio();
+            Negocio datos = new CN_Negocio().ListarNegocio();
             txt1.Text = datos.Nombre;
             txt2.Text = datos.Telefono;
             txt3.Text = datos.Ruc;
@@ -44,7 +44,7 @@ namespace Presentacion
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 byte[] byteImage = File.ReadAllBytes(ofd.FileName);
-                bool respuesta = new CapaNegocios().actlSQL(byteImage, out mensaje);
+                bool respuesta = new CN_Negocio().ActualizarLogo(byteImage, out mensaje);
                 if (respuesta)
                 {
                     pictureBox1.Image = ByteImage(byteImage);
@@ -81,7 +81,7 @@ namespace Presentacion
                     Direccion = txt4.Text,
                     CorreoElectronico = txt5.Text,
                 };
-                bool respuesta = new CapaNegocios().resneSQL(negocioActualizado, out mensaje);
+                bool respuesta = new CN_Negocio().Editar(negocioActualizado, out mensaje);
                 if (respuesta)
                 {
                     MessageBox.Show("El negocio fue modificado correctamente.", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Information);

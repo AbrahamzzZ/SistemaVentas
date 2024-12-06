@@ -47,7 +47,7 @@ namespace Presentacion
             }
             else
             {
-                List<Usuario> listaUsuarios = new CapaNegocios().ListarUsuarios();
+                List<Usuario> listaUsuarios = new CN_Usuario().Ingresar();
                 Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Documento == txt1.Text && u.Clave == txt2.Text);
                 if (usuario != null)
                 {
@@ -61,7 +61,7 @@ namespace Presentacion
                     }
                     else
                     {
-                        MessageBox.Show("El usuario no está habilitado. Por favor, contacte al administrador.", "Usuario no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El Usuario no está habilitado. Por favor, contacte al administrador.", "Usuario no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

@@ -652,7 +652,7 @@
             this.lblRegistrarVenta.Name = "lblRegistrarVenta";
             this.lblRegistrarVenta.Size = new System.Drawing.Size(1212, 540);
             this.lblRegistrarVenta.TabIndex = 120;
-            this.lblRegistrarVenta.Text = "Registrar Venta";
+            this.lblRegistrarVenta.Text = "Editar Venta";
             // 
             // vtnVenta
             // 
@@ -668,7 +668,7 @@
             this.Controls.Add(this.tablaVentas);
             this.Controls.Add(this.lblRegistrarVenta);
             this.Name = "vtnVenta";
-            this.Text = "Registrar ventas";
+            this.Text = "Editar ventas";
             this.Load += new System.EventHandler(this.vtnVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaVentas)).EndInit();
             this.groupBox2.ResumeLayout(false);

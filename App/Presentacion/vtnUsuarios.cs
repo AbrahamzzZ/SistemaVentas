@@ -26,7 +26,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            List<Rol> listaRol = new CapaNegocios().mosSQL();
+            List<Rol> listaRol = new CN_Rol().Rol();
             foreach (Rol rol in listaRol)
             {
                 cmb1.Items.Add(new { Valor = rol.IdRol, Texto = rol.Descripcion });
@@ -46,7 +46,7 @@ namespace Presentacion
             cmb3.ValueMember = "Valor";
             cmb3.SelectedIndex = 0;
             //Mostrar todos los usuarios existentes en la tabla
-            List<Usuario> mostrarUsuario = new CapaNegocios().mosuSQL();
+            List<Usuario> mostrarUsuario = new CN_Usuario().ListarUsuario();
             foreach (Usuario rol in mostrarUsuario)
             {
                 tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Documento, rol.NombreCompleto, rol.CorreoElectronico, rol.Clave, rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
@@ -76,7 +76,7 @@ namespace Presentacion
             // Verificar si hay filas visibles y mostrar un mensaje si no hay
             if (filasVisibles == 0)
             {
-                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txt7.Text = "";
                 foreach (DataGridViewRow row in tablaUsuarios.Rows)
                 {
@@ -98,10 +98,10 @@ namespace Presentacion
             if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Número del documento del usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombre completo del usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Correo electrónico del usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Clave del usuario.\n";
+                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Número del documento del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombre completo del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Correo electrónico del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Clave del Usuario.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -117,7 +117,7 @@ namespace Presentacion
                     oRol = new Rol { IdRol = valorCmb1 },
                     Estado = valorCmb2 == 1
                 };
-                int idUsuarioIngresado = new CapaNegocios().resuSQL(agregarUsuario, out mensaje);
+                int idUsuarioIngresado = new CN_Usuario().Registrar(agregarUsuario, out mensaje);
                 if (idUsuarioIngresado != 0)
                 {
 
@@ -125,7 +125,7 @@ namespace Presentacion
                     if (selectedItemCmb1 != null && selectedItemCmb2 != null)
                     {
                         tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, txt3.Text, txt4.Text, txt5.Text, txt6.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2 });
-                        MessageBox.Show("El usuario fue agregado correctamente.", "Agregar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El Usuario fue agregado correctamente.", "Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
                     else
@@ -161,10 +161,10 @@ namespace Presentacion
                 oRol = new Rol { IdRol = valorCmb1 },
                 Estado = valorCmb2 == 1
             };
-            bool modificar = new CapaNegocios().ediuSQL(usuarioModificado, out mensaje);
+            bool modificar = new CN_Usuario().Editar(usuarioModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("El usuario fue modificado correctamente.", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El Usuario fue modificado correctamente.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 int indice = Convert.ToInt32(txt1.Text);
                 tablaUsuarios.Rows[indice].Cells["Documento"].Value = usuarioModificado.Documento;
@@ -179,7 +179,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("Error al modificar la información del usuario: " + mensaje, "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al modificar la información del Usuario: " + mensaje, "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -187,18 +187,18 @@ namespace Presentacion
         {
             if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text))
             {
-                MessageBox.Show("Primero debe selecionar un usuario en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe selecionar un Usuario en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 int idUsuario = Convert.ToInt32(txt2.Text);
                 if (idUsuario == 1)
                 {
-                    MessageBox.Show("No se puede eliminar el primer usuario porque es necesario para el acceso al sistema.", "Eliminar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se puede eliminar el primer Usuario porque es necesario para el acceso al sistema.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    if (MessageBox.Show("Desea eliminar este usuario?", "Eliminar usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Desea eliminar este Usuario?", "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         string mensaje = string.Empty;
 
@@ -206,16 +206,16 @@ namespace Presentacion
                         {
                             IdUsuario = idUsuario,
                         };
-                        bool respuesta = new CapaNegocios().eliuSQL(usuarioEliminado, out mensaje);
+                        bool respuesta = new CN_Usuario().Eliminar(usuarioEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaUsuarios.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
-                            MessageBox.Show("El usuario fue eliminado correctamente.", "Eliminar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El Usuario fue eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
                         else
                         {
-                            MessageBox.Show(mensaje, "Eliminar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(mensaje, "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

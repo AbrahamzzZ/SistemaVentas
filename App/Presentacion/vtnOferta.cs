@@ -27,7 +27,7 @@ namespace Presentacion
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
 
-            List<Producto> listaProducto = new CapaNegocios().ListarProducto();
+            List<Producto> listaProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in listaProducto)
             {
                 cmb1.Items.Add(new { Valor = productos.IdProducto, Texto = productos.Nombre });
@@ -51,8 +51,7 @@ namespace Presentacion
             cmb3.DisplayMember = "Texto";
             cmb3.ValueMember = "Valor";
             cmb3.SelectedIndex = 0;
-            //Mostrar todas las ofertas existentes en la tabla
-            List<Oferta> lista = new CapaNegocios().mosoSQL();
+            List<Oferta> lista = new CN_Oferta().ListarOferta();
             foreach (Oferta item in lista)
             {
                 tablaOferta.Rows.Add(new object[] { "", item.IdOferta, item.oProducto.IdProducto, item.oProducto.Nombre, item.NombreOferta, item.Descripcion, item.FechaInicio, item.FechaFin, item.Descuento, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
@@ -123,7 +122,7 @@ namespace Presentacion
                     oProducto = new Producto { IdProducto = valorCmb1 },
                     Estado = valorCmb2 == 1
                 };
-                List<Producto> listaProducto = new CapaNegocios().ListarProducto();
+                List<Producto> listaProducto = new CN_Producto().ListarProducto();
                 Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == valorCmb1);
                 if (productoSeleccionado != null && !productoSeleccionado.Estado)
                 {
@@ -132,7 +131,7 @@ namespace Presentacion
                     return;
                 }
                 else {
-                    int idOfertaIngresado = new CapaNegocios().resoSQL(agregarOferta, out mensaje);
+                    int idOfertaIngresado = new CN_Oferta().Registrar(agregarOferta, out mensaje);
                     if (idOfertaIngresado != 0)
                     {
                         // Verificar si los elementos seleccionados no son nulos
@@ -177,7 +176,7 @@ namespace Presentacion
                 Descuento = Convert.ToDecimal(txt5.Text),
                 Estado = valorCmb2 == 1
             };
-            bool modificar = new CapaNegocios().edioSQL(ofertaModificado, out mensaje);
+            bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,7 +216,7 @@ namespace Presentacion
                             IdOferta = Convert.ToInt32(txt2.Text),
                         };
 
-                        bool respuesta = new CapaNegocios().elioSQL(ofertaEliminada, out mensaje);
+                        bool respuesta = new CN_Oferta().Eliminar(ofertaEliminada, out mensaje);
                         if (respuesta)
                         {
                             tablaOferta.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

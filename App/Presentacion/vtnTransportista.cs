@@ -41,8 +41,7 @@ namespace Presentacion
             cmb2.DisplayMember = "Texto";
             cmb2.ValueMember = "Valor";
             cmb2.SelectedIndex = 0;
-            //Mostrar todos los transportistas existentes en la tabla
-            List<Transportista> mostrarTransportista = new CapaNegocios().mostrSQL();
+            List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
             foreach (Transportista transportista in mostrarTransportista)
             {
                 tablaTransportista.Rows.Add(new object[] { "", transportista.IdTransportista, transportista.Documento, transportista.Nombres, transportista.Apellidos, transportista.Cedula, transportista.Telefono, transportista.CorreoElectronico, transportista.Imagen, transportista.Estado == true ? 1 : 0, transportista.Estado == true ? "Activo" : "No Activo" });
@@ -134,7 +133,7 @@ namespace Presentacion
             // Verificar si hay filas visibles y mostrar un mensaje si no hay
             if (filasVisibles == 0)
             {
-                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txt9.Text = "";
                 foreach (DataGridViewRow row in tablaTransportista.Rows)
                 {
@@ -177,7 +176,7 @@ namespace Presentacion
                     CorreoElectronico = txt8.Text,
                     Estado = valorCmb1 == 1
                 };
-                int idTransportistaIngresado = new CapaNegocios().restrSQL(agregarTransportista, imagen, out mensaje);
+                int idTransportistaIngresado = new CN_Transportista().Registrar(agregarTransportista, imagen, out mensaje);
                 if (idTransportistaIngresado != 0)
                 {
                     // Verificar si los elementos seleccionados no son nulos
@@ -222,7 +221,7 @@ namespace Presentacion
             {
                 imagen = ImageToByteArray(pictureBox1.Image);
             }
-            bool modificar = new CapaNegocios().editrSQL(transportistaModificado, imagen, out mensaje);
+            bool modificar = new CN_Transportista().Editar(transportistaModificado, imagen, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El transportista fue modificado correctamente.", "Modificar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -262,7 +261,7 @@ namespace Presentacion
                         {
                             IdTransportista = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CapaNegocios().elitrSQL(transportistaEliminado, out mensaje);
+                        bool respuesta = new CN_Transportista().Eliminar(transportistaEliminado, out mensaje);
                         if (respuesta)
                         {
                             tablaTransportista.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
