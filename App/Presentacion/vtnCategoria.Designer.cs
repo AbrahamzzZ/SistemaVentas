@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCategoria));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.txt1 = new System.Windows.Forms.TextBox();
             this.txt2 = new System.Windows.Forms.TextBox();
@@ -67,7 +67,7 @@
             this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(689, 490);
+            this.btnLimpiar.Location = new System.Drawing.Point(690, 490);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(164, 41);
             this.btnLimpiar.TabIndex = 88;
@@ -143,7 +143,7 @@
             this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1354, 137);
+            this.btnBuscar.Location = new System.Drawing.Point(1355, 137);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(38, 30);
             this.btnBuscar.TabIndex = 80;
@@ -158,7 +158,7 @@
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1231, 490);
+            this.btnEliminar.Location = new System.Drawing.Point(1232, 490);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(164, 41);
             this.btnEliminar.TabIndex = 74;
@@ -172,7 +172,7 @@
             this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(970, 490);
+            this.btnModificar.Location = new System.Drawing.Point(971, 490);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(164, 41);
             this.btnModificar.TabIndex = 73;
@@ -186,7 +186,7 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(416, 490);
+            this.btnAgregar.Location = new System.Drawing.Point(417, 490);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(164, 41);
             this.btnAgregar.TabIndex = 72;
@@ -198,7 +198,7 @@
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(755, 43);
+            this.lblCategoria.Location = new System.Drawing.Point(756, 43);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(413, 32);
             this.lblCategoria.TabIndex = 71;
@@ -259,7 +259,7 @@
             // txt4
             // 
             this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(1114, 138);
+            this.txt4.Location = new System.Drawing.Point(1115, 138);
             this.txt4.Name = "txt4";
             this.txt4.Size = new System.Drawing.Size(221, 27);
             this.txt4.TabIndex = 79;
@@ -268,7 +268,7 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(750, 140);
+            this.lblBuscar.Location = new System.Drawing.Point(751, 140);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 78;
@@ -279,7 +279,7 @@
             this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(875, 137);
+            this.cmb2.Location = new System.Drawing.Point(876, 137);
             this.cmb2.Name = "cmb2";
             this.cmb2.Size = new System.Drawing.Size(221, 28);
             this.cmb2.TabIndex = 77;
@@ -302,15 +302,15 @@
             // 
             this.tablaCategoria.AllowUserToAddRows = false;
             this.tablaCategoria.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaCategoria.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -318,14 +318,14 @@
             this.Descripcion,
             this.EstadoValor,
             this.Estado});
-            this.tablaCategoria.Location = new System.Drawing.Point(416, 187);
+            this.tablaCategoria.Location = new System.Drawing.Point(417, 187);
             this.tablaCategoria.MultiSelect = false;
             this.tablaCategoria.Name = "tablaCategoria";
             this.tablaCategoria.ReadOnly = true;
             this.tablaCategoria.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCategoria.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaCategoria.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaCategoria.RowTemplate.Height = 28;
             this.tablaCategoria.Size = new System.Drawing.Size(978, 248);
             this.tablaCategoria.TabIndex = 75;

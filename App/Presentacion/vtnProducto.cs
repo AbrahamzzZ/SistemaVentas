@@ -13,73 +13,74 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnProducto : Form
+    public partial class VtnProducto : Form
     {
-        public vtnProducto()
+        public VtnProducto()
         {
             InitializeComponent();
         }
 
-        private void vtnProducto_Load(object sender, EventArgs e)
+        private void VtnProducto_Load(object sender, EventArgs e)
         {
-            cmb3.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb3.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb3.DisplayMember = "Texto";
-            cmb3.ValueMember = "Valor";
-            cmb3.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
             List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
             foreach (Categoria categorias in listaCategoria)
             {
-                cmb1.Items.Add(new { Valor = categorias.IdCategoria, Texto = categorias.Descripcion });
+                CmbCategoria.Items.Add(new { Valor = categorias.IdCategoria, Texto = categorias.Descripcion });
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            if (cmb1.Items.Count > 0)
+            CmbCategoria.DisplayMember = "Texto";
+            CmbCategoria.ValueMember = "Valor";
+            if (CmbCategoria.Items.Count > 0)
             {
-                cmb1.SelectedIndex = 0;
+                CmbCategoria.SelectedIndex = 0;
             }
             else
             {
-                cmb1.Enabled = false;
+                CmbCategoria.Enabled = false;
             }
 
             List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
             foreach (Unidad_Medida unidades in listaUnidadMedida)
             {
-                cmb2.Items.Add(new { Valor = unidades.IdUnidadMedida, Texto = unidades.Descripcion });
+                CmbUnidadMedida.Items.Add(new { Valor = unidades.IdUnidadMedida, Texto = unidades.Descripcion });
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            if (cmb2.Items.Count > 0)
+            CmbUnidadMedida.DisplayMember = "Texto";
+            CmbUnidadMedida.ValueMember = "Valor";
+            if (CmbUnidadMedida.Items.Count > 0)
             {
-                cmb2.SelectedIndex = 0;
+                CmbUnidadMedida.SelectedIndex = 0;
             }
             else
             {
-                cmb2.Enabled = false;
+                CmbUnidadMedida.Enabled = false;
             }
 
             foreach (DataGridViewColumn columna in tablaProducto.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb4.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb4.DisplayMember = "Texto";
-            cmb4.ValueMember = "Valor";
-            cmb4.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtCodigo.Text = GenerarCodigo(4);
             //Mostrar todos los productos existentes en la tabla
             List<Producto> mostrarProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in mostrarProducto)
             {
                 tablaProducto.Rows.Add(new object[] { "", productos.IdProducto, productos.Codigo, productos.Nombre, productos.Descripcion, productos.oCategoria.IdCategoria, productos.oCategoria.Descripcion, productos.oUnidadMedida.IdUnidadMedida, productos.oUnidadMedida.Descripcion, productos.PaisOrigen, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado == true ? 1 : 0, productos.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtNombre.Select();
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
             if (tablaProducto.Rows.Count < 1)
             {
@@ -126,16 +127,16 @@ namespace Presentacion
                 }
             }
         }
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb4 = cmb4.SelectedItem;
+            dynamic selectedItemCmb4 = CmbBuscar.SelectedItem;
             string valorCmb4 = selectedItemCmb4.Valor;
             string columnaFiltro = valorCmb4.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaProducto.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt7.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -149,7 +150,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar producto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt7.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaProducto.Rows)
                 {
                     row.Visible = true;
@@ -157,11 +158,11 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
-            dynamic selectedItemCmb3 = cmb3.SelectedItem;
+            dynamic selectedItemCmb1 = CmbCategoria.SelectedItem;
+            dynamic selectedItemCmb2 = CmbUnidadMedida.SelectedItem;
+            dynamic selectedItemCmb3 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
@@ -170,13 +171,13 @@ namespace Presentacion
             string textoCmb3 = selectedItemCmb3.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt5.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Código del producto\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombre del producto\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Descripción del producto\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- País de origen del producto\n";
+                if (string.IsNullOrWhiteSpace(TxtCodigo.Text)) mensajeError += "- Código del producto\n";
+                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre del producto\n";
+                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text)) mensajeError += "- Descripción del producto\n";
+                if (string.IsNullOrWhiteSpace(TxtPaisOrigen.Text)) mensajeError += "- País de origen del producto\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -185,10 +186,10 @@ namespace Presentacion
                 Producto agregarProducto = new Producto()
                 {
                     IdProducto = Convert.ToInt32(txt2.Text),
-                    Codigo = txt3.Text,
-                    Nombre = txt4.Text,
-                    Descripcion = txt5.Text,
-                    PaisOrigen = txt6.Text,
+                    Codigo = TxtCodigo.Text,
+                    Nombre = TxtNombre.Text,
+                    Descripcion = TxtDescripcion.Text,
+                    PaisOrigen = TxtPaisOrigen.Text,
                     oCategoria = new Categoria { IdCategoria = valorCmb1 },
                     oUnidadMedida = new Unidad_Medida { IdUnidadMedida = valorCmb2},
                     Estado = valorCmb3 == 1
@@ -215,7 +216,7 @@ namespace Presentacion
                 // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null && selectedItemCmb3 != null)
                     {
-                        tablaProducto.Rows.Add(new object[] { "", idProductoIngresado, txt3.Text, txt4.Text, txt5.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2, txt6.Text, "0", "0.00", "0.00", valorCmb3, textoCmb3 });
+                        tablaProducto.Rows.Add(new object[] { "", idProductoIngresado, TxtCodigo.Text, TxtNombre.Text, TxtDescripcion.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2, TxtPaisOrigen.Text, "0", "0.00", "0.00", valorCmb3, textoCmb3 });
                         MessageBox.Show("El producto fue agregado correctamente.", "Agregar producto.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -227,16 +228,16 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
-            dynamic selectedItemCmb3 = cmb3.SelectedItem;
+            dynamic selectedItemCmb1 = CmbCategoria.SelectedItem;
+            dynamic selectedItemCmb2 = CmbUnidadMedida.SelectedItem;
+            dynamic selectedItemCmb3 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
@@ -248,12 +249,12 @@ namespace Presentacion
             Producto productoModificado = new Producto()
             {
                 IdProducto = Convert.ToInt32(txt2.Text),
-                Codigo = txt3.Text,
-                Nombre = txt4.Text,
-                Descripcion = txt5.Text,
+                Codigo = TxtCodigo.Text,
+                Nombre = TxtNombre.Text,
+                Descripcion = TxtDescripcion.Text,
                 oCategoria = new Categoria { IdCategoria = valorCmb1 },
                 oUnidadMedida = new Unidad_Medida { IdUnidadMedida = valorCmb2},
-                PaisOrigen = txt6.Text,
+                PaisOrigen = TxtPaisOrigen.Text,
                 Estado = valorCmb3 == 1
             };
             bool modificar = new CN_Producto().Editar(productoModificado, out mensaje);
@@ -280,9 +281,9 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt5.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 MessageBox.Show("Primero debe selecionar un producto en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -313,7 +314,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaProducto_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaProducto_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -329,7 +330,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaProducto_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaProducto_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaProducto.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -345,7 +346,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaProducto.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
@@ -354,12 +355,12 @@ namespace Presentacion
                 {
                     txt1.Text = indice.ToString();
                     txt2.Text = tablaProducto.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaProducto.Rows[indice].Cells["Codigo"].Value.ToString();
-                    txt4.Text = tablaProducto.Rows[indice].Cells["Producto"].Value.ToString();
-                    txt5.Text = tablaProducto.Rows[indice].Cells["Descripcion"].Value.ToString();
-                    txt6.Text = tablaProducto.Rows[indice].Cells["PaisOrigen"].Value.ToString();
+                    TxtCodigo.Text = tablaProducto.Rows[indice].Cells["Codigo"].Value.ToString();
+                    TxtNombre.Text = tablaProducto.Rows[indice].Cells["Producto"].Value.ToString();
+                    TxtDescripcion.Text = tablaProducto.Rows[indice].Cells["Descripcion"].Value.ToString();
+                    TxtPaisOrigen.Text = tablaProducto.Rows[indice].Cells["PaisOrigen"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbCategoria.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -367,12 +368,12 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaProducto.Rows[indice].Cells["IDCATEGORIA"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbCategoria.Items.IndexOf(item);
+                            CmbCategoria.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
-                    foreach (dynamic item in cmb2.Items)
+                    foreach (dynamic item in CmbUnidadMedida.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -380,12 +381,12 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaProducto.Rows[indice].Cells["IDUNIDADMEDIDA"].Value))
                         {
-                            int indice_cmb = cmb2.Items.IndexOf(item);
-                            cmb2.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbUnidadMedida.Items.IndexOf(item);
+                            CmbUnidadMedida.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
-                    foreach (dynamic item in cmb3.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -393,8 +394,8 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaProducto.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb3.Items.IndexOf(item);
-                            cmb3.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
@@ -405,24 +406,27 @@ namespace Presentacion
         {
             txt1.Text = "-1";
             txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
-            txt6.Clear();
-            cmb1.SelectedIndex = 0;
-            cmb3.SelectedIndex = 0;
+            TxtCodigo.Text = GenerarCodigo(4);
+            TxtNombre.Clear();
+            TxtDescripcion.Clear();
+            TxtPaisOrigen.Clear();
+            CmbCategoria.SelectedIndex = 0;
+            CmbEstado.SelectedIndex = 0;
         }
 
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
+        private string GenerarCodigo(int longitud)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Código", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
+            return new string(resultado);
         }
 
-        private void txt4_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
@@ -431,7 +435,7 @@ namespace Presentacion
             }
         }
 
-        private void txt5_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
@@ -440,11 +444,11 @@ namespace Presentacion
             }
         }
 
-        private void txt6_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtPaisOrigen_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo País de origen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre del producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
         }

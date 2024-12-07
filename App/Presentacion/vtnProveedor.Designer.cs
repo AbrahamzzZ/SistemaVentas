@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnProveedor
+    partial class VtnProveedor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,33 +40,33 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblApellidos = new System.Windows.Forms.Label();
-            this.txt5 = new System.Windows.Forms.TextBox();
-            this.txt8 = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.TxtApellidos = new System.Windows.Forms.TextBox();
+            this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.BtnModificar = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
             this.lblProveedores = new System.Windows.Forms.Label();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.cmb2 = new System.Windows.Forms.ComboBox();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
+            this.BtnEliminar = new System.Windows.Forms.Button();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.TxtIndice = new System.Windows.Forms.TextBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
+            this.CmbEstado = new System.Windows.Forms.ComboBox();
             this.lblEstado = new System.Windows.Forms.Label();
-            this.txt7 = new System.Windows.Forms.TextBox();
+            this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblCedula = new System.Windows.Forms.Label();
-            this.txt6 = new System.Windows.Forms.TextBox();
+            this.TextCedula = new System.Windows.Forms.TextBox();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
-            this.txt4 = new System.Windows.Forms.TextBox();
+            this.TxtNombres = new System.Windows.Forms.TextBox();
             this.lblNombes = new System.Windows.Forms.Label();
-            this.txt3 = new System.Windows.Forms.TextBox();
+            this.TxtNoDocumento = new System.Windows.Forms.TextBox();
             this.lblNoDocumento = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt9 = new System.Windows.Forms.TextBox();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaProveedores = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.tablaProveedores)).BeginInit();
             this.SuspendLayout();
@@ -153,19 +153,19 @@
             this.EstadoValor.Visible = false;
             this.EstadoValor.Width = 125;
             // 
-            // btnExportarExcel
+            // BtnExportarExcel
             // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.Wheat;
-            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(392, 128);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(155, 41);
-            this.btnExportarExcel.TabIndex = 129;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnExportarExcel.BackColor = System.Drawing.Color.Wheat;
+            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarExcel.Location = new System.Drawing.Point(417, 128);
+            this.BtnExportarExcel.Name = "BtnExportarExcel";
+            this.BtnExportarExcel.Size = new System.Drawing.Size(155, 41);
+            this.BtnExportarExcel.TabIndex = 129;
+            this.BtnExportarExcel.Text = "Exportar Excel";
+            this.BtnExportarExcel.UseVisualStyleBackColor = false;
+            this.BtnExportarExcel.Click += new System.EventHandler(this.BtnExportarExcel_Click);
             // 
             // lblApellidos
             // 
@@ -178,71 +178,71 @@
             this.lblApellidos.TabIndex = 128;
             this.lblApellidos.Text = "Apellidos:";
             // 
-            // txt5
+            // TxtApellidos
             // 
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(30, 264);
-            this.txt5.Name = "txt5";
-            this.txt5.Size = new System.Drawing.Size(280, 27);
-            this.txt5.TabIndex = 127;
-            this.txt5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt5_KeyPress);
+            this.TxtApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtApellidos.Location = new System.Drawing.Point(30, 264);
+            this.TxtApellidos.Name = "TxtApellidos";
+            this.TxtApellidos.Size = new System.Drawing.Size(280, 27);
+            this.TxtApellidos.TabIndex = 127;
+            this.TxtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellidos_KeyPress);
             // 
-            // txt8
+            // TxtCorreoElectronico
             // 
-            this.txt8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt8.Location = new System.Drawing.Point(28, 472);
-            this.txt8.Name = "txt8";
-            this.txt8.Size = new System.Drawing.Size(280, 27);
-            this.txt8.TabIndex = 126;
+            this.TxtCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCorreoElectronico.Location = new System.Drawing.Point(28, 472);
+            this.TxtCorreoElectronico.Name = "TxtCorreoElectronico";
+            this.TxtCorreoElectronico.Size = new System.Drawing.Size(280, 27);
+            this.TxtCorreoElectronico.TabIndex = 126;
             // 
-            // btnBuscar
+            // BtnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Wheat;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1330, 137);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(38, 30);
-            this.btnBuscar.TabIndex = 110;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.BtnBuscar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.Location = new System.Drawing.Point(1355, 137);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(38, 30);
+            this.BtnBuscar.TabIndex = 110;
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // btnModificar
+            // BtnModificar
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.Wheat;
-            this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(946, 490);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(164, 41);
-            this.btnModificar.TabIndex = 104;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            this.BtnModificar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificar.Location = new System.Drawing.Point(971, 490);
+            this.BtnModificar.Name = "BtnModificar";
+            this.BtnModificar.Size = new System.Drawing.Size(164, 41);
+            this.BtnModificar.TabIndex = 104;
+            this.BtnModificar.Text = "Modificar";
+            this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
-            // btnAgregar
+            // BtnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Wheat;
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(392, 490);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(164, 41);
-            this.btnAgregar.TabIndex = 103;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.BtnAgregar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregar.Location = new System.Drawing.Point(417, 490);
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(164, 41);
+            this.BtnAgregar.TabIndex = 103;
+            this.BtnAgregar.Text = "Agregar";
+            this.BtnAgregar.UseVisualStyleBackColor = false;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // lblProveedores
             // 
             this.lblProveedores.AutoSize = true;
             this.lblProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProveedores.Location = new System.Drawing.Point(682, 43);
+            this.lblProveedores.Location = new System.Drawing.Point(707, 43);
             this.lblProveedores.Name = "lblProveedores";
             this.lblProveedores.Size = new System.Drawing.Size(437, 32);
             this.lblProveedores.TabIndex = 102;
@@ -252,79 +252,79 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(726, 140);
+            this.lblBuscar.Location = new System.Drawing.Point(751, 140);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 108;
             this.lblBuscar.Text = "Buscar por:";
             // 
-            // cmb2
+            // CmbBuscar
             // 
-            this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(851, 137);
-            this.cmb2.Name = "cmb2";
-            this.cmb2.Size = new System.Drawing.Size(221, 28);
-            this.cmb2.TabIndex = 107;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(876, 137);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(221, 28);
+            this.CmbBuscar.TabIndex = 107;
             // 
-            // btnEliminar
+            // BtnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Wheat;
-            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1207, 490);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(164, 41);
-            this.btnEliminar.TabIndex = 105;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.BtnEliminar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.Location = new System.Drawing.Point(1232, 490);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(164, 41);
+            this.BtnEliminar.TabIndex = 105;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
-            // btnLimpiar
+            // BtnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.Wheat;
-            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(665, 490);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(164, 41);
-            this.btnLimpiar.TabIndex = 125;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimpiar.Location = new System.Drawing.Point(690, 490);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(164, 41);
+            this.BtnLimpiar.TabIndex = 125;
+            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // txt1
+            // TxtIndice
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(224, 77);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(36, 27);
-            this.txt1.TabIndex = 124;
-            this.txt1.Text = "-1";
-            this.txt1.Visible = false;
+            this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIndice.Location = new System.Drawing.Point(224, 77);
+            this.TxtIndice.Name = "TxtIndice";
+            this.TxtIndice.Size = new System.Drawing.Size(36, 27);
+            this.TxtIndice.TabIndex = 124;
+            this.TxtIndice.Text = "-1";
+            this.TxtIndice.Visible = false;
             // 
-            // txt2
+            // TxtId
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(276, 77);
-            this.txt2.Name = "txt2";
-            this.txt2.ReadOnly = true;
-            this.txt2.Size = new System.Drawing.Size(34, 27);
-            this.txt2.TabIndex = 123;
-            this.txt2.Text = "0";
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(276, 77);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 123;
+            this.TxtId.Text = "0";
             // 
-            // cmb1
+            // CmbEstado
             // 
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(28, 538);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(280, 28);
-            this.cmb1.TabIndex = 122;
+            this.CmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbEstado.FormattingEnabled = true;
+            this.CmbEstado.Location = new System.Drawing.Point(28, 538);
+            this.CmbEstado.Name = "CmbEstado";
+            this.CmbEstado.Size = new System.Drawing.Size(280, 28);
+            this.CmbEstado.TabIndex = 122;
             // 
             // lblEstado
             // 
@@ -337,14 +337,14 @@
             this.lblEstado.TabIndex = 121;
             this.lblEstado.Text = "Estado:";
             // 
-            // txt7
+            // TxtTelefono
             // 
-            this.txt7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt7.Location = new System.Drawing.Point(28, 401);
-            this.txt7.Name = "txt7";
-            this.txt7.Size = new System.Drawing.Size(280, 27);
-            this.txt7.TabIndex = 120;
-            this.txt7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt7_KeyPress);
+            this.TxtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTelefono.Location = new System.Drawing.Point(28, 401);
+            this.TxtTelefono.Name = "TxtTelefono";
+            this.TxtTelefono.Size = new System.Drawing.Size(280, 27);
+            this.TxtTelefono.TabIndex = 120;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // lblTelefono
             // 
@@ -368,14 +368,14 @@
             this.lblCedula.TabIndex = 118;
             this.lblCedula.Text = "Cédula:";
             // 
-            // txt6
+            // TextCedula
             // 
-            this.txt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt6.Location = new System.Drawing.Point(30, 332);
-            this.txt6.Name = "txt6";
-            this.txt6.Size = new System.Drawing.Size(280, 27);
-            this.txt6.TabIndex = 117;
-            this.txt6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt6_KeyPress);
+            this.TextCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextCedula.Location = new System.Drawing.Point(30, 332);
+            this.TextCedula.Name = "TextCedula";
+            this.TextCedula.Size = new System.Drawing.Size(280, 27);
+            this.TextCedula.TabIndex = 117;
+            this.TextCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextCedula_KeyPress);
             // 
             // lblCorreoElectronico
             // 
@@ -388,14 +388,14 @@
             this.lblCorreoElectronico.TabIndex = 116;
             this.lblCorreoElectronico.Text = "Correo Electrónico:";
             // 
-            // txt4
+            // TxtNombres
             // 
-            this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(30, 197);
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(280, 27);
-            this.txt4.TabIndex = 115;
-            this.txt4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt4_KeyPress);
+            this.TxtNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombres.Location = new System.Drawing.Point(30, 197);
+            this.TxtNombres.Name = "TxtNombres";
+            this.TxtNombres.Size = new System.Drawing.Size(280, 27);
+            this.TxtNombres.TabIndex = 115;
+            this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
             // lblNombes
             // 
@@ -408,14 +408,14 @@
             this.lblNombes.TabIndex = 114;
             this.lblNombes.Text = "Nombres:";
             // 
-            // txt3
+            // TxtNoDocumento
             // 
-            this.txt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt3.Location = new System.Drawing.Point(30, 127);
-            this.txt3.Name = "txt3";
-            this.txt3.Size = new System.Drawing.Size(280, 27);
-            this.txt3.TabIndex = 113;
-            this.txt3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt3_KeyPress);
+            this.TxtNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNoDocumento.Location = new System.Drawing.Point(30, 127);
+            this.TxtNoDocumento.Name = "TxtNoDocumento";
+            this.TxtNoDocumento.ReadOnly = true;
+            this.TxtNoDocumento.Size = new System.Drawing.Size(280, 27);
+            this.TxtNoDocumento.TabIndex = 113;
             // 
             // lblNoDocumento
             // 
@@ -441,27 +441,27 @@
             this.label2.Text = "Detalles Proveedor";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // txt9
+            // TxtBuscar
             // 
-            this.txt9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt9.Location = new System.Drawing.Point(1089, 138);
-            this.txt9.Name = "txt9";
-            this.txt9.Size = new System.Drawing.Size(221, 27);
-            this.txt9.TabIndex = 109;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(1114, 138);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(221, 27);
+            this.TxtBuscar.TabIndex = 109;
             // 
             // tablaProveedores
             // 
             this.tablaProveedores.AllowUserToAddRows = false;
             this.tablaProveedores.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.tablaProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -474,59 +474,59 @@
             this.CorreoElectronico,
             this.EstadoValor,
             this.Estado});
-            this.tablaProveedores.Location = new System.Drawing.Point(392, 187);
+            this.tablaProveedores.Location = new System.Drawing.Point(417, 187);
             this.tablaProveedores.MultiSelect = false;
             this.tablaProveedores.Name = "tablaProveedores";
             this.tablaProveedores.ReadOnly = true;
             this.tablaProveedores.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaProveedores.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaProveedores.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.tablaProveedores.RowTemplate.Height = 28;
             this.tablaProveedores.Size = new System.Drawing.Size(978, 248);
             this.tablaProveedores.TabIndex = 106;
-            this.tablaProveedores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaProveedores_CellContentClick);
-            this.tablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaProveedores_CellFormatting);
-            this.tablaProveedores.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaProveedores_CellPainting);
+            this.tablaProveedores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProveedores_CellContentClick);
+            this.tablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProveedores_CellFormatting);
+            this.tablaProveedores.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaProveedores_CellPainting);
             // 
-            // vtnProveedor
+            // VtnProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
-            this.Controls.Add(this.btnExportarExcel);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
+            this.Controls.Add(this.BtnExportarExcel);
             this.Controls.Add(this.lblApellidos);
-            this.Controls.Add(this.txt5);
-            this.Controls.Add(this.txt8);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.TxtApellidos);
+            this.Controls.Add(this.TxtCorreoElectronico);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.BtnModificar);
+            this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.lblProveedores);
             this.Controls.Add(this.lblBuscar);
-            this.Controls.Add(this.cmb2);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.txt2);
-            this.Controls.Add(this.cmb1);
+            this.Controls.Add(this.CmbBuscar);
+            this.Controls.Add(this.BtnEliminar);
+            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.TxtIndice);
+            this.Controls.Add(this.TxtId);
+            this.Controls.Add(this.CmbEstado);
             this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.txt7);
+            this.Controls.Add(this.TxtTelefono);
             this.Controls.Add(this.lblTelefono);
             this.Controls.Add(this.lblCedula);
-            this.Controls.Add(this.txt6);
+            this.Controls.Add(this.TextCedula);
             this.Controls.Add(this.lblCorreoElectronico);
-            this.Controls.Add(this.txt4);
+            this.Controls.Add(this.TxtNombres);
             this.Controls.Add(this.lblNombes);
-            this.Controls.Add(this.txt3);
+            this.Controls.Add(this.TxtNoDocumento);
             this.Controls.Add(this.lblNoDocumento);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt9);
+            this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.tablaProveedores);
-            this.Name = "vtnProveedor";
+            this.Name = "VtnProveedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver proveedores";
-            this.Load += new System.EventHandler(this.vtnProveedor_Load);
+            this.Load += new System.EventHandler(this.VtnProveedor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaProveedores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -545,33 +545,33 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
-        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Label lblApellidos;
-        private System.Windows.Forms.TextBox txt5;
-        private System.Windows.Forms.TextBox txt8;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.TextBox TxtApellidos;
+        private System.Windows.Forms.TextBox TxtCorreoElectronico;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.Button BtnModificar;
+        private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Label lblProveedores;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.ComboBox cmb2;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.TextBox txt2;
-        private System.Windows.Forms.ComboBox cmb1;
+        private System.Windows.Forms.ComboBox CmbBuscar;
+        private System.Windows.Forms.Button BtnEliminar;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.TextBox TxtIndice;
+        private System.Windows.Forms.TextBox TxtId;
+        private System.Windows.Forms.ComboBox CmbEstado;
         private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.TextBox txt7;
+        private System.Windows.Forms.TextBox TxtTelefono;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblCedula;
-        private System.Windows.Forms.TextBox txt6;
+        private System.Windows.Forms.TextBox TextCedula;
         private System.Windows.Forms.Label lblCorreoElectronico;
-        private System.Windows.Forms.TextBox txt4;
+        private System.Windows.Forms.TextBox TxtNombres;
         private System.Windows.Forms.Label lblNombes;
-        private System.Windows.Forms.TextBox txt3;
+        private System.Windows.Forms.TextBox TxtNoDocumento;
         private System.Windows.Forms.Label lblNoDocumento;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt9;
+        private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.DataGridView tablaProveedores;
     }
 }

@@ -13,41 +13,42 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnProveedor : Form
+    public partial class VtnProveedor : Form
     {
-        public vtnProveedor()
+        public VtnProveedor()
         {
             InitializeComponent();
         }
 
-        private void vtnProveedor_Load(object sender, EventArgs e)
+        private void VtnProveedor_Load(object sender, EventArgs e)
         {
-            cmb1.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb1.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             foreach (DataGridViewColumn columna in tablaProveedores.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb2.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtNoDocumento.Text = GenerarCodigo(4);
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
                 tablaProveedores.Rows.Add(new object[] { "", proveedor.IdProveedor, proveedor.Documento, proveedor.Nombres, proveedor.Apellidos, proveedor.Cedula, proveedor.Telefono, proveedor.CorreoElectronico, proveedor.Estado == true ? 1 : 0, proveedor.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtNombres.Select();
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
             if (tablaProveedores.Rows.Count < 1)
             {
@@ -96,16 +97,16 @@ namespace Presentacion
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb2 = CmbBuscar.SelectedItem;
             string valorCmb2 = selectedItemCmb2.Valor;
             string columnaFiltro = valorCmb2.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaProveedores.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt9.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -119,7 +120,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt9.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaProveedores.Rows)
                 {
                     row.Visible = true;
@@ -127,22 +128,22 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text) || string.IsNullOrWhiteSpace(txt8.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Número del documento del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombres del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Apellidos del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Cedula del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(txt7.Text)) mensajeError += "- Telefono del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(txt8.Text)) mensajeError += "- Correo electrónico del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TextCedula.Text)) mensajeError += "- Cedula del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TxtTelefono.Text)) mensajeError += "- Telefono del proveedor.\n";
+                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del proveedor.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -150,13 +151,13 @@ namespace Presentacion
             {
                 Proveedor agregarProveedor = new Proveedor()
                 {
-                    IdProveedor = Convert.ToInt32(txt2.Text),
-                    Documento = txt3.Text,
-                    Nombres = txt4.Text,
-                    Apellidos = txt5.Text,
-                    Cedula = txt6.Text,
-                    Telefono = txt7.Text,
-                    CorreoElectronico = txt8.Text,
+                    IdProveedor = Convert.ToInt32(TxtId.Text),
+                    Documento = TxtNoDocumento.Text,
+                    Nombres = TxtNombres.Text,
+                    Apellidos = TxtApellidos.Text,
+                    Cedula = TextCedula.Text,
+                    Telefono = TxtTelefono.Text,
+                    CorreoElectronico = TxtCorreoElectronico.Text,
                     Estado = valorCmb1 == 1
                 };
                 int idProveedorIngresado = new CN_Proveedor().Registrar(agregarProveedor, out mensaje);
@@ -165,7 +166,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, txt3.Text, txt4.Text, txt5.Text, txt6.Text, txt7.Text, txt8.Text, valorCmb1, textoCmb1 });
+                        tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, TxtNoDocumento.Text, TxtNombres.Text, TxtApellidos.Text, TextCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
                         MessageBox.Show("El proveedor fue agregado correctamente.", "Agregar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -177,27 +178,27 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
             Proveedor proveedorModificado = new Proveedor()
             {
-                IdProveedor = Convert.ToInt32(txt2.Text),
-                Documento = txt3.Text,
-                Nombres = txt4.Text,
-                Apellidos = txt5.Text,
-                Cedula = txt6.Text,
-                Telefono = txt7.Text,
-                CorreoElectronico = txt8.Text,
+                IdProveedor = Convert.ToInt32(TxtId.Text),
+                Documento = TxtNoDocumento.Text,
+                Nombres = TxtNombres.Text,
+                Apellidos = TxtApellidos.Text,
+                Cedula = TextCedula.Text,
+                Telefono = TxtTelefono.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
                 Estado = valorCmb1 == 1
             };
             bool modificar = new CN_Proveedor().Editar(proveedorModificado, out mensaje);
@@ -205,7 +206,7 @@ namespace Presentacion
             {
                 MessageBox.Show("El proveedor fue modificado correctamente.", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaProveedores.Rows[indice].Cells["ID"].Value = proveedorModificado.IdProveedor;
                 tablaProveedores.Rows[indice].Cells["Documento"].Value = proveedorModificado.Documento;
                 tablaProveedores.Rows[indice].Cells["Nombres"].Value = proveedorModificado.Nombres;
@@ -219,15 +220,15 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text) || string.IsNullOrWhiteSpace(txt8.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 MessageBox.Show("Primero debe selecionar un proveedor en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -235,12 +236,12 @@ namespace Presentacion
 
                         Proveedor proveedorEliminado = new Proveedor()
                         {
-                            IdProveedor = Convert.ToInt32(txt2.Text),
+                            IdProveedor = Convert.ToInt32(TxtId.Text),
                         };
                         bool respuesta = new CN_Proveedor().Eliminar(proveedorEliminado, out mensaje);
                         if (respuesta)
                         {
-                            tablaProveedores.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaProveedores.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("El proveedor fue eliminado correctamente.", "Eliminar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -253,7 +254,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaProveedores_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaProveedores_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -269,7 +270,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaProveedores_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaProveedores_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaProveedores.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -285,23 +286,23 @@ namespace Presentacion
             }
         }
 
-        private void tablaProveedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaProveedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaProveedores.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaProveedores.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaProveedores.Rows[indice].Cells["Documento"].Value.ToString();
-                    txt4.Text = tablaProveedores.Rows[indice].Cells["Nombres"].Value.ToString();
-                    txt5.Text = tablaProveedores.Rows[indice].Cells["Apellidos"].Value.ToString();
-                    txt6.Text = tablaProveedores.Rows[indice].Cells["Cedula"].Value.ToString();
-                    txt7.Text = tablaProveedores.Rows[indice].Cells["Telefono"].Value.ToString();
-                    txt8.Text = tablaProveedores.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaProveedores.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtNoDocumento.Text = tablaProveedores.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtNombres.Text = tablaProveedores.Rows[indice].Cells["Nombres"].Value.ToString();
+                    TxtApellidos.Text = tablaProveedores.Rows[indice].Cells["Apellidos"].Value.ToString();
+                    TextCedula.Text = tablaProveedores.Rows[indice].Cells["Cedula"].Value.ToString();
+                    TxtTelefono.Text = tablaProveedores.Rows[indice].Cells["Telefono"].Value.ToString();
+                    TxtCorreoElectronico.Text = tablaProveedores.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -309,37 +310,41 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaProveedores.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
                 }
             }
         }
+
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
-            txt6.Clear();
-            txt7.Clear();
-            txt8.Clear();
-            cmb1.SelectedIndex = 0;
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtNombres.Clear();
+            TxtApellidos.Clear();
+            TextCedula.Clear();
+            TxtTelefono.Clear();
+            TxtCorreoElectronico.Clear();
+            CmbEstado.SelectedIndex = 0;
         }
 
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
+        private string GenerarCodigo(int longitud)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
+            return new string(resultado);
         }
 
-        private void txt4_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
@@ -348,7 +353,7 @@ namespace Presentacion
             }
         }
 
-        private void txt5_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
@@ -357,7 +362,7 @@ namespace Presentacion
             }
         }
 
-        private void txt6_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextCedula_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
@@ -366,7 +371,7 @@ namespace Presentacion
             }
         }
 
-        private void txt7_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {

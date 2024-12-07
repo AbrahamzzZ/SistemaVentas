@@ -55,7 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt9 = new System.Windows.Forms.TextBox();
             this.tablaSucursal = new System.Windows.Forms.DataGridView();
-            this.txt4 = new System.Windows.Forms.RichTextBox();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +64,8 @@
             this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt4 = new System.Windows.Forms.RichTextBox();
+            this.lblSucursales = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaSucursal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             this.mapa.GrayScaleMode = false;
             this.mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.mapa.LevelsKeepInMemmory = 5;
-            this.mapa.Location = new System.Drawing.Point(364, 12);
+            this.mapa.Location = new System.Drawing.Point(603, 47);
             this.mapa.MarkersEnabled = true;
             this.mapa.MaxZoom = 2;
             this.mapa.MinZoom = 2;
@@ -90,7 +91,7 @@
             this.mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.mapa.ShowTileGridLines = false;
-            this.mapa.Size = new System.Drawing.Size(665, 286);
+            this.mapa.Size = new System.Drawing.Size(120, 120);
             this.mapa.TabIndex = 157;
             this.mapa.Zoom = 0D;
             // 
@@ -100,7 +101,7 @@
             this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(1141, 257);
+            this.btnExportarExcel.Location = new System.Drawing.Point(417, 131);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(155, 41);
             this.btnExportarExcel.TabIndex = 156;
@@ -134,7 +135,7 @@
             this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1339, 89);
+            this.btnBuscar.Location = new System.Drawing.Point(1355, 137);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(38, 30);
             this.btnBuscar.TabIndex = 139;
@@ -149,9 +150,9 @@
             this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(1054, 199);
+            this.btnModificar.Location = new System.Drawing.Point(971, 490);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(155, 41);
+            this.btnModificar.Size = new System.Drawing.Size(164, 41);
             this.btnModificar.TabIndex = 133;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
@@ -163,9 +164,9 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(1054, 136);
+            this.btnAgregar.Location = new System.Drawing.Point(417, 490);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(155, 41);
+            this.btnAgregar.Size = new System.Drawing.Size(164, 41);
             this.btnAgregar.TabIndex = 132;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -175,7 +176,7 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(1050, 48);
+            this.lblBuscar.Location = new System.Drawing.Point(751, 140);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 137;
@@ -186,9 +187,9 @@
             this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(1176, 44);
+            this.cmb2.Location = new System.Drawing.Point(876, 137);
             this.cmb2.Name = "cmb2";
-            this.cmb2.Size = new System.Drawing.Size(201, 28);
+            this.cmb2.Size = new System.Drawing.Size(230, 28);
             this.cmb2.TabIndex = 136;
             // 
             // btnEliminar
@@ -197,9 +198,9 @@
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1222, 199);
+            this.btnEliminar.Location = new System.Drawing.Point(1232, 490);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(155, 41);
+            this.btnEliminar.Size = new System.Drawing.Size(164, 41);
             this.btnEliminar.TabIndex = 134;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -211,9 +212,9 @@
             this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(1222, 136);
+            this.btnLimpiar.Location = new System.Drawing.Point(690, 490);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(155, 41);
+            this.btnLimpiar.Size = new System.Drawing.Size(164, 41);
             this.btnLimpiar.TabIndex = 153;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
@@ -346,9 +347,9 @@
             // txt9
             // 
             this.txt9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt9.Location = new System.Drawing.Point(1054, 92);
+            this.txt9.Location = new System.Drawing.Point(1114, 138);
             this.txt9.Name = "txt9";
-            this.txt9.Size = new System.Drawing.Size(264, 27);
+            this.txt9.Size = new System.Drawing.Size(230, 27);
             this.txt9.TabIndex = 138;
             // 
             // tablaSucursal
@@ -375,7 +376,7 @@
             this.Ciudad,
             this.EstadoValor,
             this.Estado});
-            this.tablaSucursal.Location = new System.Drawing.Point(364, 311);
+            this.tablaSucursal.Location = new System.Drawing.Point(417, 187);
             this.tablaSucursal.MultiSelect = false;
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
@@ -384,19 +385,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaSucursal.RowTemplate.Height = 28;
-            this.tablaSucursal.Size = new System.Drawing.Size(1013, 264);
+            this.tablaSucursal.Size = new System.Drawing.Size(978, 248);
             this.tablaSucursal.TabIndex = 135;
             this.tablaSucursal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaSucursal_CellContentClick);
             this.tablaSucursal.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaSucursal_CellFormatting);
             this.tablaSucursal.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaSucursal_CellPainting);
-            // 
-            // txt4
-            // 
-            this.txt4.Location = new System.Drawing.Point(30, 197);
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(278, 101);
-            this.txt4.TabIndex = 158;
-            this.txt4.Text = "";
             // 
             // btnSeleccionar
             // 
@@ -477,12 +470,31 @@
             this.Estado.ReadOnly = true;
             this.Estado.Width = 90;
             // 
+            // txt4
+            // 
+            this.txt4.Location = new System.Drawing.Point(30, 197);
+            this.txt4.Name = "txt4";
+            this.txt4.Size = new System.Drawing.Size(278, 101);
+            this.txt4.TabIndex = 158;
+            this.txt4.Text = "";
+            // 
+            // lblSucursales
+            // 
+            this.lblSucursales.AutoSize = true;
+            this.lblSucursales.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSucursales.Location = new System.Drawing.Point(770, 43);
+            this.lblSucursales.Name = "lblSucursales";
+            this.lblSucursales.Size = new System.Drawing.Size(406, 32);
+            this.lblSucursales.TabIndex = 159;
+            this.lblSucursales.Text = "Sucursales del supemercado";
+            // 
             // vtnSucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
+            this.Controls.Add(this.lblSucursales);
             this.Controls.Add(this.txt4);
             this.Controls.Add(this.mapa);
             this.Controls.Add(this.btnExportarExcel);
@@ -555,5 +567,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.Label lblSucursales;
     }
 }

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt2 = new System.Windows.Forms.TextBox();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblCorreoElectronico = new System.Windows.Forms.Label();
+            this.txt5 = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txt4 = new System.Windows.Forms.TextBox();
             this.txt3 = new System.Windows.Forms.TextBox();
@@ -42,10 +46,6 @@
             this.lblDetalleNegocio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txt5 = new System.Windows.Forms.TextBox();
-            this.lblCorreoElectronico = new System.Windows.Forms.Label();
-            this.lblTelefono = new System.Windows.Forms.Label();
-            this.txt2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -68,11 +68,48 @@
             this.groupBox1.Controls.Add(this.btnSubirImagen);
             this.groupBox1.Controls.Add(this.lblLogo);
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Location = new System.Drawing.Point(27, 122);
+            this.groupBox1.Location = new System.Drawing.Point(30, 122);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(689, 426);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
+            // 
+            // txt2
+            // 
+            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt2.Location = new System.Drawing.Point(277, 118);
+            this.txt2.Name = "txt2";
+            this.txt2.Size = new System.Drawing.Size(379, 27);
+            this.txt2.TabIndex = 13;
+            this.txt2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt2_KeyPress);
+            // 
+            // lblTelefono
+            // 
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Location = new System.Drawing.Point(273, 95);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(189, 20);
+            this.lblTelefono.TabIndex = 12;
+            this.lblTelefono.Text = "Teléfono del negocio:";
+            // 
+            // lblCorreoElectronico
+            // 
+            this.lblCorreoElectronico.AutoSize = true;
+            this.lblCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorreoElectronico.Location = new System.Drawing.Point(273, 290);
+            this.lblCorreoElectronico.Name = "lblCorreoElectronico";
+            this.lblCorreoElectronico.Size = new System.Drawing.Size(275, 20);
+            this.lblCorreoElectronico.TabIndex = 11;
+            this.lblCorreoElectronico.Text = "Correo Electrónico del negocio:";
+            // 
+            // txt5
+            // 
+            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt5.Location = new System.Drawing.Point(277, 313);
+            this.txt5.Name = "txt5";
+            this.txt5.Size = new System.Drawing.Size(379, 27);
+            this.txt5.TabIndex = 10;
             // 
             // btnGuardar
             // 
@@ -202,56 +239,19 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Presentacion.Properties.Resources.supermercado;
-            this.pictureBox2.Location = new System.Drawing.Point(802, 37);
+            this.pictureBox2.Location = new System.Drawing.Point(828, 37);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(558, 527);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 58;
             this.pictureBox2.TabStop = false;
             // 
-            // txt5
-            // 
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(277, 313);
-            this.txt5.Name = "txt5";
-            this.txt5.Size = new System.Drawing.Size(379, 27);
-            this.txt5.TabIndex = 10;
-            // 
-            // lblCorreoElectronico
-            // 
-            this.lblCorreoElectronico.AutoSize = true;
-            this.lblCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorreoElectronico.Location = new System.Drawing.Point(273, 290);
-            this.lblCorreoElectronico.Name = "lblCorreoElectronico";
-            this.lblCorreoElectronico.Size = new System.Drawing.Size(275, 20);
-            this.lblCorreoElectronico.TabIndex = 11;
-            this.lblCorreoElectronico.Text = "Correo Electrónico del negocio:";
-            // 
-            // lblTelefono
-            // 
-            this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.Location = new System.Drawing.Point(273, 95);
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(189, 20);
-            this.lblTelefono.TabIndex = 12;
-            this.lblTelefono.Text = "Teléfono del negocio:";
-            // 
-            // txt2
-            // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(277, 118);
-            this.txt2.Name = "txt2";
-            this.txt2.Size = new System.Drawing.Size(379, 27);
-            this.txt2.TabIndex = 13;
-            this.txt2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt2_KeyPress);
-            // 
             // vtnNegocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblDetalleNegocio);
             this.Controls.Add(this.label2);

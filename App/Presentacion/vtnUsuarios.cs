@@ -12,58 +12,57 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnUsuarios : Form
+    public partial class VtnUsuarios : Form
     {
-        public vtnUsuarios()
+        public VtnUsuarios()
         {
             InitializeComponent();
         }
 
-        private void vtnUsuarios_Load(object sender, EventArgs e)
+        private void VtnUsuarios_Load(object sender, EventArgs e)
         {
-            cmb2.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb2.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
             List<Rol> listaRol = new CN_Rol().Rol();
             foreach (Rol rol in listaRol)
             {
-                cmb1.Items.Add(new { Valor = rol.IdRol, Texto = rol.Descripcion });
+                CmbRol.Items.Add(new { Valor = rol.IdRol, Texto = rol.Descripcion });
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbRol.DisplayMember = "Texto";
+            CmbRol.ValueMember = "Valor";
+            CmbRol.SelectedIndex = 0;
             foreach (DataGridViewColumn columna in tablaUsuarios.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb3.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
-
             }
-            cmb3.DisplayMember = "Texto";
-            cmb3.ValueMember = "Valor";
-            cmb3.SelectedIndex = 0;
-            //Mostrar todos los usuarios existentes en la tabla
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtNoDocumento.Text = GenerarCodigo(4);
             List<Usuario> mostrarUsuario = new CN_Usuario().ListarUsuario();
             foreach (Usuario rol in mostrarUsuario)
             {
                 tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Documento, rol.NombreCompleto, rol.CorreoElectronico, rol.Clave, rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtNombreCompleto.Select();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb3 = cmb3.SelectedItem;
+            dynamic selectedItemCmb3 = CmbBuscar.SelectedItem;
             string valorCmb3 = selectedItemCmb3.Valor;
             string columnaFiltro = valorCmb3.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaUsuarios.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt7.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -77,7 +76,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt7.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaUsuarios.Rows)
                 {
                     row.Visible = true;
@@ -85,23 +84,23 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb1 = CmbRol.SelectedItem;
+            dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
             string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombreCompleto.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Número del documento del Usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombre completo del Usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Correo electrónico del Usuario.\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Clave del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(TxtNombreCompleto.Text)) mensajeError += "- Nombre completo del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del Usuario.\n";
+                if (string.IsNullOrWhiteSpace(TxtClave.Text)) mensajeError += "- Clave del Usuario.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -109,11 +108,11 @@ namespace Presentacion
             {
                 Usuario agregarUsuario = new Usuario()
                 {
-                    IdUsuario = Convert.ToInt32(txt2.Text),
-                    Documento = txt3.Text,
-                    NombreCompleto = txt4.Text,
-                    CorreoElectronico = txt5.Text,
-                    Clave = txt6.Text,
+                    IdUsuario = Convert.ToInt32(TxtId.Text),
+                    Documento = TxtNoDocumento.Text,
+                    NombreCompleto = TxtNombreCompleto.Text,
+                    CorreoElectronico = TxtCorreoElectronico.Text,
+                    Clave = TxtClave.Text,
                     oRol = new Rol { IdRol = valorCmb1 },
                     Estado = valorCmb2 == 1
                 };
@@ -124,7 +123,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null && selectedItemCmb2 != null)
                     {
-                        tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, txt3.Text, txt4.Text, txt5.Text, txt6.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2 });
+                        tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, TxtNoDocumento.Text, TxtNombreCompleto.Text, TxtCorreoElectronico.Text, TxtClave.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2 });
                         MessageBox.Show("El Usuario fue agregado correctamente.", "Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -136,15 +135,15 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb1 = CmbRol.SelectedItem;
+            dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
@@ -153,11 +152,11 @@ namespace Presentacion
 
             Usuario usuarioModificado = new Usuario()
             {
-                IdUsuario = Convert.ToInt32(txt2.Text),
-                Documento = txt3.Text,
-                NombreCompleto = txt4.Text,
-                CorreoElectronico = txt5.Text,
-                Clave = txt6.Text,
+                IdUsuario = Convert.ToInt32(TxtId.Text),
+                Documento = TxtNoDocumento.Text,
+                NombreCompleto = TxtNombreCompleto.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
+                Clave = TxtClave.Text,
                 oRol = new Rol { IdRol = valorCmb1 },
                 Estado = valorCmb2 == 1
             };
@@ -166,7 +165,7 @@ namespace Presentacion
             {
                 MessageBox.Show("El Usuario fue modificado correctamente.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaUsuarios.Rows[indice].Cells["Documento"].Value = usuarioModificado.Documento;
                 tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value = usuarioModificado.NombreCompleto;
                 tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value = usuarioModificado.CorreoElectronico;
@@ -183,15 +182,15 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombreCompleto.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
             {
                 MessageBox.Show("Primero debe selecionar un Usuario en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                int idUsuario = Convert.ToInt32(txt2.Text);
+                int idUsuario = Convert.ToInt32(TxtId.Text);
                 if (idUsuario == 1)
                 {
                     MessageBox.Show("No se puede eliminar el primer Usuario porque es necesario para el acceso al sistema.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +208,7 @@ namespace Presentacion
                         bool respuesta = new CN_Usuario().Eliminar(usuarioEliminado, out mensaje);
                         if (respuesta)
                         {
-                            tablaUsuarios.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaUsuarios.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("El Usuario fue eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -222,7 +221,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -238,7 +237,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaUsuarios.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -254,21 +253,21 @@ namespace Presentacion
             }
         }
 
-        private void tablaUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaUsuarios.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaUsuarios.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaUsuarios.Rows[indice].Cells["Documento"].Value.ToString();
-                    txt4.Text = tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value.ToString();
-                    txt5.Text = tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
-                    txt6.Text = tablaUsuarios.Rows[indice].Cells["Clave"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaUsuarios.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtNoDocumento.Text = tablaUsuarios.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtNombreCompleto.Text = tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value.ToString();
+                    TxtCorreoElectronico.Text = tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
+                    TxtClave.Text = tablaUsuarios.Rows[indice].Cells["Clave"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbRol.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -276,12 +275,12 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaUsuarios.Rows[indice].Cells["IdRol"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbRol.Items.IndexOf(item);
+                            CmbRol.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
-                    foreach (dynamic item in cmb2.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -289,8 +288,8 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaUsuarios.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb2.Items.IndexOf(item);
-                            cmb2.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
@@ -299,26 +298,29 @@ namespace Presentacion
         }
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
-            txt6.Clear();
-            cmb1.SelectedIndex = 0;
-            cmb2.SelectedIndex = 0;
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtNombreCompleto.Clear();
+            TxtCorreoElectronico.Clear();
+            TxtClave.Clear();
+            CmbRol.SelectedIndex = 0;
+            CmbEstado.SelectedIndex = 0;
         }
 
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
+        private string GenerarCodigo(int longitud)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
+            return new string(resultado);
         }
 
-        private void txt4_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtNombreCompleto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {

@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCompra));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.txt9 = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -75,8 +76,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnBuscarTransportista = new System.Windows.Forms.Button();
             this.txt12 = new System.Windows.Forms.TextBox();
+            this.btnBuscarTransportista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).BeginInit();
@@ -130,7 +131,7 @@
             this.groupBox4.Controls.Add(this.txt13);
             this.groupBox4.Controls.Add(this.lblTotalPagar);
             this.groupBox4.Controls.Add(this.btnAgregar);
-            this.groupBox4.Location = new System.Drawing.Point(1093, 339);
+            this.groupBox4.Location = new System.Drawing.Point(1121, 339);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(186, 205);
             this.groupBox4.TabIndex = 121;
@@ -171,7 +172,7 @@
             // 
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Image = global::Presentacion.Properties.Resources.agregar;
+            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.Location = new System.Drawing.Point(19, 21);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(146, 70);
@@ -186,15 +187,15 @@
             // 
             this.tablaCompras.AllowUserToAddRows = false;
             this.tablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -204,14 +205,14 @@
             this.Cantidad,
             this.SubTotal,
             this.btnEliminar});
-            this.tablaCompras.Location = new System.Drawing.Point(141, 348);
+            this.tablaCompras.Location = new System.Drawing.Point(169, 348);
             this.tablaCompras.MultiSelect = false;
             this.tablaCompras.Name = "tablaCompras";
             this.tablaCompras.ReadOnly = true;
             this.tablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.tablaCompras.RowTemplate.Height = 28;
             this.tablaCompras.Size = new System.Drawing.Size(657, 196);
             this.tablaCompras.TabIndex = 122;
@@ -303,7 +304,7 @@
             this.groupBox1.Controls.Add(this.lblTipoDocumento);
             this.groupBox1.Controls.Add(this.lblFecha);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(141, 87);
+            this.groupBox1.Location = new System.Drawing.Point(169, 87);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(510, 111);
             this.groupBox1.TabIndex = 118;
@@ -355,7 +356,7 @@
             // 
             this.lblRegistrarCompra.BackColor = System.Drawing.Color.White;
             this.lblRegistrarCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrarCompra.Location = new System.Drawing.Point(103, 23);
+            this.lblRegistrarCompra.Location = new System.Drawing.Point(131, 23);
             this.lblRegistrarCompra.Name = "lblRegistrarCompra";
             this.lblRegistrarCompra.Size = new System.Drawing.Size(1212, 540);
             this.lblRegistrarCompra.TabIndex = 117;
@@ -371,7 +372,7 @@
             this.groupBox2.Controls.Add(this.lblNombreProveedor);
             this.groupBox2.Controls.Add(this.lblNumeroDocumento);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(769, 87);
+            this.groupBox2.Location = new System.Drawing.Point(797, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(510, 111);
             this.groupBox2.TabIndex = 119;
@@ -517,9 +518,9 @@
             this.groupBox3.Controls.Add(this.txt6);
             this.groupBox3.Controls.Add(this.lblCodigoProducto);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(138, 214);
+            this.groupBox3.Location = new System.Drawing.Point(169, 214);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1141, 111);
+            this.groupBox3.Size = new System.Drawing.Size(1138, 111);
             this.groupBox3.TabIndex = 120;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información Producto";
@@ -528,9 +529,9 @@
             // 
             this.lblImportante.BackColor = System.Drawing.Color.White;
             this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportante.Location = new System.Drawing.Point(761, 23);
+            this.lblImportante.Location = new System.Drawing.Point(789, 23);
             this.lblImportante.Name = "lblImportante";
-            this.lblImportante.Size = new System.Drawing.Size(554, 47);
+            this.lblImportante.Size = new System.Drawing.Size(544, 47);
             this.lblImportante.TabIndex = 127;
             this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la \r\ntabla Compra se e" +
     "ncuentre totalmente vacía.\r\n\r\n";
@@ -585,12 +586,22 @@
             this.groupBox5.Controls.Add(this.txt11);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(821, 339);
+            this.groupBox5.Location = new System.Drawing.Point(849, 339);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(252, 205);
             this.groupBox5.TabIndex = 128;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Información Transportista";
+            // 
+            // txt12
+            // 
+            this.txt12.BackColor = System.Drawing.Color.LightGray;
+            this.txt12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt12.Location = new System.Drawing.Point(197, 149);
+            this.txt12.Name = "txt12";
+            this.txt12.ReadOnly = true;
+            this.txt12.Size = new System.Drawing.Size(37, 27);
+            this.txt12.TabIndex = 118;
             // 
             // btnBuscarTransportista
             // 
@@ -604,22 +615,12 @@
             this.btnBuscarTransportista.UseVisualStyleBackColor = true;
             this.btnBuscarTransportista.Click += new System.EventHandler(this.btnBuscarTransportista_Click);
             // 
-            // txt12
-            // 
-            this.txt12.BackColor = System.Drawing.Color.LightGray;
-            this.txt12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt12.Location = new System.Drawing.Point(197, 149);
-            this.txt12.Name = "txt12";
-            this.txt12.ReadOnly = true;
-            this.txt12.Size = new System.Drawing.Size(37, 27);
-            this.txt12.TabIndex = 118;
-            // 
             // vtnCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.lblImportante);
             this.Controls.Add(this.groupBox4);

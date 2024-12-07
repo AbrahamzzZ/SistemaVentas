@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmb1 = new System.Windows.Forms.ComboBox();
             this.txt5 = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.cmb2 = new System.Windows.Forms.ComboBox();
             this.lblPanel = new System.Windows.Forms.Label();
             this.tablaUnidadMedida = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Simbolo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblEstado = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -50,12 +56,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblRol = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Simbolo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSimbolo = new System.Windows.Forms.Label();
             this.txt4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaUnidadMedida)).BeginInit();
@@ -74,7 +74,7 @@
             // txt5
             // 
             this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(1089, 138);
+            this.txt5.Location = new System.Drawing.Point(1114, 138);
             this.txt5.Name = "txt5";
             this.txt5.Size = new System.Drawing.Size(221, 27);
             this.txt5.TabIndex = 100;
@@ -83,7 +83,7 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(726, 140);
+            this.lblBuscar.Location = new System.Drawing.Point(751, 140);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 99;
@@ -94,7 +94,7 @@
             this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(851, 137);
+            this.cmb2.Location = new System.Drawing.Point(876, 137);
             this.cmb2.Name = "cmb2";
             this.cmb2.Size = new System.Drawing.Size(221, 28);
             this.cmb2.TabIndex = 98;
@@ -117,15 +117,15 @@
             // 
             this.tablaUnidadMedida.AllowUserToAddRows = false;
             this.tablaUnidadMedida.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaUnidadMedida.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaUnidadMedida.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaUnidadMedida.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaUnidadMedida.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -134,20 +134,70 @@
             this.Simbolo,
             this.EstadoValor,
             this.Estado});
-            this.tablaUnidadMedida.Location = new System.Drawing.Point(392, 187);
+            this.tablaUnidadMedida.Location = new System.Drawing.Point(417, 187);
             this.tablaUnidadMedida.MultiSelect = false;
             this.tablaUnidadMedida.Name = "tablaUnidadMedida";
             this.tablaUnidadMedida.ReadOnly = true;
             this.tablaUnidadMedida.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaUnidadMedida.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaUnidadMedida.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaUnidadMedida.RowTemplate.Height = 28;
             this.tablaUnidadMedida.Size = new System.Drawing.Size(978, 248);
             this.tablaUnidadMedida.TabIndex = 96;
             this.tablaUnidadMedida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaUnidadMedida_CellContentClick);
             this.tablaUnidadMedida.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaUnidadMedida_CellFormatting);
             this.tablaUnidadMedida.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaUnidadMedida_CellPainting);
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.MinimumWidth = 6;
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 30;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id Unidad Medida";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.MinimumWidth = 6;
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 155;
+            // 
+            // Simbolo
+            // 
+            this.Simbolo.HeaderText = "Símbolo";
+            this.Simbolo.MinimumWidth = 6;
+            this.Simbolo.Name = "Simbolo";
+            this.Simbolo.ReadOnly = true;
+            this.Simbolo.Width = 125;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "Estado valor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            this.EstadoValor.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 90;
             // 
             // lblEstado
             // 
@@ -175,7 +225,7 @@
             this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(665, 490);
+            this.btnLimpiar.Location = new System.Drawing.Point(690, 490);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(164, 41);
             this.btnLimpiar.TabIndex = 109;
@@ -240,7 +290,7 @@
             this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1330, 137);
+            this.btnBuscar.Location = new System.Drawing.Point(1355, 137);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(38, 30);
             this.btnBuscar.TabIndex = 101;
@@ -255,7 +305,7 @@
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1207, 490);
+            this.btnEliminar.Location = new System.Drawing.Point(1232, 490);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(164, 41);
             this.btnEliminar.TabIndex = 95;
@@ -269,7 +319,7 @@
             this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(946, 490);
+            this.btnModificar.Location = new System.Drawing.Point(971, 490);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(164, 41);
             this.btnModificar.TabIndex = 94;
@@ -283,7 +333,7 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(392, 490);
+            this.btnAgregar.Location = new System.Drawing.Point(417, 490);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(164, 41);
             this.btnAgregar.TabIndex = 93;
@@ -295,7 +345,7 @@
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(700, 43);
+            this.lblCategoria.Location = new System.Drawing.Point(725, 43);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(540, 32);
             this.lblCategoria.TabIndex = 92;
@@ -310,56 +360,6 @@
             this.lblRol.Size = new System.Drawing.Size(43, 20);
             this.lblRol.TabIndex = 90;
             this.lblRol.Text = "Rol:";
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.HeaderText = "";
-            this.btnSeleccionar.MinimumWidth = 6;
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.ReadOnly = true;
-            this.btnSeleccionar.Width = 30;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id Unidad Medida";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 50;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.MinimumWidth = 6;
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 155;
-            // 
-            // Simbolo
-            // 
-            this.Simbolo.HeaderText = "Símbolo";
-            this.Simbolo.MinimumWidth = 6;
-            this.Simbolo.Name = "Simbolo";
-            this.Simbolo.ReadOnly = true;
-            this.Simbolo.Width = 125;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 90;
             // 
             // lblSimbolo
             // 
@@ -385,7 +385,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.txt4);
             this.Controls.Add(this.lblSimbolo);
             this.Controls.Add(this.cmb1);

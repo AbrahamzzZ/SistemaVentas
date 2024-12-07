@@ -499,9 +499,6 @@
     <None Include="Resources\reclamo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\agregar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\salir.png" />
   </ItemGroup>
   <ItemGroup>
@@ -545,6 +542,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\c#.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colaborador3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
