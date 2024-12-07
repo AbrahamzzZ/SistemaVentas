@@ -13,41 +13,42 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnCliente : Form
+    public partial class VtnCliente : Form
     {
-        public vtnCliente()
+        public VtnCliente()
         {
             InitializeComponent();
         }
 
-        private void vtnCliente_Load(object sender, EventArgs e)
+        private void VtnCliente_Load(object sender, EventArgs e)
         {
-            cmb1.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb1.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             foreach (DataGridViewColumn columna in tablaCliente.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb2.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtNoDocumento.Text = GenerarCodigo(4);
             List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente cliente in mostrarCliente)
             {
                 tablaCliente.Rows.Add(new object[] { "", cliente.IdCliente, cliente.Documento, cliente.Nombres, cliente.Apellidos, cliente.Cedula, cliente.Telefono, cliente.CorreoElectronico, cliente.Estado == true ? 1 : 0, cliente.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtNombres.Select();
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
             if (tablaCliente.Rows.Count < 1)
             {
@@ -95,16 +96,16 @@ namespace Presentacion
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb2 = CmbBuscar.SelectedItem;
             string valorCmb2 = selectedItemCmb2.Valor;
             string columnaFiltro = valorCmb2.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaCliente.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt9.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -118,7 +119,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt9.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaCliente.Rows)
                 {
                     row.Visible = true;
@@ -126,22 +127,22 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text) || string.IsNullOrWhiteSpace(txt8.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Número del documento del cliente.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Nombres del cliente.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Apellidos del cliente.\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Cedula del cliente.\n";
-                if (string.IsNullOrWhiteSpace(txt7.Text)) mensajeError += "- Telefono del cliente.\n";
-                if (string.IsNullOrWhiteSpace(txt8.Text)) mensajeError += "- Correo electrónico del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtTelefono.Text)) mensajeError += "- Telefono del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del cliente.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -149,13 +150,13 @@ namespace Presentacion
             {
                 Cliente agregarCliente = new Cliente()
                 {
-                    IdCliente = Convert.ToInt32(txt2.Text),
-                    Documento = txt3.Text,
-                    Nombres = txt4.Text,
-                    Apellidos = txt5.Text,
-                    Cedula = txt6.Text,
-                    Telefono = txt7.Text,
-                    CorreoElectronico = txt8.Text,
+                    IdCliente = Convert.ToInt32(TxtId.Text),
+                    Documento = TxtNoDocumento.Text,
+                    Nombres = TxtNombres.Text,
+                    Apellidos = TxtApellidos.Text,
+                    Cedula = TxtCedula.Text,
+                    Telefono = TxtTelefono.Text,
+                    CorreoElectronico = TxtCorreoElectronico.Text,
                     Estado = valorCmb1 == 1
                 };
                 int idClienteIngresado = new CN_Cliente().Registrar(agregarCliente, out mensaje);
@@ -164,7 +165,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, txt3.Text, txt4.Text, txt5.Text, txt6.Text, txt7.Text, txt8.Text, valorCmb1, textoCmb1 });
+                        tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtNoDocumento.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
                         MessageBox.Show("El cliente fue agregado correctamente.", "Agregar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -176,34 +177,34 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
             Cliente clienteModificado = new Cliente()
             {
-                IdCliente = Convert.ToInt32(txt2.Text),
-                Documento = txt3.Text,
-                Nombres = txt4.Text,
-                Apellidos = txt5.Text,
-                Cedula = txt6.Text,
-                Telefono = txt7.Text,
-                CorreoElectronico = txt8.Text,
+                IdCliente = Convert.ToInt32(TxtId.Text),
+                Documento = TxtNoDocumento.Text,
+                Nombres = TxtNombres.Text,
+                Apellidos = TxtApellidos.Text,
+                Cedula = TxtCedula.Text,
+                Telefono = TxtTelefono.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
                 Estado = valorCmb1 == 1
             };
             bool modificar = new CN_Cliente().Editar(clienteModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El cliente fue modificado correctamente.", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCliente.Rows[indice].Cells["ID"].Value = clienteModificado.IdCliente;
                 tablaCliente.Rows[indice].Cells["Documento"].Value = clienteModificado.Documento;
                 tablaCliente.Rows[indice].Cells["Nombres"].Value = clienteModificado.Nombres;
@@ -221,15 +222,15 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text) || string.IsNullOrWhiteSpace(txt8.Text))
+            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 MessageBox.Show("Primero debe selecionar un cliente en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar este cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -237,12 +238,12 @@ namespace Presentacion
 
                         Cliente clienteEliminado = new Cliente()
                         {
-                            IdCliente = Convert.ToInt32(txt2.Text),
+                            IdCliente = Convert.ToInt32(TxtId.Text),
                         };
                         bool respuesta = new CN_Cliente().Eliminar(clienteEliminado, out mensaje);
                         if (respuesta)
                         {
-                            tablaCliente.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaCliente.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("El cliente fue eliminado correctamente.", "Eliminar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -255,7 +256,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaCliente_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaCliente_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -271,7 +272,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaCliente_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaCliente_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaCliente.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -287,23 +288,23 @@ namespace Presentacion
             }
         }
 
-        private void tablaCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaCliente.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaCliente.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaCliente.Rows[indice].Cells["Documento"].Value.ToString();
-                    txt4.Text = tablaCliente.Rows[indice].Cells["Nombres"].Value.ToString();
-                    txt5.Text = tablaCliente.Rows[indice].Cells["Apellidos"].Value.ToString();
-                    txt6.Text = tablaCliente.Rows[indice].Cells["Cedula"].Value.ToString();
-                    txt7.Text = tablaCliente.Rows[indice].Cells["Telefono"].Value.ToString();
-                    txt8.Text = tablaCliente.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaCliente.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtNoDocumento.Text = tablaCliente.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtNombres.Text = tablaCliente.Rows[indice].Cells["Nombres"].Value.ToString();
+                    TxtApellidos.Text = tablaCliente.Rows[indice].Cells["Apellidos"].Value.ToString();
+                    TxtCedula.Text = tablaCliente.Rows[indice].Cells["Cedula"].Value.ToString();
+                    TxtTelefono.Text = tablaCliente.Rows[indice].Cells["Telefono"].Value.ToString();
+                    TxtCorreoElectronico.Text = tablaCliente.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -311,45 +312,50 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaCliente.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
                 }
             }
         }
+
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
-            txt6.Clear();
-            txt7.Clear();
-            txt8.Clear();
-            cmb1.SelectedIndex = 0;
-        }
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtNombres.Clear();
+            TxtApellidos.Clear();
+            TxtCedula.Clear();
+            TxtTelefono.Clear();
+            TxtCorreoElectronico.Clear();
+            CmbEstado.SelectedIndex = 0;
         }
 
-        private void txt4_KeyPress(object sender, KeyPressEventArgs e)
+        private string GenerarCodigo(int longitud)
+        {
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
+            }
+            return new string(resultado);
+        }
+
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombres",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
         }
 
-        private void txt5_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
@@ -358,7 +364,7 @@ namespace Presentacion
             }
         }
 
-        private void txt6_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtCedula_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
@@ -367,7 +373,7 @@ namespace Presentacion
             }
         }
 
-        private void txt7_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {

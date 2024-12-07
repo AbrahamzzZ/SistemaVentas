@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnTransportista
+    partial class VtnTransportista
     {
         /// <summary>
         /// Required designer variable.
@@ -30,33 +30,33 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txt9 = new System.Windows.Forms.TextBox();
-            this.cmb2 = new System.Windows.Forms.ComboBox();
+            this.BtnEliminar = new System.Windows.Forms.Button();
+            this.BtnModificar = new System.Windows.Forms.Button();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnCargarImagen = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txt8 = new System.Windows.Forms.TextBox();
+            this.BtnCargarImagen = new System.Windows.Forms.Button();
+            this.FotoTransportista = new System.Windows.Forms.PictureBox();
+            this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
-            this.txt7 = new System.Windows.Forms.TextBox();
-            this.txt6 = new System.Windows.Forms.TextBox();
+            this.TxtTelefono = new System.Windows.Forms.TextBox();
+            this.TxtCedula = new System.Windows.Forms.TextBox();
             this.lblCedula = new System.Windows.Forms.Label();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            this.CmbEstado = new System.Windows.Forms.ComboBox();
             this.lblTelefono = new System.Windows.Forms.Label();
-            this.txt5 = new System.Windows.Forms.TextBox();
+            this.TxtApellidos = new System.Windows.Forms.TextBox();
             this.lblApellidos = new System.Windows.Forms.Label();
             this.lblNombres = new System.Windows.Forms.Label();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
+            this.TxtIndice = new System.Windows.Forms.TextBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
-            this.txt4 = new System.Windows.Forms.TextBox();
-            this.txt3 = new System.Windows.Forms.TextBox();
+            this.TxtNombres = new System.Windows.Forms.TextBox();
+            this.TxtNoDocumento = new System.Windows.Forms.TextBox();
             this.lblDocumento = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tablaTransportista = new System.Windows.Forms.DataGridView();
@@ -71,236 +71,236 @@
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FotoTransportista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnEliminar
+            // BtnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Wheat;
-            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1216, 515);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(155, 41);
-            this.btnEliminar.TabIndex = 141;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.BtnEliminar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.Location = new System.Drawing.Point(1242, 515);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(155, 41);
+            this.BtnEliminar.TabIndex = 141;
+            this.BtnEliminar.Text = "Eliminar";
+            this.BtnEliminar.UseVisualStyleBackColor = false;
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
-            // btnModificar
+            // BtnModificar
             // 
-            this.btnModificar.BackColor = System.Drawing.Color.Wheat;
-            this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(1216, 440);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(155, 41);
-            this.btnModificar.TabIndex = 140;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            this.BtnModificar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificar.Location = new System.Drawing.Point(1242, 440);
+            this.BtnModificar.Name = "BtnModificar";
+            this.BtnModificar.Size = new System.Drawing.Size(155, 41);
+            this.BtnModificar.TabIndex = 140;
+            this.BtnModificar.Text = "Modificar";
+            this.BtnModificar.UseVisualStyleBackColor = false;
+            this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
             // 
-            // btnLimpiar
+            // BtnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.Wheat;
-            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(1216, 363);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(155, 41);
-            this.btnLimpiar.TabIndex = 139;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimpiar.Location = new System.Drawing.Point(1242, 363);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(155, 41);
+            this.BtnLimpiar.TabIndex = 139;
+            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // btnAgregar
+            // BtnAgregar
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.Wheat;
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(1216, 290);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(155, 41);
-            this.btnAgregar.TabIndex = 138;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.BtnAgregar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregar.Location = new System.Drawing.Point(1242, 290);
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(155, 41);
+            this.BtnAgregar.TabIndex = 138;
+            this.BtnAgregar.Text = "Agregar";
+            this.BtnAgregar.UseVisualStyleBackColor = false;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
-            // btnBuscar
+            // BtnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Wheat;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1129, 238);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(38, 30);
-            this.btnBuscar.TabIndex = 137;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.BtnBuscar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.Location = new System.Drawing.Point(1155, 238);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(38, 30);
+            this.BtnBuscar.TabIndex = 137;
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // txt9
+            // TxtBuscar
             // 
-            this.txt9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt9.Location = new System.Drawing.Point(894, 239);
-            this.txt9.Name = "txt9";
-            this.txt9.Size = new System.Drawing.Size(221, 27);
-            this.txt9.TabIndex = 136;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(920, 239);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(221, 27);
+            this.TxtBuscar.TabIndex = 136;
             // 
-            // cmb2
+            // CmbBuscar
             // 
-            this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(657, 238);
-            this.cmb2.Name = "cmb2";
-            this.cmb2.Size = new System.Drawing.Size(221, 28);
-            this.cmb2.TabIndex = 135;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(683, 238);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(221, 28);
+            this.CmbBuscar.TabIndex = 135;
             // 
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(538, 241);
+            this.lblBuscar.Location = new System.Drawing.Point(564, 241);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 134;
             this.lblBuscar.Text = "Buscar por:";
             // 
-            // btnExportarExcel
+            // BtnExportarExcel
             // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.Wheat;
-            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(49, 231);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(155, 41);
-            this.btnExportarExcel.TabIndex = 133;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnExportarExcel.BackColor = System.Drawing.Color.Wheat;
+            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarExcel.Location = new System.Drawing.Point(75, 231);
+            this.BtnExportarExcel.Name = "BtnExportarExcel";
+            this.BtnExportarExcel.Size = new System.Drawing.Size(155, 41);
+            this.BtnExportarExcel.TabIndex = 133;
+            this.BtnExportarExcel.Text = "Exportar Excel";
+            this.BtnExportarExcel.UseVisualStyleBackColor = false;
+            this.BtnExportarExcel.Click += new System.EventHandler(this.BtnExportarExcel_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnCargarImagen
+            // BtnCargarImagen
             // 
-            this.btnCargarImagen.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarImagen.Location = new System.Drawing.Point(1038, 134);
-            this.btnCargarImagen.Name = "btnCargarImagen";
-            this.btnCargarImagen.Size = new System.Drawing.Size(163, 41);
-            this.btnCargarImagen.TabIndex = 131;
-            this.btnCargarImagen.Text = "Cargar Imagen";
-            this.btnCargarImagen.UseVisualStyleBackColor = false;
-            this.btnCargarImagen.Click += new System.EventHandler(this.btnCargarImagen_Click);
+            this.BtnCargarImagen.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarImagen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarImagen.Location = new System.Drawing.Point(1064, 134);
+            this.BtnCargarImagen.Name = "BtnCargarImagen";
+            this.BtnCargarImagen.Size = new System.Drawing.Size(163, 41);
+            this.BtnCargarImagen.TabIndex = 131;
+            this.BtnCargarImagen.Text = "Cargar Imagen";
+            this.BtnCargarImagen.UseVisualStyleBackColor = false;
+            this.BtnCargarImagen.Click += new System.EventHandler(this.BtnCargarImagen_Click);
             // 
-            // pictureBox1
+            // FotoTransportista
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Wheat;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(1224, 37);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(147, 138);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 130;
-            this.pictureBox1.TabStop = false;
+            this.FotoTransportista.BackColor = System.Drawing.Color.Wheat;
+            this.FotoTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FotoTransportista.Location = new System.Drawing.Point(1250, 37);
+            this.FotoTransportista.Name = "FotoTransportista";
+            this.FotoTransportista.Size = new System.Drawing.Size(147, 138);
+            this.FotoTransportista.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FotoTransportista.TabIndex = 130;
+            this.FotoTransportista.TabStop = false;
             // 
-            // txt8
+            // TxtCorreoElectronico
             // 
-            this.txt8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt8.Location = new System.Drawing.Point(712, 148);
-            this.txt8.Name = "txt8";
-            this.txt8.Size = new System.Drawing.Size(271, 27);
-            this.txt8.TabIndex = 129;
+            this.TxtCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCorreoElectronico.Location = new System.Drawing.Point(738, 148);
+            this.TxtCorreoElectronico.Name = "TxtCorreoElectronico";
+            this.TxtCorreoElectronico.Size = new System.Drawing.Size(271, 27);
+            this.TxtCorreoElectronico.TabIndex = 129;
             // 
             // lblCorreoElectronico
             // 
             this.lblCorreoElectronico.AutoSize = true;
             this.lblCorreoElectronico.BackColor = System.Drawing.Color.Wheat;
             this.lblCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorreoElectronico.Location = new System.Drawing.Point(708, 125);
+            this.lblCorreoElectronico.Location = new System.Drawing.Point(734, 125);
             this.lblCorreoElectronico.Name = "lblCorreoElectronico";
             this.lblCorreoElectronico.Size = new System.Drawing.Size(173, 20);
             this.lblCorreoElectronico.TabIndex = 128;
             this.lblCorreoElectronico.Text = "Correo Electrónico:";
             // 
-            // txt7
+            // TxtTelefono
             // 
-            this.txt7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt7.Location = new System.Drawing.Point(712, 81);
-            this.txt7.Name = "txt7";
-            this.txt7.Size = new System.Drawing.Size(271, 27);
-            this.txt7.TabIndex = 127;
-            this.txt7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt7_KeyPress);
+            this.TxtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTelefono.Location = new System.Drawing.Point(738, 81);
+            this.TxtTelefono.Name = "TxtTelefono";
+            this.TxtTelefono.Size = new System.Drawing.Size(271, 27);
+            this.TxtTelefono.TabIndex = 127;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
-            // txt6
+            // TxtCedula
             // 
-            this.txt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt6.Location = new System.Drawing.Point(376, 148);
-            this.txt6.Name = "txt6";
-            this.txt6.Size = new System.Drawing.Size(271, 27);
-            this.txt6.TabIndex = 126;
-            this.txt6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt6_KeyPress);
+            this.TxtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedula.Location = new System.Drawing.Point(402, 148);
+            this.TxtCedula.Name = "TxtCedula";
+            this.TxtCedula.Size = new System.Drawing.Size(271, 27);
+            this.TxtCedula.TabIndex = 126;
+            this.TxtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCedula_KeyPress);
             // 
             // lblCedula
             // 
             this.lblCedula.AutoSize = true;
             this.lblCedula.BackColor = System.Drawing.Color.Wheat;
             this.lblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCedula.Location = new System.Drawing.Point(374, 125);
+            this.lblCedula.Location = new System.Drawing.Point(400, 125);
             this.lblCedula.Name = "lblCedula";
             this.lblCedula.Size = new System.Drawing.Size(73, 20);
             this.lblCedula.TabIndex = 125;
             this.lblCedula.Text = "Cédula:";
             // 
-            // cmb1
+            // CmbEstado
             // 
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(1038, 81);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(163, 28);
-            this.cmb1.TabIndex = 124;
+            this.CmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbEstado.FormattingEnabled = true;
+            this.CmbEstado.Location = new System.Drawing.Point(1064, 81);
+            this.CmbEstado.Name = "CmbEstado";
+            this.CmbEstado.Size = new System.Drawing.Size(163, 28);
+            this.CmbEstado.TabIndex = 124;
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.BackColor = System.Drawing.Color.Wheat;
             this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.Location = new System.Drawing.Point(708, 58);
+            this.lblTelefono.Location = new System.Drawing.Point(734, 58);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(87, 20);
             this.lblTelefono.TabIndex = 123;
             this.lblTelefono.Text = "Teléfono:";
             // 
-            // txt5
+            // TxtApellidos
             // 
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(378, 81);
-            this.txt5.Name = "txt5";
-            this.txt5.Size = new System.Drawing.Size(271, 27);
-            this.txt5.TabIndex = 122;
-            this.txt5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt5_KeyPress);
+            this.TxtApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtApellidos.Location = new System.Drawing.Point(404, 81);
+            this.TxtApellidos.Name = "TxtApellidos";
+            this.TxtApellidos.Size = new System.Drawing.Size(271, 27);
+            this.TxtApellidos.TabIndex = 122;
+            this.TxtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellidos_KeyPress);
             // 
             // lblApellidos
             // 
             this.lblApellidos.AutoSize = true;
             this.lblApellidos.BackColor = System.Drawing.Color.Wheat;
             this.lblApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.Location = new System.Drawing.Point(374, 58);
+            this.lblApellidos.Location = new System.Drawing.Point(400, 58);
             this.lblApellidos.Name = "lblApellidos";
             this.lblApellidos.Size = new System.Drawing.Size(92, 20);
             this.lblApellidos.TabIndex = 118;
@@ -311,67 +311,67 @@
             this.lblNombres.AutoSize = true;
             this.lblNombres.BackColor = System.Drawing.Color.Wheat;
             this.lblNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombres.Location = new System.Drawing.Point(45, 125);
+            this.lblNombres.Location = new System.Drawing.Point(71, 125);
             this.lblNombres.Name = "lblNombres";
             this.lblNombres.Size = new System.Drawing.Size(90, 20);
             this.lblNombres.TabIndex = 116;
             this.lblNombres.Text = "Nombres:";
             // 
-            // txt1
+            // TxtIndice
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(239, 37);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(27, 27);
-            this.txt1.TabIndex = 121;
-            this.txt1.Text = "-1";
-            this.txt1.Visible = false;
+            this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIndice.Location = new System.Drawing.Point(265, 37);
+            this.TxtIndice.Name = "TxtIndice";
+            this.TxtIndice.Size = new System.Drawing.Size(27, 27);
+            this.TxtIndice.TabIndex = 121;
+            this.TxtIndice.Text = "-1";
+            this.TxtIndice.Visible = false;
             // 
-            // txt2
+            // TxtId
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(283, 37);
-            this.txt2.Name = "txt2";
-            this.txt2.ReadOnly = true;
-            this.txt2.Size = new System.Drawing.Size(34, 27);
-            this.txt2.TabIndex = 120;
-            this.txt2.Text = "0";
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(309, 37);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 120;
+            this.TxtId.Text = "0";
             // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
             this.lblEstado.BackColor = System.Drawing.Color.Wheat;
             this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(1042, 58);
+            this.lblEstado.Location = new System.Drawing.Point(1060, 58);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(73, 20);
             this.lblEstado.TabIndex = 119;
             this.lblEstado.Text = "Estado:";
             // 
-            // txt4
+            // TxtNombres
             // 
-            this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(47, 148);
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(271, 27);
-            this.txt4.TabIndex = 117;
-            this.txt4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt4_KeyPress);
+            this.TxtNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombres.Location = new System.Drawing.Point(73, 148);
+            this.TxtNombres.Name = "TxtNombres";
+            this.TxtNombres.Size = new System.Drawing.Size(271, 27);
+            this.TxtNombres.TabIndex = 117;
+            this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
-            // txt3
+            // TxtNoDocumento
             // 
-            this.txt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt3.Location = new System.Drawing.Point(47, 83);
-            this.txt3.Name = "txt3";
-            this.txt3.Size = new System.Drawing.Size(271, 27);
-            this.txt3.TabIndex = 115;
-            this.txt3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt3_KeyPress);
+            this.TxtNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNoDocumento.Location = new System.Drawing.Point(73, 83);
+            this.TxtNoDocumento.Name = "TxtNoDocumento";
+            this.TxtNoDocumento.ReadOnly = true;
+            this.TxtNoDocumento.Size = new System.Drawing.Size(271, 27);
+            this.TxtNoDocumento.TabIndex = 115;
             // 
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = true;
             this.lblDocumento.BackColor = System.Drawing.Color.Wheat;
             this.lblDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocumento.Location = new System.Drawing.Point(45, 58);
+            this.lblDocumento.Location = new System.Drawing.Point(71, 58);
             this.lblDocumento.Name = "lblDocumento";
             this.lblDocumento.Size = new System.Drawing.Size(138, 20);
             this.lblDocumento.TabIndex = 114;
@@ -385,7 +385,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1383, 200);
+            this.label2.Size = new System.Drawing.Size(1402, 200);
             this.label2.TabIndex = 113;
             this.label2.Text = "Detalles Transportista";
             // 
@@ -415,7 +415,7 @@
             this.Image,
             this.EstadoValor,
             this.Estado});
-            this.tablaTransportista.Location = new System.Drawing.Point(49, 290);
+            this.tablaTransportista.Location = new System.Drawing.Point(75, 290);
             this.tablaTransportista.MultiSelect = false;
             this.tablaTransportista.Name = "tablaTransportista";
             this.tablaTransportista.ReadOnly = true;
@@ -426,9 +426,9 @@
             this.tablaTransportista.RowTemplate.Height = 28;
             this.tablaTransportista.Size = new System.Drawing.Size(1122, 266);
             this.tablaTransportista.TabIndex = 142;
-            this.tablaTransportista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaTransportista_CellContentClick);
-            this.tablaTransportista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaTransportista_CellFormatting);
-            this.tablaTransportista.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaTransportista_CellPainting);
+            this.tablaTransportista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaTransportista_CellContentClick);
+            this.tablaTransportista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaTransportista_CellFormatting);
+            this.tablaTransportista.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaTransportista_CellPainting);
             // 
             // btnSeleccionar
             // 
@@ -450,7 +450,7 @@
             // 
             // Documento
             // 
-            this.Documento.HeaderText = "Nro.Documento";
+            this.Documento.HeaderText = "No.Documento";
             this.Documento.MinimumWidth = 6;
             this.Documento.Name = "Documento";
             this.Documento.ReadOnly = true;
@@ -527,46 +527,46 @@
             this.Estado.ReadOnly = true;
             this.Estado.Width = 110;
             // 
-            // vtnTransportista
+            // VtnTransportista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.tablaTransportista);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txt9);
-            this.Controls.Add(this.cmb2);
+            this.Controls.Add(this.BtnEliminar);
+            this.Controls.Add(this.BtnModificar);
+            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.BtnAgregar);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.lblBuscar);
-            this.Controls.Add(this.btnExportarExcel);
-            this.Controls.Add(this.btnCargarImagen);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txt8);
+            this.Controls.Add(this.BtnExportarExcel);
+            this.Controls.Add(this.BtnCargarImagen);
+            this.Controls.Add(this.FotoTransportista);
+            this.Controls.Add(this.TxtCorreoElectronico);
             this.Controls.Add(this.lblCorreoElectronico);
-            this.Controls.Add(this.txt7);
-            this.Controls.Add(this.txt6);
+            this.Controls.Add(this.TxtTelefono);
+            this.Controls.Add(this.TxtCedula);
             this.Controls.Add(this.lblCedula);
-            this.Controls.Add(this.cmb1);
+            this.Controls.Add(this.CmbEstado);
             this.Controls.Add(this.lblTelefono);
-            this.Controls.Add(this.txt5);
+            this.Controls.Add(this.TxtApellidos);
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.lblNombres);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.txt2);
+            this.Controls.Add(this.TxtIndice);
+            this.Controls.Add(this.TxtId);
             this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.txt4);
-            this.Controls.Add(this.txt3);
+            this.Controls.Add(this.TxtNombres);
+            this.Controls.Add(this.TxtNoDocumento);
             this.Controls.Add(this.lblDocumento);
             this.Controls.Add(this.label2);
-            this.Name = "vtnTransportista";
+            this.Name = "VtnTransportista";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver transportistas";
-            this.Load += new System.EventHandler(this.vtnTransportista_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.VtnTransportista_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.FotoTransportista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -575,33 +575,33 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txt9;
-        private System.Windows.Forms.ComboBox cmb2;
+        private System.Windows.Forms.Button BtnEliminar;
+        private System.Windows.Forms.Button BtnModificar;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.Button BtnAgregar;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnCargarImagen;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox txt8;
+        private System.Windows.Forms.Button BtnCargarImagen;
+        private System.Windows.Forms.PictureBox FotoTransportista;
+        private System.Windows.Forms.TextBox TxtCorreoElectronico;
         private System.Windows.Forms.Label lblCorreoElectronico;
-        private System.Windows.Forms.TextBox txt7;
-        private System.Windows.Forms.TextBox txt6;
+        private System.Windows.Forms.TextBox TxtTelefono;
+        private System.Windows.Forms.TextBox TxtCedula;
         private System.Windows.Forms.Label lblCedula;
-        private System.Windows.Forms.ComboBox cmb1;
+        private System.Windows.Forms.ComboBox CmbEstado;
         private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.TextBox txt5;
+        private System.Windows.Forms.TextBox TxtApellidos;
         private System.Windows.Forms.Label lblApellidos;
         private System.Windows.Forms.Label lblNombres;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.TextBox txt2;
+        private System.Windows.Forms.TextBox TxtIndice;
+        private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.TextBox txt4;
-        private System.Windows.Forms.TextBox txt3;
+        private System.Windows.Forms.TextBox TxtNombres;
+        private System.Windows.Forms.TextBox TxtNoDocumento;
         private System.Windows.Forms.Label lblDocumento;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView tablaTransportista;

@@ -42,7 +42,7 @@
             this.lblEdad = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblDetallaAutor = new System.Windows.Forms.Label();
+            this.lblDetalleProgramador = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -52,7 +52,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(244, 38);
+            this.lblNombre.Location = new System.Drawing.Point(264, 50);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(80, 20);
@@ -63,7 +63,7 @@
             // 
             this.lblInformacion1.AutoSize = true;
             this.lblInformacion1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformacion1.Location = new System.Drawing.Point(244, 68);
+            this.lblInformacion1.Location = new System.Drawing.Point(352, 50);
             this.lblInformacion1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInformacion1.Name = "lblInformacion1";
             this.lblInformacion1.Size = new System.Drawing.Size(257, 20);
@@ -76,7 +76,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(27, 50);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(176, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 220);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -85,7 +85,7 @@
             // 
             this.lblProfesion.AutoSize = true;
             this.lblProfesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProfesion.Location = new System.Drawing.Point(244, 114);
+            this.lblProfesion.Location = new System.Drawing.Point(264, 90);
             this.lblProfesion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProfesion.Name = "lblProfesion";
             this.lblProfesion.Size = new System.Drawing.Size(95, 20);
@@ -96,7 +96,7 @@
             // 
             this.lblInformacion3.AutoSize = true;
             this.lblInformacion3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformacion3.Location = new System.Drawing.Point(244, 220);
+            this.lblInformacion3.Location = new System.Drawing.Point(443, 135);
             this.lblInformacion3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInformacion3.Name = "lblInformacion3";
             this.lblInformacion3.Size = new System.Drawing.Size(219, 20);
@@ -107,7 +107,7 @@
             // 
             this.lblInformacion2.AutoSize = true;
             this.lblInformacion2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformacion2.Location = new System.Drawing.Point(244, 147);
+            this.lblInformacion2.Location = new System.Drawing.Point(367, 90);
             this.lblInformacion2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInformacion2.Name = "lblInformacion2";
             this.lblInformacion2.Size = new System.Drawing.Size(171, 20);
@@ -118,7 +118,7 @@
             // 
             this.lblCorreoElectronico.AutoSize = true;
             this.lblCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCorreoElectronico.Location = new System.Drawing.Point(244, 187);
+            this.lblCorreoElectronico.Location = new System.Drawing.Point(264, 135);
             this.lblCorreoElectronico.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCorreoElectronico.Name = "lblCorreoElectronico";
             this.lblCorreoElectronico.Size = new System.Drawing.Size(171, 20);
@@ -150,7 +150,7 @@
             // 
             this.lblNombrePais.AutoSize = true;
             this.lblNombrePais.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombrePais.Location = new System.Drawing.Point(244, 345);
+            this.lblNombrePais.Location = new System.Drawing.Point(329, 222);
             this.lblNombrePais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombrePais.Name = "lblNombrePais";
             this.lblNombrePais.Size = new System.Drawing.Size(71, 20);
@@ -161,7 +161,7 @@
             // 
             this.lblPais.AutoSize = true;
             this.lblPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPais.Location = new System.Drawing.Point(244, 325);
+            this.lblPais.Location = new System.Drawing.Point(264, 222);
             this.lblPais.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPais.Name = "lblPais";
             this.lblPais.Size = new System.Drawing.Size(52, 20);
@@ -172,18 +172,18 @@
             // 
             this.lblInformacion4.AutoSize = true;
             this.lblInformacion4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformacion4.Location = new System.Drawing.Point(244, 293);
+            this.lblInformacion4.Location = new System.Drawing.Point(329, 179);
             this.lblInformacion4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInformacion4.Name = "lblInformacion4";
             this.lblInformacion4.Size = new System.Drawing.Size(68, 20);
             this.lblInformacion4.TabIndex = 11;
-            this.lblInformacion4.Text = "20 años";
+            this.lblInformacion4.Text = "21 años";
             // 
             // lblEdad
             // 
             this.lblEdad.AutoSize = true;
             this.lblEdad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdad.Location = new System.Drawing.Point(244, 261);
+            this.lblEdad.Location = new System.Drawing.Point(264, 179);
             this.lblEdad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEdad.Name = "lblEdad";
             this.lblEdad.Size = new System.Drawing.Size(57, 20);
@@ -210,26 +210,26 @@
             this.pictureBox2.TabIndex = 59;
             this.pictureBox2.TabStop = false;
             // 
-            // lblDetallaAutor
+            // lblDetalleProgramador
             // 
-            this.lblDetallaAutor.AutoSize = true;
-            this.lblDetallaAutor.BackColor = System.Drawing.Color.Wheat;
-            this.lblDetallaAutor.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetallaAutor.Location = new System.Drawing.Point(326, 53);
-            this.lblDetallaAutor.Name = "lblDetallaAutor";
-            this.lblDetallaAutor.Size = new System.Drawing.Size(164, 29);
-            this.lblDetallaAutor.TabIndex = 58;
-            this.lblDetallaAutor.Text = "Detalle Autor";
+            this.lblDetalleProgramador.AutoSize = true;
+            this.lblDetalleProgramador.BackColor = System.Drawing.Color.Wheat;
+            this.lblDetalleProgramador.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetalleProgramador.Location = new System.Drawing.Point(326, 53);
+            this.lblDetalleProgramador.Name = "lblDetalleProgramador";
+            this.lblDetalleProgramador.Size = new System.Drawing.Size(166, 29);
+            this.lblDetalleProgramador.TabIndex = 58;
+            this.lblDetalleProgramador.Text = "Programador";
             // 
             // vtnAutor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.lblDetallaAutor);
+            this.Controls.Add(this.lblDetalleProgramador);
             this.Controls.Add(this.label2);
             this.Name = "vtnAutor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -257,7 +257,7 @@
         private System.Windows.Forms.Label lblEdad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label lblDetallaAutor;
+        private System.Windows.Forms.Label lblDetalleProgramador;
         private System.Windows.Forms.Label lblPais;
         private System.Windows.Forms.Label lblNombrePais;
     }

@@ -80,7 +80,7 @@
             this.groupBox2.Controls.Add(this.txt1);
             this.groupBox2.Controls.Add(this.lblNumeroDocumento);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(581, 87);
+            this.groupBox2.Location = new System.Drawing.Point(590, 87);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(679, 80);
             this.groupBox2.TabIndex = 123;
@@ -146,7 +146,7 @@
             this.groupBox3.Controls.Add(this.txt2);
             this.groupBox3.Controls.Add(this.lblFecha);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(168, 87);
+            this.groupBox3.Location = new System.Drawing.Point(177, 87);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(354, 239);
             this.groupBox3.TabIndex = 124;
@@ -222,7 +222,7 @@
             this.groupBox1.Controls.Add(this.txt6);
             this.groupBox1.Controls.Add(this.lblNumeroDocumento1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(581, 218);
+            this.groupBox1.Location = new System.Drawing.Point(590, 218);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(679, 108);
             this.groupBox1.TabIndex = 125;
@@ -299,7 +299,7 @@
             this.Cantidad,
             this.SubTotal,
             this.Descuento});
-            this.tablaDetallesVentas.Location = new System.Drawing.Point(168, 348);
+            this.tablaDetallesVentas.Location = new System.Drawing.Point(177, 348);
             this.tablaDetallesVentas.MultiSelect = false;
             this.tablaDetallesVentas.Name = "tablaDetallesVentas";
             this.tablaDetallesVentas.ReadOnly = true;
@@ -355,7 +355,7 @@
             // 
             this.lblDetallesVenta.BackColor = System.Drawing.Color.White;
             this.lblDetallesVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetallesVenta.Location = new System.Drawing.Point(122, 23);
+            this.lblDetallesVenta.Location = new System.Drawing.Point(131, 23);
             this.lblDetallesVenta.Name = "lblDetallesVenta";
             this.lblDetallesVenta.Size = new System.Drawing.Size(1176, 540);
             this.lblDetallesVenta.TabIndex = 122;
@@ -425,7 +425,7 @@
             this.groupBox4.Controls.Add(this.btnDescargarPdf);
             this.groupBox4.Controls.Add(this.txt8);
             this.groupBox4.Controls.Add(this.lblMontoTotal);
-            this.groupBox4.Location = new System.Drawing.Point(964, 340);
+            this.groupBox4.Location = new System.Drawing.Point(973, 340);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(296, 200);
             this.groupBox4.TabIndex = 126;
