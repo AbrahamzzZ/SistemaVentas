@@ -190,7 +190,7 @@
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
             this.lblNumeroDocumento.Size = new System.Drawing.Size(148, 18);
             this.lblNumeroDocumento.TabIndex = 0;
-            this.lblNumeroDocumento.Text = "Número Documento:";
+            this.lblNumeroDocumento.Text = "Número Codigo:";
             // 
             // lblNombreCliente
             // 

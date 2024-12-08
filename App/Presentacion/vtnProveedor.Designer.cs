@@ -28,18 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblApellidos = new System.Windows.Forms.Label();
             this.TxtApellidos = new System.Windows.Forms.TextBox();
@@ -64,94 +54,22 @@
             this.TxtNombres = new System.Windows.Forms.TextBox();
             this.lblNombes = new System.Windows.Forms.Label();
             this.TxtNoDocumento = new System.Windows.Forms.TextBox();
-            this.lblNoDocumento = new System.Windows.Forms.Label();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaProveedores = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaProveedores)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 87;
-            // 
-            // CorreoElectronico
-            // 
-            this.CorreoElectronico.HeaderText = "Correo Electrónico";
-            this.CorreoElectronico.MinimumWidth = 6;
-            this.CorreoElectronico.Name = "CorreoElectronico";
-            this.CorreoElectronico.ReadOnly = true;
-            this.CorreoElectronico.Width = 200;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Teléfono";
-            this.Telefono.MinimumWidth = 6;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 125;
-            // 
-            // Cedula
-            // 
-            this.Cedula.HeaderText = "Cédula";
-            this.Cedula.MinimumWidth = 6;
-            this.Cedula.Name = "Cedula";
-            this.Cedula.ReadOnly = true;
-            this.Cedula.Width = 125;
-            // 
-            // Apellidos
-            // 
-            this.Apellidos.HeaderText = "Apellidos";
-            this.Apellidos.MinimumWidth = 6;
-            this.Apellidos.Name = "Apellidos";
-            this.Apellidos.ReadOnly = true;
-            this.Apellidos.Width = 125;
-            // 
-            // Nombres
-            // 
-            this.Nombres.HeaderText = "Nombres ";
-            this.Nombres.MinimumWidth = 6;
-            this.Nombres.Name = "Nombres";
-            this.Nombres.ReadOnly = true;
-            this.Nombres.Width = 125;
-            // 
-            // Documento
-            // 
-            this.Documento.HeaderText = "No. Documento";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 160;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id Proveedor";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 50;
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.HeaderText = "";
-            this.btnSeleccionar.MinimumWidth = 6;
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.ReadOnly = true;
-            this.btnSeleccionar.Width = 30;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
             // 
             // BtnExportarExcel
             // 
@@ -417,16 +335,16 @@
             this.TxtNoDocumento.Size = new System.Drawing.Size(280, 27);
             this.TxtNoDocumento.TabIndex = 113;
             // 
-            // lblNoDocumento
+            // LblCodigo
             // 
-            this.lblNoDocumento.AutoSize = true;
-            this.lblNoDocumento.BackColor = System.Drawing.Color.Wheat;
-            this.lblNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoDocumento.Location = new System.Drawing.Point(26, 104);
-            this.lblNoDocumento.Name = "lblNoDocumento";
-            this.lblNoDocumento.Size = new System.Drawing.Size(138, 20);
-            this.lblNoDocumento.TabIndex = 112;
-            this.lblNoDocumento.Text = "No.Documento:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(26, 104);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 112;
+            this.LblCodigo.Text = "Código:";
             // 
             // label2
             // 
@@ -453,20 +371,20 @@
             // 
             this.tablaProveedores.AllowUserToAddRows = false;
             this.tablaProveedores.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
             this.ID,
-            this.Documento,
+            this.Codigo,
             this.Nombres,
             this.Apellidos,
             this.Cedula,
@@ -479,15 +397,97 @@
             this.tablaProveedores.Name = "tablaProveedores";
             this.tablaProveedores.ReadOnly = true;
             this.tablaProveedores.RowHeadersWidth = 51;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaProveedores.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaProveedores.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaProveedores.RowTemplate.Height = 28;
             this.tablaProveedores.Size = new System.Drawing.Size(978, 248);
             this.tablaProveedores.TabIndex = 106;
             this.tablaProveedores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProveedores_CellContentClick);
             this.tablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProveedores_CellFormatting);
             this.tablaProveedores.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaProveedores_CellPainting);
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.MinimumWidth = 6;
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 30;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id Proveedor";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 160;
+            // 
+            // Nombres
+            // 
+            this.Nombres.HeaderText = "Nombres ";
+            this.Nombres.MinimumWidth = 6;
+            this.Nombres.Name = "Nombres";
+            this.Nombres.ReadOnly = true;
+            this.Nombres.Width = 125;
+            // 
+            // Apellidos
+            // 
+            this.Apellidos.HeaderText = "Apellidos";
+            this.Apellidos.MinimumWidth = 6;
+            this.Apellidos.Name = "Apellidos";
+            this.Apellidos.ReadOnly = true;
+            this.Apellidos.Width = 125;
+            // 
+            // Cedula
+            // 
+            this.Cedula.HeaderText = "Cédula";
+            this.Cedula.MinimumWidth = 6;
+            this.Cedula.Name = "Cedula";
+            this.Cedula.ReadOnly = true;
+            this.Cedula.Width = 125;
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Teléfono";
+            this.Telefono.MinimumWidth = 6;
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 125;
+            // 
+            // CorreoElectronico
+            // 
+            this.CorreoElectronico.HeaderText = "Correo Electrónico";
+            this.CorreoElectronico.MinimumWidth = 6;
+            this.CorreoElectronico.Name = "CorreoElectronico";
+            this.CorreoElectronico.ReadOnly = true;
+            this.CorreoElectronico.Width = 200;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "Estado valor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            this.EstadoValor.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 87;
             // 
             // VtnProveedor
             // 
@@ -519,7 +519,7 @@
             this.Controls.Add(this.TxtNombres);
             this.Controls.Add(this.lblNombes);
             this.Controls.Add(this.TxtNoDocumento);
-            this.Controls.Add(this.lblNoDocumento);
+            this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.tablaProveedores);
@@ -534,17 +534,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoElectronico;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Label lblApellidos;
         private System.Windows.Forms.TextBox TxtApellidos;
@@ -569,9 +559,19 @@
         private System.Windows.Forms.TextBox TxtNombres;
         private System.Windows.Forms.Label lblNombes;
         private System.Windows.Forms.TextBox TxtNoDocumento;
-        private System.Windows.Forms.Label lblNoDocumento;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.DataGridView tablaProveedores;
+        private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CorreoElectronico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

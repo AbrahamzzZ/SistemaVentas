@@ -139,11 +139,11 @@
             this.IdTRANSPORTISTA.Visible = false;
             this.IdTRANSPORTISTA.Width = 120;
             // 
-            // Documento
+            // Codigo
             // 
-            this.Documento.HeaderText = "Nro.Documento";
+            this.Documento.HeaderText = "Nro.Codigo";
             this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
+            this.Documento.Name = "Codigo";
             this.Documento.ReadOnly = true;
             this.Documento.Width = 125;
             // 

@@ -12,49 +12,51 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnCategoria : Form
+    public partial class VtnCategoria : Form
     {
-        public vtnCategoria()
+        public VtnCategoria()
         {
             InitializeComponent();
         }
 
-        private void vtnCategoria_Load(object sender, EventArgs e)
+        private void VtnCategoria_Load(object sender, EventArgs e)
         {
-            cmb1.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb1.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             foreach (DataGridViewColumn columna in tablaCategoria.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb2.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Categoria> lista = new CN_Categoria().ListarCategoria();
             foreach (Categoria item in lista)
             {
-                tablaCategoria.Rows.Add(new object[] { "", item.IdCategoria, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
+                tablaCategoria.Rows.Add(new object[] { "", item.IdCategoria, item.Codigo, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtDescripcion.Select();
         }
-        private void btnBuscar_Click(object sender, EventArgs e)
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb2 = CmbBuscar.SelectedItem;
             string valorCmb2 = selectedItemCmb2.Valor;
             string columnaFiltro = valorCmb2.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaCategoria.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt4.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -68,7 +70,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar categoría", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt4.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaCategoria.Rows)
                 {
                     row.Visible = true;
@@ -76,17 +78,17 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text))
+            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 string mensajeError = "Por favor, complete el siguiente campo:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Descripción de la categoría.\n";
+                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text)) mensajeError += "- Descripción de la categoría.\n";
 
                 MessageBox.Show(mensajeError, "Falta el campo por completar.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -94,8 +96,8 @@ namespace Presentacion
             {
                 Categoria agregarCategoria = new Categoria()
                 {
-                    IdCategoria = Convert.ToInt32(txt2.Text),
-                    Descripcion = txt3.Text,
+                    IdCategoria = Convert.ToInt32(TxtId.Text),
+                    Descripcion = TxtDescripcion.Text,
                     Estado = valorCmb1 == 1
                 };
                 if (agregarCategoria.IdCategoria == 0)
@@ -106,7 +108,7 @@ namespace Presentacion
                         // Verificar si los elementos seleccionados no son nulos
                         if (selectedItemCmb1 != null)
                         {
-                            tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, txt3.Text, valorCmb1, textoCmb1 });
+                            tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, TxtDescripcion.Text, valorCmb1, textoCmb1 });
                             MessageBox.Show("La categoría fue agregada correctamente.", "Agregar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -119,29 +121,29 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
             Categoria categoriaModificado = new Categoria()
             {
-                IdCategoria = Convert.ToInt32(txt2.Text),
-                Descripcion = txt3.Text,
+                IdCategoria = Convert.ToInt32(TxtId.Text),
+                Descripcion = TxtDescripcion.Text,
                 Estado = valorCmb1 == 1
             };
             bool modificar = new CN_Categoria().Editar(categoriaModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("La categoría fue modificada correctamente.", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCategoria.Rows[indice].Cells["ID"].Value = categoriaModificado.IdCategoria;
                 tablaCategoria.Rows[indice].Cells["Descripcion"].Value = categoriaModificado.Descripcion;
                 tablaCategoria.Rows[indice].Cells["EstadoValor"].Value = categoriaModificado.Estado ? 1 : 0;
@@ -154,14 +156,14 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text))
+            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 MessageBox.Show("Primero debe selecionar una categoría en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar está categoria?", "Eliminar categoría", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -169,12 +171,12 @@ namespace Presentacion
 
                         Categoria categoriaEliminada = new Categoria()
                         {
-                            IdCategoria = Convert.ToInt32(txt2.Text),
+                            IdCategoria = Convert.ToInt32(TxtId.Text),
                         };
                         bool respuesta = new CN_Categoria().Eliminar(categoriaEliminada, out mensaje);
                         if (respuesta)
                         {
-                            tablaCategoria.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaCategoria.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("La categoría fue eliminada correctamente.", "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -187,7 +189,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaCategoria_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaCategoria_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -203,7 +205,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaCategoria_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaCategoria_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaCategoria.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -219,18 +221,19 @@ namespace Presentacion
             }
         }
 
-        private void tablaCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaCategoria_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaCategoria.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaCategoria.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaCategoria.Rows[indice].Cells["Descripcion"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaCategoria.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtCodigo.Text = tablaCategoria.Rows[indice].Cells["CODIGO"].Value.ToString();
+                    TxtDescripcion.Text = tablaCategoria.Rows[indice].Cells["Descripcion"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -238,8 +241,8 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaCategoria.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
@@ -249,10 +252,23 @@ namespace Presentacion
 
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            cmb1.SelectedIndex = 0;
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtCodigo.Text = GenerarCodigo(4);
+            TxtDescripcion.Clear();
+            CmbEstado.SelectedIndex = 0;
+        }
+
+        private string GenerarCodigo(int longitud)
+        {
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
+            }
+            return new string(resultado);
         }
 
         private void txt3_KeyPress(object sender, KeyPressEventArgs e)

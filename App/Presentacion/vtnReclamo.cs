@@ -42,7 +42,7 @@ namespace Presentacion
             List<Reclamo> lista = new CN_Usuario().mosreSQL();
             foreach (Reclamo item in lista)
             {
-                tablaReclamo.Rows.Add(new object[] { "", item.IdReclamo, item.oCliente.IdCliente, item.oCliente.Documento, item.oCliente.Nombres, item.oCliente.CorreoElectronico, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Solucionado" : "No Solucionado" });
+                tablaReclamo.Rows.Add(new object[] { "", item.IdReclamo, item.oCliente.IdCliente, item.oCliente.Codigo, item.oCliente.Nombres, item.oCliente.CorreoElectronico, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Solucionado" : "No Solucionado" });
             }
         }
 

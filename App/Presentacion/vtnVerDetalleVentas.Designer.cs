@@ -134,7 +134,7 @@
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
             this.lblNumeroDocumento.Size = new System.Drawing.Size(148, 18);
             this.lblNumeroDocumento.TabIndex = 0;
-            this.lblNumeroDocumento.Text = "Número Documento:";
+            this.lblNumeroDocumento.Text = "Número Codigo:";
             // 
             // groupBox3
             // 
@@ -277,7 +277,7 @@
             this.lblNumeroDocumento1.Name = "lblNumeroDocumento1";
             this.lblNumeroDocumento1.Size = new System.Drawing.Size(148, 18);
             this.lblNumeroDocumento1.TabIndex = 0;
-            this.lblNumeroDocumento1.Text = "Numero Documento:";
+            this.lblNumeroDocumento1.Text = "Numero Codigo:";
             // 
             // tablaDetallesVentas
             // 

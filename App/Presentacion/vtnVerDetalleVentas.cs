@@ -149,7 +149,7 @@ namespace Presentacion
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Codigo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
         }

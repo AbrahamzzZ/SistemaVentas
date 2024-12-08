@@ -506,33 +506,33 @@
             // 
             this.menuItemNegocio.BackColor = System.Drawing.Color.Wheat;
             this.menuItemNegocio.Name = "menuItemNegocio";
-            this.menuItemNegocio.Size = new System.Drawing.Size(224, 28);
+            this.menuItemNegocio.Size = new System.Drawing.Size(169, 28);
             this.menuItemNegocio.Text = "Negocio";
             this.menuItemNegocio.Click += new System.EventHandler(this.menuItemVerNegocio_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(166, 6);
             // 
             // menuItemAutor
             // 
             this.menuItemAutor.BackColor = System.Drawing.Color.Wheat;
             this.menuItemAutor.Name = "menuItemAutor";
-            this.menuItemAutor.Size = new System.Drawing.Size(224, 28);
+            this.menuItemAutor.Size = new System.Drawing.Size(169, 28);
             this.menuItemAutor.Text = "Autor";
             this.menuItemAutor.Click += new System.EventHandler(this.menuItemVerAutor_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(166, 6);
             // 
             // menuItemPrograma
             // 
             this.menuItemPrograma.BackColor = System.Drawing.Color.Wheat;
             this.menuItemPrograma.Name = "menuItemPrograma";
-            this.menuItemPrograma.Size = new System.Drawing.Size(224, 28);
+            this.menuItemPrograma.Size = new System.Drawing.Size(169, 28);
             this.menuItemPrograma.Text = "Programa";
             this.menuItemPrograma.Click += new System.EventHandler(this.menuItemVerPrograma_Click);
             // 

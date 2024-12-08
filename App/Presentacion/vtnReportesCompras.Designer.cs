@@ -259,7 +259,7 @@
             // 
             // DocumentoProveedor
             // 
-            this.DocumentoProveedor.HeaderText = "Documento Proveedor";
+            this.DocumentoProveedor.HeaderText = "Codigo Proveedor";
             this.DocumentoProveedor.MinimumWidth = 6;
             this.DocumentoProveedor.Name = "DocumentoProveedor";
             this.DocumentoProveedor.ReadOnly = true;
@@ -275,7 +275,7 @@
             // 
             // DocumentoTransportista
             // 
-            this.DocumentoTransportista.HeaderText = "Documento Transportista";
+            this.DocumentoTransportista.HeaderText = "Codigo Transportista";
             this.DocumentoTransportista.MinimumWidth = 6;
             this.DocumentoTransportista.Name = "DocumentoTransportista";
             this.DocumentoTransportista.ReadOnly = true;

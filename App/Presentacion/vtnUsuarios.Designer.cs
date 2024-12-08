@@ -220,7 +220,7 @@
             this.lblNoDocumento.Name = "lblNoDocumento";
             this.lblNoDocumento.Size = new System.Drawing.Size(138, 20);
             this.lblNoDocumento.TabIndex = 51;
-            this.lblNoDocumento.Text = "No.Documento:";
+            this.lblNoDocumento.Text = "No.Codigo:";
             // 
             // label2
             // 
@@ -315,11 +315,11 @@
             this.ID.Visible = false;
             this.ID.Width = 50;
             // 
-            // Documento
+            // Codigo
             // 
-            this.Documento.HeaderText = "No. Documento";
+            this.Documento.HeaderText = "No. Codigo";
             this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
+            this.Documento.Name = "Codigo";
             this.Documento.ReadOnly = true;
             this.Documento.Width = 150;
             // 

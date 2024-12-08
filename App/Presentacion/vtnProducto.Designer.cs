@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.TxtPaisOrigen = new System.Windows.Forms.TextBox();
@@ -46,8 +46,8 @@
             this.lblProductos = new System.Windows.Forms.Label();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
+            this.TxtIndice = new System.Windows.Forms.TextBox();
+            this.TxtEstado = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
@@ -258,25 +258,25 @@
             this.CmbBuscar.Size = new System.Drawing.Size(221, 28);
             this.CmbBuscar.TabIndex = 78;
             // 
-            // txt1
+            // TxtIndice
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(224, 77);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(36, 27);
-            this.txt1.TabIndex = 90;
-            this.txt1.Text = "-1";
-            this.txt1.Visible = false;
+            this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIndice.Location = new System.Drawing.Point(224, 77);
+            this.TxtIndice.Name = "TxtIndice";
+            this.TxtIndice.Size = new System.Drawing.Size(36, 27);
+            this.TxtIndice.TabIndex = 90;
+            this.TxtIndice.Text = "-1";
+            this.TxtIndice.Visible = false;
             // 
-            // txt2
+            // TxtEstado
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(276, 77);
-            this.txt2.Name = "txt2";
-            this.txt2.ReadOnly = true;
-            this.txt2.Size = new System.Drawing.Size(34, 27);
-            this.txt2.TabIndex = 89;
-            this.txt2.Text = "0";
+            this.TxtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstado.Location = new System.Drawing.Point(276, 77);
+            this.TxtEstado.Name = "TxtEstado";
+            this.TxtEstado.ReadOnly = true;
+            this.TxtEstado.Size = new System.Drawing.Size(34, 27);
+            this.TxtEstado.TabIndex = 89;
+            this.TxtEstado.Text = "0";
             // 
             // lblEstado
             // 
@@ -358,15 +358,15 @@
             // 
             this.tablaProducto.AllowUserToAddRows = false;
             this.tablaProducto.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaProducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -389,9 +389,9 @@
             this.tablaProducto.Name = "tablaProducto";
             this.tablaProducto.ReadOnly = true;
             this.tablaProducto.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaProducto.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaProducto.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaProducto.RowTemplate.Height = 28;
             this.tablaProducto.Size = new System.Drawing.Size(978, 248);
             this.tablaProducto.TabIndex = 77;
@@ -568,8 +568,8 @@
             this.Controls.Add(this.lblProductos);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.CmbBuscar);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.txt2);
+            this.Controls.Add(this.TxtIndice);
+            this.Controls.Add(this.TxtEstado);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.TxtCodigo);
@@ -606,8 +606,8 @@
         private System.Windows.Forms.Label lblProductos;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.ComboBox CmbBuscar;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.TextBox txt2;
+        private System.Windows.Forms.TextBox TxtIndice;
+        private System.Windows.Forms.TextBox TxtEstado;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.TextBox TxtCodigo;

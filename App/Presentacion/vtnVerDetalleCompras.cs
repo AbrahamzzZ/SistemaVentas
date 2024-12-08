@@ -36,10 +36,10 @@ namespace Presentacion
                 txt2.Text = oCompra.FechaCompra;
                 txt3.Text = oCompra.TipoDocumento;
                 txt4.Text = oCompra.oUsuario.NombreCompleto;
-                txt5.Text = oCompra.oProveedor.Documento;
+                txt5.Text = oCompra.oProveedor.Codigo;
                 txt6.Text = oCompra.oProveedor.Nombres;
                 txt7.Text = oCompra.NumeroDocumento;
-                txt8.Text = oCompra.oTransportista.Documento;
+                txt8.Text = oCompra.oTransportista.Codigo;
                 txt9.Text = oCompra.oTransportista.Nombres;
  
                 tablaDetallesCompras.Rows.Clear();
@@ -148,7 +148,7 @@ namespace Presentacion
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Codigo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
         }

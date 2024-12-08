@@ -21,54 +21,55 @@ namespace Presentacion
 
         private void vtnOferta_Load(object sender, EventArgs e)
         {
-            cmb2.Items.Add(new { Valor = 1, Texto = "Activo" });
-            cmb2.Items.Add(new { Valor = 0, Texto = "No Activo" });
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             List<Producto> listaProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in listaProducto)
             {
-                cmb1.Items.Add(new { Valor = productos.IdProducto, Texto = productos.Nombre });
+                CmbProducto.Items.Add(new { Valor = productos.IdProducto, Texto = productos.Nombre });
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            if (cmb1.Items.Count > 0){
-                cmb1.SelectedIndex = 0;
+            CmbProducto.DisplayMember = "Texto";
+            CmbProducto.ValueMember = "Valor";
+            if (CmbProducto.Items.Count > 0){
+                CmbProducto.SelectedIndex = 0;
             }else{
-                cmb1.Enabled = false;
+                CmbProducto.Enabled = false;
             }
 
             foreach (DataGridViewColumn columna in tablaOferta.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb3.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb3.DisplayMember = "Texto";
-            cmb3.ValueMember = "Valor";
-            cmb3.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Oferta> lista = new CN_Oferta().ListarOferta();
             foreach (Oferta item in lista)
             {
-                tablaOferta.Rows.Add(new object[] { "", item.IdOferta, item.oProducto.IdProducto, item.oProducto.Nombre, item.NombreOferta, item.Descripcion, item.FechaInicio, item.FechaFin, item.Descuento, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
+                tablaOferta.Rows.Add(new object[] { "", item.IdOferta, item.Codigo, item.NombreOferta, item.oProducto.IdProducto, item.oProducto.Nombre, item.Descripcion, item.FechaInicio, item.FechaFin, item.Descuento, item.Estado == true ? 1 : 0, item.Estado == true ? "Activo" : "No Activo" });
             }
-            txt3.Select();
+            TxtNombre.Select();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb3 = cmb3.SelectedItem;
+            dynamic selectedItemCmb3 = CmbBuscar.SelectedItem;
             string valorCmb3 = selectedItemCmb3.Valor;
             string columnaFiltro = valorCmb3.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaOferta.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt6.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -82,7 +83,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar oferta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt6.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaOferta.Rows)
                 {
                     row.Visible = true;
@@ -90,22 +91,22 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
+            dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
             string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(richTextBox1.Text) || string.IsNullOrWhiteSpace(txt5.Text))
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtextDescripcion.Text) || string.IsNullOrWhiteSpace(TxtDescuento.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Nombre de la oferta\n";
-                if (string.IsNullOrWhiteSpace(richTextBox1.Text)) mensajeError += "- Descrpción de la oferta\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Descuento de la oferta\n";
+                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre de la oferta\n";
+                if (string.IsNullOrWhiteSpace(RtextDescripcion.Text)) mensajeError += "- Descrpción de la oferta\n";
+                if (string.IsNullOrWhiteSpace(TxtDescuento.Text)) mensajeError += "- Descuento de la oferta\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -113,12 +114,13 @@ namespace Presentacion
             {
                 Oferta agregarOferta = new Oferta()
                 {
-                    IdOferta = Convert.ToInt32(txt2.Text),
-                    NombreOferta = txt3.Text,
-                    Descripcion = richTextBox1.Text,
+                    IdOferta = Convert.ToInt32(TxtId.Text),
+                    Codigo = TxtCodigo.Text,
+                    NombreOferta = TxtNombre.Text,
+                    Descripcion = RtextDescripcion.Text,
                     FechaInicio = txtFechaInicio.Text,
                     FechaFin = txtFechaFin.Text,
-                    Descuento = Convert.ToDecimal(txt5.Text),
+                    Descuento = Convert.ToDecimal(TxtDescuento.Text),
                     oProducto = new Producto { IdProducto = valorCmb1 },
                     Estado = valorCmb2 == 1
                 };
@@ -137,7 +139,7 @@ namespace Presentacion
                         // Verificar si los elementos seleccionados no son nulos
                         if (selectedItemCmb1 != null)
                         {
-                            tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, valorCmb1, textoCmb1, txt3.Text, richTextBox1.Text, txtFechaInicio.Text, txtFechaFin.Text, txt5.Text, valorCmb2, textoCmb2 });
+                            tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, valorCmb1, textoCmb1, TxtNombre.Text, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, valorCmb2, textoCmb2 });
                             MessageBox.Show("La oferta fue agregada correctamente.", "Agregar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -155,10 +157,10 @@ namespace Presentacion
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
+            dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
@@ -167,13 +169,13 @@ namespace Presentacion
 
             Oferta ofertaModificado = new Oferta()
             {
-                IdOferta = Convert.ToInt32(txt2.Text),
+                IdOferta = Convert.ToInt32(TxtId.Text),
                 oProducto = new Producto { IdProducto = valorCmb1 },
-                NombreOferta = txt3.Text,
-                Descripcion = richTextBox1.Text,
+                NombreOferta = TxtNombre.Text,
+                Descripcion = RtextDescripcion.Text,
                 FechaInicio = txtFechaInicio.Text,
                 FechaFin = txtFechaFin.Text,
-                Descuento = Convert.ToDecimal(txt5.Text),
+                Descuento = Convert.ToDecimal(TxtDescuento.Text),
                 Estado = valorCmb2 == 1
             };
             bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
@@ -181,7 +183,7 @@ namespace Presentacion
             {
                 MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
                 tablaOferta.Rows[indice].Cells["Producto"].Value = textoCmb1;
                 tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
@@ -199,13 +201,13 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(richTextBox1.Text) || string.IsNullOrWhiteSpace(txt5.Text))
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtextDescripcion.Text) || string.IsNullOrWhiteSpace(TxtDescuento.Text))
             {
             }else
             {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar está oferta?", "Eliminar oferta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -213,13 +215,13 @@ namespace Presentacion
 
                         Oferta ofertaEliminada = new Oferta()
                         {
-                            IdOferta = Convert.ToInt32(txt2.Text),
+                            IdOferta = Convert.ToInt32(TxtId.Text),
                         };
 
                         bool respuesta = new CN_Oferta().Eliminar(ofertaEliminada, out mensaje);
                         if (respuesta)
                         {
-                            tablaOferta.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaOferta.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("La oferta fue eliminada correctamente.", "Eliminar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -232,7 +234,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaOferta_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaOferta_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -249,7 +251,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaOferta_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaOferta_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaOferta.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -265,23 +267,23 @@ namespace Presentacion
             }
         }
 
-        private void tablaOferta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaOferta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaOferta.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaOferta.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaOferta.Rows[indice].Cells["Oferta"].Value.ToString();
-                    richTextBox1.Text = tablaOferta.Rows[indice].Cells["Descripcion"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaOferta.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtCodigo.Text = tablaOferta.Rows[indice].Cells["CODIGO"].Value.ToString();
+                    TxtNombre.Text = tablaOferta.Rows[indice].Cells["Oferta"].Value.ToString();
+                    RtextDescripcion.Text = tablaOferta.Rows[indice].Cells["Descripcion"].Value.ToString();
                     txtFechaInicio.Text = tablaOferta.Rows[indice].Cells["FechaInicio"].Value.ToString();
                     txtFechaFin.Text = tablaOferta.Rows[indice].Cells["FechaFin"].Value.ToString();
-                    txt5.Text = tablaOferta.Rows[indice].Cells["Descuento"].Value.ToString();
-                    txt7.Text = tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value.ToString();
+                    TxtDescuento.Text = tablaOferta.Rows[indice].Cells["Descuento"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbProducto.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -289,13 +291,13 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaOferta.Rows[indice].Cells["IdProducto"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbProducto.Items.IndexOf(item);
+                            CmbProducto.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
 
-                    foreach (dynamic item in cmb2.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -303,8 +305,8 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaOferta.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb2.Items.IndexOf(item);
-                            cmb2.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
@@ -313,16 +315,28 @@ namespace Presentacion
         }
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt7.Text = "0";
-            txt3.Clear();
-            richTextBox1.Clear();
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtCodigo.Text = GenerarCodigo(4);
+            TxtNombre.Clear();
+            RtextDescripcion.Clear();
             txtFechaInicio.Value = DateTime.Now;
             txtFechaFin.Value = DateTime.Now;
-            txt5.Clear();
-            cmb1.SelectedIndex = 0;
-            cmb2.SelectedIndex = 0;
+            TxtDescuento.Clear();
+            CmbProducto.SelectedIndex = 0;
+            CmbEstado.SelectedIndex = 0;
+        }
+
+        private string GenerarCodigo(int longitud)
+        {
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
+            }
+            return new string(resultado);
         }
 
         private void txt3_KeyPress(object sender, KeyPressEventArgs e)

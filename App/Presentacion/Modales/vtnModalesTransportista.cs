@@ -35,7 +35,7 @@ namespace Presentacion.Modales
             List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
             foreach (Transportista transportistas in mostrarTransportista)
             {
-                tablaTransportista.Rows.Add(new object[] { transportistas.IdTransportista, transportistas.Documento, transportistas.Nombres, transportistas.Estado });
+                tablaTransportista.Rows.Add(new object[] { transportistas.IdTransportista, transportistas.Codigo, transportistas.Nombres, transportistas.Estado });
             }
         }
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace Presentacion.Modales
                 Transportista = new Transportista()
                 {
                     IdTransportista = Convert.ToInt32(tablaTransportista.Rows[iRow].Cells["IdTransportista"].Value.ToString()),
-                    Documento = tablaTransportista.Rows[iRow].Cells["Documento"].Value.ToString(),
+                    Codigo = tablaTransportista.Rows[iRow].Cells["Codigo"].Value.ToString(),
                     Nombres = tablaTransportista.Rows[iRow].Cells["Nombres"].Value.ToString(),
                     Estado = Convert.ToBoolean(tablaTransportista.Rows[iRow].Cells["Estado"].Value.ToString()),
                 };

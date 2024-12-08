@@ -17,7 +17,7 @@ using ClosedXML.Excel;
 
 namespace Presentacion
 {
-    public partial class vtnSucursal : Form
+    public partial class VtnSucursal : Form
     {
         GMarkerGoogle marcador;
         GMapOverlay moverlay;
@@ -25,13 +25,13 @@ namespace Presentacion
         int fila = 0;
         double latitud = -2.19616;
         double longitud = -79.88621;
-        public vtnSucursal()
+        public VtnSucursal()
         {
             InitializeComponent();
             moverlay = new GMapOverlay("markers");
         }
 
-        private void vtnSucursal_Load(object sender, EventArgs e)
+        private void VtnSucursal_Load(object sender, EventArgs e)
         {
             mapa.DragButton = MouseButtons.Left;
             mapa.CanDragMap = true;
@@ -42,46 +42,47 @@ namespace Presentacion
             mapa.Zoom = 15;
             mapa.AutoScroll = true;
 
-            cmb1.Items.Add(new { Valor = 1, Texto = "Abierto" });
-            cmb1.Items.Add(new { Valor = 0, Texto = "Cerrado" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Abierto" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "Cerrado" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             ToolTip toolTip1 = new ToolTip();
-            toolTip1.SetToolTip(btnAgregar, "Cuando ponga la latitud y la longitud no se olvide de cambiar el . por la , para asi poder registrar la sucursal.");
+            toolTip1.SetToolTip(BtnAgregar, "Cuando ponga la latitud y la longitud no se olvide de cambiar el . por la , para asi poder registrar la sucursal.");
 
             foreach (DataGridViewColumn columna in tablaSucursal.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb2.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Sucursal> mostrarSucursal = new CN_Sucursal().ListarSucusal();
             foreach (Sucursal sucursal in mostrarSucursal)
             {
-                tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Nombre, sucursal.Direccion, sucursal.Latitud, sucursal.Longitud, sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
+                tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Codigo, sucursal.Nombre, sucursal.Direccion, sucursal.Latitud, sucursal.Longitud, sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
                 GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(sucursal.Latitud, sucursal.Longitud), GMarkerGoogleType.red_dot);
                 moverlay.Markers.Add(marcadorSucursal);
             }
             mapa.Overlays.Add(moverlay);
-            txt3.Select();
+            TxtNombre.Select();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb2 = CmbBuscar.SelectedItem;
             string valorCmb2 = selectedItemCmb2.Valor;
             string columnaFiltro = valorCmb2.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaSucursal.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt9.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -95,7 +96,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt9.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaSucursal.Rows)
                 {
                     row.Visible = true;
@@ -103,21 +104,21 @@ namespace Presentacion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text))
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtxtDireccion.Text) || string.IsNullOrWhiteSpace(TxtLatitud.Text) || string.IsNullOrWhiteSpace(TxtLogintud.Text) || string.IsNullOrWhiteSpace(TxtCiudad.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Nombre del sucursal.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Dirección de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Latitud de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(txt6.Text)) mensajeError += "- Longitud de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(txt7.Text)) mensajeError += "- Ciudad de la sucursal.\n";
+                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre del sucursal.\n";
+                if (string.IsNullOrWhiteSpace(RtxtDireccion.Text)) mensajeError += "- Dirección de la sucursal.\n";
+                if (string.IsNullOrWhiteSpace(TxtLatitud.Text)) mensajeError += "- Latitud de la sucursal.\n";
+                if (string.IsNullOrWhiteSpace(TxtLogintud.Text)) mensajeError += "- Longitud de la sucursal.\n";
+                if (string.IsNullOrWhiteSpace(TxtCiudad.Text)) mensajeError += "- Ciudad de la sucursal.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -126,12 +127,13 @@ namespace Presentacion
                
                 Sucursal agregarSucursal = new Sucursal()
                 {
-                    IdSucursal = Convert.ToInt32(txt2.Text),
-                    Nombre = txt3.Text,
-                    Direccion = txt4.Text,
-                    Latitud = Convert.ToDouble(txt5.Text),
-                    Longitud = Convert.ToDouble(txt6.Text),
-                    Ciudad = txt7.Text,
+                    IdSucursal = Convert.ToInt32(TxtId.Text),
+                    Codigo = TxtCodigo.Text,
+                    Nombre = TxtNombre.Text,
+                    Direccion = RtxtDireccion.Text,
+                    Latitud = Convert.ToDouble(TxtLatitud.Text),
+                    Longitud = Convert.ToDouble(TxtLogintud.Text),
+                    Ciudad = TxtCiudad.Text,
                     Estado = valorCmb1 == 1
                 };
                 int idSucursalIngresado = new CN_Sucursal().Registrar(agregarSucursal, out mensaje);
@@ -140,7 +142,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, txt3.Text, txt4.Text, txt5.Text, txt6.Text, txt7.Text, valorCmb1, textoCmb1 });
+                        tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, TxtCodigo.Text, TxtNombre.Text, RtxtDireccion.Text, TxtLatitud.Text, TxtLogintud.Text, TxtCiudad.Text, valorCmb1, textoCmb1 });
                         MessageBox.Show("La sucursal fue agregado correctamente.", "Agregar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(agregarSucursal.Latitud, agregarSucursal.Longitud), GMarkerGoogleType.red_dot);
                         marcadorSucursal.ToolTipText = $"{agregarSucursal.Nombre}\n{agregarSucursal.Direccion}";
@@ -160,26 +162,26 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
             Sucursal sucursalModificado = new Sucursal()
             {
-                IdSucursal = Convert.ToInt32(txt2.Text),
-                Nombre = txt3.Text,
-                Direccion = txt4.Text,
-                Latitud = Convert.ToDouble(txt5.Text),
-                Longitud = Convert.ToDouble(txt6.Text),
-                Ciudad = txt7.Text,
+                IdSucursal = Convert.ToInt32(TxtId.Text),
+                Nombre = TxtNombre.Text,
+                Direccion = RtxtDireccion.Text,
+                Latitud = Convert.ToDouble(TxtLatitud.Text),
+                Longitud = Convert.ToDouble(TxtLogintud.Text),
+                Ciudad = TxtCiudad.Text,
                 Estado = valorCmb1 == 1
             };
             bool modificar = new CN_Sucursal().Editar(sucursalModificado, out mensaje);
@@ -205,15 +207,15 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text) || string.IsNullOrWhiteSpace(txt6.Text) || string.IsNullOrWhiteSpace(txt7.Text))
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtxtDireccion.Text) || string.IsNullOrWhiteSpace(TxtLatitud.Text) || string.IsNullOrWhiteSpace(TxtLogintud.Text) || string.IsNullOrWhiteSpace(TxtCiudad.Text))
             {
                 MessageBox.Show("Primero debe selecionar una sucursal en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar está sucursal?", "Eliminar sucursal", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -221,7 +223,7 @@ namespace Presentacion
 
                         Sucursal sucursalEliminado = new Sucursal()
                         {
-                            IdSucursal = Convert.ToInt32(txt2.Text),
+                            IdSucursal = Convert.ToInt32(TxtId.Text),
                         };
 
                         bool respuesta = new CN_Sucursal().Eliminar(sucursalEliminado, out mensaje);
@@ -250,7 +252,7 @@ namespace Presentacion
 
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
             if (tablaSucursal.Rows.Count < 1)
             {
@@ -273,7 +275,7 @@ namespace Presentacion
                     {
                         dt.Rows.Add(new object[]
                         {
-                            row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[8].Value.ToString()
+                            row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[9].Value.ToString()
                         });
                     }
                 }
@@ -299,7 +301,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaSucursal_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaSucursal_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -316,7 +318,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaSucursal_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaSucursal_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (this.tablaSucursal.Columns[e.ColumnIndex].Name == "Estado")
             {
@@ -332,7 +334,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaSucursal_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaSucursal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaSucursal.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
@@ -340,14 +342,15 @@ namespace Presentacion
                 if (indice >= 0)
                 {
                     txt1.Text = indice.ToString();
-                    txt2.Text = tablaSucursal.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value.ToString();
-                    txt4.Text = tablaSucursal.Rows[indice].Cells["Direccion"].Value.ToString();
-                    txt5.Text = tablaSucursal.Rows[indice].Cells["Latitu"].Value.ToString();
-                    txt6.Text = tablaSucursal.Rows[indice].Cells["Longitu"].Value.ToString();
-                    txt7.Text = tablaSucursal.Rows[indice].Cells["Ciudad"].Value.ToString();
+                    TxtId.Text = tablaSucursal.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtCodigo.Text = tablaSucursal.Rows[indice].Cells["Codigo"].Value.ToString();
+                    TxtNombre.Text = tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value.ToString();
+                    RtxtDireccion.Text = tablaSucursal.Rows[indice].Cells["Direccion"].Value.ToString();
+                    TxtLatitud.Text = tablaSucursal.Rows[indice].Cells["Latitu"].Value.ToString();
+                    TxtLogintud.Text = tablaSucursal.Rows[indice].Cells["Longitu"].Value.ToString();
+                    TxtCiudad.Text = tablaSucursal.Rows[indice].Cells["Ciudad"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -355,15 +358,15 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaSucursal.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
-                    double latitudSucursal = Convert.ToDouble(txt5.Text);
-                    double longitudSucursal = Convert.ToDouble(txt6.Text);
-                    string nombreSucursal = txt3.Text;
-                    string direccionSucursal = txt4.Text;
+                    double latitudSucursal = Convert.ToDouble(TxtLatitud.Text);
+                    double longitudSucursal = Convert.ToDouble(TxtLogintud.Text);
+                    string nombreSucursal = TxtNombre.Text;
+                    string direccionSucursal = RtxtDireccion.Text;
 
                     GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(latitudSucursal, longitudSucursal), GMarkerGoogleType.red_dot);
                     marcadorSucursal.ToolTipText = $"{nombreSucursal}\n{direccionSucursal}";
@@ -381,14 +384,27 @@ namespace Presentacion
         public void Limpiar()
         {
             txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
-            txt6.Clear();
-            txt7.Clear();
-            cmb1.SelectedIndex = 0;
+            TxtId.Text = "0";
+            TxtCodigo.Text = GenerarCodigo(4);
+            TxtNombre.Clear();
+            RtxtDireccion.Clear();
+            TxtLatitud.Clear();
+            TxtLogintud.Clear();
+            TxtCiudad.Clear();
+            CmbEstado.SelectedIndex = 0;
             mapa.Position = new PointLatLng(latitud, longitud);
+        }
+
+        private string GenerarCodigo(int longitud)
+        {
+            const string caracteres = "0123456789";
+            Random randon = new Random();
+            char[] resultado = new char[longitud];
+            for (int i = 0; i < longitud; i++)
+            {
+                resultado[i] = caracteres[randon.Next(caracteres.Length)];
+            }
+            return new string(resultado);
         }
 
         private void txt5_KeyPress(object sender, KeyPressEventArgs e)

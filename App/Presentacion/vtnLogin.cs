@@ -48,7 +48,7 @@ namespace Presentacion
             else
             {
                 List<Usuario> listaUsuarios = new CN_Usuario().Ingresar();
-                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Documento == txt1.Text && u.Clave == txt2.Text);
+                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == txt1.Text && u.Clave == txt2.Text);
                 if (usuario != null)
                 {
                     if (usuario.Estado)
@@ -100,7 +100,7 @@ namespace Presentacion
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar números y no letras.", "Campo Número Codigo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
         }
