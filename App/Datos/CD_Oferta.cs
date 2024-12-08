@@ -20,7 +20,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_OFERTA, p.ID_PRODUCTO, p.NOMBRE_PRODUCTO, NOMBRE_OFERTA, O.DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, O.ESTADO FROM OFERTA O");
+                mostrar.AppendLine("SELECT ID_OFERTA, o.CODIGO, NOMBRE_OFERTA, p.ID_PRODUCTO, p.NOMBRE_PRODUCTO, O.DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, O.ESTADO FROM OFERTA O");
                 mostrar.AppendLine("INNER JOIN PRODUCTO p ON p.ID_PRODUCTO = O.ID_PRODUCTO;");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
@@ -30,8 +30,9 @@ namespace Datos
                     listaMostrarOferta.Add(new Oferta()
                     {
                         IdOferta = Convert.ToInt32(leer["ID_OFERTA"]),
-                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
+                        Codigo = leer["CODIGO"].ToString(),
                         NombreOferta = leer["NOMBRE_OFERTA"].ToString(),
+                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
                         Descripcion = leer["DESCRIPCION"].ToString(),
                         FechaInicio = leer["FECHA_INICIO"].ToString(),
                         FechaFin = leer["FECHA_FIN"].ToString(),
@@ -56,8 +57,9 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_OFERTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
+                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
                 cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);
@@ -89,8 +91,9 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_OFERTA", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Oferta", obj.IdOferta);
-                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
+                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
                 cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);

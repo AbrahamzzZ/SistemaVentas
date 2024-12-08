@@ -71,8 +71,7 @@ namespace Presentacion
             cmb4.DisplayMember = "Texto";
             cmb4.ValueMember = "Valor";
             cmb4.SelectedIndex = 0;
-            //Mostrar todos los productos que hay en el inventario existente en la tabla
-            List<Inventario> mostrarInventario = new CN_Usuario().mosiSQL();
+            List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
                 tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Codigo, productosInventario.oProducto.Nombre, productosInventario.Cantidad, productosInventario.UbicacionAlmacen, productosInventario.Estado == true ? 1 : 0, productosInventario.Estado == true ? "Activo" : "No Activo" });
@@ -207,7 +206,7 @@ namespace Presentacion
                     return;
                 }
                 else {
-                    int idInventarioIngresado = new CN_Usuario().resiSQL(agregarProductoInventario, out mensaje);
+                    int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
                     if (idInventarioIngresado != 0)
                     {
                         // Verificar si los elementos seleccionados no son nulos
@@ -252,7 +251,7 @@ namespace Presentacion
                 UbicacionAlmacen = txt5.Text,
                 Estado = valorCmb3 == 1
             };
-            bool modificar = new CN_Usuario().ediiSQL(editarProductoInventario, out mensaje);
+            bool modificar = new CN_Inventario().Editar(editarProductoInventario, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El producto fue modificado correctamente en el inventario.", "Modificar producto en el inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -291,7 +290,7 @@ namespace Presentacion
                         {
                             IdInventario = Convert.ToInt32(txt2.Text),
                         };
-                        bool respuesta = new CN_Usuario().eliiSQL(productoEliminadoInventario, out mensaje);
+                        bool respuesta = new CN_Inventario().Eliminar(productoEliminadoInventario, out mensaje);
                         if (respuesta)
                         {
                             tablaInventario.Rows.RemoveAt(Convert.ToInt32(txt1.Text));

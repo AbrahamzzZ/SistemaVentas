@@ -41,11 +41,11 @@ namespace Presentacion
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
             foreach (Transportista transportista in mostrarTransportista)
             {
-                tablaTransportista.Rows.Add(new object[] { "", transportista.IdTransportista, transportista.Documento, transportista.Nombres, transportista.Apellidos, transportista.Cedula, transportista.Telefono, transportista.CorreoElectronico, transportista.Imagen, transportista.Estado == true ? 1 : 0, transportista.Estado == true ? "Activo" : "No Activo" });
+                tablaTransportista.Rows.Add(new object[] { "", transportista.IdTransportista, transportista.Codigo, transportista.Nombres, transportista.Apellidos, transportista.Cedula, transportista.Telefono, transportista.CorreoElectronico, transportista.Imagen, transportista.Estado == true ? 1 : 0, transportista.Estado == true ? "Activo" : "No Activo" });
             }
             TxtNombres.Select();
         }
@@ -150,10 +150,10 @@ namespace Presentacion
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del transportista.\n";
+                if (string.IsNullOrWhiteSpace(TxtCodigo.Text)) mensajeError += "- Número del documento del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del transportista.\n";
@@ -169,7 +169,7 @@ namespace Presentacion
                 Transportista agregarTransportista = new Transportista()
                 {
                     IdTransportista = Convert.ToInt32(TxtId.Text),
-                    Documento = TxtNoDocumento.Text,
+                    Codigo = TxtCodigo.Text,
                     Nombres = TxtNombres.Text,
                     Apellidos = TxtApellidos.Text,
                     Cedula = TxtCedula.Text,
@@ -183,7 +183,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtNoDocumento.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(FotoTransportista.Image), valorCmb1, textoCmb1 });
+                        tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(FotoTransportista.Image), valorCmb1, textoCmb1 });
                         MessageBox.Show("El transportista fue agregado correctamente.", "Agregar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -210,7 +210,7 @@ namespace Presentacion
             Transportista transportistaModificado = new Transportista()
             {
                 IdTransportista = Convert.ToInt32(TxtId.Text),
-                Documento = TxtNoDocumento.Text,
+                Codigo = TxtCodigo.Text,
                 Nombres = TxtNombres.Text,
                 Apellidos = TxtApellidos.Text,
                 Cedula = TxtCedula.Text,
@@ -227,7 +227,7 @@ namespace Presentacion
             {
                 MessageBox.Show("El transportista fue modificado correctamente.", "Modificar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int indice = Convert.ToInt32(TxtIndice.Text);
-                tablaTransportista.Rows[indice].Cells["Documento"].Value = transportistaModificado.Documento;
+                tablaTransportista.Rows[indice].Cells["Codigo"].Value = transportistaModificado.Codigo;
                 tablaTransportista.Rows[indice].Cells["Nombres"].Value = transportistaModificado.Nombres;
                 tablaTransportista.Rows[indice].Cells["Apellidos"].Value = transportistaModificado.Apellidos;
                 tablaTransportista.Rows[indice].Cells["Cedula"].Value = transportistaModificado.Cedula;
@@ -246,7 +246,7 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
             {
                 MessageBox.Show("Primero debe selecionar un transportista en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -320,7 +320,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaTransportista.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaTransportista.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtCodigo.Text = tablaTransportista.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombres.Text = tablaTransportista.Rows[indice].Cells["Nombres"].Value.ToString();
                     TxtApellidos.Text = tablaTransportista.Rows[indice].Cells["Apellidos"].Value.ToString();
                     TxtCedula.Text = tablaTransportista.Rows[indice].Cells["Cedula"].Value.ToString();
@@ -356,7 +356,7 @@ namespace Presentacion
         {
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             TxtNombres.Clear();
             TxtApellidos.Clear();
             TxtCedula.Clear();

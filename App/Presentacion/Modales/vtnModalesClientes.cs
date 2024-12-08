@@ -37,7 +37,7 @@ namespace Presentacion.Modales
             List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente clientes in mostrarCliente)
             {
-                tablaClientes.Rows.Add(new object[] { clientes.IdCliente, clientes.Documento, clientes.Nombres, clientes.Estado });
+                tablaClientes.Rows.Add(new object[] { clientes.IdCliente, clientes.Codigo, clientes.Nombres, clientes.Estado });
             }
         }
 
@@ -71,7 +71,7 @@ namespace Presentacion.Modales
                 Cliente = new Cliente()
                 {
                     IdCliente = Convert.ToInt32(tablaClientes.Rows[iRow].Cells["IdCliente"].Value.ToString()),
-                    Documento = tablaClientes.Rows[iRow].Cells["Documento"].Value.ToString(),
+                    Codigo = tablaClientes.Rows[iRow].Cells["Codigo"].Value.ToString(),
                     Nombres = tablaClientes.Rows[iRow].Cells["Nombres"].Value.ToString(),
                     Estado = Convert.ToBoolean(tablaClientes.Rows[iRow].Cells["Estado"].Value.ToString()),
                 };

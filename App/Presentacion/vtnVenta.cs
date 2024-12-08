@@ -47,7 +47,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     txt4.Text = modal.Cliente.IdCliente.ToString();
-                    txt2.Text = modal.Cliente.Documento.ToString();
+                    txt2.Text = modal.Cliente.Codigo.ToString();
                     txt3.Text = modal.Cliente.Nombres.ToString();
                 }
                 else

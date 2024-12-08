@@ -43,7 +43,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     txt4.Text = modal.Proveedor.IdProveedor.ToString();
-                    txt2.Text = modal.Proveedor.Documento.ToString();
+                    txt2.Text = modal.Proveedor.Codigo.ToString();
                     txt3.Text = modal.Proveedor.Nombres.ToString();
                 }
                 else
@@ -80,7 +80,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     txt12.Text = modal.Transportista.IdTransportista.ToString();
-                    txt10.Text = modal.Transportista.Documento.ToString();
+                    txt10.Text = modal.Transportista.Codigo.ToString();
                     txt11.Text = modal.Transportista.Nombres.ToString();
                 }
                 else

@@ -20,7 +20,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_PRODUCTO, CODIGO, NOMBRE_PRODUCTO, p.DESCRIPCION, c.ID_CATEGORIA, c.DESCRIPCION[DESCRIPCION_CATEGORIA], u.ID_UNIDAD_MEDIDA, u.DESCRIPCION[DESCRIPCION_UNIDAD_MEDIDA], PAIS_ORIGEN, STOCK, PRECIO_COMPRA, PRECIO_VENTA, p.ESTADO FROM PRODUCTO P");
+                mostrar.AppendLine("SELECT ID_PRODUCTO, p.CODIGO, NOMBRE_PRODUCTO, p.DESCRIPCION, c.ID_CATEGORIA, c.DESCRIPCION[DESCRIPCION_CATEGORIA], u.ID_UNIDAD_MEDIDA, u.DESCRIPCION[DESCRIPCION_UNIDAD_MEDIDA], PAIS_ORIGEN, STOCK, PRECIO_COMPRA, PRECIO_VENTA, p.ESTADO FROM PRODUCTO P");
                 mostrar.AppendLine("inner join CATEGORIA c on c.ID_CATEGORIA = p.ID_CATEGORIA");
                 mostrar.AppendLine("inner join UNIDAD_MEDIDA u on u.ID_UNIDAD_MEDIDA = p.ID_UNIDAD_MEDIDA");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());

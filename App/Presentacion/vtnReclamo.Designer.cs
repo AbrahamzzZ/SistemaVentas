@@ -82,7 +82,7 @@
             this.lblDocumentoCliente.Name = "lblDocumentoCliente";
             this.lblDocumentoCliente.Size = new System.Drawing.Size(138, 20);
             this.lblDocumentoCliente.TabIndex = 128;
-            this.lblDocumentoCliente.Text = "No.Documento:";
+            this.lblDocumentoCliente.Text = "No.Codigo:";
             // 
             // txt6
             // 
@@ -336,7 +336,7 @@
             // 
             // DocumentoCliente
             // 
-            this.DocumentoCliente.HeaderText = "No.Documento";
+            this.DocumentoCliente.HeaderText = "No.Codigo";
             this.DocumentoCliente.MinimumWidth = 6;
             this.DocumentoCliente.Name = "DocumentoCliente";
             this.DocumentoCliente.ReadOnly = true;

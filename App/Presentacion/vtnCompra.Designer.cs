@@ -439,7 +439,7 @@
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
             this.lblNumeroDocumento.Size = new System.Drawing.Size(148, 18);
             this.lblNumeroDocumento.TabIndex = 0;
-            this.lblNumeroDocumento.Text = "Número Documento:";
+            this.lblNumeroDocumento.Text = "Número Codigo:";
             // 
             // txt7
             // 
@@ -564,7 +564,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 18);
             this.label1.TabIndex = 115;
-            this.label1.Text = "Número Documento:";
+            this.label1.Text = "Número Codigo:";
             // 
             // label2
             // 

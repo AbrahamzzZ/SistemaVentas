@@ -39,11 +39,11 @@ namespace Presentacion
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente cliente in mostrarCliente)
             {
-                tablaCliente.Rows.Add(new object[] { "", cliente.IdCliente, cliente.Documento, cliente.Nombres, cliente.Apellidos, cliente.Cedula, cliente.Telefono, cliente.CorreoElectronico, cliente.Estado == true ? 1 : 0, cliente.Estado == true ? "Activo" : "No Activo" });
+                tablaCliente.Rows.Add(new object[] { "", cliente.IdCliente, cliente.Codigo, cliente.Nombres, cliente.Apellidos, cliente.Cedula, cliente.Telefono, cliente.CorreoElectronico, cliente.Estado == true ? 1 : 0, cliente.Estado == true ? "Activo" : "No Activo" });
             }
             TxtNombres.Select();
         }
@@ -134,10 +134,10 @@ namespace Presentacion
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del cliente.\n";
+                if (string.IsNullOrWhiteSpace(TxtCodigo.Text)) mensajeError += "- Número del documento del cliente.\n";
                 if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del cliente.\n";
                 if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del cliente.\n";
                 if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del cliente.\n";
@@ -151,7 +151,7 @@ namespace Presentacion
                 Cliente agregarCliente = new Cliente()
                 {
                     IdCliente = Convert.ToInt32(TxtId.Text),
-                    Documento = TxtNoDocumento.Text,
+                    Codigo = TxtCodigo.Text,
                     Nombres = TxtNombres.Text,
                     Apellidos = TxtApellidos.Text,
                     Cedula = TxtCedula.Text,
@@ -165,7 +165,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtNoDocumento.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
+                        tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
                         MessageBox.Show("El cliente fue agregado correctamente.", "Agregar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -192,7 +192,7 @@ namespace Presentacion
             Cliente clienteModificado = new Cliente()
             {
                 IdCliente = Convert.ToInt32(TxtId.Text),
-                Documento = TxtNoDocumento.Text,
+                Codigo = TxtCodigo.Text,
                 Nombres = TxtNombres.Text,
                 Apellidos = TxtApellidos.Text,
                 Cedula = TxtCedula.Text,
@@ -206,7 +206,7 @@ namespace Presentacion
                 MessageBox.Show("El cliente fue modificado correctamente.", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCliente.Rows[indice].Cells["ID"].Value = clienteModificado.IdCliente;
-                tablaCliente.Rows[indice].Cells["Documento"].Value = clienteModificado.Documento;
+                tablaCliente.Rows[indice].Cells["Codigo"].Value = clienteModificado.Codigo;
                 tablaCliente.Rows[indice].Cells["Nombres"].Value = clienteModificado.Nombres;
                 tablaCliente.Rows[indice].Cells["Apellidos"].Value = clienteModificado.Apellidos;
                 tablaCliente.Rows[indice].Cells["Cedula"].Value = clienteModificado.Cedula;
@@ -224,7 +224,7 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 MessageBox.Show("Primero debe selecionar un cliente en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -297,7 +297,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaCliente.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaCliente.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtCodigo.Text = tablaCliente.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombres.Text = tablaCliente.Rows[indice].Cells["Nombres"].Value.ToString();
                     TxtApellidos.Text = tablaCliente.Rows[indice].Cells["Apellidos"].Value.ToString();
                     TxtCedula.Text = tablaCliente.Rows[indice].Cells["Cedula"].Value.ToString();
@@ -325,7 +325,7 @@ namespace Presentacion
         {
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             TxtNombres.Clear();
             TxtApellidos.Clear();
             TxtCedula.Clear();

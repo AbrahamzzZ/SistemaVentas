@@ -56,13 +56,13 @@
             this.TxtId = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.TxtNombres = new System.Windows.Forms.TextBox();
-            this.TxtNoDocumento = new System.Windows.Forms.TextBox();
-            this.lblDocumento = new System.Windows.Forms.Label();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tablaTransportista = new System.Windows.Forms.DataGridView();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -357,25 +357,25 @@
             this.TxtNombres.TabIndex = 117;
             this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
-            // TxtNoDocumento
+            // TxtCodigo
             // 
-            this.TxtNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNoDocumento.Location = new System.Drawing.Point(73, 83);
-            this.TxtNoDocumento.Name = "TxtNoDocumento";
-            this.TxtNoDocumento.ReadOnly = true;
-            this.TxtNoDocumento.Size = new System.Drawing.Size(271, 27);
-            this.TxtNoDocumento.TabIndex = 115;
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(73, 83);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.ReadOnly = true;
+            this.TxtCodigo.Size = new System.Drawing.Size(271, 27);
+            this.TxtCodigo.TabIndex = 115;
             // 
-            // lblDocumento
+            // LblCodigo
             // 
-            this.lblDocumento.AutoSize = true;
-            this.lblDocumento.BackColor = System.Drawing.Color.Wheat;
-            this.lblDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocumento.Location = new System.Drawing.Point(71, 58);
-            this.lblDocumento.Name = "lblDocumento";
-            this.lblDocumento.Size = new System.Drawing.Size(138, 20);
-            this.lblDocumento.TabIndex = 114;
-            this.lblDocumento.Text = "No.Documento:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(71, 58);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 114;
+            this.LblCodigo.Text = "Código:";
             // 
             // label2
             // 
@@ -406,7 +406,7 @@
             this.tablaTransportista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
             this.ID,
-            this.Documento,
+            this.Codigo,
             this.Nombres,
             this.Apellidos,
             this.Cedula,
@@ -448,13 +448,13 @@
             this.ID.Visible = false;
             this.ID.Width = 50;
             // 
-            // Documento
+            // Codigo
             // 
-            this.Documento.HeaderText = "No.Documento";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 125;
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 125;
             // 
             // Nombres
             // 
@@ -559,8 +559,8 @@
             this.Controls.Add(this.TxtId);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.TxtNombres);
-            this.Controls.Add(this.TxtNoDocumento);
-            this.Controls.Add(this.lblDocumento);
+            this.Controls.Add(this.TxtCodigo);
+            this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.label2);
             this.Name = "VtnTransportista";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -601,13 +601,14 @@
         private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.TextBox TxtNombres;
-        private System.Windows.Forms.TextBox TxtNoDocumento;
-        private System.Windows.Forms.Label lblDocumento;
+        private System.Windows.Forms.TextBox TxtCodigo;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView tablaTransportista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;

@@ -43,7 +43,7 @@ namespace Presentacion
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
-                tablaProveedores.Rows.Add(new object[] { "", proveedor.IdProveedor, proveedor.Documento, proveedor.Nombres, proveedor.Apellidos, proveedor.Cedula, proveedor.Telefono, proveedor.CorreoElectronico, proveedor.Estado == true ? 1 : 0, proveedor.Estado == true ? "Activo" : "No Activo" });
+                tablaProveedores.Rows.Add(new object[] { "", proveedor.IdProveedor, proveedor.Codigo, proveedor.Nombres, proveedor.Apellidos, proveedor.Cedula, proveedor.Telefono, proveedor.CorreoElectronico, proveedor.Estado == true ? 1 : 0, proveedor.Estado == true ? "Activo" : "No Activo" });
             }
             TxtNombres.Select();
         }
@@ -152,7 +152,7 @@ namespace Presentacion
                 Proveedor agregarProveedor = new Proveedor()
                 {
                     IdProveedor = Convert.ToInt32(TxtId.Text),
-                    Documento = TxtNoDocumento.Text,
+                    Codigo = TxtNoDocumento.Text,
                     Nombres = TxtNombres.Text,
                     Apellidos = TxtApellidos.Text,
                     Cedula = TextCedula.Text,
@@ -193,7 +193,7 @@ namespace Presentacion
             Proveedor proveedorModificado = new Proveedor()
             {
                 IdProveedor = Convert.ToInt32(TxtId.Text),
-                Documento = TxtNoDocumento.Text,
+                Codigo = TxtNoDocumento.Text,
                 Nombres = TxtNombres.Text,
                 Apellidos = TxtApellidos.Text,
                 Cedula = TextCedula.Text,
@@ -208,7 +208,7 @@ namespace Presentacion
 
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaProveedores.Rows[indice].Cells["ID"].Value = proveedorModificado.IdProveedor;
-                tablaProveedores.Rows[indice].Cells["Documento"].Value = proveedorModificado.Documento;
+                tablaProveedores.Rows[indice].Cells["Codigo"].Value = proveedorModificado.Codigo;
                 tablaProveedores.Rows[indice].Cells["Nombres"].Value = proveedorModificado.Nombres;
                 tablaProveedores.Rows[indice].Cells["Apellidos"].Value = proveedorModificado.Apellidos;
                 tablaProveedores.Rows[indice].Cells["Cedula"].Value = proveedorModificado.Cedula;
@@ -295,7 +295,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaProveedores.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaProveedores.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtNoDocumento.Text = tablaProveedores.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombres.Text = tablaProveedores.Rows[indice].Cells["Nombres"].Value.ToString();
                     TxtApellidos.Text = tablaProveedores.Rows[indice].Cells["Apellidos"].Value.ToString();
                     TextCedula.Text = tablaProveedores.Rows[indice].Cells["Cedula"].Value.ToString();

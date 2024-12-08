@@ -140,11 +140,11 @@
             this.IdCliente.Visible = false;
             this.IdCliente.Width = 125;
             // 
-            // Documento
+            // Codigo
             // 
-            this.Documento.HeaderText = "Nro.Documento";
+            this.Documento.HeaderText = "Nro.Codigo";
             this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
+            this.Documento.Name = "Codigo";
             this.Documento.ReadOnly = true;
             this.Documento.Width = 125;
             // 

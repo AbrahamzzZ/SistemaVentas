@@ -48,7 +48,7 @@ namespace Presentacion
             List<Usuario> mostrarUsuario = new CN_Usuario().ListarUsuario();
             foreach (Usuario rol in mostrarUsuario)
             {
-                tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Documento, rol.NombreCompleto, rol.CorreoElectronico, rol.Clave, rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
+                tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Codigo, rol.NombreCompleto, rol.CorreoElectronico, rol.Clave, rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
             }
             TxtNombreCompleto.Select();
         }
@@ -109,7 +109,7 @@ namespace Presentacion
                 Usuario agregarUsuario = new Usuario()
                 {
                     IdUsuario = Convert.ToInt32(TxtId.Text),
-                    Documento = TxtNoDocumento.Text,
+                    Codigo = TxtNoDocumento.Text,
                     NombreCompleto = TxtNombreCompleto.Text,
                     CorreoElectronico = TxtCorreoElectronico.Text,
                     Clave = TxtClave.Text,
@@ -153,7 +153,7 @@ namespace Presentacion
             Usuario usuarioModificado = new Usuario()
             {
                 IdUsuario = Convert.ToInt32(TxtId.Text),
-                Documento = TxtNoDocumento.Text,
+                Codigo = TxtNoDocumento.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
                 Clave = TxtClave.Text,
@@ -166,7 +166,7 @@ namespace Presentacion
                 MessageBox.Show("El Usuario fue modificado correctamente.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 int indice = Convert.ToInt32(TxtIndice.Text);
-                tablaUsuarios.Rows[indice].Cells["Documento"].Value = usuarioModificado.Documento;
+                tablaUsuarios.Rows[indice].Cells["Codigo"].Value = usuarioModificado.Codigo;
                 tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value = usuarioModificado.NombreCompleto;
                 tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value = usuarioModificado.CorreoElectronico;
                 tablaUsuarios.Rows[indice].Cells["Clave"].Value = usuarioModificado.Clave;
@@ -262,7 +262,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaUsuarios.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaUsuarios.Rows[indice].Cells["Documento"].Value.ToString();
+                    TxtNoDocumento.Text = tablaUsuarios.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombreCompleto.Text = tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value.ToString();
                     TxtCorreoElectronico.Text = tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
                     TxtClave.Text = tablaUsuarios.Rows[indice].Cells["Clave"].Value.ToString();

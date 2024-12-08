@@ -65,7 +65,7 @@ namespace Presentacion
 
         private void menuItemCategoría_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnCategoria());
+            verPanel(new VtnCategoria());
         }
 
         private void menuItemProducto_Click_1(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace Presentacion
         }
         private void menuItemVerSucursales_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnSucursal());
+            verPanel(new VtnSucursal());
         }
         private void menuItemVerClientes_Click(object sender, EventArgs e)
         {

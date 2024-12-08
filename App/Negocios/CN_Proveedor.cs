@@ -26,7 +26,7 @@ namespace Negocios
         public bool Editar(Proveedor obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Documento == "")
+            if (obj.Codigo == "")
             {
                 mensaje += "Es necesario el documento del proveedor.\n";
             }

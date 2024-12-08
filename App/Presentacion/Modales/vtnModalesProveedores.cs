@@ -37,7 +37,7 @@ namespace Presentacion.Modales
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
-                tablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Documento, proveedor.Nombres , proveedor.Estado});
+                tablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Codigo, proveedor.Nombres , proveedor.Estado});
             }
         }
 
@@ -71,7 +71,7 @@ namespace Presentacion.Modales
                 Proveedor = new Proveedor()
                 {
                     IdProveedor = Convert.ToInt32(tablaProveedores.Rows[iRow].Cells["IdProveedor"].Value.ToString()),
-                    Documento = tablaProveedores.Rows[iRow].Cells["Documento"].Value.ToString(),
+                    Codigo = tablaProveedores.Rows[iRow].Cells["Codigo"].Value.ToString(),
                     Nombres = tablaProveedores.Rows[iRow].Cells["Nombres"].Value.ToString(),
                     Estado = Convert.ToBoolean(tablaProveedores.Rows[iRow].Cells["Estado"].Value.ToString())
                 };

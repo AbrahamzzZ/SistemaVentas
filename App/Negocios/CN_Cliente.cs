@@ -26,10 +26,6 @@ namespace Negocios
         public bool Editar(Cliente obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Documento == "")
-            {
-                mensaje += "Es necesario el documento del cliente.\n";
-            }
             if (obj.Nombres == "")
             {
                 mensaje += "Es necesario los dos nombres del cliente.\n";

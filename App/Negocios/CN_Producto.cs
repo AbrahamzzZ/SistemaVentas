@@ -25,10 +25,6 @@ namespace Negocios
         public bool Editar(Producto obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Codigo == "")
-            {
-                mensaje += "Es necesario el codigo del producto.\n";
-            }
             if (obj.Nombre == "")
             {
                 mensaje += "Es necesario el nombre del producto.\n";

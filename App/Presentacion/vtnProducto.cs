@@ -71,7 +71,6 @@ namespace Presentacion
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
             TxtCodigo.Text = GenerarCodigo(4);
-            //Mostrar todos los productos existentes en la tabla
             List<Producto> mostrarProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in mostrarProducto)
             {
@@ -174,7 +173,6 @@ namespace Presentacion
             if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtCodigo.Text)) mensajeError += "- Código del producto\n";
                 if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre del producto\n";
                 if (string.IsNullOrWhiteSpace(TxtDescripcion.Text)) mensajeError += "- Descripción del producto\n";
                 if (string.IsNullOrWhiteSpace(TxtPaisOrigen.Text)) mensajeError += "- País de origen del producto\n";
@@ -185,7 +183,7 @@ namespace Presentacion
             {
                 Producto agregarProducto = new Producto()
                 {
-                    IdProducto = Convert.ToInt32(txt2.Text),
+                    IdProducto = Convert.ToInt32(TxtEstado.Text),
                     Codigo = TxtCodigo.Text,
                     Nombre = TxtNombre.Text,
                     Descripcion = TxtDescripcion.Text,
@@ -248,7 +246,7 @@ namespace Presentacion
 
             Producto productoModificado = new Producto()
             {
-                IdProducto = Convert.ToInt32(txt2.Text),
+                IdProducto = Convert.ToInt32(TxtEstado.Text),
                 Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Descripcion = TxtDescripcion.Text,
@@ -262,7 +260,7 @@ namespace Presentacion
             {
                 MessageBox.Show("El producto fue modificado correctamente.", "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaProducto.Rows[indice].Cells["Codigo"].Value = productoModificado.Codigo;
                 tablaProducto.Rows[indice].Cells["Producto"].Value = productoModificado.Nombre;
                 tablaProducto.Rows[indice].Cells["Descripcion"].Value = productoModificado.Descripcion;
@@ -288,7 +286,7 @@ namespace Presentacion
                 MessageBox.Show("Primero debe selecionar un producto en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else {
-                if (Convert.ToInt32(txt2.Text) != 0)
+                if (Convert.ToInt32(TxtEstado.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar este producto?", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -296,12 +294,12 @@ namespace Presentacion
 
                         Producto productoEliminado = new Producto()
                         {
-                            IdProducto = Convert.ToInt32(txt2.Text),
+                            IdProducto = Convert.ToInt32(TxtEstado.Text),
                         };
                         bool respuesta = new CN_Producto().Eliminar(productoEliminado, out mensaje);
                         if (respuesta)
                         {
-                            tablaProducto.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                            tablaProducto.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                             MessageBox.Show("El producto fue eliminado correctamente.", "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -353,8 +351,8 @@ namespace Presentacion
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaProducto.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtEstado.Text = tablaProducto.Rows[indice].Cells["ID"].Value.ToString();
                     TxtCodigo.Text = tablaProducto.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombre.Text = tablaProducto.Rows[indice].Cells["Producto"].Value.ToString();
                     TxtDescripcion.Text = tablaProducto.Rows[indice].Cells["Descripcion"].Value.ToString();
@@ -404,8 +402,8 @@ namespace Presentacion
         }
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
+            TxtIndice.Text = "-1";
+            TxtEstado.Text = "0";
             TxtCodigo.Text = GenerarCodigo(4);
             TxtNombre.Clear();
             TxtDescripcion.Clear();

@@ -19,7 +19,7 @@ namespace Datos
             List<Sucursal> listaSucursal = new List<Sucursal>();
             try
             {
-                string mostrar = "SELECT ID_SUCURSAL, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO FROM SUCURSAL";
+                string mostrar = "SELECT ID_SUCURSAL, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO FROM SUCURSAL";
                 SqlCommand cmd = new SqlCommand(mostrar, Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -28,6 +28,7 @@ namespace Datos
                     listaSucursal.Add(new Sucursal()
                     {
                         IdSucursal = Convert.ToInt32(leer["ID_SUCURSAL"]),
+                        Codigo = leer["CODIGO"].ToString(),
                         Nombre = leer["NOMBRE_SUCURSAL"].ToString(),
                         Direccion = leer["DIRECCION_SUCURSAL"].ToString(),
                         Latitud = Convert.ToDouble(leer["LATITUD_SUCURSAL"]),
@@ -53,6 +54,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_SUCURSAL", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Sucursal", obj.Nombre);
                 cmd.Parameters.AddWithValue("Direccion_Sucursal", obj.Direccion);
                 cmd.Parameters.AddWithValue("Latitud_Sucursal", obj.Latitud);

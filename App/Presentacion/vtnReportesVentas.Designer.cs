@@ -301,7 +301,7 @@
             // 
             // DocumentoCliente
             // 
-            this.DocumentoCliente.HeaderText = "Documento Cliente";
+            this.DocumentoCliente.HeaderText = "Codigo Cliente";
             this.DocumentoCliente.MinimumWidth = 6;
             this.DocumentoCliente.Name = "DocumentoCliente";
             this.DocumentoCliente.ReadOnly = true;

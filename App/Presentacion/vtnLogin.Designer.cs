@@ -109,7 +109,7 @@
             this.lblNoDocumento.Name = "lblNoDocumento";
             this.lblNoDocumento.Size = new System.Drawing.Size(232, 20);
             this.lblNoDocumento.TabIndex = 16;
-            this.lblNoDocumento.Text = "Ingrese su No.Documento:";
+            this.lblNoDocumento.Text = "Ingrese su No.Codigo:";
             // 
             // btnSalir
             // 

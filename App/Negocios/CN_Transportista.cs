@@ -26,10 +26,6 @@ namespace Negocios
         public bool Editar(Transportista obj, byte[] imagen, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Documento == "")
-            {
-                mensaje += "Es necesario el documento del transportista.\n";
-            }
             if (obj.Nombres == "")
             {
                 mensaje += "Es necesario los dos nombres del transportista.\n";
