@@ -9,6 +9,7 @@ namespace Entidad
     public class Oferta
     {
         public int IdOferta { get; set; }
+        public string Codigo { get; set; }
         public Producto oProducto { get; set; }
         public string NombreOferta { get; set; }
         public string Descripcion { get; set; }
