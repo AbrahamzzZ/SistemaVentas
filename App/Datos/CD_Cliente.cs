@@ -20,7 +20,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_CLIENTE, DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM CLIENTE;");
+                mostrar.AppendLine("SELECT ID_CLIENTE, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM CLIENTE;");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -29,7 +29,7 @@ namespace Datos
                     listaMostrarCliente.Add(new Cliente()
                     {
                         IdCliente = Convert.ToInt32(leer["ID_CLIENTE"]),
-                        Documento = leer["DOCUMENTO"].ToString(),
+                        Codigo = leer["CODIGO"].ToString(),
                         Nombres = leer["NOMBRES"].ToString(),
                         Apellidos = leer["APELLIDOS"].ToString(),
                         Cedula = leer["CEDULA"].ToString(),
@@ -55,7 +55,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CLIENTE", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
@@ -89,7 +89,7 @@ namespace Datos
 
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
                 cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
@@ -114,21 +114,27 @@ namespace Datos
         }
 
         //Metodo que permite eliminar a un Cliente
-        public bool EliminarCliente(Cliente obj, out string mensaje)
+        public bool EliminarCliente(Cliente obj, out string Mensaje)
         {
             bool Respuesta = false;
-            mensaje = string.Empty;
+            Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("DELETE FROM CLIENTE WHERE ID_CLIENTE = @Id_Cliente", Conexion.ConexionBD());
+                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                cmd.CommandType = CommandType.Text;
-                Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
+
+                Respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
             }
             catch (Exception cl)
             {
                 Respuesta = false;
-                mensaje = cl.Message;
+                Mensaje = cl.Message;
             }
             return Respuesta;
         }

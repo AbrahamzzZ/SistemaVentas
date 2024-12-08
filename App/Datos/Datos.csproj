@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_Inventario.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="CD_Categoria.cs" />
     <Compile Include="CD_Cliente.cs" />

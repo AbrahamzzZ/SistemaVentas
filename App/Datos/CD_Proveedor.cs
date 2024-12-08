@@ -18,7 +18,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_PROVEEDOR, DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM PROVEEDOR;");
+                mostrar.AppendLine("SELECT ID_PROVEEDOR, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM PROVEEDOR;");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -27,7 +27,7 @@ namespace Datos
                     listaMostrarProveedor.Add(new Proveedor()
                     {
                         IdProveedor = Convert.ToInt32(leer["ID_PROVEEDOR"]),
-                        Documento = leer["DOCUMENTO"].ToString(),
+                        Codigo = leer["CODIGO"].ToString(),
                         Nombres = leer["NOMBRES"].ToString(),
                         Apellidos = leer["APELLIDOS"].ToString(),
                         Cedula = leer["CEDULA"].ToString(),
@@ -53,7 +53,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PROVEEDOR", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
@@ -86,7 +86,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_PROVEEDOR", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
                 cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);

@@ -19,7 +19,7 @@ namespace Datos
             List<Usuario> listaUsuario = new List<Usuario>();
             try
             {
-                string registrar = "SELECT ID_USUARIO, DOCUMENTO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ESTADO FROM USUARIO";
+                string registrar = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ESTADO FROM USUARIO";
                 SqlCommand cmd = new SqlCommand(registrar, Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -28,7 +28,7 @@ namespace Datos
                     listaUsuario.Add(new Usuario()
                     {
                         IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
-                        Documento = leer["DOCUMENTO"].ToString(),
+                        Codigo = leer["CODIGO"].ToString(),
                         NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
                         CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
                         Clave = leer["CLAVE"].ToString(),
@@ -78,7 +78,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT u.ID_USUARIO, u.DOCUMENTO, u.NOMBRE_COMPLETO, u.CORREO_ELECTRONICO, u.CLAVE, u.ESTADO, r.ID_ROL, r.DESCRIPCION FROM USUARIO u");
+                mostrar.AppendLine("SELECT u.ID_USUARIO, u.CODIGO, u.NOMBRE_COMPLETO, u.CORREO_ELECTRONICO, u.CLAVE, u.ESTADO, r.ID_ROL, r.DESCRIPCION FROM USUARIO u");
                 mostrar.AppendLine("inner join ROL r on r.ID_ROL = u.ID_ROL");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
@@ -88,7 +88,7 @@ namespace Datos
                     listaMostrarUsuario.Add(new Usuario()
                     {
                         IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
-                        Documento = leer["DOCUMENTO"].ToString(),
+                        Codigo = leer["CODIGO"].ToString(),
                         NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
                         CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
                         Clave = leer["CLAVE"].ToString(),
@@ -117,7 +117,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_USUARIO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
                 cmd.Parameters.AddWithValue("Clave", obj.Clave);
@@ -150,7 +150,7 @@ namespace Datos
 
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_USUARIO", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.IdUsuario);
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
                 cmd.Parameters.AddWithValue("Clave", obj.Clave);

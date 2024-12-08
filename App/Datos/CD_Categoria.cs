@@ -20,7 +20,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_CATEGORIA, DESCRIPCION, ESTADO FROM CATEGORIA");
+                mostrar.AppendLine("SELECT ID_CATEGORIA, CODIGO, DESCRIPCION, ESTADO FROM CATEGORIA");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -29,6 +29,7 @@ namespace Datos
                     listaMostrarCategoria.Add(new Categoria()
                     {
                         IdCategoria = Convert.ToInt32(leer["ID_CATEGORIA"]),
+                        Codigo = leer["CODIGO"].ToString(),
                         Descripcion = leer["DESCRIPCION"].ToString(),
                         Estado = Convert.ToBoolean(leer["ESTADO"])
                     });
@@ -50,6 +51,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CATEGORIA", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
                 cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;

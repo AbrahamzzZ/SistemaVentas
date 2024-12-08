@@ -19,7 +19,7 @@ namespace Datos
             List<Transportista> listaTransportista = new List<Transportista>();
             try
             {
-                string mostrar = "SELECT ID_TRANSPORTISTA, DOCUMENTO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, IMAGEN, ESTADO FROM TRANSPORTISTA";
+                string mostrar = "SELECT ID_TRANSPORTISTA, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, IMAGEN, ESTADO FROM TRANSPORTISTA";
                 SqlCommand cmd = new SqlCommand(mostrar, Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -28,7 +28,7 @@ namespace Datos
                     listaTransportista.Add(new Transportista()
                     {
                         IdTransportista = Convert.ToInt32(leer["ID_TRANSPORTISTA"]),
-                        Documento = leer["DOCUMENTO"].ToString(),
+                        Codigo = leer["CODIGO"].ToString(),
                         Nombres = leer["NOMBRES"].ToString(),
                         Apellidos = leer["APELLIDOS"].ToString(),
                         Cedula = leer["CEDULA"].ToString(),
@@ -55,7 +55,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_TRANSPORTISTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
@@ -89,7 +89,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_TRANSPORTISTA", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
-                cmd.Parameters.AddWithValue("Documento", obj.Documento);
+                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
                 cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);

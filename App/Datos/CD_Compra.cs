@@ -116,8 +116,8 @@ namespace Datos
                     {
                         IdCompra = Convert.ToInt32(leer["ID_COMPRA"]),
                         oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
-                        oProveedor = new Proveedor() { Documento = leer["DOCUMENTO"].ToString(), Nombres = leer["NOMBRES"].ToString() },
-                        oTransportista = new Transportista() { Documento = leer["DOCUMENTO_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
+                        oProveedor = new Proveedor() { Codigo = leer["DOCUMENTO"].ToString(), Nombres = leer["NOMBRES"].ToString() },
+                        oTransportista = new Transportista() { Codigo = leer["DOCUMENTO_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
                         TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"]),
