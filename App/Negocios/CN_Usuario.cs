@@ -37,11 +37,6 @@ namespace Negocios
         public bool Editar(Usuario obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Documento == "")
-            {
-                mensaje += "Es necesario el documento del usuario.\n";
-
-            }
             if (obj.NombreCompleto == "")
             {
                 mensaje += "Es necesario el nombre completo del usuario.\n";
@@ -67,43 +62,8 @@ namespace Negocios
         public bool Eliminar(Usuario obj, out string mensaje)
         {
             return ObjetoUsuario.EliminarUsuario(obj, out mensaje);
-        }
+        } 
         
-        
-        //Iventario
-        public List<Inventario> mosiSQL()
-        {
-            return objecto.mostrarInventario();
-        }
-        public int resiSQL(Inventario obj, out string mensaje)
-        {
-            return objecto.agregarProductoInventario(obj, out mensaje);
-        }
-        public bool ediiSQL(Inventario obj, out string mensaje)
-        {
-            mensaje = string.Empty;
-            if (obj.Cantidad == 0)
-            {
-                mensaje += "Es necesario la cantidad de productos.\n";
-            }
-            if (obj.UbicacionAlmacen == "")
-            {
-                mensaje += "Es necesario la ubicacion del almacen para el producto.";
-            }
-            if (mensaje != string.Empty)
-            {
-                return false;
-            }
-            else
-            {
-                return objecto.editarProductoInventario(obj, out mensaje);
-            }
-        }
-        public bool eliiSQL(Inventario obj, out string mensaje)
-        {
-            return objecto.eliminarProductoInventario(obj, out mensaje);
-        }
-
         //Reclamo
         public List<Reclamo> mosreSQL()
         {
