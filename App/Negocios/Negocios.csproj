@@ -57,6 +57,7 @@
     <Compile Include="CN_Transportista.cs" />
     <Compile Include="CN_Unidad_Medida.cs" />
     <Compile Include="CN_Venta.cs" />
+    <Compile Include="CN_Zona_Almacen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
