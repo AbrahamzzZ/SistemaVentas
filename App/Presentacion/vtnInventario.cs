@@ -69,7 +69,7 @@ namespace Presentacion
             List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
-                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Codigo, productosInventario.oProducto.Nombre, productosInventario.Cantidad });
+                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Codigo, productosInventario.oProducto.Nombre, productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
             }
             TxtCantidad.Select();
         }
@@ -156,7 +156,10 @@ namespace Presentacion
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = CmbProducto.SelectedItem;
+            dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
+            int valorCmb1 = selectedItemCmb1.Valor;
+            string textoCmb1 = selectedItemCmb1.Texto;
+            dynamic selectedItemCmb2 = CmbZonaAlmacen.SelectedItem;
             int valorCmb2 = selectedItemCmb2.Valor;
             string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
@@ -170,22 +173,21 @@ namespace Presentacion
             }
             else
             {
-                /*int cantidadComprada = new CN_Compra().CantidadProductoComprado(valorCmb1);
-                int cantidadIngresada = Convert.ToInt32(txt4.Text);
+                int cantidadComprada = new CN_Compra().CantidadProductoComprado(valorCmb1);
+                int cantidadIngresada = Convert.ToInt32(TxtCantidad.Text);
                 if (cantidadIngresada > cantidadComprada)
                 {
                     MessageBox.Show("No se puede ingresar un producto más de lo que se compró.", "Agregar producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }*/
+                }
                 Inventario agregarProductoInventario = new Inventario()
                 {
-                    /*IdInventario = Convert.ToInt32(TxtId.Text),
-                    oProducto = new Producto { IdProducto = valorCmb1, Codigo = textoCmb1.ToString(), Nombre = textoCmb2.ToString() },
+                    IdInventario = Convert.ToInt32(TxtId.Text),
+                    oProducto = new Producto { IdProducto = valorCmb1, Codigo = textoCmb1.ToString(), Nombre = textoCmb1.ToString() },
                     Cantidad = Convert.ToInt32(TxtCantidad.Text),
-                    UbicacionAlmacen = txt5.Text,
-                    Estado = valorCmb3 == 1*/
+                    oZonaAlmacen = new Zona_Almacen { IdZona = valorCmb2, NombreZona = textoCmb2.ToString()}
                 };
-                /*List<Producto> listaProducto = new CN_Producto().ListarProducto();
+                List<Producto> listaProducto = new CN_Producto().ListarProducto();
                 Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == valorCmb1);
                 if (productoSeleccionado != null && !productoSeleccionado.Estado)
                 {
@@ -200,7 +202,7 @@ namespace Presentacion
                         // Verificar si los elementos seleccionados no son nulos
                         if (selectedItemCmb1 != null && selectedItemCmb2 != null)
                         {
-                            tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, valorCmb1, textoCmb1, textoCmb2, TxtCantidad.Text, txt5.Text, valorCmb3, textoCmb3 });
+                            tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, valorCmb1, textoCmb1, TxtCantidad.Text, valorCmb2, textoCmb2});
                             MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -209,7 +211,7 @@ namespace Presentacion
                             MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla inventario");
                         }
                     }
-                }*/
+                }
             }
         }
 
@@ -231,9 +233,9 @@ namespace Presentacion
             Inventario editarProductoInventario = new Inventario()
             {
                 IdInventario = Convert.ToInt32(TxtId.Text),
-                oProducto = new Producto { IdProducto = valorCmb1, Nombre = textoCmb2.ToString() },
+                oProducto = new Producto { IdProducto = valorCmb1, Nombre = textoCmb1.ToString() },
                 Cantidad = Convert.ToInt32(TxtCantidad.Text),
-                //UbicacionAlmacen = txt.Text,
+                oZonaAlmacen = new Zona_Almacen {IdZona = valorCmb2, NombreZona = textoCmb2.ToString() }
             };
             bool modificar = new CN_Inventario().Editar(editarProductoInventario, out mensaje);
             if (modificar)

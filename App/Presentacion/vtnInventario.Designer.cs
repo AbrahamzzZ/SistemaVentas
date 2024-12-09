@@ -56,6 +56,7 @@
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdZona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UbicacionAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).BeginInit();
             this.SuspendLayout();
@@ -289,6 +290,7 @@
             this.CodigoProducto,
             this.NombreProductos,
             this.Cantidad,
+            this.IdZona,
             this.UbicacionAlmacen});
             this.tablaInventario.Location = new System.Drawing.Point(417, 187);
             this.tablaInventario.MultiSelect = false;
@@ -338,6 +340,7 @@
             this.IDPRODUCTO.MinimumWidth = 6;
             this.IDPRODUCTO.Name = "IDPRODUCTO";
             this.IDPRODUCTO.ReadOnly = true;
+            this.IDPRODUCTO.Visible = false;
             this.IDPRODUCTO.Width = 125;
             // 
             // CodigoProducto
@@ -363,6 +366,15 @@
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
             this.Cantidad.Width = 155;
+            // 
+            // IdZona
+            // 
+            this.IdZona.HeaderText = "Id Zona";
+            this.IdZona.MinimumWidth = 6;
+            this.IdZona.Name = "IdZona";
+            this.IdZona.ReadOnly = true;
+            this.IdZona.Visible = false;
+            this.IdZona.Width = 125;
             // 
             // UbicacionAlmacen
             // 
@@ -434,6 +446,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdZona;
         private System.Windows.Forms.DataGridViewTextBoxColumn UbicacionAlmacen;
     }
 }
