@@ -13,5 +13,6 @@ namespace Entidad
         public Zona_Almacen oZonaAlmacen { get; set; }
         public int Cantidad { get; set; }
         public string FechaIngreso { get; set; }
+
     }
 }
