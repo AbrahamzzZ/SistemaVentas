@@ -11,7 +11,6 @@ namespace Negocios
 {
     public class CN_Usuario
     {
-        private Conexion objecto = new Conexion();
         private CD_Usuario ObjetoUsuario = new CD_Usuario();
         public List<Usuario> Ingresar()
         {
@@ -62,21 +61,6 @@ namespace Negocios
         public bool Eliminar(Usuario obj, out string mensaje)
         {
             return ObjetoUsuario.EliminarUsuario(obj, out mensaje);
-        } 
-        
-        //Reclamo
-        public List<Reclamo> mosreSQL()
-        {
-            return objecto.mostrarReclamo();
-        }
-        public bool edireSQL(Reclamo obj, out string mensaje)
-        {
-            return objecto.editarReclamo(obj, out mensaje);
-
-        }
-        public bool elireSQL(Reclamo obj, out string mensaje)
-        {
-            return objecto.eliminarReclamo(obj, out mensaje);
-        }
+        }  
     }
 }

@@ -359,7 +359,7 @@
             this.lblTransportista.AutoSize = true;
             this.lblTransportista.BackColor = System.Drawing.Color.White;
             this.lblTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransportista.Location = new System.Drawing.Point(854, 92);
+            this.lblTransportista.Location = new System.Drawing.Point(842, 92);
             this.lblTransportista.Name = "lblTransportista";
             this.lblTransportista.Size = new System.Drawing.Size(113, 20);
             this.lblTransportista.TabIndex = 133;
@@ -370,7 +370,7 @@
             this.txtFecha2.CustomFormat = "dd/MM/yyyy";
             this.txtFecha2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtFecha2.Location = new System.Drawing.Point(639, 90);
+            this.txtFecha2.Location = new System.Drawing.Point(620, 90);
             this.txtFecha2.Name = "txtFecha2";
             this.txtFecha2.Size = new System.Drawing.Size(200, 27);
             this.txtFecha2.TabIndex = 132;
@@ -380,7 +380,7 @@
             this.lblFechaFin.AutoSize = true;
             this.lblFechaFin.BackColor = System.Drawing.Color.White;
             this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFin.Location = new System.Drawing.Point(542, 93);
+            this.lblFechaFin.Location = new System.Drawing.Point(526, 93);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(83, 20);
             this.lblFechaFin.TabIndex = 131;
@@ -422,7 +422,7 @@
             this.lblProveedor.AutoSize = true;
             this.lblProveedor.BackColor = System.Drawing.Color.White;
             this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProveedor.Location = new System.Drawing.Point(854, 52);
+            this.lblProveedor.Location = new System.Drawing.Point(842, 52);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(90, 20);
             this.lblProveedor.TabIndex = 144;

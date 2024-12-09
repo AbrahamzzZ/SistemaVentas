@@ -12,34 +12,33 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnReclamo : Form
+    public partial class VtnReclamo : Form
     {
-        public vtnReclamo()
+        public VtnReclamo()
         {
             InitializeComponent();
         }
 
         private void vtnReclamo_Load(object sender, EventArgs e)
         {
-            cmb1.Items.Add(new { Valor = 1, Texto = "Solucionado" });
-            cmb1.Items.Add(new { Valor = 0, Texto = "No Solucionado" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbEstado.Items.Add(new { Valor = 1, Texto = "Solucionado" });
+            CmbEstado.Items.Add(new { Valor = 0, Texto = "No Solucionado" });
+            CmbEstado.DisplayMember = "Texto";
+            CmbEstado.ValueMember = "Valor";
+            CmbEstado.SelectedIndex = 0;
 
             foreach (DataGridViewColumn columna in tablaReclamo.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
-                    cmb2.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
-            //Mostrar todos los reclamis existentes en la tabla
-            List<Reclamo> lista = new CN_Usuario().mosreSQL();
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
+            List<Reclamo> lista = new CN_Reclamo().ListarReclamo();
             foreach (Reclamo item in lista)
             {
                 tablaReclamo.Rows.Add(new object[] { "", item.IdReclamo, item.oCliente.IdCliente, item.oCliente.Codigo, item.oCliente.Nombres, item.oCliente.CorreoElectronico, item.Descripcion, item.Estado == true ? 1 : 0, item.Estado == true ? "Solucionado" : "No Solucionado" });
@@ -48,14 +47,14 @@ namespace Presentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb2 = cmb2.SelectedItem;
+            dynamic selectedItemCmb2 = CmbBuscar.SelectedItem;
             string valorCmb2 = selectedItemCmb2.Valor;
             string columnaFiltro = valorCmb2.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaReclamo.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt7.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -69,7 +68,7 @@ namespace Presentacion
             if (filasVisibles == 0)
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar reclamo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txt7.Text = "";
+                TxtBuscar.Text = "";
                 foreach (DataGridViewRow row in tablaReclamo.Rows)
                 {
                     row.Visible = true;
@@ -82,24 +81,24 @@ namespace Presentacion
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
             Reclamo ReclamoModificado = new Reclamo()
             {
-                IdReclamo = Convert.ToInt32(txt2.Text),
+                IdReclamo = Convert.ToInt32(TxtId.Text),
                 Estado = valorCmb1 == 1
             };
-            bool modificar = new CN_Usuario().edireSQL(ReclamoModificado, out mensaje);
+            bool modificar = new CN_Reclamo().Editar(ReclamoModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El reclamo fue modificado correctamente.", "Modificar reclamo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaReclamo.Rows[indice].Cells["EstadoValor"].Value = ReclamoModificado.Estado ? 1 : 0;
                 tablaReclamo.Rows[indice].Cells["Estado"].Value = ReclamoModificado.Estado ? "Solucionado" : "No Solucionado";
                 Limpiar();
@@ -110,9 +109,9 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(txt2.Text) != 0)
+            if (Convert.ToInt32(TxtId.Text) != 0)
             {
                 if (MessageBox.Show("Desea eliminar esté reclamo?", "Eliminar reclamo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -120,13 +119,13 @@ namespace Presentacion
 
                     Reclamo reclamoEliminada = new Reclamo()
                     {
-                        IdReclamo = Convert.ToInt32(txt2.Text),
+                        IdReclamo = Convert.ToInt32(TxtId.Text),
                     };
 
-                    bool respuesta = new CN_Usuario().elireSQL(reclamoEliminada, out mensaje);
+                    bool respuesta = new CN_Reclamo().Eliminar(reclamoEliminada, out mensaje);
                     if (respuesta)
                     {
-                        tablaReclamo.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
+                        tablaReclamo.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                         MessageBox.Show("El reclamo fue eliminado correctamente.", "Eliminar reclamo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -178,14 +177,14 @@ namespace Presentacion
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
-                    txt2.Text = tablaReclamo.Rows[indice].Cells["ID"].Value.ToString();
-                    txt3.Text = tablaReclamo.Rows[indice].Cells["DocumentoCliente"].Value.ToString();
-                    txt4.Text = tablaReclamo.Rows[indice].Cells["NombreCliente"].Value.ToString();
-                    txt5.Text = tablaReclamo.Rows[indice].Cells["CorreoElectronicoCliente"].Value.ToString();
+                    TxtIndice.Text = indice.ToString();
+                    TxtId.Text = tablaReclamo.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtCodigo.Text = tablaReclamo.Rows[indice].Cells["DocumentoCliente"].Value.ToString();
+                    TxtNombresCliente.Text = tablaReclamo.Rows[indice].Cells["NombreCliente"].Value.ToString();
+                    TxtCorreoElectronico.Text = tablaReclamo.Rows[indice].Cells["CorreoElectronicoCliente"].Value.ToString();
                     txt6.Text = tablaReclamo.Rows[indice].Cells["Descripcion"].Value.ToString();
 
-                    foreach (dynamic item in cmb1.Items)
+                    foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
                         int valor = item.Valor;
@@ -193,8 +192,8 @@ namespace Presentacion
 
                         if (valor == Convert.ToInt32(tablaReclamo.Rows[indice].Cells["EstadoValor"].Value))
                         {
-                            int indice_cmb = cmb1.Items.IndexOf(item);
-                            cmb1.SelectedIndex = indice_cmb;
+                            int indice_cmb = CmbEstado.Items.IndexOf(item);
+                            CmbEstado.SelectedIndex = indice_cmb;
                             break;
                         }
                     }
@@ -203,13 +202,13 @@ namespace Presentacion
         }
         public void Limpiar()
         {
-            txt1.Text = "-1";
-            txt2.Text = "0";
-            txt3.Clear();
-            txt4.Clear();
-            txt5.Clear();
+            TxtIndice.Text = "-1";
+            TxtId.Text = "0";
+            TxtCodigo.Clear();
+            TxtNombresCliente.Clear();
+            TxtCorreoElectronico.Clear();
             txt6.Clear();
-            cmb1.SelectedIndex = 0;
+            CmbEstado.SelectedIndex = 0;
         }
     }
 }

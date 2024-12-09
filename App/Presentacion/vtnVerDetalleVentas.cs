@@ -32,11 +32,11 @@ namespace Presentacion
             Venta oVenta = new CN_Venta().DetalleVenta(txt1.Text);
             if (oVenta.IdVenta != 0)
             {
-                txt2.Text = oVenta.FechaVenta;
-                txt3.Text = oVenta.TipoDocumento;
-                txt4.Text = oVenta.oUsuario.NombreCompleto;
-                txt5.Text = oVenta.DocumentoCliente;
-                txt6.Text = oVenta.NombreCliente;
+                TxtFechaVenta.Text = oVenta.FechaVenta;
+                TxtTipoDocumento.Text = oVenta.TipoDocumento;
+                TxtNombreCompletoUsuario.Text = oVenta.oUsuario.NombreCompleto;
+                TxtCodigoCliente.Text = oVenta.DocumentoCliente;
+                TxtNombresCliente.Text = oVenta.NombreCliente;
                 txt7.Text = oVenta.NumeroDocumento;
                 tablaDetallesVentas.Rows.Clear();
                 foreach (Detalle_Venta dv in oVenta.oDetalle_Venta)
@@ -44,10 +44,10 @@ namespace Presentacion
                     tablaDetallesVentas.Rows.Add(new object[] { dv.oProducto.Nombre, dv.PrecioVenta, dv.CantidadProducto, dv.SubTotal, dv.Descuento });
                 }
 
-                txt8.Text = oVenta.MontoTotal.ToString("0.00");
-                txt10.Text = oVenta.MontoPago.ToString("0.00");
-                txt11.Text = oVenta.MontoCambio.ToString("0.00");
-                txt9.Text = oVenta.Descuento.ToString("0.00");
+                TxtMontoTotal.Text = oVenta.MontoTotal.ToString("0.00");
+                TxtMontoPago.Text = oVenta.MontoPago.ToString("0.00");
+                TxtMontoCambio.Text = oVenta.MontoCambio.ToString("0.00");
+                TxtDescuento.Text = oVenta.Descuento.ToString("0.00");
             }
             else
             {
@@ -58,17 +58,17 @@ namespace Presentacion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txt1.Text = "";
-            txt2.Text = "";
-            txt3.Text = "";
-            txt4.Text = "";
-            txt5.Text = "";
-            txt6.Text = "";
+            TxtFechaVenta.Text = "";
+            TxtTipoDocumento.Text = "";
+            TxtNombreCompletoUsuario.Text = "";
+            TxtCodigoCliente.Text = "";
+            TxtNombresCliente.Text = "";
             txt7.Text = "";
             tablaDetallesVentas.Rows.Clear();
-            txt8.Text = "0.00";
-            txt10.Text = "0.00";
-            txt11.Text = "0.00";
-            txt9.Text = "0.00";
+            TxtMontoTotal.Text = "0.00";
+            TxtMontoPago.Text = "0.00";
+            TxtMontoCambio.Text = "0.00";
+            TxtDescuento.Text = "0.00";
         }
 
         private void btnDescargarPdf_Click(object sender, EventArgs e)
@@ -87,13 +87,13 @@ namespace Presentacion
             texto_html = texto_html.Replace("@direcnegocio", oDatos.Direccion);
             texto_html = texto_html.Replace("@correoElectronico", oDatos.CorreoElectronico);
 
-            texto_html = texto_html.Replace("@tipodocumento", txt3.Text.ToUpper());
+            texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
             texto_html = texto_html.Replace("@numerodocumento", txt1.Text);
 
-            texto_html = texto_html.Replace("@doccliente", txt5.Text);
-            texto_html = texto_html.Replace("@nombrecliente", txt6.Text);
-            texto_html = texto_html.Replace("@fecharegistro", txt2.Text);
-            texto_html = texto_html.Replace("@usuarioregistro", txt4.Text);
+            texto_html = texto_html.Replace("@codigocliente", TxtCodigoCliente.Text);
+            texto_html = texto_html.Replace("@nombrecliente", TxtNombresCliente.Text);
+            texto_html = texto_html.Replace("@fecharegistro", TxtFechaVenta.Text);
+            texto_html = texto_html.Replace("@usuarioregistro", TxtNombreCompletoUsuario.Text);
 
             string filas = string.Empty;
             foreach (DataGridViewRow row in tablaDetallesVentas.Rows)
@@ -106,10 +106,10 @@ namespace Presentacion
                 filas += "</tr>";
             }
             texto_html = texto_html.Replace("@filas", filas);
-            texto_html = texto_html.Replace("@montototal", txt8.Text);
-            texto_html = texto_html.Replace("@descuento", txt9.Text);
-            texto_html = texto_html.Replace("@pagocon", txt10.Text);
-            texto_html = texto_html.Replace("@cambio", txt11.Text);
+            texto_html = texto_html.Replace("@montototal", TxtMontoTotal.Text);
+            texto_html = texto_html.Replace("@descuento", TxtDescuento.Text);
+            texto_html = texto_html.Replace("@pagocon", TxtMontoPago.Text);
+            texto_html = texto_html.Replace("@cambio", TxtMontoCambio.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
             guardar.FileName = string.Format("DetallesVentas.pdf", txt1.Text);

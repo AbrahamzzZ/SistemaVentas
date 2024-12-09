@@ -21,7 +21,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT i.ID_INVENTARIO, z.ID_ZONA, p.ID_PRODUCTO, p.CODIGO, p.NOMBRE_PRODUCTO, i.CANTIDAD, z.NOMBRE_ZONA, i.FECHA_INGRESO FROM INVENTARIO i");
+                mostrar.AppendLine("SELECT i.ID_INVENTARIO, z.ID_ZONA, p.ID_PRODUCTO, p.NOMBRE_PRODUCTO, i.CANTIDAD, z.NOMBRE_ZONA FROM INVENTARIO i");
                 mostrar.AppendLine("INNER JOIN PRODUCTO p ON p.ID_PRODUCTO = i.ID_PRODUCTO");
                 mostrar.AppendLine("INNER JOIN ZONA_ALMACEN z ON z.ID_ZONA = i.ID_ZONA");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
@@ -32,7 +32,7 @@ namespace Datos
                     listaMostrarProductoInventario.Add(new Inventario()
                     {
                         IdInventario = Convert.ToInt32(leer["ID_INVENTARIO"]),
-                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Codigo = leer["CODIGO"].ToString(), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
+                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
                         oZonaAlmacen = new Zona_Almacen() { IdZona = Convert.ToInt32(leer["ID_ZONA"]), NombreZona = leer["NOMBRE_ZONA"].ToString() },
                         Cantidad = Convert.ToInt32(leer["CANTIDAD"])
                     });
@@ -83,8 +83,8 @@ namespace Datos
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_PRODUCTO_INVENTARIO", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Inventario", obj.IdInventario);
                 cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
-                cmd.Parameters.AddWithValue("Id_Zona", obj.oZonaAlmacen.IdZona);
                 cmd.Parameters.AddWithValue("Cantidad", obj.Cantidad);
+                cmd.Parameters.AddWithValue("Id_Zona", obj.oZonaAlmacen.IdZona);
                 cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 

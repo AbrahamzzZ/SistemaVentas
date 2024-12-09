@@ -25,22 +25,22 @@ namespace Presentacion
 
         private void vtnVerDetalleCompras_Load(object sender, EventArgs e)
         {
-            txt1.Select();
+            TxtNumeroCodigoCompra.Select();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            Compra oCompra = new CN_Compra().DetalleCompra(txt1.Text);
+            Compra oCompra = new CN_Compra().DetalleCompra(TxtNumeroCodigoCompra.Text);
             if (oCompra.IdCompra != 0)
             {
-                txt2.Text = oCompra.FechaCompra;
-                txt3.Text = oCompra.TipoDocumento;
-                txt4.Text = oCompra.oUsuario.NombreCompleto;
-                txt5.Text = oCompra.oProveedor.Codigo;
-                txt6.Text = oCompra.oProveedor.Nombres;
+                TxtFechaCompra.Text = oCompra.FechaCompra;
+                TxtTipoDocumento.Text = oCompra.TipoDocumento;
+                TxtNombreCompletoUsuario.Text = oCompra.oUsuario.NombreCompleto;
+                TxtCodigoProveedor.Text = oCompra.oProveedor.Codigo;
+                TxtNombresProveedor.Text = oCompra.oProveedor.Nombres;
                 txt7.Text = oCompra.NumeroDocumento;
-                txt8.Text = oCompra.oTransportista.Codigo;
-                txt9.Text = oCompra.oTransportista.Nombres;
+                TxtCodigoTransportista.Text = oCompra.oTransportista.Codigo;
+                TxtNombresTransportista.Text = oCompra.oTransportista.Nombres;
  
                 tablaDetallesCompras.Rows.Clear();
                 foreach (Detalle_Compra dc in oCompra.oDetalle_Compra)
@@ -48,7 +48,7 @@ namespace Presentacion
                     tablaDetallesCompras.Rows.Add(new object[] { dc.oProducto.Nombre, dc.PrecioCompra, dc.Cantidad, dc.MontoTotal });
                 }
 
-                txt10.Text = oCompra.MontoTotal.ToString("0.00");
+                TxtMontoTotal.Text = oCompra.MontoTotal.ToString("0.00");
             }
             else
             {
@@ -58,17 +58,17 @@ namespace Presentacion
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txt1.Text = "";
-            txt2.Text = "";
-            txt3.Text = "";
-            txt4.Text = "";
-            txt5.Text = "";
-            txt6.Text = "";
+            TxtNumeroCodigoCompra.Text = "";
+            TxtFechaCompra.Text = "";
+            TxtTipoDocumento.Text = "";
+            TxtNombreCompletoUsuario.Text = "";
+            TxtCodigoProveedor.Text = "";
+            TxtNombresProveedor.Text = "";
             txt7.Text = "";
             tablaDetallesCompras.Rows.Clear();
-            txt8.Text = "";
-            txt9.Text = "";
-            txt10.Text = "0.00";
+            TxtCodigoTransportista.Text = "";
+            TxtNombresTransportista.Text = "";
+            TxtMontoTotal.Text = "0.00";
         }
 
         private void btnDescargarPdf_Click(object sender, EventArgs e)
@@ -87,15 +87,15 @@ namespace Presentacion
             texto_html = texto_html.Replace("@direcnegocio", oDatos.Direccion);
             texto_html = texto_html.Replace("@correoElectronico", oDatos.CorreoElectronico);
 
-            texto_html = texto_html.Replace("@tipodocumento", txt3.Text.ToUpper());
-            texto_html = texto_html.Replace("@numerodocumento", txt1.Text);
+            texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
+            texto_html = texto_html.Replace("@numerodocumento", TxtNumeroCodigoCompra.Text);
 
-            texto_html = texto_html.Replace("@docproveedor", txt5.Text);
-            texto_html = texto_html.Replace("@nombreproveedor", txt6.Text);
-            texto_html = texto_html.Replace("@doctransportista", txt8.Text);
-            texto_html = texto_html.Replace("@nombretransportista", txt9.Text);
-            texto_html = texto_html.Replace("@fecharegistro", txt2.Text);
-            texto_html = texto_html.Replace("@usuarioregistro", txt4.Text);
+            texto_html = texto_html.Replace("@codigoproveedor", TxtCodigoProveedor.Text);
+            texto_html = texto_html.Replace("@nombreproveedor", TxtNombresProveedor.Text);
+            texto_html = texto_html.Replace("@codigotransportista", TxtCodigoTransportista.Text);
+            texto_html = texto_html.Replace("@nombretransportista", TxtNombresTransportista.Text);
+            texto_html = texto_html.Replace("@fecharegistro", TxtFechaCompra.Text);
+            texto_html = texto_html.Replace("@usuarioregistro", TxtNombreCompletoUsuario.Text);
 
             string filas = string.Empty;
             foreach (DataGridViewRow row in tablaDetallesCompras.Rows)
@@ -108,10 +108,10 @@ namespace Presentacion
                 filas += "</tr>";
             }
             texto_html = texto_html.Replace("@filas", filas);
-            texto_html = texto_html.Replace("@montototal", txt10.Text);
+            texto_html = texto_html.Replace("@montototal", TxtMontoTotal.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("DetallesCompras.pdf", txt1.Text);
+            guardar.FileName = string.Format("DetallesCompras.pdf", TxtNumeroCodigoCompra.Text);
             guardar.Filter = "Pdf files |*.pdf";
 
             if (guardar.ShowDialog() == DialogResult.OK)

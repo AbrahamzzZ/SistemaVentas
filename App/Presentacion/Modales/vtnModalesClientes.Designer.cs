@@ -142,7 +142,7 @@
             // 
             // Codigo
             // 
-            this.Codigo.HeaderText = "Nro.Codigo";
+            this.Codigo.HeaderText = "Código";
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
@@ -196,10 +196,10 @@
         private System.Windows.Forms.ComboBox cmb1;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.DataGridView tablaClientes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
     }
 }

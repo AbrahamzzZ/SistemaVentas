@@ -69,7 +69,7 @@ namespace Presentacion
             List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
-                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Codigo, productosInventario.oProducto.Nombre, productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
+                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Nombre, productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
             }
             TxtCantidad.Select();
         }
@@ -97,7 +97,7 @@ namespace Presentacion
                     {
                         dt.Rows.Add(new object[]
                         {
-                            row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[7].Value.ToString()
+                            row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[6].Value.ToString()
                         });
                     }
                 }
@@ -183,7 +183,7 @@ namespace Presentacion
                 Inventario agregarProductoInventario = new Inventario()
                 {
                     IdInventario = Convert.ToInt32(TxtId.Text),
-                    oProducto = new Producto { IdProducto = valorCmb1, Codigo = textoCmb1.ToString(), Nombre = textoCmb1.ToString() },
+                    oProducto = new Producto { IdProducto = valorCmb1, Nombre = textoCmb1.ToString() },
                     Cantidad = Convert.ToInt32(TxtCantidad.Text),
                     oZonaAlmacen = new Zona_Almacen { IdZona = valorCmb2, NombreZona = textoCmb2.ToString()}
                 };
@@ -215,15 +215,15 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void BtnModificar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = CmbZonaAlmacen.SelectedItem;
-            dynamic selectedItemCmb2 = CmbProducto.SelectedItem;
+            dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
+            dynamic selectedItemCmb2 = CmbZonaAlmacen.SelectedItem;
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             int valorCmb2 = selectedItemCmb2.Valor;
@@ -246,6 +246,8 @@ namespace Presentacion
                 tablaInventario.Rows[indice].Cells["IDPRODUCTO"].Value = editarProductoInventario.oProducto.IdProducto;
                 tablaInventario.Rows[indice].Cells["NombreProductos"].Value = editarProductoInventario.oProducto.Nombre;
                 tablaInventario.Rows[indice].Cells["Cantidad"].Value = editarProductoInventario.Cantidad;
+                tablaInventario.Rows[indice].Cells["IDZONA"].Value = editarProductoInventario.oZonaAlmacen.IdZona;
+                tablaInventario.Rows[indice].Cells["UbicacionAlmacen"].Value= editarProductoInventario.oZonaAlmacen.NombreZona;
                 Limpiar();
             }
             else
@@ -254,7 +256,7 @@ namespace Presentacion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TxtCantidad.Text))
             {
@@ -365,9 +367,9 @@ namespace Presentacion
         {
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
-            CmbZonaAlmacen.SelectedIndex = 0;
             CmbProducto.SelectedIndex = 0;
             TxtCantidad.Text = "";
+            CmbZonaAlmacen.SelectedIndex = 0;
         }
 
         private void txt4_KeyPress(object sender, KeyPressEventArgs e)

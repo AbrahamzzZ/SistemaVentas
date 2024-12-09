@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CD_Inventario.cs" />
+    <Compile Include="CD_Reclamo.cs" />
     <Compile Include="CD_Zona_Almacen.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="CD_Categoria.cs" />

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCompra));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.txt9 = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.btnBuscarProveedor = new System.Windows.Forms.Button();
             this.txt2 = new System.Windows.Forms.TextBox();
             this.lblNombreProveedor = new System.Windows.Forms.Label();
-            this.lblNumeroDocumento = new System.Windows.Forms.Label();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.txt7 = new System.Windows.Forms.TextBox();
             this.lblProducto = new System.Windows.Forms.Label();
             this.btnBuscarProducto = new System.Windows.Forms.Button();
@@ -187,15 +187,15 @@
             // 
             this.tablaCompras.AllowUserToAddRows = false;
             this.tablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -210,9 +210,9 @@
             this.tablaCompras.Name = "tablaCompras";
             this.tablaCompras.ReadOnly = true;
             this.tablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tablaCompras.RowTemplate.Height = 28;
             this.tablaCompras.Size = new System.Drawing.Size(657, 196);
             this.tablaCompras.TabIndex = 122;
@@ -370,7 +370,7 @@
             this.groupBox2.Controls.Add(this.btnBuscarProveedor);
             this.groupBox2.Controls.Add(this.txt2);
             this.groupBox2.Controls.Add(this.lblNombreProveedor);
-            this.groupBox2.Controls.Add(this.lblNumeroDocumento);
+            this.groupBox2.Controls.Add(this.LblCodigo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(797, 87);
             this.groupBox2.Name = "groupBox2";
@@ -431,15 +431,15 @@
             this.lblNombreProveedor.TabIndex = 1;
             this.lblNombreProveedor.Text = "Nombre Proveedor:";
             // 
-            // lblNumeroDocumento
+            // LblCodigo
             // 
-            this.lblNumeroDocumento.AutoSize = true;
-            this.lblNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroDocumento.Location = new System.Drawing.Point(17, 35);
-            this.lblNumeroDocumento.Name = "lblNumeroDocumento";
-            this.lblNumeroDocumento.Size = new System.Drawing.Size(148, 18);
-            this.lblNumeroDocumento.TabIndex = 0;
-            this.lblNumeroDocumento.Text = "Número Codigo:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(17, 35);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(133, 18);
+            this.LblCodigo.TabIndex = 0;
+            this.LblCodigo.Text = "Código Proveedor:";
             // 
             // txt7
             // 
@@ -562,9 +562,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(14, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 18);
+            this.label1.Size = new System.Drawing.Size(151, 18);
             this.label1.TabIndex = 115;
-            this.label1.Text = "Número Codigo:";
+            this.label1.Text = "Código Transportista:";
             // 
             // label2
             // 
@@ -675,7 +675,7 @@
         private System.Windows.Forms.Button btnBuscarProveedor;
         private System.Windows.Forms.TextBox txt2;
         private System.Windows.Forms.Label lblNombreProveedor;
-        private System.Windows.Forms.Label lblNumeroDocumento;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.TextBox txt7;
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.Button btnBuscarProducto;
