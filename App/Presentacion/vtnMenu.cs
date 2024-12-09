@@ -60,7 +60,7 @@ namespace Presentacion
 
         private void menuItemInventario_Click_1(object sender, EventArgs e)
         {
-            verPanel(new vtnInventario());
+            verPanel(new VtnInventario());
         }
 
         private void menuItemCategoría_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace Presentacion
         }
         private void menuItemUnidadesMedida_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnUnidadMedida());
+            verPanel(new VtnUnidadMedida());
         }
 
         private void menuItemRealizarVenta_Click(object sender, EventArgs e)

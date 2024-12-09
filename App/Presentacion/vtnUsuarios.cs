@@ -97,7 +97,6 @@ namespace Presentacion
             if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombreCompleto.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del Usuario.\n";
                 if (string.IsNullOrWhiteSpace(TxtNombreCompleto.Text)) mensajeError += "- Nombre completo del Usuario.\n";
                 if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del Usuario.\n";
                 if (string.IsNullOrWhiteSpace(TxtClave.Text)) mensajeError += "- Clave del Usuario.\n";

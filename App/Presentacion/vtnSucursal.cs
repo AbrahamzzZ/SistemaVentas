@@ -177,6 +177,7 @@ namespace Presentacion
             Sucursal sucursalModificado = new Sucursal()
             {
                 IdSucursal = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Direccion = RtxtDireccion.Text,
                 Latitud = Convert.ToDouble(TxtLatitud.Text),
@@ -191,6 +192,7 @@ namespace Presentacion
 
                 int indice = Convert.ToInt32(txt1.Text);
                 tablaSucursal.Rows[indice].Cells["ID"].Value = sucursalModificado.IdSucursal;
+                tablaSucursal.Rows[indice].Cells["Codigo"].Value = sucursalModificado.Codigo;
                 tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value = sucursalModificado.Nombre;
                 tablaSucursal.Rows[indice].Cells["Direccion"].Value = sucursalModificado.Direccion;
                 tablaSucursal.Rows[indice].Cells["Latitu"].Value = sucursalModificado.Latitud;

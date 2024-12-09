@@ -23,32 +23,32 @@ namespace Presentacion
         private void vtnLogin_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
-            txt1.Select();
+            TxtCodigo.Select();
         }
 
         private void btnVerContrasenia_Click(object sender, EventArgs e)
         {
-            if (txt2.PasswordChar != '\0')
+            if (TxtClave.PasswordChar != '\0')
             {
-                txt2.UseSystemPasswordChar = false;
-                txt2.PasswordChar = '\0';
+                TxtClave.UseSystemPasswordChar = false;
+                TxtClave.PasswordChar = '\0';
             }
             else
             {
-                txt2.UseSystemPasswordChar = true;
+                TxtClave.UseSystemPasswordChar = true;
             }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txt1.Text) || string.IsNullOrWhiteSpace(txt2.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
             {
                 MessageBox.Show("Por favor llene todos los campos para iniciar sesión.", "Inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 List<Usuario> listaUsuarios = new CN_Usuario().Ingresar();
-                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == txt1.Text && u.Clave == txt2.Text);
+                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
                 if (usuario != null)
                 {
                     if (usuario.Estado)
@@ -87,8 +87,8 @@ namespace Presentacion
         }
         private void cerrar(object sender, FormClosingEventArgs e)
         {
-            txt1.Clear();
-            txt2.Clear();
+            TxtCodigo.Clear();
+            TxtClave.Clear();
             this.Show();
         }
         private void timer1_Tick(object sender, EventArgs e)

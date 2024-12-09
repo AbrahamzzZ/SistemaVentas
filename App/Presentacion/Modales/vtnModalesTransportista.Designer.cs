@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblListaTransportistas = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txt1 = new System.Windows.Forms.TextBox();
@@ -37,7 +37,7 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tablaTransportista = new System.Windows.Forms.DataGridView();
             this.IdTRANSPORTISTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).BeginInit();
@@ -98,19 +98,19 @@
             // 
             this.tablaTransportista.AllowUserToAddRows = false;
             this.tablaTransportista.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaTransportista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaTransportista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTransportista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdTRANSPORTISTA,
-            this.Documento,
+            this.Codigo,
             this.NombreS,
             this.Estado});
             this.tablaTransportista.Location = new System.Drawing.Point(12, 123);
@@ -118,9 +118,9 @@
             this.tablaTransportista.Name = "tablaTransportista";
             this.tablaTransportista.ReadOnly = true;
             this.tablaTransportista.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaTransportista.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaTransportista.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaTransportista.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tablaTransportista.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.tablaTransportista.RowTemplate.Height = 28;
@@ -141,11 +141,11 @@
             // 
             // Codigo
             // 
-            this.Documento.HeaderText = "Nro.Codigo";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Codigo";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 125;
+            this.Codigo.HeaderText = "Nro.Codigo";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 125;
             // 
             // NombreS
             // 
@@ -175,6 +175,7 @@
             this.Controls.Add(this.cmb1);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaTransportista);
+            this.MaximizeBox = false;
             this.Name = "vtnModalesTransportista";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los transportistas";
@@ -197,5 +198,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
     }
 }

@@ -43,6 +43,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblDetalleProgramador = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LinkGitHub = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -128,6 +130,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Wheat;
+            this.groupBox1.Controls.Add(this.LinkGitHub);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblNombrePais);
             this.groupBox1.Controls.Add(this.lblPais);
             this.groupBox1.Controls.Add(this.lblInformacion4);
@@ -221,6 +225,28 @@
             this.lblDetalleProgramador.TabIndex = 58;
             this.lblDetalleProgramador.Text = "Programador";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(264, 266);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(176, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Repositorio GitHub:";
+            // 
+            // LinkGitHub
+            // 
+            this.LinkGitHub.AutoSize = true;
+            this.LinkGitHub.Location = new System.Drawing.Point(460, 266);
+            this.LinkGitHub.Name = "LinkGitHub";
+            this.LinkGitHub.Size = new System.Drawing.Size(133, 20);
+            this.LinkGitHub.TabIndex = 15;
+            this.LinkGitHub.TabStop = true;
+            this.LinkGitHub.Text = "Ir a repositorio";
+            this.LinkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkGitHub_LinkClicked);
+            // 
             // vtnAutor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -260,5 +286,7 @@
         private System.Windows.Forms.Label lblDetalleProgramador;
         private System.Windows.Forms.Label lblPais;
         private System.Windows.Forms.Label lblNombrePais;
+        private System.Windows.Forms.LinkLabel LinkGitHub;
+        private System.Windows.Forms.Label label1;
     }
 }

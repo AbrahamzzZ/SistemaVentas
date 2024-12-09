@@ -38,7 +38,7 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tablaClientes = new System.Windows.Forms.DataGridView();
             this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClientes)).BeginInit();
@@ -111,7 +111,7 @@
             this.tablaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdCliente,
-            this.Documento,
+            this.Codigo,
             this.Nombres,
             this.Estado});
             this.tablaClientes.Location = new System.Drawing.Point(12, 123);
@@ -142,11 +142,11 @@
             // 
             // Codigo
             // 
-            this.Documento.HeaderText = "Nro.Codigo";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Codigo";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 125;
+            this.Codigo.HeaderText = "Nro.Codigo";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 125;
             // 
             // Nombres
             // 
@@ -177,6 +177,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaClientes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "vtnModalesClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los clientes";
@@ -199,5 +200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
     }
 }

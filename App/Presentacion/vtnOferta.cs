@@ -139,7 +139,7 @@ namespace Presentacion
                         // Verificar si los elementos seleccionados no son nulos
                         if (selectedItemCmb1 != null)
                         {
-                            tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, valorCmb1, textoCmb1, TxtNombre.Text, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, valorCmb2, textoCmb2 });
+                            tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, TxtCodigo.Text, TxtNombre.Text, valorCmb1, textoCmb1, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, valorCmb2, textoCmb2 });
                             MessageBox.Show("La oferta fue agregada correctamente.", "Agregar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -170,6 +170,7 @@ namespace Presentacion
             Oferta ofertaModificado = new Oferta()
             {
                 IdOferta = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
                 oProducto = new Producto { IdProducto = valorCmb1 },
                 NombreOferta = TxtNombre.Text,
                 Descripcion = RtextDescripcion.Text,
@@ -184,9 +185,10 @@ namespace Presentacion
                 MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 int indice = Convert.ToInt32(TxtIndice.Text);
+                tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;
+                tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
                 tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
                 tablaOferta.Rows[indice].Cells["Producto"].Value = textoCmb1;
-                tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
                 tablaOferta.Rows[indice].Cells["Descripcion"].Value = ofertaModificado.Descripcion;
                 tablaOferta.Rows[indice].Cells["FechaInicio"].Value = ofertaModificado.FechaInicio;
                 tablaOferta.Rows[indice].Cells["FechaFin"].Value = ofertaModificado.FechaFin;
@@ -205,7 +207,9 @@ namespace Presentacion
         {
             if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtextDescripcion.Text) || string.IsNullOrWhiteSpace(TxtDescuento.Text))
             {
-            }else
+                MessageBox.Show("Primero debe selecionar una oferta en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
             {
                 if (Convert.ToInt32(TxtId.Text) != 0)
                 {
@@ -276,7 +280,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaOferta.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtCodigo.Text = tablaOferta.Rows[indice].Cells["CODIGO"].Value.ToString();
+                    TxtCodigo.Text = tablaOferta.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombre.Text = tablaOferta.Rows[indice].Cells["Oferta"].Value.ToString();
                     RtextDescripcion.Text = tablaOferta.Rows[indice].Cells["Descripcion"].Value.ToString();
                     txtFechaInicio.Text = tablaOferta.Rows[indice].Cells["FechaInicio"].Value.ToString();

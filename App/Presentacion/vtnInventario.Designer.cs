@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnInventario
+    partial class VtnInventario
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txt3 = new System.Windows.Forms.TextBox();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
-            this.txt5 = new System.Windows.Forms.TextBox();
             this.lblPaisOrigen = new System.Windows.Forms.Label();
-            this.cmb3 = new System.Windows.Forms.ComboBox();
-            this.cmb2 = new System.Windows.Forms.ComboBox();
-            this.txt4 = new System.Windows.Forms.TextBox();
+            this.CmbProducto = new System.Windows.Forms.ComboBox();
+            this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -46,15 +42,14 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.lblInventario = new System.Windows.Forms.Label();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.cmb4 = new System.Windows.Forms.ComboBox();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.lblCodigoProducto = new System.Windows.Forms.Label();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
+            this.TxtIndice = new System.Windows.Forms.TextBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt6 = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.tablaInventario = new System.Windows.Forms.DataGridView();
+            this.CmbZonaAlmacen = new System.Windows.Forms.ComboBox();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPRODUCTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,30 +57,8 @@
             this.NombreProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UbicacionAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txt3
-            // 
-            this.txt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt3.Location = new System.Drawing.Point(272, 127);
-            this.txt3.Name = "txt3";
-            this.txt3.ReadOnly = true;
-            this.txt3.Size = new System.Drawing.Size(38, 27);
-            this.txt3.TabIndex = 129;
-            this.txt3.Text = "0";
-            // 
-            // cmb1
-            // 
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(30, 127);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(230, 28);
-            this.cmb1.TabIndex = 128;
             // 
             // btnLimpiar
             // 
@@ -93,7 +66,7 @@
             this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(665, 490);
+            this.btnLimpiar.Location = new System.Drawing.Point(690, 490);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(164, 41);
             this.btnLimpiar.TabIndex = 127;
@@ -107,22 +80,13 @@
             this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(392, 128);
+            this.btnExportarExcel.Location = new System.Drawing.Point(417, 128);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(155, 41);
             this.btnExportarExcel.TabIndex = 126;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
-            // 
-            // txt5
-            // 
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(30, 336);
-            this.txt5.Name = "txt5";
-            this.txt5.Size = new System.Drawing.Size(280, 27);
-            this.txt5.TabIndex = 125;
-            this.txt5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt5_KeyPress);
+            this.btnExportarExcel.Click += new System.EventHandler(this.BtnExportarExcel_Click);
             // 
             // lblPaisOrigen
             // 
@@ -135,34 +99,24 @@
             this.lblPaisOrigen.TabIndex = 124;
             this.lblPaisOrigen.Text = "Ubicación en el almacen:";
             // 
-            // cmb3
+            // CmbProducto
             // 
-            this.cmb3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb3.FormattingEnabled = true;
-            this.cmb3.Location = new System.Drawing.Point(30, 403);
-            this.cmb3.Name = "cmb3";
-            this.cmb3.Size = new System.Drawing.Size(280, 28);
-            this.cmb3.TabIndex = 123;
+            this.CmbProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbProducto.FormattingEnabled = true;
+            this.CmbProducto.Location = new System.Drawing.Point(30, 197);
+            this.CmbProducto.Name = "CmbProducto";
+            this.CmbProducto.Size = new System.Drawing.Size(280, 28);
+            this.CmbProducto.TabIndex = 122;
             // 
-            // cmb2
+            // TxtCantidad
             // 
-            this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(30, 197);
-            this.cmb2.Name = "cmb2";
-            this.cmb2.Size = new System.Drawing.Size(280, 28);
-            this.cmb2.TabIndex = 122;
-            // 
-            // txt4
-            // 
-            this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(30, 264);
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(280, 27);
-            this.txt4.TabIndex = 121;
-            this.txt4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt4_KeyPress);
+            this.TxtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCantidad.Location = new System.Drawing.Point(30, 264);
+            this.TxtCantidad.Name = "TxtCantidad";
+            this.TxtCantidad.Size = new System.Drawing.Size(280, 27);
+            this.TxtCantidad.TabIndex = 121;
+            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt4_KeyPress);
             // 
             // lblCantidad
             // 
@@ -192,7 +146,7 @@
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(1207, 490);
+            this.btnEliminar.Location = new System.Drawing.Point(1232, 490);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(164, 41);
             this.btnEliminar.TabIndex = 108;
@@ -206,7 +160,7 @@
             this.btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(946, 490);
+            this.btnModificar.Location = new System.Drawing.Point(971, 490);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(164, 41);
             this.btnModificar.TabIndex = 107;
@@ -220,19 +174,19 @@
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(392, 490);
+            this.btnAgregar.Location = new System.Drawing.Point(417, 490);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(164, 41);
             this.btnAgregar.TabIndex = 106;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // lblInventario
             // 
             this.lblInventario.AutoSize = true;
             this.lblInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInventario.Location = new System.Drawing.Point(731, 43);
+            this.lblInventario.Location = new System.Drawing.Point(756, 43);
             this.lblInventario.Name = "lblInventario";
             this.lblInventario.Size = new System.Drawing.Size(400, 32);
             this.lblInventario.TabIndex = 105;
@@ -242,63 +196,41 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscar.Location = new System.Drawing.Point(726, 140);
+            this.lblBuscar.Location = new System.Drawing.Point(751, 140);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
             this.lblBuscar.TabIndex = 111;
             this.lblBuscar.Text = "Buscar por:";
             // 
-            // cmb4
+            // CmbBuscar
             // 
-            this.cmb4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb4.FormattingEnabled = true;
-            this.cmb4.Location = new System.Drawing.Point(851, 137);
-            this.cmb4.Name = "cmb4";
-            this.cmb4.Size = new System.Drawing.Size(221, 28);
-            this.cmb4.TabIndex = 110;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(876, 137);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(221, 28);
+            this.CmbBuscar.TabIndex = 110;
             // 
-            // txt1
+            // TxtIndice
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(224, 77);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(36, 27);
-            this.txt1.TabIndex = 120;
-            this.txt1.Text = "-1";
-            this.txt1.Visible = false;
+            this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIndice.Location = new System.Drawing.Point(224, 77);
+            this.TxtIndice.Name = "TxtIndice";
+            this.TxtIndice.Size = new System.Drawing.Size(36, 27);
+            this.TxtIndice.TabIndex = 120;
+            this.TxtIndice.Text = "-1";
+            this.TxtIndice.Visible = false;
             // 
-            // txt2
+            // TxtId
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(272, 77);
-            this.txt2.Name = "txt2";
-            this.txt2.ReadOnly = true;
-            this.txt2.Size = new System.Drawing.Size(38, 27);
-            this.txt2.TabIndex = 119;
-            this.txt2.Text = "0";
-            // 
-            // lblEstado
-            // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.BackColor = System.Drawing.Color.Wheat;
-            this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(31, 380);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(73, 20);
-            this.lblEstado.TabIndex = 118;
-            this.lblEstado.Text = "Estado:";
-            // 
-            // lblCodigoProducto
-            // 
-            this.lblCodigoProducto.AutoSize = true;
-            this.lblCodigoProducto.BackColor = System.Drawing.Color.Wheat;
-            this.lblCodigoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoProducto.Location = new System.Drawing.Point(26, 104);
-            this.lblCodigoProducto.Name = "lblCodigoProducto";
-            this.lblCodigoProducto.Size = new System.Drawing.Size(183, 20);
-            this.lblCodigoProducto.TabIndex = 115;
-            this.lblCodigoProducto.Text = "Codigo del producto:";
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(272, 77);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(38, 27);
+            this.TxtId.TabIndex = 119;
+            this.TxtId.Text = "0";
             // 
             // label2
             // 
@@ -313,42 +245,42 @@
             this.label2.Text = "Detalles Inventario";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // txt6
+            // TxtBuscar
             // 
-            this.txt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt6.Location = new System.Drawing.Point(1089, 138);
-            this.txt6.Name = "txt6";
-            this.txt6.Size = new System.Drawing.Size(221, 27);
-            this.txt6.TabIndex = 112;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(1114, 138);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(221, 27);
+            this.TxtBuscar.TabIndex = 112;
             // 
-            // btnBuscar
+            // BtnBuscar
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Wheat;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(1330, 137);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(38, 30);
-            this.btnBuscar.TabIndex = 113;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.BtnBuscar.BackColor = System.Drawing.Color.Wheat;
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.Location = new System.Drawing.Point(1355, 137);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(38, 30);
+            this.BtnBuscar.TabIndex = 113;
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // tablaInventario
             // 
             this.tablaInventario.AllowUserToAddRows = false;
             this.tablaInventario.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -357,23 +289,31 @@
             this.CodigoProducto,
             this.NombreProductos,
             this.Cantidad,
-            this.UbicacionAlmacen,
-            this.EstadoValor,
-            this.Estado});
-            this.tablaInventario.Location = new System.Drawing.Point(392, 187);
+            this.UbicacionAlmacen});
+            this.tablaInventario.Location = new System.Drawing.Point(417, 187);
             this.tablaInventario.MultiSelect = false;
             this.tablaInventario.Name = "tablaInventario";
             this.tablaInventario.ReadOnly = true;
             this.tablaInventario.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaInventario.RowTemplate.Height = 28;
             this.tablaInventario.Size = new System.Drawing.Size(978, 248);
             this.tablaInventario.TabIndex = 130;
-            this.tablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaInventario_CellContentClick);
-            this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaInventario_CellFormatting);
-            this.tablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaInventario_CellPainting);
+            this.tablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaInventario_CellContentClick);
+            this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaInventario_CellFormatting);
+            this.tablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaInventario_CellPainting);
+            // 
+            // CmbZonaAlmacen
+            // 
+            this.CmbZonaAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbZonaAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbZonaAlmacen.FormattingEnabled = true;
+            this.CmbZonaAlmacen.Location = new System.Drawing.Point(30, 336);
+            this.CmbZonaAlmacen.Name = "CmbZonaAlmacen";
+            this.CmbZonaAlmacen.Size = new System.Drawing.Size(280, 28);
+            this.CmbZonaAlmacen.TabIndex = 131;
             // 
             // btnSeleccionar
             // 
@@ -432,39 +372,19 @@
             this.UbicacionAlmacen.ReadOnly = true;
             this.UbicacionAlmacen.Width = 200;
             // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 87;
-            // 
-            // vtnInventario
+            // VtnInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.ClientSize = new System.Drawing.Size(1402, 587);
+            this.Controls.Add(this.CmbZonaAlmacen);
             this.Controls.Add(this.tablaInventario);
-            this.Controls.Add(this.txt3);
-            this.Controls.Add(this.cmb1);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnExportarExcel);
-            this.Controls.Add(this.txt5);
             this.Controls.Add(this.lblPaisOrigen);
-            this.Controls.Add(this.cmb3);
-            this.Controls.Add(this.cmb2);
-            this.Controls.Add(this.txt4);
+            this.Controls.Add(this.CmbProducto);
+            this.Controls.Add(this.TxtCantidad);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEliminar);
@@ -472,17 +392,15 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblInventario);
             this.Controls.Add(this.lblBuscar);
-            this.Controls.Add(this.cmb4);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.txt2);
-            this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.lblCodigoProducto);
+            this.Controls.Add(this.CmbBuscar);
+            this.Controls.Add(this.TxtIndice);
+            this.Controls.Add(this.TxtId);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt6);
-            this.Controls.Add(this.btnBuscar);
-            this.Name = "vtnInventario";
+            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.BtnBuscar);
+            this.Name = "VtnInventario";
             this.Text = "Inventario del supermercado";
-            this.Load += new System.EventHandler(this.vtnInventario_Load);
+            this.Load += new System.EventHandler(this.VtnInventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -490,16 +408,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txt3;
-        private System.Windows.Forms.ComboBox cmb1;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnExportarExcel;
-        private System.Windows.Forms.TextBox txt5;
         private System.Windows.Forms.Label lblPaisOrigen;
-        private System.Windows.Forms.ComboBox cmb3;
-        private System.Windows.Forms.ComboBox cmb2;
-        private System.Windows.Forms.TextBox txt4;
+        private System.Windows.Forms.ComboBox CmbProducto;
+        private System.Windows.Forms.TextBox TxtCantidad;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEliminar;
@@ -507,15 +420,14 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Label lblInventario;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.ComboBox cmb4;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.TextBox txt2;
-        private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.Label lblCodigoProducto;
+        private System.Windows.Forms.ComboBox CmbBuscar;
+        private System.Windows.Forms.TextBox TxtIndice;
+        private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt6;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.DataGridView tablaInventario;
+        private System.Windows.Forms.ComboBox CmbZonaAlmacen;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDPRODUCTO;
@@ -523,7 +435,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn UbicacionAlmacen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

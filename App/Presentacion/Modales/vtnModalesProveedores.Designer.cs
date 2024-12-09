@@ -33,7 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnModalesProveedores));
             this.tablaProveedores = new System.Windows.Forms.DataGridView();
             this.IdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblListaProveedor = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.tablaProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProveedor,
-            this.Documento,
+            this.Codigo,
             this.Nombres,
             this.Estado});
             this.tablaProveedores.Location = new System.Drawing.Point(12, 123);
@@ -91,11 +91,11 @@
             // 
             // Codigo
             // 
-            this.Documento.HeaderText = "Nro. Codigo";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Codigo";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 150;
+            this.Codigo.HeaderText = "Nro. Codigo";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 150;
             // 
             // Nombres
             // 
@@ -177,6 +177,7 @@
             this.Controls.Add(this.cmb1);
             this.Controls.Add(this.lblBuscar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "vtnModalesProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de los proveedores";
@@ -199,5 +200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -73,23 +74,36 @@ namespace Presentacion
             else
             {
                 DataTable dt = new DataTable();
+
+                int columnIndex = 0;
                 foreach (DataGridViewColumn columna in tablaTransportista.Columns)
                 {
-                    if (columna.HeaderText != "" && columna.Visible)
+                    if (columna.HeaderText != "" && columna.Visible && columna.Index != 8)
                     {
                         dt.Columns.Add(columna.HeaderText, typeof(string));
+                        columnIndex++;
                     }
                 }
+
                 foreach (DataGridViewRow row in tablaTransportista.Rows)
                 {
                     if (row.Visible)
                     {
-                        dt.Rows.Add(new object[]
+                        object[] rowData = new object[columnIndex];
+
+                        int rowIndex = 0;
+                        foreach (DataGridViewColumn columna in tablaTransportista.Columns)
                         {
-                            row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[10].Value.ToString()
-                        });
+                            if (columna.HeaderText != "" && columna.Visible && columna.Index != 8)
+                            {
+                                rowData[rowIndex++] = row.Cells[columna.Index].Value?.ToString();
+                            }
+                        }
+
+                        dt.Rows.Add(rowData);
                     }
                 }
+
                 SaveFileDialog guardar = new SaveFileDialog();
                 guardar.FileName = string.Format("Lista_Transportistas.xlsx");
                 guardar.Filter = "Excel Files | *.xlsx";
@@ -150,10 +164,9 @@ namespace Presentacion
             int valorCmb1 = selectedItemCmb1.Valor;
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
+            if (string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtCodigo.Text)) mensajeError += "- Número del documento del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del transportista.\n";
                 if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del transportista.\n";
@@ -344,6 +357,7 @@ namespace Presentacion
                 }
             }
         }
+
         private byte[] ImageToByteArray(System.Drawing.Image image)
         {
             using (MemoryStream ms = new MemoryStream())

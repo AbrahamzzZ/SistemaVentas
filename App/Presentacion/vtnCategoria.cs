@@ -97,6 +97,7 @@ namespace Presentacion
                 Categoria agregarCategoria = new Categoria()
                 {
                     IdCategoria = Convert.ToInt32(TxtId.Text),
+                    Codigo = TxtCodigo.Text,
                     Descripcion = TxtDescripcion.Text,
                     Estado = valorCmb1 == 1
                 };
@@ -108,7 +109,7 @@ namespace Presentacion
                         // Verificar si los elementos seleccionados no son nulos
                         if (selectedItemCmb1 != null)
                         {
-                            tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, TxtDescripcion.Text, valorCmb1, textoCmb1 });
+                            tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, TxtCodigo.Text,TxtDescripcion.Text, valorCmb1, textoCmb1 });
                             MessageBox.Show("La categoría fue agregada correctamente.", "Agregar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
                         }
@@ -136,6 +137,7 @@ namespace Presentacion
             Categoria categoriaModificado = new Categoria()
             {
                 IdCategoria = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
                 Descripcion = TxtDescripcion.Text,
                 Estado = valorCmb1 == 1
             };
@@ -145,6 +147,7 @@ namespace Presentacion
                 MessageBox.Show("La categoría fue modificada correctamente.", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCategoria.Rows[indice].Cells["ID"].Value = categoriaModificado.IdCategoria;
+                tablaCategoria.Rows[indice].Cells["Codigo"].Value = categoriaModificado.Codigo;
                 tablaCategoria.Rows[indice].Cells["Descripcion"].Value = categoriaModificado.Descripcion;
                 tablaCategoria.Rows[indice].Cells["EstadoValor"].Value = categoriaModificado.Estado ? 1 : 0;
                 tablaCategoria.Rows[indice].Cells["Estado"].Value = categoriaModificado.Estado ? "Activo" : "No Activo";
