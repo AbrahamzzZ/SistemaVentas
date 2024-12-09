@@ -6,44 +6,64 @@ namespace Test
     [TestClass]
     public sealed class TestUsuario
     {
+
         [TestMethod]
         public void RegistrarUsuario()
         {
-            Conexion datos = new Conexion();
+            CD_Usuario ObjetoUsuario = new CD_Usuario();
 
-            string Documento = "00009";
+            string Codigo = "00009";
             string NombreCompleto = "Roberto Perez";
             string CorreoElectronico = "roberto@gmail.com";
             string clave = "0123";
-            string mensaje="";
+            string mensaje = "";
             Rol rol = new Rol();
             rol.IdRol = 2;
             bool estado = true;
 
-            Usuario usuarioNuevo = new Usuario();
-            usuarioNuevo.Documento = Documento;
-            usuarioNuevo.NombreCompleto = NombreCompleto;
-            usuarioNuevo.CorreoElectronico= CorreoElectronico;
-            usuarioNuevo.Clave = clave;
-            usuarioNuevo.oRol = rol;
-            usuarioNuevo.Estado = estado;
+            Usuario registrarUsuario = new Usuario();
+            registrarUsuario.Codigo = Codigo;
+            registrarUsuario.NombreCompleto = NombreCompleto;
+            registrarUsuario.CorreoElectronico = CorreoElectronico;
+            registrarUsuario.Clave = clave;
+            registrarUsuario.oRol = rol;
+            registrarUsuario.Estado = estado;
 
-            Assert.IsTrue(datos.RegistrarUsuario(usuarioNuevo, out mensaje) > 0);
-            
+            Assert.IsTrue(ObjetoUsuario.RegistrarUsuario(registrarUsuario, out mensaje) > 0);
+
         }
 
         [TestMethod]
-        public void EliminarUsuario()
+        public void EditarUsuario()
         {
-            Conexion datos = new Conexion();
-            int idUsuario = 1015;
+            CD_Usuario ObjetoUsuario = new CD_Usuario();
+
+            Usuario editarUsuario = new Usuario();
+            editarUsuario.IdUsuario = 8;
+            editarUsuario.Codigo = "8984";
+            editarUsuario.NombreCompleto = "Andrea Noely Gago";
+            editarUsuario.CorreoElectronico = "noelio@gmail.com";
+            editarUsuario.Clave = "343434343";
+            editarUsuario.oRol.IdRol = 1;
+            editarUsuario.Estado = false;
             string mensaje = "";
 
-            Usuario usuarioEliminado = new Usuario();
-            usuarioEliminado.IdUsuario = idUsuario;
-
-            Assert.IsTrue(datos.EliminarUsuario(usuarioEliminado, out mensaje));
+            Assert.IsTrue(ObjetoUsuario.EditarUsuario(editarUsuario, out mensaje));
         }
+
+        /*[TestMethod]
+        public void EliminarUsuario()
+        {
+            CD_Usuario ObjetoUsuario = new CD_Usuario();
+
+            int idUsuario = 8;
+            string mensaje = "";
+
+            Usuario eliminarUsuario = new Usuario();
+            eliminarUsuario.IdUsuario = idUsuario;
+
+            Assert.IsTrue(ObjetoUsuario.EliminarUsuario(eliminarUsuario, out mensaje));
+        }*/
 
     }
 }

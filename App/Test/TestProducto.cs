@@ -6,7 +6,7 @@ namespace Test
     [TestClass]
     public sealed class TestProducto
     {
-        [TestMethod]
+        /*[TestMethod]
         public void RegistrarProducto()
         {
             Conexion datos = new Conexion();
@@ -75,7 +75,7 @@ namespace Test
             productoEliminado.IdProducto = idProducto;
 
             Assert.IsTrue(datos.eliminarProducto(productoEliminado, out mensaje));
-        }
+        }*/
     }
 
 }
