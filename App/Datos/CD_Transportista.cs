@@ -89,7 +89,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_TRANSPORTISTA", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
-                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);

@@ -86,7 +86,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_PROVEEDOR", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
-                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);

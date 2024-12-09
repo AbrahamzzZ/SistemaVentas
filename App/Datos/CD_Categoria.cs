@@ -81,6 +81,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_CATEGORIA", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Categoria", obj.IdCategoria);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
                 cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;

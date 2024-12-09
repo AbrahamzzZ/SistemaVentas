@@ -87,6 +87,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_SUCURSAL", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Sucursal", obj.IdSucursal);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Sucursal", obj.Nombre);
                 cmd.Parameters.AddWithValue("Direccion_Sucursal", obj.Direccion);
                 cmd.Parameters.AddWithValue("Latitud_Sucursal", obj.Latitud);

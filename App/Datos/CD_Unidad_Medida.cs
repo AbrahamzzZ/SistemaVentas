@@ -20,7 +20,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT ID_UNIDAD_MEDIDA, DESCRIPCION, SIMBOLO, ESTADO FROM UNIDAD_MEDIDA");
+                mostrar.AppendLine("SELECT ID_UNIDAD_MEDIDA, CODIGO, DESCRIPCION, SIMBOLO, ESTADO FROM UNIDAD_MEDIDA");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -29,6 +29,7 @@ namespace Datos
                     listaMostrarUnidadesMedidas.Add(new Unidad_Medida()
                     {
                         IdUnidadMedida = Convert.ToInt32(leer["ID_UNIDAD_MEDIDA"]),
+                        Codigo = leer["CODIGO"].ToString(),
                         Descripcion = leer["DESCRIPCION"].ToString(),
                         Simbolo = leer["SIMBOLO"].ToString(),
                         Estado = Convert.ToBoolean(leer["ESTADO"])
@@ -51,6 +52,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_UNIDAD_MEDIDA", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
@@ -81,6 +83,7 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_UNIDAD_MEDIDA", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.IdUnidadMedida);
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
