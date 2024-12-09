@@ -158,11 +158,11 @@
             this.menuMantenimiento.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemInventario,
             this.toolStripSeparator1,
+            this.menuItemUnidadesMedida,
+            this.toolStripSeparator10,
             this.menuItemCategoría,
             this.toolStripSeparator2,
-            this.menuItemProducto,
-            this.toolStripSeparator10,
-            this.menuItemUnidadesMedida});
+            this.menuItemProducto});
             this.menuMantenimiento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuMantenimiento.Image = global::Presentacion.Properties.Resources.mantenimiento;
             this.menuMantenimiento.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -176,7 +176,7 @@
             // 
             this.menuItemInventario.BackColor = System.Drawing.Color.Wheat;
             this.menuItemInventario.Name = "menuItemInventario";
-            this.menuItemInventario.Size = new System.Drawing.Size(211, 28);
+            this.menuItemInventario.Size = new System.Drawing.Size(224, 28);
             this.menuItemInventario.Text = "Inventario";
             this.menuItemInventario.Click += new System.EventHandler(this.menuItemInventario_Click_1);
             // 
@@ -185,39 +185,39 @@
             this.toolStripSeparator1.BackColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemCategoría
             // 
             this.menuItemCategoría.BackColor = System.Drawing.Color.Wheat;
             this.menuItemCategoría.Name = "menuItemCategoría";
-            this.menuItemCategoría.Size = new System.Drawing.Size(211, 28);
+            this.menuItemCategoría.Size = new System.Drawing.Size(224, 28);
             this.menuItemCategoría.Text = "Categoría";
             this.menuItemCategoría.Click += new System.EventHandler(this.menuItemCategoría_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(208, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemProducto
             // 
             this.menuItemProducto.BackColor = System.Drawing.Color.Wheat;
             this.menuItemProducto.Name = "menuItemProducto";
-            this.menuItemProducto.Size = new System.Drawing.Size(211, 28);
+            this.menuItemProducto.Size = new System.Drawing.Size(224, 28);
             this.menuItemProducto.Text = "Producto";
             this.menuItemProducto.Click += new System.EventHandler(this.menuItemProducto_Click_1);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(208, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(221, 6);
             // 
             // menuItemUnidadesMedida
             // 
             this.menuItemUnidadesMedida.BackColor = System.Drawing.Color.Wheat;
             this.menuItemUnidadesMedida.Name = "menuItemUnidadesMedida";
-            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(211, 28);
+            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(224, 28);
             this.menuItemUnidadesMedida.Text = "Unidad Medida";
             this.menuItemUnidadesMedida.Click += new System.EventHandler(this.menuItemUnidadesMedida_Click);
             // 

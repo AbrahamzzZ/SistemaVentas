@@ -33,9 +33,9 @@
             this.lblIniciarSesion = new System.Windows.Forms.Label();
             this.lblOlvidoClave = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
-            this.txt2 = new System.Windows.Forms.TextBox();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.lblNoDocumento = new System.Windows.Forms.Label();
+            this.TxtClave = new System.Windows.Forms.TextBox();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -80,36 +80,36 @@
             this.lblClave.TabIndex = 19;
             this.lblClave.Text = "Ingrese su clave:";
             // 
-            // txt2
+            // TxtClave
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(311, 272);
-            this.txt2.Margin = new System.Windows.Forms.Padding(4);
-            this.txt2.Name = "txt2";
-            this.txt2.Size = new System.Drawing.Size(221, 26);
-            this.txt2.TabIndex = 18;
-            this.txt2.UseSystemPasswordChar = true;
+            this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtClave.Location = new System.Drawing.Point(311, 272);
+            this.TxtClave.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtClave.Name = "TxtClave";
+            this.TxtClave.Size = new System.Drawing.Size(221, 26);
+            this.TxtClave.TabIndex = 18;
+            this.TxtClave.UseSystemPasswordChar = true;
             // 
-            // txt1
+            // TxtCodigo
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(311, 222);
-            this.txt1.Margin = new System.Windows.Forms.Padding(4);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(221, 26);
-            this.txt1.TabIndex = 17;
-            this.txt1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(311, 222);
+            this.TxtCodigo.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.Size = new System.Drawing.Size(221, 26);
+            this.TxtCodigo.TabIndex = 17;
+            this.TxtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
             // 
-            // lblNoDocumento
+            // LblCodigo
             // 
-            this.lblNoDocumento.AutoSize = true;
-            this.lblNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoDocumento.Location = new System.Drawing.Point(49, 228);
-            this.lblNoDocumento.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNoDocumento.Name = "lblNoDocumento";
-            this.lblNoDocumento.Size = new System.Drawing.Size(232, 20);
-            this.lblNoDocumento.TabIndex = 16;
-            this.lblNoDocumento.Text = "Ingrese su No.Codigo:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(49, 228);
+            this.LblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(164, 20);
+            this.LblCodigo.TabIndex = 16;
+            this.LblCodigo.Text = "Ingrese su código:";
             // 
             // btnSalir
             // 
@@ -205,9 +205,9 @@
             this.Controls.Add(this.btnVerContrasenia);
             this.Controls.Add(this.lblOlvidoClave);
             this.Controls.Add(this.lblClave);
-            this.Controls.Add(this.txt2);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.lblNoDocumento);
+            this.Controls.Add(this.TxtClave);
+            this.Controls.Add(this.TxtCodigo);
+            this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.lblHagaClicAqui);
@@ -232,9 +232,9 @@
         private System.Windows.Forms.Button btnVerContrasenia;
         private System.Windows.Forms.Label lblOlvidoClave;
         private System.Windows.Forms.Label lblClave;
-        private System.Windows.Forms.TextBox txt2;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.Label lblNoDocumento;
+        private System.Windows.Forms.TextBox TxtClave;
+        private System.Windows.Forms.TextBox TxtCodigo;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Timer timer1;

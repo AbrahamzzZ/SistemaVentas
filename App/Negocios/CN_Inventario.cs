@@ -31,10 +31,6 @@ namespace Negocios
             {
                 mensaje += "Es necesario la cantidad de productos.\n";
             }
-            if (obj.UbicacionAlmacen == "")
-            {
-                mensaje += "Es necesario la ubicacion del almacen para el producto.";
-            }
             if (mensaje != string.Empty)
             {
                 return false;
@@ -49,6 +45,5 @@ namespace Negocios
         {
             return ObjetoProductoInventario.EliminarProductoInventario(obj, out mensaje);
         }
-
     }
 }

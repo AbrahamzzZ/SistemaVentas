@@ -163,6 +163,7 @@
             this.Descuento.MinimumWidth = 6;
             this.Descuento.Name = "Descuento";
             this.Descuento.ReadOnly = true;
+            this.Descuento.Width = 125;
             // 
             // Estado
             // 
@@ -170,6 +171,7 @@
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
+            this.Estado.Width = 125;
             // 
             // vtnModalesOfertas
             // 
@@ -183,6 +185,7 @@
             this.Controls.Add(this.cmb1);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaOfertas);
+            this.MaximizeBox = false;
             this.Name = "vtnModalesOfertas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de las ofertas";

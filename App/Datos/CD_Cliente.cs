@@ -89,7 +89,7 @@ namespace Datos
 
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
                 cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
@@ -122,13 +122,13 @@ namespace Datos
             {
                 SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                 Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
             }
             catch (Exception cl)

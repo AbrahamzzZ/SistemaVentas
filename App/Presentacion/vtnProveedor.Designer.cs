@@ -53,7 +53,7 @@
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
             this.TxtNombres = new System.Windows.Forms.TextBox();
             this.lblNombes = new System.Windows.Forms.Label();
-            this.TxtNoDocumento = new System.Windows.Forms.TextBox();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.LblCodigo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
@@ -326,14 +326,14 @@
             this.lblNombes.TabIndex = 114;
             this.lblNombes.Text = "Nombres:";
             // 
-            // TxtNoDocumento
+            // TxtCodigo
             // 
-            this.TxtNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNoDocumento.Location = new System.Drawing.Point(30, 127);
-            this.TxtNoDocumento.Name = "TxtNoDocumento";
-            this.TxtNoDocumento.ReadOnly = true;
-            this.TxtNoDocumento.Size = new System.Drawing.Size(280, 27);
-            this.TxtNoDocumento.TabIndex = 113;
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(30, 127);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.ReadOnly = true;
+            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
+            this.TxtCodigo.TabIndex = 113;
             // 
             // LblCodigo
             // 
@@ -518,7 +518,7 @@
             this.Controls.Add(this.lblCorreoElectronico);
             this.Controls.Add(this.TxtNombres);
             this.Controls.Add(this.lblNombes);
-            this.Controls.Add(this.TxtNoDocumento);
+            this.Controls.Add(this.TxtCodigo);
             this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtBuscar);
@@ -558,7 +558,7 @@
         private System.Windows.Forms.Label lblCorreoElectronico;
         private System.Windows.Forms.TextBox TxtNombres;
         private System.Windows.Forms.Label lblNombes;
-        private System.Windows.Forms.TextBox TxtNoDocumento;
+        private System.Windows.Forms.TextBox TxtCodigo;
         private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtBuscar;

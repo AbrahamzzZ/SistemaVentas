@@ -47,7 +47,7 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.TxtIndice = new System.Windows.Forms.TextBox();
-            this.TxtEstado = new System.Windows.Forms.TextBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
@@ -268,15 +268,15 @@
             this.TxtIndice.Text = "-1";
             this.TxtIndice.Visible = false;
             // 
-            // TxtEstado
+            // TxtId
             // 
-            this.TxtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEstado.Location = new System.Drawing.Point(276, 77);
-            this.TxtEstado.Name = "TxtEstado";
-            this.TxtEstado.ReadOnly = true;
-            this.TxtEstado.Size = new System.Drawing.Size(34, 27);
-            this.TxtEstado.TabIndex = 89;
-            this.TxtEstado.Text = "0";
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(276, 77);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 89;
+            this.TxtId.Text = "0";
             // 
             // lblEstado
             // 
@@ -569,7 +569,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.TxtIndice);
-            this.Controls.Add(this.TxtEstado);
+            this.Controls.Add(this.TxtId);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.TxtCodigo);
@@ -607,7 +607,7 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.TextBox TxtIndice;
-        private System.Windows.Forms.TextBox TxtEstado;
+        private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.TextBox TxtCodigo;

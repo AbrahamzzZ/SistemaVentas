@@ -10,11 +10,9 @@ namespace Entidad
     {
         public int IdInventario { get; set; }
         public Producto oProducto { get; set; }
-        public string CodigoProducto { get; set; }
-        public string NombreProducto { get; set; }
+        public Zona_Almacen oZonaAlmacen { get; set; }
         public int Cantidad { get; set; }
-        public string UbicacionAlmacen { get; set; }
-        public bool Estado { get; set; }
         public string FechaIngreso { get; set; }
+
     }
 }

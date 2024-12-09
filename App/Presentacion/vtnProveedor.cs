@@ -39,7 +39,7 @@ namespace Presentacion
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
@@ -135,10 +135,9 @@ namespace Presentacion
             string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text)) mensajeError += "- Número del documento del proveedor.\n";
                 if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del proveedor.\n";
                 if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del proveedor.\n";
                 if (string.IsNullOrWhiteSpace(TextCedula.Text)) mensajeError += "- Cedula del proveedor.\n";
@@ -152,7 +151,7 @@ namespace Presentacion
                 Proveedor agregarProveedor = new Proveedor()
                 {
                     IdProveedor = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtNoDocumento.Text,
+                    Codigo = TxtCodigo.Text,
                     Nombres = TxtNombres.Text,
                     Apellidos = TxtApellidos.Text,
                     Cedula = TextCedula.Text,
@@ -166,7 +165,7 @@ namespace Presentacion
                     // Verificar si los elementos seleccionados no son nulos
                     if (selectedItemCmb1 != null)
                     {
-                        tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, TxtNoDocumento.Text, TxtNombres.Text, TxtApellidos.Text, TextCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
+                        tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TextCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
                         MessageBox.Show("El proveedor fue agregado correctamente.", "Agregar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
@@ -193,7 +192,7 @@ namespace Presentacion
             Proveedor proveedorModificado = new Proveedor()
             {
                 IdProveedor = Convert.ToInt32(TxtId.Text),
-                Codigo = TxtNoDocumento.Text,
+                Codigo = TxtCodigo.Text,
                 Nombres = TxtNombres.Text,
                 Apellidos = TxtApellidos.Text,
                 Cedula = TextCedula.Text,
@@ -222,7 +221,7 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
             {
                 MessageBox.Show("Primero debe selecionar un proveedor en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -295,7 +294,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaProveedores.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaProveedores.Rows[indice].Cells["Codigo"].Value.ToString();
+                    TxtCodigo.Text = tablaProveedores.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombres.Text = tablaProveedores.Rows[indice].Cells["Nombres"].Value.ToString();
                     TxtApellidos.Text = tablaProveedores.Rows[indice].Cells["Apellidos"].Value.ToString();
                     TextCedula.Text = tablaProveedores.Rows[indice].Cells["Cedula"].Value.ToString();
@@ -323,7 +322,7 @@ namespace Presentacion
         {
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             TxtNombres.Clear();
             TxtApellidos.Clear();
             TextCedula.Clear();

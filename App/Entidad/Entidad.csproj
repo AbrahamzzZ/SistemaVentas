@@ -62,6 +62,7 @@
     <Compile Include="Unidad_Medida.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Venta.cs" />
+    <Compile Include="Zona_Almacen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

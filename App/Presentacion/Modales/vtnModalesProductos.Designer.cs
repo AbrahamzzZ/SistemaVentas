@@ -220,6 +220,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaProductos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "vtnModalesProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los productos";

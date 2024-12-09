@@ -150,7 +150,7 @@ namespace Datos
 
                 SqlCommand cmd = new SqlCommand("PA_EDITAR_USUARIO", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.IdUsuario);
-                /*cmd.Parameters.AddWithValue("Codigo", obj.Codigo);*/
+                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
                 cmd.Parameters.AddWithValue("Clave", obj.Clave);

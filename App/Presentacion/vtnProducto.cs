@@ -183,7 +183,7 @@ namespace Presentacion
             {
                 Producto agregarProducto = new Producto()
                 {
-                    IdProducto = Convert.ToInt32(TxtEstado.Text),
+                    IdProducto = Convert.ToInt32(TxtId.Text),
                     Codigo = TxtCodigo.Text,
                     Nombre = TxtNombre.Text,
                     Descripcion = TxtDescripcion.Text,
@@ -246,7 +246,7 @@ namespace Presentacion
 
             Producto productoModificado = new Producto()
             {
-                IdProducto = Convert.ToInt32(TxtEstado.Text),
+                IdProducto = Convert.ToInt32(TxtId.Text),
                 Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Descripcion = TxtDescripcion.Text,
@@ -281,12 +281,12 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
                 MessageBox.Show("Primero debe selecionar un producto en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else {
-                if (Convert.ToInt32(TxtEstado.Text) != 0)
+                if (Convert.ToInt32(TxtId.Text) != 0)
                 {
                     if (MessageBox.Show("Desea eliminar este producto?", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
@@ -294,7 +294,7 @@ namespace Presentacion
 
                         Producto productoEliminado = new Producto()
                         {
-                            IdProducto = Convert.ToInt32(TxtEstado.Text),
+                            IdProducto = Convert.ToInt32(TxtId.Text),
                         };
                         bool respuesta = new CN_Producto().Eliminar(productoEliminado, out mensaje);
                         if (respuesta)
@@ -352,7 +352,7 @@ namespace Presentacion
                 if (indice >= 0)
                 {
                     TxtIndice.Text = indice.ToString();
-                    TxtEstado.Text = tablaProducto.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtId.Text = tablaProducto.Rows[indice].Cells["ID"].Value.ToString();
                     TxtCodigo.Text = tablaProducto.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombre.Text = tablaProducto.Rows[indice].Cells["Producto"].Value.ToString();
                     TxtDescripcion.Text = tablaProducto.Rows[indice].Cells["Descripcion"].Value.ToString();
@@ -403,7 +403,7 @@ namespace Presentacion
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
-            TxtEstado.Text = "0";
+            TxtId.Text = "0";
             TxtCodigo.Text = GenerarCodigo(4);
             TxtNombre.Clear();
             TxtDescripcion.Clear();

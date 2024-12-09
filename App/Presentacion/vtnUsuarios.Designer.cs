@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.TxtIndice = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
@@ -44,14 +44,20 @@
             this.TxtNombreCompleto = new System.Windows.Forms.TextBox();
             this.lblNombesCompletos = new System.Windows.Forms.Label();
             this.TxtNoDocumento = new System.Windows.Forms.TextBox();
-            this.lblNoDocumento = new System.Windows.Forms.Label();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaUsuarios = new System.Windows.Forms.DataGridView();
+            this.BtnEliminar = new System.Windows.Forms.Button();
+            this.BtnModificar = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
+            this.lblUsuarios = new System.Windows.Forms.Label();
+            this.lblBuscar = new System.Windows.Forms.Label();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombresCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,12 +65,6 @@
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnEliminar = new System.Windows.Forms.Button();
-            this.BtnModificar = new System.Windows.Forms.Button();
-            this.BtnAgregar = new System.Windows.Forms.Button();
-            this.lblUsuarios = new System.Windows.Forms.Label();
-            this.lblBuscar = new System.Windows.Forms.Label();
-            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -211,16 +211,16 @@
             this.TxtNoDocumento.Size = new System.Drawing.Size(280, 27);
             this.TxtNoDocumento.TabIndex = 52;
             // 
-            // lblNoDocumento
+            // LblCodigo
             // 
-            this.lblNoDocumento.AutoSize = true;
-            this.lblNoDocumento.BackColor = System.Drawing.Color.Wheat;
-            this.lblNoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoDocumento.Location = new System.Drawing.Point(26, 104);
-            this.lblNoDocumento.Name = "lblNoDocumento";
-            this.lblNoDocumento.Size = new System.Drawing.Size(138, 20);
-            this.lblNoDocumento.TabIndex = 51;
-            this.lblNoDocumento.Text = "No.Codigo:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(26, 104);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 51;
+            this.LblCodigo.Text = "Código:";
             // 
             // label2
             // 
@@ -262,20 +262,20 @@
             // 
             this.tablaUsuarios.AllowUserToAddRows = false;
             this.tablaUsuarios.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
             this.ID,
-            this.Documento,
+            this.Codigo,
             this.NombresCompleto,
             this.CorreoElectronico,
             this.Clave,
@@ -288,99 +288,15 @@
             this.tablaUsuarios.Name = "tablaUsuarios";
             this.tablaUsuarios.ReadOnly = true;
             this.tablaUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaUsuarios.RowTemplate.Height = 28;
             this.tablaUsuarios.Size = new System.Drawing.Size(978, 248);
             this.tablaUsuarios.TabIndex = 45;
             this.tablaUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaUsuarios_CellContentClick);
             this.tablaUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaUsuarios_CellFormatting);
             this.tablaUsuarios.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaUsuarios_CellPainting);
-            // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.HeaderText = "";
-            this.btnSeleccionar.MinimumWidth = 6;
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.ReadOnly = true;
-            this.btnSeleccionar.Width = 30;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id Usuario";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 50;
-            // 
-            // Codigo
-            // 
-            this.Documento.HeaderText = "No. Codigo";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Codigo";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 150;
-            // 
-            // NombresCompleto
-            // 
-            this.NombresCompleto.HeaderText = "Nombres Completos";
-            this.NombresCompleto.MinimumWidth = 6;
-            this.NombresCompleto.Name = "NombresCompleto";
-            this.NombresCompleto.ReadOnly = true;
-            this.NombresCompleto.Width = 220;
-            // 
-            // CorreoElectronico
-            // 
-            this.CorreoElectronico.HeaderText = "Correo Electrónico";
-            this.CorreoElectronico.MinimumWidth = 6;
-            this.CorreoElectronico.Name = "CorreoElectronico";
-            this.CorreoElectronico.ReadOnly = true;
-            this.CorreoElectronico.Width = 220;
-            // 
-            // Clave
-            // 
-            this.Clave.HeaderText = "Clave";
-            this.Clave.MinimumWidth = 6;
-            this.Clave.Name = "Clave";
-            this.Clave.ReadOnly = true;
-            this.Clave.Visible = false;
-            this.Clave.Width = 125;
-            // 
-            // IDROL
-            // 
-            this.IDROL.HeaderText = "Id Rol";
-            this.IDROL.MinimumWidth = 6;
-            this.IDROL.Name = "IDROL";
-            this.IDROL.ReadOnly = true;
-            this.IDROL.Visible = false;
-            this.IDROL.Width = 125;
-            // 
-            // Rol
-            // 
-            this.Rol.HeaderText = "Rol";
-            this.Rol.MinimumWidth = 6;
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            this.Rol.Width = 113;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 87;
             // 
             // BtnEliminar
             // 
@@ -454,6 +370,90 @@
             this.CmbBuscar.Size = new System.Drawing.Size(230, 28);
             this.CmbBuscar.TabIndex = 46;
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.MinimumWidth = 6;
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 30;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id Usuario";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 150;
+            // 
+            // NombresCompleto
+            // 
+            this.NombresCompleto.HeaderText = "Nombres Completos";
+            this.NombresCompleto.MinimumWidth = 6;
+            this.NombresCompleto.Name = "NombresCompleto";
+            this.NombresCompleto.ReadOnly = true;
+            this.NombresCompleto.Width = 220;
+            // 
+            // CorreoElectronico
+            // 
+            this.CorreoElectronico.HeaderText = "Correo Electrónico";
+            this.CorreoElectronico.MinimumWidth = 6;
+            this.CorreoElectronico.Name = "CorreoElectronico";
+            this.CorreoElectronico.ReadOnly = true;
+            this.CorreoElectronico.Width = 220;
+            // 
+            // Clave
+            // 
+            this.Clave.HeaderText = "Clave";
+            this.Clave.MinimumWidth = 6;
+            this.Clave.Name = "Clave";
+            this.Clave.ReadOnly = true;
+            this.Clave.Visible = false;
+            this.Clave.Width = 125;
+            // 
+            // IDROL
+            // 
+            this.IDROL.HeaderText = "Id Rol";
+            this.IDROL.MinimumWidth = 6;
+            this.IDROL.Name = "IDROL";
+            this.IDROL.ReadOnly = true;
+            this.IDROL.Visible = false;
+            this.IDROL.Width = 125;
+            // 
+            // Rol
+            // 
+            this.Rol.HeaderText = "Rol";
+            this.Rol.MinimumWidth = 6;
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            this.Rol.Width = 113;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "Estado valor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            this.EstadoValor.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 87;
+            // 
             // VtnUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -474,7 +474,7 @@
             this.Controls.Add(this.TxtNombreCompleto);
             this.Controls.Add(this.lblNombesCompletos);
             this.Controls.Add(this.TxtNoDocumento);
-            this.Controls.Add(this.lblNoDocumento);
+            this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.TxtBuscar);
@@ -510,7 +510,7 @@
         private System.Windows.Forms.TextBox TxtNombreCompleto;
         private System.Windows.Forms.Label lblNombesCompletos;
         private System.Windows.Forms.TextBox TxtNoDocumento;
-        private System.Windows.Forms.Label lblNoDocumento;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.TextBox TxtBuscar;
@@ -521,9 +521,10 @@
         private System.Windows.Forms.Label lblUsuarios;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.ComboBox CmbBuscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombresCompleto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorreoElectronico;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
