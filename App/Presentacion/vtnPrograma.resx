@@ -117,17 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>La objetivo de este sistema de ventas es de poner en practica todo lo que se a visto en el curso de Programacipon Orientadas a Eventos desde la creación de ventanas hasta la creación de procedimientos almacenados.</value>
-  </data>
   <data name="lblTexto.Text" xml:space="preserve">
     <value>Para la creación del sistema de ventas se ha utilizado el lenguaje de programación C# ya que es un lenguaje de programación orientado a objetos.
 El sistema de ventas será un aplicacion de escritorio y usara el framework .NET para poder utilizar el Windows Forms para la creación de interfaces de usuario 
 intuitivas y funcionales.</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Para este sistema de ventas se a utilizado la base de datos SQL Server. Se a creado un total de 17 tablas y 35 procedimientos almacenados. Este sistema de ventas soporta una amplia gama de operaciones comerciales, 
-desde la gestión de roles y permisos de usuario hasta el seguimiento de inventario y transacciones de ventas. 
+    <value>Para este sistema de ventas se a utilizado la base de datos SQL Server. Este sistema de ventas soporta una amplia gama de operaciones comerciales, desde la gestión de roles y permisos de usuario hasta el 
+seguimiento de inventario y transacciones de compras y ventas. 
 
 
 

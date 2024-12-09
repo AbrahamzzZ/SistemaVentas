@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnVenta));
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,7 +39,7 @@
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablaVentas = new System.Windows.Forms.DataGridView();
-            this.lblNumeroDocumento = new System.Windows.Forms.Label();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.txt2 = new System.Windows.Forms.TextBox();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
@@ -150,15 +150,15 @@
             // 
             this.tablaVentas.AllowUserToAddRows = false;
             this.tablaVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
@@ -173,24 +173,24 @@
             this.tablaVentas.Name = "tablaVentas";
             this.tablaVentas.ReadOnly = true;
             this.tablaVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaVentas.RowTemplate.Height = 28;
             this.tablaVentas.Size = new System.Drawing.Size(657, 196);
             this.tablaVentas.TabIndex = 123;
             this.tablaVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaVentas_CellContentClick);
             this.tablaVentas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaVentas_CellPainting);
             // 
-            // lblNumeroDocumento
+            // LblCodigo
             // 
-            this.lblNumeroDocumento.AutoSize = true;
-            this.lblNumeroDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroDocumento.Location = new System.Drawing.Point(17, 35);
-            this.lblNumeroDocumento.Name = "lblNumeroDocumento";
-            this.lblNumeroDocumento.Size = new System.Drawing.Size(148, 18);
-            this.lblNumeroDocumento.TabIndex = 0;
-            this.lblNumeroDocumento.Text = "Número Codigo:";
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(17, 35);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(109, 18);
+            this.LblCodigo.TabIndex = 0;
+            this.LblCodigo.Text = "Código Cliente:";
             // 
             // lblNombreCliente
             // 
@@ -252,7 +252,7 @@
             this.groupBox2.Controls.Add(this.btnBuscarCliente);
             this.groupBox2.Controls.Add(this.txt2);
             this.groupBox2.Controls.Add(this.lblNombreCliente);
-            this.groupBox2.Controls.Add(this.lblNumeroDocumento);
+            this.groupBox2.Controls.Add(this.LblCodigo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(797, 87);
             this.groupBox2.Name = "groupBox2";
@@ -695,7 +695,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridView tablaVentas;
-        private System.Windows.Forms.Label lblNumeroDocumento;
+        private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.TextBox txt2;
         private System.Windows.Forms.Button btnBuscarCliente;

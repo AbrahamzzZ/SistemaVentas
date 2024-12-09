@@ -137,7 +137,7 @@ namespace Presentacion
 
         private void menuItemVerReclamos_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnReclamo());
+            //verPanel(new VtnReclamo());
         }
         private void menuItemVerNegocio_Click(object sender, EventArgs e)
         {
@@ -146,12 +146,12 @@ namespace Presentacion
 
         private void menuItemVerAutor_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnAutor());
+            verPanel(new VtnAutor());
         }
 
         private void menuItemVerPrograma_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnPrograma());
+            verPanel(new VtnPrograma());
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
