@@ -45,6 +45,5 @@ namespace Negocios
         {
             return ObjetoProductoInventario.EliminarProductoInventario(obj, out mensaje);
         }
-
     }
 }
