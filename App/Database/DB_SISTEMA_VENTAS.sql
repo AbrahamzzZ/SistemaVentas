@@ -143,9 +143,8 @@ go
 CREATE TABLE VENTA ( ID_VENTA int primary key identity,
 ID_USUARIO int references USUARIO (ID_USUARIO),
 TIPO_DOCUMENTO varchar(50),
+ID_CLIENTE int references CLIENTE (ID_CLIENTE),
 NUMERO_DOCUMENTO varchar(50),
-DOCUMENTO_CLIENTE varchar(30),
-NOMBRE_CLIENTE varchar(30),
 MONTO_PAGO decimal (10,2),
 MONTO_CAMBIO decimal (10,2),
 MONTO_TOTAL decimal (10,2),
@@ -1119,6 +1118,7 @@ begin
 		INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL) VALUES
 		( @Id_Usuario, @Id_Proveedor, @Id_Transportista, @Tipo_Documento, @Numero_Documento, @Monto_Total);
 		set @Id_Compra = SCOPE_IDENTITY()
+
 		INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD, MONTO_TOTAL) 
 		SELECT @Id_Compra, Id_Producto, Precio_Compra, Precio_Venta, Cantidad, Monto_Total FROM @Detalle_Compra
 		update p set p.Stock = p.Stock + dc.Cantidad,
@@ -1150,8 +1150,7 @@ CREATE PROCEDURE PA_REGISTRAR_VENTA(
 @Id_Usuario int,
 @Tipo_Documento varchar(500),
 @Numero_Documento varchar(500),
-@Documento_Cliente varchar(500),
-@Nombre_Cliente varchar(500),
+@Id_Cliente int,
 @Monto_Pago decimal(18,2),
 @Monto_Cambio decimal(18,2),
 @Monto_Total decimal(18,2),
@@ -1167,8 +1166,8 @@ begin
 		set @Resultado = 1
 		set @Mensaje = ''
 		begin transaction registro
-		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, DOCUMENTO_CLIENTE, NOMBRE_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
-		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @Documento_Cliente, @Nombre_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
+		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
+		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
 		set @Id_Venta = SCOPE_IDENTITY()
 		INSERT INTO DETALLE_VENTA(ID_VENTA, ID_PRODUCTO, PRECIO_VENTA, CANTIDAD_PRODUCTO, SUBTOTAL, DESCUENTO)
 		SELECT @Id_Venta,IdProducto, PrecioVenta, Cantidad, SubTotal, Descuento FROM @Detalle_Venta
@@ -1218,12 +1217,13 @@ begin
 	set dateformat dmy;
 	select convert(char(10), v.FECHA_VENTA, 103)[FECHA_VENTA], v.TIPO_DOCUMENTO, v.NUMERO_DOCUMENTO, v.MONTO_TOTAL, v.DESCUENTO,
 	u.NOMBRE_COMPLETO[NOMBRE_USUARIO],
-	v.DOCUMENTO_CLIENTE, v.NOMBRE_CLIENTE,
+	cl.CEDULA, cl.NOMBRES,
 	p.CODIGO[CODIGO_PRODUCTO], p.NOMBRE_PRODUCTO, ca.DESCRIPCION[CATEGORIA], dv.PRECIO_VENTA, dv.CANTIDAD_PRODUCTO, dv.SUBTOTAL
 	from VENTA v inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO
 	inner join DETALLE_VENTA dv on dv.ID_VENTA = v.ID_VENTA
 	inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO
 	inner join CATEGORIA ca on ca.ID_CATEGORIA = p.ID_CATEGORIA
+	inner join CLIENTE cl on cl.ID_CLIENTE = v.ID_CLIENTE
 	where convert(date, v.FECHA_VENTA) between @fecha_Inicio and @fecha_Fin
 end
 go
