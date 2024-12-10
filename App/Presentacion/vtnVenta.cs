@@ -13,115 +13,117 @@ using Entidad;
 
 namespace Presentacion
 {
-    public partial class vtnVenta : Form
+    public partial class VtnVenta : Form
     {
         private Usuario usuario;
-        public vtnVenta(Usuario oUsuario = null)
+        private Cliente cliente;
+        public VtnVenta(Usuario oUsuario = null)
         {
             usuario = oUsuario;
             InitializeComponent();
         }
 
-        private void vtnVenta_Load(object sender, EventArgs e)
+        private void VtnVenta_Load(object sender, EventArgs e)
         {
-            cmb1.Items.Add(new { Valor = "Boleta", Texto = "Boleta" });
-            cmb1.Items.Add(new { Valor = "Factura", Texto = "Factura" });
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbTipoDocumento.Items.Add(new { Valor = "Boleta", Texto = "Boleta" });
+            CmbTipoDocumento.Items.Add(new { Valor = "Factura", Texto = "Factura" });
+            CmbTipoDocumento.DisplayMember = "Texto";
+            CmbTipoDocumento.ValueMember = "Valor";
+            CmbTipoDocumento.SelectedIndex = 0;
 
-            txt1.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            txt4.Text = "0";
-            txt5.Text = "0";
-            txt10.Text = "";
-            txt11.Text = "0";
-            txt12.Text = "";
-            txt13.Text = "";
-            txt14.Text = "";
+            TxtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            TxtIdCliente.Text = "0";
+            TxtIdProducto.Text = "0";
+            TxtIdOferta.Text = "";
+            TxtPagar.Text = "";
+            TxtTotalDescuento.Text = "";
+            TxtPagaCon.Text = "";
+            TxtCambio.Text = "";
         }
-        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        private void BtnBuscarCliente_Click(object sender, EventArgs e)
         {
             using (var modal = new vtnModalesClientes())
             {
+                cliente = modal.Cliente;
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txt4.Text = modal.Cliente.IdCliente.ToString();
-                    txt2.Text = modal.Cliente.Codigo.ToString();
-                    txt3.Text = modal.Cliente.Nombres.ToString();
+                    TxtIdCliente.Text = modal.Cliente.IdCliente.ToString();
+                    TxtCedulaCliente.Text = modal.Cliente.Codigo.ToString();
+                    TxtNombresCliente.Text = modal.Cliente.Nombres.ToString();
                 }
                 else
                 {
-                    txt4.Select();
+                    TxtIdCliente.Select();
                 }
             }
         }
 
-        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        private void BtnBuscarProducto_Click(object sender, EventArgs e)
         {
             using (var modal = new vtnModalesProductos())
             {
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txt5.Text = modal.Producto.IdProducto.ToString();
-                    txt6.Text = modal.Producto.Codigo.ToString();
-                    txt7.Text = modal.Producto.Nombre.ToString();
-                    txt8.Text = modal.Producto.PrecioVenta.ToString("0.00");
-                    txt9.Text = modal.Producto.Stock.ToString();
-                    numericUpDown1.Select();
+                    TxtIdProducto.Text = modal.Producto.IdProducto.ToString();
+                    TxtCodigo.Text = modal.Producto.Codigo.ToString();
+                    TxtProducto.Text = modal.Producto.Nombre.ToString();
+                    TxtPrecioCompra.Text = modal.Producto.PrecioVenta.ToString("0.00");
+                    TxtStock.Text = modal.Producto.Stock.ToString();
+                    numericUpDownCantidad.Select();
                 }
             }
         }
-        private void btnBuscarOfertas_Click(object sender, EventArgs e)
+        private void BtnBuscarOfertas_Click(object sender, EventArgs e)
         {
             using (var modal = new vtnModalesOfertas())
             {
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    txtOferta.Text = modal.oferta.NombreOferta.ToString();
-                    txt10.Text = modal.oferta.Descuento.ToString();
+                    TxtNombreOferta.Text = modal.oferta.NombreOferta.ToString();
+                    TxtIdOferta.Text = modal.oferta.Descuento.ToString();
                 }
                 else
                 {
-                    txtOferta.Clear();
-                    txt10.Clear();
-                    txt13.Select();
+                    TxtNombreOferta.Clear();
+                    TxtIdOferta.Clear();
+                    TxtPagaCon.Select();
                 }
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void BtnAgregar_Click(object sender, EventArgs e)
         {
             decimal precio = 0;
             bool productoExistente = false;
 
-            if (int.Parse(txt5.Text) == 0)
+            if (int.Parse(TxtIdProducto.Text) == 0)
             {
                 MessageBox.Show("Debe seleccionar un producto.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!decimal.TryParse(txt8.Text, out precio))
+            if (!decimal.TryParse(TxtPrecioCompra.Text, out precio))
             {
                 MessageBox.Show("Formato moneda incorrecta.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txt8.Select();
+                TxtPrecioCompra.Select();
                 return;
             }
-            if (Convert.ToInt32(txt9.Text) < Convert.ToInt32(numericUpDown1.Value.ToString()))
+            if (Convert.ToInt32(TxtStock.Text) < Convert.ToInt32(numericUpDownCantidad.Value.ToString()))
             {
                 MessageBox.Show("La cantidad no puede ser mayor al stock.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (numericUpDown1.Value == 0)
+            if (numericUpDownCantidad.Value == 0)
             {
                 MessageBox.Show("No puedes realizar una venta con 0 productos.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericUpDown1.Select(); 
+                numericUpDownCantidad.Select(); 
                 return;
             }
             foreach (DataGridViewRow fila in tablaVentas.Rows)
             {
-                if (fila.Cells["IdProducto"].Value != null && fila.Cells["IdProducto"].Value.ToString() == txt5.Text)
+                if (fila.Cells["IdProducto"].Value != null && fila.Cells["IdProducto"].Value.ToString() == TxtIdProducto.Text)
                 {
                     productoExistente = true;
                     break;
@@ -130,39 +132,39 @@ namespace Presentacion
             if (!productoExistente)
             {
                 List<Oferta> listaOferta = new CN_Oferta().ListarOferta();
-                bool respuesta = new CN_Venta().RestarSotckProducto(Convert.ToInt32(txt5.Text), Convert.ToInt32(numericUpDown1.Value.ToString()));
+                bool respuesta = new CN_Venta().RestarSotckProducto(Convert.ToInt32(TxtIdProducto.Text), Convert.ToInt32(numericUpDownCantidad.Value.ToString()));
                 if (respuesta)
                 {
-                    decimal subTotal = numericUpDown1.Value * precio;
+                    decimal subTotal = numericUpDownCantidad.Value * precio;
                     decimal descuento = 0;
-                    if (!string.IsNullOrEmpty(txt10.Text))
+                    if (!string.IsNullOrEmpty(TxtIdOferta.Text))
                     {
-                        descuento = Convert.ToDecimal(txt10.Text);
+                        descuento = Convert.ToDecimal(TxtIdOferta.Text);
                     }
                     decimal totalConDescuento = subTotal - (subTotal * descuento / 100);
                     tablaVentas.Rows.Add(new object[]{
-                        txt5.Text,
-                        txt7.Text,
+                        TxtIdProducto.Text,
+                        TxtProducto.Text,
                         precio.ToString("0.00"),
-                        numericUpDown1.Value.ToString(),
-                        (numericUpDown1.Value * precio).ToString("0.00"),
+                        numericUpDownCantidad.Value.ToString(),
+                        (numericUpDownCantidad.Value * precio).ToString("0.00"),
                         totalConDescuento.ToString("0.00")
-                    }) ;
-                    calcularTotal();
+                    });
+                    CalcularTotal();
                     Limpiar();
                 }
             }
         }
       
-        private void btnCrearVenta_Click(object sender, EventArgs e)
+        private void BtnCrearVenta_Click(object sender, EventArgs e)
         {
-            string tipoDocumento = ((dynamic)cmb1.SelectedItem).Texto;
-            if (txt2.Text == "")
+            string tipoDocumento = ((dynamic)CmbTipoDocumento.SelectedItem).Texto;
+            if (TxtCedulaCliente.Text == "")
             {
                 MessageBox.Show("Debe ingresar el documento del cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (txt3.Text == "")
+            if (TxtNombresCliente.Text == "")
             {
                 MessageBox.Show("Debe ingresar el nombre del cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -172,10 +174,10 @@ namespace Presentacion
                 MessageBox.Show("Debe ingresar un producto a la venta", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (txt13.Text == "")
+            if (TxtPagaCon.Text == "")
             {
                 MessageBox.Show("Debe ingresar el valor a pagar.", "Editar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txt13.Select();
+                TxtPagaCon.Select();
             }
             else
             {
@@ -197,18 +199,17 @@ namespace Presentacion
                 }
                 int idCorrelativo = new CN_Venta().MostrarCorrelativoVenta();
                 string numeroDocumento = string.Format("{0:00000}", idCorrelativo);
-                calcularCambio();
+                CalcularCambio();
                 Venta oVenta = new Venta()
                 {
                     oUsuario = new Usuario() { IdUsuario = usuario.IdUsuario },
                     TipoDocumento = tipoDocumento,
                     NumeroDocumento = numeroDocumento,
-                    DocumentoCliente = txt2.Text,
-                    NombreCliente = txt3.Text,
-                    MontoTotal = Convert.ToDecimal(txt11.Text),
-                    Descuento = Convert.ToDecimal(txt12.Text),
-                    MontoPago = Convert.ToDecimal(txt13.Text),
-                    MontoCambio = Convert.ToDecimal(txt14.Text),
+                    oCliente = new Cliente() { IdCliente = Convert.ToInt32(TxtIdCliente.Text) },
+                    MontoTotal = Convert.ToDecimal(TxtPagar.Text),
+                    Descuento = Convert.ToDecimal(TxtTotalDescuento.Text),
+                    MontoPago = Convert.ToDecimal(TxtPagaCon.Text),
+                    MontoCambio = Convert.ToDecimal(TxtCambio.Text),
                 };
 
                 string mensaje = string.Empty;
@@ -221,14 +222,14 @@ namespace Presentacion
                     {
                         System.Windows.Forms.Clipboard.SetText(numeroDocumento);
                     }
-                    txt2.Text = "";
-                    txt3.Text = "";
-                    txt11.Text = "";
-                    txt12.Text = "";
-                    txt13.Text = "";
-                    txt14.Text = "";
+                    TxtCedulaCliente.Text = "";
+                    TxtNombresCliente.Text = "";
+                    TxtPagar.Text = "";
+                    TxtTotalDescuento.Text = "";
+                    TxtPagaCon.Text = "";
+                    TxtCambio.Text = "";
                     tablaVentas.Rows.Clear();
-                    calcularTotal();
+                    CalcularTotal();
                 }
                 else
                 {
@@ -237,7 +238,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaVentas_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void TablaVentas_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
@@ -254,7 +255,7 @@ namespace Presentacion
             }
         }
 
-        private void tablaVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (tablaVentas.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
@@ -267,124 +268,13 @@ namespace Presentacion
                     if (respuesta)
                     {
                         tablaVentas.Rows.RemoveAt(indice);
-                        calcularTotal();
-                    }
-                }
-            }
-        }
-        private void txt6_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == txt6.Text && p.Estado == true).FirstOrDefault();
-                if (oProducto != null)
-                {
-                    txt6.BackColor = Color.Honeydew;
-                    txt5.Text = oProducto.IdProducto.ToString();
-                    txt7.Text = oProducto.Nombre;
-                    txt8.Text = oProducto.PrecioVenta.ToString("0.00");
-                    txt9.Text = oProducto.Stock.ToString();
-                    numericUpDown1.Select();
-                }
-                else
-                {
-                    txt6.BackColor = Color.MistyRose;
-                    txt5.Text = "0";
-                    txt7.Text = "";
-                    txt8.Text = "";
-                    txt9.Text = "";
-                    numericUpDown1.Value = 0;
-                }
-            }
-        }
-
-        private void txt8_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                if (txt8.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ".")
-                    {
-                        e.Handled = false;
-                    }
-                    else
-                    {
-                        e.Handled = true;
+                        CalcularTotal();
                     }
                 }
             }
         }
 
-        private void txt9_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                if (txt9.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ".")
-                    {
-                        e.Handled = false;
-                    }
-                    else
-                    {
-                        e.Handled = true;
-                    }
-                }
-            }
-        }
-
-        private void txt13_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Enter)
-            {
-                calcularCambio();
-            }
-        }
-
-        private void txt13_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                if (txt13.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ".")
-                    {
-                        e.Handled = false;
-                    }
-                    else
-                    {
-                        e.Handled = true;
-                    }
-                }
-            }
-        }
-
-        private void calcularTotal()
+        private void CalcularTotal()
         {
             decimal total = 0;
             decimal totalDescuento = 0;
@@ -400,46 +290,159 @@ namespace Presentacion
                         totalDescuento += Convert.ToDecimal(subTotalDescuentoCellValue.ToString());
                     }
                 }
-                txt11.Text = total.ToString("0.00");
-                txt12.Text = totalDescuento.ToString("0.00");
+                TxtPagar.Text = total.ToString("0.00");
+                TxtTotalDescuento.Text = totalDescuento.ToString("0.00");
             }
         }
-        private void calcularCambio()
+
+        private void CalcularCambio()
         {
-            if (txt12.Text.Trim() == "")
+            if (TxtTotalDescuento.Text.Trim() == "")
             {
                 MessageBox.Show("No existen productos en la venta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             decimal pagacon;
-            decimal total = Convert.ToDecimal(txt12.Text);
+            decimal total = Convert.ToDecimal(TxtTotalDescuento.Text);
 
-            if (txt13.Text.Trim() == "")
+            if (TxtPagaCon.Text.Trim() == "")
             {
-                txt13.Text = "0";
+                TxtPagaCon.Text = "0";
             }
-            if (decimal.TryParse(txt13.Text.Trim(), out pagacon))
+            if (decimal.TryParse(TxtPagaCon.Text.Trim(), out pagacon))
             {
                 if (pagacon < total)
                 {
-                    txt14.Text = "0.00";
+                    TxtCambio.Text = "0.00";
                 }
                 else
                 {
                     decimal cambio = pagacon - total;
-                    txt14.Text = cambio.ToString("0.00");
+                    TxtCambio.Text = cambio.ToString("0.00");
                 }
             }
         }
         private void Limpiar()
         {
-            txt5.Text = "0";
-            txt6.Text = "";
-            txt6.BackColor = Color.White;
-            txt7.Text = "";
-            txt8.Text = "";
-            txt9.Text = "";
-            numericUpDown1.Value = 0;
+            TxtIdProducto.Text = "0";
+            TxtCodigo.Text = "";
+            TxtCodigo.BackColor = Color.White;
+            TxtProducto.Text = "";
+            TxtPrecioCompra.Text = "";
+            TxtStock.Text = "";
+            numericUpDownCantidad.Value = 0;
+        }
+
+        private void TxtPagaCon_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                CalcularCambio();
+            }
+        }
+
+        private void TxtPagaCon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                if (TxtPagaCon.Text.Trim().Length == 0 && e.KeyChar.ToString() == ",")
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ",")
+                    {
+                        e.Handled = false;
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private void TxtCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == TxtCodigo.Text && p.Estado == true).FirstOrDefault();
+                if (oProducto != null)
+                {
+                    TxtCodigo.BackColor = Color.Honeydew;
+                    TxtIdProducto.Text = oProducto.IdProducto.ToString();
+                    TxtProducto.Text = oProducto.Nombre;
+                    TxtPrecioCompra.Text = oProducto.PrecioVenta.ToString("0.00");
+                    TxtStock.Text = oProducto.Stock.ToString();
+                    numericUpDownCantidad.Select();
+                }
+                else
+                {
+                    TxtCodigo.BackColor = Color.MistyRose;
+                    TxtIdProducto.Text = "0";
+                    TxtProducto.Text = "";
+                    TxtPrecioCompra.Text = "";
+                    TxtStock.Text = "";
+                    numericUpDownCantidad.Value = 0;
+                }
+            }
+        }
+
+        private void TxtPrecioCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                if (TxtPrecioCompra.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ".")
+                    {
+                        e.Handled = false;
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private void TxtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                if (TxtStock.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ".")
+                    {
+                        e.Handled = false;
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
         }
     }
 }

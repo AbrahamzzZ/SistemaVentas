@@ -30,26 +30,26 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnBuscar1 = new System.Windows.Forms.Button();
-            this.txtFecha2 = new System.Windows.Forms.DateTimePicker();
+            this.BtnBuscarFecha = new System.Windows.Forms.Button();
+            this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
-            this.txtFecha1 = new System.Windows.Forms.DateTimePicker();
+            this.TxtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.lblReporteVenta = new System.Windows.Forms.Label();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.btnBuscar2 = new System.Windows.Forms.Button();
             this.lblBuscarPor = new System.Windows.Forms.Label();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.txt1 = new System.Windows.Forms.TextBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaReporteVentas = new System.Windows.Forms.DataGridView();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsuarioRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DocumentoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CedulaCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,32 +61,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaReporteVentas)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnBuscar1
+            // BtnBuscarFecha
             // 
-            this.btnBuscar1.BackColor = System.Drawing.Color.White;
-            this.btnBuscar1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar1.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar1.Location = new System.Drawing.Point(862, 89);
-            this.btnBuscar1.Name = "btnBuscar1";
-            this.btnBuscar1.Size = new System.Drawing.Size(110, 31);
-            this.btnBuscar1.TabIndex = 158;
-            this.btnBuscar1.Text = "Buscar";
-            this.btnBuscar1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar1.UseVisualStyleBackColor = false;
-            this.btnBuscar1.Click += new System.EventHandler(this.btnBuscar1_Click);
+            this.BtnBuscarFecha.BackColor = System.Drawing.Color.White;
+            this.BtnBuscarFecha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscarFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscarFecha.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarFecha.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscarFecha.Location = new System.Drawing.Point(862, 89);
+            this.BtnBuscarFecha.Name = "BtnBuscarFecha";
+            this.BtnBuscarFecha.Size = new System.Drawing.Size(110, 31);
+            this.BtnBuscarFecha.TabIndex = 158;
+            this.BtnBuscarFecha.Text = "Buscar";
+            this.BtnBuscarFecha.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBuscarFecha.UseVisualStyleBackColor = false;
+            this.BtnBuscarFecha.Click += new System.EventHandler(this.btnBuscar1_Click);
             // 
-            // txtFecha2
+            // TxtFechaFin
             // 
-            this.txtFecha2.CustomFormat = "dd/MM/yyyy";
-            this.txtFecha2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtFecha2.Location = new System.Drawing.Point(639, 90);
-            this.txtFecha2.Name = "txtFecha2";
-            this.txtFecha2.Size = new System.Drawing.Size(200, 27);
-            this.txtFecha2.TabIndex = 149;
+            this.TxtFechaFin.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaFin.Location = new System.Drawing.Point(639, 90);
+            this.TxtFechaFin.Name = "TxtFechaFin";
+            this.TxtFechaFin.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaFin.TabIndex = 149;
             // 
             // lblFechaFin
             // 
@@ -110,15 +110,15 @@
             this.lblFechaInicio.TabIndex = 147;
             this.lblFechaInicio.Text = "Fecha inicio:";
             // 
-            // txtFecha1
+            // TxtFechaInicio
             // 
-            this.txtFecha1.CustomFormat = "dd/MM/yyyy";
-            this.txtFecha1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtFecha1.Location = new System.Drawing.Point(306, 90);
-            this.txtFecha1.Name = "txtFecha1";
-            this.txtFecha1.Size = new System.Drawing.Size(200, 27);
-            this.txtFecha1.TabIndex = 145;
+            this.TxtFechaInicio.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaInicio.Location = new System.Drawing.Point(306, 90);
+            this.TxtFechaInicio.Name = "TxtFechaInicio";
+            this.TxtFechaInicio.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaInicio.TabIndex = 145;
             // 
             // label1
             // 
@@ -139,19 +139,19 @@
             this.lblReporteVenta.TabIndex = 146;
             this.lblReporteVenta.Text = "Reportes Ventas";
             // 
-            // btnExportarExcel
+            // BtnExportarExcel
             // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(190, 177);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(187, 33);
-            this.btnExportarExcel.TabIndex = 155;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnExportarExcel.BackColor = System.Drawing.Color.White;
+            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarExcel.Location = new System.Drawing.Point(190, 177);
+            this.BtnExportarExcel.Name = "BtnExportarExcel";
+            this.BtnExportarExcel.Size = new System.Drawing.Size(187, 33);
+            this.BtnExportarExcel.TabIndex = 155;
+            this.BtnExportarExcel.Text = "Exportar Excel";
+            this.BtnExportarExcel.UseVisualStyleBackColor = false;
+            this.BtnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnBuscar2
             // 
@@ -181,42 +181,42 @@
             this.lblBuscarPor.TabIndex = 152;
             this.lblBuscarPor.Text = "Buscar por:";
             // 
-            // cmb1
+            // CmbBuscar
             // 
-            this.cmb1.BackColor = System.Drawing.Color.White;
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(576, 178);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(226, 28);
-            this.cmb1.TabIndex = 156;
+            this.CmbBuscar.BackColor = System.Drawing.Color.White;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(576, 178);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(226, 28);
+            this.CmbBuscar.TabIndex = 156;
             // 
-            // btnLimpiar
+            // BtnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.White;
-            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
-            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiar.Location = new System.Drawing.Point(1172, 180);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(110, 31);
-            this.btnLimpiar.TabIndex = 153;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.BackColor = System.Drawing.Color.White;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
+            this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnLimpiar.Location = new System.Drawing.Point(1172, 180);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(110, 31);
+            this.BtnLimpiar.TabIndex = 153;
+            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // txt1
+            // TxtBuscar
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(829, 182);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(197, 27);
-            this.txt1.TabIndex = 157;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(829, 182);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(197, 27);
+            this.TxtBuscar.TabIndex = 157;
             // 
             // tablaReporteVentas
             // 
@@ -238,7 +238,7 @@
             this.NumeroDocumento,
             this.MontoTotal,
             this.UsuarioRegistro,
-            this.DocumentoCliente,
+            this.CedulaCliente,
             this.NombreCliente,
             this.CodigoProducto,
             this.NombreProducto,
@@ -299,13 +299,13 @@
             this.UsuarioRegistro.ReadOnly = true;
             this.UsuarioRegistro.Width = 125;
             // 
-            // DocumentoCliente
+            // CedulaCliente
             // 
-            this.DocumentoCliente.HeaderText = "Codigo Cliente";
-            this.DocumentoCliente.MinimumWidth = 6;
-            this.DocumentoCliente.Name = "DocumentoCliente";
-            this.DocumentoCliente.ReadOnly = true;
-            this.DocumentoCliente.Width = 125;
+            this.CedulaCliente.HeaderText = "Cedúla Cliente";
+            this.CedulaCliente.MinimumWidth = 6;
+            this.CedulaCliente.Name = "CedulaCliente";
+            this.CedulaCliente.ReadOnly = true;
+            this.CedulaCliente.Width = 125;
             // 
             // NombreCliente
             // 
@@ -317,7 +317,7 @@
             // 
             // CodigoProducto
             // 
-            this.CodigoProducto.HeaderText = "Codigo Producto";
+            this.CodigoProducto.HeaderText = "Código Producto";
             this.CodigoProducto.MinimumWidth = 6;
             this.CodigoProducto.Name = "CodigoProducto";
             this.CodigoProducto.ReadOnly = true;
@@ -333,7 +333,7 @@
             // 
             // Categoria
             // 
-            this.Categoria.HeaderText = "Categoria";
+            this.Categoria.HeaderText = "Categoría";
             this.Categoria.MinimumWidth = 6;
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
@@ -378,18 +378,18 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
             this.Controls.Add(this.tablaReporteVentas);
-            this.Controls.Add(this.btnBuscar1);
-            this.Controls.Add(this.txtFecha2);
+            this.Controls.Add(this.BtnBuscarFecha);
+            this.Controls.Add(this.TxtFechaFin);
             this.Controls.Add(this.lblFechaFin);
             this.Controls.Add(this.lblFechaInicio);
-            this.Controls.Add(this.txtFecha1);
+            this.Controls.Add(this.TxtFechaInicio);
             this.Controls.Add(this.lblReporteVenta);
-            this.Controls.Add(this.btnExportarExcel);
+            this.Controls.Add(this.BtnExportarExcel);
             this.Controls.Add(this.btnBuscar2);
             this.Controls.Add(this.lblBuscarPor);
-            this.Controls.Add(this.cmb1);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.txt1);
+            this.Controls.Add(this.CmbBuscar);
+            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.label1);
             this.Name = "vtnReportesVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -403,26 +403,27 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnBuscar1;
-        private System.Windows.Forms.DateTimePicker txtFecha2;
+        private System.Windows.Forms.Button BtnBuscarFecha;
+        private System.Windows.Forms.DateTimePicker TxtFechaFin;
         private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.Label lblFechaInicio;
-        private System.Windows.Forms.DateTimePicker txtFecha1;
+        private System.Windows.Forms.DateTimePicker TxtFechaInicio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblReporteVenta;
-        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Button btnBuscar2;
         private System.Windows.Forms.Label lblBuscarPor;
-        private System.Windows.Forms.ComboBox cmb1;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.ComboBox CmbBuscar;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.DataGridView tablaReporteVentas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DocumentoCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CedulaCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProducto;

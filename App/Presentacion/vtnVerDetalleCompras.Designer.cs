@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +40,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnDescargarPdf = new System.Windows.Forms.Button();
             this.TxtCodigoProveedor = new System.Windows.Forms.TextBox();
-            this.txt7 = new System.Windows.Forms.TextBox();
             this.lblNombreProovedor = new System.Windows.Forms.Label();
             this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
             this.LblCodigoProveedor = new System.Windows.Forms.Label();
@@ -99,15 +98,15 @@
             // 
             this.tablaDetallesCompras.AllowUserToAddRows = false;
             this.tablaDetallesCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaDetallesCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaDetallesCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -119,9 +118,9 @@
             this.tablaDetallesCompras.Name = "tablaDetallesCompras";
             this.tablaDetallesCompras.ReadOnly = true;
             this.tablaDetallesCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaDetallesCompras.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaDetallesCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaDetallesCompras.RowTemplate.Height = 28;
             this.tablaDetallesCompras.Size = new System.Drawing.Size(611, 196);
             this.tablaDetallesCompras.TabIndex = 121;
@@ -176,7 +175,7 @@
             this.btnDescargarPdf.TabIndex = 113;
             this.btnDescargarPdf.Text = "Descargar PDF";
             this.btnDescargarPdf.UseVisualStyleBackColor = true;
-            this.btnDescargarPdf.Click += new System.EventHandler(this.btnDescargarPdf_Click);
+            this.btnDescargarPdf.Click += new System.EventHandler(this.BtnDescargarPdf_Click);
             // 
             // TxtCodigoProveedor
             // 
@@ -187,16 +186,6 @@
             this.TxtCodigoProveedor.ReadOnly = true;
             this.TxtCodigoProveedor.Size = new System.Drawing.Size(210, 27);
             this.TxtCodigoProveedor.TabIndex = 110;
-            // 
-            // txt7
-            // 
-            this.txt7.BackColor = System.Drawing.Color.LightGray;
-            this.txt7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt7.Location = new System.Drawing.Point(562, 56);
-            this.txt7.Name = "txt7";
-            this.txt7.ReadOnly = true;
-            this.txt7.Size = new System.Drawing.Size(89, 27);
-            this.txt7.TabIndex = 106;
             // 
             // lblNombreProovedor
             // 
@@ -232,7 +221,6 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.TxtCodigoProveedor);
-            this.groupBox1.Controls.Add(this.txt7);
             this.groupBox1.Controls.Add(this.lblNombreProovedor);
             this.groupBox1.Controls.Add(this.TxtNombresProveedor);
             this.groupBox1.Controls.Add(this.LblCodigoProveedor);
@@ -333,7 +321,7 @@
             this.btnLimpiar.TabIndex = 101;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.btnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // btnBuscar
             // 
@@ -492,7 +480,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnDescargarPdf;
         private System.Windows.Forms.TextBox TxtCodigoProveedor;
-        private System.Windows.Forms.TextBox txt7;
         private System.Windows.Forms.Label lblNombreProovedor;
         private System.Windows.Forms.TextBox TxtNombresProveedor;
         private System.Windows.Forms.Label LblCodigoProveedor;

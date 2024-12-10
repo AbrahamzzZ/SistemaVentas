@@ -23,7 +23,7 @@ namespace Presentacion
 
         private void vtnReportesCompras_Load(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbProveedor.SelectedItem;
             int valorCmb1 = 0;
             string textoCmb1 = string.Empty;
             if (selectedItemCmb1 != null)
@@ -32,41 +32,41 @@ namespace Presentacion
                 textoCmb1 = selectedItemCmb1.Texto;
             }
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
-            cmb1.Items.Add(new { Valor = 0, Texto = "Todos" });
+            CmbProveedor.Items.Add(new { Valor = 0, Texto = "Todos" });
             foreach (Proveedor proveedor in mostrarProveedor)
             {
                 // Crear un objeto anónimo con las propiedades Valor y Texto
-                cmb1.Items.Add(new { Valor = proveedor.IdProveedor, Texto = proveedor.Nombres });
+                CmbProveedor.Items.Add(new { Valor = proveedor.IdProveedor, Texto = proveedor.Nombres });
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbProveedor.DisplayMember = "Texto";
+            CmbProveedor.ValueMember = "Valor";
+            CmbProveedor.SelectedIndex = 0;
             List<Transportista> mostrarTransportista = new CN_Transportista().ListarTransportista();
-            cmb2.Items.Add(new { Valor = 0, Texto = "Todos" });
+            CmbTransportista.Items.Add(new { Valor = 0, Texto = "Todos" });
             foreach (Transportista transportista in mostrarTransportista)
             {
                 // Crear un objeto anónimo con las propiedades Valor y Texto
-                cmb2.Items.Add(new { Valor = transportista.IdTransportista, Texto = transportista.Nombres });
+                CmbTransportista.Items.Add(new { Valor = transportista.IdTransportista, Texto = transportista.Nombres });
             }
-            cmb2.DisplayMember = "Texto";
-            cmb2.ValueMember = "Valor";
-            cmb2.SelectedIndex = 0;
+            CmbTransportista.DisplayMember = "Texto";
+            CmbTransportista.ValueMember = "Valor";
+            CmbTransportista.SelectedIndex = 0;
             foreach (DataGridViewColumn columna in tablaReporteCompras.Columns)
             {
-                cmb3.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
 
             }
-            cmb3.DisplayMember = "Texto";
-            cmb3.ValueMember = "Valor";
-            cmb3.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            int idProveedor = Convert.ToInt32((cmb1.SelectedItem as dynamic).Valor.ToString());
-            int idTransportista = Convert.ToInt32((cmb2.SelectedItem as dynamic).Valor.ToString());
+            int idProveedor = Convert.ToInt32((CmbProveedor.SelectedItem as dynamic).Valor.ToString());
+            int idTransportista = Convert.ToInt32((CmbTransportista.SelectedItem as dynamic).Valor.ToString());
             List<Reporte_Compra> lista = new List<Reporte_Compra>();
-            lista = new CN_Reporte().ReporteProductosComprados(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"), idProveedor, idTransportista);
+            lista = new CN_Reporte().ReporteProductosComprados(TxtFechaInicio.Value.ToString("yyyy-MM-dd"), TxtFechaFin.Value.ToString("yyyy-MM-dd"), idProveedor, idTransportista);
 
             tablaReporteCompras.Rows.Clear();
             if (lista.Count > 0) {
@@ -133,14 +133,14 @@ namespace Presentacion
 
         private void btnBuscar3_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb3 = cmb3.SelectedItem;
+            dynamic selectedItemCmb3 = CmbBuscar.SelectedItem;
             string valorCmb3 = selectedItemCmb3.Valor;
             string columnaFiltro = valorCmb3.ToString();
             int filasVisibles = 0;
 
             foreach (DataGridViewRow row in tablaReporteCompras.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -158,7 +158,7 @@ namespace Presentacion
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txt1.Clear();
+            TxtBuscar.Clear();
             foreach (DataGridViewRow row in tablaReporteCompras.Rows)
             {
                 row.Visible = true;

@@ -334,11 +334,11 @@
             this.IDCLIENTE.Visible = false;
             this.IDCLIENTE.Width = 125;
             // 
-            // DocumentoCliente
+            // CedulaCliente
             // 
             this.DocumentoCliente.HeaderText = "No.Codigo";
             this.DocumentoCliente.MinimumWidth = 6;
-            this.DocumentoCliente.Name = "DocumentoCliente";
+            this.DocumentoCliente.Name = "CedulaCliente";
             this.DocumentoCliente.ReadOnly = true;
             this.DocumentoCliente.Width = 120;
             // 
