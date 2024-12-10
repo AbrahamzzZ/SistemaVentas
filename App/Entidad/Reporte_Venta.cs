@@ -13,7 +13,7 @@ namespace Entidad
         public string NumeroDocumento { get; set; }
         public string MontoTotal { get; set; }
         public string UsuarioRegistro { get; set; }
-        public string DocumentoCliente { get; set; }
+        public string CedulaCliente { get; set; }
         public string NombreCliente { get; set; }
         public string CodigoProducto { get; set; }
         public string NombreProducto { get; set; }

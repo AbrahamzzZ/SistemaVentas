@@ -38,7 +38,6 @@ namespace Presentacion
                 TxtNombreCompletoUsuario.Text = oCompra.oUsuario.NombreCompleto;
                 TxtCodigoProveedor.Text = oCompra.oProveedor.Codigo;
                 TxtNombresProveedor.Text = oCompra.oProveedor.Nombres;
-                txt7.Text = oCompra.NumeroDocumento;
                 TxtCodigoTransportista.Text = oCompra.oTransportista.Codigo;
                 TxtNombresTransportista.Text = oCompra.oTransportista.Nombres;
  
@@ -56,7 +55,7 @@ namespace Presentacion
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             TxtNumeroCodigoCompra.Text = "";
             TxtFechaCompra.Text = "";
@@ -64,20 +63,14 @@ namespace Presentacion
             TxtNombreCompletoUsuario.Text = "";
             TxtCodigoProveedor.Text = "";
             TxtNombresProveedor.Text = "";
-            txt7.Text = "";
             tablaDetallesCompras.Rows.Clear();
             TxtCodigoTransportista.Text = "";
             TxtNombresTransportista.Text = "";
             TxtMontoTotal.Text = "0.00";
         }
 
-        private void btnDescargarPdf_Click(object sender, EventArgs e)
+        private void BtnDescargarPdf_Click(object sender, EventArgs e)
         {
-            if (txt7.Text == "")
-            {
-                MessageBox.Show("No hay datos para generar el PDF.", "Generar PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             string texto_html = Properties.Resources.ArchivoCompra.ToString();
             Negocio oDatos = new CN_Negocio().ListarNegocio();
 

@@ -179,7 +179,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaReclamo.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtCodigo.Text = tablaReclamo.Rows[indice].Cells["DocumentoCliente"].Value.ToString();
+                    TxtCodigo.Text = tablaReclamo.Rows[indice].Cells["CedulaCliente"].Value.ToString();
                     TxtNombresCliente.Text = tablaReclamo.Rows[indice].Cells["NombreCliente"].Value.ToString();
                     TxtCorreoElectronico.Text = tablaReclamo.Rows[indice].Cells["CorreoElectronicoCliente"].Value.ToString();
                     txt6.Text = tablaReclamo.Rows[indice].Cells["Descripcion"].Value.ToString();

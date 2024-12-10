@@ -23,17 +23,17 @@ namespace Presentacion
         {
             foreach (DataGridViewColumn columna in tablaReporteVentas.Columns)
             {
-                cmb1.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
 
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
         }
         private void btnBuscar1_Click(object sender, EventArgs e)
         {
             List<Reporte_Venta> lista = new List<Reporte_Venta>();
-            lista = new CN_Reporte().ReporteProductosVendidos(txtFecha1.Value.ToString("yyyy-MM-dd"), txtFecha2.Value.ToString("yyyy-MM-dd"));
+            lista = new CN_Reporte().ReporteProductosVendidos(TxtFechaInicio.Value.ToString("yyyy-MM-dd"), TxtFechaFin.Value.ToString("yyyy-MM-dd"));
 
             tablaReporteVentas.Rows.Clear();
             if (lista.Count > 0) {
@@ -41,7 +41,7 @@ namespace Presentacion
                 {
                     tablaReporteVentas.Rows.Add(new object[]
                     {
-                        row.FechaRegistro, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.DocumentoCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
+                        row.FechaRegistro, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.CedulaCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
                     });
                 }
             }
@@ -99,7 +99,7 @@ namespace Presentacion
 
         private void btnBuscar2_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
             string columnaFiltro = valorCmb1.ToString();
             int filasVisibles = 0;
@@ -108,7 +108,7 @@ namespace Presentacion
             {
                 foreach (DataGridViewRow row in tablaReporteVentas.Rows)
                 {
-                    if (row.Cells[columnaFiltro].Value.ToString().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                    if (row.Cells[columnaFiltro].Value.ToString().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                     {
                         row.Visible = true;
                     }
@@ -127,7 +127,7 @@ namespace Presentacion
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txt1.Clear();
+            TxtBuscar.Clear();
             foreach (DataGridViewRow row in tablaReporteVentas.Rows)
             {
                 row.Visible = true;

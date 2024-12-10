@@ -79,7 +79,7 @@ namespace Presentacion
 
         private void menuItemRealizarVenta_Click(object sender, EventArgs e)
         {
-            verPanel(new vtnVenta(nombreUsuarioActual));
+            verPanel(new VtnVenta(nombreUsuarioActual));
         }
         private void menuItemVerDetallesVenta_Click(object sender, EventArgs e)
         {

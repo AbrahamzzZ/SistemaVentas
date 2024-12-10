@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
-            this.btnBuscar2 = new System.Windows.Forms.Button();
-            this.btnBuscar3 = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnBuscarProveedorTransportista = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.CmbProveedor = new System.Windows.Forms.ComboBox();
             this.lblBuscarPor = new System.Windows.Forms.Label();
-            this.cmb3 = new System.Windows.Forms.ComboBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.tablaReporteCompras = new System.Windows.Forms.DataGridView();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,100 +57,100 @@
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTransportista = new System.Windows.Forms.Label();
-            this.txtFecha2 = new System.Windows.Forms.DateTimePicker();
+            this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
-            this.txtFecha1 = new System.Windows.Forms.DateTimePicker();
+            this.TxtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblReporteCompra = new System.Windows.Forms.Label();
             this.lblProveedor = new System.Windows.Forms.Label();
-            this.cmb2 = new System.Windows.Forms.ComboBox();
+            this.CmbTransportista = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReporteCompras)).BeginInit();
             this.SuspendLayout();
             // 
-            // txt1
+            // TxtBuscar
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(829, 182);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(197, 27);
-            this.txt1.TabIndex = 143;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(829, 182);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(197, 27);
+            this.TxtBuscar.TabIndex = 143;
             // 
-            // btnExportarExcel
+            // BtnExportarExcel
             // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.Location = new System.Drawing.Point(190, 177);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(187, 33);
-            this.btnExportarExcel.TabIndex = 141;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnExportarExcel.BackColor = System.Drawing.Color.White;
+            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarExcel.Location = new System.Drawing.Point(190, 177);
+            this.BtnExportarExcel.Name = "BtnExportarExcel";
+            this.BtnExportarExcel.Size = new System.Drawing.Size(187, 33);
+            this.BtnExportarExcel.TabIndex = 141;
+            this.BtnExportarExcel.Text = "Exportar Excel";
+            this.BtnExportarExcel.UseVisualStyleBackColor = false;
+            this.BtnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
-            // btnBuscar2
+            // BtnBuscarProveedorTransportista
             // 
-            this.btnBuscar2.BackColor = System.Drawing.Color.White;
-            this.btnBuscar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar2.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar2.Location = new System.Drawing.Point(1172, 66);
-            this.btnBuscar2.Name = "btnBuscar2";
-            this.btnBuscar2.Size = new System.Drawing.Size(110, 31);
-            this.btnBuscar2.TabIndex = 140;
-            this.btnBuscar2.Text = "Buscar";
-            this.btnBuscar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar2.UseVisualStyleBackColor = false;
-            this.btnBuscar2.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.BtnBuscarProveedorTransportista.BackColor = System.Drawing.Color.White;
+            this.BtnBuscarProveedorTransportista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarProveedorTransportista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscarProveedorTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscarProveedorTransportista.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarProveedorTransportista.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscarProveedorTransportista.Location = new System.Drawing.Point(1172, 66);
+            this.BtnBuscarProveedorTransportista.Name = "BtnBuscarProveedorTransportista";
+            this.BtnBuscarProveedorTransportista.Size = new System.Drawing.Size(110, 31);
+            this.BtnBuscarProveedorTransportista.TabIndex = 140;
+            this.BtnBuscarProveedorTransportista.Text = "Buscar";
+            this.BtnBuscarProveedorTransportista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBuscarProveedorTransportista.UseVisualStyleBackColor = false;
+            this.BtnBuscarProveedorTransportista.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // btnBuscar3
+            // BtnBuscar
             // 
-            this.btnBuscar3.BackColor = System.Drawing.Color.White;
-            this.btnBuscar3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar3.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar3.Location = new System.Drawing.Point(1046, 180);
-            this.btnBuscar3.Name = "btnBuscar3";
-            this.btnBuscar3.Size = new System.Drawing.Size(110, 31);
-            this.btnBuscar3.TabIndex = 139;
-            this.btnBuscar3.Text = "Buscar";
-            this.btnBuscar3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar3.UseVisualStyleBackColor = false;
-            this.btnBuscar3.Click += new System.EventHandler(this.btnBuscar3_Click);
+            this.BtnBuscar.BackColor = System.Drawing.Color.White;
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscar.Location = new System.Drawing.Point(1046, 180);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(110, 31);
+            this.BtnBuscar.TabIndex = 139;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.btnBuscar3_Click);
             // 
-            // btnLimpiar
+            // BtnLimpiar
             // 
-            this.btnLimpiar.BackColor = System.Drawing.Color.White;
-            this.btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
-            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLimpiar.Location = new System.Drawing.Point(1172, 180);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(110, 31);
-            this.btnLimpiar.TabIndex = 138;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.BackColor = System.Drawing.Color.White;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
+            this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnLimpiar.Location = new System.Drawing.Point(1172, 180);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(110, 31);
+            this.BtnLimpiar.TabIndex = 138;
+            this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnLimpiar.UseVisualStyleBackColor = false;
+            this.BtnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // cmb1
+            // CmbProveedor
             // 
-            this.cmb1.BackColor = System.Drawing.Color.White;
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(973, 49);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(183, 28);
-            this.cmb1.TabIndex = 137;
+            this.CmbProveedor.BackColor = System.Drawing.Color.White;
+            this.CmbProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbProveedor.FormattingEnabled = true;
+            this.CmbProveedor.Location = new System.Drawing.Point(973, 49);
+            this.CmbProveedor.Name = "CmbProveedor";
+            this.CmbProveedor.Size = new System.Drawing.Size(183, 28);
+            this.CmbProveedor.TabIndex = 137;
             // 
             // lblBuscarPor
             // 
@@ -163,30 +163,30 @@
             this.lblBuscarPor.TabIndex = 136;
             this.lblBuscarPor.Text = "Buscar por:";
             // 
-            // cmb3
+            // CmbBuscar
             // 
-            this.cmb3.BackColor = System.Drawing.Color.White;
-            this.cmb3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb3.FormattingEnabled = true;
-            this.cmb3.Location = new System.Drawing.Point(576, 178);
-            this.cmb3.Name = "cmb3";
-            this.cmb3.Size = new System.Drawing.Size(226, 28);
-            this.cmb3.TabIndex = 142;
+            this.CmbBuscar.BackColor = System.Drawing.Color.White;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(576, 178);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(226, 28);
+            this.CmbBuscar.TabIndex = 142;
             // 
             // tablaReporteCompras
             // 
             this.tablaReporteCompras.AllowUserToAddRows = false;
             this.tablaReporteCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaReporteCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaReporteCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaReporteCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaReporteCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaRegistro,
@@ -210,9 +210,9 @@
             this.tablaReporteCompras.Name = "tablaReporteCompras";
             this.tablaReporteCompras.ReadOnly = true;
             this.tablaReporteCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaReporteCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaReporteCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaReporteCompras.RowTemplate.Height = 28;
             this.tablaReporteCompras.Size = new System.Drawing.Size(1092, 300);
             this.tablaReporteCompras.TabIndex = 135;
@@ -365,15 +365,15 @@
             this.lblTransportista.TabIndex = 133;
             this.lblTransportista.Text = "Transportista:";
             // 
-            // txtFecha2
+            // TxtFechaFin
             // 
-            this.txtFecha2.CustomFormat = "dd/MM/yyyy";
-            this.txtFecha2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtFecha2.Location = new System.Drawing.Point(620, 90);
-            this.txtFecha2.Name = "txtFecha2";
-            this.txtFecha2.Size = new System.Drawing.Size(200, 27);
-            this.txtFecha2.TabIndex = 132;
+            this.TxtFechaFin.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaFin.Location = new System.Drawing.Point(620, 90);
+            this.TxtFechaFin.Name = "TxtFechaFin";
+            this.TxtFechaFin.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaFin.TabIndex = 132;
             // 
             // lblFechaFin
             // 
@@ -397,15 +397,15 @@
             this.lblFechaInicio.TabIndex = 130;
             this.lblFechaInicio.Text = "Fecha inicio:";
             // 
-            // txtFecha1
+            // TxtFechaInicio
             // 
-            this.txtFecha1.CustomFormat = "dd/MM/yyyy";
-            this.txtFecha1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txtFecha1.Location = new System.Drawing.Point(306, 90);
-            this.txtFecha1.Name = "txtFecha1";
-            this.txtFecha1.Size = new System.Drawing.Size(200, 27);
-            this.txtFecha1.TabIndex = 128;
+            this.TxtFechaInicio.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaInicio.Location = new System.Drawing.Point(306, 90);
+            this.TxtFechaInicio.Name = "TxtFechaInicio";
+            this.TxtFechaInicio.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaInicio.TabIndex = 128;
             // 
             // lblReporteCompra
             // 
@@ -428,16 +428,16 @@
             this.lblProveedor.TabIndex = 144;
             this.lblProveedor.Text = "Proveedor:";
             // 
-            // cmb2
+            // CmbTransportista
             // 
-            this.cmb2.BackColor = System.Drawing.Color.White;
-            this.cmb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb2.FormattingEnabled = true;
-            this.cmb2.Location = new System.Drawing.Point(973, 90);
-            this.cmb2.Name = "cmb2";
-            this.cmb2.Size = new System.Drawing.Size(183, 28);
-            this.cmb2.TabIndex = 145;
+            this.CmbTransportista.BackColor = System.Drawing.Color.White;
+            this.CmbTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbTransportista.FormattingEnabled = true;
+            this.CmbTransportista.Location = new System.Drawing.Point(973, 90);
+            this.CmbTransportista.Name = "CmbTransportista";
+            this.CmbTransportista.Size = new System.Drawing.Size(183, 28);
+            this.CmbTransportista.TabIndex = 145;
             // 
             // vtnReportesCompras
             // 
@@ -445,23 +445,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
-            this.Controls.Add(this.cmb2);
+            this.Controls.Add(this.CmbTransportista);
             this.Controls.Add(this.lblProveedor);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.btnExportarExcel);
-            this.Controls.Add(this.btnBuscar2);
-            this.Controls.Add(this.btnBuscar3);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.cmb1);
+            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.BtnExportarExcel);
+            this.Controls.Add(this.BtnBuscarProveedorTransportista);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.CmbProveedor);
             this.Controls.Add(this.lblBuscarPor);
-            this.Controls.Add(this.cmb3);
+            this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.tablaReporteCompras);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTransportista);
-            this.Controls.Add(this.txtFecha2);
+            this.Controls.Add(this.TxtFechaFin);
             this.Controls.Add(this.lblFechaFin);
             this.Controls.Add(this.lblFechaInicio);
-            this.Controls.Add(this.txtFecha1);
+            this.Controls.Add(this.TxtFechaInicio);
             this.Controls.Add(this.lblReporteCompra);
             this.Name = "vtnReportesCompras";
             this.Text = "Ver los reportes de productos comprados";
@@ -474,21 +474,21 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.Button btnExportarExcel;
-        private System.Windows.Forms.Button btnBuscar2;
-        private System.Windows.Forms.Button btnBuscar3;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.ComboBox cmb1;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.Button BtnExportarExcel;
+        private System.Windows.Forms.Button BtnBuscarProveedorTransportista;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.ComboBox CmbProveedor;
         private System.Windows.Forms.Label lblBuscarPor;
-        private System.Windows.Forms.ComboBox cmb3;
+        private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.DataGridView tablaReporteCompras;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTransportista;
-        private System.Windows.Forms.DateTimePicker txtFecha2;
+        private System.Windows.Forms.DateTimePicker TxtFechaFin;
         private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.Label lblFechaInicio;
-        private System.Windows.Forms.DateTimePicker txtFecha1;
+        private System.Windows.Forms.DateTimePicker TxtFechaInicio;
         private System.Windows.Forms.Label lblReporteCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
@@ -507,6 +507,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.Label lblProveedor;
-        private System.Windows.Forms.ComboBox cmb2;
+        private System.Windows.Forms.ComboBox CmbTransportista;
     }
 }

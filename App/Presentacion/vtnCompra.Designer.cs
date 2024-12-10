@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCompra));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.txt9 = new System.Windows.Forms.TextBox();
+            this.TxtPreciVenta = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnCrearCompra = new System.Windows.Forms.Button();
-            this.txt13 = new System.Windows.Forms.TextBox();
+            this.BtnCrearCompra = new System.Windows.Forms.Button();
+            this.TxtTotalPagar = new System.Windows.Forms.TextBox();
             this.lblTotalPagar = new System.Windows.Forms.Label();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
             this.tablaCompras = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,36 +48,36 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.txt8 = new System.Windows.Forms.TextBox();
+            this.TxtPrecioCompra = new System.Windows.Forms.TextBox();
             this.lblPrecioCompra = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
-            this.txt1 = new System.Windows.Forms.TextBox();
+            this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
+            this.TxtFecha = new System.Windows.Forms.TextBox();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblRegistrarCompra = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txt4 = new System.Windows.Forms.TextBox();
-            this.txt3 = new System.Windows.Forms.TextBox();
-            this.btnBuscarProveedor = new System.Windows.Forms.Button();
-            this.txt2 = new System.Windows.Forms.TextBox();
+            this.TxtIdProveedor = new System.Windows.Forms.TextBox();
+            this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
+            this.BtnBuscarProveedor = new System.Windows.Forms.Button();
+            this.TxtCodigoProveedor = new System.Windows.Forms.TextBox();
             this.lblNombreProveedor = new System.Windows.Forms.Label();
             this.LblCodigo = new System.Windows.Forms.Label();
-            this.txt7 = new System.Windows.Forms.TextBox();
+            this.TxtProducto = new System.Windows.Forms.TextBox();
             this.lblProducto = new System.Windows.Forms.Label();
-            this.btnBuscarProducto = new System.Windows.Forms.Button();
-            this.txt5 = new System.Windows.Forms.TextBox();
-            this.txt6 = new System.Windows.Forms.TextBox();
+            this.BtnBuscarProducto = new System.Windows.Forms.Button();
+            this.TxtIdProducto = new System.Windows.Forms.TextBox();
+            this.TxtCodigoProducto = new System.Windows.Forms.TextBox();
             this.lblCodigoProducto = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblImportante = new System.Windows.Forms.Label();
-            this.txt10 = new System.Windows.Forms.TextBox();
-            this.txt11 = new System.Windows.Forms.TextBox();
+            this.TxtCodigoTransportista = new System.Windows.Forms.TextBox();
+            this.TxtNombresTransportista = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txt12 = new System.Windows.Forms.TextBox();
-            this.btnBuscarTransportista = new System.Windows.Forms.Button();
+            this.TxtIdTransportista = new System.Windows.Forms.TextBox();
+            this.BtnBuscarTransportista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).BeginInit();
@@ -94,15 +94,15 @@
             this.numericUpDown1.Size = new System.Drawing.Size(121, 27);
             this.numericUpDown1.TabIndex = 112;
             // 
-            // txt9
+            // TxtPreciVenta
             // 
-            this.txt9.BackColor = System.Drawing.Color.LightGray;
-            this.txt9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt9.Location = new System.Drawing.Point(785, 65);
-            this.txt9.Name = "txt9";
-            this.txt9.Size = new System.Drawing.Size(96, 27);
-            this.txt9.TabIndex = 111;
-            this.txt9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt9_KeyPress);
+            this.TxtPreciVenta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtPreciVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPreciVenta.Location = new System.Drawing.Point(785, 65);
+            this.TxtPreciVenta.Name = "TxtPreciVenta";
+            this.TxtPreciVenta.Size = new System.Drawing.Size(96, 27);
+            this.TxtPreciVenta.TabIndex = 111;
+            this.TxtPreciVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPreciVenta_KeyPress);
             // 
             // lblCantidad
             // 
@@ -127,36 +127,36 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.btnCrearCompra);
-            this.groupBox4.Controls.Add(this.txt13);
+            this.groupBox4.Controls.Add(this.BtnCrearCompra);
+            this.groupBox4.Controls.Add(this.TxtTotalPagar);
             this.groupBox4.Controls.Add(this.lblTotalPagar);
-            this.groupBox4.Controls.Add(this.btnAgregar);
+            this.groupBox4.Controls.Add(this.BtnAgregar);
             this.groupBox4.Location = new System.Drawing.Point(1121, 339);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(186, 205);
             this.groupBox4.TabIndex = 121;
             this.groupBox4.TabStop = false;
             // 
-            // btnCrearCompra
+            // BtnCrearCompra
             // 
-            this.btnCrearCompra.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCrearCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearCompra.Location = new System.Drawing.Point(16, 152);
-            this.btnCrearCompra.Name = "btnCrearCompra";
-            this.btnCrearCompra.Size = new System.Drawing.Size(154, 36);
-            this.btnCrearCompra.TabIndex = 112;
-            this.btnCrearCompra.Text = "Crear Compra";
-            this.btnCrearCompra.UseVisualStyleBackColor = true;
-            this.btnCrearCompra.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.BtnCrearCompra.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCrearCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCrearCompra.Location = new System.Drawing.Point(16, 152);
+            this.BtnCrearCompra.Name = "BtnCrearCompra";
+            this.BtnCrearCompra.Size = new System.Drawing.Size(154, 36);
+            this.BtnCrearCompra.TabIndex = 112;
+            this.BtnCrearCompra.Text = "Crear Compra";
+            this.BtnCrearCompra.UseVisualStyleBackColor = true;
+            this.BtnCrearCompra.Click += new System.EventHandler(this.BtnRegistrar_Click);
             // 
-            // txt13
+            // TxtTotalPagar
             // 
-            this.txt13.BackColor = System.Drawing.Color.LightGray;
-            this.txt13.Location = new System.Drawing.Point(19, 120);
-            this.txt13.Name = "txt13";
-            this.txt13.ReadOnly = true;
-            this.txt13.Size = new System.Drawing.Size(146, 22);
-            this.txt13.TabIndex = 111;
+            this.TxtTotalPagar.BackColor = System.Drawing.Color.LightGray;
+            this.TxtTotalPagar.Location = new System.Drawing.Point(19, 120);
+            this.TxtTotalPagar.Name = "TxtTotalPagar";
+            this.TxtTotalPagar.ReadOnly = true;
+            this.TxtTotalPagar.Size = new System.Drawing.Size(146, 22);
+            this.TxtTotalPagar.TabIndex = 111;
             // 
             // lblTotalPagar
             // 
@@ -168,34 +168,34 @@
             this.lblTotalPagar.TabIndex = 106;
             this.lblTotalPagar.Text = "Total a pagar:";
             // 
-            // btnAgregar
+            // BtnAgregar
             // 
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(19, 21);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(146, 70);
-            this.btnAgregar.TabIndex = 0;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.BtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
+            this.BtnAgregar.Location = new System.Drawing.Point(19, 21);
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(146, 70);
+            this.BtnAgregar.TabIndex = 0;
+            this.BtnAgregar.Text = "Agregar";
+            this.BtnAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnAgregar.UseVisualStyleBackColor = true;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // tablaCompras
             // 
             this.tablaCompras.AllowUserToAddRows = false;
             this.tablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -210,14 +210,14 @@
             this.tablaCompras.Name = "tablaCompras";
             this.tablaCompras.ReadOnly = true;
             this.tablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.tablaCompras.RowTemplate.Height = 28;
             this.tablaCompras.Size = new System.Drawing.Size(657, 196);
             this.tablaCompras.TabIndex = 122;
-            this.tablaCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaCompras_CellContentClick);
-            this.tablaCompras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tablaCompras_CellPainting);
+            this.tablaCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaCompras_CellContentClick);
+            this.tablaCompras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaCompras_CellPainting);
             // 
             // ID
             // 
@@ -276,15 +276,15 @@
             this.btnEliminar.ReadOnly = true;
             this.btnEliminar.Width = 30;
             // 
-            // txt8
+            // TxtPrecioCompra
             // 
-            this.txt8.BackColor = System.Drawing.Color.LightGray;
-            this.txt8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt8.Location = new System.Drawing.Point(615, 65);
-            this.txt8.Name = "txt8";
-            this.txt8.Size = new System.Drawing.Size(114, 27);
-            this.txt8.TabIndex = 110;
-            this.txt8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt8_KeyPress);
+            this.TxtPrecioCompra.BackColor = System.Drawing.Color.LightGray;
+            this.TxtPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPrecioCompra.Location = new System.Drawing.Point(615, 65);
+            this.TxtPrecioCompra.Name = "TxtPrecioCompra";
+            this.TxtPrecioCompra.Size = new System.Drawing.Size(114, 27);
+            this.TxtPrecioCompra.TabIndex = 110;
+            this.TxtPrecioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioCompra_KeyPress);
             // 
             // lblPrecioCompra
             // 
@@ -299,8 +299,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.cmb1);
-            this.groupBox1.Controls.Add(this.txt1);
+            this.groupBox1.Controls.Add(this.CmbTipoDocumento);
+            this.groupBox1.Controls.Add(this.TxtFecha);
             this.groupBox1.Controls.Add(this.lblTipoDocumento);
             this.groupBox1.Controls.Add(this.lblFecha);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -311,26 +311,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información Compra";
             // 
-            // cmb1
+            // CmbTipoDocumento
             // 
-            this.cmb1.BackColor = System.Drawing.Color.LightGray;
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(200, 68);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(250, 28);
-            this.cmb1.TabIndex = 99;
+            this.CmbTipoDocumento.BackColor = System.Drawing.Color.LightGray;
+            this.CmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbTipoDocumento.FormattingEnabled = true;
+            this.CmbTipoDocumento.Location = new System.Drawing.Point(200, 68);
+            this.CmbTipoDocumento.Name = "CmbTipoDocumento";
+            this.CmbTipoDocumento.Size = new System.Drawing.Size(250, 28);
+            this.CmbTipoDocumento.TabIndex = 99;
             // 
-            // txt1
+            // TxtFecha
             // 
-            this.txt1.BackColor = System.Drawing.Color.LightGray;
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(200, 31);
-            this.txt1.Name = "txt1";
-            this.txt1.ReadOnly = true;
-            this.txt1.Size = new System.Drawing.Size(250, 27);
-            this.txt1.TabIndex = 2;
+            this.TxtFecha.BackColor = System.Drawing.Color.LightGray;
+            this.TxtFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFecha.Location = new System.Drawing.Point(200, 31);
+            this.TxtFecha.Name = "TxtFecha";
+            this.TxtFecha.ReadOnly = true;
+            this.TxtFecha.Size = new System.Drawing.Size(250, 27);
+            this.TxtFecha.TabIndex = 2;
             // 
             // lblTipoDocumento
             // 
@@ -360,15 +360,15 @@
             this.lblRegistrarCompra.Name = "lblRegistrarCompra";
             this.lblRegistrarCompra.Size = new System.Drawing.Size(1212, 540);
             this.lblRegistrarCompra.TabIndex = 117;
-            this.lblRegistrarCompra.Text = "Editar Compra";
+            this.lblRegistrarCompra.Text = "Registrar Compra";
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.txt4);
-            this.groupBox2.Controls.Add(this.txt3);
-            this.groupBox2.Controls.Add(this.btnBuscarProveedor);
-            this.groupBox2.Controls.Add(this.txt2);
+            this.groupBox2.Controls.Add(this.TxtIdProveedor);
+            this.groupBox2.Controls.Add(this.TxtNombresProveedor);
+            this.groupBox2.Controls.Add(this.BtnBuscarProveedor);
+            this.groupBox2.Controls.Add(this.TxtCodigoProveedor);
             this.groupBox2.Controls.Add(this.lblNombreProveedor);
             this.groupBox2.Controls.Add(this.LblCodigo);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -379,47 +379,47 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Información Proveedor";
             // 
-            // txt4
+            // TxtIdProveedor
             // 
-            this.txt4.BackColor = System.Drawing.Color.LightGray;
-            this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(440, 68);
-            this.txt4.Name = "txt4";
-            this.txt4.ReadOnly = true;
-            this.txt4.Size = new System.Drawing.Size(37, 27);
-            this.txt4.TabIndex = 102;
+            this.TxtIdProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdProveedor.Location = new System.Drawing.Point(440, 68);
+            this.TxtIdProveedor.Name = "TxtIdProveedor";
+            this.TxtIdProveedor.ReadOnly = true;
+            this.TxtIdProveedor.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdProveedor.TabIndex = 102;
             // 
-            // txt3
+            // TxtNombresProveedor
             // 
-            this.txt3.BackColor = System.Drawing.Color.LightGray;
-            this.txt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt3.Location = new System.Drawing.Point(185, 68);
-            this.txt3.Name = "txt3";
-            this.txt3.ReadOnly = true;
-            this.txt3.Size = new System.Drawing.Size(220, 27);
-            this.txt3.TabIndex = 101;
+            this.TxtNombresProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombresProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombresProveedor.Location = new System.Drawing.Point(185, 68);
+            this.TxtNombresProveedor.Name = "TxtNombresProveedor";
+            this.TxtNombresProveedor.ReadOnly = true;
+            this.TxtNombresProveedor.Size = new System.Drawing.Size(220, 27);
+            this.TxtNombresProveedor.TabIndex = 101;
             // 
-            // btnBuscarProveedor
+            // BtnBuscarProveedor
             // 
-            this.btnBuscarProveedor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarProveedor.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscarProveedor.Location = new System.Drawing.Point(440, 31);
-            this.btnBuscarProveedor.Name = "btnBuscarProveedor";
-            this.btnBuscarProveedor.Size = new System.Drawing.Size(38, 31);
-            this.btnBuscarProveedor.TabIndex = 100;
-            this.btnBuscarProveedor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscarProveedor.UseVisualStyleBackColor = true;
-            this.btnBuscarProveedor.Click += new System.EventHandler(this.btnBuscarProveedor_Click);
+            this.BtnBuscarProveedor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarProveedor.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarProveedor.Location = new System.Drawing.Point(440, 31);
+            this.BtnBuscarProveedor.Name = "BtnBuscarProveedor";
+            this.BtnBuscarProveedor.Size = new System.Drawing.Size(38, 31);
+            this.BtnBuscarProveedor.TabIndex = 100;
+            this.BtnBuscarProveedor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscarProveedor.UseVisualStyleBackColor = true;
+            this.BtnBuscarProveedor.Click += new System.EventHandler(this.BtnBuscarProveedor_Click);
             // 
-            // txt2
+            // TxtCodigoProveedor
             // 
-            this.txt2.BackColor = System.Drawing.Color.LightGray;
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(185, 31);
-            this.txt2.Name = "txt2";
-            this.txt2.ReadOnly = true;
-            this.txt2.Size = new System.Drawing.Size(220, 27);
-            this.txt2.TabIndex = 2;
+            this.TxtCodigoProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigoProveedor.Location = new System.Drawing.Point(185, 31);
+            this.TxtCodigoProveedor.Name = "TxtCodigoProveedor";
+            this.TxtCodigoProveedor.ReadOnly = true;
+            this.TxtCodigoProveedor.Size = new System.Drawing.Size(220, 27);
+            this.TxtCodigoProveedor.TabIndex = 2;
             // 
             // lblNombreProveedor
             // 
@@ -441,14 +441,14 @@
             this.LblCodigo.TabIndex = 0;
             this.LblCodigo.Text = "Código Proveedor:";
             // 
-            // txt7
+            // TxtProducto
             // 
-            this.txt7.BackColor = System.Drawing.Color.LightGray;
-            this.txt7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt7.Location = new System.Drawing.Point(340, 65);
-            this.txt7.Name = "txt7";
-            this.txt7.Size = new System.Drawing.Size(227, 27);
-            this.txt7.TabIndex = 106;
+            this.TxtProducto.BackColor = System.Drawing.Color.LightGray;
+            this.TxtProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProducto.Location = new System.Drawing.Point(340, 65);
+            this.TxtProducto.Name = "TxtProducto";
+            this.TxtProducto.Size = new System.Drawing.Size(227, 27);
+            this.TxtProducto.TabIndex = 106;
             // 
             // lblProducto
             // 
@@ -460,37 +460,37 @@
             this.lblProducto.TabIndex = 105;
             this.lblProducto.Text = "Producto:";
             // 
-            // btnBuscarProducto
+            // BtnBuscarProducto
             // 
-            this.btnBuscarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarProducto.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscarProducto.Location = new System.Drawing.Point(270, 65);
-            this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(38, 31);
-            this.btnBuscarProducto.TabIndex = 104;
-            this.btnBuscarProducto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscarProducto.UseVisualStyleBackColor = true;
-            this.btnBuscarProducto.Click += new System.EventHandler(this.btnBuscarProducto_Click);
+            this.BtnBuscarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarProducto.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarProducto.Location = new System.Drawing.Point(270, 65);
+            this.BtnBuscarProducto.Name = "BtnBuscarProducto";
+            this.BtnBuscarProducto.Size = new System.Drawing.Size(38, 31);
+            this.BtnBuscarProducto.TabIndex = 104;
+            this.BtnBuscarProducto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscarProducto.UseVisualStyleBackColor = true;
+            this.BtnBuscarProducto.Click += new System.EventHandler(this.BtnBuscarProducto_Click);
             // 
-            // txt5
+            // TxtIdProducto
             // 
-            this.txt5.BackColor = System.Drawing.Color.LightGray;
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(210, 31);
-            this.txt5.Name = "txt5";
-            this.txt5.ReadOnly = true;
-            this.txt5.Size = new System.Drawing.Size(37, 27);
-            this.txt5.TabIndex = 103;
+            this.TxtIdProducto.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdProducto.Location = new System.Drawing.Point(210, 31);
+            this.TxtIdProducto.Name = "TxtIdProducto";
+            this.TxtIdProducto.ReadOnly = true;
+            this.TxtIdProducto.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdProducto.TabIndex = 103;
             // 
-            // txt6
+            // TxtCodigoProducto
             // 
-            this.txt6.BackColor = System.Drawing.Color.LightGray;
-            this.txt6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt6.Location = new System.Drawing.Point(20, 65);
-            this.txt6.Name = "txt6";
-            this.txt6.Size = new System.Drawing.Size(227, 27);
-            this.txt6.TabIndex = 2;
-            this.txt6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt6_KeyDown);
+            this.TxtCodigoProducto.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCodigoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigoProducto.Location = new System.Drawing.Point(20, 65);
+            this.TxtCodigoProducto.Name = "TxtCodigoProducto";
+            this.TxtCodigoProducto.Size = new System.Drawing.Size(227, 27);
+            this.TxtCodigoProducto.TabIndex = 2;
+            this.TxtCodigoProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoProducto_KeyDown);
             // 
             // lblCodigoProducto
             // 
@@ -506,16 +506,16 @@
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
             this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.txt9);
-            this.groupBox3.Controls.Add(this.txt8);
+            this.groupBox3.Controls.Add(this.TxtPreciVenta);
+            this.groupBox3.Controls.Add(this.TxtPrecioCompra);
             this.groupBox3.Controls.Add(this.lblCantidad);
             this.groupBox3.Controls.Add(this.lblPrecioVenta);
             this.groupBox3.Controls.Add(this.lblPrecioCompra);
-            this.groupBox3.Controls.Add(this.txt7);
+            this.groupBox3.Controls.Add(this.TxtProducto);
             this.groupBox3.Controls.Add(this.lblProducto);
-            this.groupBox3.Controls.Add(this.btnBuscarProducto);
-            this.groupBox3.Controls.Add(this.txt5);
-            this.groupBox3.Controls.Add(this.txt6);
+            this.groupBox3.Controls.Add(this.BtnBuscarProducto);
+            this.groupBox3.Controls.Add(this.TxtIdProducto);
+            this.groupBox3.Controls.Add(this.TxtCodigoProducto);
             this.groupBox3.Controls.Add(this.lblCodigoProducto);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(169, 214);
@@ -536,25 +536,25 @@
             this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la \r\ntabla Compra se e" +
     "ncuentre totalmente vacía.\r\n\r\n";
             // 
-            // txt10
+            // TxtCodigoTransportista
             // 
-            this.txt10.BackColor = System.Drawing.Color.LightGray;
-            this.txt10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt10.Location = new System.Drawing.Point(17, 76);
-            this.txt10.Name = "txt10";
-            this.txt10.ReadOnly = true;
-            this.txt10.Size = new System.Drawing.Size(167, 27);
-            this.txt10.TabIndex = 113;
+            this.TxtCodigoTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCodigoTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigoTransportista.Location = new System.Drawing.Point(17, 76);
+            this.TxtCodigoTransportista.Name = "TxtCodigoTransportista";
+            this.TxtCodigoTransportista.ReadOnly = true;
+            this.TxtCodigoTransportista.Size = new System.Drawing.Size(167, 27);
+            this.TxtCodigoTransportista.TabIndex = 113;
             // 
-            // txt11
+            // TxtNombresTransportista
             // 
-            this.txt11.BackColor = System.Drawing.Color.LightGray;
-            this.txt11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt11.Location = new System.Drawing.Point(17, 149);
-            this.txt11.Name = "txt11";
-            this.txt11.ReadOnly = true;
-            this.txt11.Size = new System.Drawing.Size(167, 27);
-            this.txt11.TabIndex = 114;
+            this.TxtNombresTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombresTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombresTransportista.Location = new System.Drawing.Point(17, 149);
+            this.TxtNombresTransportista.Name = "TxtNombresTransportista";
+            this.TxtNombresTransportista.ReadOnly = true;
+            this.TxtNombresTransportista.Size = new System.Drawing.Size(167, 27);
+            this.TxtNombresTransportista.TabIndex = 114;
             // 
             // label1
             // 
@@ -579,11 +579,11 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.White;
-            this.groupBox5.Controls.Add(this.txt12);
-            this.groupBox5.Controls.Add(this.btnBuscarTransportista);
+            this.groupBox5.Controls.Add(this.TxtIdTransportista);
+            this.groupBox5.Controls.Add(this.BtnBuscarTransportista);
             this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.txt10);
-            this.groupBox5.Controls.Add(this.txt11);
+            this.groupBox5.Controls.Add(this.TxtCodigoTransportista);
+            this.groupBox5.Controls.Add(this.TxtNombresTransportista);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(849, 339);
@@ -593,27 +593,27 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Información Transportista";
             // 
-            // txt12
+            // TxtIdTransportista
             // 
-            this.txt12.BackColor = System.Drawing.Color.LightGray;
-            this.txt12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt12.Location = new System.Drawing.Point(197, 149);
-            this.txt12.Name = "txt12";
-            this.txt12.ReadOnly = true;
-            this.txt12.Size = new System.Drawing.Size(37, 27);
-            this.txt12.TabIndex = 118;
+            this.TxtIdTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdTransportista.Location = new System.Drawing.Point(197, 149);
+            this.TxtIdTransportista.Name = "TxtIdTransportista";
+            this.TxtIdTransportista.ReadOnly = true;
+            this.TxtIdTransportista.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdTransportista.TabIndex = 118;
             // 
-            // btnBuscarTransportista
+            // BtnBuscarTransportista
             // 
-            this.btnBuscarTransportista.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscarTransportista.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscarTransportista.Location = new System.Drawing.Point(197, 72);
-            this.btnBuscarTransportista.Name = "btnBuscarTransportista";
-            this.btnBuscarTransportista.Size = new System.Drawing.Size(38, 31);
-            this.btnBuscarTransportista.TabIndex = 117;
-            this.btnBuscarTransportista.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscarTransportista.UseVisualStyleBackColor = true;
-            this.btnBuscarTransportista.Click += new System.EventHandler(this.btnBuscarTransportista_Click);
+            this.BtnBuscarTransportista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarTransportista.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarTransportista.Location = new System.Drawing.Point(197, 72);
+            this.BtnBuscarTransportista.Name = "BtnBuscarTransportista";
+            this.BtnBuscarTransportista.Size = new System.Drawing.Size(38, 31);
+            this.BtnBuscarTransportista.TabIndex = 117;
+            this.BtnBuscarTransportista.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscarTransportista.UseVisualStyleBackColor = true;
+            this.BtnBuscarTransportista.Click += new System.EventHandler(this.BtnBuscarTransportista_Click);
             // 
             // vtnCompra
             // 
@@ -652,35 +652,35 @@
         #endregion
 
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox txt9;
+        private System.Windows.Forms.TextBox TxtPreciVenta;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPrecioVenta;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button btnCrearCompra;
-        private System.Windows.Forms.TextBox txt13;
+        private System.Windows.Forms.Button BtnCrearCompra;
+        private System.Windows.Forms.TextBox TxtTotalPagar;
         private System.Windows.Forms.Label lblTotalPagar;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.DataGridView tablaCompras;
-        private System.Windows.Forms.TextBox txt8;
+        private System.Windows.Forms.TextBox TxtPrecioCompra;
         private System.Windows.Forms.Label lblPrecioCompra;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cmb1;
-        private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.ComboBox CmbTipoDocumento;
+        private System.Windows.Forms.TextBox TxtFecha;
         private System.Windows.Forms.Label lblTipoDocumento;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblRegistrarCompra;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txt4;
-        private System.Windows.Forms.TextBox txt3;
-        private System.Windows.Forms.Button btnBuscarProveedor;
-        private System.Windows.Forms.TextBox txt2;
+        private System.Windows.Forms.TextBox TxtIdProveedor;
+        private System.Windows.Forms.TextBox TxtNombresProveedor;
+        private System.Windows.Forms.Button BtnBuscarProveedor;
+        private System.Windows.Forms.TextBox TxtCodigoProveedor;
         private System.Windows.Forms.Label lblNombreProveedor;
         private System.Windows.Forms.Label LblCodigo;
-        private System.Windows.Forms.TextBox txt7;
+        private System.Windows.Forms.TextBox TxtProducto;
         private System.Windows.Forms.Label lblProducto;
-        private System.Windows.Forms.Button btnBuscarProducto;
-        private System.Windows.Forms.TextBox txt5;
-        private System.Windows.Forms.TextBox txt6;
+        private System.Windows.Forms.Button BtnBuscarProducto;
+        private System.Windows.Forms.TextBox TxtIdProducto;
+        private System.Windows.Forms.TextBox TxtCodigoProducto;
         private System.Windows.Forms.Label lblCodigoProducto;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
@@ -691,12 +691,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private System.Windows.Forms.Label lblImportante;
-        private System.Windows.Forms.TextBox txt11;
-        private System.Windows.Forms.TextBox txt10;
+        private System.Windows.Forms.TextBox TxtNombresTransportista;
+        private System.Windows.Forms.TextBox TxtCodigoTransportista;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnBuscarTransportista;
-        private System.Windows.Forms.TextBox txt12;
+        private System.Windows.Forms.Button BtnBuscarTransportista;
+        private System.Windows.Forms.TextBox TxtIdTransportista;
     }
 }

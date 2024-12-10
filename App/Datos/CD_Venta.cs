@@ -90,8 +90,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
-                cmd.Parameters.AddWithValue("Documento_Cliente", obj.DocumentoCliente);
-                cmd.Parameters.AddWithValue("Nombre_Cliente", obj.NombreCliente);
+                cmd.Parameters.AddWithValue("Id_Cliente", obj.oCliente.IdCliente);
                 cmd.Parameters.AddWithValue("Monto_Pago", obj.MontoPago);
                 cmd.Parameters.AddWithValue("Monto_Cambio", obj.MontoCambio);
                 cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);
@@ -120,8 +119,9 @@ namespace Datos
             try
             {
                 StringBuilder obtener = new StringBuilder();
-                obtener.AppendLine("select v.ID_VENTA, u.NOMBRE_COMPLETO, v.DOCUMENTO_CLIENTE, v.NOMBRE_CLIENTE, v.TIPO_DOCUMENTO, v.NUMERO_DOCUMENTO, v.MONTO_PAGO, v.MONTO_CAMBIO, v.MONTO_TOTAL, v.DESCUENTO, Convert(char(10),v.FECHA_VENTA,103)[FECHA_VENTA]");
-                obtener.AppendLine("from VENTA v inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO");
+                obtener.AppendLine("select v.ID_VENTA, u.NOMBRE_COMPLETO, v.TIPO_DOCUMENTO, v.NUMERO_DOCUMENTO, c.CEDULA, c.NOMBRES, v.MONTO_PAGO, v.MONTO_CAMBIO, v.MONTO_TOTAL, v.DESCUENTO, Convert(char(10),v.FECHA_VENTA,103)[FECHA_VENTA] from VENTA v");
+                obtener.AppendLine("inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO");
+                obtener.AppendLine("inner join CLIENTE c on c.ID_CLIENTE = v.ID_CLIENTE");
                 obtener.AppendLine("WHERE v.NUMERO_DOCUMENTO = @numero");
 
                 SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
@@ -135,10 +135,9 @@ namespace Datos
                     {
                         IdVenta = int.Parse(leer["Id_Venta"].ToString()),
                         oUsuario = new Usuario() { NombreCompleto = leer["Nombre_Completo"].ToString() },
-                        DocumentoCliente = leer["Documento_Cliente"].ToString(),
-                        NombreCliente = leer["Nombre_Cliente"].ToString(),
                         TipoDocumento = leer["Tipo_Documento"].ToString(),
                         NumeroDocumento = leer["Numero_Documento"].ToString(),
+                        oCliente = new Cliente() { Cedula = leer["Cedula"].ToString(), Nombres = leer["Nombres"].ToString() },
                         MontoPago = Convert.ToDecimal(leer["Monto_Pago"].ToString()),
                         MontoCambio = Convert.ToDecimal(leer["Monto_Cambio"].ToString()),
                         MontoTotal = Convert.ToDecimal(leer["Monto_Total"].ToString()),
