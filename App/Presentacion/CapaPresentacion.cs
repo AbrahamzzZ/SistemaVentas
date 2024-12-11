@@ -17,7 +17,7 @@ namespace Presentacion
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-EC");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new vtnLogin()); 
+            Application.Run(new VtnLogin()); 
         }
     }
 }

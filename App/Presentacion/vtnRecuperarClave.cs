@@ -12,27 +12,30 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnRecuperarClave : Form
+    public partial class VtnRecuperarClave : Form
     {
-        public vtnRecuperarClave()
+        public VtnRecuperarClave()
         {
             InitializeComponent();
         }
-        private void vtnRecuperarClave_Load(object sender, EventArgs e)
+
+        private void VtnRecuperarClave_Load(object sender, EventArgs e)
         {
-            txt1.Select();
+            TxtRecuperarClave.Select();
         }
-        private void btnAceptar_Click(object sender, EventArgs e)
+
+        private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            string correoElectronico = txt1.Text;
-            Usuario usuario = new CN_Usuario().MostrarClave(correoElectronico);
-            if (string.IsNullOrWhiteSpace(txt1.Text))
+            string correoElectronico = TxtRecuperarClave.Text;
+            Usuario usuario = new CN_Usuario().MostrarClave(correoElectronico, out string mensaje);
+
+            if (!string.IsNullOrEmpty(mensaje))
             {
-                MessageBox.Show("Por favor llene el campo. ", "Recuperación de clave.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(mensaje, "Recuperación de clave", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (usuario != null)
             {
-                MessageBox.Show("La contraseña del Usuario es: " + usuario.Clave, "Recupearación de clave", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La contraseña del Usuario es: " + usuario.Clave, "Recuperación de clave", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
             }
             else
@@ -41,7 +44,7 @@ namespace Presentacion
             }
         }
 
-        private void btnRegresar_Click(object sender, EventArgs e)
+        private void BtnRegresar_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
