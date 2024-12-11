@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnRecuperarClave
+    partial class VtnRecuperarClave
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnRecuperarClave));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnRecuperarClave));
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
             this.lblMensaje = new System.Windows.Forms.Label();
-            this.txt1 = new System.Windows.Forms.TextBox();
+            this.TxtRecuperarClave = new System.Windows.Forms.TextBox();
             this.lblRecuperacionClave = new System.Windows.Forms.Label();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -60,14 +60,14 @@
             this.lblMensaje.Text = "Si se ha olvidado de su clave puede recuperarla \r\ningresando su correo electrónic" +
     "o para acceder a su clave.";
             // 
-            // txt1
+            // TxtRecuperarClave
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(241, 163);
-            this.txt1.Margin = new System.Windows.Forms.Padding(4);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(251, 26);
-            this.txt1.TabIndex = 9;
+            this.TxtRecuperarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRecuperarClave.Location = new System.Drawing.Point(241, 163);
+            this.TxtRecuperarClave.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtRecuperarClave.Name = "TxtRecuperarClave";
+            this.TxtRecuperarClave.Size = new System.Drawing.Size(251, 26);
+            this.TxtRecuperarClave.TabIndex = 9;
             // 
             // lblRecuperacionClave
             // 
@@ -93,7 +93,7 @@
             this.btnRegresar.TabIndex = 7;
             this.btnRegresar.Text = "Regresar";
             this.btnRegresar.UseVisualStyleBackColor = false;
-            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
+            this.btnRegresar.Click += new System.EventHandler(this.BtnRegresar_Click);
             // 
             // btnAceptar
             // 
@@ -108,9 +108,9 @@
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
-            // vtnRecuperarClave
+            // VtnRecuperarClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -118,16 +118,16 @@
             this.ClientSize = new System.Drawing.Size(544, 279);
             this.Controls.Add(this.lblCorreoElectronico);
             this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.txt1);
+            this.Controls.Add(this.TxtRecuperarClave);
             this.Controls.Add(this.lblRecuperacionClave);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.btnAceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "vtnRecuperarClave";
+            this.Name = "VtnRecuperarClave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recuperar clave";
-            this.Load += new System.EventHandler(this.vtnRecuperarClave_Load);
+            this.Load += new System.EventHandler(this.VtnRecuperarClave_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +137,7 @@
 
         private System.Windows.Forms.Label lblCorreoElectronico;
         private System.Windows.Forms.Label lblMensaje;
-        private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.TextBox TxtRecuperarClave;
         private System.Windows.Forms.Label lblRecuperacionClave;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.Button btnAceptar;

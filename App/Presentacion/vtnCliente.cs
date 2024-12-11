@@ -370,6 +370,10 @@ namespace Presentacion
                 MessageBox.Show("Debe ingresar números y no letras.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
             }
+            if (TxtCedula.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                MessageBox.Show("Solo puede contener 10 números.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning); e.Handled = true;
+            }
         }
 
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
@@ -378,6 +382,10 @@ namespace Presentacion
             {
                 MessageBox.Show("Debe ingresar números y no letras.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Handled = true;
+            }
+            if (TxtCedula.Text.Length >= 10 && !char.IsControl(e.KeyChar))
+            {
+                MessageBox.Show("Solo puede contener 10 números.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning); e.Handled = true;
             }
         }
     }

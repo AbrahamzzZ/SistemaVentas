@@ -274,7 +274,7 @@ namespace Presentacion
             return new string(resultado);
         }
 
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {

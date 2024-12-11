@@ -44,7 +44,7 @@ namespace Presentacion
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             List<Usuario> mostrarUsuario = new CN_Usuario().ListarUsuario();
             foreach (Usuario rol in mostrarUsuario)
             {
@@ -88,50 +88,52 @@ namespace Presentacion
         {
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombreCompleto.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombreCompleto.Text)) mensajeError += "- Nombre completo del Usuario.\n";
-                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del Usuario.\n";
-                if (string.IsNullOrWhiteSpace(TxtClave.Text)) mensajeError += "- Clave del Usuario.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Rol del Usuario.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Estado del Usuario.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Usuario
+            Usuario agregarUsuario = new Usuario()
+            {
+                IdUsuario = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                NombreCompleto = TxtNombreCompleto.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
+                Clave = TxtClave.Text,
+                oRol = new Rol { IdRol = selectedItemCmb1.Valor },
+                Estado = selectedItemCmb2.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idUsuarioIngresado = new CN_Usuario().Registrar(agregarUsuario, out mensaje);
+            if (idUsuarioIngresado != 0)
+            {
+                // Agregar a la tabla y mostrar mensaje de éxito
+                tablaUsuarios.Rows.Add(new object[]
+                {
+            "", idUsuarioIngresado, TxtCodigo.Text, TxtNombreCompleto.Text,
+            TxtCorreoElectronico.Text, TxtClave.Text, selectedItemCmb1.Valor,
+            selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto
+                });
+
+                MessageBox.Show("El Usuario fue agregado correctamente.", "Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
             }
             else
             {
-                Usuario agregarUsuario = new Usuario()
-                {
-                    IdUsuario = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtNoDocumento.Text,
-                    NombreCompleto = TxtNombreCompleto.Text,
-                    CorreoElectronico = TxtCorreoElectronico.Text,
-                    Clave = TxtClave.Text,
-                    oRol = new Rol { IdRol = valorCmb1 },
-                    Estado = valorCmb2 == 1
-                };
-                int idUsuarioIngresado = new CN_Usuario().Registrar(agregarUsuario, out mensaje);
-                if (idUsuarioIngresado != 0)
-                {
-
-                    // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null && selectedItemCmb2 != null)
-                    {
-                        tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, TxtNoDocumento.Text, TxtNombreCompleto.Text, TxtCorreoElectronico.Text, TxtClave.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2 });
-                        MessageBox.Show("El Usuario fue agregado correctamente.", "Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Usuario");
-                    }
-                }
+                // Mostrar mensaje de error proveniente de la capa de negocio
+                MessageBox.Show($"No se pudo registrar el Usuario: {mensaje}", "Error al Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -143,36 +145,48 @@ namespace Presentacion
         {
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Rol del Usuario.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Estado del Usuario.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Usuario
             Usuario usuarioModificado = new Usuario()
             {
                 IdUsuario = Convert.ToInt32(TxtId.Text),
-                Codigo = TxtNoDocumento.Text,
+                Codigo = TxtCodigo.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
                 Clave = TxtClave.Text,
-                oRol = new Rol { IdRol = valorCmb1 },
-                Estado = valorCmb2 == 1
+                oRol = new Rol { IdRol = selectedItemCmb1.Valor },
+                Estado = selectedItemCmb2.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Usuario().Editar(usuarioModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El Usuario fue modificado correctamente.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaUsuarios.Rows[indice].Cells["Codigo"].Value = usuarioModificado.Codigo;
                 tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value = usuarioModificado.NombreCompleto;
                 tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value = usuarioModificado.CorreoElectronico;
                 tablaUsuarios.Rows[indice].Cells["Clave"].Value = usuarioModificado.Clave;
                 tablaUsuarios.Rows[indice].Cells["IdRol"].Value = usuarioModificado.oRol.IdRol;
-                tablaUsuarios.Rows[indice].Cells["Rol"].Value = textoCmb1;
+                tablaUsuarios.Rows[indice].Cells["Rol"].Value = selectedItemCmb1.Texto;
                 tablaUsuarios.Rows[indice].Cells["EstadoValor"].Value = usuarioModificado.Estado ? 1 : 0;
                 tablaUsuarios.Rows[indice].Cells["Estado"].Value = usuarioModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
             }
             else
@@ -183,39 +197,31 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNoDocumento.Text) || string.IsNullOrWhiteSpace(TxtNombreCompleto.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || string.IsNullOrWhiteSpace(TxtClave.Text))
+            // Verificar que hay un usuario seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un Usuario en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Usuario en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (MessageBox.Show("Desea eliminar este Usuario?", "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                int idUsuario = Convert.ToInt32(TxtId.Text);
-                if (idUsuario == 1)
+                string mensaje = string.Empty;
+
+                Usuario usuarioEliminado = new Usuario()
                 {
-                    MessageBox.Show("No se puede eliminar el primer Usuario porque es necesario para el acceso al sistema.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    IdUsuario = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Usuario().Eliminar(usuarioEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaUsuarios.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El Usuario fue eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
                 }
                 else
                 {
-                    if (MessageBox.Show("Desea eliminar este Usuario?", "Eliminar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
-
-                        Usuario usuarioEliminado = new Usuario()
-                        {
-                            IdUsuario = idUsuario,
-                        };
-                        bool respuesta = new CN_Usuario().Eliminar(usuarioEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaUsuarios.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El Usuario fue eliminado correctamente.", "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    MessageBox.Show(mensaje, "Eliminar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -261,7 +267,7 @@ namespace Presentacion
                 {
                     TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaUsuarios.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtNoDocumento.Text = tablaUsuarios.Rows[indice].Cells["Codigo"].Value.ToString();
+                    TxtCodigo.Text = tablaUsuarios.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombreCompleto.Text = tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value.ToString();
                     TxtCorreoElectronico.Text = tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
                     TxtClave.Text = tablaUsuarios.Rows[indice].Cells["Clave"].Value.ToString();
@@ -295,11 +301,12 @@ namespace Presentacion
                 }
             }
         }
+
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
-            TxtNoDocumento.Text = GenerarCodigo(4);
+            TxtCodigo.Text = GenerarCodigo(4);
             TxtNombreCompleto.Clear();
             TxtCorreoElectronico.Clear();
             TxtClave.Clear();
@@ -317,15 +324,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtNombreCompleto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre Completo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

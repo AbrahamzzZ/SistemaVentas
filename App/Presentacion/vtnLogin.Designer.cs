@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnLogin
+    partial class VtnLogin
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnLogin));
             this.lblIniciarSesion = new System.Windows.Forms.Label();
             this.lblOlvidoClave = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
@@ -98,7 +98,6 @@
             this.TxtCodigo.Name = "TxtCodigo";
             this.TxtCodigo.Size = new System.Drawing.Size(221, 26);
             this.TxtCodigo.TabIndex = 17;
-            this.TxtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
             // 
             // LblCodigo
             // 
@@ -124,7 +123,7 @@
             this.btnSalir.TabIndex = 15;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // btnIngresar
             // 
@@ -140,11 +139,11 @@
             this.btnIngresar.TabIndex = 14;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
-            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            this.btnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // lblHagaClicAqui
             // 
@@ -156,7 +155,7 @@
             this.lblHagaClicAqui.Size = new System.Drawing.Size(112, 18);
             this.lblHagaClicAqui.TabIndex = 25;
             this.lblHagaClicAqui.Text = "Haga clic aquí...";
-            this.lblHagaClicAqui.Click += new System.EventHandler(this.lblHagaClicAqui_Click);
+            this.lblHagaClicAqui.Click += new System.EventHandler(this.LblHagaClicAqui_Click);
             // 
             // lblHora
             // 
@@ -171,7 +170,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.login;
-            this.pictureBox1.Location = new System.Drawing.Point(261, 67);
+            this.pictureBox1.Location = new System.Drawing.Point(255, 65);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(147, 133);
@@ -192,9 +191,9 @@
             this.btnVerContrasenia.Size = new System.Drawing.Size(39, 32);
             this.btnVerContrasenia.TabIndex = 21;
             this.btnVerContrasenia.UseVisualStyleBackColor = false;
-            this.btnVerContrasenia.Click += new System.EventHandler(this.btnVerContrasenia_Click);
+            this.btnVerContrasenia.Click += new System.EventHandler(this.BtnVerContrasenia_Click);
             // 
-            // vtnLogin
+            // VtnLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -215,10 +214,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "vtnLogin";
+            this.Name = "VtnLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.vtnLogin_Load);
+            this.Load += new System.EventHandler(this.VtnLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
