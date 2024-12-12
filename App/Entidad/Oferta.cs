@@ -15,7 +15,7 @@ namespace Entidad
         public string Descripcion { get; set; }
         public string FechaInicio { get; set; }
         public string FechaFin { get; set; }
-        public decimal Descuento { get; set; }
+        public decimal? Descuento { get; set; }
         public bool Estado { get; set; }
     }
 }
