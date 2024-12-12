@@ -20,37 +20,98 @@ namespace Negocios
 
         public int Registrar(Oferta obj, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            // Validar Nombre
+            if (string.IsNullOrWhiteSpace(obj.NombreOferta))
+            {
+                mensaje += "\n- Es necesario el nombre de la oferta.";
+            }
+            else if (!EsNombreDescripcionValido(obj.NombreOferta))
+            {
+                mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
+            }
+
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            {
+                mensaje += "\n- Es necesario la descripción de la oferta.";
+            }
+
+            // Validar Descuento
+            if (!obj.Descuento.HasValue)
+            {
+                mensaje += "\n- Es necesario el descuento de la oferta.";
+            }
+            else if (obj.Descuento <= 0 || obj.Descuento > 100)
+            {
+                mensaje += "\n- El descuento debe ser un número válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            }
+
             return ObjetoOferta.RegistrarOferta(obj, out mensaje);
         }
 
         public bool Editar(Oferta obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.NombreOferta == "")
+
+            // Validar Nombre
+            if (string.IsNullOrWhiteSpace(obj.NombreOferta))
             {
-                mensaje += "Es necesario el nombre de la oferta.\n";
+                mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            if (obj.Descripcion == "")
+            else if (!EsNombreDescripcionValido(obj.NombreOferta))
             {
-                mensaje += "Es necesario el descripción de la oferta.\n";
+                mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
-            if (obj.Descuento == 0)
+
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
             {
-                mensaje += "Es necesario el descuento para la oferta.";
+                mensaje += "\n- Es necesario la descripción de la oferta.";
             }
-            if (mensaje != string.Empty)
+
+            //Validar Descuento
+            if (!obj.Descuento.HasValue)
+            {
+                mensaje += "\n- Es necesario el descuento de la oferta.";
+            }
+            else if (obj.Descuento <= 0 || obj.Descuento > 100)
+            {
+                mensaje += "\n- El descuento debe ser un número válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoOferta.EditarOferta(obj, out mensaje);
-            }
+
+            return ObjetoOferta.EditarOferta(obj, out mensaje);
         }
 
         public bool Eliminar(Oferta obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdOferta == 0)
+            {
+                mensaje = "Debe seleccionar un Proveedor válido para eliminar.";
+                return false;
+            }
+
             return ObjetoOferta.EliminarOferta(obj, out mensaje);
+        }
+
+        private bool EsNombreDescripcionValido(string nombre)
+        {
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

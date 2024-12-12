@@ -88,31 +88,31 @@ namespace Negocios
             // Validar Nombre Completo
             if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
             {
-                mensaje += "- Es necesario el nombre completo del usuario.\n";
+                mensaje += "\n- Es necesario el nombre completo del usuario.";
             }
             else if (!EsNombreValido(obj.NombreCompleto))
             {
-                mensaje += "- El nombre del usuario solo puede contener letras y no números.\n";
+                mensaje += "\n- El nombre del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
             if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
             {
-                mensaje += "- Es necesario el correo electrónico del usuario.\n";
+                mensaje += "\n- Es necesario el correo electrónico del usuario.";
             }
             else if (!EsCorreoValido(obj.CorreoElectronico))
             {
-                mensaje += "- El correo electrónico no tiene un formato válido.\n";
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
             // Validar Clave
             if (string.IsNullOrWhiteSpace(obj.Clave))
             {
-                mensaje += "- Es necesario la clave del usuario.\n";
+                mensaje += "\n- Es necesario la clave del usuario.";
             }
             else if (!EsClaveValida(obj.Clave))
             {
-                mensaje += "- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.\n";
+                mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
             }
 
             // Retornar false si hay mensajes de error
@@ -132,31 +132,31 @@ namespace Negocios
             // Validar Nombre Completo
             if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
             {
-                mensaje += "- Es necesario el nombre completo del usuario.\n";
+                mensaje += "\n- Es necesario el nombre completo del usuario.";
             }
             else if (!EsNombreValido(obj.NombreCompleto))
             {
-                mensaje += "- El nombre del usuario solo puede contener letras y no números.\n";
+                mensaje += "\n- El nombre del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
             if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
             {
-                mensaje += "- Es necesario el correo electrónico del usuario.\n";
+                mensaje += "\n- Es necesario el correo electrónico del usuario.";
             }
             else if (!EsCorreoValido(obj.CorreoElectronico))
             {
-                mensaje += "- El correo electrónico no tiene un formato válido.\n";
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
             // Validar Clave
             if (string.IsNullOrWhiteSpace(obj.Clave))
             {
-                mensaje += "- Es necesario la clave del usuario.\n";
+                mensaje += "\n- Es necesario la clave del usuario.";
             }
             else if (!EsClaveValida(obj.Clave))
             {
-                mensaje += "- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.\n";
+                mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
             }
 
             // Retornar false si hay mensajes de error
