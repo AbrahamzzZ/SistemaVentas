@@ -89,7 +89,6 @@
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(280, 27);
             this.TxtApellidos.TabIndex = 98;
-            this.TxtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellidos_KeyPress);
             // 
             // TxtCorreoElectronico
             // 
@@ -262,7 +261,6 @@
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(280, 27);
             this.TxtTelefono.TabIndex = 91;
-            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // lblTelefono
             // 
@@ -293,7 +291,6 @@
             this.TxtCedula.Name = "TxtCedula";
             this.TxtCedula.Size = new System.Drawing.Size(280, 27);
             this.TxtCedula.TabIndex = 88;
-            this.TxtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCedula_KeyPress);
             // 
             // lblCorreoElectronico
             // 
@@ -313,7 +310,6 @@
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(280, 27);
             this.TxtNombres.TabIndex = 86;
-            this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
             // lblNombes
             // 

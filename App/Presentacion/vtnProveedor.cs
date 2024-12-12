@@ -1,4 +1,5 @@
-﻿using ClosedXML.Excel;
+﻿
+using ClosedXML.Excel;
 using Entidad;
 using Negocios;
 using System;
@@ -131,24 +132,20 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(TextCedula.Text)) mensajeError += "- Cedula del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(TxtTelefono.Text)) mensajeError += "- Telefono del proveedor.\n";
-                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del proveedor.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Proveedor.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
             }
-            else
-            {
-                Proveedor agregarProveedor = new Proveedor()
+
+            // Crear el objeto Usuario
+            Proveedor agregarProveedor = new Proveedor()
                 {
                     IdProveedor = Convert.ToInt32(TxtId.Text),
                     Codigo = TxtCodigo.Text,
@@ -157,23 +154,22 @@ namespace Presentacion
                     Cedula = TextCedula.Text,
                     Telefono = TxtTelefono.Text,
                     CorreoElectronico = TxtCorreoElectronico.Text,
-                    Estado = valorCmb1 == 1
-                };
-                int idProveedorIngresado = new CN_Proveedor().Registrar(agregarProveedor, out mensaje);
-                if (idProveedorIngresado != 0)
-                {
-                    // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null)
-                    {
-                        tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TextCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
-                        MessageBox.Show("El proveedor fue agregado correctamente.", "Agregar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Proveedor");
-                    }
-                }
+                    Estado = selectedItemCmb1.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idProveedorIngresado = new CN_Proveedor().Registrar(agregarProveedor, out mensaje);
+            if (idProveedorIngresado != 0)
+            {
+                // Agregar a la tabla y mostrar mensaje de éxito
+                tablaProveedores.Rows.Add(new object[] { "", idProveedorIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TextCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                MessageBox.Show("El proveedor fue registrado correctamente.", "Registrar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
+            else
+            {
+                // Mostrar mensaje de error proveniente de la capa de negocio
+                MessageBox.Show($"No se pudo registrar al proveedor: {mensaje}", "Error al Registrar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -185,10 +181,19 @@ namespace Presentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Proveedor.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Proveedor
             Proveedor proveedorModificado = new Proveedor()
             {
                 IdProveedor = Convert.ToInt32(TxtId.Text),
@@ -198,13 +203,16 @@ namespace Presentacion
                 Cedula = TextCedula.Text,
                 Telefono = TxtTelefono.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
-                Estado = valorCmb1 == 1
+                Estado = selectedItemCmb1.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Proveedor().Editar(proveedorModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("El proveedor fue modificado correctamente.", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información del proveedor fue modificado correctamente.", "Modificar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaProveedores.Rows[indice].Cells["ID"].Value = proveedorModificado.IdProveedor;
                 tablaProveedores.Rows[indice].Cells["Codigo"].Value = proveedorModificado.Codigo;
@@ -215,40 +223,42 @@ namespace Presentacion
                 tablaProveedores.Rows[indice].Cells["CorreoElectronico"].Value = proveedorModificado.CorreoElectronico;
                 tablaProveedores.Rows[indice].Cells["EstadoValor"].Value = proveedorModificado.Estado ? 1 : 0;
                 tablaProveedores.Rows[indice].Cells["Estado"].Value = proveedorModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
+            }
+            else
+            {
+                MessageBox.Show($"No se pudo modificar la información del proveedor: {mensaje}", "Error al Modificar el proveedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TextCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            // Verificar que halla un proveedor seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un proveedor en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Proveedor en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Proveedor proveedorEliminado = new Proveedor()
-                        {
-                            IdProveedor = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Proveedor().Eliminar(proveedorEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaProveedores.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El proveedor fue eliminado correctamente.", "Eliminar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar proveedor");
-                        }
-                    }
+            if (MessageBox.Show("Desea eliminar este proveedor?", "Eliminar proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Proveedor proveedorEliminado = new Proveedor()
+                {
+                    IdProveedor = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Proveedor().Eliminar(proveedorEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaProveedores.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El proveedor fue eliminado correctamente.", "Eliminar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -341,42 +351,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Apellidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TextCedula_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

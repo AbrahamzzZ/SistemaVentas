@@ -160,51 +160,42 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
-            if (string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
+
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del transportista.\n";
-                if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del transportista.\n";
-                if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del transportista.\n";
-                if (string.IsNullOrWhiteSpace(TxtTelefono.Text)) mensajeError += "- Telefono del transportista.\n";
-                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del transportista.\n";
-                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del transportista.\n";
-                if (FotoTransportista.Image == null) mensajeError += "- Foto del transportista.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Proveedor.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Transportista
+            Transportista agregarTransportista = new Transportista()
+            {
+                IdTransportista = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                Nombres = TxtNombres.Text,
+                Apellidos = TxtApellidos.Text,
+                Cedula = TxtCedula.Text,
+                Telefono = TxtTelefono.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
+                Estado = selectedItemCmb1.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idTransportistaIngresado = new CN_Transportista().Registrar(agregarTransportista, imagen, out mensaje);
+            if (idTransportistaIngresado != 0)
+            {
+                    tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(FotoTransportista.Image), selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                    MessageBox.Show("El transportista fue registrado correctamente.", "Registrar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
             }
             else
             {
-                Transportista agregarTransportista = new Transportista()
-                {
-                    IdTransportista = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    Nombres = TxtNombres.Text,
-                    Apellidos = TxtApellidos.Text,
-                    Cedula = TxtCedula.Text,
-                    Telefono = TxtTelefono.Text,
-                    CorreoElectronico = TxtCorreoElectronico.Text,
-                    Estado = valorCmb1 == 1
-                };
-                int idTransportistaIngresado = new CN_Transportista().Registrar(agregarTransportista, imagen, out mensaje);
-                if (idTransportistaIngresado != 0)
-                {
-                    // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null)
-                    {
-                        tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(FotoTransportista.Image), valorCmb1, textoCmb1 });
-                        MessageBox.Show("El transportista fue agregado correctamente.", "Agregar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Transportista");
-                    }
-                }
+                MessageBox.Show($"No se pudo registrar al transporstista: {mensaje}", "Tabla Transportista", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -216,9 +207,17 @@ namespace Presentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
+
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Proveedor.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
 
             Transportista transportistaModificado = new Transportista()
             {
@@ -229,16 +228,20 @@ namespace Presentacion
                 Cedula = TxtCedula.Text,
                 Telefono = TxtTelefono.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
-                Estado = valorCmb1 == 1
+                Estado = selectedItemCmb1.Valor == 1
             };
             if (FotoTransportista.Image != null)
             {
                 imagen = ImageToByteArray(FotoTransportista.Image);
             }
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Transportista().Editar(transportistaModificado, imagen, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("El transportista fue modificado correctamente.", "Modificar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información transportista fue modificado correctamente.", "Modificar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaTransportista.Rows[indice].Cells["Codigo"].Value = transportistaModificado.Codigo;
                 tablaTransportista.Rows[indice].Cells["Nombres"].Value = transportistaModificado.Nombres;
@@ -253,40 +256,37 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("Error al modificar el transportista: " + mensaje, "Modificar tranportista", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información del transpotista: {mensaje}", "Error al Modificar el tranportista", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text) || FotoTransportista.Image == null)
+            // Verificar que halla un transportista seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un transportista en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Transportista en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar este transportista?", "Eliminar transportista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Transportista transportistaEliminado = new Transportista()
-                        {
-                            IdTransportista = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Transportista().Eliminar(transportistaEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaTransportista.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El tansportista fue eliminado correctamente.", "Eliminar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar transportista", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+            if (MessageBox.Show("Desea eliminar este transportista?", "Eliminar transportista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Transportista transportistaEliminado = new Transportista()
+                {
+                    IdTransportista = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Transportista().Eliminar(transportistaEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaTransportista.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El tansportista fue eliminado correctamente.", "Eliminar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar transportista", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -390,42 +390,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Apellidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtCedula_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

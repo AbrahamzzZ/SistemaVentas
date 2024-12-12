@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CmbProducto = new System.Windows.Forms.ComboBox();
             this.RtextDescripcion = new System.Windows.Forms.RichTextBox();
             this.TxtNombre = new System.Windows.Forms.TextBox();
@@ -57,9 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaOferta = new System.Windows.Forms.DataGridView();
-            this.TxtId = new System.Windows.Forms.TextBox();
-            this.TxtCodigo = new System.Windows.Forms.TextBox();
-            this.LblCodigo = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +69,9 @@
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxtId = new System.Windows.Forms.TextBox();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.LblCodigo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaOferta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,7 +100,6 @@
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(280, 27);
             this.TxtNombre.TabIndex = 166;
-            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt3_KeyPress);
             // 
             // txtFechaFin
             // 
@@ -162,7 +161,6 @@
             this.TxtDescuento.Name = "TxtDescuento";
             this.TxtDescuento.Size = new System.Drawing.Size(280, 27);
             this.TxtDescuento.TabIndex = 160;
-            this.TxtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt5_KeyPress);
             // 
             // BtnBuscar
             // 
@@ -202,7 +200,7 @@
             this.BtnLimpiar.TabIndex = 159;
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.UseVisualStyleBackColor = false;
-            this.BtnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // CmbEstado
             // 
@@ -362,15 +360,15 @@
             // 
             this.tablaOferta.AllowUserToAddRows = false;
             this.tablaOferta.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tablaOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -390,45 +388,15 @@
             this.tablaOferta.Name = "tablaOferta";
             this.tablaOferta.ReadOnly = true;
             this.tablaOferta.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaOferta.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaOferta.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tablaOferta.RowTemplate.Height = 28;
             this.tablaOferta.Size = new System.Drawing.Size(978, 248);
             this.tablaOferta.TabIndex = 146;
             this.tablaOferta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaOferta_CellContentClick);
             this.tablaOferta.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaOferta_CellFormatting);
             this.tablaOferta.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaOferta_CellPainting);
-            // 
-            // TxtId
-            // 
-            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtId.Location = new System.Drawing.Point(276, 77);
-            this.TxtId.Name = "TxtId";
-            this.TxtId.ReadOnly = true;
-            this.TxtId.Size = new System.Drawing.Size(34, 27);
-            this.TxtId.TabIndex = 171;
-            this.TxtId.Text = "0";
-            // 
-            // TxtCodigo
-            // 
-            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(30, 122);
-            this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.ReadOnly = true;
-            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
-            this.TxtCodigo.TabIndex = 172;
-            // 
-            // LblCodigo
-            // 
-            this.LblCodigo.AutoSize = true;
-            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
-            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigo.Location = new System.Drawing.Point(26, 99);
-            this.LblCodigo.Name = "LblCodigo";
-            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
-            this.LblCodigo.TabIndex = 173;
-            this.LblCodigo.Text = "Código:";
             // 
             // btnSeleccionar
             // 
@@ -494,6 +462,7 @@
             this.FechaInicio.MinimumWidth = 6;
             this.FechaInicio.Name = "FechaInicio";
             this.FechaInicio.ReadOnly = true;
+            this.FechaInicio.Width = 125;
             // 
             // FechaFin
             // 
@@ -527,6 +496,36 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             this.Estado.Width = 87;
+            // 
+            // TxtId
+            // 
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(276, 77);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 171;
+            this.TxtId.Text = "0";
+            // 
+            // TxtCodigo
+            // 
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(30, 122);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.ReadOnly = true;
+            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
+            this.TxtCodigo.TabIndex = 172;
+            // 
+            // LblCodigo
+            // 
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(26, 99);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 173;
+            this.LblCodigo.Text = "Código:";
             // 
             // vtnOferta
             // 

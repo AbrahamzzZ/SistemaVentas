@@ -118,22 +118,16 @@ namespace Presentacion
             if (idUsuarioIngresado != 0)
             {
                 // Agregar a la tabla y mostrar mensaje de éxito
-                tablaUsuarios.Rows.Add(new object[]
-                {
-            "", idUsuarioIngresado, TxtCodigo.Text, TxtNombreCompleto.Text,
-            TxtCorreoElectronico.Text, TxtClave.Text, selectedItemCmb1.Valor,
-            selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto
-                });
+                tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, TxtCodigo.Text, TxtNombreCompleto.Text, TxtCorreoElectronico.Text, TxtClave.Text, selectedItemCmb1.Valor,selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
 
-                MessageBox.Show("El Usuario fue agregado correctamente.", "Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El usuario fue registrado correctamente.", "Registrar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
             {
                 // Mostrar mensaje de error proveniente de la capa de negocio
-                MessageBox.Show($"No se pudo registrar el Usuario: {mensaje}", "Error al Agregar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo registrar el usuario: {mensaje}", "Error al Registrar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -174,7 +168,7 @@ namespace Presentacion
             bool modificar = new CN_Usuario().Editar(usuarioModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("El Usuario fue modificado correctamente.", "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información del usuario fue modificado correctamente.", "Modificar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
@@ -191,13 +185,13 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("Error al modificar la información del Usuario: " + mensaje, "Modificar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información del usuario: {mensaje}", "Error al Modificar el usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificar que hay un usuario seleccionado
+            // Verificar que halla un usuario seleccionado
             if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
                 MessageBox.Show("Primero debe seleccionar un Usuario en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
