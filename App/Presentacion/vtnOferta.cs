@@ -95,64 +95,67 @@ namespace Presentacion
         {
             dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtextDescripcion.Text) || string.IsNullOrWhiteSpace(TxtDescuento.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre de la oferta\n";
-                if (string.IsNullOrWhiteSpace(RtextDescripcion.Text)) mensajeError += "- Descrpción de la oferta\n";
-                if (string.IsNullOrWhiteSpace(TxtDescuento.Text)) mensajeError += "- Descuento de la oferta\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Producto de la oferta.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Estado de la oferta.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            decimal? descuento = null;
+            if (!string.IsNullOrWhiteSpace(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
+            {
+                descuento = tempDescuento;
+            }
+
+            // Crear el objeto Oferta
+            Oferta agregarOferta = new Oferta()
+            {
+                IdOferta = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                NombreOferta = TxtNombre.Text,
+                Descripcion = RtextDescripcion.Text,
+                FechaInicio = txtFechaInicio.Text,
+                FechaFin = txtFechaFin.Text,
+                Descuento = descuento,
+                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor },
+                Estado = selectedItemCmb2.Valor == 1
+            };
+
+
+            List<Producto> listaProducto = new CN_Producto().ListarProducto();
+            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
+            if (productoSeleccionado != null && !productoSeleccionado.Estado)
+            {
+                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+                return;
             }
             else
             {
-                Oferta agregarOferta = new Oferta()
+                // Delegar la validación y registro a la lógica de negocio
+                int idOfertaIngresado = new CN_Oferta().Registrar(agregarOferta, out mensaje);
+                if (idOfertaIngresado != 0)
                 {
-                    IdOferta = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    NombreOferta = TxtNombre.Text,
-                    Descripcion = RtextDescripcion.Text,
-                    FechaInicio = txtFechaInicio.Text,
-                    FechaFin = txtFechaFin.Text,
-                    Descuento = Convert.ToDecimal(TxtDescuento.Text),
-                    oProducto = new Producto { IdProducto = valorCmb1 },
-                    Estado = valorCmb2 == 1
-                };
-                List<Producto> listaProducto = new CN_Producto().ListarProducto();
-                Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == valorCmb1);
-                if (productoSeleccionado != null && !productoSeleccionado.Estado)
-                {
-                    MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, TxtCodigo.Text, TxtNombre.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                    MessageBox.Show("La oferta fue registrada correctamente.", "Registrar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
-                    return;
                 }
-                else {
-                    int idOfertaIngresado = new CN_Oferta().Registrar(agregarOferta, out mensaje);
-                    if (idOfertaIngresado != 0)
-                    {
-                        // Verificar si los elementos seleccionados no son nulos
-                        if (selectedItemCmb1 != null)
-                        {
-                            tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, TxtCodigo.Text, TxtNombre.Text, valorCmb1, textoCmb1, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, valorCmb2, textoCmb2 });
-                            MessageBox.Show("La oferta fue agregada correctamente.", "Agregar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Oferta");
-                        }
-                    }
+                else
+                {
+                    // Mostrar mensaje de error proveniente de la capa de negocio
+                    MessageBox.Show($"No se pudo registrar la oferta: {mensaje}", "Error al Registrar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             Limpiar();
         }
@@ -161,79 +164,103 @@ namespace Presentacion
         {
             dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Producto de la oferta.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Estado de la oferta.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            decimal? descuento = null;
+            if (!string.IsNullOrWhiteSpace(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
+            {
+                descuento = tempDescuento;
+            }
+
+            // Crear el objeto Oferta
             Oferta ofertaModificado = new Oferta()
             {
                 IdOferta = Convert.ToInt32(TxtId.Text),
                 Codigo = TxtCodigo.Text,
-                oProducto = new Producto { IdProducto = valorCmb1 },
+                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor },
                 NombreOferta = TxtNombre.Text,
                 Descripcion = RtextDescripcion.Text,
                 FechaInicio = txtFechaInicio.Text,
                 FechaFin = txtFechaFin.Text,
-                Descuento = Convert.ToDecimal(TxtDescuento.Text),
-                Estado = valorCmb2 == 1
+                Descuento = descuento,
+                Estado = selectedItemCmb2.Valor == 1
             };
-            bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
-            if (modificar)
-            {
-                MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(TxtIndice.Text);
-                tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;
-                tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
-                tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
-                tablaOferta.Rows[indice].Cells["Producto"].Value = textoCmb1;
-                tablaOferta.Rows[indice].Cells["Descripcion"].Value = ofertaModificado.Descripcion;
-                tablaOferta.Rows[indice].Cells["FechaInicio"].Value = ofertaModificado.FechaInicio;
-                tablaOferta.Rows[indice].Cells["FechaFin"].Value = ofertaModificado.FechaFin;
-                tablaOferta.Rows[indice].Cells["Descuento"].Value = ofertaModificado.Descuento;
-                tablaOferta.Rows[indice].Cells["EstadoValor"].Value = ofertaModificado.Estado ? 1 : 0;
-                tablaOferta.Rows[indice].Cells["Estado"].Value = ofertaModificado.Estado ? "Activo" : "No Activo";
+            List<Producto> listaProducto = new CN_Producto().ListarProducto();
+            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
+            if (productoSeleccionado != null && !productoSeleccionado.Estado)
+            {
+                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Limpiar();
+                return;
             }
             else
             {
-                MessageBox.Show("Error al modificar la información de la oferta: " + mensaje, "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Delegar la validación y edición a la lógica de negocio
+                bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
+                if (modificar)
+                {
+                    MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    int indice = Convert.ToInt32(TxtIndice.Text);
+                    tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;
+                    tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
+                    tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
+                    tablaOferta.Rows[indice].Cells["Producto"].Value = selectedItemCmb1.Texto;
+                    tablaOferta.Rows[indice].Cells["Descripcion"].Value = ofertaModificado.Descripcion;
+                    tablaOferta.Rows[indice].Cells["FechaInicio"].Value = ofertaModificado.FechaInicio;
+                    tablaOferta.Rows[indice].Cells["FechaFin"].Value = ofertaModificado.FechaFin;
+                    tablaOferta.Rows[indice].Cells["Descuento"].Value = ofertaModificado.Descuento;
+                    tablaOferta.Rows[indice].Cells["EstadoValor"].Value = ofertaModificado.Estado ? 1 : 0;
+                    tablaOferta.Rows[indice].Cells["Estado"].Value = ofertaModificado.Estado ? "Activo" : "No Activo";
+
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show($"No se pudo modificar la información de la oferta: {mensaje}", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtextDescripcion.Text) || string.IsNullOrWhiteSpace(TxtDescuento.Text))
+            // Verificar que halla una oferta seleccionada
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar una oferta en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Proveedor en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (MessageBox.Show("Desea eliminar está oferta?", "Eliminar oferta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (Convert.ToInt32(TxtId.Text) != 0)
+                string mensaje = string.Empty;
+
+                Oferta ofertaEliminada = new Oferta()
                 {
-                    if (MessageBox.Show("Desea eliminar está oferta?", "Eliminar oferta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
-
-                        Oferta ofertaEliminada = new Oferta()
-                        {
-                            IdOferta = Convert.ToInt32(TxtId.Text),
-                        };
-
-                        bool respuesta = new CN_Oferta().Eliminar(ofertaEliminada, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaOferta.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("La oferta fue eliminada correctamente.", "Eliminar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    IdOferta = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Oferta().Eliminar(ofertaEliminada, out mensaje);
+                if (respuesta)
+                {
+                    tablaOferta.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("La oferta fue eliminada correctamente.", "Eliminar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -341,24 +368,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre de la oferta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void txt5_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Descuento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

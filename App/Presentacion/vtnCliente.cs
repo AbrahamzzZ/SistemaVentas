@@ -130,49 +130,45 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombres.Text)) mensajeError += "- Nombres del cliente.\n";
-                if (string.IsNullOrWhiteSpace(TxtApellidos.Text)) mensajeError += "- Apellidos del cliente.\n";
-                if (string.IsNullOrWhiteSpace(TxtCedula.Text)) mensajeError += "- Cedula del cliente.\n";
-                if (string.IsNullOrWhiteSpace(TxtTelefono.Text)) mensajeError += "- Telefono del cliente.\n";
-                if (string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text)) mensajeError += "- Correo electrónico del cliente.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Cliente.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            Cliente agregarCliente = new Cliente()
+            {
+                IdCliente = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                Nombres = TxtNombres.Text,
+                Apellidos = TxtApellidos.Text,
+                Cedula = TxtCedula.Text,
+                Telefono = TxtTelefono.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
+                Estado = selectedItemCmb1.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idClienteIngresado = new CN_Cliente().Registrar(agregarCliente, out mensaje);
+            if (idClienteIngresado != 0)
+            {
+
+                // Agregar a la tabla y mostrar mensaje de éxito
+                tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                    
+                MessageBox.Show("El cliente fue agregado correctamente.", "Agregar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar(); 
             }
             else
             {
-                Cliente agregarCliente = new Cliente()
-                {
-                    IdCliente = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    Nombres = TxtNombres.Text,
-                    Apellidos = TxtApellidos.Text,
-                    Cedula = TxtCedula.Text,
-                    Telefono = TxtTelefono.Text,
-                    CorreoElectronico = TxtCorreoElectronico.Text,
-                    Estado = valorCmb1 == 1
-                };
-                int idClienteIngresado = new CN_Cliente().Registrar(agregarCliente, out mensaje);
-                if (idClienteIngresado != 0)
-                {
-                    // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null)
-                    {
-                        tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, valorCmb1, textoCmb1 });
-                        MessageBox.Show("El cliente fue agregado correctamente.", "Agregar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Cliente");
-                    }
-                }
+                // Mostrar mensaje de error proveniente de la capa de negocio
+                MessageBox.Show($"No se pudo registrar el Cliente: {mensaje}", "Error al Agregar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -184,10 +180,19 @@ namespace Presentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado del Cliente.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Cliente
             Cliente clienteModificado = new Cliente()
             {
                 IdCliente = Convert.ToInt32(TxtId.Text),
@@ -197,12 +202,16 @@ namespace Presentacion
                 Cedula = TxtCedula.Text,
                 Telefono = TxtTelefono.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
-                Estado = valorCmb1 == 1
+                Estado = selectedItemCmb1.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Cliente().Editar(clienteModificado, out mensaje);
             if (modificar)
             {
                 MessageBox.Show("El cliente fue modificado correctamente.", "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCliente.Rows[indice].Cells["ID"].Value = clienteModificado.IdCliente;
                 tablaCliente.Rows[indice].Cells["Codigo"].Value = clienteModificado.Codigo;
@@ -213,44 +222,43 @@ namespace Presentacion
                 tablaCliente.Rows[indice].Cells["CorreoElectronico"].Value = clienteModificado.CorreoElectronico;
                 tablaCliente.Rows[indice].Cells["EstadoValor"].Value = clienteModificado.Estado ? 1 : 0;
                 tablaCliente.Rows[indice].Cells["Estado"].Value = clienteModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("Error al modificar la información del cliente: " + mensaje, "Modificar cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información del Cliente: {mensaje}", "Error al Modificar el Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombres.Text) || string.IsNullOrWhiteSpace(TxtApellidos.Text) || string.IsNullOrWhiteSpace(TxtCedula.Text) || string.IsNullOrWhiteSpace(TxtTelefono.Text) || string.IsNullOrWhiteSpace(TxtCorreoElectronico.Text))
+            // Verificar que halla un cliente seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un cliente en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Cliente en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar este cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Cliente clienteEliminado = new Cliente()
-                        {
-                            IdCliente = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Cliente().Eliminar(clienteEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaCliente.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El cliente fue eliminado correctamente.", "Eliminar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+
+            if (MessageBox.Show("Desea eliminar este cliente?", "Eliminar cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Cliente clienteEliminado = new Cliente()
+                {
+                    IdCliente = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Cliente().Eliminar(clienteEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaCliente.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El cliente fue eliminado correctamente.", "Eliminar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -343,50 +351,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombres", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Apellidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtCedula_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if (TxtCedula.Text.Length >= 10 && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Solo puede contener 10 números.", "Campo Cédula", MessageBoxButtons.OK, MessageBoxIcon.Warning); e.Handled = true;
-            }
-        }
-
-        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if (TxtCedula.Text.Length >= 10 && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Solo puede contener 10 números.", "Campo Teléfono", MessageBoxButtons.OK, MessageBoxIcon.Warning); e.Handled = true;
-            }
         }
     }
 }

@@ -11,8 +11,8 @@ namespace Negocios
 {
     public class CN_Cliente
     {
-        private CD_Cliente ObjetoCliente = new CD_Cliente();
 
+        private CD_Cliente ObjetoCliente = new CD_Cliente();
         public List<Cliente> ListarCliente()
         {
             return ObjetoCliente.MostrarClientes();
@@ -20,45 +20,165 @@ namespace Negocios
 
         public int Registrar(Cliente obj, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            // Validar Nombres
+            if (string.IsNullOrWhiteSpace(obj.Nombres))
+            {
+                mensaje += "\n- Es necesario los nombres del cliente.";
+            }
+            else if (!EsNombreApellidoValido(obj.Nombres))
+            {
+                mensaje += "\n- Los nombres del cliente solo pueden contener letras y no números.";
+            }
+
+            // Validar Apellidos
+            if (string.IsNullOrWhiteSpace(obj.Apellidos))
+            {
+                mensaje += "\n- Es necesario los apellidos del cliente.";
+            }
+            else if (!EsNombreApellidoValido(obj.Apellidos))
+            {
+                mensaje += "\n- Los apellidos del cliente solo pueden contener letras y no números.";
+            }
+
+            //Validar Cedula
+            if (string.IsNullOrWhiteSpace(obj.Cedula))
+            {
+                mensaje += "\n- Es necesario la cédula del cliente.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Cedula))
+            {
+                mensaje += "\n- La cédula del cliente solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            //Validar Telefono
+            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            {
+                mensaje += "\n- Es necesario el telefóno del cliente.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            {
+                mensaje += "\n- El telefóno del cliente solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            // Validar Correo Electrónico
+            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            {
+                mensaje += "\n- Es necesario el correo electrónico del usuario.";
+            }
+            else if (!EsCorreoValido(obj.CorreoElectronico))
+            {
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            }
+
+            // Pasar a la capa de datos si todas las validaciones se cumplen
             return ObjetoCliente.RegistrarCliente(obj, out mensaje);
         }
 
         public bool Editar(Cliente obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Nombres == "")
+
+            // Validar Nombres
+            if (string.IsNullOrWhiteSpace(obj.Nombres))
             {
-                mensaje += "Es necesario los dos nombres del cliente.\n";
+                mensaje += "\n- Es necesario los nombres del cliente.";
             }
-            if (obj.Apellidos == "")
+            else if (!EsNombreApellidoValido(obj.Nombres))
             {
-                mensaje += "Es necesario los dos apellidos del cliente.\n";
+                mensaje += "\n- Los nombres del cliente solo pueden contener letras y no números.";
             }
-            if (obj.Cedula == "")
+
+            // Validar Apellidos
+            if (string.IsNullOrWhiteSpace(obj.Apellidos))
             {
-                mensaje += "Es necesario la cédula del cliente.\n";
+                mensaje += "\n- Es necesario los apellidos del cliente.";
             }
-            if (obj.Telefono == "")
+            else if (!EsNombreApellidoValido(obj.Apellidos))
             {
-                mensaje += "Es necesario el teléfono del cliente.\n";
+                mensaje += "\n- Los apellidos del cliente solo pueden contener letras y no números.";
             }
-            if (obj.CorreoElectronico == "")
+
+            //Validar Cedula
+            if (string.IsNullOrWhiteSpace(obj.Cedula))
             {
-                mensaje += "Es necesario el correo electrónico del cliente.";
+                mensaje += "\n- Es necesario la cédula del cliente.";
             }
-            if (mensaje != string.Empty)
+            else if (!EsCedulaTelefonoValido(obj.Cedula))
+            {
+                mensaje += "\n- La cédula del cliente solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            //Validar Telefono
+            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            {
+                mensaje += "\n- Es necesario el telefóno del cliente.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            {
+                mensaje += "\n- El telefóno del cliente solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            // Validar Correo Electrónico
+            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            {
+                mensaje += "\n- Es necesario el correo electrónico del cliente.";
+            }
+            else if (!EsCorreoValido(obj.CorreoElectronico))
+            {
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoCliente.EditarCliente(obj, out mensaje);
-            }
+
+            // Pasar a la capa de datos si todas las validaciones se cumplen
+            return ObjetoCliente.EditarCliente(obj, out mensaje);
         }
 
         public bool Eliminar(Cliente obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdCliente == 0)
+            {
+                mensaje = "Debe seleccionar un Cliente válido para eliminar.";
+                return false;
+            }
+
             return ObjetoCliente.EliminarCliente(obj, out mensaje);
+        }
+
+        private bool EsCedulaTelefonoValido(string cedulaTelefono)
+        {
+            // Verificar que tenga exactamente 10 caracteres
+            if (cedulaTelefono.Length != 10)
+            {
+                return false;
+            }
+
+            return cedulaTelefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
+        }
+
+        private bool EsNombreApellidoValido(string nombre)
+        {
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
+        }
+
+        private bool EsCorreoValido(string correo)
+        {
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
+            return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocios
 {
@@ -20,49 +21,163 @@ namespace Negocios
 
         public int Registrar(Proveedor obj, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            // Validar Nombres
+            if (string.IsNullOrWhiteSpace(obj.Nombres))
+            {
+                mensaje += "\n- Es necesario los nombres del proveedor.";
+            }
+            else if (!EsNombreApellidoValido(obj.Nombres))
+            {
+                mensaje += "\n- Los nombres del proveedor solo pueden contener letras y no números.";
+            }
+
+            // Validar Apellidos
+            if (string.IsNullOrWhiteSpace(obj.Apellidos))
+            {
+                mensaje += "\n- Es necesario los apellidos del proveedor.";
+            }
+            else if (!EsNombreApellidoValido(obj.Apellidos))
+            {
+                mensaje += "\n- Los apellidos del proveedor solo pueden contener letras y no números.";
+            }
+
+            //Validar Cedula
+            if (string.IsNullOrWhiteSpace(obj.Cedula))
+            {
+                mensaje += "\n- Es necesario la cédula del proveedor.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Cedula))
+            {
+                mensaje += "\n- La cédula del proveedor solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            //Validar Telefono
+            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            {
+                mensaje += "\n- Es necesario el telefóno del proveedor.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            {
+                mensaje += "\n- El telefóno del proveedor solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            // Validar Correo Electrónico
+            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            {
+                mensaje += "\n- Es necesario el correo electrónico del proveedor.";
+            }
+            else if (!EsCorreoValido(obj.CorreoElectronico))
+            {
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            } 
+
             return ObjetoProveedor.RegistrarProveedor(obj, out mensaje);
         }
 
         public bool Editar(Proveedor obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Codigo == "")
+
+            // Validar Nombres
+            if (string.IsNullOrWhiteSpace(obj.Nombres))
             {
-                mensaje += "Es necesario el documento del proveedor.\n";
+                mensaje += "\n- Es necesario los nombres del proveedor.";
             }
-            if (obj.Nombres == "")
+            else if (!EsNombreApellidoValido(obj.Nombres))
             {
-                mensaje += "Es necesario los dos nombres del proveedor.\n";
+                mensaje += "\n- Los nombres del proveedor solo pueden contener letras y no números.";
             }
-            if (obj.Apellidos == "")
+
+            // Validar Apellidos
+            if (string.IsNullOrWhiteSpace(obj.Apellidos))
             {
-                mensaje += "Es necesario los dos apellidos del proveedor.\n";
+                mensaje += "\n- Es necesario los apellidos del proveedor.";
             }
-            if (obj.Cedula == "")
+            else if (!EsNombreApellidoValido(obj.Apellidos))
             {
-                mensaje += "Es necesario la cédula del proveedor.\n";
+                mensaje += "\n- Los apellidos del proveedor solo pueden contener letras y no números.";
             }
-            if (obj.Telefono == "")
+
+            //Validar Cedula
+            if (string.IsNullOrWhiteSpace(obj.Cedula))
             {
-                mensaje += "Es necesario el teléfono del proveedor.\n";
+                mensaje += "\n- Es necesario la cédula del proveedor.";
             }
-            if (obj.CorreoElectronico == "")
+            else if (!EsCedulaTelefonoValido(obj.Cedula))
             {
-                mensaje += "Es necesario el correo electrénico del proveedor.";
+                mensaje += "\n- La cédula del proveedor solo pueden contener exactamente 10 números y no letras.";
             }
-            if (mensaje != string.Empty)
+
+            //Validar Telefono
+            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            {
+                mensaje += "\n- Es necesario el telefóno del proveedor.";
+            }
+            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            {
+                mensaje += "\n- El telefóno del proveedor solo pueden contener exactamente 10 números y no letras.";
+            }
+
+            // Validar Correo Electrónico
+            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            {
+                mensaje += "\n- Es necesario el correo electrónico del proveedor.";
+            }
+            else if (!EsCorreoValido(obj.CorreoElectronico))
+            {
+                mensaje += "\n- El correo electrónico no tiene un formato válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoProveedor.EditarProveedor(obj, out mensaje);
-            }
+
+            return ObjetoProveedor.EditarProveedor(obj, out mensaje);
         }
 
         public bool Eliminar(Proveedor obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdProveedor == 0)
+            {
+                mensaje = "Debe seleccionar un Proveedor válido para eliminar.";
+                return false;
+            }
+
             return ObjetoProveedor.EliminarProveedor(obj, out mensaje);
+        }
+
+        private bool EsCedulaTelefonoValido(string cedulaTelefono)
+        {
+            // Verificar que tenga exactamente 10 caracteres
+            if (cedulaTelefono.Length != 10)
+            {
+                return false;
+            }
+
+            return cedulaTelefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
+        }
+
+        private bool EsNombreApellidoValido(string nombre)
+        {
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
+        }
+
+        private bool EsCorreoValido(string correo)
+        {
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
+            return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
         }
     }
 }
