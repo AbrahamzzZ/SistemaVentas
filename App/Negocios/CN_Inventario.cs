@@ -21,28 +21,59 @@ namespace Negocios
 
         public int Registrar(Inventario obj, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            //Validar Cantidad
+            if (!obj.Cantidad.HasValue)
+            {
+                mensaje += "\n- Es necesario el cantidad del producto que va a dejar en el inventario.";
+            }
+            else if (obj.Cantidad <= 0 || obj.Cantidad > 100)
+            {
+                mensaje += "\n- El cantidad debe ser un número válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            }
+
             return ObjetoProductoInventario.AgregarProductoInventario(obj, out mensaje);
         }
 
         public bool Editar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Cantidad == 0)
+
+            //Validar Cantidad
+            if (!obj.Cantidad.HasValue)
             {
-                mensaje += "Es necesario la cantidad de productos.\n";
+                mensaje += "\n- Es necesario el cantidad del producto que va a dejar en el inventario.";
             }
-            if (mensaje != string.Empty)
+            else if (obj.Cantidad <= 0 || obj.Cantidad > 100)
+            {
+                mensaje += "\n- El cantidad debe ser un número válido.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoProductoInventario.EditarProductoInventario(obj, out mensaje);
-            }
+
+            return ObjetoProductoInventario.EditarProductoInventario(obj, out mensaje);
         }
 
         public bool Eliminar(Inventario obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdInventario == 0)
+            {
+                mensaje = "Debe seleccionar un Producto dentro del Inventario válida para eliminar.";
+                return false;
+            }
+
             return ObjetoProductoInventario.EliminarProductoInventario(obj, out mensaje);
         }
     }
