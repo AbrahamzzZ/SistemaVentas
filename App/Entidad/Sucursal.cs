@@ -12,8 +12,8 @@ namespace Entidad
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public double Latitud { get; set; }
-        public double Longitud { get; set; }
+        public double? Latitud { get; set; }
+        public double? Longitud { get; set; }
         public string Ciudad { get; set; }
         public bool Estado { get; set; }
     }
