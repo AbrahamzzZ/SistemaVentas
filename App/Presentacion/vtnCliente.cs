@@ -162,13 +162,13 @@ namespace Presentacion
                 // Agregar a la tabla y mostrar mensaje de éxito
                 tablaCliente.Rows.Add(new object[] { "", idClienteIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
                     
-                MessageBox.Show("El cliente fue agregado correctamente.", "Agregar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El cliente fue registrado correctamente.", "Registrar cliente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar(); 
             }
             else
             {
                 // Mostrar mensaje de error proveniente de la capa de negocio
-                MessageBox.Show($"No se pudo registrar el Cliente: {mensaje}", "Error al Agregar Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo registrar el Cliente: {mensaje}", "Error al Registrar el cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

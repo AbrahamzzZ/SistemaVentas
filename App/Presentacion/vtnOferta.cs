@@ -211,7 +211,7 @@ namespace Presentacion
                 bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
                 if (modificar)
                 {
-                    MessageBox.Show("La oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("La información de la oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     int indice = Convert.ToInt32(TxtIndice.Text);
                     tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;

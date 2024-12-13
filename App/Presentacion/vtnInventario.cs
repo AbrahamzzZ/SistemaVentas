@@ -157,60 +157,66 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             dynamic selectedItemCmb2 = CmbZonaAlmacen.SelectedItem;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtCantidad.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
             {
-                string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtCantidad.Text)) mensajeError += "- Cantidad del producto\n";
+                string mensajeError = "Por favor, debe seleccionar una opción:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Nombre Producto.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Ubicación almacén.\n";
 
-                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método si hay errores
+            }
+
+            int cantidadComprada = new CN_Compra().CantidadProductoComprado(selectedItemCmb1.Valor);
+            int cantidadIngresada = Convert.ToInt32(TxtCantidad.Text);
+            if (cantidadIngresada > cantidadComprada)
+            {
+                MessageBox.Show("No se puede ingresar un producto más de lo que se compró.", "Agregar producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int? cantidad = null;
+            if (!string.IsNullOrWhiteSpace(TxtCantidad.Text) && int.TryParse(TxtCantidad.Text, out int tempCantidad))
+            {
+                cantidad = tempCantidad;
+            }
+
+            // Crear el objeto Inventario
+            Inventario agregarProductoInventario = new Inventario()
+            {
+                IdInventario = Convert.ToInt32(TxtId.Text),
+                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor, Nombre = selectedItemCmb1.Texto.ToString() },
+                Cantidad = Convert.ToInt32(TxtCantidad.Text),
+                oZonaAlmacen = new Zona_Almacen { IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
+            };
+
+            List<Producto> listaProducto = new CN_Producto().ListarProducto();
+            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
+            if (productoSeleccionado != null && !productoSeleccionado.Estado)
+            {
+                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+                return;
             }
             else
             {
-                int cantidadComprada = new CN_Compra().CantidadProductoComprado(valorCmb1);
-                int cantidadIngresada = Convert.ToInt32(TxtCantidad.Text);
-                if (cantidadIngresada > cantidadComprada)
+                // Delegar la validación y registro a la lógica de negocio
+                int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
+                if (idInventarioIngresado != 0)
                 {
-                    MessageBox.Show("No se puede ingresar un producto más de lo que se compró.", "Agregar producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                Inventario agregarProductoInventario = new Inventario()
-                {
-                    IdInventario = Convert.ToInt32(TxtId.Text),
-                    oProducto = new Producto { IdProducto = valorCmb1, Nombre = textoCmb1.ToString() },
-                    Cantidad = Convert.ToInt32(TxtCantidad.Text),
-                    oZonaAlmacen = new Zona_Almacen { IdZona = valorCmb2, NombreZona = textoCmb2.ToString()}
-                };
-                List<Producto> listaProducto = new CN_Producto().ListarProducto();
-                Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == valorCmb1);
-                if (productoSeleccionado != null && !productoSeleccionado.Estado)
-                {
-                    MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Agregar a la tabla y mostrar mensaje de éxito
+                    tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.Valor, selectedItemCmb1.Texto, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                    
+                    MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
-                    return;
                 }
-                else {
-                    int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
-                    if (idInventarioIngresado != 0)
-                    {
-                        // Verificar si los elementos seleccionados no son nulos
-                        if (selectedItemCmb1 != null && selectedItemCmb2 != null)
-                        {
-                            tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, valorCmb1, textoCmb1, TxtCantidad.Text, valorCmb2, textoCmb2});
-                            MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla inventario");
-                        }
-                    }
+                else
+                {
+                    MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla inventario");
                 }
             }
         }
@@ -224,19 +230,35 @@ namespace Presentacion
         {
             dynamic selectedItemCmb1 = CmbProducto.SelectedItem;
             dynamic selectedItemCmb2 = CmbZonaAlmacen.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null)
+            {
+                string mensajeError = "Por favor, debe seleccionar una opción:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Nombre Producto.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Ubicación almacén.\n";
+
+                MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método si hay errores
+            }
+
+            int? cantidad = null;
+            if (!string.IsNullOrWhiteSpace(TxtCantidad.Text) && int.TryParse(TxtCantidad.Text, out int tempCantidad))
+            {
+                cantidad = tempCantidad;
+            }
+
+            // Crear el objeto Inventario
             Inventario editarProductoInventario = new Inventario()
             {
                 IdInventario = Convert.ToInt32(TxtId.Text),
-                oProducto = new Producto { IdProducto = valorCmb1, Nombre = textoCmb1.ToString() },
-                Cantidad = Convert.ToInt32(TxtCantidad.Text),
-                oZonaAlmacen = new Zona_Almacen {IdZona = valorCmb2, NombreZona = textoCmb2.ToString() }
+                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor, Nombre = selectedItemCmb1.Texto.ToString() },
+                Cantidad = cantidad,
+                oZonaAlmacen = new Zona_Almacen {IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Inventario().Editar(editarProductoInventario, out mensaje);
             if (modificar)
             {
@@ -252,40 +274,37 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("Error al modificar el producto: " + mensaje, "Modificar producto en el inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar el producto en el inventario: {mensaje}", "Modificar producto en el inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtCantidad.Text))
+            // Verificar que halla una categoría seleccionada
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un producto en la tabla para poder eliminarlo del inventario.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Producto qu esta en el Inventario en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
-            {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar este producto del inventario?", "Eliminar producto del inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Inventario productoEliminadoInventario = new Inventario()
-                        {
-                            IdInventario = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Inventario().Eliminar(productoEliminadoInventario, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaInventario.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El producto fue eliminado correctamente del inventario.", "Eliminar producto del inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar producto del inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+            if (MessageBox.Show("Desea eliminar este producto del inventario?", "Eliminar producto del inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Inventario productoEliminadoInventario = new Inventario()
+                {
+                    IdInventario = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Inventario().Eliminar(productoEliminadoInventario, out mensaje);
+                if (respuesta)
+                {
+                    tablaInventario.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El producto fue eliminado correctamente del inventario.", "Eliminar producto del inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar producto del inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
