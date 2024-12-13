@@ -127,7 +127,6 @@
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(280, 27);
             this.TxtDescripcion.TabIndex = 82;
-            this.TxtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDescripcion_KeyPress);
             // 
             // pictureBox1
             // 

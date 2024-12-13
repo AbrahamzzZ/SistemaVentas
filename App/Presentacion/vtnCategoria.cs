@@ -81,44 +81,40 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
             {
-                string mensajeError = "Por favor, complete el siguiente campo:\n";
-                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text)) mensajeError += "- Descripción de la categoría.\n";
+                string mensajeError = "Por favor, debe seleccionar una opción:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado de la categoría.\n";
 
-                MessageBox.Show(mensajeError, "Falta el campo por completar.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Categoria
+            Categoria agregarCategoria = new Categoria()
+            {
+                IdCategoria = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                Descripcion = TxtDescripcion.Text,
+                Estado = selectedItemCmb1.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idCategoriaIngresado = new CN_Categoria().Registrar(agregarCategoria, out mensaje);
+            if (idCategoriaIngresado != 0)
+            {
+                // Agregar a la tabla y mostrar mensaje de éxito
+                tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, TxtCodigo.Text, TxtDescripcion.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                
+                MessageBox.Show("La categoría fue registrada correctamente.", "Registrar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
             }
             else
             {
-                Categoria agregarCategoria = new Categoria()
-                {
-                    IdCategoria = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    Descripcion = TxtDescripcion.Text,
-                    Estado = valorCmb1 == 1
-                };
-                if (agregarCategoria.IdCategoria == 0)
-                {
-                    int idCategoriaIngresado = new CN_Categoria().Registrar(agregarCategoria, out mensaje);
-                    if (idCategoriaIngresado != 0)
-                    {
-                        // Verificar si los elementos seleccionados no son nulos
-                        if (selectedItemCmb1 != null)
-                        {
-                            tablaCategoria.Rows.Add(new object[] { "", idCategoriaIngresado, TxtCodigo.Text,TxtDescripcion.Text, valorCmb1, textoCmb1 });
-                            MessageBox.Show("La categoría fue agregada correctamente.", "Agregar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Por favor, selecciona un valor en el combobox.", "Tabla Categorias", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
+                MessageBox.Show($"No se pudo registrar la categoriá: {mensaje}", "Error al Registrar la categoría", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -130,64 +126,75 @@ namespace Presentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
+            {
+                string mensajeError = "Por favor, debe seleccionar una opción:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado de la categoría.\n";
+
+                MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Categoria
             Categoria categoriaModificado = new Categoria()
             {
                 IdCategoria = Convert.ToInt32(TxtId.Text),
                 Codigo = TxtCodigo.Text,
                 Descripcion = TxtDescripcion.Text,
-                Estado = valorCmb1 == 1
+                Estado = selectedItemCmb1.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Categoria().Editar(categoriaModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("La categoría fue modificada correctamente.", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información de la categoría fue modificada correctamente.", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaCategoria.Rows[indice].Cells["ID"].Value = categoriaModificado.IdCategoria;
                 tablaCategoria.Rows[indice].Cells["Codigo"].Value = categoriaModificado.Codigo;
                 tablaCategoria.Rows[indice].Cells["Descripcion"].Value = categoriaModificado.Descripcion;
                 tablaCategoria.Rows[indice].Cells["EstadoValor"].Value = categoriaModificado.Estado ? 1 : 0;
                 tablaCategoria.Rows[indice].Cells["Estado"].Value = categoriaModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("Error al modificar la información de la categoría: " + mensaje, "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información de la categoría: {mensaje}", "Modificar categoría", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            // Verificar que halla una categoría seleccionada
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar una categoría en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar una Categoría en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar está categoria?", "Eliminar categoría", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Categoria categoriaEliminada = new Categoria()
-                        {
-                            IdCategoria = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Categoria().Eliminar(categoriaEliminada, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaCategoria.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("La categoría fue eliminada correctamente.", "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+            if (MessageBox.Show("Desea eliminar está categoria?", "Eliminar categoría", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Categoria categoriaEliminada = new Categoria()
+                {
+                    IdCategoria = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Categoria().Eliminar(categoriaEliminada, out mensaje);
+                if (respuesta)
+                {
+                    tablaCategoria.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("La categoría fue eliminada correctamente.", "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar categoría", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -272,15 +279,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

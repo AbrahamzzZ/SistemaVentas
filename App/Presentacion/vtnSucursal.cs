@@ -66,7 +66,7 @@ namespace Presentacion
             foreach (Sucursal sucursal in mostrarSucursal)
             {
                 tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Codigo, sucursal.Nombre, sucursal.Direccion, sucursal.Latitud, sucursal.Longitud, sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
-                GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(sucursal.Latitud, sucursal.Longitud), GMarkerGoogleType.red_dot);
+                GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng((double)sucursal.Latitud, (double)sucursal.Longitud), GMarkerGoogleType.red_dot);
                 moverlay.Markers.Add(marcadorSucursal);
             }
             mapa.Overlays.Add(moverlay);
@@ -107,58 +107,66 @@ namespace Presentacion
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtxtDireccion.Text) || string.IsNullOrWhiteSpace(TxtLatitud.Text) || string.IsNullOrWhiteSpace(TxtLogintud.Text) || string.IsNullOrWhiteSpace(TxtCiudad.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre del sucursal.\n";
-                if (string.IsNullOrWhiteSpace(RtxtDireccion.Text)) mensajeError += "- Dirección de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(TxtLatitud.Text)) mensajeError += "- Latitud de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(TxtLogintud.Text)) mensajeError += "- Longitud de la sucursal.\n";
-                if (string.IsNullOrWhiteSpace(TxtCiudad.Text)) mensajeError += "- Ciudad de la sucursal.\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado de la Sucursal.\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            double? latitud = null;
+            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLatitud))
+            {
+                latitud = tempLatitud;
+            }
+
+            double? longitud = null;
+            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLongitud))
+            {
+                longitud = tempLongitud;
+            }
+
+            // Crear el objeto Sucursal
+            Sucursal agregarSucursal = new Sucursal()
+            {
+                IdSucursal = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                Nombre = TxtNombre.Text,
+                Direccion = RtxtDireccion.Text,
+                Latitud = latitud,
+                Longitud = longitud,
+                Ciudad = TxtCiudad.Text,
+                Estado = selectedItemCmb1.Valor == 1
+            };
+
+            // Delegar la validación y registro a la lógica de negocio
+            int idSucursalIngresado = new CN_Sucursal().Registrar(agregarSucursal, out mensaje);
+            if (idSucursalIngresado != 0)
+            {
+                // Agregar a la tabla y mostrar mensaje de éxito
+                tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, TxtCodigo.Text, TxtNombre.Text, RtxtDireccion.Text, TxtLatitud.Text, TxtLogintud.Text, TxtCiudad.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                
+                MessageBox.Show("La sucursal fue registrada correctamente.", "Registrar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng((double)agregarSucursal.Latitud, (double)agregarSucursal.Longitud), GMarkerGoogleType.red_dot);
+                marcadorSucursal.ToolTipText = $"{agregarSucursal.Nombre}\n{agregarSucursal.Direccion}";
+                marcadorSucursal.ToolTip.Fill = Brushes.Black;
+                marcadorSucursal.ToolTip.Foreground = Brushes.White;
+                marcadorSucursal.ToolTip.Stroke = Pens.Black;
+                marcadorSucursal.ToolTip.TextPadding = new Size(20, 20);
+                moverlay.Markers.Add(marcadorSucursal);
+
+                mapa.Refresh();
+                Limpiar();
             }
             else
             {
-               
-                Sucursal agregarSucursal = new Sucursal()
-                {
-                    IdSucursal = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    Nombre = TxtNombre.Text,
-                    Direccion = RtxtDireccion.Text,
-                    Latitud = Convert.ToDouble(TxtLatitud.Text),
-                    Longitud = Convert.ToDouble(TxtLogintud.Text),
-                    Ciudad = TxtCiudad.Text,
-                    Estado = valorCmb1 == 1
-                };
-                int idSucursalIngresado = new CN_Sucursal().Registrar(agregarSucursal, out mensaje);
-                if (idSucursalIngresado != 0)
-                {
-                    // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null)
-                    {
-                        tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, TxtCodigo.Text, TxtNombre.Text, RtxtDireccion.Text, TxtLatitud.Text, TxtLogintud.Text, TxtCiudad.Text, valorCmb1, textoCmb1 });
-                        MessageBox.Show("La sucursal fue agregado correctamente.", "Agregar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(agregarSucursal.Latitud, agregarSucursal.Longitud), GMarkerGoogleType.red_dot);
-                        marcadorSucursal.ToolTipText = $"{agregarSucursal.Nombre}\n{agregarSucursal.Direccion}";
-                        marcadorSucursal.ToolTip.Fill = Brushes.Black;
-                        marcadorSucursal.ToolTip.Foreground = Brushes.White;
-                        marcadorSucursal.ToolTip.Stroke = Pens.Black;
-                        marcadorSucursal.ToolTip.TextPadding = new Size(20, 20);
-                        moverlay.Markers.Add(marcadorSucursal);
-                        mapa.Refresh();
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Sucursal");
-                    }
-                }
+                // Mostrar mensaje de error proveniente de la capa de negocio
+                MessageBox.Show($"No se pudo registrar la sucursal: {mensaje}", "Error al Registrar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -170,27 +178,51 @@ namespace Presentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Estado de la Sucursal.\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            double? latitud = null;
+            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLatitud))
+            {
+                latitud = tempLatitud;
+            }
+
+            double? longitud = null;
+            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLongitud))
+            {
+                longitud = tempLongitud;
+            }
+
+            // Crear el objeto Sucursal
             Sucursal sucursalModificado = new Sucursal()
             {
                 IdSucursal = Convert.ToInt32(TxtId.Text),
                 Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Direccion = RtxtDireccion.Text,
-                Latitud = Convert.ToDouble(TxtLatitud.Text),
-                Longitud = Convert.ToDouble(TxtLogintud.Text),
+                Latitud = latitud,
+                Longitud = longitud,
                 Ciudad = TxtCiudad.Text,
-                Estado = valorCmb1 == 1
+                Estado = selectedItemCmb1.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Sucursal().Editar(sucursalModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("La sucursal fue modificado correctamente.", "Modificar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información de la sucursal fue modificada correctamente.", "Modificar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                int indice = Convert.ToInt32(txt1.Text);
+                // Actualizar la tabla con los datos modificados
+                int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaSucursal.Rows[indice].Cells["ID"].Value = sucursalModificado.IdSucursal;
                 tablaSucursal.Rows[indice].Cells["Codigo"].Value = sucursalModificado.Codigo;
                 tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value = sucursalModificado.Nombre;
@@ -200,55 +232,53 @@ namespace Presentacion
                 tablaSucursal.Rows[indice].Cells["Ciudad"].Value = sucursalModificado.Ciudad;
                 tablaSucursal.Rows[indice].Cells["EstadoValor"].Value = sucursalModificado.Estado ? 1 : 0;
                 tablaSucursal.Rows[indice].Cells["Estado"].Value = sucursalModificado.Estado ? "Abierto" : "Cerrado";
+
                 mapa.Refresh();
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("Error al modificar la información de la sucursal: " + mensaje, "Modificar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información de la surcusal: {mensaje}", "Modificar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(RtxtDireccion.Text) || string.IsNullOrWhiteSpace(TxtLatitud.Text) || string.IsNullOrWhiteSpace(TxtLogintud.Text) || string.IsNullOrWhiteSpace(TxtCiudad.Text))
+            // Verificar que halla un usuario seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar una sucursal en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar una Sucursal en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (MessageBox.Show("Desea eliminar está sucursal?", "Eliminar sucursal", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (Convert.ToInt32(TxtId.Text) != 0)
+                string mensaje = string.Empty;
+
+                Sucursal sucursalEliminado = new Sucursal()
                 {
-                    if (MessageBox.Show("Desea eliminar está sucursal?", "Eliminar sucursal", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    IdSucursal = Convert.ToInt32(TxtId.Text),
+                };
+
+                bool respuesta = new CN_Sucursal().Eliminar(sucursalEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaSucursal.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("La sucursal fue eliminada correctamente.", "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    foreach (GMarkerGoogle marcador in moverlay.Markers)
                     {
-                        string mensaje = string.Empty;
-
-                        Sucursal sucursalEliminado = new Sucursal()
+                        if (marcador.Position.Lat == sucursalEliminado.Latitud && marcador.Position.Lng == sucursalEliminado.Longitud)
                         {
-                            IdSucursal = Convert.ToInt32(TxtId.Text),
-                        };
-
-                        bool respuesta = new CN_Sucursal().Eliminar(sucursalEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaSucursal.Rows.RemoveAt(Convert.ToInt32(txt1.Text));
-                            MessageBox.Show("La sucursal fue eliminada correctamente.", "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            foreach (GMarkerGoogle marcador in moverlay.Markers)
-                            {
-                                if (marcador.Position.Lat == sucursalEliminado.Latitud && marcador.Position.Lng == sucursalEliminado.Longitud)
-                                {
-                                    moverlay.Markers.Remove(marcador);
-                                    break;
-                                }
-                            }
-                            mapa.Refresh();
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            moverlay.Markers.Remove(marcador);
+                            break;
                         }
                     }
+                    mapa.Refresh();
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -343,7 +373,7 @@ namespace Presentacion
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    txt1.Text = indice.ToString();
+                    TxtIndice.Text = indice.ToString();
                     TxtId.Text = tablaSucursal.Rows[indice].Cells["ID"].Value.ToString();
                     TxtCodigo.Text = tablaSucursal.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombre.Text = tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value.ToString();
@@ -385,7 +415,7 @@ namespace Presentacion
         }
         public void Limpiar()
         {
-            txt1.Text = "-1";
+            TxtIndice.Text = "-1";
             TxtId.Text = "0";
             TxtCodigo.Text = GenerarCodigo(4);
             TxtNombre.Clear();
@@ -407,53 +437,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void txt5_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar !=',' && e.KeyChar != '-')
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Latitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if ((e.KeyChar == ',' || e.KeyChar == '-') && (sender as TextBox).Text.IndexOf(',') > -1)
-            {
-                MessageBox.Show("Para ingresar la latitud solo es necesario una , y un - .", "Campo Latitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if (e.KeyChar == ',' && (sender as TextBox).SelectionStart == 0)
-            {
-                MessageBox.Show("Debe ingresar un numero primero para despues usar la , .", "Campo Latitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void txt6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar !=',' && e.KeyChar != '-')
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if ((e.KeyChar == ',' || e.KeyChar == '-') && (sender as TextBox).Text.IndexOf(',') > -1)
-            {
-                MessageBox.Show("Para ingresar la longitud solo es necesario una , y un - .", "Campo Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-            if (e.KeyChar == ',' && (sender as TextBox).SelectionStart == 0)
-            {
-                MessageBox.Show("Debe ingresar un numero primero para despues usar la , .", "Campo Longitud", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void txt7_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Ciudad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }

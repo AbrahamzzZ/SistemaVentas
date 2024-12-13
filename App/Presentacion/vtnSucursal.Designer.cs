@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mapa = new GMap.NET.WindowsForms.GMapControl();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblLatitud = new System.Windows.Forms.Label();
@@ -41,7 +41,7 @@
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
-            this.txt1 = new System.Windows.Forms.TextBox();
+            this.TxtIndice = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
             this.CmbEstado = new System.Windows.Forms.ComboBox();
             this.lblEstado = new System.Windows.Forms.Label();
@@ -130,7 +130,6 @@
             this.TxtLatitud.Name = "TxtLatitud";
             this.TxtLatitud.Size = new System.Drawing.Size(280, 27);
             this.TxtLatitud.TabIndex = 154;
-            this.TxtLatitud.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt5_KeyPress);
             // 
             // BtnBuscar
             // 
@@ -223,15 +222,15 @@
             this.BtnLimpiar.UseVisualStyleBackColor = false;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
-            // txt1
+            // TxtIndice
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(224, 76);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(36, 27);
-            this.txt1.TabIndex = 152;
-            this.txt1.Text = "-1";
-            this.txt1.Visible = false;
+            this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIndice.Location = new System.Drawing.Point(224, 76);
+            this.TxtIndice.Name = "TxtIndice";
+            this.TxtIndice.Size = new System.Drawing.Size(36, 27);
+            this.TxtIndice.TabIndex = 152;
+            this.TxtIndice.Text = "-1";
+            this.TxtIndice.Visible = false;
             // 
             // TxtId
             // 
@@ -271,7 +270,6 @@
             this.TxtCiudad.Name = "TxtCiudad";
             this.TxtCiudad.Size = new System.Drawing.Size(280, 27);
             this.TxtCiudad.TabIndex = 148;
-            this.TxtCiudad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt7_KeyPress);
             // 
             // lblCiudad
             // 
@@ -302,7 +300,6 @@
             this.TxtLogintud.Name = "TxtLogintud";
             this.TxtLogintud.Size = new System.Drawing.Size(280, 27);
             this.TxtLogintud.TabIndex = 145;
-            this.TxtLogintud.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt6_KeyPress);
             // 
             // lblDireccion
             // 
@@ -359,15 +356,15 @@
             // 
             this.tablaSucursal.AllowUserToAddRows = false;
             this.tablaSucursal.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tablaSucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSucursal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -385,9 +382,9 @@
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
             this.tablaSucursal.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tablaSucursal.RowTemplate.Height = 28;
             this.tablaSucursal.Size = new System.Drawing.Size(705, 248);
             this.tablaSucursal.TabIndex = 135;
@@ -541,7 +538,7 @@
             this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnLimpiar);
-            this.Controls.Add(this.txt1);
+            this.Controls.Add(this.TxtIndice);
             this.Controls.Add(this.TxtId);
             this.Controls.Add(this.CmbEstado);
             this.Controls.Add(this.lblEstado);
@@ -577,7 +574,7 @@
         private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnLimpiar;
-        private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.TextBox TxtIndice;
         private System.Windows.Forms.TextBox TxtId;
         private System.Windows.Forms.ComboBox CmbEstado;
         private System.Windows.Forms.Label lblEstado;

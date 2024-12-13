@@ -20,30 +20,65 @@ namespace Negocios
 
         public int Registrar(Categoria obj, out string mensaje)
         {
-            return ObjetoCategoria.RegistrarCategoria(obj, out mensaje);
+            mensaje = string.Empty;
 
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            {
+                mensaje += "\n- Es necesario la descripción de la categoría.";
+            }
+            else if (!EsDescripcionValido(obj.Descripcion))
+            {
+                mensaje += "\n- El nombre de la categoría solo puede contener letras y no números.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            }
+
+            return ObjetoCategoria.RegistrarCategoria(obj, out mensaje);
         }
 
         public bool Editar(Categoria obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Descripcion == "")
+
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
             {
-                mensaje += "Es necesario la descripción de la categoría.";
+                mensaje += "\n- Es necesario la descripción de la categoría.";
             }
-            if (mensaje != string.Empty)
+            else if (!EsDescripcionValido(obj.Descripcion))
+            {
+                mensaje += "\n- El nombre de la categoría solo puede contener letras y no números.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoCategoria.EditarCategoria(obj, out mensaje);
-            }
+
+            return ObjetoCategoria.EditarCategoria(obj, out mensaje);
         }
 
         public bool Eliminar(Categoria obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdCategoria == 0)
+            {
+                mensaje = "Debe seleccionar una Categoría válida para eliminar.";
+                return false;
+            }
             return ObjetoCategoria.EliminarCategoria(obj, out mensaje);
+        }
+
+        private bool EsDescripcionValido(string nombre)
+        {
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

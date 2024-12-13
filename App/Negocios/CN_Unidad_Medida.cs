@@ -12,6 +12,7 @@ namespace Negocios
     public class CN_Unidad_Medida
     {
         private CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
+
         public List<Unidad_Medida> ListarUnidadesMedida()
         {
             return ObjetoUnidadMedida.MostrarUnidadesMedidas();
@@ -19,33 +20,86 @@ namespace Negocios
 
         public int Registrar(Unidad_Medida obj, out string mensaje)
         {
+            mensaje = string.Empty;
+
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            {
+                mensaje += "\n- Es necesario la descripción de la unidad de medida.";
+            }
+            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            {
+                mensaje += "\n La descripción de la unidad de medida solo puede contener letras y no números.";
+            }
+
+            // Validar Simbolo
+            if (string.IsNullOrWhiteSpace(obj.Simbolo))
+            {
+                mensaje += "\n- Es necesario el simbolo de la unidad de medida.";
+            }
+            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            {
+                mensaje += "\n- El simbolo de la unidad de medida solo puede contener letras y no números.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                return 0;
+            }
+
             return ObjetoUnidadMedida.RegistrarUnidadMedida(obj, out mensaje);
         }
 
         public bool Editar(Unidad_Medida obj, out string mensaje)
         {
             mensaje = string.Empty;
-            if (obj.Descripcion == "")
+
+            // Validar Descripcion
+            if (string.IsNullOrWhiteSpace(obj.Descripcion))
             {
-                mensaje += "Es necesario la descripción de la unidad de la medida.";
+                mensaje += "\n- Es necesario la descripción de la unidad de medida.";
             }
-            if (obj.Simbolo == "")
+            else if (!EsDescripcionSimboloValido(obj.Descripcion))
             {
-                mensaje += "Es necesario la simbología de la unidad de la medida.";
+                mensaje += "\n- La descripción de la unidad de medida solo puede contener letras y no números.";
             }
-            if (mensaje != string.Empty)
+
+            // Validar Simbolo
+            if (string.IsNullOrWhiteSpace(obj.Simbolo))
+            {
+                mensaje += "\n- Es necesario el simbolo de la unidad de medida.";
+            }
+            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            {
+                mensaje += "\n- El simbolo de la unidad de medida solo puede contener letras y no números.";
+            }
+
+            // Retornar false si hay mensajes de error
+            if (!string.IsNullOrWhiteSpace(mensaje))
             {
                 return false;
             }
-            else
-            {
-                return ObjetoUnidadMedida.EditarUnidadMedida(obj, out mensaje);
-            }
+
+            return ObjetoUnidadMedida.EditarUnidadMedida(obj, out mensaje);
         }
 
         public bool Eliminar(Unidad_Medida obj, out string mensaje)
         {
+            // Validaciones de negocio
+            if (obj.IdUnidadMedida == 0)
+            {
+                mensaje = "Debe seleccionar una Unidad de Medida válida para eliminar.";
+                return false;
+            }
+
             return ObjetoUnidadMedida.EliminarUnidadMedida(obj, out mensaje);
+        }
+
+        private bool EsDescripcionSimboloValido(string nombre)
+        {
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

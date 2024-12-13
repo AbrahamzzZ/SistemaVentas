@@ -162,68 +162,65 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbCategoria.SelectedItem;
             dynamic selectedItemCmb2 = CmbUnidadMedida.SelectedItem;
             dynamic selectedItemCmb3 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
-            int valorCmb3 = selectedItemCmb3.Valor;
-            string textoCmb3 = selectedItemCmb3.Texto;
             string mensaje = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(TxtCodigo.Text) || string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null || selectedItemCmb3 == null)
             {
                 string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(TxtNombre.Text)) mensajeError += "- Nombre del producto\n";
-                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text)) mensajeError += "- Descripción del producto\n";
-                if (string.IsNullOrWhiteSpace(TxtPaisOrigen.Text)) mensajeError += "- País de origen del producto\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Categoría del Producto.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Unidad de medida del Producto.\n";
+                if (selectedItemCmb3 == null) mensajeError += "- Estado del Producto\n";
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Producto
+            Producto agregarProducto = new Producto()
+            {
+                IdProducto = Convert.ToInt32(TxtId.Text),
+                Codigo = TxtCodigo.Text,
+                Nombre = TxtNombre.Text,
+                Descripcion = TxtDescripcion.Text,
+                PaisOrigen = TxtPaisOrigen.Text,
+                oCategoria = new Categoria { IdCategoria = selectedItemCmb1.Valor },
+                oUnidadMedida = new Unidad_Medida { IdUnidadMedida = selectedItemCmb2.Valor },
+                Estado = selectedItemCmb3.Valor == 1
+            };
+
+            List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
+            Categoria categoriaSeleccionada = listaCategoria.FirstOrDefault(c => c.IdCategoria == selectedItemCmb1.Valor);
+            if (categoriaSeleccionada != null && !categoriaSeleccionada.Estado)
+            {
+                MessageBox.Show("La categoría seleccionada no está habilitada. Por favor, seleccione una categoría activa.", "Categoría no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+                return;
+            }
+
+            List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
+            Unidad_Medida unidadMedidaSeleccionada = listaUnidadMedida.FirstOrDefault(c => c.IdUnidadMedida == selectedItemCmb2.Valor);
+            if (unidadMedidaSeleccionada != null && !unidadMedidaSeleccionada.Estado)
+            {
+                MessageBox.Show("La unidad de medida seleccionada no está habilitada. Por favor, seleccione una unidad de medida activa.", "Unidad de medida no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Limpiar();
+                return;
+            }
+
+            int idProductoIngresado = new CN_Producto().Registrar(agregarProducto, out mensaje);
+            if (idProductoIngresado != 0)
+            {
+
+                tablaProducto.Rows.Add(new object[] { "", idProductoIngresado, TxtCodigo.Text, TxtNombre.Text, TxtDescripcion.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto, TxtPaisOrigen.Text, "0", "0.00", "0.00", selectedItemCmb3.Valor, selectedItemCmb3.Texto });
+                MessageBox.Show("El producto fue registrado correctamente.", "Registrar producto.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+
             }
             else
             {
-                Producto agregarProducto = new Producto()
-                {
-                    IdProducto = Convert.ToInt32(TxtId.Text),
-                    Codigo = TxtCodigo.Text,
-                    Nombre = TxtNombre.Text,
-                    Descripcion = TxtDescripcion.Text,
-                    PaisOrigen = TxtPaisOrigen.Text,
-                    oCategoria = new Categoria { IdCategoria = valorCmb1 },
-                    oUnidadMedida = new Unidad_Medida { IdUnidadMedida = valorCmb2},
-                    Estado = valorCmb3 == 1
-                };
-                List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
-                Categoria categoriaSeleccionada = listaCategoria.FirstOrDefault(c => c.IdCategoria == valorCmb1);
-                if (categoriaSeleccionada != null && !categoriaSeleccionada.Estado) 
-                {
-                    MessageBox.Show("La categoría seleccionada no está habilitada. Por favor, seleccione una categoría activa.", "Categoría no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Limpiar();
-                    return; 
-                }
-                List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
-                Unidad_Medida unidadMedidaSeleccionada = listaUnidadMedida.FirstOrDefault(c => c.IdUnidadMedida == valorCmb2);
-                if (unidadMedidaSeleccionada != null && !unidadMedidaSeleccionada.Estado) 
-                {
-                    MessageBox.Show("La unidad de medida seleccionada no está habilitada. Por favor, seleccione una unidad de medida activa.", "Unidad de medida no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Limpiar();
-                    return;
-                }
-                int idProductoIngresado = new CN_Producto().Registrar(agregarProducto, out mensaje);
-                if (idProductoIngresado != 0)
-                {
-                // Verificar si los elementos seleccionados no son nulos
-                    if (selectedItemCmb1 != null && selectedItemCmb3 != null)
-                    {
-                        tablaProducto.Rows.Add(new object[] { "", idProductoIngresado, TxtCodigo.Text, TxtNombre.Text, TxtDescripcion.Text, valorCmb1, textoCmb1, valorCmb2, textoCmb2, TxtPaisOrigen.Text, "0", "0.00", "0.00", valorCmb3, textoCmb3 });
-                        MessageBox.Show("El producto fue agregado correctamente.", "Agregar producto.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla Producto");
-                    }
-                }
+                MessageBox.Show($"No se pudo registrar el usuario: {mensaje}", "Error al Registrar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -236,78 +233,87 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbCategoria.SelectedItem;
             dynamic selectedItemCmb2 = CmbUnidadMedida.SelectedItem;
             dynamic selectedItemCmb3 = CmbEstado.SelectedItem;
-            int valorCmb1 = selectedItemCmb1.Valor;
-            string textoCmb1 = selectedItemCmb1.Texto;
-            int valorCmb2 = selectedItemCmb2.Valor;
-            string textoCmb2 = selectedItemCmb2.Texto;
-            int valorCmb3 = selectedItemCmb3.Valor;
-            string textoCmb3 = selectedItemCmb3.Texto;
             string mensaje;
 
+            // Verificar si los ComboBoxes tienen valores seleccionados
+            if (selectedItemCmb1 == null || selectedItemCmb2 == null || selectedItemCmb3 == null)
+            {
+                string mensajeError = "Por favor, complete los siguientes campos:\n";
+                if (selectedItemCmb1 == null) mensajeError += "- Categoría del Producto.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Unidad de medida del Producto.\n";
+                if (selectedItemCmb3 == null) mensajeError += "- Estado del Producto\n";
+
+                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si hay errores
+            }
+
+            // Crear el objeto Producto
             Producto productoModificado = new Producto()
             {
                 IdProducto = Convert.ToInt32(TxtId.Text),
                 Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Descripcion = TxtDescripcion.Text,
-                oCategoria = new Categoria { IdCategoria = valorCmb1 },
-                oUnidadMedida = new Unidad_Medida { IdUnidadMedida = valorCmb2},
+                oCategoria = new Categoria { IdCategoria = selectedItemCmb1.Valor },
+                oUnidadMedida = new Unidad_Medida { IdUnidadMedida = selectedItemCmb2.Valor},
                 PaisOrigen = TxtPaisOrigen.Text,
-                Estado = valorCmb3 == 1
+                Estado = selectedItemCmb3.Valor == 1
             };
+
+            // Delegar la validación y edición a la lógica de negocio
             bool modificar = new CN_Producto().Editar(productoModificado, out mensaje);
             if (modificar)
             {
-                MessageBox.Show("El producto fue modificado correctamente.", "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("La información del producto fue modificado correctamente.", "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Actualizar la tabla con los datos modificados
                 int indice = Convert.ToInt32(TxtIndice.Text);
                 tablaProducto.Rows[indice].Cells["Codigo"].Value = productoModificado.Codigo;
                 tablaProducto.Rows[indice].Cells["Producto"].Value = productoModificado.Nombre;
                 tablaProducto.Rows[indice].Cells["Descripcion"].Value = productoModificado.Descripcion;
                 tablaProducto.Rows[indice].Cells["IDCATEGORIA"].Value = productoModificado.oCategoria.IdCategoria;
-                tablaProducto.Rows[indice].Cells["Categoria"].Value = textoCmb1;
+                tablaProducto.Rows[indice].Cells["Categoria"].Value = selectedItemCmb1.Texto;
                 tablaProducto.Rows[indice].Cells["IDUNIDADMEDIDA"].Value = productoModificado.oUnidadMedida.IdUnidadMedida;
-                tablaProducto.Rows[indice].Cells["UnidadMedida"].Value = textoCmb2;
+                tablaProducto.Rows[indice].Cells["UnidadMedida"].Value = selectedItemCmb2.Texto;
                 tablaProducto.Rows[indice].Cells["PaisOrigen"].Value = productoModificado.PaisOrigen;
                 tablaProducto.Rows[indice].Cells["EstadoValor"].Value = productoModificado.Estado ? 1 : 0;
                 tablaProducto.Rows[indice].Cells["Estado"].Value = productoModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
             }
             else
             {
-                MessageBox.Show("Error al modificar el producto: " + mensaje, "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo modificar la información del usuario: {mensaje}", "Modificar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TxtNombre.Text) || string.IsNullOrWhiteSpace(TxtPaisOrigen.Text) || string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            // Verificar que halla un usuario seleccionado
+            if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe selecionar un producto en la tabla para poder eliminarlo.", "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Producto en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else {
-                if (Convert.ToInt32(TxtId.Text) != 0)
-                {
-                    if (MessageBox.Show("Desea eliminar este producto?", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        string mensaje = string.Empty;
 
-                        Producto productoEliminado = new Producto()
-                        {
-                            IdProducto = Convert.ToInt32(TxtId.Text),
-                        };
-                        bool respuesta = new CN_Producto().Eliminar(productoEliminado, out mensaje);
-                        if (respuesta)
-                        {
-                            tablaProducto.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
-                            MessageBox.Show("El producto fue eliminado correctamente.", "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Limpiar();
-                        }
-                        else
-                        {
-                            MessageBox.Show(mensaje, "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+            if (MessageBox.Show("Desea eliminar este producto?", "Eliminar producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                Producto productoEliminado = new Producto()
+                {
+                    IdProducto = Convert.ToInt32(TxtId.Text),
+                };
+                bool respuesta = new CN_Producto().Eliminar(productoEliminado, out mensaje);
+                if (respuesta)
+                {
+                    tablaProducto.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    MessageBox.Show("El producto fue eliminado correctamente.", "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Eliminar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -422,33 +428,6 @@ namespace Presentacion
                 resultado[i] = caracteres[randon.Next(caracteres.Length)];
             }
             return new string(resultado);
-        }
-
-        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre del producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Descripción", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void TxtPaisOrigen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre del producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
         }
     }
 }
