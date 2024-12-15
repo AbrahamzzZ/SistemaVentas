@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnVenta));
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,15 +150,15 @@
             // 
             this.tablaVentas.AllowUserToAddRows = false;
             this.tablaVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
@@ -173,9 +173,9 @@
             this.tablaVentas.Name = "tablaVentas";
             this.tablaVentas.ReadOnly = true;
             this.tablaVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaVentas.RowTemplate.Height = 28;
             this.tablaVentas.Size = new System.Drawing.Size(657, 196);
             this.tablaVentas.TabIndex = 123;
@@ -638,12 +638,12 @@
             // 
             this.lblImportante.BackColor = System.Drawing.Color.White;
             this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportante.Location = new System.Drawing.Point(789, 23);
+            this.lblImportante.Location = new System.Drawing.Point(469, 23);
             this.lblImportante.Name = "lblImportante";
-            this.lblImportante.Size = new System.Drawing.Size(543, 42);
+            this.lblImportante.Size = new System.Drawing.Size(863, 42);
             this.lblImportante.TabIndex = 126;
-            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la\r\ntabla Venta se enc" +
-    "uentre totalmente vacía.\r\n\r\n";
+            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Venta se encu" +
+    "entre totalmente vacía.";
             // 
             // lblRegistrarVenta
             // 

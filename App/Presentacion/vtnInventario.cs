@@ -24,12 +24,16 @@ namespace Presentacion
         private void VtnInventario_Load(object sender, EventArgs e)
         {
             List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            foreach (Producto productos in listaProducto)
+            // Filtrar productos con stock mayor a 0
+            var productosConStock = listaProducto.Where(p => p.Stock > 0).ToList();
+
+            foreach (var producto in productosConStock)
             {
-                CmbProducto.Items.Add(new { Valor = productos.IdProducto, Texto = productos.Nombre });
+                CmbProducto.Items.Add(producto);
             }
-            CmbProducto.DisplayMember = "Texto";
-            CmbProducto.ValueMember = "Valor";
+
+            CmbProducto.DisplayMember = "Nombre";
+            CmbProducto.ValueMember = "IdProducto";
             if (CmbProducto.Items.Count > 0)
             {
                 CmbProducto.SelectedIndex = 0;
@@ -69,9 +73,8 @@ namespace Presentacion
             List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
-                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Nombre, productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
+                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Nombre,  productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
             }
-            TxtCantidad.Select();
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)
@@ -171,7 +174,7 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
-            int cantidadComprada = new CN_Compra().CantidadProductoComprado(selectedItemCmb1.Valor);
+            int cantidadComprada = new CN_Compra().CantidadProductoComprado(selectedItemCmb1.IdProducto);
             int cantidadIngresada = Convert.ToInt32(TxtCantidad.Text);
             if (cantidadIngresada > cantidadComprada)
             {
@@ -189,13 +192,13 @@ namespace Presentacion
             Inventario agregarProductoInventario = new Inventario()
             {
                 IdInventario = Convert.ToInt32(TxtId.Text),
-                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor, Nombre = selectedItemCmb1.Texto.ToString() },
+                oProducto = new Producto { IdProducto = selectedItemCmb1.IdProducto, Nombre = selectedItemCmb1.Nombre.ToString() },
                 Cantidad = Convert.ToInt32(TxtCantidad.Text),
                 oZonaAlmacen = new Zona_Almacen { IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
             };
 
             List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
+            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.IdProducto);
             if (productoSeleccionado != null && !productoSeleccionado.Estado)
             {
                 MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +212,7 @@ namespace Presentacion
                 if (idInventarioIngresado != 0)
                 {
                     // Agregar a la tabla y mostrar mensaje de éxito
-                    tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.Valor, selectedItemCmb1.Texto, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                    tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.IdProducto, selectedItemCmb1.Nombre, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
                     
                     MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
@@ -253,7 +256,7 @@ namespace Presentacion
             Inventario editarProductoInventario = new Inventario()
             {
                 IdInventario = Convert.ToInt32(TxtId.Text),
-                oProducto = new Producto { IdProducto = selectedItemCmb1.Valor, Nombre = selectedItemCmb1.Texto.ToString() },
+                oProducto = new Producto { IdProducto = selectedItemCmb1.IdProducto, Nombre = selectedItemCmb1.Nombre.ToString() },
                 Cantidad = cantidad,
                 oZonaAlmacen = new Zona_Almacen {IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
             };
@@ -369,10 +372,10 @@ namespace Presentacion
                     foreach (dynamic item in CmbProducto.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
-                        int valor = item.Valor;
-                        string texto = item.Texto;
+                        int valor = item.IdProducto;
+                        string texto = item.Nombre;
 
-                        if (tablaInventario.Rows[indice].Cells["NombreProductos"].Value.ToString() == item.Texto)
+                        if (tablaInventario.Rows[indice].Cells["NombreProductos"].Value.ToString() == item.Nombre)
                         {
                             int indice_cmb = CmbProducto.Items.IndexOf(item);
                             CmbProducto.SelectedIndex = indice_cmb;
@@ -388,15 +391,67 @@ namespace Presentacion
             TxtId.Text = "0";
             CmbProducto.SelectedIndex = 0;
             TxtCantidad.Text = "";
+            barraCantidadProducto.Value = 0;
             CmbZonaAlmacen.SelectedIndex = 0;
         }
 
-        private void txt4_KeyPress(object sender, KeyPressEventArgs e)
+        private void barraCantidadProducto_Scroll(object sender, EventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            int valorActual = barraCantidadProducto.Value;
+
+            // Verificar si hay un producto seleccionado
+            if (CmbProducto.SelectedItem != null)
             {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Cantidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
+                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
+                if (selectedProduct != null)
+                {
+                    int idProducto = selectedProduct.IdProducto;
+                    int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
+
+                    // Actualizar la etiqueta de stock
+                    lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
+
+                    // Verificar si el valor de la barra está dentro del rango válido
+                    if (valorActual > stockProducto)
+                    {
+                        MessageBox.Show("No puede ingresar una cantidad mayor al stock disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        barraCantidadProducto.Value = stockProducto; // Resetear el valor a la cantidad máxima permitida
+                    }
+                    else
+                    {
+                        TxtCantidad.Text = valorActual.ToString(); // Actualizar el TextBox con el valor de la barra
+                    }
+                }
+            }
+            else
+            {
+                lblCantidadProducto.Text = "Seleccione un producto";
+                barraCantidadProducto.Value = 0;
+            }
+        }
+
+        private void CmbProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbProducto.SelectedItem != null)
+            {
+                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
+                if (selectedProduct != null)
+                {
+                    int idProducto = selectedProduct.IdProducto;
+                    int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
+                    lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
+
+                    barraCantidadProducto.Minimum = 0;
+                    barraCantidadProducto.Maximum = stockProducto;
+                    barraCantidadProducto.Value = 0; // Resetear el valor a 0
+                }
+            }
+            else
+            {
+                lblCantidadProducto.Text = "Seleccione un producto";
+                barraCantidadProducto.Minimum = 0;
+                barraCantidadProducto.Maximum = 100;
+                barraCantidadProducto.Value = 0; // Resetear el valor a 0
             }
         }
     }

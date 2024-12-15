@@ -177,7 +177,7 @@ go*/
 CREATE TABLE NEGOCIO (ID_NEGOCIO int primary key,
 NOMBRE varchar (60),
 TELEFONO varchar (10),
-RUC varchar(10),
+RUC varchar(13),
 DIRECCION varchar(60),
 CORREO_ELECTRONICO varchar(40),
 LOGO varbinary(max)NUll
@@ -1251,7 +1251,7 @@ BEGIN
         VALUES (@Codigo, @Nombre_Oferta, @Id_Producto, @Descripcion, @Fecha_Inicio, @Fecha_Fin, @Descuento, @Estado);
 
         SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Oferta registrada correctamente.';
+        SET @Mensaje = 'Oferta registrada exitosamente.';
     END
     ELSE
     BEGIN
@@ -1291,11 +1291,11 @@ BEGIN
         WHERE ID_OFERTA = @Id_Oferta;
 
         SET @Resultado = 1;
-        SET @Mensaje = 'Oferta actualizada correctamente.';
+        SET @Mensaje = 'Oferta actualizada exitosamente.';
     END
     ELSE
     BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una oferta.';
+        SET @Mensaje = 'Ya existe una oferta con el mismo código.';
     END
 END;
 go
@@ -1388,7 +1388,7 @@ BEGIN
         VALUES (@Codigo, @Nombre_Sucursal, @Direccion_Sucursal, @Latitud_Sucursal, @Longitud_Sucursal, @Ciudad_Sucursal, @Estado);
 
         SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Sucursal registrada correctamente.';
+        SET @Mensaje = 'Sucursal registrada exitosamente.';
     END
     ELSE
     BEGIN
@@ -1428,11 +1428,11 @@ BEGIN
         WHERE ID_SUCURSAL = @Id_Sucursal;
 
         SET @Resultado = 1;
-        SET @Mensaje = 'Sucursal actualizada correctamente.';
+        SET @Mensaje = 'Sucursal actualizada exitosamente.';
     END
     ELSE
     BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una sucursal.';
+        SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
     END 
 END;
 go
@@ -1575,7 +1575,7 @@ BEGIN
 END;
 go
 
-/*INSERCIONES*/
+/*Inserciones necesarias para que la aplicación funcione*/
 go
 INSERT INTO ROL (DESCRIPCION) VALUES('Administrador');
 go
@@ -1691,7 +1691,7 @@ INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELEC
 go
 INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('1267','Sebastian Andres','Gonzales Lopez','0951135233','0936472943','sagl@gmail.com',1);
 go
-INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,'Supermercado Paradisia','0969810812','0102030405','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
+INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,'Supermercado Paradisia','0969810812','0102030405785','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
 go
 INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Norte', 100, 1);
 go

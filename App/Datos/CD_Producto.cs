@@ -145,5 +145,28 @@ namespace Datos
             }
             return Respuesta;
         }
+
+        public int MostrarProductoStock(int IdProducto/*, int stock*/)
+        {
+            int stock = 0;
+            try
+            {
+                string query = "SELECT STOCK FROM PRODUCTO WHERE ID_PRODUCTO = @idProducto";
+                using (SqlConnection connection = Conexion.ConexionBD())
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@idProducto", IdProducto);
+                        stock = Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener stock del producto: {ex.Message}");
+                throw;
+            }
+            return stock;
+        }
     }
 }

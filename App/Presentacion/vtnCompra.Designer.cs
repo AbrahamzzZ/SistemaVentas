@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCompra));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.TxtPreciVenta = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -187,15 +187,15 @@
             // 
             this.tablaCompras.AllowUserToAddRows = false;
             this.tablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -210,9 +210,9 @@
             this.tablaCompras.Name = "tablaCompras";
             this.tablaCompras.ReadOnly = true;
             this.tablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.tablaCompras.RowTemplate.Height = 28;
             this.tablaCompras.Size = new System.Drawing.Size(657, 196);
             this.tablaCompras.TabIndex = 122;
@@ -529,12 +529,12 @@
             // 
             this.lblImportante.BackColor = System.Drawing.Color.White;
             this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportante.Location = new System.Drawing.Point(789, 23);
+            this.lblImportante.Location = new System.Drawing.Point(466, 23);
             this.lblImportante.Name = "lblImportante";
-            this.lblImportante.Size = new System.Drawing.Size(544, 47);
+            this.lblImportante.Size = new System.Drawing.Size(867, 31);
             this.lblImportante.TabIndex = 127;
-            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la \r\ntabla Compra se e" +
-    "ncuentre totalmente vacía.\r\n\r\n";
+            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Compra se enc" +
+    "uentre totalmente vacía.\r\n\r\n";
             // 
             // TxtCodigoTransportista
             // 

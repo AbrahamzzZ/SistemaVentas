@@ -10,11 +10,11 @@ namespace Presentacion
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        /// </summary> 
         [STAThread]
         static void Main()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-EC");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new VtnLogin()); 

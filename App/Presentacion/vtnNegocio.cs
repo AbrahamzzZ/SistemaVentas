@@ -29,11 +29,11 @@ namespace Presentacion
                 pictureBox1.Image = ByteImage(byteImage);
             }
             Negocio datos = new CN_Negocio().ListarNegocio();
-            txt1.Text = datos.Nombre;
-            txt2.Text = datos.Telefono;
-            txt3.Text = datos.Ruc;
-            txt4.Text = datos.Direccion;
-            txt5.Text = datos.CorreoElectronico;
+            TxtNombre.Text = datos.Nombre;
+            TxtTelefono.Text = datos.Telefono;
+            TxtRuc.Text = datos.Ruc;
+            TxtDireccion.Text = datos.Direccion;
+            TxtCorreoElectronico.Text = datos.CorreoElectronico;
         }
 
         private void btnSubirImagen_Click(object sender, EventArgs e)
@@ -59,37 +59,22 @@ namespace Presentacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
-
-            if (string.IsNullOrWhiteSpace(txt1.Text) || string.IsNullOrWhiteSpace(txt2.Text) || string.IsNullOrWhiteSpace(txt3.Text) || string.IsNullOrWhiteSpace(txt4.Text) || string.IsNullOrWhiteSpace(txt5.Text))
+            Negocio negocioActualizado = new Negocio()
             {
-                string mensajeError = "Por favor, complete los siguientes campos:\n";
-                if (string.IsNullOrWhiteSpace(txt1.Text)) mensajeError += "- Nombre del negocio.\n";
-                if (string.IsNullOrWhiteSpace(txt2.Text)) mensajeError += "- Teléfono del negocio.\n";
-                if (string.IsNullOrWhiteSpace(txt3.Text)) mensajeError += "- Ruc del negocio.\n";
-                if (string.IsNullOrWhiteSpace(txt4.Text)) mensajeError += "- Direccion del negocio.\n";
-                if (string.IsNullOrWhiteSpace(txt5.Text)) mensajeError += "- Correo Electrónico del negocio.\n";
-
-                MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Nombre = TxtNombre.Text,
+                Telefono = TxtTelefono.Text,
+                Ruc = TxtRuc.Text,
+                Direccion = TxtDireccion.Text,
+                CorreoElectronico = TxtCorreoElectronico.Text,
+            };
+            bool respuesta = new CN_Negocio().Editar(negocioActualizado, out mensaje);
+            if (respuesta)
+            {
+                MessageBox.Show("El negocio fue modificado correctamente.", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                Negocio negocioActualizado = new Negocio()
-                {
-                    Nombre = txt1.Text,
-                    Telefono = txt2.Text,
-                    Ruc = txt3.Text,
-                    Direccion = txt4.Text,
-                    CorreoElectronico = txt5.Text,
-                };
-                bool respuesta = new CN_Negocio().Editar(negocioActualizado, out mensaje);
-                if (respuesta)
-                {
-                    MessageBox.Show("El negocio fue modificado correctamente.", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Error al modificar la información del negocio.", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show($"No se pudo modificar la información del negocio: {mensaje}", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public Image ByteImage(byte[] imageBytes)
@@ -102,33 +87,6 @@ namespace Presentacion
             {
                 Image image = Image.FromStream(ms);
                 return image;
-            }
-        }
-
-        private void txt1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                MessageBox.Show("Debe ingresar letras y no números.", "Campo Nombre del negocio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void txt2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Teléfono del negocio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
-            }
-        }
-
-        private void txt3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                MessageBox.Show("Debe ingresar números y no letras.", "Campo Ruc del negocio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                e.Handled = true;
             }
         }
     }

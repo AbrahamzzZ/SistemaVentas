@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET.WindowsForms;
 using ClosedXML.Excel;
+using System.Globalization;
 
 namespace Presentacion
 {
@@ -120,15 +121,35 @@ namespace Presentacion
             }
 
             double? latitud = null;
-            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLatitud))
-            {
-                latitud = tempLatitud;
-            }
-
             double? longitud = null;
-            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLongitud))
+
+            try
             {
-                longitud = tempLongitud;
+                // Respaldar la cultura actual
+                var culturaActual = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+                // Cambiar temporalmente la cultura para usar punto como separador decimal
+                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+                // Convertir los valores ingresados
+                if (!string.IsNullOrWhiteSpace(TxtLatitud.Text))
+                {
+                    latitud = Convert.ToDouble(TxtLatitud.Text);
+                }
+                if (!string.IsNullOrWhiteSpace(TxtLogintud.Text))
+                {
+                    longitud = Convert.ToDouble(TxtLogintud.Text);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Ingrese coordenadas válidas en formato numérico (con punto como separador decimal).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método si hay un error
+            }
+            finally
+            {
+                // Restaurar la cultura original
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-EC");
             }
 
             // Crear el objeto Sucursal
@@ -191,15 +212,35 @@ namespace Presentacion
             }
 
             double? latitud = null;
-            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLatitud))
-            {
-                latitud = tempLatitud;
-            }
-
             double? longitud = null;
-            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text) && double.TryParse(TxtLatitud.Text, out double tempLongitud))
+
+            try
             {
-                longitud = tempLongitud;
+                // Respaldar la cultura actual
+                var culturaActual = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+                // Cambiar temporalmente la cultura para usar punto como separador decimal
+                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+                // Convertir los valores ingresados
+                if (!string.IsNullOrWhiteSpace(TxtLatitud.Text))
+                {
+                    latitud = Convert.ToDouble(TxtLatitud.Text);
+                }
+                if (!string.IsNullOrWhiteSpace(TxtLogintud.Text))
+                {
+                    longitud = Convert.ToDouble(TxtLogintud.Text);
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Ingrese coordenadas válidas en formato numérico (con punto como separador decimal).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método si hay un error
+            }
+            finally
+            {
+                // Restaurar la cultura original
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-EC");
             }
 
             // Crear el objeto Sucursal
@@ -413,6 +454,7 @@ namespace Presentacion
                 }
             }
         }
+
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
