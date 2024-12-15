@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txt2 = new System.Windows.Forms.TextBox();
+            this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
-            this.txt5 = new System.Windows.Forms.TextBox();
+            this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.txt4 = new System.Windows.Forms.TextBox();
-            this.txt3 = new System.Windows.Forms.TextBox();
-            this.txt1 = new System.Windows.Forms.TextBox();
+            this.TxtDireccion = new System.Windows.Forms.TextBox();
+            this.TxtRuc = new System.Windows.Forms.TextBox();
+            this.TxtNombre = new System.Windows.Forms.TextBox();
             this.lblDireccion = new System.Windows.Forms.Label();
             this.lblRuc = new System.Windows.Forms.Label();
             this.lblNombreNegocio = new System.Windows.Forms.Label();
@@ -54,14 +54,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Wheat;
-            this.groupBox1.Controls.Add(this.txt2);
+            this.groupBox1.Controls.Add(this.TxtTelefono);
             this.groupBox1.Controls.Add(this.lblTelefono);
             this.groupBox1.Controls.Add(this.lblCorreoElectronico);
-            this.groupBox1.Controls.Add(this.txt5);
+            this.groupBox1.Controls.Add(this.TxtCorreoElectronico);
             this.groupBox1.Controls.Add(this.btnGuardar);
-            this.groupBox1.Controls.Add(this.txt4);
-            this.groupBox1.Controls.Add(this.txt3);
-            this.groupBox1.Controls.Add(this.txt1);
+            this.groupBox1.Controls.Add(this.TxtDireccion);
+            this.groupBox1.Controls.Add(this.TxtRuc);
+            this.groupBox1.Controls.Add(this.TxtNombre);
             this.groupBox1.Controls.Add(this.lblDireccion);
             this.groupBox1.Controls.Add(this.lblRuc);
             this.groupBox1.Controls.Add(this.lblNombreNegocio);
@@ -74,14 +74,13 @@
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             // 
-            // txt2
+            // TxtTelefono
             // 
-            this.txt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt2.Location = new System.Drawing.Point(277, 118);
-            this.txt2.Name = "txt2";
-            this.txt2.Size = new System.Drawing.Size(379, 27);
-            this.txt2.TabIndex = 13;
-            this.txt2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt2_KeyPress);
+            this.TxtTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTelefono.Location = new System.Drawing.Point(277, 118);
+            this.TxtTelefono.Name = "TxtTelefono";
+            this.TxtTelefono.Size = new System.Drawing.Size(379, 27);
+            this.TxtTelefono.TabIndex = 13;
             // 
             // lblTelefono
             // 
@@ -103,13 +102,13 @@
             this.lblCorreoElectronico.TabIndex = 11;
             this.lblCorreoElectronico.Text = "Correo Electrónico del negocio:";
             // 
-            // txt5
+            // TxtCorreoElectronico
             // 
-            this.txt5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt5.Location = new System.Drawing.Point(277, 313);
-            this.txt5.Name = "txt5";
-            this.txt5.Size = new System.Drawing.Size(379, 27);
-            this.txt5.TabIndex = 10;
+            this.TxtCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCorreoElectronico.Location = new System.Drawing.Point(277, 313);
+            this.TxtCorreoElectronico.Name = "TxtCorreoElectronico";
+            this.TxtCorreoElectronico.Size = new System.Drawing.Size(379, 27);
+            this.TxtCorreoElectronico.TabIndex = 10;
             // 
             // btnGuardar
             // 
@@ -125,31 +124,29 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // txt4
+            // TxtDireccion
             // 
-            this.txt4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt4.Location = new System.Drawing.Point(277, 250);
-            this.txt4.Name = "txt4";
-            this.txt4.Size = new System.Drawing.Size(379, 27);
-            this.txt4.TabIndex = 8;
+            this.TxtDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDireccion.Location = new System.Drawing.Point(277, 250);
+            this.TxtDireccion.Name = "TxtDireccion";
+            this.TxtDireccion.Size = new System.Drawing.Size(379, 27);
+            this.TxtDireccion.TabIndex = 8;
             // 
-            // txt3
+            // TxtRuc
             // 
-            this.txt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt3.Location = new System.Drawing.Point(277, 182);
-            this.txt3.Name = "txt3";
-            this.txt3.Size = new System.Drawing.Size(379, 27);
-            this.txt3.TabIndex = 7;
-            this.txt3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt3_KeyPress);
+            this.TxtRuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRuc.Location = new System.Drawing.Point(277, 182);
+            this.TxtRuc.Name = "TxtRuc";
+            this.TxtRuc.Size = new System.Drawing.Size(379, 27);
+            this.TxtRuc.TabIndex = 7;
             // 
-            // txt1
+            // TxtNombre
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(277, 51);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(379, 27);
-            this.txt1.TabIndex = 6;
-            this.txt1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
+            this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombre.Location = new System.Drawing.Point(277, 51);
+            this.TxtNombre.Name = "TxtNombre";
+            this.TxtNombre.Size = new System.Drawing.Size(379, 27);
+            this.TxtNombre.TabIndex = 6;
             // 
             // lblDireccion
             // 
@@ -272,9 +269,9 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.TextBox txt4;
-        private System.Windows.Forms.TextBox txt3;
-        private System.Windows.Forms.TextBox txt1;
+        private System.Windows.Forms.TextBox TxtDireccion;
+        private System.Windows.Forms.TextBox TxtRuc;
+        private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.Label lblRuc;
         private System.Windows.Forms.Label lblNombreNegocio;
@@ -285,8 +282,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblCorreoElectronico;
-        private System.Windows.Forms.TextBox txt5;
+        private System.Windows.Forms.TextBox TxtCorreoElectronico;
         private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.TextBox txt2;
+        private System.Windows.Forms.TextBox TxtTelefono;
     }
 }

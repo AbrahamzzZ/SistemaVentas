@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.lblPaisOrigen = new System.Windows.Forms.Label();
@@ -49,7 +49,6 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.tablaInventario = new System.Windows.Forms.DataGridView();
-            this.CmbZonaAlmacen = new System.Windows.Forms.ComboBox();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPRODUCTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +56,11 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdZona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UbicacionAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CmbZonaAlmacen = new System.Windows.Forms.ComboBox();
+            this.barraCantidadProducto = new System.Windows.Forms.TrackBar();
+            this.lblCantidadProducto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barraCantidadProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLimpiar
@@ -93,7 +96,7 @@
             this.lblPaisOrigen.AutoSize = true;
             this.lblPaisOrigen.BackColor = System.Drawing.Color.Wheat;
             this.lblPaisOrigen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaisOrigen.Location = new System.Drawing.Point(26, 313);
+            this.lblPaisOrigen.Location = new System.Drawing.Point(26, 390);
             this.lblPaisOrigen.Name = "lblPaisOrigen";
             this.lblPaisOrigen.Size = new System.Drawing.Size(221, 20);
             this.lblPaisOrigen.TabIndex = 124;
@@ -108,15 +111,16 @@
             this.CmbProducto.Name = "CmbProducto";
             this.CmbProducto.Size = new System.Drawing.Size(280, 28);
             this.CmbProducto.TabIndex = 122;
+            this.CmbProducto.SelectedIndexChanged += new System.EventHandler(this.CmbProducto_SelectedIndexChanged);
             // 
             // TxtCantidad
             // 
             this.TxtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCantidad.Location = new System.Drawing.Point(30, 264);
             this.TxtCantidad.Name = "TxtCantidad";
+            this.TxtCantidad.ReadOnly = true;
             this.TxtCantidad.Size = new System.Drawing.Size(280, 27);
             this.TxtCantidad.TabIndex = 121;
-            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt4_KeyPress);
             // 
             // lblCantidad
             // 
@@ -272,15 +276,15 @@
             // 
             this.tablaInventario.AllowUserToAddRows = false;
             this.tablaInventario.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tablaInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -295,25 +299,15 @@
             this.tablaInventario.Name = "tablaInventario";
             this.tablaInventario.ReadOnly = true;
             this.tablaInventario.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.tablaInventario.RowTemplate.Height = 28;
             this.tablaInventario.Size = new System.Drawing.Size(978, 248);
             this.tablaInventario.TabIndex = 130;
             this.tablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaInventario_CellContentClick);
             this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaInventario_CellFormatting);
             this.tablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaInventario_CellPainting);
-            // 
-            // CmbZonaAlmacen
-            // 
-            this.CmbZonaAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbZonaAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CmbZonaAlmacen.FormattingEnabled = true;
-            this.CmbZonaAlmacen.Location = new System.Drawing.Point(30, 336);
-            this.CmbZonaAlmacen.Name = "CmbZonaAlmacen";
-            this.CmbZonaAlmacen.Size = new System.Drawing.Size(280, 28);
-            this.CmbZonaAlmacen.TabIndex = 131;
             // 
             // btnSeleccionar
             // 
@@ -374,12 +368,45 @@
             this.UbicacionAlmacen.ReadOnly = true;
             this.UbicacionAlmacen.Width = 200;
             // 
+            // CmbZonaAlmacen
+            // 
+            this.CmbZonaAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbZonaAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbZonaAlmacen.FormattingEnabled = true;
+            this.CmbZonaAlmacen.Location = new System.Drawing.Point(30, 413);
+            this.CmbZonaAlmacen.Name = "CmbZonaAlmacen";
+            this.CmbZonaAlmacen.Size = new System.Drawing.Size(280, 28);
+            this.CmbZonaAlmacen.TabIndex = 131;
+            // 
+            // barraCantidadProducto
+            // 
+            this.barraCantidadProducto.BackColor = System.Drawing.Color.Wheat;
+            this.barraCantidadProducto.Location = new System.Drawing.Point(30, 331);
+            this.barraCantidadProducto.Name = "barraCantidadProducto";
+            this.barraCantidadProducto.Size = new System.Drawing.Size(280, 56);
+            this.barraCantidadProducto.TabIndex = 132;
+            this.barraCantidadProducto.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.barraCantidadProducto.Scroll += new System.EventHandler(this.barraCantidadProducto_Scroll);
+            // 
+            // lblCantidadProducto
+            // 
+            this.lblCantidadProducto.AutoSize = true;
+            this.lblCantidadProducto.BackColor = System.Drawing.Color.Wheat;
+            this.lblCantidadProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadProducto.Location = new System.Drawing.Point(26, 308);
+            this.lblCantidadProducto.Name = "lblCantidadProducto";
+            this.lblCantidadProducto.Size = new System.Drawing.Size(14, 20);
+            this.lblCantidadProducto.TabIndex = 133;
+            this.lblCantidadProducto.Text = ".";
+            // 
             // VtnInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
+            this.Controls.Add(this.lblCantidadProducto);
+            this.Controls.Add(this.barraCantidadProducto);
             this.Controls.Add(this.CmbZonaAlmacen);
             this.Controls.Add(this.tablaInventario);
             this.Controls.Add(this.btnLimpiar);
@@ -404,6 +431,7 @@
             this.Text = "Inventario del supermercado";
             this.Load += new System.EventHandler(this.VtnInventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barraCantidadProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,5 +465,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdZona;
         private System.Windows.Forms.DataGridViewTextBoxColumn UbicacionAlmacen;
+        private System.Windows.Forms.TrackBar barraCantidadProducto;
+        private System.Windows.Forms.Label lblCantidadProducto;
     }
 }

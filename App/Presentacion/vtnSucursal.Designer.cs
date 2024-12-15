@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mapa = new GMap.NET.WindowsForms.GMapControl();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblLatitud = new System.Windows.Forms.Label();
@@ -117,7 +117,7 @@
             this.lblLatitud.AutoSize = true;
             this.lblLatitud.BackColor = System.Drawing.Color.Wheat;
             this.lblLatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLatitud.Location = new System.Drawing.Point(28, 338);
+            this.lblLatitud.Location = new System.Drawing.Point(24, 338);
             this.lblLatitud.Name = "lblLatitud";
             this.lblLatitud.Size = new System.Drawing.Size(73, 20);
             this.lblLatitud.TabIndex = 155;
@@ -126,7 +126,7 @@
             // TxtLatitud
             // 
             this.TxtLatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLatitud.Location = new System.Drawing.Point(32, 361);
+            this.TxtLatitud.Location = new System.Drawing.Point(28, 361);
             this.TxtLatitud.Name = "TxtLatitud";
             this.TxtLatitud.Size = new System.Drawing.Size(280, 27);
             this.TxtLatitud.TabIndex = 154;
@@ -247,7 +247,7 @@
             this.CmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbEstado.FormattingEnabled = true;
-            this.CmbEstado.Location = new System.Drawing.Point(32, 520);
+            this.CmbEstado.Location = new System.Drawing.Point(28, 520);
             this.CmbEstado.Name = "CmbEstado";
             this.CmbEstado.Size = new System.Drawing.Size(280, 28);
             this.CmbEstado.TabIndex = 150;
@@ -257,7 +257,7 @@
             this.lblEstado.AutoSize = true;
             this.lblEstado.BackColor = System.Drawing.Color.Wheat;
             this.lblEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(28, 497);
+            this.lblEstado.Location = new System.Drawing.Point(24, 497);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(73, 20);
             this.lblEstado.TabIndex = 149;
@@ -266,7 +266,7 @@
             // TxtCiudad
             // 
             this.TxtCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCiudad.Location = new System.Drawing.Point(32, 467);
+            this.TxtCiudad.Location = new System.Drawing.Point(28, 467);
             this.TxtCiudad.Name = "TxtCiudad";
             this.TxtCiudad.Size = new System.Drawing.Size(280, 27);
             this.TxtCiudad.TabIndex = 148;
@@ -276,7 +276,7 @@
             this.lblCiudad.AutoSize = true;
             this.lblCiudad.BackColor = System.Drawing.Color.Wheat;
             this.lblCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCiudad.Location = new System.Drawing.Point(28, 444);
+            this.lblCiudad.Location = new System.Drawing.Point(24, 444);
             this.lblCiudad.Name = "lblCiudad";
             this.lblCiudad.Size = new System.Drawing.Size(73, 20);
             this.lblCiudad.TabIndex = 147;
@@ -287,7 +287,7 @@
             this.lblLongitud.AutoSize = true;
             this.lblLongitud.BackColor = System.Drawing.Color.Wheat;
             this.lblLongitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLongitud.Location = new System.Drawing.Point(28, 391);
+            this.lblLongitud.Location = new System.Drawing.Point(24, 391);
             this.lblLongitud.Name = "lblLongitud";
             this.lblLongitud.Size = new System.Drawing.Size(87, 20);
             this.lblLongitud.TabIndex = 146;
@@ -296,7 +296,7 @@
             // TxtLogintud
             // 
             this.TxtLogintud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtLogintud.Location = new System.Drawing.Point(32, 414);
+            this.TxtLogintud.Location = new System.Drawing.Point(28, 414);
             this.TxtLogintud.Name = "TxtLogintud";
             this.TxtLogintud.Size = new System.Drawing.Size(280, 27);
             this.TxtLogintud.TabIndex = 145;
@@ -356,15 +356,15 @@
             // 
             this.tablaSucursal.AllowUserToAddRows = false;
             this.tablaSucursal.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.tablaSucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSucursal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -382,9 +382,9 @@
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
             this.tablaSucursal.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.tablaSucursal.RowTemplate.Height = 28;
             this.tablaSucursal.Size = new System.Drawing.Size(705, 248);
             this.tablaSucursal.TabIndex = 135;

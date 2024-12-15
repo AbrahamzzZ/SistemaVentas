@@ -18,10 +18,10 @@ namespace Presentacion.Modales
         public vtnModalesProductos()
         {
             InitializeComponent();
-            tablaProductos.CellFormatting += tablaProductos_CellFormatting;
+            tablaProductos.CellFormatting += TablaProductos_CellFormatting;
         }
 
-        private void vtnModalesProductos_Load(object sender, EventArgs e)
+        private void VtnModalesProductos_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in tablaProductos.Columns)
             {
@@ -41,7 +41,7 @@ namespace Presentacion.Modales
                 tablaProductos.Rows.Add(new object[] { productos.IdProducto, productos.Codigo, productos.Nombre, productos.oCategoria.Descripcion, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado });
             }
         }
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = cmb1.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
@@ -62,7 +62,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int iRow = e.RowIndex;
             int iColumn = e.ColumnIndex;
@@ -83,7 +83,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (tablaProductos.Columns[e.ColumnIndex].Name == "Estado")
             {
