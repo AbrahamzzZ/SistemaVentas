@@ -23,16 +23,6 @@ namespace Negocios
         {
             mensaje = string.Empty;
 
-            //Validar Cantidad
-            if (!obj.Cantidad.HasValue)
-            {
-                mensaje += "\n- Es necesario el cantidad del producto que va a dejar en el inventario.";
-            }
-            else if (obj.Cantidad <= 0 || obj.Cantidad > 100)
-            {
-                mensaje += "\n- El cantidad debe ser un número válido.";
-            }
-
             // Retornar false si hay mensajes de error
             if (!string.IsNullOrWhiteSpace(mensaje))
             {
@@ -45,16 +35,6 @@ namespace Negocios
         public bool Editar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
-
-            //Validar Cantidad
-            if (!obj.Cantidad.HasValue)
-            {
-                mensaje += "\n- Es necesario el cantidad del producto que va a dejar en el inventario.";
-            }
-            else if (obj.Cantidad <= 0 || obj.Cantidad > 100)
-            {
-                mensaje += "\n- El cantidad debe ser un número válido.";
-            }
 
             // Retornar false si hay mensajes de error
             if (!string.IsNullOrWhiteSpace(mensaje))

@@ -107,6 +107,11 @@ namespace Negocios
             return ObjetoProducto.EliminarProducto(obj, out mensaje);
         }
 
+        public int ObtenerStockId(int IdProducto)
+        {
+            return ObjetoProducto.MostrarProductoStock(IdProducto);
+        }
+
         private bool EsNombreValido(string nombre)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
