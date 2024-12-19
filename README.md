@@ -69,7 +69,7 @@ sqlcmd -S [nombre_servidor] -U [usuario] -P [contraseña]
 ```
 
 ```sh
-sqlcmd -S localhost -U sa -P TuPassword -d master -i "./BD_Query/DB_SISTEMA_VENTAS.sql"
+sqlcmd -S localhost -U sa -P TuPassword -d master -i "./DataBase/DB_SISTEMA_VENTAS.sql"
 ```
 
 > [!WARNING]  
