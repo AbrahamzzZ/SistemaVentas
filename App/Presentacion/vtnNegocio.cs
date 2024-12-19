@@ -29,6 +29,7 @@ namespace Presentacion
                 pictureBox1.Image = ByteImage(byteImage);
             }
             Negocio datos = new CN_Negocio().ListarNegocio();
+            TxtId.Text = datos.IdNegocio.ToString();
             TxtNombre.Text = datos.Nombre;
             TxtTelefono.Text = datos.Telefono;
             TxtRuc.Text = datos.Ruc;
@@ -61,6 +62,7 @@ namespace Presentacion
             string mensaje = string.Empty;
             Negocio negocioActualizado = new Negocio()
             {
+                IdNegocio = Convert.ToInt32(TxtId.Text),
                 Nombre = TxtNombre.Text,
                 Telefono = TxtTelefono.Text,
                 Ruc = TxtRuc.Text,

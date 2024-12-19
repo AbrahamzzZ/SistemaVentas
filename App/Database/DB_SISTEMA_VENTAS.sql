@@ -1575,6 +1575,33 @@ BEGIN
 END;
 go
 
+CREATE PROC PA_EDITAR_NEGOCIO(
+@Id_Negocio int,
+@Nombre varchar(60),
+@Telefono varchar(10),
+@Ruc varchar(13),
+@Direccion varchar(60),
+@Correo_Electronico varchar(40),
+@Resultado bit output,
+@Mensaje varchar(500) output
+)
+AS
+BEGIN
+	SET @Resultado = 1;
+	SET @Mensaje = '';
+
+	UPDATE NEGOCIO SET 
+	NOMBRE = @Nombre,
+	TELEFONO = @Telefono,
+	RUC = @Ruc,
+	DIRECCION = @Direccion,
+	CORREO_ELECTRONICO = @Correo_Electronico
+	WHERE ID_NEGOCIO = @Id_Negocio;
+
+	SET @Mensaje = 'La información del negocio fue actualizado exitosamente.';
+END;
+go
+
 /*Inserciones necesarias para que la aplicación funcione*/
 go
 INSERT INTO ROL (DESCRIPCION) VALUES('Administrador');

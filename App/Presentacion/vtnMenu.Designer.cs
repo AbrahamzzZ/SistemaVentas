@@ -31,18 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnMenu));
             this.btnRegresar = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.FechaHora = new System.Windows.Forms.Timer(this.components);
             this.menu2 = new System.Windows.Forms.MenuStrip();
             this.menuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemVerUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMantenimiento = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemInventario = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemUnidadesMedida = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemCategoría = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemProducto = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemUnidadesMedida = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCompras = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemRealizarCompra = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -103,9 +103,9 @@
             this.btnRegresar.UseVisualStyleBackColor = false;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
-            // timer1
+            // FechaHora
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.FechaHora.Tick += new System.EventHandler(this.FechaHora_Tick);
             // 
             // menu2
             // 
@@ -176,7 +176,7 @@
             // 
             this.menuItemInventario.BackColor = System.Drawing.Color.Wheat;
             this.menuItemInventario.Name = "menuItemInventario";
-            this.menuItemInventario.Size = new System.Drawing.Size(224, 28);
+            this.menuItemInventario.Size = new System.Drawing.Size(211, 28);
             this.menuItemInventario.Text = "Inventario";
             this.menuItemInventario.Click += new System.EventHandler(this.menuItemInventario_Click_1);
             // 
@@ -185,41 +185,41 @@
             this.toolStripSeparator1.BackColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.ForeColor = System.Drawing.Color.Black;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
+            // 
+            // menuItemUnidadesMedida
+            // 
+            this.menuItemUnidadesMedida.BackColor = System.Drawing.Color.Wheat;
+            this.menuItemUnidadesMedida.Name = "menuItemUnidadesMedida";
+            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(211, 28);
+            this.menuItemUnidadesMedida.Text = "Unidad Medida";
+            this.menuItemUnidadesMedida.Click += new System.EventHandler(this.menuItemUnidadesMedida_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(208, 6);
             // 
             // menuItemCategoría
             // 
             this.menuItemCategoría.BackColor = System.Drawing.Color.Wheat;
             this.menuItemCategoría.Name = "menuItemCategoría";
-            this.menuItemCategoría.Size = new System.Drawing.Size(224, 28);
+            this.menuItemCategoría.Size = new System.Drawing.Size(211, 28);
             this.menuItemCategoría.Text = "Categoría";
             this.menuItemCategoría.Click += new System.EventHandler(this.menuItemCategoría_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(208, 6);
             // 
             // menuItemProducto
             // 
             this.menuItemProducto.BackColor = System.Drawing.Color.Wheat;
             this.menuItemProducto.Name = "menuItemProducto";
-            this.menuItemProducto.Size = new System.Drawing.Size(224, 28);
+            this.menuItemProducto.Size = new System.Drawing.Size(211, 28);
             this.menuItemProducto.Text = "Producto";
             this.menuItemProducto.Click += new System.EventHandler(this.menuItemProducto_Click_1);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(221, 6);
-            // 
-            // menuItemUnidadesMedida
-            // 
-            this.menuItemUnidadesMedida.BackColor = System.Drawing.Color.Wheat;
-            this.menuItemUnidadesMedida.Name = "menuItemUnidadesMedida";
-            this.menuItemUnidadesMedida.Size = new System.Drawing.Size(224, 28);
-            this.menuItemUnidadesMedida.Text = "Unidad Medida";
-            this.menuItemUnidadesMedida.Click += new System.EventHandler(this.menuItemUnidadesMedida_Click);
             // 
             // menuCompras
             // 
@@ -643,7 +643,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer FechaHora;
         private System.Windows.Forms.Button btnRegresar;
         private System.Windows.Forms.MenuStrip menu2;
         private System.Windows.Forms.MenuStrip menu1;
