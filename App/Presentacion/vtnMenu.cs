@@ -37,8 +37,9 @@ namespace Presentacion
                 }
             }
             lbl2.Text = nombreUsuarioActual.NombreCompleto;
-            timer1.Enabled = true;
+            FechaHora.Enabled = true;
         }
+
         private void verPanel(Form formulario)
         {
             if (formularioActivo != null)
@@ -153,11 +154,6 @@ namespace Presentacion
         {
             verPanel(new VtnPrograma());
         }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
-            lblFecha.Text = DateTime.Now.ToLongDateString();
-        }
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
@@ -165,6 +161,12 @@ namespace Presentacion
             {
                 this.Close();
             }
+        }
+
+        private void FechaHora_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
+            lblFecha.Text = DateTime.Now.ToLongDateString();
         }
     }
 }
