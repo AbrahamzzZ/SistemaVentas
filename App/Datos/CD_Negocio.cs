@@ -46,40 +46,34 @@ namespace Datos
         }
 
         //Metodo que permite registrar la informacion del Negocio
-        public bool EditarInformacionNegocio(Negocio obj, out string mensaje)
+        public bool EditarNegocio(Negocio obj, out string Mensaje)
         {
-            mensaje = string.Empty;
-            bool respuesta = true;
+            bool Respuesta = false;
+            Mensaje = string.Empty;
             try
             {
-                StringBuilder modificarNegocio = new StringBuilder();
-                modificarNegocio.AppendLine("UPDATE NEGOCIO SET NOMBRE = @Nombre,");
-                modificarNegocio.AppendLine("TELEFONO = @Telefono,");
-                modificarNegocio.AppendLine("RUC = @Ruc,");
-                modificarNegocio.AppendLine("DIRECCION = @Direccion,");
-                modificarNegocio.AppendLine("CORREO_ELECTRONICO = @CorreoElectronico");
-                modificarNegocio.AppendLine("WHERE ID_NEGOCIO = 1;");
+                SqlCommand cmd = new SqlCommand("PA_EDITAR_NEGOCIO", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Id_Negocio", obj.IdNegocio);
+                cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
+                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                cmd.Parameters.AddWithValue("Ruc", obj.Ruc);
+                cmd.Parameters.AddWithValue("Direccion", obj.Direccion);
+                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.ExecuteNonQuery();
 
-                SqlCommand cmd = new SqlCommand(modificarNegocio.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                cmd.Parameters.AddWithValue("@Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("@Ruc", obj.Ruc);
-                cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
-                cmd.Parameters.AddWithValue("@CorreoElectronico", obj.CorreoElectronico);
-                cmd.CommandType = CommandType.Text;
-
-                if (cmd.ExecuteNonQuery() < 1)
-                {
-                    mensaje = "No se pudo guardar los datos.";
-                    respuesta = false;
-                }
+                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
             }
             catch (Exception ne)
             {
-                mensaje = ne.Message;
-                respuesta = false;
+                Respuesta = false;
+                Mensaje = ne.Message;
             }
-            return respuesta;
+            return Respuesta;
         }
 
         //Metodo que permite mostrar el logo del Negocio
