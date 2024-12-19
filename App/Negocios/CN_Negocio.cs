@@ -74,7 +74,7 @@ namespace Negocios
                 return false;
             }
 
-            return ObjetoNegocio.EditarInformacionNegocio(obj, out mensaje);
+            return ObjetoNegocio.EditarNegocio(obj, out mensaje);
         }
 
         public byte[] MostrarLogo(out bool obtenido)
