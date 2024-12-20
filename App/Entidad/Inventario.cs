@@ -11,8 +11,6 @@ namespace Entidad
         public int IdInventario { get; set; }
         public Producto oProducto { get; set; }
         public Zona_Almacen oZonaAlmacen { get; set; }
-        public int? Cantidad { get; set; }
-        public string FechaIngreso { get; set; }
-
+        public int Cantidad { get; set; }
     }
 }

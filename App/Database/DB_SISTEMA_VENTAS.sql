@@ -104,7 +104,7 @@ go
 
 CREATE TABLE ZONA_ALMACEN (ID_ZONA int IDENTITY PRIMARY KEY,
 NOMBRE_ZONA varchar(20) UNIQUE NOT NULL, 
-LIMITE_ESPACIOS int NOT NULL DEFAULT 100,
+LIMITE_ESPACIOS int NOT NULL DEFAULT 200,
 ESTADO bit,
 FECHA_REGISTRO datetime default getdate()
 );
@@ -666,6 +666,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+	-- Declarar variables locales
     DECLARE @Cantidad_Comprada INT;
     DECLARE @Cantidad_Existente INT = 0;
     DECLARE @Limite_Zona INT;
@@ -679,44 +680,35 @@ BEGIN
     FROM DETALLE_COMPRA
     WHERE ID_PRODUCTO = @ID_PRODUCTO;
 
-    -- Validar si la zona tiene un límite de espacios
-    SELECT @Cantidad_Existente = ISNULL(SUM(CANTIDAD), 0)
-    FROM INVENTARIO
-    WHERE ID_ZONA = @ID_ZONA;
-
-    SELECT @Limite_Zona = LIMITE_ESPACIOS
+	-- Obtener la capacidad total de cada zona del almacen
+	SELECT @Limite_Zona = LIMITE_ESPACIOS
     FROM ZONA_ALMACEN
     WHERE ID_ZONA = @ID_ZONA;
 
-    -- Validar si el producto ya existe en el inventario
-    IF EXISTS (SELECT 1 FROM INVENTARIO WHERE ID_PRODUCTO = @ID_PRODUCTO AND ID_ZONA = @ID_ZONA)
+	-- Validar cantidad contra la cantidad comprada y el espacio disponible
+    IF @Cantidad > @Cantidad_Comprada
     BEGIN
-        SET @MENSAJE = 'El producto ya existe en el inventario de esta zona.';
+        SET @Mensaje = 'La cantidad ingresada excede la cantidad comprada del producto.';
         RETURN;
     END
 
-    -- Validar cantidad contra la cantidad comprada y el límite de la zona
-    IF @CANTIDAD > @Cantidad_Comprada
-    BEGIN
-        SET @MENSAJE = 'La cantidad ingresada excede la cantidad comprada del producto.';
-        RETURN;
-    END
-
-    IF @Cantidad_Existente + @CANTIDAD > @Limite_Zona
-    BEGIN
-        SET @MENSAJE = 'La cantidad ingresada excede el límite de espacios de la zona.';
-        RETURN;
-    END
-
-    -- Registrar el producto en el inventario
+    -- Registrar el producto en el inventarioy actualizar el espacio disponible
     BEGIN TRY
+        BEGIN TRANSACTION;
+
         INSERT INTO INVENTARIO (ID_PRODUCTO, ID_ZONA, CANTIDAD, FECHA_INGRESO)
         VALUES (@ID_PRODUCTO, @ID_ZONA, @CANTIDAD, GETDATE());
 
-        SET @RESULTADO = SCOPE_IDENTITY();
-        SET @MENSAJE = 'Producto registrado en el inventario exitosamente.';
+        UPDATE ZONA_ALMACEN
+        SET LIMITE_ESPACIOS = LIMITE_ESPACIOS - @Cantidad
+        WHERE ID_ZONA = @ID_ZONA;
+
+        SET @Resultado = SCOPE_IDENTITY();
+        SET @Mensaje = 'Producto registrado en el inventario exitosamente.';
+        COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
+		ROLLBACK TRANSACTION;
         SET @MENSAJE = ERROR_MESSAGE();
     END CATCH
 END;
@@ -732,52 +724,59 @@ CREATE PROCEDURE PA_EDITAR_PRODUCTO_INVENTARIO(
 )
 AS
 BEGIN
+	    SET NOCOUNT ON;
+
     BEGIN TRY
         BEGIN TRANSACTION;
 
         -- Declarar variables locales
         DECLARE @CantidadActual INT;
-        DECLARE @CapacidadZona INT;
+        DECLARE @Id_Zona_Anterior INT;
+        DECLARE @DiferenciaCantidad INT;
 
-        -- Obtener la cantidad actual y validar que el inventario exista
-        SELECT @CantidadActual = CANTIDAD 
+        -- Obtener la cantidad actual y la zona anterior
+        SELECT @CantidadActual = CANTIDAD, 
+               @Id_Zona_Anterior = ID_ZONA 
         FROM INVENTARIO 
         WHERE ID_INVENTARIO = @Id_Inventario;
 
-        IF @CantidadActual IS NULL
+        -- Calcular la diferencia de cantidad
+        SET @DiferenciaCantidad = @Cantidad - @CantidadActual;
+
+        -- Actualizar la capacidad de la zona anterior si es diferente de la nueva
+        IF @Id_Zona_Anterior <> @Id_Zona
         BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'El producto no existe en el inventario.';
-            ROLLBACK TRANSACTION;
-            RETURN;
+            -- Devolver el espacio a la zona anterior
+            UPDATE ZONA_ALMACEN
+            SET LIMITE_ESPACIOS = LIMITE_ESPACIOS + @CantidadActual
+            WHERE ID_ZONA = @Id_Zona_Anterior;
+
+            -- Validar si hay espacio suficiente en la nueva zona
+            DECLARE @EspacioDisponible INT;
+            SELECT @EspacioDisponible = LIMITE_ESPACIOS 
+            FROM ZONA_ALMACEN 
+            WHERE ID_ZONA = @Id_Zona;
+
+            IF @EspacioDisponible < @Cantidad
+            BEGIN
+                SET @Resultado = 0;
+                SET @Mensaje = 'No hay suficiente espacio en la nueva zona del almacén especificada.';
+                ROLLBACK TRANSACTION;
+                RETURN;
+            END
+
+            -- Restar espacio de la nueva zona
+            UPDATE ZONA_ALMACEN
+            SET LIMITE_ESPACIOS = LIMITE_ESPACIOS - @Cantidad
+            WHERE ID_ZONA = @Id_Zona;
         END
-
-        -- Validar la capacidad de la zona
-        SELECT @CapacidadZona = LIMITE_ESPACIOS 
-        FROM ZONA_ALMACEN 
-        WHERE ID_ZONA = @Id_Zona;
-
-        IF @CapacidadZona IS NULL
+        ELSE
         BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'La zona especificada no existe.';
-            ROLLBACK TRANSACTION;
-            RETURN;
+            -- Si la zona no cambia, solo ajusta la diferencia
+            UPDATE ZONA_ALMACEN
+            SET LIMITE_ESPACIOS = LIMITE_ESPACIOS - @DiferenciaCantidad
+            WHERE ID_ZONA = @Id_Zona;
         END
-
-        -- Actualizar la capacidad de la zona
-        DECLARE @DiferenciaCantidad INT = @Cantidad - @CantidadActual;
-        IF @CapacidadZona - @DiferenciaCantidad < 0
-        BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'No hay suficiente espacio en la zona especificada para la nueva cantidad.';
-            ROLLBACK TRANSACTION;
-            RETURN;
-        END
-
-        UPDATE ZONA_ALMACEN
-        SET LIMITE_ESPACIOS = LIMITE_ESPACIOS - @DiferenciaCantidad
-        WHERE ID_ZONA = @Id_Zona;
 
         -- Actualizar el inventario
         UPDATE INVENTARIO
@@ -819,15 +818,6 @@ BEGIN
         SELECT @Id_Zona = ID_ZONA, @Cantidad = CANTIDAD 
         FROM INVENTARIO 
         WHERE ID_INVENTARIO = @Id_Inventario;
-
-        -- Validar si el inventario existe
-        IF @Id_Zona IS NULL
-        BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'El producto no existe en el inventario.';
-            ROLLBACK TRANSACTION;
-            RETURN;
-        END
 
         -- Eliminar el producto del inventario
         DELETE FROM INVENTARIO 

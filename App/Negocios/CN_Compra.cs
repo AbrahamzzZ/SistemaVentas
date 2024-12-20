@@ -24,11 +24,6 @@ namespace Negocios
             return ObjetoCompra.RegistrarCompra(obj, DetalleCompra, out mensaje);
         }
 
-        public int CantidadProductoComprado(int idProducto)
-        {
-            return ObjetoCompra.ObtenerCantidadComprada(idProducto);
-        }
-
         public Compra DetalleCompra(string numero)
         {
             Compra oCompra = ObjetoCompra.ObtenerCompra(numero);

@@ -128,5 +128,50 @@ namespace Datos
             }
             return respuesta;
         }
+
+        public List<int> ProductosRegistradosInventario()
+        {
+            List<int> idsProductos = new List<int>();
+            try
+            {
+                StringBuilder query = new StringBuilder();
+                query.AppendLine("SELECT DISTINCT ID_PRODUCTO FROM INVENTARIO");
+                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    idsProductos.Add(Convert.ToInt32(reader["ID_PRODUCTO"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener IDs de productos registrados: {ex.Message}");
+            }
+            return idsProductos;
+        }
+
+        public List<int> ProductosRegistradosPorZona(int zonaId)
+        {
+            List<int> idsProductos = new List<int>();
+            try
+            {
+                StringBuilder query = new StringBuilder();
+                query.AppendLine("SELECT DISTINCT ID_PRODUCTO FROM INVENTARIO");
+                query.AppendLine("WHERE ID_ZONA = @zonaId");
+
+                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("@zonaId", zonaId);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    idsProductos.Add(Convert.ToInt32(reader["ID_PRODUCTO"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener IDs de productos registrados por zona: {ex.Message}");
+            }
+            return idsProductos;
+        }
     }
 }
