@@ -23,11 +23,12 @@ namespace Presentacion
 
         private void VtnInventario_Load(object sender, EventArgs e)
         {
-            List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            // Filtrar productos con stock mayor a 0
-            var productosConStock = listaProducto.Where(p => p.Stock > 0).ToList();
+            List<Producto> listaProductosConStock = new CN_Producto().ListarProductosConStock();
+            List<int> productosRegistrados = new CN_Inventario().ProductosInventario();
 
-            foreach (var producto in productosConStock)
+            var productosDisponibles = listaProductosConStock.Where(p => !productosRegistrados.Contains(p.IdProducto)).ToList();
+
+            foreach (var producto in productosDisponibles)
             {
                 CmbProducto.Items.Add(producto);
             }
@@ -70,6 +71,7 @@ namespace Presentacion
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
+            TxtCantidad.Text = "0";
             List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
@@ -163,35 +165,18 @@ namespace Presentacion
             dynamic selectedItemCmb2 = CmbZonaAlmacen.SelectedItem;
             string mensaje = string.Empty;
 
-            // Verificar si los ComboBoxes tienen valores seleccionados
             if (selectedItemCmb1 == null || selectedItemCmb2 == null)
             {
                 string mensajeError = "Por favor, debe seleccionar una opción:\n";
                 if (selectedItemCmb1 == null) mensajeError += "- Nombre Producto.\n";
-                if (selectedItemCmb1 == null) mensajeError += "- Ubicación almacén.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Ubicación almacén.\n";
 
                 MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Salir del método si hay errores
-            }
-
-            int cantidadComprada = new CN_Compra().CantidadProductoComprado(selectedItemCmb1.IdProducto);
-            int cantidadIngresada = Convert.ToInt32(TxtCantidad.Text);
-            if (cantidadIngresada > cantidadComprada)
-            {
-                MessageBox.Show("No se puede ingresar un producto más de lo que se compró.", "Agregar producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            int? cantidad = null;
-            if (!string.IsNullOrWhiteSpace(TxtCantidad.Text) && int.TryParse(TxtCantidad.Text, out int tempCantidad))
-            {
-                cantidad = tempCantidad;
-            }
-
-            // Crear el objeto Inventario
             Inventario agregarProductoInventario = new Inventario()
             {
-                IdInventario = Convert.ToInt32(TxtId.Text),
                 oProducto = new Producto { IdProducto = selectedItemCmb1.IdProducto, Nombre = selectedItemCmb1.Nombre.ToString() },
                 Cantidad = Convert.ToInt32(TxtCantidad.Text),
                 oZonaAlmacen = new Zona_Almacen { IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
@@ -201,26 +186,22 @@ namespace Presentacion
             Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.IdProducto);
             if (productoSeleccionado != null && !productoSeleccionado.Estado)
             {
-                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Limpiar();
                 return;
             }
+
+            int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
+            if (idInventarioIngresado != 0)
+            {
+                tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.IdProducto, selectedItemCmb1.Nombre, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+
+                MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
             else
             {
-                // Delegar la validación y registro a la lógica de negocio
-                int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
-                if (idInventarioIngresado != 0)
-                {
-                    // Agregar a la tabla y mostrar mensaje de éxito
-                    tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.IdProducto, selectedItemCmb1.Nombre, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
-                    
-                    MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Por favor, selecciona un valor en ambos comboboxes.", "Tabla inventario");
-                }
+                MessageBox.Show($"No se pudo registrar el Producto en el Inventario: {mensaje}", "Error al Registrar el producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -246,18 +227,13 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
-            int? cantidad = null;
-            if (!string.IsNullOrWhiteSpace(TxtCantidad.Text) && int.TryParse(TxtCantidad.Text, out int tempCantidad))
-            {
-                cantidad = tempCantidad;
-            }
 
             // Crear el objeto Inventario
             Inventario editarProductoInventario = new Inventario()
             {
                 IdInventario = Convert.ToInt32(TxtId.Text),
                 oProducto = new Producto { IdProducto = selectedItemCmb1.IdProducto, Nombre = selectedItemCmb1.Nombre.ToString() },
-                Cantidad = cantidad,
+                Cantidad = Convert.ToInt32(TxtCantidad.Text),
                 oZonaAlmacen = new Zona_Almacen {IdZona = selectedItemCmb2.Valor, NombreZona = selectedItemCmb2.Texto.ToString() }
             };
 
@@ -390,44 +366,9 @@ namespace Presentacion
             TxtIndice.Text = "-1";
             TxtId.Text = "0";
             CmbProducto.SelectedIndex = 0;
-            TxtCantidad.Text = "";
-            barraCantidadProducto.Value = 0;
+            TxtCantidad.Text = "0";
+            TbBarraCantidadProducto.Value = 0;
             CmbZonaAlmacen.SelectedIndex = 0;
-        }
-
-        private void barraCantidadProducto_Scroll(object sender, EventArgs e)
-        {
-            int valorActual = barraCantidadProducto.Value;
-
-            // Verificar si hay un producto seleccionado
-            if (CmbProducto.SelectedItem != null)
-            {
-                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
-                if (selectedProduct != null)
-                {
-                    int idProducto = selectedProduct.IdProducto;
-                    int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
-
-                    // Actualizar la etiqueta de stock
-                    lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
-
-                    // Verificar si el valor de la barra está dentro del rango válido
-                    if (valorActual > stockProducto)
-                    {
-                        MessageBox.Show("No puede ingresar una cantidad mayor al stock disponible.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        barraCantidadProducto.Value = stockProducto; // Resetear el valor a la cantidad máxima permitida
-                    }
-                    else
-                    {
-                        TxtCantidad.Text = valorActual.ToString(); // Actualizar el TextBox con el valor de la barra
-                    }
-                }
-            }
-            else
-            {
-                lblCantidadProducto.Text = "Seleccione un producto";
-                barraCantidadProducto.Value = 0;
-            }
         }
 
         private void CmbProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -441,17 +382,73 @@ namespace Presentacion
                     int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
                     lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
 
-                    barraCantidadProducto.Minimum = 0;
-                    barraCantidadProducto.Maximum = stockProducto;
-                    barraCantidadProducto.Value = 0; // Resetear el valor a 0
+                    TbBarraCantidadProducto.Minimum = 0;
+                    TbBarraCantidadProducto.Maximum = stockProducto;
+                    TbBarraCantidadProducto.Value = 0; // Resetear el valor a 1
                 }
             }
             else
             {
                 lblCantidadProducto.Text = "Seleccione un producto";
-                barraCantidadProducto.Minimum = 0;
-                barraCantidadProducto.Maximum = 100;
-                barraCantidadProducto.Value = 0; // Resetear el valor a 0
+                TbBarraCantidadProducto.Minimum = 0;
+                TbBarraCantidadProducto.Maximum = 100;
+                TbBarraCantidadProducto.Value = 0; // Resetear el valor a 1
+            }
+        }
+
+        private void TbBarraCantidadProducto_Scroll(object sender, EventArgs e)
+        {
+            int valorActual = TbBarraCantidadProducto.Value;
+
+            // Verificar si hay un producto seleccionado
+            if (CmbProducto.SelectedItem != null)
+            {
+                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
+                if (selectedProduct != null)
+                {
+                    int idProducto = selectedProduct.IdProducto;
+                    int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
+
+                    // Actualizar la etiqueta de stock
+                    lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
+                    TxtCantidad.Text = valorActual.ToString(); // Actualizar el TextBox con el valor de la barra
+                }
+            }
+            else
+            {
+                lblCantidadProducto.Text = "Seleccione un producto";
+                TbBarraCantidadProducto.Value = 0;
+            }
+        }
+
+        private void CmbZonaAlmacen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbZonaAlmacen.SelectedItem != null)
+            {
+                dynamic selectedItem = CmbZonaAlmacen.SelectedItem;
+                int zonaId = selectedItem.Valor;
+
+                List<Producto> listaProductosConStock = new CN_Producto().ListarProductosConStock();
+                List<int> productosRegistradosEnZona = new CN_Inventario().ProductosPorZona(zonaId);
+
+                var productosDisponiblesEnZona = listaProductosConStock.Where(p => !productosRegistradosEnZona.Contains(p.IdProducto)).ToList();
+
+                CmbProducto.DataSource = null;
+                CmbProducto.Items.Clear();
+
+                foreach (var producto in productosDisponiblesEnZona)
+                {
+                    CmbProducto.Items.Add(producto);
+                }
+
+                if (CmbProducto.Items.Count > 0)
+                {
+                    CmbProducto.SelectedIndex = 0;
+                }
+                else
+                {
+                    CmbProducto.Enabled = false;
+                }
             }
         }
     }
