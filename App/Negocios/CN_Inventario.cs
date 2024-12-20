@@ -19,9 +19,25 @@ namespace Negocios
             return ObjetoProductoInventario.MostrarProductoInventario();
         }
 
+        public List<int> ProductosPorZona(int zonaId)
+        {
+            return ObjetoProductoInventario.ProductosRegistradosPorZona(zonaId);
+        }
+
+        public List<int> ProductosInventario()
+        {
+            return ObjetoProductoInventario.ProductosRegistradosInventario();
+        }
+
         public int Registrar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
+
+            //Validar cantidad
+            if (obj.Cantidad <= 0)
+            {
+                mensaje = "\n- No se puede registrar un producto con un stock de 0.";
+            }
 
             // Retornar false si hay mensajes de error
             if (!string.IsNullOrWhiteSpace(mensaje))
@@ -35,6 +51,12 @@ namespace Negocios
         public bool Editar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
+
+            //Validar cantidad
+            if (obj.Cantidad <= 0)
+            {
+                mensaje = "\n- No se puede editar un producto con un stock de 0.";
+            }
 
             // Retornar false si hay mensajes de error
             if (!string.IsNullOrWhiteSpace(mensaje))

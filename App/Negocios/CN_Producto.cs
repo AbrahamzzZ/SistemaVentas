@@ -17,6 +17,11 @@ namespace Negocios
             return ObjetoProducto.MostrarProductos();
         }
 
+        public List<Producto> ListarProductosConStock()
+        {
+            return ObjetoProducto.ListarProductosConStock();
+        }
+
         public int Registrar(Producto obj, out string mensaje)
         {
             mensaje = string.Empty;
