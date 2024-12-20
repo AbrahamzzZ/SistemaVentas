@@ -66,32 +66,7 @@ namespace Datos
                 Mensaje = co.Message;
             }
             return Respuesta;
-        }
-
-        //Metodo que muestra la cantidad de la Compra de cada Producto
-        public int ObtenerCantidadComprada(int idProducto)
-        {
-            int cantidadComprada = 0;
-            try
-            {
-                StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT SUM(Cantidad) AS CantidadComprada FROM DETALLE_COMPRA WHERE ID_PRODUCTO = @IdProducto");
-
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@IdProducto", idProducto);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    cantidadComprada = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
-                }
-            }
-            catch (Exception inv)
-            {
-                cantidadComprada = 0;
-            }
-            return cantidadComprada;
-        }
+        }        
 
         //Metodo que muestra la informacion de la Compra
         public Compra ObtenerCompra(string numero)

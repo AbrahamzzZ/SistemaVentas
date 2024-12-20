@@ -168,5 +168,33 @@ namespace Datos
             }
             return stock;
         }
-    }
+
+        public List<Producto> ListarProductosConStock()
+        {
+            List<Producto> listaProductos = new List<Producto>();
+            try
+            {
+                StringBuilder query = new StringBuilder();
+                query.AppendLine("SELECT * FROM PRODUCTO");
+                query.AppendLine("WHERE Estado = 1 AND Stock > 0");
+
+                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Producto obj = new Producto();
+                    obj.IdProducto = Convert.ToInt32(reader["Id_Producto"]);
+                    obj.Nombre = reader["Nombre_Producto"].ToString();
+                    obj.Stock = Convert.ToInt32(reader["Stock"]);
+                    obj.Estado = Convert.ToBoolean(reader["Estado"]);
+                    listaProductos.Add(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al listar productos con stock: {ex.Message}");
+            }
+            return listaProductos;
+        }
+    }//522, 521
 }
