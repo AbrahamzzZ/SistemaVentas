@@ -65,7 +65,7 @@ namespace Negocios
                 intentos++;
                 if (intentos >= 4)
                 {
-                    return "Se ha alcanzado el límite de intentos fallidos. Intente de nuevo más tarde.";
+                    return "Se ha alcanzado el límite de intentos fallidos. Inténtelo más tarde.";
                 }
                 return "Las credenciales ingresadas son incorrectas.";
             }

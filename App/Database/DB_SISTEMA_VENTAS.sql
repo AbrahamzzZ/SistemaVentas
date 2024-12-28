@@ -1609,28 +1609,28 @@ go
 INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00005','Esteban Leonardo Leon Marcillo','leonardo128@gmail.com','freefire_04',2,0);
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
-(1,'menuUsuarios'),
-(1,'menuMantenimiento'),
-(1,'menuVentas'),
-(1,'menuCompras'),
-(1,'menuProveedores'),
-(1,'menuTransportistas'),
-(1,'menuSucursales'),
-(1,'menuClientes'),
-(1,'menuReportes'),
-(1,'menuOfertas'),
-(1,'menuReclamos'),
-(1,'menuAcercaDe');
+(1,'MenuUsuarios'),
+(1,'MenuMantenimiento'),
+(1,'MenuVentas'),
+(1,'MenuCompras'),
+(1,'MenuProveedores'),
+(1,'MenuTransportistas'),
+(1,'MenuSucursales'),
+(1,'MenuClientes'),
+(1,'MenuReportes'),
+(1,'MenuOfertas'),
+(1,'MenuReclamos'),
+(1,'MenuAcercaDe');
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
-(2,'menuVentas'),
-(2,'menuCompras'),
-(2,'menuProveedores'),
-(2,'menuTransportistas'),
-(2,'menuClientes'),
-(2,'menuOfertas'),
-(2,'menuReclamos'),
-(2,'menuAcercaDe');
+(2,'MenuVentas'),
+(2,'MenuCompras'),
+(2,'MenuProveedores'),
+(2,'MenuTransportistas'),
+(2,'MenuClientes'),
+(2,'MenuOfertas'),
+(2,'MenuReclamos'),
+(2,'MenuAcercaDe');
 go
 INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('6564', 'Frutas y Verduras',1);
 go

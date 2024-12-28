@@ -21,7 +21,7 @@ namespace Presentacion
 
         private void VtnLogin_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
+            TxtTiempo.Enabled = true;
             TxtCodigo.Select();
         }
 
@@ -51,7 +51,7 @@ namespace Presentacion
                 Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
 
                 MessageBox.Show("Bienvenido al sistema " + usuario.NombreCompleto + ".", "Inicio de sesión exitoso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                vtnMenu menu = new vtnMenu(usuario);
+                VtnMenu menu = new VtnMenu(usuario);
                 menu.Show();
                 this.Hide();
                 menu.FormClosing += Cerrar;
@@ -81,17 +81,17 @@ namespace Presentacion
             this.Show();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
-        }
-
         private void LblHagaClicAqui_Click(object sender, EventArgs e)
         {
             VtnRecuperarClave recuperacion = new VtnRecuperarClave();
             this.Hide();
             recuperacion.ShowDialog();
             this.Show();
+        }
+
+        private void TxtTiempo_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }
