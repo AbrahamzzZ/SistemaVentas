@@ -32,8 +32,9 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCargarDatosVentas = new System.Windows.Forms.Button();
+            this.BtnCargarDatosVentas = new System.Windows.Forms.Button();
             this.graficaVenta = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.BtnGenerarPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficaVenta)).BeginInit();
             this.SuspendLayout();
@@ -62,31 +63,45 @@
             this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
             // 
-            // btnCargarDatosVentas
+            // BtnCargarDatosVentas
             // 
-            this.btnCargarDatosVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCargarDatosVentas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarDatosVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarDatosVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarDatosVentas.Location = new System.Drawing.Point(70, 355);
-            this.btnCargarDatosVentas.Name = "btnCargarDatosVentas";
-            this.btnCargarDatosVentas.Size = new System.Drawing.Size(193, 41);
-            this.btnCargarDatosVentas.TabIndex = 60;
-            this.btnCargarDatosVentas.Text = "Cargar datos";
-            this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
-            this.btnCargarDatosVentas.Click += new System.EventHandler(this.btnCargarDatosVentas_Click);
+            this.BtnCargarDatosVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatosVentas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatosVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatosVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatosVentas.Location = new System.Drawing.Point(70, 355);
+            this.BtnCargarDatosVentas.Name = "BtnCargarDatosVentas";
+            this.BtnCargarDatosVentas.Size = new System.Drawing.Size(193, 41);
+            this.BtnCargarDatosVentas.TabIndex = 60;
+            this.BtnCargarDatosVentas.Text = "Cargar datos";
+            this.BtnCargarDatosVentas.UseVisualStyleBackColor = false;
+            this.BtnCargarDatosVentas.Click += new System.EventHandler(this.BtnCargarDatosVentas_Click);
             // 
-            // GraficaProductosVendidos
+            // graficaVenta
             // 
             chartArea1.Name = "ChartArea1";
             this.graficaVenta.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficaVenta.Legends.Add(legend1);
             this.graficaVenta.Location = new System.Drawing.Point(387, 29);
-            this.graficaVenta.Name = "GraficaProductosVendidos";
+            this.graficaVenta.Name = "graficaVenta";
             this.graficaVenta.Size = new System.Drawing.Size(984, 527);
             this.graficaVenta.TabIndex = 61;
             this.graficaVenta.Text = "chart1";
+            // 
+            // BtnGenerarPDF
+            // 
+            this.BtnGenerarPDF.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnGenerarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGenerarPDF.Location = new System.Drawing.Point(70, 402);
+            this.BtnGenerarPDF.Name = "BtnGenerarPDF";
+            this.BtnGenerarPDF.Size = new System.Drawing.Size(193, 41);
+            this.BtnGenerarPDF.TabIndex = 67;
+            this.BtnGenerarPDF.Text = "Generar PDF";
+            this.BtnGenerarPDF.UseVisualStyleBackColor = false;
+            this.BtnGenerarPDF.Click += new System.EventHandler(this.BtnGenerarPDF_Click);
             // 
             // vtnGraficaVentas
             // 
@@ -94,8 +109,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.BtnGenerarPDF);
             this.Controls.Add(this.graficaVenta);
-            this.Controls.Add(this.btnCargarDatosVentas);
+            this.Controls.Add(this.BtnCargarDatosVentas);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Name = "vtnGraficaVentas";
@@ -111,7 +127,8 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnCargarDatosVentas;
+        private System.Windows.Forms.Button BtnCargarDatosVentas;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficaVenta;
+        private System.Windows.Forms.Button BtnGenerarPDF;
     }
 }

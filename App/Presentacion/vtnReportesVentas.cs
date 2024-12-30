@@ -19,7 +19,7 @@ namespace Presentacion
         {
             InitializeComponent();
         }
-        private void vtnReportesVentas_Load(object sender, EventArgs e)
+        private void VtnReportesVentas_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in tablaReporteVentas.Columns)
             {
@@ -30,13 +30,15 @@ namespace Presentacion
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
         }
-        private void btnBuscar1_Click(object sender, EventArgs e)
+
+        private void BtnBuscarFecha_Click(object sender, EventArgs e)
         {
             List<Reporte_Venta> lista = new List<Reporte_Venta>();
             lista = new CN_Reporte().ReporteProductosVendidos(TxtFechaInicio.Value.ToString("yyyy-MM-dd"), TxtFechaFin.Value.ToString("yyyy-MM-dd"));
 
             tablaReporteVentas.Rows.Clear();
-            if (lista.Count > 0) {
+            if (lista.Count > 0)
+            {
                 foreach (Reporte_Venta row in lista)
                 {
                     tablaReporteVentas.Rows.Add(new object[]
@@ -50,8 +52,35 @@ namespace Presentacion
                 MessageBox.Show("No hay ventas en las fechas especificadas.", "Tabla Reporte Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
+            string valorCmb1 = selectedItemCmb1.Valor;
+            string columnaFiltro = valorCmb1.ToString();
+            int filasVisibles = 0;
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+            if (tablaReporteVentas.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in tablaReporteVentas.Rows)
+                {
+                    if (row.Cells[columnaFiltro].Value.ToString().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
+                    {
+                        row.Visible = true;
+                    }
+                    else
+                    {
+                        row.Visible = false;
+                    }
+                }
+            }
+            // Verificar si hay filas visibles y mostrar un mensaje si no hay
+            if (filasVisibles == 0)
+            {
+                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void BtnGenerarExcel_Click(object sender, EventArgs e)
         {
             if (tablaReporteVentas.Rows.Count < 1)
             {
@@ -97,35 +126,7 @@ namespace Presentacion
             }
         }
 
-        private void btnBuscar2_Click(object sender, EventArgs e)
-        {
-            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
-            string valorCmb1 = selectedItemCmb1.Valor;
-            string columnaFiltro = valorCmb1.ToString();
-            int filasVisibles = 0;
-
-            if (tablaReporteVentas.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow row in tablaReporteVentas.Rows)
-                {
-                    if (row.Cells[columnaFiltro].Value.ToString().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
-                    {
-                        row.Visible = true;
-                    }
-                    else
-                    {
-                        row.Visible = false;
-                    }
-                }
-            }
-            // Verificar si hay filas visibles y mostrar un mensaje si no hay
-            if (filasVisibles == 0)
-            {
-                MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void BtnLimpiar_Click_1(object sender, EventArgs e)
         {
             TxtBuscar.Clear();
             foreach (DataGridViewRow row in tablaReporteVentas.Rows)

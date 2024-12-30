@@ -84,7 +84,7 @@ namespace Presentacion
         }
         private void MenuItemVerDetallesVenta_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnVerDetalleVentas());
+            VerPanel(new VtnVerDetalleVentas());
         }
         private void MenuItemRealizarCompra_Click(object sender, EventArgs e)
         {
@@ -93,7 +93,7 @@ namespace Presentacion
 
         private void MenuItemVerDetallesCompra_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnVerDetalleCompras());
+            VerPanel(new VtnVerDetalleCompras());
         }
         private void MenuItemVerProveedores_Click(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace Presentacion
 
         private void MenuItemGraficasCompras_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnGraficaCompras());
+            VerPanel(new VtnGraficaCompras());
         }
 
         private void MenuItemReportesVentas_Click(object sender, EventArgs e)

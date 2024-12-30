@@ -80,21 +80,21 @@ namespace Presentacion.Properties {
         ///            border-collapse: collapse;
         ///        }
         ///
-        ///            table.border th {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
         ///
-        ///            table.border td {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
         ///    &lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
-        ///   [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt;        /// [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string ArchivoCompra {
             get {
@@ -112,21 +112,22 @@ namespace Presentacion.Properties {
         ///            border-collapse: collapse;
         ///        }
         ///
-        ///            table.border th {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
         ///
-        ///            table.border td {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
         ///    &lt;/style&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
-        ///    [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt;
+        /// [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string ArchivoVenta {
             get {
@@ -191,16 +192,6 @@ namespace Presentacion.Properties {
             get {
                 object obj = ResourceManager.GetObject("compra", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Byte[].
-        /// </summary>
-        internal static byte[] Documentación {
-            get {
-                object obj = ResourceManager.GetObject("Documentación", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
