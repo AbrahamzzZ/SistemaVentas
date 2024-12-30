@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnVerDetalleCompras
+    partial class VtnVerDetalleCompras
     {
         /// <summary>
         /// Required designer variable.
@@ -345,7 +345,7 @@
             this.TxtNumeroCodigoCompra.Name = "TxtNumeroCodigoCompra";
             this.TxtNumeroCodigoCompra.Size = new System.Drawing.Size(184, 27);
             this.TxtNumeroCodigoCompra.TabIndex = 2;
-            this.TxtNumeroCodigoCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
+            this.TxtNumeroCodigoCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroCodigoCompra_KeyPress);
             // 
             // LblCodigoCompra
             // 
@@ -436,7 +436,7 @@
             this.LblCodigoTransportista.TabIndex = 115;
             this.LblCodigoTransportista.Text = "Código Transportista:";
             // 
-            // vtnVerDetalleCompras
+            // VtnVerDetalleCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -449,10 +449,10 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblDetallesCompra);
-            this.Name = "vtnVerDetalleCompras";
+            this.Name = "VtnVerDetalleCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver los detalles de las compras";
-            this.Load += new System.EventHandler(this.vtnVerDetalleCompras_Load);
+            this.Load += new System.EventHandler(this.VtnVerDetalleCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaDetallesCompras)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();

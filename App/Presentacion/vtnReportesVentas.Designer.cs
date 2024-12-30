@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnBuscarFecha = new System.Windows.Forms.Button();
             this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFin = new System.Windows.Forms.Label();
@@ -37,8 +37,8 @@
             this.TxtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.lblReporteVenta = new System.Windows.Forms.Label();
-            this.BtnExportarExcel = new System.Windows.Forms.Button();
-            this.btnBuscar2 = new System.Windows.Forms.Button();
+            this.BtnGenerarExcel = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.lblBuscarPor = new System.Windows.Forms.Label();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.BtnLimpiar = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@
             this.BtnBuscarFecha.Text = "Buscar";
             this.BtnBuscarFecha.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnBuscarFecha.UseVisualStyleBackColor = false;
-            this.BtnBuscarFecha.Click += new System.EventHandler(this.btnBuscar1_Click);
+            this.BtnBuscarFecha.Click += new System.EventHandler(this.BtnBuscarFecha_Click);
             // 
             // TxtFechaFin
             // 
@@ -139,43 +139,43 @@
             this.lblReporteVenta.TabIndex = 146;
             this.lblReporteVenta.Text = "Reportes Ventas";
             // 
-            // BtnExportarExcel
+            // BtnGenerarExcel
             // 
-            this.BtnExportarExcel.BackColor = System.Drawing.Color.White;
-            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportarExcel.Location = new System.Drawing.Point(190, 177);
-            this.BtnExportarExcel.Name = "BtnExportarExcel";
-            this.BtnExportarExcel.Size = new System.Drawing.Size(187, 33);
-            this.BtnExportarExcel.TabIndex = 155;
-            this.BtnExportarExcel.Text = "Exportar Excel";
-            this.BtnExportarExcel.UseVisualStyleBackColor = false;
-            this.BtnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnGenerarExcel.BackColor = System.Drawing.Color.White;
+            this.BtnGenerarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGenerarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGenerarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGenerarExcel.Location = new System.Drawing.Point(190, 177);
+            this.BtnGenerarExcel.Name = "BtnGenerarExcel";
+            this.BtnGenerarExcel.Size = new System.Drawing.Size(187, 33);
+            this.BtnGenerarExcel.TabIndex = 155;
+            this.BtnGenerarExcel.Text = "Generar Excel";
+            this.BtnGenerarExcel.UseVisualStyleBackColor = false;
+            this.BtnGenerarExcel.Click += new System.EventHandler(this.BtnGenerarExcel_Click);
             // 
-            // btnBuscar2
+            // BtnBuscar
             // 
-            this.btnBuscar2.BackColor = System.Drawing.Color.White;
-            this.btnBuscar2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar2.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar2.Location = new System.Drawing.Point(1046, 180);
-            this.btnBuscar2.Name = "btnBuscar2";
-            this.btnBuscar2.Size = new System.Drawing.Size(110, 31);
-            this.btnBuscar2.TabIndex = 154;
-            this.btnBuscar2.Text = "Buscar";
-            this.btnBuscar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscar2.UseVisualStyleBackColor = false;
-            this.btnBuscar2.Click += new System.EventHandler(this.btnBuscar2_Click);
+            this.BtnBuscar.BackColor = System.Drawing.Color.White;
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscar.Location = new System.Drawing.Point(1046, 180);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(110, 31);
+            this.BtnBuscar.TabIndex = 154;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBuscar.UseVisualStyleBackColor = false;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // lblBuscarPor
             // 
             this.lblBuscarPor.AutoSize = true;
             this.lblBuscarPor.BackColor = System.Drawing.Color.White;
             this.lblBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscarPor.Location = new System.Drawing.Point(462, 182);
+            this.lblBuscarPor.Location = new System.Drawing.Point(462, 185);
             this.lblBuscarPor.Name = "lblBuscarPor";
             this.lblBuscarPor.Size = new System.Drawing.Size(97, 20);
             this.lblBuscarPor.TabIndex = 152;
@@ -187,7 +187,7 @@
             this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbBuscar.FormattingEnabled = true;
-            this.CmbBuscar.Location = new System.Drawing.Point(576, 178);
+            this.CmbBuscar.Location = new System.Drawing.Point(576, 181);
             this.CmbBuscar.Name = "CmbBuscar";
             this.CmbBuscar.Size = new System.Drawing.Size(226, 28);
             this.CmbBuscar.TabIndex = 156;
@@ -208,7 +208,7 @@
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnLimpiar.UseVisualStyleBackColor = false;
-            this.BtnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click_1);
             // 
             // TxtBuscar
             // 
@@ -222,15 +222,15 @@
             // 
             this.tablaReporteVentas.AllowUserToAddRows = false;
             this.tablaReporteVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaReporteVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaReporteVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tablaReporteVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaReporteVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaRegistro,
@@ -252,9 +252,9 @@
             this.tablaReporteVentas.Name = "tablaReporteVentas";
             this.tablaReporteVentas.ReadOnly = true;
             this.tablaReporteVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaReporteVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaReporteVentas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tablaReporteVentas.RowTemplate.Height = 28;
             this.tablaReporteVentas.Size = new System.Drawing.Size(1092, 300);
             this.tablaReporteVentas.TabIndex = 159;
@@ -384,8 +384,8 @@
             this.Controls.Add(this.lblFechaInicio);
             this.Controls.Add(this.TxtFechaInicio);
             this.Controls.Add(this.lblReporteVenta);
-            this.Controls.Add(this.BtnExportarExcel);
-            this.Controls.Add(this.btnBuscar2);
+            this.Controls.Add(this.BtnGenerarExcel);
+            this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.lblBuscarPor);
             this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.BtnLimpiar);
@@ -394,7 +394,7 @@
             this.Name = "vtnReportesVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver reportes de los productos vendidos";
-            this.Load += new System.EventHandler(this.vtnReportesVentas_Load);
+            this.Load += new System.EventHandler(this.VtnReportesVentas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaReporteVentas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -410,8 +410,8 @@
         private System.Windows.Forms.DateTimePicker TxtFechaInicio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblReporteVenta;
-        private System.Windows.Forms.Button BtnExportarExcel;
-        private System.Windows.Forms.Button btnBuscar2;
+        private System.Windows.Forms.Button BtnGenerarExcel;
+        private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.Label lblBuscarPor;
         private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Button BtnLimpiar;

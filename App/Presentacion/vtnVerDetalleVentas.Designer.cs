@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnVerDetalleVentas
+    partial class VtnVerDetalleVentas
     {
         /// <summary>
         /// Required designer variable.
@@ -122,7 +122,7 @@
             this.TxtCodigoVenta.Name = "TxtCodigoVenta";
             this.TxtCodigoVenta.Size = new System.Drawing.Size(184, 27);
             this.TxtCodigoVenta.TabIndex = 2;
-            this.TxtCodigoVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt1_KeyPress);
+            this.TxtCodigoVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCodigoVenta_KeyPress);
             // 
             // LblCodigoVenta
             // 
@@ -484,7 +484,7 @@
             this.Name = "vtnVerDetalleVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver los detalles de las ventas realizadas";
-            this.Load += new System.EventHandler(this.vtnVerDetalleVentas_Load);
+            this.Load += new System.EventHandler(this.VtnVerDetalleVentas_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);

@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnGraficaCompras
+    partial class VtnGraficaCompras
     {
         /// <summary>
         /// Required designer variable.
@@ -34,18 +34,19 @@
             this.btnCargarDatosVentas = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.BtnGenerarPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // GraficaCompra
+            // graficaCompra
             // 
             chartArea1.Name = "ChartArea1";
             this.graficaCompra.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.graficaCompra.Legends.Add(legend1);
             this.graficaCompra.Location = new System.Drawing.Point(387, 29);
-            this.graficaCompra.Name = "GraficaCompra";
+            this.graficaCompra.Name = "graficaCompra";
             this.graficaCompra.Size = new System.Drawing.Size(984, 527);
             this.graficaCompra.TabIndex = 65;
             this.graficaCompra.Text = "chart1";
@@ -62,7 +63,7 @@
             this.btnCargarDatosVentas.TabIndex = 64;
             this.btnCargarDatosVentas.Text = "Cargar datos";
             this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
-            this.btnCargarDatosVentas.Click += new System.EventHandler(this.btnCargarDatosVentas_Click);
+            this.btnCargarDatosVentas.Click += new System.EventHandler(this.btnCargarDatosVentas_Click_1);
             // 
             // pictureBox1
             // 
@@ -88,17 +89,32 @@
             this.label2.Text = "Gráficas de las compras";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // vtnGraficaCompras
+            // BtnGenerarPDF
+            // 
+            this.BtnGenerarPDF.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnGenerarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGenerarPDF.Location = new System.Drawing.Point(70, 402);
+            this.BtnGenerarPDF.Name = "BtnGenerarPDF";
+            this.BtnGenerarPDF.Size = new System.Drawing.Size(193, 41);
+            this.BtnGenerarPDF.TabIndex = 66;
+            this.BtnGenerarPDF.Text = "Generar PDF";
+            this.BtnGenerarPDF.UseVisualStyleBackColor = false;
+            this.BtnGenerarPDF.Click += new System.EventHandler(this.BtnGenerarPDF_Click);
+            // 
+            // VtnGraficaCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.BtnGenerarPDF);
             this.Controls.Add(this.graficaCompra);
             this.Controls.Add(this.btnCargarDatosVentas);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
-            this.Name = "vtnGraficaCompras";
+            this.Name = "VtnGraficaCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver gráfica de los productos comprados";
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).EndInit();
@@ -113,5 +129,6 @@
         private System.Windows.Forms.Button btnCargarDatosVentas;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BtnGenerarPDF;
     }
 }

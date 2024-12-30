@@ -16,14 +16,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnVerDetalleCompras : Form
+    public partial class VtnVerDetalleCompras : Form
     {
-        public vtnVerDetalleCompras()
+        public VtnVerDetalleCompras()
         {
             InitializeComponent();
         }
 
-        private void vtnVerDetalleCompras_Load(object sender, EventArgs e)
+        private void VtnVerDetalleCompras_Load(object sender, EventArgs e)
         {
             TxtNumeroCodigoCompra.Select();
         }
@@ -104,7 +104,7 @@ namespace Presentacion
             texto_html = texto_html.Replace("@montototal", TxtMontoTotal.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("DetallesCompras.pdf", TxtNumeroCodigoCompra.Text);
+            guardar.FileName = string.Format("Detalle_Compras.pdf", TxtNumeroCodigoCompra.Text);
             guardar.Filter = "Pdf files |*.pdf";
 
             if (guardar.ShowDialog() == DialogResult.OK)
@@ -137,7 +137,7 @@ namespace Presentacion
             }
         }
 
-        private void txt1_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtNumeroCodigoCompra_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {

@@ -31,7 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
-            this.BtnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnGenerarExcel = new System.Windows.Forms.Button();
             this.BtnBuscarProveedorTransportista = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
@@ -75,19 +75,19 @@
             this.TxtBuscar.Size = new System.Drawing.Size(197, 27);
             this.TxtBuscar.TabIndex = 143;
             // 
-            // BtnExportarExcel
+            // BtnGenerarExcel
             // 
-            this.BtnExportarExcel.BackColor = System.Drawing.Color.White;
-            this.BtnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportarExcel.Location = new System.Drawing.Point(190, 177);
-            this.BtnExportarExcel.Name = "BtnExportarExcel";
-            this.BtnExportarExcel.Size = new System.Drawing.Size(187, 33);
-            this.BtnExportarExcel.TabIndex = 141;
-            this.BtnExportarExcel.Text = "Exportar Excel";
-            this.BtnExportarExcel.UseVisualStyleBackColor = false;
-            this.BtnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.BtnGenerarExcel.BackColor = System.Drawing.Color.White;
+            this.BtnGenerarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGenerarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGenerarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnGenerarExcel.Location = new System.Drawing.Point(190, 177);
+            this.BtnGenerarExcel.Name = "BtnGenerarExcel";
+            this.BtnGenerarExcel.Size = new System.Drawing.Size(187, 33);
+            this.BtnGenerarExcel.TabIndex = 141;
+            this.BtnGenerarExcel.Text = "Generar Excel";
+            this.BtnGenerarExcel.UseVisualStyleBackColor = false;
+            this.BtnGenerarExcel.Click += new System.EventHandler(this.BtnGenerarExcel_Click);
             // 
             // BtnBuscarProveedorTransportista
             // 
@@ -104,7 +104,7 @@
             this.BtnBuscarProveedorTransportista.Text = "Buscar";
             this.BtnBuscarProveedorTransportista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnBuscarProveedorTransportista.UseVisualStyleBackColor = false;
-            this.BtnBuscarProveedorTransportista.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.BtnBuscarProveedorTransportista.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // BtnBuscar
             // 
@@ -121,7 +121,7 @@
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnBuscar.UseVisualStyleBackColor = false;
-            this.BtnBuscar.Click += new System.EventHandler(this.btnBuscar3_Click);
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click_1);
             // 
             // BtnLimpiar
             // 
@@ -139,7 +139,7 @@
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnLimpiar.UseVisualStyleBackColor = false;
-            this.BtnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // CmbProveedor
             // 
@@ -157,7 +157,7 @@
             this.lblBuscarPor.AutoSize = true;
             this.lblBuscarPor.BackColor = System.Drawing.Color.White;
             this.lblBuscarPor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuscarPor.Location = new System.Drawing.Point(462, 182);
+            this.lblBuscarPor.Location = new System.Drawing.Point(462, 184);
             this.lblBuscarPor.Name = "lblBuscarPor";
             this.lblBuscarPor.Size = new System.Drawing.Size(97, 20);
             this.lblBuscarPor.TabIndex = 136;
@@ -169,7 +169,7 @@
             this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbBuscar.FormattingEnabled = true;
-            this.CmbBuscar.Location = new System.Drawing.Point(576, 178);
+            this.CmbBuscar.Location = new System.Drawing.Point(576, 181);
             this.CmbBuscar.Name = "CmbBuscar";
             this.CmbBuscar.Size = new System.Drawing.Size(226, 28);
             this.CmbBuscar.TabIndex = 142;
@@ -448,7 +448,7 @@
             this.Controls.Add(this.CmbTransportista);
             this.Controls.Add(this.lblProveedor);
             this.Controls.Add(this.TxtBuscar);
-            this.Controls.Add(this.BtnExportarExcel);
+            this.Controls.Add(this.BtnGenerarExcel);
             this.Controls.Add(this.BtnBuscarProveedorTransportista);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnLimpiar);
@@ -465,7 +465,7 @@
             this.Controls.Add(this.lblReporteCompra);
             this.Name = "vtnReportesCompras";
             this.Text = "Ver los reportes de productos comprados";
-            this.Load += new System.EventHandler(this.vtnReportesCompras_Load);
+            this.Load += new System.EventHandler(this.VtnReportesCompras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaReporteCompras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -475,7 +475,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox TxtBuscar;
-        private System.Windows.Forms.Button BtnExportarExcel;
+        private System.Windows.Forms.Button BtnGenerarExcel;
         private System.Windows.Forms.Button BtnBuscarProveedorTransportista;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.Button BtnLimpiar;
