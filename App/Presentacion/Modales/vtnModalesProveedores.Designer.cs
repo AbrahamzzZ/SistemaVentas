@@ -77,8 +77,8 @@
             this.tablaProveedores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaProveedores.Size = new System.Drawing.Size(553, 324);
             this.tablaProveedores.TabIndex = 85;
-            this.tablaProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaProveedores_CellDoubleClick);
-            this.tablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaProveedores_CellFormatting);
+            this.tablaProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProveedores_CellDoubleClick);
+            this.tablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProveedores_CellFormatting);
             // 
             // lblListaProveedor
             // 
@@ -101,7 +101,7 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txt1
             // 
@@ -146,7 +146,7 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 150;
+            this.Codigo.Width = 125;
             // 
             // Nombres
             // 
@@ -154,7 +154,7 @@
             this.Nombres.MinimumWidth = 6;
             this.Nombres.Name = "Nombres";
             this.Nombres.ReadOnly = true;
-            this.Nombres.Width = 130;
+            this.Nombres.Width = 150;
             // 
             // Estado
             // 
@@ -181,7 +181,7 @@
             this.Name = "vtnModalesProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de los proveedores";
-            this.Load += new System.EventHandler(this.vtnModalesProveedores_Load);
+            this.Load += new System.EventHandler(this.VtnModalesProveedores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaProveedores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnNegocio
+    partial class VtnNegocio
     {
         /// <summary>
         /// Required designer variable.
@@ -124,7 +124,7 @@
             this.btnGuardar.TabIndex = 9;
             this.btnGuardar.Text = "Guardar cambios";
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // TxtDireccion
             // 
@@ -192,7 +192,7 @@
             this.btnSubirImagen.TabIndex = 2;
             this.btnSubirImagen.Text = "Subir imagen";
             this.btnSubirImagen.UseVisualStyleBackColor = false;
-            this.btnSubirImagen.Click += new System.EventHandler(this.btnSubirImagen_Click);
+            this.btnSubirImagen.Click += new System.EventHandler(this.BtnSubirImagen_Click);
             // 
             // lblLogo
             // 
@@ -267,7 +267,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Name = "vtnNegocio";
             this.Text = "Ver información del negocio";
-            this.Load += new System.EventHandler(this.vtnNegocio_Load);
+            this.Load += new System.EventHandler(this.VtnNegocio_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

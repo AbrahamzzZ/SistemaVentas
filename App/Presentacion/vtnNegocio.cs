@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnNegocio : Form
+    public partial class VtnNegocio : Form
     {
-        public vtnNegocio()
+        public VtnNegocio()
         {
             InitializeComponent();
         }
 
-        private void vtnNegocio_Load(object sender, EventArgs e)
+        private void VtnNegocio_Load(object sender, EventArgs e)
         {
             bool obtenido = true;
             byte[] byteImage = new CN_Negocio().MostrarLogo(out obtenido);
@@ -37,7 +37,7 @@ namespace Presentacion
             TxtCorreoElectronico.Text = datos.CorreoElectronico;
         }
 
-        private void btnSubirImagen_Click(object sender, EventArgs e)
+        private void BtnSubirImagen_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
             OpenFileDialog ofd = new OpenFileDialog();
@@ -57,7 +57,7 @@ namespace Presentacion
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void BtnGuardar_Click(object sender, EventArgs e)
         {
             string mensaje = string.Empty;
             Negocio negocioActualizado = new Negocio()
@@ -79,6 +79,7 @@ namespace Presentacion
                 MessageBox.Show($"No se pudo modificar la información del negocio: {mensaje}", "Modificar negocio", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public Image ByteImage(byte[] imageBytes)
         {
             if(imageBytes == null || imageBytes.Length == 0)

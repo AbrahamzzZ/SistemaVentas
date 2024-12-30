@@ -65,7 +65,7 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txt1
             // 
@@ -128,8 +128,8 @@
             this.tablaClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaClientes.Size = new System.Drawing.Size(553, 324);
             this.tablaClientes.TabIndex = 97;
-            this.tablaClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaClientes_CellDoubleClick);
-            this.tablaClientes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaClientes_CellFormatting);
+            this.tablaClientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaClientes_CellDoubleClick);
+            this.tablaClientes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaClientes_CellFormatting);
             // 
             // IdCliente
             // 
@@ -146,7 +146,6 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 125;
             // 
             // Nombres
             // 
@@ -162,7 +161,6 @@
             this.Estado.MinimumWidth = 6;
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
-            this.Estado.Width = 125;
             // 
             // vtnModalesClientes
             // 
@@ -181,7 +179,7 @@
             this.Name = "vtnModalesClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los clientes";
-            this.Load += new System.EventHandler(this.vtnModalesClientes_Load);
+            this.Load += new System.EventHandler(this.VtnModalesClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
