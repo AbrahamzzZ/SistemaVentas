@@ -65,7 +65,7 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txt1
             // 
@@ -129,8 +129,8 @@
             this.tablaOfertas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaOfertas.Size = new System.Drawing.Size(553, 324);
             this.tablaOfertas.TabIndex = 97;
-            this.tablaOfertas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaOfertas_CellDoubleClick);
-            this.tablaOfertas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaOfertas_CellFormatting);
+            this.tablaOfertas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaOfertas_CellDoubleClick);
+            this.tablaOfertas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaOfertas_CellFormatting);
             // 
             // IdOFERTA
             // 
@@ -147,7 +147,7 @@
             this.Oferta.MinimumWidth = 6;
             this.Oferta.Name = "Oferta";
             this.Oferta.ReadOnly = true;
-            this.Oferta.Width = 110;
+            this.Oferta.Width = 130;
             // 
             // Producto
             // 
@@ -189,7 +189,7 @@
             this.Name = "vtnModalesOfertas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de las ofertas";
-            this.Load += new System.EventHandler(this.vtnModalesOfertas_Load);
+            this.Load += new System.EventHandler(this.VtnModalesOfertas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaOfertas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

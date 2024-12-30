@@ -19,7 +19,7 @@ namespace Presentacion.Modales
         {
             InitializeComponent();
         }
-        private void vtnModalesTransportista_Load(object sender, EventArgs e)
+        private void VtnModalesTransportista_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in tablaTransportista.Columns)
             {
@@ -38,7 +38,7 @@ namespace Presentacion.Modales
                 tablaTransportista.Rows.Add(new object[] { transportistas.IdTransportista, transportistas.Codigo, transportistas.Nombres, transportistas.Estado });
             }
         }
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = cmb1.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
@@ -59,7 +59,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaTransportista_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaTransportista_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int iRow = e.RowIndex;
             int iColumn = e.ColumnIndex;
@@ -77,7 +77,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaTransportista_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaTransportista_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (tablaTransportista.Columns[e.ColumnIndex].Name == "Estado")
             {

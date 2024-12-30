@@ -64,7 +64,7 @@
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // txt1
             // 
@@ -127,8 +127,8 @@
             this.tablaTransportista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaTransportista.Size = new System.Drawing.Size(553, 324);
             this.tablaTransportista.TabIndex = 103;
-            this.tablaTransportista.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaTransportista_CellDoubleClick);
-            this.tablaTransportista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaTransportista_CellFormatting);
+            this.tablaTransportista.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaTransportista_CellDoubleClick);
+            this.tablaTransportista.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaTransportista_CellFormatting);
             // 
             // IdTRANSPORTISTA
             // 
@@ -153,7 +153,7 @@
             this.NombreS.MinimumWidth = 6;
             this.NombreS.Name = "NombreS";
             this.NombreS.ReadOnly = true;
-            this.NombreS.Width = 110;
+            this.NombreS.Width = 150;
             // 
             // Estado
             // 
@@ -179,7 +179,7 @@
             this.Name = "vtnModalesTransportista";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los transportistas";
-            this.Load += new System.EventHandler(this.vtnModalesTransportista_Load);
+            this.Load += new System.EventHandler(this.VtnModalesTransportista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

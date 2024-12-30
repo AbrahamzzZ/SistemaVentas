@@ -154,7 +154,6 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 110;
             // 
             // Nombre
             // 
@@ -178,7 +177,7 @@
             this.Stock.MinimumWidth = 6;
             this.Stock.Name = "Stock";
             this.Stock.ReadOnly = true;
-            this.Stock.Width = 125;
+            this.Stock.Width = 80;
             // 
             // PrecioCompra
             // 

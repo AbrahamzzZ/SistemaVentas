@@ -133,7 +133,7 @@ namespace Presentacion
         }
         private void MenuItemVerOfertas_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnOferta());
+            VerPanel(new VtnOferta());
         }
 
         private void MenuItemVerReclamos_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace Presentacion
         }
         private void MenuItemVerNegocio_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnNegocio());
+            VerPanel(new VtnNegocio());
         }
 
         private void MenuItemVerAutor_Click(object sender, EventArgs e)

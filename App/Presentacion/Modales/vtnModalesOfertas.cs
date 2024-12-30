@@ -18,10 +18,10 @@ namespace Presentacion.Modales
         public vtnModalesOfertas()
         {
             InitializeComponent();
-            tablaOfertas.CellFormatting += tablaOfertas_CellFormatting;
+            tablaOfertas.CellFormatting += TablaOfertas_CellFormatting;
         }
 
-        private void vtnModalesOfertas_Load(object sender, EventArgs e)
+        private void VtnModalesOfertas_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in tablaOfertas.Columns)
             {
@@ -41,7 +41,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = cmb1.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
@@ -62,7 +62,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaOfertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaOfertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int iRow = e.RowIndex;
             int iColumn = e.ColumnIndex;
@@ -80,7 +80,7 @@ namespace Presentacion.Modales
             }
         }
 
-        private void tablaOfertas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaOfertas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (tablaOfertas.Columns[e.ColumnIndex].Name == "Estado")
             {
