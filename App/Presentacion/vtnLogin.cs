@@ -46,9 +46,14 @@ namespace Presentacion
 
             if (string.IsNullOrEmpty(mensaje))
             {
-                // Si el mensaje está vacío, el login fue exitoso
-                List<Usuario> listaUsuarios = new CN_Usuario().Ingresar();
-                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
+                List<Usuario> usuarioLogin = new CN_Usuario().Ingresar();
+                Usuario_Catched usuario = Usuario_Catched.GetInstance();
+                Usuario usuarioEncontrado = usuarioLogin.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
+                usuario.IdUsuario = usuarioEncontrado.IdUsuario;
+                usuario.Codigo = usuarioEncontrado.Codigo;
+                usuario.NombreCompleto = usuarioEncontrado.NombreCompleto;
+                usuario.Clave = usuarioEncontrado.Clave;
+                usuario.Estado = usuarioEncontrado.Estado;
 
                 MessageBox.Show("Bienvenido al sistema " + usuario.NombreCompleto + ".", "Inicio de sesión exitoso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 VtnMenu menu = new VtnMenu(usuario);

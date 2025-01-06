@@ -15,9 +15,9 @@ namespace Presentacion
 {
     public partial class VtnMenu : Form
     {
-        private Usuario nombreUsuarioActual;
+        private Usuario_Catched nombreUsuarioActual;
         private static Form formularioActivo = null;
-        public VtnMenu(Usuario objusuario)
+        public VtnMenu(Usuario_Catched objusuario)
         {
             nombreUsuarioActual = objusuario;
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace Presentacion
             VerPanel(new VtnUsuarios());
         }
 
-        private void MenuItemInventario_Click_1(object sender, EventArgs e)
+        private void MenuItemZonaAlmacen_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnInventario());
         }

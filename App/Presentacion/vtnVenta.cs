@@ -15,9 +15,9 @@ namespace Presentacion
 {
     public partial class VtnVenta : Form
     {
-        private Usuario usuario;
+        private Usuario_Catched usuario;
         private Cliente cliente;
-        public VtnVenta(Usuario oUsuario = null)
+        public VtnVenta(Usuario_Catched oUsuario = null)
         {
             usuario = oUsuario;
             InitializeComponent();
@@ -159,14 +159,9 @@ namespace Presentacion
         private void BtnCrearVenta_Click(object sender, EventArgs e)
         {
             string tipoDocumento = ((dynamic)CmbTipoDocumento.SelectedItem).Texto;
-            if (TxtCedulaCliente.Text == "")
+            if (Convert.ToInt32(TxtIdCliente.Text) == 0)
             {
-                MessageBox.Show("Debe ingresar el documento del cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (TxtNombresCliente.Text == "")
-            {
-                MessageBox.Show("Debe ingresar el nombre del cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (tablaVentas.Rows.Count < 1)
@@ -176,7 +171,7 @@ namespace Presentacion
             }
             if (TxtPagaCon.Text == "")
             {
-                MessageBox.Show("Debe ingresar el valor a pagar.", "Editar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar el valor a pagar.", "Realizar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TxtPagaCon.Select();
             }
             else
@@ -216,7 +211,7 @@ namespace Presentacion
                 bool respuesta = new CN_Venta().Registrar(oVenta, detalleVenta, out mensaje);
                 if (respuesta)
                 {
-                    MessageBox.Show("Venta realizada exitosamente.", "Editar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Venta realizada exitosamente.", "Registrar Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     var result = MessageBox.Show("Numero de venta generado:\n" + numeroDocumento + "\n\n ¿Dsea copiar al portapapeles?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
@@ -233,7 +228,7 @@ namespace Presentacion
                 }
                 else
                 {
-                    MessageBox.Show(mensaje, "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(mensaje, "Registrar venta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
