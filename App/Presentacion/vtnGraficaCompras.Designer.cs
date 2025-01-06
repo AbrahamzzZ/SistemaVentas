@@ -63,7 +63,7 @@
             this.btnCargarDatosVentas.TabIndex = 64;
             this.btnCargarDatosVentas.Text = "Cargar datos";
             this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
-            this.btnCargarDatosVentas.Click += new System.EventHandler(this.btnCargarDatosVentas_Click_1);
+            this.btnCargarDatosVentas.Click += new System.EventHandler(this.BtnCargarDatosVentas_Click_1);
             // 
             // pictureBox1
             // 

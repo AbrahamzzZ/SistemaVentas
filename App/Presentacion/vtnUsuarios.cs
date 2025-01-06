@@ -296,6 +296,9 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// Metodo que me limpia los campos de texto.
+        /// </summary>
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
@@ -308,6 +311,11 @@ namespace Presentacion
             CmbEstado.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Metodo que me genera un codigo de 4 digitos.
+        /// </summary>
+        /// <param name="longitud"></param>
+        /// <returns></returns>
         private string GenerarCodigo(int longitud)
         {
             const string caracteres = "0123456789";

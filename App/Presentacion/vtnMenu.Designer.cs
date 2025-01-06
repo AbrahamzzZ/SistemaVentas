@@ -35,8 +35,8 @@
             this.MenuPrincipal = new System.Windows.Forms.MenuStrip();
             this.MenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemVerUsuarios = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMantenimiento = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemInventario = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuInventario = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemZonaAlmacen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemUnidadesMedida = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -114,7 +114,7 @@
             this.MenuPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuUsuarios,
-            this.MenuMantenimiento,
+            this.MenuInventario,
             this.MenuCompras,
             this.MenuVentas,
             this.MenuProveedores,
@@ -149,36 +149,36 @@
             // 
             this.menuItemVerUsuarios.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerUsuarios.Name = "menuItemVerUsuarios";
-            this.menuItemVerUsuarios.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerUsuarios.Size = new System.Drawing.Size(187, 28);
             this.menuItemVerUsuarios.Text = "Ver usuarios";
             this.menuItemVerUsuarios.Click += new System.EventHandler(this.MenuItemVerUsuarios_Click_1);
             // 
-            // MenuMantenimiento
+            // MenuInventario
             // 
-            this.MenuMantenimiento.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemInventario,
+            this.MenuInventario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemProducto,
             this.toolStripSeparator1,
-            this.menuItemUnidadesMedida,
-            this.toolStripSeparator10,
             this.menuItemCategoría,
             this.toolStripSeparator2,
-            this.menuItemProducto});
-            this.MenuMantenimiento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MenuMantenimiento.Image = global::Presentacion.Properties.Resources.mantenimiento;
-            this.MenuMantenimiento.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuMantenimiento.Name = "MenuMantenimiento";
-            this.MenuMantenimiento.Size = new System.Drawing.Size(141, 69);
-            this.MenuMantenimiento.Text = "Mantenimiento";
-            this.MenuMantenimiento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MenuMantenimiento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuItemUnidadesMedida,
+            this.toolStripSeparator10,
+            this.menuItemZonaAlmacen});
+            this.MenuInventario.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuInventario.Image = global::Presentacion.Properties.Resources.inventario;
+            this.MenuInventario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.MenuInventario.Name = "MenuInventario";
+            this.MenuInventario.Size = new System.Drawing.Size(101, 69);
+            this.MenuInventario.Text = "Inventario";
+            this.MenuInventario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.MenuInventario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // menuItemInventario
+            // menuItemZonaAlmacen
             // 
-            this.menuItemInventario.BackColor = System.Drawing.Color.Wheat;
-            this.menuItemInventario.Name = "menuItemInventario";
-            this.menuItemInventario.Size = new System.Drawing.Size(224, 28);
-            this.menuItemInventario.Text = "Inventario";
-            this.menuItemInventario.Click += new System.EventHandler(this.MenuItemInventario_Click_1);
+            this.menuItemZonaAlmacen.BackColor = System.Drawing.Color.Wheat;
+            this.menuItemZonaAlmacen.Name = "menuItemZonaAlmacen";
+            this.menuItemZonaAlmacen.Size = new System.Drawing.Size(224, 28);
+            this.menuItemZonaAlmacen.Text = "Zona Almacen";
+            this.menuItemZonaAlmacen.Click += new System.EventHandler(this.MenuItemZonaAlmacen_Click);
             // 
             // toolStripSeparator1
             // 
@@ -276,20 +276,20 @@
             // 
             this.menuItemRealizarVenta.BackColor = System.Drawing.Color.Wheat;
             this.menuItemRealizarVenta.Name = "menuItemRealizarVenta";
-            this.menuItemRealizarVenta.Size = new System.Drawing.Size(224, 28);
+            this.menuItemRealizarVenta.Size = new System.Drawing.Size(200, 28);
             this.menuItemRealizarVenta.Text = "Realizar venta";
             this.menuItemRealizarVenta.Click += new System.EventHandler(this.MenuItemRealizarVenta_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(197, 6);
             // 
             // menuItemVerDetallesVenta
             // 
             this.menuItemVerDetallesVenta.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerDetallesVenta.Name = "menuItemVerDetallesVenta";
-            this.menuItemVerDetallesVenta.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerDetallesVenta.Size = new System.Drawing.Size(200, 28);
             this.menuItemVerDetallesVenta.Text = "Ver detalles";
             this.menuItemVerDetallesVenta.Click += new System.EventHandler(this.MenuItemVerDetallesVenta_Click);
             // 
@@ -310,7 +310,7 @@
             // 
             this.menuItemVerProveedores.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerProveedores.Name = "menuItemVerProveedores";
-            this.menuItemVerProveedores.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerProveedores.Size = new System.Drawing.Size(218, 28);
             this.menuItemVerProveedores.Text = "Ver proveedores";
             this.menuItemVerProveedores.Click += new System.EventHandler(this.MenuItemVerProveedores_Click);
             // 
@@ -352,7 +352,7 @@
             // 
             this.menuItemVerSucursales.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerSucursales.Name = "menuItemVerSucursales";
-            this.menuItemVerSucursales.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerSucursales.Size = new System.Drawing.Size(201, 28);
             this.menuItemVerSucursales.Text = "Ver sucursales";
             this.menuItemVerSucursales.Click += new System.EventHandler(this.MenuItemVerSucursales_Click);
             // 
@@ -373,7 +373,7 @@
             // 
             this.menuItemVerClientes.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerClientes.Name = "menuItemVerClientes";
-            this.menuItemVerClientes.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerClientes.Size = new System.Drawing.Size(181, 28);
             this.menuItemVerClientes.Text = "Ver clientes";
             this.menuItemVerClientes.Click += new System.EventHandler(this.MenuItemVerClientes_Click);
             // 
@@ -460,7 +460,7 @@
             // 
             this.menuItemVerOfertas.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerOfertas.Name = "menuItemVerOfertas";
-            this.menuItemVerOfertas.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerOfertas.Size = new System.Drawing.Size(176, 28);
             this.menuItemVerOfertas.Text = "Ver ofertas";
             this.menuItemVerOfertas.Click += new System.EventHandler(this.MenuItemVerOfertas_Click);
             // 
@@ -481,7 +481,7 @@
             // 
             this.menuItemVerReclamos.BackColor = System.Drawing.Color.Wheat;
             this.menuItemVerReclamos.Name = "menuItemVerReclamos";
-            this.menuItemVerReclamos.Size = new System.Drawing.Size(224, 28);
+            this.menuItemVerReclamos.Size = new System.Drawing.Size(192, 28);
             this.menuItemVerReclamos.Text = "Ver reclamos";
             this.menuItemVerReclamos.Click += new System.EventHandler(this.MenuItemVerReclamos_Click);
             // 
@@ -506,33 +506,33 @@
             // 
             this.menuItemNegocio.BackColor = System.Drawing.Color.Wheat;
             this.menuItemNegocio.Name = "menuItemNegocio";
-            this.menuItemNegocio.Size = new System.Drawing.Size(224, 28);
+            this.menuItemNegocio.Size = new System.Drawing.Size(169, 28);
             this.menuItemNegocio.Text = "Negocio";
             this.menuItemNegocio.Click += new System.EventHandler(this.MenuItemVerNegocio_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(166, 6);
             // 
             // menuItemAutor
             // 
             this.menuItemAutor.BackColor = System.Drawing.Color.Wheat;
             this.menuItemAutor.Name = "menuItemAutor";
-            this.menuItemAutor.Size = new System.Drawing.Size(224, 28);
+            this.menuItemAutor.Size = new System.Drawing.Size(169, 28);
             this.menuItemAutor.Text = "Autor";
             this.menuItemAutor.Click += new System.EventHandler(this.MenuItemVerAutor_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(166, 6);
             // 
             // menuItemPrograma
             // 
             this.menuItemPrograma.BackColor = System.Drawing.Color.Wheat;
             this.menuItemPrograma.Name = "menuItemPrograma";
-            this.menuItemPrograma.Size = new System.Drawing.Size(224, 28);
+            this.menuItemPrograma.Size = new System.Drawing.Size(169, 28);
             this.menuItemPrograma.Text = "Programa";
             this.menuItemPrograma.Click += new System.EventHandler(this.MenuItemVerPrograma_Click);
             // 
@@ -655,8 +655,8 @@
         private System.Windows.Forms.Label LblHora;
         private System.Windows.Forms.ToolStripMenuItem menuItemVerUsuarios;
         private System.Windows.Forms.PictureBox PictureBoxLogo;
-        private System.Windows.Forms.ToolStripMenuItem MenuMantenimiento;
-        private System.Windows.Forms.ToolStripMenuItem menuItemInventario;
+        private System.Windows.Forms.ToolStripMenuItem MenuInventario;
+        private System.Windows.Forms.ToolStripMenuItem menuItemZonaAlmacen;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem menuItemCategoría;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

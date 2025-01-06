@@ -22,7 +22,7 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        private void btnCargarDatosVentas_Click_1(object sender, EventArgs e)
+        private void BtnCargarDatosVentas_Click_1(object sender, EventArgs e)
         {
             DataTable dt = new CN_Compra().GraficaCompra();
             if (dt.Rows.Count > 0)
@@ -37,7 +37,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show("No se encontraron compras registradas para generar la gráfica.", "Grafica de los productos comprados", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("No se encontraron compras registradas para generar la gráfica.", "Grafica de los productos comprados", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

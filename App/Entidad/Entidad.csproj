@@ -60,6 +60,7 @@
     <Compile Include="Sucursal.cs" />
     <Compile Include="Transportista.cs" />
     <Compile Include="Unidad_Medida.cs" />
+    <Compile Include="Usuario_Catched.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="Zona_Almacen.cs" />

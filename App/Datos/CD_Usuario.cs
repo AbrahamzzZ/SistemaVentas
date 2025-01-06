@@ -13,13 +13,16 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que permite ingresar el Usuario al sistema
+        /// <summary>
+        /// Metodo que permite ingresar el Usuario al sistema
+        /// </summary>
+        /// <returns></returns>
         public List<Usuario> IngresarUsuarioLogin()
         {
             List<Usuario> listaUsuario = new List<Usuario>();
             try
             {
-                string registrar = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ESTADO FROM USUARIO";
+                string registrar = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CLAVE, ESTADO FROM USUARIO";
                 SqlCommand cmd = new SqlCommand(registrar, Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
@@ -30,7 +33,6 @@ namespace Datos
                         IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
                         Codigo = leer["CODIGO"].ToString(),
                         NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
-                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
                         Clave = leer["CLAVE"].ToString(),
                         Estado = Convert.ToBoolean(leer["ESTADO"])
                     });
@@ -43,7 +45,11 @@ namespace Datos
             return listaUsuario;
         }
 
-        //Metodo que permite recuperar la clave del Usuario
+        /// <summary>
+        /// Metodo que permite recuperar la clave del Usuario
+        /// </summary>
+        /// <param name="correoElectronico">Correo electrónico del usuario cuya clave se desea recuperar.</param>
+        /// <returns>Un objeto Usuario que contiene la clave del usuario si se encuentra; de lo contrario, null.</returns>
         public Usuario RecuperarClave(string correoElectronico)
         {
             Usuario usuario = null;
@@ -71,7 +77,10 @@ namespace Datos
             return usuario;
         }
 
-        //Metodo que muestra una lista de todos los Usuarios que existen
+        /// <summary>
+        /// Metodo que muestra una lista de todos los Usuarios que existen con su respectivo rol.
+        /// </summary>
+        /// <returns>Una lista de objetos Usuario que contiene la información de todos los usuarios y sus respectivos roles.</returns>
         public List<Usuario> MostrarUsuarios()
         {
             List<Usuario> listaMostrarUsuario = new List<Usuario>();
@@ -105,7 +114,13 @@ namespace Datos
             return listaMostrarUsuario;
         }
 
-        //Metodo que permite registrar un nuevo Usuario
+        /// <summary> 
+        /// Método que permite registrar un nuevo Usuario. 
+        /// </summary> 
+        /// <param name="obj">Objeto Usuario que contiene la información del usuario a registrar.</param> 
+        /// <param name="Mensaje">Mensaje de salida que proporciona información sobre el resultado de la operación.</param> 
+        /// <returns>El ID del usuario generado si el registro es exitoso; de lo contrario, 0.</returns> 
+        /// <exception cref="ArgumentNullException">Se lanza cuando el objeto Usuario es nulo.</exception>
         public int RegistrarUsuario(Usuario obj, out string Mensaje)
         {
             int IdUsuarioGenerado = 0;

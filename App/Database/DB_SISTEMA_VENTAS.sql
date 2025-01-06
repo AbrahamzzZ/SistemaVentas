@@ -1610,7 +1610,7 @@ INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (1,'MenuUsuarios'),
-(1,'MenuMantenimiento'),
+(1,'MenuInventario'),
 (1,'MenuVentas'),
 (1,'MenuCompras'),
 (1,'MenuProveedores'),

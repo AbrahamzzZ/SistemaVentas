@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnModalesTransportista));
             this.lblListaTransportistas = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txt1 = new System.Windows.Forms.TextBox();
@@ -175,6 +176,7 @@
             this.Controls.Add(this.cmb1);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaTransportista);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "vtnModalesTransportista";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
