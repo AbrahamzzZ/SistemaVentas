@@ -14,9 +14,9 @@ namespace Datos
         Conexion Conexion = new Conexion();
 
         /// <summary>
-        /// Metodo que permite ingresar el Usuario al sistema
+        /// Método que permite ingresar el Usuario al sistema
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Una lista de objetos de tipo Usuario</returns>
         public List<Usuario> IngresarUsuarioLogin()
         {
             List<Usuario> listaUsuario = new List<Usuario>();
@@ -114,21 +114,16 @@ namespace Datos
             return listaMostrarUsuario;
         }
 
-        /// <summary> 
-        /// Método que permite registrar un nuevo Usuario. 
-        /// </summary> 
-        /// <param name="obj">Objeto Usuario que contiene la información del usuario a registrar.</param> 
-        /// <param name="Mensaje">Mensaje de salida que proporciona información sobre el resultado de la operación.</param> 
-        /// <returns>El ID del usuario generado si el registro es exitoso; de lo contrario, 0.</returns> 
-        /// <exception cref="ArgumentNullException">Se lanza cuando el objeto Usuario es nulo.</exception>
+        /// <summary>
+        /// Método que permite registrar un nuevo Usuario
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Usuario que contiene los datos del nuevo usuario</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID del usuario generado, o 0 si hubo un error</returns>
         public int RegistrarUsuario(Usuario obj, out string Mensaje)
         {
             int IdUsuarioGenerado = 0;
             Mensaje = string.Empty;
-            if (obj == null)
-            {
-                throw new ArgumentNullException(nameof(obj), "El objeto Usuario no puede ser nulo");
-            }
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_USUARIO", Conexion.ConexionBD());
@@ -155,7 +150,12 @@ namespace Datos
             return IdUsuarioGenerado;
         }
 
-        //Metodo que permite editar la informacion de un Usuario ya registrado
+        /// <summary>
+        /// Método que permite editar la información de un Usuario ya registrado
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Usuario que contiene los datos actualizados del usuario</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarUsuario(Usuario obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -188,7 +188,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a un Usuario
+        /// <summary>
+        /// Método que permite eliminar a un Usuario
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Usuario que contiene el ID del usuario a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarUsuario(Usuario obj, out string Mensaje)
         {
             bool Respuesta = false;

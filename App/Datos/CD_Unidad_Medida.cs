@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que permite registrar un nueva Unidad de Medidas
+        /// <summary>
+        /// Método que muestra una lista de todas las Unidades de Medida que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Unidad_Medida</returns>
         public List<Unidad_Medida> MostrarUnidadesMedidas()
         {
             List<Unidad_Medida> listaMostrarUnidadesMedidas = new List<Unidad_Medida>();
@@ -44,7 +47,12 @@ namespace Datos
             return listaMostrarUnidadesMedidas;
         }
 
-        //Metodo que permite editar la informacion de una Unidad de Medida ya registrado
+        /// <summary>
+        /// Método que permite registrar una nueva Unidad de Medida
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Unidad_Medida que contiene los datos de la nueva unidad de medida</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID de la unidad de medida generada, o 0 si hubo un error</returns>
         public int RegistrarUnidadMedida(Unidad_Medida obj, out string Mensaje)
         {
             int IdUnidadMedidaGenerada = 0;
@@ -74,7 +82,12 @@ namespace Datos
             return IdUnidadMedidaGenerada;
         }
 
-        //Metodo que permite editar la informacion de una Unidad de Medida ya registrado
+        /// <summary>
+        /// Método que permite editar la información de una Unidad de Medida ya registrada
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Unidad_Medida que contiene los datos actualizados de la unidad de medida</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarUnidadMedida(Unidad_Medida obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -103,7 +116,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar una Unidad de Medida
+        /// <summary>
+        /// Método que permite eliminar una Unidad de Medida
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Unidad_Medida que contiene el ID de la unidad de medida a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarUnidadMedida(Unidad_Medida obj, out string Mensaje)
         {
             bool Respuesta = false;

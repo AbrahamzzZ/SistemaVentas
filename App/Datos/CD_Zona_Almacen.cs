@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos las Zonas de almacenamiento que tiene el supermercado
+        /// <summary>
+        /// Método que muestra una lista de todas las Zonas de almacenamiento que tiene el supermercado
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Zona_Almacen</returns>
         public List<Zona_Almacen> MostrarZonasAlmacen()
         {
             List<Zona_Almacen> listaMostrarZonaAlmacen = new List<Zona_Almacen>();
