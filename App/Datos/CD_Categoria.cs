@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todas las Categorias que existen
+        /// <summary>
+        /// Método que muestra una lista de todas las Categorías que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Categoria</returns>
         public List<Categoria> MostrarCategorias()
         {
             List<Categoria> listaMostrarCategoria = new List<Categoria>();
@@ -43,7 +46,12 @@ namespace Datos
             return listaMostrarCategoria;
         }
 
-        //Metodo que permite registrar una nueva Categoria
+        /// <summary>
+        /// Método que permite registrar una nueva Categoría
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Categoria que contiene los datos de la nueva categoría</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID de la categoría generada, o 0 si hubo un error</returns>
         public int RegistrarCategoria(Categoria obj, out string Mensaje)
         {
             int IdCategoriaGenerado = 0;
@@ -72,7 +80,12 @@ namespace Datos
             return IdCategoriaGenerado;
         }
 
-        //Metodo que permite editar la informacion de una Categoria ya registrado
+        /// <summary>
+        /// Método que permite editar la información de una Categoría ya registrada
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Categoria que contiene los datos actualizados de la categoría</param>
+        /// <param name="mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarCategoria(Categoria obj, out string mensaje)
         {
             bool respuesta = false;
@@ -102,7 +115,12 @@ namespace Datos
             return respuesta;
         }
 
-        //Metodo que permite eliminar a un Categoria
+        /// <summary>
+        /// Método que permite eliminar una Categoría
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Categoria que contiene el ID de la categoría a eliminar</param>
+        /// <param name="mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarCategoria(Categoria obj, out string mensaje)
         {
             bool respuesta = false;

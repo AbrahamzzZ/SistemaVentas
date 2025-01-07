@@ -14,7 +14,7 @@ namespace Datos
     public class Conexion
     {
         /// <summary>
-        /// Metodo para la conexión de la base de datos.
+        ///  Método para la conexión de la base de datos.
         /// </summary>
         public SqlConnection ConexionBD()
         {
