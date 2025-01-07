@@ -21,7 +21,7 @@ namespace Presentacion
 
         private void VtnLogin_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
+            TxtTiempo.Enabled = true;
             TxtCodigo.Select();
         }
 
@@ -46,12 +46,17 @@ namespace Presentacion
 
             if (string.IsNullOrEmpty(mensaje))
             {
-                // Si el mensaje está vacío, el login fue exitoso
-                List<Usuario> listaUsuarios = new CN_Usuario().Ingresar();
-                Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
+                List<Usuario> usuarioLogin = new CN_Usuario().Ingresar();
+                Usuario_Catched usuario = Usuario_Catched.GetInstance();
+                Usuario usuarioEncontrado = usuarioLogin.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
+                usuario.IdUsuario = usuarioEncontrado.IdUsuario;
+                usuario.Codigo = usuarioEncontrado.Codigo;
+                usuario.NombreCompleto = usuarioEncontrado.NombreCompleto;
+                usuario.Clave = usuarioEncontrado.Clave;
+                usuario.Estado = usuarioEncontrado.Estado;
 
                 MessageBox.Show("Bienvenido al sistema " + usuario.NombreCompleto + ".", "Inicio de sesión exitoso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                vtnMenu menu = new vtnMenu(usuario);
+                VtnMenu menu = new VtnMenu(usuario);
                 menu.Show();
                 this.Hide();
                 menu.FormClosing += Cerrar;
@@ -81,17 +86,17 @@ namespace Presentacion
             this.Show();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
-        }
-
         private void LblHagaClicAqui_Click(object sender, EventArgs e)
         {
             VtnRecuperarClave recuperacion = new VtnRecuperarClave();
             this.Hide();
             recuperacion.ShowDialog();
             this.Show();
+        }
+
+        private void TxtTiempo_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }

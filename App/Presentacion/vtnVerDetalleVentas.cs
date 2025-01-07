@@ -16,13 +16,13 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnVerDetalleVentas : Form
+    public partial class VtnVerDetalleVentas : Form
     {
-        public vtnVerDetalleVentas()
+        public VtnVerDetalleVentas()
         {
             InitializeComponent();
         }
-        private void vtnVerDetalleVentas_Load(object sender, EventArgs e)
+        private void VtnVerDetalleVentas_Load(object sender, EventArgs e)
         {
             TxtCodigoVenta.Select();
         }
@@ -112,7 +112,7 @@ namespace Presentacion
             texto_html = texto_html.Replace("@cambio", TxtMontoCambio.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("DetallesVentas.pdf", TxtCodigoVenta.Text);
+            guardar.FileName = string.Format("Detalle_Ventas.pdf", TxtCodigoVenta.Text);
             guardar.Filter = "Pdf files |*.pdf";
 
             if (guardar.ShowDialog() == DialogResult.OK)
@@ -144,8 +144,7 @@ namespace Presentacion
                 }
             }
         }
-
-        private void txt1_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtCodigoVenta_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {

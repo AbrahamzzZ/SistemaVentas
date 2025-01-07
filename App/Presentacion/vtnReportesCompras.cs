@@ -21,7 +21,7 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        private void vtnReportesCompras_Load(object sender, EventArgs e)
+        private void VtnReportesCompras_Load(object sender, EventArgs e)
         {
             dynamic selectedItemCmb1 = CmbProveedor.SelectedItem;
             int valorCmb1 = 0;
@@ -61,7 +61,7 @@ namespace Presentacion
             CmbBuscar.SelectedIndex = 0;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
             int idProveedor = Convert.ToInt32((CmbProveedor.SelectedItem as dynamic).Valor.ToString());
             int idTransportista = Convert.ToInt32((CmbTransportista.SelectedItem as dynamic).Valor.ToString());
@@ -84,7 +84,7 @@ namespace Presentacion
             }
         }
 
-        private void btnExportarExcel_Click(object sender, EventArgs e)
+        private void BtnGenerarExcel_Click(object sender, EventArgs e)
         {
             if (tablaReporteCompras.Rows.Count < 1)
             {
@@ -130,8 +130,16 @@ namespace Presentacion
             }
         }
 
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+            foreach (DataGridViewRow row in tablaReporteCompras.Rows)
+            {
+                row.Visible = true;
+            }
+        }
 
-        private void btnBuscar3_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click_1(object sender, EventArgs e)
         {
             dynamic selectedItemCmb3 = CmbBuscar.SelectedItem;
             string valorCmb3 = selectedItemCmb3.Valor;
@@ -156,13 +164,6 @@ namespace Presentacion
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar proveedor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            TxtBuscar.Clear();
-            foreach (DataGridViewRow row in tablaReporteCompras.Rows)
-            {
-                row.Visible = true;
-            }
-        }
+
     }
 }

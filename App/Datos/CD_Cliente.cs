@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Clientes que existen
+        /// <summary>
+        /// Método que muestra una lista de todos los Clientes que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Cliente</returns>
         public List<Cliente> MostrarClientes()
         {
             List<Cliente> listaMostrarCliente = new List<Cliente>();
@@ -47,7 +50,12 @@ namespace Datos
             return listaMostrarCliente;
         }
 
-        //Metodo que permite registrar un nuevo Cliente
+        /// <summary>
+        /// Método que permite registrar un nuevo Cliente
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Cliente que contiene los datos del nuevo cliente</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID del cliente generado, o 0 si hubo un error</returns>
         public int RegistrarCliente(Cliente obj, out string Mensaje)
         {
             int IdClienteGenerado = 0;
@@ -79,7 +87,12 @@ namespace Datos
             return IdClienteGenerado;
         }
 
-        //Metodo que permite editar la informacion de un Cliente ya registrado
+        /// <summary>
+        /// Método que permite editar la información de un Cliente ya registrado
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Cliente que contiene los datos actualizados del cliente</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarCliente(Cliente obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -113,7 +126,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a un Cliente
+        /// <summary>
+        /// Método que permite eliminar a un Cliente
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Cliente que contiene el ID del cliente a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarCliente(Cliente obj, out string Mensaje)
         {
             bool Respuesta = false;

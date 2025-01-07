@@ -15,11 +15,21 @@ namespace Negocios
         private CD_Usuario ObjetoUsuario = new CD_Usuario();
         private static int intentos = 0;
 
+        /// <summary>
+        /// Metodo que muestra al usuario logueado.
+        /// </summary>
+        /// <returns></returns>
         public List<Usuario> Ingresar()
         {
             return ObjetoUsuario.IngresarUsuarioLogin();
         }
 
+        /// <summary>
+        /// Metodo que muestra la clave del usuario.
+        /// </summary>
+        /// <param name="correoElectronico"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public Usuario MostrarClave(string correoElectronico, out string mensaje)
         {
             mensaje = string.Empty;
@@ -40,11 +50,21 @@ namespace Negocios
             return ObjetoUsuario.RecuperarClave(correoElectronico);
         }
 
+        /// <summary>
+        /// Metodo que enlista todos los usuarios para que aparezcan en la tabla de la ventana Usuario.
+        /// </summary>
+        /// <returns></returns>
         public List<Usuario> ListarUsuario()
         {
             return ObjetoUsuario.MostrarUsuarios();
         }
 
+        /// <summary>
+        /// Metodo que valida las credenciales para iniciar sesion.
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <param name="clave"></param>
+        /// <returns></returns>
         public string ValidarLogin(string codigo, string clave)
         {
             if (string.IsNullOrWhiteSpace(codigo) || string.IsNullOrWhiteSpace(clave))
@@ -65,7 +85,7 @@ namespace Negocios
                 intentos++;
                 if (intentos >= 4)
                 {
-                    return "Se ha alcanzado el límite de intentos fallidos. Intente de nuevo más tarde.";
+                    return "Se ha alcanzado el límite de intentos fallidos. Inténtelo más tarde.";
                 }
                 return "Las credenciales ingresadas son incorrectas.";
             }
@@ -81,6 +101,12 @@ namespace Negocios
             return string.Empty; 
         }
 
+        /// <summary>
+        /// Metodo de valida las reglas de negocio para registrar un usuario.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="mensaje">Mensaje que viene del procedimiento almacenado.</param>
+        /// <returns></returns>
         public int Registrar(Usuario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -125,6 +151,12 @@ namespace Negocios
             return ObjetoUsuario.RegistrarUsuario(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Metodo que valida las reglas de negocio para editar un usuario.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool Editar(Usuario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -169,6 +201,12 @@ namespace Negocios
             return ObjetoUsuario.EditarUsuario(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Metodo que valida las reglas de negocio para eliminar un usuario.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="mensaje"></param>
+        /// <returns></returns>
         public bool Eliminar(Usuario obj, out string mensaje)
         {
 
@@ -189,23 +227,43 @@ namespace Negocios
             return ObjetoUsuario.EliminarUsuario(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Verifica que todos los caracteres sean dígitos.
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
         private bool EsCodigoValido(string codigo)
         {
-            return codigo.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
+            return codigo.All(char.IsDigit); 
         }
 
+        /// <summary>
+        /// Permite letras, espacios y caracteres con tilde.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
         private bool EsNombreValido(string nombre)
         {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
+            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; 
             return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
 
+        /// <summary>
+        /// Formato para un correo válido
+        /// </summary>
+        /// <param name="correo"></param>
+        /// <returns></returns>
         private bool EsCorreoValido(string correo)
         {
-            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
+            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; 
             return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
         }
 
+        /// <summary>
+        /// Formato para una clave.
+        /// </summary>
+        /// <param name="clave"></param>
+        /// <returns></returns>
         private bool EsClaveValida(string clave)
         {
             if (clave.Length < 8)

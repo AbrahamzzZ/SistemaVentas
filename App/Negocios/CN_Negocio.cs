@@ -39,7 +39,7 @@ namespace Negocios
             }
             else if (!EsTelefonoValido(obj.Telefono))
             {
-                mensaje += "\n- El telefóno del negocio solo pueden contener exactamente 10 números y no letras.";
+                mensaje += "\n- El teléfono del negocio solo pueden contener exactamente 10 números y no letras.";
             }
 
             //Validar RUC

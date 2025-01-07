@@ -38,7 +38,7 @@
             this.LblCodigo = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.TxtTiempo = new System.Windows.Forms.Timer(this.components);
             this.lblHagaClicAqui = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -83,20 +83,20 @@
             // TxtClave
             // 
             this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtClave.Location = new System.Drawing.Point(311, 272);
+            this.TxtClave.Location = new System.Drawing.Point(255, 272);
             this.TxtClave.Margin = new System.Windows.Forms.Padding(4);
             this.TxtClave.Name = "TxtClave";
-            this.TxtClave.Size = new System.Drawing.Size(221, 26);
+            this.TxtClave.Size = new System.Drawing.Size(277, 26);
             this.TxtClave.TabIndex = 18;
             this.TxtClave.UseSystemPasswordChar = true;
             // 
             // TxtCodigo
             // 
             this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(311, 222);
+            this.TxtCodigo.Location = new System.Drawing.Point(255, 222);
             this.TxtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.Size = new System.Drawing.Size(221, 26);
+            this.TxtCodigo.Size = new System.Drawing.Size(277, 26);
             this.TxtCodigo.TabIndex = 17;
             // 
             // LblCodigo
@@ -141,16 +141,16 @@
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
             // 
-            // timer1
+            // TxtTiempo
             // 
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.TxtTiempo.Tick += new System.EventHandler(this.TxtTiempo_Tick);
             // 
             // lblHagaClicAqui
             // 
             this.lblHagaClicAqui.AutoSize = true;
             this.lblHagaClicAqui.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblHagaClicAqui.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHagaClicAqui.Location = new System.Drawing.Point(219, 323);
+            this.lblHagaClicAqui.Location = new System.Drawing.Point(252, 323);
             this.lblHagaClicAqui.Name = "lblHagaClicAqui";
             this.lblHagaClicAqui.Size = new System.Drawing.Size(112, 18);
             this.lblHagaClicAqui.TabIndex = 25;
@@ -236,7 +236,7 @@
         private System.Windows.Forms.Label LblCodigo;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer TxtTiempo;
         private System.Windows.Forms.Label lblHagaClicAqui;
         private System.Windows.Forms.Label lblHora;
     }

@@ -15,8 +15,8 @@ namespace Presentacion
 {
     public partial class vtnCompra : Form
     {
-        private Usuario Usuario;
-        public vtnCompra(Usuario oUsuario = null)
+        private Usuario_Catched Usuario;
+        public vtnCompra(Usuario_Catched oUsuario = null)
         {
             Usuario = oUsuario;
             InitializeComponent();
@@ -146,7 +146,7 @@ namespace Presentacion
         private void BtnRegistrar_Click(object sender, EventArgs e)
         {
             string tipoDocumento = ((dynamic)CmbTipoDocumento.SelectedItem).Texto;
-            if (Convert.ToInt32(TxtIdProveedor.Text) == 0 && Convert.ToInt32(TxtIdTransportista.Text) == 0)
+            if (Convert.ToInt32(TxtIdProveedor.Text) == 0)
             {
                 MessageBox.Show("Debe seleccionar un proveedor.", "Realizar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -198,7 +198,7 @@ namespace Presentacion
             bool respuesta = new CN_Compra().Registrar(oCompra, detalla_compra, out mensaje);
             if (respuesta)
             {
-                MessageBox.Show("Compra realizada exitosamente.", "Editar Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Compra realizada exitosamente.", "Registrar Compra", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var a = MessageBox.Show("Numero de compra generado:\n" + numeroDocumento + "\n¿Desea copiar al cortapapeles?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (a == DialogResult.Yes)
                 {
@@ -216,7 +216,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show(mensaje, "Realizar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(mensaje, "Registrar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -434,9 +434,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Documentación.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Resources\Venta.html" />
   </ItemGroup>
   <ItemGroup>
@@ -463,7 +460,9 @@
     <None Include="Resources\Logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Logo.png" />
+    <None Include="Resources\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\eliminar.png" />
@@ -535,9 +534,6 @@
     <None Include="Resources\supermercadoGranAki.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\autor.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ordinateur.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -548,6 +544,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\agregar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

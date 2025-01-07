@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnOferta : Form
+    public partial class VtnOferta : Form
     {
-        public vtnOferta()
+        public VtnOferta()
         {
             InitializeComponent();
         }
 
-        private void vtnOferta_Load(object sender, EventArgs e)
+        private void VtnOferta_Load(object sender, EventArgs e)
         {
             CmbEstado.Items.Add(new { Valor = 1, Texto = "Activo" });
             CmbEstado.Items.Add(new { Valor = 0, Texto = "No Activo" });

@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnOferta
+    partial class VtnOferta
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CmbProducto = new System.Windows.Forms.ComboBox();
             this.RtextDescripcion = new System.Windows.Forms.RichTextBox();
             this.TxtNombre = new System.Windows.Forms.TextBox();
@@ -80,7 +80,7 @@
             this.CmbProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbProducto.FormattingEnabled = true;
-            this.CmbProducto.Location = new System.Drawing.Point(30, 175);
+            this.CmbProducto.Location = new System.Drawing.Point(32, 228);
             this.CmbProducto.Name = "CmbProducto";
             this.CmbProducto.Size = new System.Drawing.Size(280, 28);
             this.CmbProducto.TabIndex = 168;
@@ -96,7 +96,7 @@
             // TxtNombre
             // 
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombre.Location = new System.Drawing.Point(30, 229);
+            this.TxtNombre.Location = new System.Drawing.Point(30, 175);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(280, 27);
             this.TxtNombre.TabIndex = 166;
@@ -182,7 +182,7 @@
             this.lblProducto.AutoSize = true;
             this.lblProducto.BackColor = System.Drawing.Color.Wheat;
             this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProducto.Location = new System.Drawing.Point(26, 152);
+            this.lblProducto.Location = new System.Drawing.Point(26, 205);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(90, 20);
             this.lblProducto.TabIndex = 169;
@@ -217,7 +217,7 @@
             this.lblNombreOferta.AutoSize = true;
             this.lblNombreOferta.BackColor = System.Drawing.Color.Wheat;
             this.lblNombreOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreOferta.Location = new System.Drawing.Point(28, 206);
+            this.lblNombreOferta.Location = new System.Drawing.Point(28, 152);
             this.lblNombreOferta.Name = "lblNombreOferta";
             this.lblNombreOferta.Size = new System.Drawing.Size(182, 20);
             this.lblNombreOferta.TabIndex = 154;
@@ -360,15 +360,15 @@
             // 
             this.tablaOferta.AllowUserToAddRows = false;
             this.tablaOferta.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -388,9 +388,9 @@
             this.tablaOferta.Name = "tablaOferta";
             this.tablaOferta.ReadOnly = true;
             this.tablaOferta.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaOferta.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaOferta.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaOferta.RowTemplate.Height = 28;
             this.tablaOferta.Size = new System.Drawing.Size(978, 248);
             this.tablaOferta.TabIndex = 146;
@@ -527,7 +527,7 @@
             this.LblCodigo.TabIndex = 173;
             this.LblCodigo.Text = "Código:";
             // 
-            // vtnOferta
+            // VtnOferta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -563,10 +563,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.tablaOferta);
-            this.Name = "vtnOferta";
+            this.Name = "VtnOferta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver ofertas disponibles de los productos";
-            this.Load += new System.EventHandler(this.vtnOferta_Load);
+            this.Load += new System.EventHandler(this.VtnOferta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaOferta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
