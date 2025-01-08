@@ -9,16 +9,20 @@ namespace Entidad
     public class Usuario_Catched : Usuario
     {
         private Usuario_Catched() { }
+      
+        private static Usuario_Catched _instance;
 
-        private static Usuario_Catched _intance;
-
+        /// <summary> 
+        /// Patrón de diseño Singleton 
+        /// </summary> 
+        /// <returns>Instancia única de Usuario_Catched</returns>
         public static Usuario_Catched GetInstance()
         {
-            if (_intance == null)
+            if (_instance == null)
             {
-                _intance = new Usuario_Catched();
+                _instance = new Usuario_Catched();
             }
-            return _intance;
+            return _instance;
         }
     }
 }
