@@ -49,7 +49,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     TxtIdCliente.Text = modal.Cliente.IdCliente.ToString();
-                    TxtCedulaCliente.Text = modal.Cliente.Codigo.ToString();
+                    TxtCedulaCliente.Text = modal.Cliente.Cedula.ToString();
                     TxtNombresCliente.Text = modal.Cliente.Nombres.ToString();
                 }
                 else

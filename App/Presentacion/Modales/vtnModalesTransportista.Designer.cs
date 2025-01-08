@@ -1,6 +1,6 @@
 ﻿namespace Presentacion.Modales
 {
-    partial class vtnModalesTransportista
+    partial class VtnModalesTransportista
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,15 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnModalesTransportista));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnModalesTransportista));
             this.lblListaTransportistas = new System.Windows.Forms.Label();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tablaTransportista = new System.Windows.Forms.DataGridView();
             this.IdTRANSPORTISTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).BeginInit();
@@ -54,36 +54,36 @@
             this.lblListaTransportistas.TabIndex = 108;
             this.lblListaTransportistas.Text = "Lista de Transportistas";
             // 
-            // btnBuscar
+            // BtnBuscar
             // 
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(530, 76);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(35, 31);
-            this.btnBuscar.TabIndex = 107;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.Location = new System.Drawing.Point(530, 76);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(35, 31);
+            this.BtnBuscar.TabIndex = 107;
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // txt1
+            // TxtBuscar
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(338, 80);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(180, 27);
-            this.txt1.TabIndex = 106;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(338, 80);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(180, 27);
+            this.TxtBuscar.TabIndex = 106;
             // 
-            // cmb1
+            // CmbBuscar
             // 
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(141, 80);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(178, 28);
-            this.cmb1.TabIndex = 105;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(141, 80);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(178, 28);
+            this.CmbBuscar.TabIndex = 105;
             // 
             // lblBuscar
             // 
@@ -111,7 +111,7 @@
             this.tablaTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTransportista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdTRANSPORTISTA,
-            this.Codigo,
+            this.Cedula,
             this.NombreS,
             this.Estado});
             this.tablaTransportista.Location = new System.Drawing.Point(12, 123);
@@ -140,13 +140,13 @@
             this.IdTRANSPORTISTA.Visible = false;
             this.IdTRANSPORTISTA.Width = 120;
             // 
-            // Codigo
+            // Cedula
             // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 125;
+            this.Cedula.HeaderText = "Cédula";
+            this.Cedula.MinimumWidth = 6;
+            this.Cedula.Name = "Cedula";
+            this.Cedula.ReadOnly = true;
+            this.Cedula.Width = 125;
             // 
             // NombreS
             // 
@@ -171,9 +171,9 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(577, 463);
             this.Controls.Add(this.lblListaTransportistas);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.cmb1);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.tablaTransportista);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -191,14 +191,14 @@
         #endregion
 
         private System.Windows.Forms.Label lblListaTransportistas;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.ComboBox cmb1;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.DataGridView tablaTransportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTRANSPORTISTA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreS;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }

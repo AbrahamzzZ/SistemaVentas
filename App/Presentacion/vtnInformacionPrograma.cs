@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class VtnPrograma : Form
+    public partial class VtnInformacionPrograma : Form
     {
-        public VtnPrograma()
+        public VtnInformacionPrograma()
         {
             InitializeComponent();
         }

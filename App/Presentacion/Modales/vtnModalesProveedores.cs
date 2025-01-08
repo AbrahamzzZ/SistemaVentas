@@ -27,30 +27,30 @@ namespace Presentacion.Modales
             {
                 if (columna.Visible == true)
                 {
-                    cmb1.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
             List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
             foreach (Proveedor proveedor in mostrarProveedor)
             {
-                tablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Codigo, proveedor.Nombres , proveedor.Estado});
+                tablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Cedula, proveedor.Nombres , proveedor.Estado});
             }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
             string columnaFiltro = valorCmb1.ToString();
 
             int filasVisibles = 0;
             foreach (DataGridViewRow row in tablaProveedores.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -71,7 +71,7 @@ namespace Presentacion.Modales
                 Proveedor = new Proveedor()
                 {
                     IdProveedor = Convert.ToInt32(tablaProveedores.Rows[iRow].Cells["IdProveedor"].Value.ToString()),
-                    Codigo = tablaProveedores.Rows[iRow].Cells["Codigo"].Value.ToString(),
+                    Cedula = tablaProveedores.Rows[iRow].Cells["Cedula"].Value.ToString(),
                     Nombres = tablaProveedores.Rows[iRow].Cells["Nombres"].Value.ToString(),
                     Estado = Convert.ToBoolean(tablaProveedores.Rows[iRow].Cells["Estado"].Value.ToString())
                 };

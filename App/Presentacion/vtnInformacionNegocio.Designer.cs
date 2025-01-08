@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class VtnNegocio
+    partial class VtnInformacionNegocio
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtId = new System.Windows.Forms.TextBox();
             this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
@@ -42,13 +43,12 @@
             this.lblNombreNegocio = new System.Windows.Forms.Label();
             this.btnSubirImagen = new System.Windows.Forms.Button();
             this.lblLogo = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PbFotoLogo = new System.Windows.Forms.PictureBox();
             this.lblDetalleNegocio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.TxtId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbFotoLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,12 +69,22 @@
             this.groupBox1.Controls.Add(this.lblNombreNegocio);
             this.groupBox1.Controls.Add(this.btnSubirImagen);
             this.groupBox1.Controls.Add(this.lblLogo);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.PbFotoLogo);
             this.groupBox1.Location = new System.Drawing.Point(30, 112);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(689, 452);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
+            // 
+            // TxtId
+            // 
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(622, 21);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 95;
+            this.TxtId.Text = "0";
             // 
             // TxtTelefono
             // 
@@ -204,15 +214,15 @@
             this.lblLogo.TabIndex = 1;
             this.lblLogo.Text = "Logo";
             // 
-            // pictureBox1
+            // PbFotoLogo
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 64);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(203, 205);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.PbFotoLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PbFotoLogo.Location = new System.Drawing.Point(25, 64);
+            this.PbFotoLogo.Name = "PbFotoLogo";
+            this.PbFotoLogo.Size = new System.Drawing.Size(203, 205);
+            this.PbFotoLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbFotoLogo.TabIndex = 0;
+            this.PbFotoLogo.TabStop = false;
             // 
             // lblDetalleNegocio
             // 
@@ -245,17 +255,7 @@
             this.pictureBox2.TabIndex = 58;
             this.pictureBox2.TabStop = false;
             // 
-            // TxtId
-            // 
-            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtId.Location = new System.Drawing.Point(622, 21);
-            this.TxtId.Name = "TxtId";
-            this.TxtId.ReadOnly = true;
-            this.TxtId.Size = new System.Drawing.Size(34, 27);
-            this.TxtId.TabIndex = 95;
-            this.TxtId.Text = "0";
-            // 
-            // vtnNegocio
+            // VtnInformacionNegocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -265,12 +265,12 @@
             this.Controls.Add(this.lblDetalleNegocio);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox2);
-            this.Name = "vtnNegocio";
+            this.Name = "VtnInformacionNegocio";
             this.Text = "Ver información del negocio";
             this.Load += new System.EventHandler(this.VtnNegocio_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbFotoLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -289,7 +289,7 @@
         private System.Windows.Forms.Label lblNombreNegocio;
         private System.Windows.Forms.Button btnSubirImagen;
         private System.Windows.Forms.Label lblLogo;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PbFotoLogo;
         private System.Windows.Forms.Label lblDetalleNegocio;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;

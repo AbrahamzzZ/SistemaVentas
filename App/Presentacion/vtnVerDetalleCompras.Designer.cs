@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,10 +39,10 @@
             this.lblMontoTotal = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnDescargarPdf = new System.Windows.Forms.Button();
-            this.TxtCodigoProveedor = new System.Windows.Forms.TextBox();
+            this.TxtCedulaProveedor = new System.Windows.Forms.TextBox();
             this.lblNombreProovedor = new System.Windows.Forms.Label();
             this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
-            this.LblCodigoProveedor = new System.Windows.Forms.Label();
+            this.LblCedulaProveedor = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtNombreCompletoUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -53,15 +53,15 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.TxtNumeroCodigoCompra = new System.Windows.Forms.TextBox();
-            this.LblCodigoCompra = new System.Windows.Forms.Label();
+            this.TxtNumeroDocumentoCompra = new System.Windows.Forms.TextBox();
+            this.LblNumeroDocumentoCompra = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblDetallesCompra = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtCodigoTransportista = new System.Windows.Forms.TextBox();
+            this.TxtCedulaTransportista = new System.Windows.Forms.TextBox();
             this.TxtNombresTransportista = new System.Windows.Forms.TextBox();
-            this.LblCodigoTransportista = new System.Windows.Forms.Label();
+            this.LblCedulaTransportista = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDetallesCompras)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,15 +98,15 @@
             // 
             this.tablaDetallesCompras.AllowUserToAddRows = false;
             this.tablaDetallesCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDetallesCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.tablaDetallesCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaDetallesCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -118,9 +118,9 @@
             this.tablaDetallesCompras.Name = "tablaDetallesCompras";
             this.tablaDetallesCompras.ReadOnly = true;
             this.tablaDetallesCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaDetallesCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaDetallesCompras.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.tablaDetallesCompras.RowTemplate.Height = 28;
             this.tablaDetallesCompras.Size = new System.Drawing.Size(611, 196);
             this.tablaDetallesCompras.TabIndex = 121;
@@ -137,17 +137,17 @@
             // 
             this.TxtMontoTotal.BackColor = System.Drawing.Color.LightGray;
             this.TxtMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoTotal.Location = new System.Drawing.Point(17, 66);
+            this.TxtMontoTotal.Location = new System.Drawing.Point(17, 41);
             this.TxtMontoTotal.Name = "TxtMontoTotal";
             this.TxtMontoTotal.ReadOnly = true;
-            this.TxtMontoTotal.Size = new System.Drawing.Size(129, 27);
+            this.TxtMontoTotal.Size = new System.Drawing.Size(120, 27);
             this.TxtMontoTotal.TabIndex = 115;
             // 
             // lblMontoTotal
             // 
             this.lblMontoTotal.AutoSize = true;
             this.lblMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontoTotal.Location = new System.Drawing.Point(16, 43);
+            this.lblMontoTotal.Location = new System.Drawing.Point(16, 18);
             this.lblMontoTotal.Name = "lblMontoTotal";
             this.lblMontoTotal.Size = new System.Drawing.Size(102, 20);
             this.lblMontoTotal.TabIndex = 114;
@@ -169,23 +169,23 @@
             // 
             this.btnDescargarPdf.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDescargarPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarPdf.Location = new System.Drawing.Point(20, 127);
+            this.btnDescargarPdf.Location = new System.Drawing.Point(20, 85);
             this.btnDescargarPdf.Name = "btnDescargarPdf";
-            this.btnDescargarPdf.Size = new System.Drawing.Size(126, 57);
+            this.btnDescargarPdf.Size = new System.Drawing.Size(120, 99);
             this.btnDescargarPdf.TabIndex = 113;
             this.btnDescargarPdf.Text = "Descargar PDF";
             this.btnDescargarPdf.UseVisualStyleBackColor = true;
             this.btnDescargarPdf.Click += new System.EventHandler(this.BtnDescargarPdf_Click);
             // 
-            // TxtCodigoProveedor
+            // TxtCedulaProveedor
             // 
-            this.TxtCodigoProveedor.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoProveedor.Location = new System.Drawing.Point(40, 56);
-            this.TxtCodigoProveedor.Name = "TxtCodigoProveedor";
-            this.TxtCodigoProveedor.ReadOnly = true;
-            this.TxtCodigoProveedor.Size = new System.Drawing.Size(210, 27);
-            this.TxtCodigoProveedor.TabIndex = 110;
+            this.TxtCedulaProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCedulaProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedulaProveedor.Location = new System.Drawing.Point(40, 56);
+            this.TxtCedulaProveedor.Name = "TxtCedulaProveedor";
+            this.TxtCedulaProveedor.ReadOnly = true;
+            this.TxtCedulaProveedor.Size = new System.Drawing.Size(210, 27);
+            this.TxtCedulaProveedor.TabIndex = 110;
             // 
             // lblNombreProovedor
             // 
@@ -207,23 +207,23 @@
             this.TxtNombresProveedor.Size = new System.Drawing.Size(210, 27);
             this.TxtNombresProveedor.TabIndex = 2;
             // 
-            // LblCodigoProveedor
+            // LblCedulaProveedor
             // 
-            this.LblCodigoProveedor.AutoSize = true;
-            this.LblCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigoProveedor.Location = new System.Drawing.Point(40, 35);
-            this.LblCodigoProveedor.Name = "LblCodigoProveedor";
-            this.LblCodigoProveedor.Size = new System.Drawing.Size(133, 18);
-            this.LblCodigoProveedor.TabIndex = 0;
-            this.LblCodigoProveedor.Text = "Código Proveedor:";
+            this.LblCedulaProveedor.AutoSize = true;
+            this.LblCedulaProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCedulaProveedor.Location = new System.Drawing.Point(40, 35);
+            this.LblCedulaProveedor.Name = "LblCedulaProveedor";
+            this.LblCedulaProveedor.Size = new System.Drawing.Size(131, 18);
+            this.LblCedulaProveedor.TabIndex = 0;
+            this.LblCedulaProveedor.Text = "Cédula Proveedor:";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.TxtCodigoProveedor);
+            this.groupBox1.Controls.Add(this.TxtCedulaProveedor);
             this.groupBox1.Controls.Add(this.lblNombreProovedor);
             this.groupBox1.Controls.Add(this.TxtNombresProveedor);
-            this.groupBox1.Controls.Add(this.LblCodigoProveedor);
+            this.groupBox1.Controls.Add(this.LblCedulaProveedor);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(590, 218);
             this.groupBox1.Name = "groupBox1";
@@ -337,33 +337,33 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // TxtNumeroCodigoCompra
+            // TxtNumeroDocumentoCompra
             // 
-            this.TxtNumeroCodigoCompra.BackColor = System.Drawing.Color.LightGray;
-            this.TxtNumeroCodigoCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNumeroCodigoCompra.Location = new System.Drawing.Point(174, 35);
-            this.TxtNumeroCodigoCompra.Name = "TxtNumeroCodigoCompra";
-            this.TxtNumeroCodigoCompra.Size = new System.Drawing.Size(184, 27);
-            this.TxtNumeroCodigoCompra.TabIndex = 2;
-            this.TxtNumeroCodigoCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroCodigoCompra_KeyPress);
+            this.TxtNumeroDocumentoCompra.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNumeroDocumentoCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNumeroDocumentoCompra.Location = new System.Drawing.Point(174, 35);
+            this.TxtNumeroDocumentoCompra.Name = "TxtNumeroDocumentoCompra";
+            this.TxtNumeroDocumentoCompra.Size = new System.Drawing.Size(184, 27);
+            this.TxtNumeroDocumentoCompra.TabIndex = 2;
+            this.TxtNumeroDocumentoCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroCodigoCompra_KeyPress);
             // 
-            // LblCodigoCompra
+            // LblNumeroDocumentoCompra
             // 
-            this.LblCodigoCompra.AutoSize = true;
-            this.LblCodigoCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigoCompra.Location = new System.Drawing.Point(37, 39);
-            this.LblCodigoCompra.Name = "LblCodigoCompra";
-            this.LblCodigoCompra.Size = new System.Drawing.Size(118, 18);
-            this.LblCodigoCompra.TabIndex = 0;
-            this.LblCodigoCompra.Text = "Código Compra:";
+            this.LblNumeroDocumentoCompra.AutoSize = true;
+            this.LblNumeroDocumentoCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNumeroDocumentoCompra.Location = new System.Drawing.Point(37, 40);
+            this.LblNumeroDocumentoCompra.Name = "LblNumeroDocumentoCompra";
+            this.LblNumeroDocumentoCompra.Size = new System.Drawing.Size(109, 18);
+            this.LblNumeroDocumentoCompra.TabIndex = 0;
+            this.LblNumeroDocumentoCompra.Text = "N. Documento:";
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.btnLimpiar);
             this.groupBox2.Controls.Add(this.btnBuscar);
-            this.groupBox2.Controls.Add(this.TxtNumeroCodigoCompra);
-            this.groupBox2.Controls.Add(this.LblCodigoCompra);
+            this.groupBox2.Controls.Add(this.TxtNumeroDocumentoCompra);
+            this.groupBox2.Controls.Add(this.LblNumeroDocumentoCompra);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(590, 87);
             this.groupBox2.Name = "groupBox2";
@@ -385,9 +385,9 @@
             // 
             this.groupBox5.BackColor = System.Drawing.Color.White;
             this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.TxtCodigoTransportista);
+            this.groupBox5.Controls.Add(this.TxtCedulaTransportista);
             this.groupBox5.Controls.Add(this.TxtNombresTransportista);
-            this.groupBox5.Controls.Add(this.LblCodigoTransportista);
+            this.groupBox5.Controls.Add(this.LblCedulaTransportista);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(811, 336);
             this.groupBox5.Name = "groupBox5";
@@ -406,15 +406,15 @@
             this.label2.TabIndex = 116;
             this.label2.Text = "Nombre Transportista:";
             // 
-            // TxtCodigoTransportista
+            // TxtCedulaTransportista
             // 
-            this.TxtCodigoTransportista.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoTransportista.Location = new System.Drawing.Point(17, 76);
-            this.TxtCodigoTransportista.Name = "TxtCodigoTransportista";
-            this.TxtCodigoTransportista.ReadOnly = true;
-            this.TxtCodigoTransportista.Size = new System.Drawing.Size(233, 27);
-            this.TxtCodigoTransportista.TabIndex = 113;
+            this.TxtCedulaTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedulaTransportista.Location = new System.Drawing.Point(17, 76);
+            this.TxtCedulaTransportista.Name = "TxtCedulaTransportista";
+            this.TxtCedulaTransportista.ReadOnly = true;
+            this.TxtCedulaTransportista.Size = new System.Drawing.Size(233, 27);
+            this.TxtCedulaTransportista.TabIndex = 113;
             // 
             // TxtNombresTransportista
             // 
@@ -426,15 +426,15 @@
             this.TxtNombresTransportista.Size = new System.Drawing.Size(233, 27);
             this.TxtNombresTransportista.TabIndex = 114;
             // 
-            // LblCodigoTransportista
+            // LblCedulaTransportista
             // 
-            this.LblCodigoTransportista.AutoSize = true;
-            this.LblCodigoTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigoTransportista.Location = new System.Drawing.Point(14, 55);
-            this.LblCodigoTransportista.Name = "LblCodigoTransportista";
-            this.LblCodigoTransportista.Size = new System.Drawing.Size(151, 18);
-            this.LblCodigoTransportista.TabIndex = 115;
-            this.LblCodigoTransportista.Text = "Código Transportista:";
+            this.LblCedulaTransportista.AutoSize = true;
+            this.LblCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCedulaTransportista.Location = new System.Drawing.Point(14, 55);
+            this.LblCedulaTransportista.Name = "LblCedulaTransportista";
+            this.LblCedulaTransportista.Size = new System.Drawing.Size(149, 18);
+            this.LblCedulaTransportista.TabIndex = 115;
+            this.LblCedulaTransportista.Text = "Cédula Transportista:";
             // 
             // VtnVerDetalleCompras
             // 
@@ -479,10 +479,10 @@
         private System.Windows.Forms.Label lblMontoTotal;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnDescargarPdf;
-        private System.Windows.Forms.TextBox TxtCodigoProveedor;
+        private System.Windows.Forms.TextBox TxtCedulaProveedor;
         private System.Windows.Forms.Label lblNombreProovedor;
         private System.Windows.Forms.TextBox TxtNombresProveedor;
-        private System.Windows.Forms.Label LblCodigoProveedor;
+        private System.Windows.Forms.Label LblCedulaProveedor;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox TxtNombreCompletoUsuario;
         private System.Windows.Forms.Label lblUsuario;
@@ -493,14 +493,14 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox TxtNumeroCodigoCompra;
-        private System.Windows.Forms.Label LblCodigoCompra;
+        private System.Windows.Forms.TextBox TxtNumeroDocumentoCompra;
+        private System.Windows.Forms.Label LblNumeroDocumentoCompra;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblDetallesCompra;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TxtCodigoTransportista;
+        private System.Windows.Forms.TextBox TxtCedulaTransportista;
         private System.Windows.Forms.TextBox TxtNombresTransportista;
-        private System.Windows.Forms.Label LblCodigoTransportista;
+        private System.Windows.Forms.Label LblCedulaTransportista;
     }
 }

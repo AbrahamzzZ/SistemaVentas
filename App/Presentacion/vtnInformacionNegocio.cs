@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class VtnNegocio : Form
+    public partial class VtnInformacionNegocio : Form
     {
-        public VtnNegocio()
+        public VtnInformacionNegocio()
         {
             InitializeComponent();
         }
@@ -26,7 +26,7 @@ namespace Presentacion
             byte[] byteImage = new CN_Negocio().MostrarLogo(out obtenido);
             if (obtenido)
             {
-                pictureBox1.Image = ByteImage(byteImage);
+                PbFotoLogo.Image = ByteImage(byteImage);
             }
             Negocio datos = new CN_Negocio().ListarNegocio();
             TxtId.Text = datos.IdNegocio.ToString();
@@ -48,7 +48,7 @@ namespace Presentacion
                 bool respuesta = new CN_Negocio().ActualizarLogo(byteImage, out mensaje);
                 if (respuesta)
                 {
-                    pictureBox1.Image = ByteImage(byteImage);
+                    PbFotoLogo.Image = ByteImage(byteImage);
                 }
                 else
                 {

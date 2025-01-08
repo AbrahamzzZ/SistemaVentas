@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblTexto.Text" xml:space="preserve">
-    <value>Para la creación del sistema de ventas se ha utilizado el lenguaje de programación C# ya que es un lenguaje de programación orientado a objetos.
-El sistema de ventas será un aplicacion de escritorio y usara el framework .NET para poder utilizar el Windows Forms para la creación de interfaces de usuario 
+    <value>Para la creación del sistema de ventas se ha utilizado el lenguaje de programación C#, ya que es un lenguaje orientado a objetos. El sistema de ventas será una aplicacion de escritorio que utilizará el framework .NET 
+para poder utilizar el Windows Forms para la creación de interfaces de usuario 
 intuitivas y funcionales.</value>
   </data>
   <data name="label1.Text" xml:space="preserve">

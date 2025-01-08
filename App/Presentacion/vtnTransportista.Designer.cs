@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.BtnCargarImagen = new System.Windows.Forms.Button();
-            this.FotoTransportista = new System.Windows.Forms.PictureBox();
+            this.PbFotoTransportista = new System.Windows.Forms.PictureBox();
             this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
             this.TxtTelefono = new System.Windows.Forms.TextBox();
@@ -71,7 +71,7 @@
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.FotoTransportista)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbFotoTransportista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -206,16 +206,16 @@
             this.BtnCargarImagen.UseVisualStyleBackColor = false;
             this.BtnCargarImagen.Click += new System.EventHandler(this.BtnCargarImagen_Click);
             // 
-            // FotoTransportista
+            // PbFotoTransportista
             // 
-            this.FotoTransportista.BackColor = System.Drawing.Color.Wheat;
-            this.FotoTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FotoTransportista.Location = new System.Drawing.Point(1250, 37);
-            this.FotoTransportista.Name = "FotoTransportista";
-            this.FotoTransportista.Size = new System.Drawing.Size(147, 138);
-            this.FotoTransportista.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FotoTransportista.TabIndex = 130;
-            this.FotoTransportista.TabStop = false;
+            this.PbFotoTransportista.BackColor = System.Drawing.Color.Wheat;
+            this.PbFotoTransportista.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PbFotoTransportista.Location = new System.Drawing.Point(1250, 37);
+            this.PbFotoTransportista.Name = "PbFotoTransportista";
+            this.PbFotoTransportista.Size = new System.Drawing.Size(147, 138);
+            this.PbFotoTransportista.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PbFotoTransportista.TabIndex = 130;
+            this.PbFotoTransportista.TabStop = false;
             // 
             // TxtCorreoElectronico
             // 
@@ -389,15 +389,15 @@
             // 
             this.tablaTransportista.AllowUserToAddRows = false;
             this.tablaTransportista.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaTransportista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaTransportista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaTransportista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -416,9 +416,9 @@
             this.tablaTransportista.Name = "tablaTransportista";
             this.tablaTransportista.ReadOnly = true;
             this.tablaTransportista.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaTransportista.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaTransportista.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaTransportista.RowTemplate.Height = 28;
             this.tablaTransportista.Size = new System.Drawing.Size(1122, 266);
             this.tablaTransportista.TabIndex = 142;
@@ -540,7 +540,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.BtnExportarExcel);
             this.Controls.Add(this.BtnCargarImagen);
-            this.Controls.Add(this.FotoTransportista);
+            this.Controls.Add(this.PbFotoTransportista);
             this.Controls.Add(this.TxtCorreoElectronico);
             this.Controls.Add(this.lblCorreoElectronico);
             this.Controls.Add(this.TxtTelefono);
@@ -562,7 +562,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver transportistas";
             this.Load += new System.EventHandler(this.VtnTransportista_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.FotoTransportista)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbFotoTransportista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaTransportista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -582,7 +582,7 @@
         private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button BtnCargarImagen;
-        private System.Windows.Forms.PictureBox FotoTransportista;
+        private System.Windows.Forms.PictureBox PbFotoTransportista;
         private System.Windows.Forms.TextBox TxtCorreoElectronico;
         private System.Windows.Forms.Label lblCorreoElectronico;
         private System.Windows.Forms.TextBox TxtTelefono;

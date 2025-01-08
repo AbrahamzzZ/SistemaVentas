@@ -223,11 +223,11 @@
     <Compile Include="vtnMenu.Designer.cs">
       <DependentUpon>vtnMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="vtnNegocio.cs">
+    <Compile Include="vtnInformacionNegocio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="vtnNegocio.Designer.cs">
-      <DependentUpon>vtnNegocio.cs</DependentUpon>
+    <Compile Include="vtnInformacionNegocio.Designer.cs">
+      <DependentUpon>vtnInformacionNegocio.cs</DependentUpon>
     </Compile>
     <Compile Include="vtnOferta.cs">
       <SubType>Form</SubType>
@@ -241,11 +241,11 @@
     <Compile Include="vtnProducto.Designer.cs">
       <DependentUpon>vtnProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="vtnPrograma.cs">
+    <Compile Include="vtnInformacionPrograma.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="vtnPrograma.Designer.cs">
-      <DependentUpon>vtnPrograma.cs</DependentUpon>
+    <Compile Include="vtnInformacionPrograma.Designer.cs">
+      <DependentUpon>vtnInformacionPrograma.cs</DependentUpon>
     </Compile>
     <Compile Include="vtnProveedor.cs">
       <SubType>Form</SubType>
@@ -371,8 +371,8 @@
     <EmbeddedResource Include="vtnMenu.resx">
       <DependentUpon>vtnMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vtnNegocio.resx">
-      <DependentUpon>vtnNegocio.cs</DependentUpon>
+    <EmbeddedResource Include="vtnInformacionNegocio.resx">
+      <DependentUpon>vtnInformacionNegocio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vtnOferta.resx">
       <DependentUpon>vtnOferta.cs</DependentUpon>
@@ -380,8 +380,8 @@
     <EmbeddedResource Include="vtnProducto.resx">
       <DependentUpon>vtnProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vtnPrograma.resx">
-      <DependentUpon>vtnPrograma.cs</DependentUpon>
+    <EmbeddedResource Include="vtnInformacionPrograma.resx">
+      <DependentUpon>vtnInformacionPrograma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vtnProveedor.resx">
       <DependentUpon>vtnProveedor.cs</DependentUpon>

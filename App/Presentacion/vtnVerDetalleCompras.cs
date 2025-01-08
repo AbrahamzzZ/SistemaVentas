@@ -25,20 +25,20 @@ namespace Presentacion
 
         private void VtnVerDetalleCompras_Load(object sender, EventArgs e)
         {
-            TxtNumeroCodigoCompra.Select();
+            TxtNumeroDocumentoCompra.Select();
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            Compra oCompra = new CN_Compra().DetalleCompra(TxtNumeroCodigoCompra.Text);
+            Compra oCompra = new CN_Compra().DetalleCompra(TxtNumeroDocumentoCompra.Text);
             if (oCompra.IdCompra != 0)
             {
                 TxtFechaCompra.Text = oCompra.FechaCompra;
                 TxtTipoDocumento.Text = oCompra.TipoDocumento;
                 TxtNombreCompletoUsuario.Text = oCompra.oUsuario.NombreCompleto;
-                TxtCodigoProveedor.Text = oCompra.oProveedor.Codigo;
+                TxtCedulaProveedor.Text = oCompra.oProveedor.Cedula;
                 TxtNombresProveedor.Text = oCompra.oProveedor.Nombres;
-                TxtCodigoTransportista.Text = oCompra.oTransportista.Codigo;
+                TxtCedulaTransportista.Text = oCompra.oTransportista.Cedula;
                 TxtNombresTransportista.Text = oCompra.oTransportista.Nombres;
  
                 tablaDetallesCompras.Rows.Clear();
@@ -57,20 +57,26 @@ namespace Presentacion
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            TxtNumeroCodigoCompra.Text = "";
+            TxtNumeroDocumentoCompra.Text = "";
             TxtFechaCompra.Text = "";
             TxtTipoDocumento.Text = "";
             TxtNombreCompletoUsuario.Text = "";
-            TxtCodigoProveedor.Text = "";
+            TxtCedulaProveedor.Text = "";
             TxtNombresProveedor.Text = "";
             tablaDetallesCompras.Rows.Clear();
-            TxtCodigoTransportista.Text = "";
+            TxtCedulaTransportista.Text = "";
             TxtNombresTransportista.Text = "";
-            TxtMontoTotal.Text = "0.00";
+            TxtMontoTotal.Text = "";
         }
 
         private void BtnDescargarPdf_Click(object sender, EventArgs e)
         {
+            if (TxtNumeroDocumentoCompra.Text == "")
+            {
+                MessageBox.Show("No hay datos para generar el PDF.", "Generar PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string texto_html = Properties.Resources.ArchivoCompra.ToString();
             Negocio oDatos = new CN_Negocio().ListarNegocio();
 
@@ -81,11 +87,11 @@ namespace Presentacion
             texto_html = texto_html.Replace("@correoElectronico", oDatos.CorreoElectronico);
 
             texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
-            texto_html = texto_html.Replace("@numerodocumento", TxtNumeroCodigoCompra.Text);
+            texto_html = texto_html.Replace("@numerodocumento", TxtNumeroDocumentoCompra.Text);
 
-            texto_html = texto_html.Replace("@codigoproveedor", TxtCodigoProveedor.Text);
+            texto_html = texto_html.Replace("@cedulaproveedor", TxtCedulaProveedor.Text);
             texto_html = texto_html.Replace("@nombreproveedor", TxtNombresProveedor.Text);
-            texto_html = texto_html.Replace("@codigotransportista", TxtCodigoTransportista.Text);
+            texto_html = texto_html.Replace("@cedulatransportista", TxtCedulaTransportista.Text);
             texto_html = texto_html.Replace("@nombretransportista", TxtNombresTransportista.Text);
             texto_html = texto_html.Replace("@fecharegistro", TxtFechaCompra.Text);
             texto_html = texto_html.Replace("@usuarioregistro", TxtNombreCompletoUsuario.Text);
@@ -104,7 +110,7 @@ namespace Presentacion
             texto_html = texto_html.Replace("@montototal", TxtMontoTotal.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("Detalle_Compras.pdf", TxtNumeroCodigoCompra.Text);
+            guardar.FileName = string.Format("Detalle_Compras.pdf", TxtNumeroDocumentoCompra.Text);
             guardar.Filter = "Pdf files |*.pdf";
 
             if (guardar.ShowDialog() == DialogResult.OK)

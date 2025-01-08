@@ -24,12 +24,12 @@ namespace Presentacion
         }
         private void VtnVerDetalleVentas_Load(object sender, EventArgs e)
         {
-            TxtCodigoVenta.Select();
+            TxtNumeroDocumentoVenta.Select();
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            Venta oVenta = new CN_Venta().DetalleVenta(TxtCodigoVenta.Text);
+            Venta oVenta = new CN_Venta().DetalleVenta(TxtNumeroDocumentoVenta.Text);
             if (oVenta.IdVenta != 0)
             {
                 TxtFechaVenta.Text = oVenta.FechaVenta;
@@ -37,7 +37,6 @@ namespace Presentacion
                 TxtNombreCompletoUsuario.Text = oVenta.oUsuario.NombreCompleto;
                 TxtCedulaCliente.Text = oVenta.oCliente.Cedula;
                 TxtNombresCliente.Text = oVenta.oCliente.Nombres;
-                TxtIdCliente.Text = oVenta.NumeroDocumento;
                 tablaDetallesVentas.Rows.Clear();
                 foreach (Detalle_Venta dv in oVenta.oDetalle_Venta)
                 {
@@ -57,23 +56,22 @@ namespace Presentacion
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            TxtCodigoVenta.Text = "";
+            TxtNumeroDocumentoVenta.Text = "";
             TxtFechaVenta.Text = "";
             TxtTipoDocumento.Text = "";
             TxtNombreCompletoUsuario.Text = "";
             TxtCedulaCliente.Text = "";
             TxtNombresCliente.Text = "";
-            TxtIdCliente.Text = "";
             tablaDetallesVentas.Rows.Clear();
-            TxtMontoTotal.Text = "0.00";
-            TxtMontoPago.Text = "0.00";
-            TxtMontoCambio.Text = "0.00";
-            TxtDescuento.Text = "0.00";
+            TxtMontoTotal.Text = "";
+            TxtMontoPago.Text = "";
+            TxtMontoCambio.Text = "";
+            TxtDescuento.Text = "";
         }
 
         private void BtnDescargarPdf_Click(object sender, EventArgs e)
         {
-            if (TxtIdCliente.Text == "")
+            if (TxtNumeroDocumentoVenta.Text == "")
             {
                 MessageBox.Show("No hay datos para generar el PDF.", "Generar PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -88,9 +86,9 @@ namespace Presentacion
             texto_html = texto_html.Replace("@correoElectronico", oDatos.CorreoElectronico);
 
             texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
-            texto_html = texto_html.Replace("@numerodocumento", TxtCodigoVenta.Text);
+            texto_html = texto_html.Replace("@numerodocumento", TxtNumeroDocumentoVenta.Text);
 
-            texto_html = texto_html.Replace("@codigocliente", TxtCedulaCliente.Text);
+            texto_html = texto_html.Replace("@cedulacliente", TxtCedulaCliente.Text);
             texto_html = texto_html.Replace("@nombrecliente", TxtNombresCliente.Text);
             texto_html = texto_html.Replace("@fecharegistro", TxtFechaVenta.Text);
             texto_html = texto_html.Replace("@usuarioregistro", TxtNombreCompletoUsuario.Text);
@@ -112,7 +110,7 @@ namespace Presentacion
             texto_html = texto_html.Replace("@cambio", TxtMontoCambio.Text);
 
             SaveFileDialog guardar = new SaveFileDialog();
-            guardar.FileName = string.Format("Detalle_Ventas.pdf", TxtCodigoVenta.Text);
+            guardar.FileName = string.Format("Detalle_Ventas.pdf", TxtNumeroDocumentoVenta.Text);
             guardar.Filter = "Pdf files |*.pdf";
 
             if (guardar.ShowDialog() == DialogResult.OK)
