@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
-            this.TxtCodigoVenta = new System.Windows.Forms.TextBox();
-            this.LblCodigoVenta = new System.Windows.Forms.Label();
+            this.TxtNumeroDocumentoVenta = new System.Windows.Forms.TextBox();
+            this.LblNumeroDocumentoVenta = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TxtNombreCompletoUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -44,7 +44,6 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtCedulaCliente = new System.Windows.Forms.TextBox();
-            this.TxtIdCliente = new System.Windows.Forms.TextBox();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.TxtNombresCliente = new System.Windows.Forms.TextBox();
             this.LblCedulaCliente = new System.Windows.Forms.Label();
@@ -65,6 +64,7 @@
             this.TxtDescuento = new System.Windows.Forms.TextBox();
             this.TxtMontoTotal = new System.Windows.Forms.TextBox();
             this.lblMontoTotal = new System.Windows.Forms.Label();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,8 +77,8 @@
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.BtnLimpiar);
             this.groupBox2.Controls.Add(this.BtnBuscar);
-            this.groupBox2.Controls.Add(this.TxtCodigoVenta);
-            this.groupBox2.Controls.Add(this.LblCodigoVenta);
+            this.groupBox2.Controls.Add(this.TxtNumeroDocumentoVenta);
+            this.groupBox2.Controls.Add(this.LblNumeroDocumentoVenta);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(590, 87);
             this.groupBox2.Name = "groupBox2";
@@ -92,7 +92,7 @@
             this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
             this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnLimpiar.Location = new System.Drawing.Point(550, 33);
+            this.BtnLimpiar.Location = new System.Drawing.Point(537, 35);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(123, 31);
             this.BtnLimpiar.TabIndex = 101;
@@ -106,7 +106,7 @@
             this.BtnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
             this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBuscar.Location = new System.Drawing.Point(392, 33);
+            this.BtnBuscar.Location = new System.Drawing.Point(390, 35);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(123, 31);
             this.BtnBuscar.TabIndex = 100;
@@ -114,25 +114,25 @@
             this.BtnBuscar.UseVisualStyleBackColor = true;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // TxtCodigoVenta
+            // TxtNumeroDocumentoVenta
             // 
-            this.TxtCodigoVenta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoVenta.Location = new System.Drawing.Point(174, 35);
-            this.TxtCodigoVenta.Name = "TxtCodigoVenta";
-            this.TxtCodigoVenta.Size = new System.Drawing.Size(184, 27);
-            this.TxtCodigoVenta.TabIndex = 2;
-            this.TxtCodigoVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCodigoVenta_KeyPress);
+            this.TxtNumeroDocumentoVenta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNumeroDocumentoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNumeroDocumentoVenta.Location = new System.Drawing.Point(174, 35);
+            this.TxtNumeroDocumentoVenta.Name = "TxtNumeroDocumentoVenta";
+            this.TxtNumeroDocumentoVenta.Size = new System.Drawing.Size(184, 27);
+            this.TxtNumeroDocumentoVenta.TabIndex = 2;
+            this.TxtNumeroDocumentoVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCodigoVenta_KeyPress);
             // 
-            // LblCodigoVenta
+            // LblNumeroDocumentoVenta
             // 
-            this.LblCodigoVenta.AutoSize = true;
-            this.LblCodigoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigoVenta.Location = new System.Drawing.Point(40, 40);
-            this.LblCodigoVenta.Name = "LblCodigoVenta";
-            this.LblCodigoVenta.Size = new System.Drawing.Size(101, 18);
-            this.LblCodigoVenta.TabIndex = 0;
-            this.LblCodigoVenta.Text = "Código Venta:";
+            this.LblNumeroDocumentoVenta.AutoSize = true;
+            this.LblNumeroDocumentoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNumeroDocumentoVenta.Location = new System.Drawing.Point(37, 40);
+            this.LblNumeroDocumentoVenta.Name = "LblNumeroDocumentoVenta";
+            this.LblNumeroDocumentoVenta.Size = new System.Drawing.Size(109, 18);
+            this.LblNumeroDocumentoVenta.TabIndex = 0;
+            this.LblNumeroDocumentoVenta.Text = "N. Documento:";
             // 
             // groupBox3
             // 
@@ -215,7 +215,6 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.Controls.Add(this.TxtCedulaCliente);
-            this.groupBox1.Controls.Add(this.TxtIdCliente);
             this.groupBox1.Controls.Add(this.lblNombreCliente);
             this.groupBox1.Controls.Add(this.TxtNombresCliente);
             this.groupBox1.Controls.Add(this.LblCedulaCliente);
@@ -234,24 +233,14 @@
             this.TxtCedulaCliente.Location = new System.Drawing.Point(40, 56);
             this.TxtCedulaCliente.Name = "TxtCedulaCliente";
             this.TxtCedulaCliente.ReadOnly = true;
-            this.TxtCedulaCliente.Size = new System.Drawing.Size(172, 27);
+            this.TxtCedulaCliente.Size = new System.Drawing.Size(210, 27);
             this.TxtCedulaCliente.TabIndex = 110;
-            // 
-            // TxtIdCliente
-            // 
-            this.TxtIdCliente.BackColor = System.Drawing.Color.LightGray;
-            this.TxtIdCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIdCliente.Location = new System.Drawing.Point(550, 56);
-            this.TxtIdCliente.Name = "TxtIdCliente";
-            this.TxtIdCliente.ReadOnly = true;
-            this.TxtIdCliente.Size = new System.Drawing.Size(89, 27);
-            this.TxtIdCliente.TabIndex = 106;
             // 
             // lblNombreCliente
             // 
             this.lblNombreCliente.AutoSize = true;
             this.lblNombreCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreCliente.Location = new System.Drawing.Point(292, 35);
+            this.lblNombreCliente.Location = new System.Drawing.Point(303, 35);
             this.lblNombreCliente.Name = "lblNombreCliente";
             this.lblNombreCliente.Size = new System.Drawing.Size(135, 18);
             this.lblNombreCliente.TabIndex = 105;
@@ -261,10 +250,10 @@
             // 
             this.TxtNombresCliente.BackColor = System.Drawing.Color.LightGray;
             this.TxtNombresCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombresCliente.Location = new System.Drawing.Point(292, 56);
+            this.TxtNombresCliente.Location = new System.Drawing.Point(303, 56);
             this.TxtNombresCliente.Name = "TxtNombresCliente";
             this.TxtNombresCliente.ReadOnly = true;
-            this.TxtNombresCliente.Size = new System.Drawing.Size(193, 27);
+            this.TxtNombresCliente.Size = new System.Drawing.Size(210, 27);
             this.TxtNombresCliente.TabIndex = 2;
             // 
             // LblCedulaCliente
@@ -275,21 +264,21 @@
             this.LblCedulaCliente.Name = "LblCedulaCliente";
             this.LblCedulaCliente.Size = new System.Drawing.Size(107, 18);
             this.LblCedulaCliente.TabIndex = 0;
-            this.LblCedulaCliente.Text = "Cedúla Cliente:";
+            this.LblCedulaCliente.Text = "Cédula Cliente:";
             // 
             // tablaDetallesVentas
             // 
             this.tablaDetallesVentas.AllowUserToAddRows = false;
             this.tablaDetallesVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDetallesVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDetallesVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.tablaDetallesVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaDetallesVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -302,9 +291,9 @@
             this.tablaDetallesVentas.Name = "tablaDetallesVentas";
             this.tablaDetallesVentas.ReadOnly = true;
             this.tablaDetallesVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaDetallesVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaDetallesVentas.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.tablaDetallesVentas.RowTemplate.Height = 28;
             this.tablaDetallesVentas.Size = new System.Drawing.Size(771, 196);
             this.tablaDetallesVentas.TabIndex = 127;
@@ -366,7 +355,7 @@
             this.TxtMontoCambio.Location = new System.Drawing.Point(19, 157);
             this.TxtMontoCambio.Name = "TxtMontoCambio";
             this.TxtMontoCambio.ReadOnly = true;
-            this.TxtMontoCambio.Size = new System.Drawing.Size(118, 27);
+            this.TxtMontoCambio.Size = new System.Drawing.Size(120, 27);
             this.TxtMontoCambio.TabIndex = 119;
             // 
             // TxtMontoPago
@@ -376,7 +365,7 @@
             this.TxtMontoPago.Location = new System.Drawing.Point(19, 100);
             this.TxtMontoPago.Name = "TxtMontoPago";
             this.TxtMontoPago.ReadOnly = true;
-            this.TxtMontoPago.Size = new System.Drawing.Size(118, 27);
+            this.TxtMontoPago.Size = new System.Drawing.Size(120, 27);
             this.TxtMontoPago.TabIndex = 118;
             // 
             // lblMontoCambio
@@ -446,7 +435,7 @@
             this.TxtDescuento.Location = new System.Drawing.Point(19, 41);
             this.TxtDescuento.Name = "TxtDescuento";
             this.TxtDescuento.ReadOnly = true;
-            this.TxtDescuento.Size = new System.Drawing.Size(118, 27);
+            this.TxtDescuento.Size = new System.Drawing.Size(120, 27);
             this.TxtDescuento.TabIndex = 120;
             // 
             // TxtMontoTotal
@@ -456,7 +445,7 @@
             this.TxtMontoTotal.Location = new System.Drawing.Point(157, 41);
             this.TxtMontoTotal.Name = "TxtMontoTotal";
             this.TxtMontoTotal.ReadOnly = true;
-            this.TxtMontoTotal.Size = new System.Drawing.Size(118, 27);
+            this.TxtMontoTotal.Size = new System.Drawing.Size(120, 27);
             this.TxtMontoTotal.TabIndex = 115;
             // 
             // lblMontoTotal
@@ -469,19 +458,27 @@
             this.lblMontoTotal.TabIndex = 114;
             this.lblMontoTotal.Text = "Monto Total:";
             // 
-            // vtnVerDetalleVentas
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(1285, 23);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(21, 540);
+            this.vScrollBar1.TabIndex = 128;
+            // 
+            // VtnVerDetalleVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tablaDetallesVentas);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.lblDetallesVenta);
-            this.Name = "vtnVerDetalleVentas";
+            this.Name = "VtnVerDetalleVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver los detalles de las ventas realizadas";
             this.Load += new System.EventHandler(this.VtnVerDetalleVentas_Load);
@@ -503,8 +500,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnBuscar;
-        private System.Windows.Forms.TextBox TxtCodigoVenta;
-        private System.Windows.Forms.Label LblCodigoVenta;
+        private System.Windows.Forms.TextBox TxtNumeroDocumentoVenta;
+        private System.Windows.Forms.Label LblNumeroDocumentoVenta;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox TxtNombreCompletoUsuario;
         private System.Windows.Forms.Label lblUsuario;
@@ -514,7 +511,6 @@
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox TxtCedulaCliente;
-        private System.Windows.Forms.TextBox TxtIdCliente;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.TextBox TxtNombresCliente;
         private System.Windows.Forms.Label LblCedulaCliente;
@@ -535,5 +531,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

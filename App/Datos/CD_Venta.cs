@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Datos
 {
@@ -160,13 +161,13 @@ namespace Datos
             try
             {
                 StringBuilder obtener = new StringBuilder();
-                obtener.AppendLine("SELECT p.NOMBRE_PRODUCTO, dv.PRECIO_VENTA, dv.CANTIDAD_PRODUCTO, dv.SUBTOTAL, dv.DESCUENTO");
-                obtener.AppendLine("FROM DETALLE_VENTA DV inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO");
+                obtener.AppendLine("SELECT p.NOMBRE_PRODUCTO, dv.PRECIO_VENTA, dv.CANTIDAD_PRODUCTO, dv.SUBTOTAL, dv.DESCUENTO from DETALLE_VENTA dv");
+                obtener.AppendLine("inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO");
                 obtener.AppendLine("WHERE dv.ID_VENTA = @idVenta");
 
                 SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("@idVenta", idVenta);
-                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandType = CommandType.Text;
 
                 SqlDataReader leer = cmd.ExecuteReader();
                 while (leer.Read())
@@ -181,9 +182,9 @@ namespace Datos
                     });
                 }
             }
-            catch (Exception ve)
+            catch (Exception dev)
             {
-                oLista = new List<Detalle_Venta>();
+                Console.WriteLine($"Error al obtener el detalle de la venta: {dev.Message}");
             }
             return oLista;
         }

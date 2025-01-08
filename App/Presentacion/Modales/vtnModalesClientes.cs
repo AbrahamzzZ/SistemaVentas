@@ -27,30 +27,30 @@ namespace Presentacion.Modales
             {
                 if (columna.Visible == true)
                 {
-                    cmb1.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
             List<Cliente> mostrarCliente = new CN_Cliente().ListarCliente();
             foreach (Cliente clientes in mostrarCliente)
             {
-                tablaClientes.Rows.Add(new object[] { clientes.IdCliente, clientes.Codigo, clientes.Nombres, clientes.Estado });
+                tablaClientes.Rows.Add(new object[] { clientes.IdCliente, clientes.Cedula, clientes.Nombres, clientes.Estado });
             }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
             string columnaFiltro = valorCmb1.ToString();
 
             int filasVisibles = 0;
             foreach (DataGridViewRow row in tablaClientes.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -71,7 +71,7 @@ namespace Presentacion.Modales
                 Cliente = new Cliente()
                 {
                     IdCliente = Convert.ToInt32(tablaClientes.Rows[iRow].Cells["IdCliente"].Value.ToString()),
-                    Codigo = tablaClientes.Rows[iRow].Cells["Codigo"].Value.ToString(),
+                    Cedula = tablaClientes.Rows[iRow].Cells["Cedula"].Value.ToString(),
                     Nombres = tablaClientes.Rows[iRow].Cells["Nombres"].Value.ToString(),
                     Estado = Convert.ToBoolean(tablaClientes.Rows[iRow].Cells["Estado"].Value.ToString()),
                 };

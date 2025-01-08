@@ -13,16 +13,16 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnCompra : Form
+    public partial class VtnCompra : Form
     {
         private Usuario_Catched Usuario;
-        public vtnCompra(Usuario_Catched oUsuario = null)
+        public VtnCompra(Usuario_Catched oUsuario = null)
         {
             Usuario = oUsuario;
             InitializeComponent();
         }
 
-        private void vtnCompra_Load(object sender, EventArgs e)
+        private void VtnCompra_Load(object sender, EventArgs e)
         {
             CmbTipoDocumento.Items.Add(new { Valor = "Boleta", Texto = "Boleta" });
             CmbTipoDocumento.Items.Add(new { Valor = "Factura", Texto = "Factura" });
@@ -43,7 +43,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     TxtIdProveedor.Text = modal.Proveedor.IdProveedor.ToString();
-                    TxtCodigoProveedor.Text = modal.Proveedor.Codigo.ToString();
+                    TxtCedulaProveedor.Text = modal.Proveedor.Cedula.ToString();
                     TxtNombresProveedor.Text = modal.Proveedor.Nombres.ToString();
                 }
                 else
@@ -74,13 +74,13 @@ namespace Presentacion
 
         private void BtnBuscarTransportista_Click(object sender, EventArgs e)
         {
-            using (var modal = new vtnModalesTransportista())
+            using (var modal = new VtnModalesTransportista())
             {
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     TxtIdTransportista.Text = modal.Transportista.IdTransportista.ToString();
-                    TxtCodigoTransportista.Text = modal.Transportista.Codigo.ToString();
+                    TxtCedulaTransportista.Text = modal.Transportista.Cedula.ToString();
                     TxtNombresTransportista.Text = modal.Transportista.Nombres.ToString();
                 }
                 else
@@ -113,10 +113,10 @@ namespace Presentacion
                 TxtPreciVenta.Select();
                 return;
             }
-            if (numericUpDown1.Value == 0)
+            if (NudCantidad.Value == 0)
             {
                 MessageBox.Show("No puedes realizar una compra con 0 productos.", "Agregar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericUpDown1.Select(); 
+                NudCantidad.Select(); 
                 return;
             }
             foreach (DataGridViewRow fila in tablaCompras.Rows)
@@ -134,8 +134,8 @@ namespace Presentacion
                     TxtProducto.Text,
                     precioCompra.ToString("0.00"),
                     precioVenta.ToString("0.00"),
-                    numericUpDown1.Value.ToString(),
-                    (numericUpDown1.Value * precioCompra).ToString("0.00")
+                    NudCantidad.Value.ToString(),
+                    (NudCantidad.Value * precioCompra).ToString("0.00")
                 });
                 CalcularTotal();
                 Limpiar();
@@ -205,11 +205,11 @@ namespace Presentacion
                     System.Windows.Forms.Clipboard.SetText(numeroDocumento);
                 }
                 TxtIdProveedor.Clear();
-                TxtCodigoProveedor.Clear();
+                TxtCedulaProveedor.Clear();
                 TxtNombresProveedor.Clear();
                 TxtIdTransportista.Clear();
                 TxtNombresTransportista.Clear();
-                TxtCodigoTransportista.Clear();
+                TxtCedulaTransportista.Clear();
                 TxtTotalPagar.Clear();
                 tablaCompras.Rows.Clear();
                 CalcularTotal();
@@ -258,7 +258,7 @@ namespace Presentacion
             TxtProducto.Text = "";
             TxtPrecioCompra.Text = "";
             TxtPreciVenta.Text = "";
-            numericUpDown1.Value = 0;
+            NudCantidad.Value = 0;
         }
 
         private void CalcularTotal()

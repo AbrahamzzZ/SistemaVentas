@@ -75,7 +75,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("select c.ID_COMPRA, u.NOMBRE_COMPLETO, pr.CODIGO, pr.NOMBRES, t.CODIGO[CODIGO_TRANSPORTISTA], t.NOMBRES[NOMBRE_TRANSPORTISTA], c.TIPO_DOCUMENTO, c.NUMERO_DOCUMENTO, c.MONTO_TOTAL, convert(char(10),c.FECHA_COMPRA,103)[FECHA_COMPRA]");
+                mostrar.AppendLine("select c.ID_COMPRA, u.NOMBRE_COMPLETO, pr.CEDULA, pr.NOMBRES, t.CEDULA[CEDULA_TRANSPORTISTA], t.NOMBRES[NOMBRE_TRANSPORTISTA], c.TIPO_DOCUMENTO, c.NUMERO_DOCUMENTO, c.MONTO_TOTAL, convert(char(10),c.FECHA_COMPRA,103)[FECHA_COMPRA]");
                 mostrar.AppendLine("from COMPRA c inner join USUARIO u on u.ID_USUARIO = c.ID_USUARIO");
                 mostrar.AppendLine("inner join PROVEEDOR pr on pr.ID_PROVEEDOR = c.ID_PROVEEDOR");
                 mostrar.AppendLine("inner join TRANSPORTISTA t on t.ID_TRANSPORTISTA = c.ID_TRANSPORTISTA");
@@ -91,8 +91,8 @@ namespace Datos
                     {
                         IdCompra = Convert.ToInt32(leer["ID_COMPRA"]),
                         oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
-                        oProveedor = new Proveedor() { Codigo = leer["CODIGO"].ToString(), Nombres = leer["NOMBRES"].ToString() },
-                        oTransportista = new Transportista() { Codigo = leer["CODIGO_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
+                        oProveedor = new Proveedor() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
+                        oTransportista = new Transportista() { Cedula = leer["CEDULA_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
                         TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"]),
