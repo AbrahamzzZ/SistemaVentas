@@ -34,8 +34,8 @@ namespace Presentacion
             TxtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             TxtIdCliente.Text = "0";
             TxtIdProducto.Text = "0";
-            TxtIdOferta.Text = "";
-            TxtPagar.Text = "";
+            TxtDescuentoOferta.Text = "";
+            TxtTotalPagar.Text = "";
             TxtTotalDescuento.Text = "";
             TxtPagaCon.Text = "";
             TxtCambio.Text = "";
@@ -71,7 +71,7 @@ namespace Presentacion
                     TxtProducto.Text = modal.Producto.Nombre.ToString();
                     TxtPrecioCompra.Text = modal.Producto.PrecioVenta.ToString("0.00");
                     TxtStock.Text = modal.Producto.Stock.ToString();
-                    numericUpDownCantidad.Select();
+                    NudCantidad.Select();
                 }
             }
         }
@@ -83,12 +83,12 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     TxtNombreOferta.Text = modal.oferta.NombreOferta.ToString();
-                    TxtIdOferta.Text = modal.oferta.Descuento.ToString();
+                    TxtDescuentoOferta.Text = modal.oferta.Descuento.ToString();
                 }
                 else
                 {
                     TxtNombreOferta.Clear();
-                    TxtIdOferta.Clear();
+                    TxtDescuentoOferta.Clear();
                     TxtPagaCon.Select();
                 }
             }
@@ -110,18 +110,18 @@ namespace Presentacion
                 TxtPrecioCompra.Select();
                 return;
             }
-            if (Convert.ToInt32(TxtStock.Text) < Convert.ToInt32(numericUpDownCantidad.Value.ToString()))
+            if (Convert.ToInt32(TxtStock.Text) < Convert.ToInt32(NudCantidad.Value.ToString()))
             {
                 MessageBox.Show("La cantidad no puede ser mayor al stock.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (numericUpDownCantidad.Value == 0)
+            if (NudCantidad.Value == 0)
             {
                 MessageBox.Show("No puedes realizar una venta con 0 productos.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericUpDownCantidad.Select(); 
+                NudCantidad.Select(); 
                 return;
             }
-            foreach (DataGridViewRow fila in tablaVentas.Rows)
+            foreach (DataGridViewRow fila in TablaVentas.Rows)
             {
                 if (fila.Cells["IdProducto"].Value != null && fila.Cells["IdProducto"].Value.ToString() == TxtIdProducto.Text)
                 {
@@ -132,22 +132,22 @@ namespace Presentacion
             if (!productoExistente)
             {
                 List<Oferta> listaOferta = new CN_Oferta().ListarOferta();
-                bool respuesta = new CN_Venta().RestarSotckProducto(Convert.ToInt32(TxtIdProducto.Text), Convert.ToInt32(numericUpDownCantidad.Value.ToString()));
+                bool respuesta = new CN_Venta().RestarSotckProducto(Convert.ToInt32(TxtIdProducto.Text), Convert.ToInt32(NudCantidad.Value.ToString()));
                 if (respuesta)
                 {
-                    decimal subTotal = numericUpDownCantidad.Value * precio;
+                    decimal subTotal = NudCantidad.Value * precio;
                     decimal descuento = 0;
-                    if (!string.IsNullOrEmpty(TxtIdOferta.Text))
+                    if (!string.IsNullOrEmpty(TxtDescuentoOferta.Text))
                     {
-                        descuento = Convert.ToDecimal(TxtIdOferta.Text);
+                        descuento = Convert.ToDecimal(TxtDescuentoOferta.Text);
                     }
                     decimal totalConDescuento = subTotal - (subTotal * descuento / 100);
-                    tablaVentas.Rows.Add(new object[]{
+                    TablaVentas.Rows.Add(new object[]{
                         TxtIdProducto.Text,
                         TxtProducto.Text,
                         precio.ToString("0.00"),
-                        numericUpDownCantidad.Value.ToString(),
-                        (numericUpDownCantidad.Value * precio).ToString("0.00"),
+                        NudCantidad.Value.ToString(),
+                        (NudCantidad.Value * precio).ToString("0.00"),
                         totalConDescuento.ToString("0.00")
                     });
                     CalcularTotal();
@@ -164,14 +164,14 @@ namespace Presentacion
                 MessageBox.Show("Debe seleccionar un cliente.", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (tablaVentas.Rows.Count < 1)
+            if (TablaVentas.Rows.Count < 1)
             {
                 MessageBox.Show("Debe ingresar un producto a la venta", "Realizar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (TxtPagaCon.Text == "")
             {
-                MessageBox.Show("Debe ingresar el valor a pagar.", "Realizar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe ingresar el valor a pagar.", "Realizar Venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TxtPagaCon.Select();
             }
             else
@@ -182,7 +182,7 @@ namespace Presentacion
                 detalleVenta.Columns.Add("Cantidad", typeof(int));
                 detalleVenta.Columns.Add("SubTotal", typeof(decimal));
                 detalleVenta.Columns.Add("Descuento", typeof(decimal));
-                foreach (DataGridViewRow row in tablaVentas.Rows)
+                foreach (DataGridViewRow row in TablaVentas.Rows)
                 {
                     detalleVenta.Rows.Add(new object[]{
                         row.Cells["IdProducto"].Value.ToString(),
@@ -201,7 +201,7 @@ namespace Presentacion
                     TipoDocumento = tipoDocumento,
                     NumeroDocumento = numeroDocumento,
                     oCliente = new Cliente() { IdCliente = Convert.ToInt32(TxtIdCliente.Text) },
-                    MontoTotal = Convert.ToDecimal(TxtPagar.Text),
+                    MontoTotal = Convert.ToDecimal(TxtTotalPagar.Text),
                     Descuento = Convert.ToDecimal(TxtTotalDescuento.Text),
                     MontoPago = Convert.ToDecimal(TxtPagaCon.Text),
                     MontoCambio = Convert.ToDecimal(TxtCambio.Text),
@@ -219,11 +219,11 @@ namespace Presentacion
                     }
                     TxtCedulaCliente.Text = "";
                     TxtNombresCliente.Text = "";
-                    TxtPagar.Text = "";
+                    TxtTotalPagar.Text = "";
                     TxtTotalDescuento.Text = "";
                     TxtPagaCon.Text = "";
                     TxtCambio.Text = "";
-                    tablaVentas.Rows.Clear();
+                    TablaVentas.Rows.Clear();
                     CalcularTotal();
                 }
                 else
@@ -252,17 +252,17 @@ namespace Presentacion
 
         private void TablaVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (tablaVentas.Columns[e.ColumnIndex].Name == "btnEliminar")
+            if (TablaVentas.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
                     bool respuesta = new CN_Venta().SumarSotckProducto(
-                    Convert.ToInt32(tablaVentas.Rows[indice].Cells["IdProducto"].Value.ToString()),
-                    Convert.ToInt32(tablaVentas.Rows[indice].Cells["Cantidad"].Value.ToString()));
+                    Convert.ToInt32(TablaVentas.Rows[indice].Cells["IdProducto"].Value.ToString()),
+                    Convert.ToInt32(TablaVentas.Rows[indice].Cells["Cantidad"].Value.ToString()));
                     if (respuesta)
                     {
-                        tablaVentas.Rows.RemoveAt(indice);
+                        TablaVentas.Rows.RemoveAt(indice);
                         CalcularTotal();
                     }
                 }
@@ -273,9 +273,9 @@ namespace Presentacion
         {
             decimal total = 0;
             decimal totalDescuento = 0;
-            if (tablaVentas.Rows.Count > 0)
+            if (TablaVentas.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in tablaVentas.Rows)
+                foreach (DataGridViewRow row in TablaVentas.Rows)
                 {
                     var subTotalCellValue = row.Cells["SubTotal"].Value;
                     var subTotalDescuentoCellValue = row.Cells["Descuento"].Value;
@@ -285,7 +285,7 @@ namespace Presentacion
                         totalDescuento += Convert.ToDecimal(subTotalDescuentoCellValue.ToString());
                     }
                 }
-                TxtPagar.Text = total.ToString("0.00");
+                TxtTotalPagar.Text = total.ToString("0.00");
                 TxtTotalDescuento.Text = totalDescuento.ToString("0.00");
             }
         }
@@ -325,7 +325,29 @@ namespace Presentacion
             TxtProducto.Text = "";
             TxtPrecioCompra.Text = "";
             TxtStock.Text = "";
-            numericUpDownCantidad.Value = 0;
+            NudCantidad.Value = 0;
+            TxtNombreOferta.Text = "";
+            TxtDescuentoOferta.Text = "";
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            TxtIdProducto.Text = "0";
+            TxtCodigo.Text = "";
+            TxtProducto.Text = "";
+            TxtPrecioCompra.Text = "";
+            TxtStock.Text = "";
+            NudCantidad.Value = 0;
+            TxtIdCliente.Text = "0";
+            TxtCedulaCliente.Text = "";
+            TxtNombresCliente.Text = "";
+            TxtNombreOferta.Text = "";
+            TxtDescuentoOferta.Text = "";
+            TxtTotalPagar.Text = "";
+            TxtTotalDescuento.Text = "";
+            TxtPagaCon.Text = "";
+            TxtCambio.Text = "";
+            TablaVentas.Rows.Clear();
         }
 
         private void TxtPagaCon_KeyDown(object sender, KeyEventArgs e)
@@ -374,7 +396,7 @@ namespace Presentacion
                     TxtProducto.Text = oProducto.Nombre;
                     TxtPrecioCompra.Text = oProducto.PrecioVenta.ToString("0.00");
                     TxtStock.Text = oProducto.Stock.ToString();
-                    numericUpDownCantidad.Select();
+                    NudCantidad.Select();
                 }
                 else
                 {
@@ -383,7 +405,7 @@ namespace Presentacion
                     TxtProducto.Text = "";
                     TxtPrecioCompra.Text = "";
                     TxtStock.Text = "";
-                    numericUpDownCantidad.Value = 0;
+                    NudCantidad.Value = 0;
                 }
             }
         }
