@@ -366,6 +366,10 @@ namespace Presentacion
                 return ms.ToArray();
             }
         }
+
+        /// <summary>
+        /// Método que limpia los campos del formulario.
+        /// </summary>
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
@@ -380,6 +384,11 @@ namespace Presentacion
             PbFotoTransportista.Image = null;
         }
 
+        /// <summary>
+        /// Método que genera un código aleatorio de una longitud específica.
+        /// </summary>
+        /// <param name="longitud">La longitud del código a generar.</param>
+        /// <returns>Un string con el código generado.</returns>
         private string GenerarCodigo(int longitud)
         {
             const string caracteres = "0123456789";

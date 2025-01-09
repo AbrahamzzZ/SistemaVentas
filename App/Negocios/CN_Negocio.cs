@@ -13,11 +13,21 @@ namespace Negocios
     {
         private CD_Negocio ObjetoNegocio = new CD_Negocio();
 
+        /// <summary>
+        /// Método que obtiene la información del negocio.
+        /// </summary>
+        /// <returns>Un objeto de tipo Negocio con la información del negocio.</returns>
         public Negocio ListarNegocio()
         {
             return ObjetoNegocio.ObtenerInformacionNegocio();
         }
-  
+
+        /// <summary>
+        /// Método que valida la edición del negocio existente.
+        /// </summary>
+        /// <param name="obj">El objeto Negocio a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Negocio obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -77,22 +87,43 @@ namespace Negocios
             return ObjetoNegocio.EditarNegocio(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que obtiene el logo del negocio.
+        /// </summary>
+        /// <param name="obtenido">Indica si el logo fue obtenido correctamente.</param>
+        /// <returns>Un array de bytes que representa el logo del negocio.</returns
         public byte[] MostrarLogo(out bool obtenido)
         {
             return ObjetoNegocio.ObtenerLogoNegocio(out obtenido);
         }
 
+        /// <summary>
+        /// Método que actualiza el logo del negocio.
+        /// </summary>
+        /// <param name="image">La imagen del logo en formato byte array.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool ActualizarLogo(byte[] image, out string mensaje)
         {
             return ObjetoNegocio.ActualizarLogoNegocio(image, out mensaje);
         }
 
+        /// <summary>
+        /// Método que verifica si el nombre es válido.
+        /// </summary>
+        /// <param name="nombre">El nombre del negocio.</param>
+        /// <returns>Un booleano que indica si el nombre es válido.</returns>
         private bool EsNombreValido(string nombre)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
             return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
 
+        /// <summary>
+        /// Método que verifica si el RUC es válido.
+        /// </summary>
+        /// <param name="ruc">El RUC del negocio.</param>
+        /// <returns>Un booleano que indica si el RUC es válido.</returns>
         private bool EsRucValido(string ruc)
         {
             // Verificar que tenga exactamente 13 digitos (Ecuador)
@@ -103,6 +134,11 @@ namespace Negocios
             return true;
         }
 
+        /// <summary>
+        /// Método que verifica si el teléfono es válido.
+        /// </summary>
+        /// <param name="telefono">El teléfono del negocio.</param>
+        /// <returns>Un booleano que indica si el teléfono es válido.</returns>
         private bool EsTelefonoValido(string telefono)
         {
             // Verificar que tenga exactamente 10 caracteres
@@ -114,6 +150,11 @@ namespace Negocios
             return telefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
         }
 
+        /// <summary>
+        /// Método que verifica si el correo electrónico es válido.
+        /// </summary>
+        /// <param name="correo">El correo electrónico del negocio.</param>
+        /// <returns>Un booleano que indica si el correo electrónico es válido.</returns>
         private bool EsCorreoValido(string correo)
         {
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
