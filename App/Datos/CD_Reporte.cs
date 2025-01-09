@@ -13,7 +13,14 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra un reporte de las Compras realizadas
+        /// <summary>
+        /// Método que muestra un reporte de las Compras realizadas
+        /// </summary>
+        /// <param name="fechaInicio">Fecha de inicio del reporte</param>
+        /// <param name="fechaFin">Fecha de fin del reporte</param>
+        /// <param name="idProveedor">ID del proveedor</param>
+        /// <param name="idTransportista">ID del transportista</param>
+        /// <returns>Una lista de objetos de tipo Reporte_Compra</returns>
         public List<Reporte_Compra> ReporteCompra(string fechaInicio, string fechaFin, int idProveedor, int idTransportista)
         {
             List<Reporte_Compra> lista = new List<Reporte_Compra>();
@@ -58,7 +65,12 @@ namespace Datos
             return lista;
         }
 
-        //Metodo que muestra un reporte de las Ventas realizadas
+        /// <summary>
+        /// Método que muestra un reporte de las Ventas realizadas
+        /// </summary>
+        /// <param name="fechaInicio">Fecha de inicio del reporte</param>
+        /// <param name="fechaFin">Fecha de fin del reporte</param>
+        /// <returns>Una lista de objetos de tipo Reporte_Venta</returns>
         public List<Reporte_Venta> ReporteVenta(string fechaInicio, string fechaFin)
         {
             List<Reporte_Venta> lista = new List<Reporte_Venta>();

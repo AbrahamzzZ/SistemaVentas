@@ -14,7 +14,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra el correlativo de cada Compra
+        /// <summary>
+        /// Método que muestra el correlativo de cada Compra
+        /// </summary>
+        /// <returns>El número correlativo de la compra</returns>
         public int ObtenerCorrelativoCompra()
         {
             int IdCorrelativo = 0;
@@ -35,7 +38,13 @@ namespace Datos
             return IdCorrelativo;
         }
 
-        //Metodo que permite registrar un nueva Compra
+        /// <summary>
+        /// Método que permite registrar una nueva Compra
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Compra que contiene los datos de la nueva compra</param>
+        /// <param name="DetalleCompra">DataTable que contiene los detalles de la compra</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool RegistrarCompra(Compra obj, DataTable DetalleCompra, out string Mensaje)
         {
             bool Respuesta = false;
@@ -66,9 +75,13 @@ namespace Datos
                 Mensaje = co.Message;
             }
             return Respuesta;
-        }        
+        }
 
-        //Metodo que muestra la informacion de la Compra
+        /// <summary>
+        /// Método que muestra la información de la Compra
+        /// </summary>
+        /// <param name="numero">Número del documento de la compra</param>
+        /// <returns>Un objeto de tipo Compra con la información de la compra</returns>
         public Compra ObtenerCompra(string numero)
         {
             Compra obj = new Compra();
@@ -107,7 +120,11 @@ namespace Datos
             return obj;
         }
 
-        //Metodo que muestra el detalle de la Compra
+        /// <summary>
+        /// Método que muestra el detalle de la Compra
+        /// </summary>
+        /// <param name="idCompra">ID de la compra</param>
+        /// <returns>Una lista de objetos de tipo Detalle_Compra con los detalles de la compra</returns>
         public List<Detalle_Compra> ObtenerDetalleCompra(int idCompra)
         {
             List<Detalle_Compra> oLista = new List<Detalle_Compra>();
@@ -140,7 +157,10 @@ namespace Datos
             return oLista;
         }
 
-        //Metodo que me muestra los productos mas Comprados
+        /// <summary>
+        /// Método que muestra los productos más comprados
+        /// </summary>
+        /// <returns>Un DataTable con los productos más comprados</returns>
         public DataTable GraficaProductosComprados()
         {
             DataTable tabla = new DataTable();

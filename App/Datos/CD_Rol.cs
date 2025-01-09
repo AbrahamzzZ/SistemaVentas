@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Roles que existen
+        /// <summary>
+        /// Método que muestra una lista de todos los Roles que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Rol</returns>
         public List<Rol> RolesUsuarios()
         {
             List<Rol> listaRoles = new List<Rol>();
