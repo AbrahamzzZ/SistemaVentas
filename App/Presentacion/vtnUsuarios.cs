@@ -312,10 +312,10 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Metodo que me genera un codigo de 4 digitos.
+        /// Método que genera un código aleatorio de una longitud específica.
         /// </summary>
-        /// <param name="longitud"></param>
-        /// <returns></returns>
+        /// <param name="longitud">La longitud del código a generar.</param>
+        /// <returns>Un string con el código generado.</returns>
         private string GenerarCodigo(int longitud)
         {
             const string caracteres = "0123456789";
