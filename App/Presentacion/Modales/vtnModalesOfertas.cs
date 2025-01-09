@@ -18,39 +18,39 @@ namespace Presentacion.Modales
         public vtnModalesOfertas()
         {
             InitializeComponent();
-            tablaOfertas.CellFormatting += TablaOfertas_CellFormatting;
+            TablaOfertas.CellFormatting += TablaOfertas_CellFormatting;
         }
 
         private void VtnModalesOfertas_Load(object sender, EventArgs e)
         {
-            foreach (DataGridViewColumn columna in tablaOfertas.Columns)
+            foreach (DataGridViewColumn columna in TablaOfertas.Columns)
             {
                 if (columna.Visible == true)
                 {
-                    cmb1.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
             List<Oferta> mostrarOferta = new CN_Oferta().ListarOferta();
             foreach (Oferta ofertas in mostrarOferta)
             {
-                tablaOfertas.Rows.Add(new object[] { ofertas.IdOferta, ofertas.NombreOferta, ofertas.oProducto.Nombre, ofertas.Descuento, ofertas.Estado });
+                TablaOfertas.Rows.Add(new object[] { ofertas.IdOferta, ofertas.NombreOferta, ofertas.oProducto.Nombre, ofertas.Descuento, ofertas.Estado });
             }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
             string columnaFiltro = valorCmb1.ToString();
             int filasVisibles = 0;
 
-            foreach (DataGridViewRow row in tablaOfertas.Rows)
+            foreach (DataGridViewRow row in TablaOfertas.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -70,10 +70,10 @@ namespace Presentacion.Modales
             {
                 oferta = new Oferta()
                 {
-                    IdOferta = Convert.ToInt32(tablaOfertas.Rows[iRow].Cells["IdOferta"].Value.ToString()),
-                    NombreOferta = tablaOfertas.Rows[iRow].Cells["Oferta"].Value.ToString(),
-                    Descuento = Convert.ToDecimal(tablaOfertas.Rows[iRow].Cells["Descuento"].Value.ToString()),
-                    Estado = Convert.ToBoolean(tablaOfertas.Rows[iRow].Cells["Estado"].Value.ToString())
+                    IdOferta = Convert.ToInt32(TablaOfertas.Rows[iRow].Cells["IdOferta"].Value.ToString()),
+                    NombreOferta = TablaOfertas.Rows[iRow].Cells["Oferta"].Value.ToString(),
+                    Descuento = Convert.ToDecimal(TablaOfertas.Rows[iRow].Cells["Descuento"].Value.ToString()),
+                    Estado = Convert.ToBoolean(TablaOfertas.Rows[iRow].Cells["Estado"].Value.ToString())
                 };
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -82,9 +82,9 @@ namespace Presentacion.Modales
 
         private void TablaOfertas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (tablaOfertas.Columns[e.ColumnIndex].Name == "Estado")
+            if (TablaOfertas.Columns[e.ColumnIndex].Name == "Estado")
             {
-                bool valorEstado = Convert.ToBoolean(tablaOfertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                bool valorEstado = Convert.ToBoolean(TablaOfertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 

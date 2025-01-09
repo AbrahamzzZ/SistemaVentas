@@ -14,7 +14,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra el correlativo de cada Venta
+        /// <summary>
+        /// Método que muestra el correlativo de cada Venta
+        /// </summary>
+        /// <returns>El número correlativo de la venta</returns>
         public int ObtenerCorrelativoVenta()
         {
             int IdCorrelativo = 0;
@@ -34,7 +37,12 @@ namespace Datos
             return IdCorrelativo;
         }
 
-        //Metodo que suma el stock del Producto despues de cancelar la Venta
+        /// <summary>
+        /// Método que suma el stock del Producto después de cancelar la Venta
+        /// </summary>
+        /// <param name="idProducto">ID del producto</param>
+        /// <param name="cantidad">Cantidad a sumar al stock</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool SumarSotck(int idProducto, int cantidad)
         {
             bool Respuesta = true;
@@ -57,7 +65,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que resta el stock del Producto despues de la Venta
+        /// <summary>
+        /// Método que resta el stock del Producto después de la Venta
+        /// </summary>
+        /// <param name="idProducto">ID del producto</param>
+        /// <param name="cantidad">Cantidad a restar del stock</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool RestarSotck(int idProducto, int cantidad)
         {
             bool Respuesta = true;
@@ -79,8 +92,14 @@ namespace Datos
             }
             return Respuesta;
         }
-        
-        //Metodo que permite registrar la Venta
+
+        /// <summary>
+        /// Método que permite registrar la Venta
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Venta que contiene los datos de la nueva venta</param>
+        /// <param name="DetalleVenta">DataTable que contiene los detalles de la venta</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool RegistrarVenta(Venta obj, DataTable DetalleVenta, out string Mensaje)
         {
             bool Respuesta = false;
@@ -113,7 +132,11 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que muestra la informacion de la Venta
+        /// <summary>
+        /// Método que muestra la información de la Venta
+        /// </summary>
+        /// <param name="numero">Número del documento de la venta</param>
+        /// <returns>Un objeto de tipo Venta con la información de la venta</returns>
         public Venta ObtenerVenta(string numero)
         {
             Venta obj = new Venta();
@@ -154,7 +177,11 @@ namespace Datos
             return obj;
         }
 
-        //Metodo que muestra el detalle de la Venta
+        /// <summary>
+        /// Método que muestra el detalle de la Venta
+        /// </summary>
+        /// <param name="idVenta">ID de la venta</param>
+        /// <returns>Una lista de objetos de tipo Detalle_Venta con los detalles de la venta</returns>
         public List<Detalle_Venta> ObtenerDetalleVenta(int idVenta)
         {
             List<Detalle_Venta> oLista = new List<Detalle_Venta>();
@@ -189,7 +216,10 @@ namespace Datos
             return oLista;
         }
 
-        //Metodo que me muestra los productos mas Vendidos
+        /// <summary>
+        /// Método que muestra los productos más vendidos
+        /// </summary>
+        /// <returns>Un DataTable con los productos más vendidos</returns>
         public DataTable GraficaProductosVendidos()
         {
             DataTable tabla = new DataTable();
@@ -210,6 +240,5 @@ namespace Datos
             }
             return tabla;
         }
-        
     }
 }

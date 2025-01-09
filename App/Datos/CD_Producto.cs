@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Productos que existen
+        /// <summary>
+        /// Metodo que muestra una lista de todos los Productos que existen
+        /// </summary>
+        /// <returns></returns>
         public List<Producto> MostrarProductos()
         {
             List<Producto> listaMostrarProducto = new List<Producto>();
@@ -52,7 +55,12 @@ namespace Datos
             return listaMostrarProducto;
         }
 
-        //Metodo que permite registrar un nuevo Producto
+        /// <summary>
+        /// Método que permite registrar un nuevo Producto
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Producto que contiene los datos del nuevo producto</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID del producto generado, o 0 si hubo un error</returns>
         public int RegistrarProducto(Producto obj, out string Mensaje)
         {
             int IdProductoGenerado = 0;
@@ -85,7 +93,12 @@ namespace Datos
             return IdProductoGenerado;
         }
 
-        //Metodo que permite editar la informacion de un Producto ya registrado
+        /// <summary>
+        /// Método que permite editar la información de un Producto ya registrado
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Producto que contiene los datos actualizados del producto</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarProducto(Producto obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -119,7 +132,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a un Producto
+        /// <summary>
+        /// Método que permite eliminar a un Producto
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Producto que contiene el ID del producto a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarProducto(Producto obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -146,7 +164,7 @@ namespace Datos
             return Respuesta;
         }
 
-        public int MostrarProductoStock(int IdProducto/*, int stock*/)
+        public int MostrarProductoStock(int IdProducto)
         {
             int stock = 0;
             try
@@ -196,5 +214,5 @@ namespace Datos
             }
             return listaProductos;
         }
-    }//522, 521
+    }
 }

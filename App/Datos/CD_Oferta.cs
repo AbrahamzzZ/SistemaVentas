@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos las Ofertas que existen
+        /// <summary>
+        /// Método que muestra una lista de todas las Ofertas que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Oferta</returns>
         public List<Oferta> MostrarOfertas()
         {
             List<Oferta> listaMostrarOferta = new List<Oferta>();
@@ -49,7 +52,12 @@ namespace Datos
             return listaMostrarOferta;
         }
 
-        //Metodo que permite registrar un nueva Oferta
+        /// <summary>
+        /// Método que permite registrar una nueva Oferta
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Oferta que contiene los datos de la nueva oferta</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID de la oferta generada, o 0 si hubo un error</returns>
         public int RegistrarOferta(Oferta obj, out string Mensaje)
         {
             int IdOfertaGenerada = 0;
@@ -82,7 +90,12 @@ namespace Datos
             return IdOfertaGenerada;
         }
 
-        //Metodo que permite editar la informacion de una Oferta ya registrada
+        /// <summary>
+        /// Método que permite editar la información de una Oferta ya registrada
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Oferta que contiene los datos actualizados de la oferta</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarOferta(Oferta obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -116,7 +129,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a una Oferta
+        /// <summary>
+        /// Método que permite eliminar una Oferta
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Oferta que contiene el ID de la oferta a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarOferta(Oferta obj, out string Mensaje)
         {
             bool Respuesta = false;

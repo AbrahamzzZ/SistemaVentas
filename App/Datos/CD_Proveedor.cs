@@ -11,7 +11,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Proveedores que existen
+        /// <summary>
+        /// Método que muestra una lista de todos los Proveedores que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Proveedor</returns>
         public List<Proveedor> MostrarProveedores()
         {
             List<Proveedor> listaMostrarProveedor = new List<Proveedor>();
@@ -45,7 +48,12 @@ namespace Datos
             return listaMostrarProveedor;
         }
 
-        //Metodo que permite registrar un nuevo Proveedor
+        /// <summary>
+        /// Método que permite registrar un nuevo Proveedor
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Proveedor que contiene los datos del nuevo proveedor</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID del proveedor generado, o 0 si hubo un error</returns>
         public int RegistrarProveedor(Proveedor obj, out string Mensaje)
         {
             int IdProveedorGenerado = 0;
@@ -77,7 +85,12 @@ namespace Datos
             return IdProveedorGenerado;
         }
 
-        //Metodo que permite editar la informacion de un Proveedor ya registrado
+        /// <summary>
+        /// Método que permite editar la información de un Proveedor ya registrado
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Proveedor que contiene los datos actualizados del proveedor</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarProveedor(Proveedor obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -110,7 +123,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a un Proveedor
+        /// <summary>
+        /// Método que permite eliminar a un Proveedor
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Proveedor que contiene el ID del proveedor a eliminar</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarProveedor(Proveedor obj, out string Mensaje)
         {
             bool Respuesta = false;

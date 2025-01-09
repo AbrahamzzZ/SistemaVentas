@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Transportistas que existen
+        /// <summary>
+        /// Método que muestra una lista de todos los Transportistas que existen
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Transportista</returns>
         public List<Transportista> MostrarTransportistas()
         {
             List<Transportista> listaTransportista = new List<Transportista>();
@@ -47,7 +50,13 @@ namespace Datos
             return listaTransportista;
         }
 
-        //Metodo que permite registrar un nuevo Transportista
+        /// <summary>
+        /// Método que permite registrar un nuevo Transportista
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Transportista que contiene los datos del nuevo transportista</param>
+        /// <param name="imagen">Arreglo de bytes que representa la imagen del transportista</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>El ID del transportista generado, o 0 si hubo un error</returns>
         public int RegistrarTransportista(Transportista obj, byte[] imagen, out string Mensaje)
         {
             int IdTransportistaGenerada = 0;
@@ -80,7 +89,13 @@ namespace Datos
             return IdTransportistaGenerada;
         }
 
-        //Metodo que permite editar la informacion de un Transportista ya registrado
+        /// <summary>
+        /// Método que permite editar la información de un Transportista ya registrado
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Transportista que contiene los datos actualizados del transportista</param>
+        /// <param name="imagen">Arreglo de bytes que representa la imagen del transportista</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarTransportista(Transportista obj, byte[] imagen, out string Mensaje)
         {
             bool Respuesta = false;
@@ -114,7 +129,12 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite eliminar a un Transportista
+        /// <summary>
+        /// Método que permite eliminar a un Transportista
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Transportista que contiene el ID del transportista a eliminar</param>
+        /// <param name="mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EliminarTransportista(Transportista obj, out string mensaje)
         {
             bool Respuesta = false;

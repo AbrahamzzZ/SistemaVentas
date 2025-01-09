@@ -13,11 +13,22 @@ namespace Negocios
     {
 
         private CD_Cliente ObjetoCliente = new CD_Cliente();
+
+        /// <summary>
+        /// Lista todos los clientes.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Cliente.</returns>
         public List<Cliente> ListarCliente()
         {
             return ObjetoCliente.MostrarClientes();
         }
 
+        /// <summary>
+        /// Método que valida el registro de un nuevo cliente.
+        /// </summary>
+        /// <param name="obj">El objeto Cliente a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Cliente obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -82,6 +93,12 @@ namespace Negocios
             return ObjetoCliente.RegistrarCliente(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la edición de un cliente existente.
+        /// </summary>
+        /// <param name="obj">El objeto Cliente a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Cliente obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -146,6 +163,12 @@ namespace Negocios
             return ObjetoCliente.EditarCliente(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la eliminación de un cliente existente.
+        /// </summary>
+        /// <param name="obj">El objeto Cliente a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Cliente obj, out string mensaje)
         {
             // Validaciones de negocio
@@ -158,6 +181,11 @@ namespace Negocios
             return ObjetoCliente.EliminarCliente(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Verifica si la cédula y el telefóno del cliente son válidos.
+        /// </summary>
+        /// <param name="cedulaTelefono">La cédula y el telefóno del cliente.</param>
+        /// <returns>Un booleano que indica si la cédula y el telefóno son válidos.</returns>
         private bool EsCedulaTelefonoValido(string cedulaTelefono)
         {
             // Verificar que tenga exactamente 10 caracteres
@@ -169,12 +197,22 @@ namespace Negocios
             return cedulaTelefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
         }
 
-        private bool EsNombreApellidoValido(string nombre)
+        /// <summary>
+        /// Verifica si los nombres y apellidos del cliente son válidos.
+        /// </summary>
+        /// <param name="nombresApellidos">Los nombres y apellidos del cliente.</param>
+        /// <returns>Un booleano que indica si los nombres y apellidos son válidos.</returns>
+        private bool EsNombreApellidoValido(string nombresApellidos)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
+            return System.Text.RegularExpressions.Regex.IsMatch(nombresApellidos, patron);
         }
 
+        /// <summary>
+        /// Verifica si el correo electrónico del cliente es válido.
+        /// </summary>
+        /// <param name="correo">Correo electrónico del cliente.</param>
+        /// <returns>Un booleano que indica si el coreo electrónico es válido.</returns>
         private bool EsCorreoValido(string correo)
         {
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido

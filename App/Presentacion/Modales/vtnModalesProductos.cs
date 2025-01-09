@@ -18,39 +18,39 @@ namespace Presentacion.Modales
         public vtnModalesProductos()
         {
             InitializeComponent();
-            tablaProductos.CellFormatting += TablaProductos_CellFormatting;
+            TablaProductos.CellFormatting += TablaProductos_CellFormatting;
         }
 
         private void VtnModalesProductos_Load(object sender, EventArgs e)
         {
-            foreach (DataGridViewColumn columna in tablaProductos.Columns)
+            foreach (DataGridViewColumn columna in TablaProductos.Columns)
             {
                 if (columna.Visible == true)
                 {
-                    cmb1.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
+                    CmbBuscar.Items.Add(new { Valor = columna.Name, Texto = columna.HeaderText });
                 }
 
             }
-            cmb1.DisplayMember = "Texto";
-            cmb1.ValueMember = "Valor";
-            cmb1.SelectedIndex = 0;
+            CmbBuscar.DisplayMember = "Texto";
+            CmbBuscar.ValueMember = "Valor";
+            CmbBuscar.SelectedIndex = 0;
             //Mostrar todos los productos existentes en la tabla
             List<Producto> mostrarProducto = new CN_Producto().ListarProducto();
             foreach (Producto productos in mostrarProducto)
             {
-                tablaProductos.Rows.Add(new object[] { productos.IdProducto, productos.Codigo, productos.Nombre, productos.oCategoria.Descripcion, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado });
+                TablaProductos.Rows.Add(new object[] { productos.IdProducto, productos.Codigo, productos.Nombre, productos.oCategoria.Descripcion, productos.Stock, productos.PrecioCompra, productos.PrecioVenta, productos.Estado });
             }
         }
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            dynamic selectedItemCmb1 = cmb1.SelectedItem;
+            dynamic selectedItemCmb1 = CmbBuscar.SelectedItem;
             string valorCmb1 = selectedItemCmb1.Valor;
             string columnaFiltro = valorCmb1.ToString();
             int filasVisibles = 0;
 
-            foreach (DataGridViewRow row in tablaProductos.Rows)
+            foreach (DataGridViewRow row in TablaProductos.Rows)
             {
-                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txt1.Text.Trim().ToUpper()))
+                if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
                     row.Visible = true;
                     filasVisibles++;
@@ -70,13 +70,13 @@ namespace Presentacion.Modales
             {
                 Producto = new Producto()
                 {
-                    IdProducto = Convert.ToInt32(tablaProductos.Rows[iRow].Cells["IdProducto"].Value.ToString()),
-                    Codigo = tablaProductos.Rows[iRow].Cells["Codigo"].Value.ToString(),
-                    Nombre = tablaProductos.Rows[iRow].Cells["Nombre"].Value.ToString(),
-                    Stock = Convert.ToInt32(tablaProductos.Rows[iRow].Cells["Stock"].Value.ToString()),
-                    PrecioCompra = Convert.ToDecimal(tablaProductos.Rows[iRow].Cells["PrecioCompra"].Value.ToString()),
-                    PrecioVenta = Convert.ToDecimal(tablaProductos.Rows[iRow].Cells["PrecioVenta"].Value.ToString()),
-                    Estado = Convert.ToBoolean(tablaProductos.Rows[iRow].Cells["Estado"].Value.ToString())
+                    IdProducto = Convert.ToInt32(TablaProductos.Rows[iRow].Cells["IdProducto"].Value.ToString()),
+                    Codigo = TablaProductos.Rows[iRow].Cells["Codigo"].Value.ToString(),
+                    Nombre = TablaProductos.Rows[iRow].Cells["Nombre"].Value.ToString(),
+                    Stock = Convert.ToInt32(TablaProductos.Rows[iRow].Cells["Stock"].Value.ToString()),
+                    PrecioCompra = Convert.ToDecimal(TablaProductos.Rows[iRow].Cells["PrecioCompra"].Value.ToString()),
+                    PrecioVenta = Convert.ToDecimal(TablaProductos.Rows[iRow].Cells["PrecioVenta"].Value.ToString()),
+                    Estado = Convert.ToBoolean(TablaProductos.Rows[iRow].Cells["Estado"].Value.ToString())
                 };
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -85,9 +85,9 @@ namespace Presentacion.Modales
 
         private void TablaProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (tablaProductos.Columns[e.ColumnIndex].Name == "Estado")
+            if (TablaProductos.Columns[e.ColumnIndex].Name == "Estado")
             {
-                bool valorEstado = Convert.ToBoolean(tablaProductos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                bool valorEstado = Convert.ToBoolean(TablaProductos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 
