@@ -13,11 +13,22 @@ namespace Negocios
     {
         private CD_Transportista ObjetoTransportista = new CD_Transportista();
 
+        /// <summary>
+        /// Lista todos los transportistas.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Transportista.</returns>
         public List<Transportista> ListarTransportista()
         {
             return ObjetoTransportista.MostrarTransportistas();
         }
 
+        /// <summary>
+        /// Método que valida el registro de un nuevo transportista.
+        /// </summary>
+        /// <param name="obj">El objeto Transportista a registrar.</param>
+        /// <param name="imagen">La imagen del transportista.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Transportista obj, byte[] imagen, out string mensaje)
         {
             mensaje = string.Empty;
@@ -88,6 +99,13 @@ namespace Negocios
             return ObjetoTransportista.RegistrarTransportista(obj, imagen, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la edición de un transportista existente.
+        /// </summary>
+        /// <param name="obj">El objeto Transportista a editar.</param>
+        /// <param name="imagen">La imagen del transportista.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Transportista obj, byte[] imagen, out string mensaje)
         {
             mensaje = string.Empty;
@@ -158,6 +176,12 @@ namespace Negocios
             return ObjetoTransportista.EditarTransportista(obj, imagen, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la eliminación de un transportista existente.
+        /// </summary>
+        /// <param name="obj">El objeto Transportista a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Transportista obj, out string mensaje)
         {
             // Validaciones de negocio
@@ -180,12 +204,22 @@ namespace Negocios
             return cedulaTelefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
         }
 
-        private bool EsNombreApellidoValido(string nombre)
+        /// <summary>
+        /// Verifica si los nombres y apellidos del transportista son válidos.
+        /// </summary>
+        /// <param name="nombresApellidos">Los nombres y apellidos del transportista.</param>
+        /// <returns>Un booleano que indica si los nombres y apellidos son válidos.</returns>
+        private bool EsNombreApellidoValido(string nombresApellidos)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
+            return System.Text.RegularExpressions.Regex.IsMatch(nombresApellidos, patron);
         }
 
+        /// <summary>
+        /// Verifica si el correo electrónico del transportista es válido.
+        /// </summary>
+        /// <param name="correo">Correo electrónico del transportista.</param>
+        /// <returns>Un booleano que indica si el coreo electrónico es válido.</returns>
         private bool EsCorreoValido(string correo)
         {
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
