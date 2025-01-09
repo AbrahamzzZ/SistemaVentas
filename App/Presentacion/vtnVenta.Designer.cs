@@ -336,7 +336,7 @@
             this.groupBox3.Controls.Add(this.TxtCodigo);
             this.groupBox3.Controls.Add(this.lblCodigoProducto);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(169, 213);
+            this.groupBox3.Location = new System.Drawing.Point(169, 214);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1138, 111);
             this.groupBox3.TabIndex = 124;

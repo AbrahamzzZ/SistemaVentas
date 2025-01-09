@@ -1577,18 +1577,45 @@ CREATE PROC PA_EDITAR_NEGOCIO(
 )
 AS
 BEGIN
-	SET @Resultado = 1;
-	SET @Mensaje = '';
+    BEGIN TRY
+        -- Inicializar valores de salida
+        SET @Resultado = 0;
+        SET @Mensaje = '';
 
-	UPDATE NEGOCIO SET 
-	NOMBRE = @Nombre,
-	TELEFONO = @Telefono,
-	RUC = @Ruc,
-	DIRECCION = @Direccion,
-	CORREO_ELECTRONICO = @Correo_Electronico
-	WHERE ID_NEGOCIO = @Id_Negocio;
+        -- Verificar si el negocio existe
+        IF NOT EXISTS (SELECT 1 FROM NEGOCIO WHERE ID_NEGOCIO = @Id_Negocio)
+        BEGIN
+            SET @Mensaje = 'El negocio con el ID proporcionado no existe.';
+            RETURN;
+        END
 
-	SET @Mensaje = 'La información del negocio fue actualizado exitosamente.';
+        -- Realizar la actualización
+        UPDATE NEGOCIO
+        SET 
+            NOMBRE = @Nombre,
+            TELEFONO = @Telefono,
+            RUC = @Ruc,
+            DIRECCION = @Direccion,
+            CORREO_ELECTRONICO = @Correo_Electronico
+        WHERE 
+            ID_NEGOCIO = @Id_Negocio;
+
+        -- Comprobar si la actualización afectó filas
+        IF @@ROWCOUNT = 0
+        BEGIN
+            SET @Mensaje = 'No se realizaron cambios en la información del negocio.';
+        END
+        ELSE
+        BEGIN
+            SET @Resultado = 1;
+            SET @Mensaje = 'La información del negocio fue actualizada exitosamente.';
+        END
+    END TRY
+    BEGIN CATCH
+        -- Capturar errores
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
 END;
 go
 
