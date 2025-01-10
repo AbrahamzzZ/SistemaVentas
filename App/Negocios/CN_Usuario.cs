@@ -16,20 +16,20 @@ namespace Negocios
         private static int intentos = 0;
 
         /// <summary>
-        /// Metodo que muestra al usuario logueado.
+        /// Método que muestra al usuario logueado.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Una lista de objetos de tipo Usuario.</returns>
         public List<Usuario> Ingresar()
         {
             return ObjetoUsuario.IngresarUsuarioLogin();
         }
 
         /// <summary>
-        /// Metodo que muestra la clave del usuario.
+        /// Método que muestra la clave del usuario mediante el correo electrónico.
         /// </summary>
-        /// <param name="correoElectronico"></param>
-        /// <param name="mensaje"></param>
-        /// <returns></returns>
+        /// <param name="correoElectronico">El correo electrónico del usuario.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un objeto Usuario con la clave del usuario.</returns>
         public Usuario MostrarClave(string correoElectronico, out string mensaje)
         {
             mensaje = string.Empty;
@@ -51,20 +51,20 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Metodo que enlista todos los usuarios para que aparezcan en la tabla de la ventana Usuario.
+        /// Método que enlista todos los usuarios para que aparezcan en la tabla de la ventana Usuario.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Una lista de objetos de tipo Usuario.</returns>
         public List<Usuario> ListarUsuario()
         {
             return ObjetoUsuario.MostrarUsuarios();
         }
 
         /// <summary>
-        /// Metodo que valida las credenciales para iniciar sesion.
+        /// Método que valida las credenciales para iniciar sesión.
         /// </summary>
-        /// <param name="codigo"></param>
-        /// <param name="clave"></param>
-        /// <returns></returns>
+        /// <param name="codigo">El código del usuario.</param>
+        /// <param name="clave">La clave del usuario.</param>
+        /// <returns>Un mensaje indicando el resultado de la validación.</returns>
         public string ValidarLogin(string codigo, string clave)
         {
             if (string.IsNullOrWhiteSpace(codigo) || string.IsNullOrWhiteSpace(clave))
@@ -102,11 +102,11 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Metodo de valida las reglas de negocio para registrar un usuario.
+        /// Método que valida el registro de un nuevo usuario.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="mensaje">Mensaje que viene del procedimiento almacenado.</param>
-        /// <returns></returns>
+        /// <param name="obj">El objeto Usuario a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Usuario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -114,11 +114,11 @@ namespace Negocios
             // Validar Nombre Completo
             if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
             {
-                mensaje += "\n- Es necesario el nombre completo del usuario.";
+                mensaje += "\n- Es necesario el nombreCompleto completo del usuario.";
             }
             else if (!EsNombreValido(obj.NombreCompleto))
             {
-                mensaje += "\n- El nombre del usuario solo puede contener letras y no números.";
+                mensaje += "\n- El nombreCompleto del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
@@ -152,11 +152,11 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Metodo que valida las reglas de negocio para editar un usuario.
+        /// Método que valida la edición de un usuario existente.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="mensaje"></param>
-        /// <returns></returns>
+        /// <param name="obj">El objeto Usuario a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Usuario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -164,11 +164,11 @@ namespace Negocios
             // Validar Nombre Completo
             if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
             {
-                mensaje += "\n- Es necesario el nombre completo del usuario.";
+                mensaje += "\n- Es necesario el nombreCompleto completo del usuario.";
             }
             else if (!EsNombreValido(obj.NombreCompleto))
             {
-                mensaje += "\n- El nombre del usuario solo puede contener letras y no números.";
+                mensaje += "\n- El nombreCompleto del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
@@ -202,11 +202,11 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Metodo que valida las reglas de negocio para eliminar un usuario.
+        /// Método que valida la eliminación de un usuario existente.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="mensaje"></param>
-        /// <returns></returns>
+        /// <param name="obj">El objeto Usuario a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Usuario obj, out string mensaje)
         {
 
@@ -228,31 +228,31 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Verifica que todos los caracteres sean dígitos.
+        /// Verifica si el código del usuario es válido.
         /// </summary>
-        /// <param name="codigo"></param>
-        /// <returns></returns>
+        /// <param name="codigo">El código del usuario.</param>
+        /// <returns>Un booleano que indica si el código es válido.</returns>
         private bool EsCodigoValido(string codigo)
         {
             return codigo.All(char.IsDigit); 
         }
 
         /// <summary>
-        /// Permite letras, espacios y caracteres con tilde.
+        /// Verifica si el nombreCompleto completo del usuario es válido.
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
-        private bool EsNombreValido(string nombre)
+        /// <param name="nombreCompleto">El nombreCompleto completo del usuario.</param>
+        /// <returns>Un booleano que indica si el nombreCompleto completo es válido.</returns>
+        private bool EsNombreValido(string nombreCompleto)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; 
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
+            return System.Text.RegularExpressions.Regex.IsMatch(nombreCompleto, patron);
         }
 
         /// <summary>
-        /// Formato para un correo válido
+        /// Verifica si el correo electrónico del usuario es válido.
         /// </summary>
-        /// <param name="correo"></param>
-        /// <returns></returns>
+        /// <param name="correo">Correo electrónico del usuario.</param>
+        /// <returns>Un booleano que indica si el coreo electrónico es válido.</returns>
         private bool EsCorreoValido(string correo)
         {
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; 
@@ -260,10 +260,10 @@ namespace Negocios
         }
 
         /// <summary>
-        /// Formato para una clave.
+        /// Verifica si la clave del usuario es válida.
         /// </summary>
-        /// <param name="clave"></param>
-        /// <returns></returns>
+        /// <param name="clave">Clave del usuario.</param>
+        /// <returns>Un booleano que indica si la clave es válida.</returns>
         private bool EsClaveValida(string clave)
         {
             if (clave.Length < 8)

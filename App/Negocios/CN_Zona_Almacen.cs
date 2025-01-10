@@ -13,6 +13,10 @@ namespace Negocios
     {
         private CD_Zona_Almacen ObjetoZonaAlmacen = new CD_Zona_Almacen();
 
+        /// <summary>
+        /// Lista todas las Zonas de Almacenamiento.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Zona_Almacen.</returns>
         public List<Zona_Almacen> ListarZonaAlmacen()
         {
             return ObjetoZonaAlmacen.MostrarZonasAlmacen();

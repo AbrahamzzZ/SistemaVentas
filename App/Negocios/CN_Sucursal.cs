@@ -14,11 +14,21 @@ namespace Negocios
     {
         private CD_Sucursal ObjetoSucursal = new CD_Sucursal();
 
+        /// <summary>
+        /// Lista todos las sucursales.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Sucursal.</returns>
         public List<Sucursal> ListarSucusal()
         {
             return ObjetoSucursal.MostrarSucursales();
         }
 
+        /// <summary>
+        /// Método que valida el registro de un nueva sucursal.
+        /// </summary>
+        /// <param name="obj">El objeto Sucursal a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Sucursal obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -78,6 +88,12 @@ namespace Negocios
             return ObjetoSucursal.RegistrarSucursal(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la edición de una sucursal existente.
+        /// </summary>
+        /// <param name="obj">El objeto Sucursal a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Sucursal obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -137,6 +153,12 @@ namespace Negocios
             return ObjetoSucursal.EditarSucursal(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la eliminación de una sucursal existente.
+        /// </summary>
+        /// <param name="obj">El objeto Sucursal a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Sucursal obj, out string mensaje)
         {
             // Validaciones de negocio
@@ -149,6 +171,11 @@ namespace Negocios
             return ObjetoSucursal.EliminarSucursal(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Verifica si el nombre de la sucursal es válida.
+        /// </summary>
+        /// <param name="nombre">El nombre de la sucursal.</param>
+        /// <returns>Un booleano que indica se el nombre es válida.</returns>
         private bool EsNombreValido(string nombre)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ_\s]+$"; // Permite letras, espacios y caracteres con tilde

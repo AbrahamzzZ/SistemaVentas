@@ -13,16 +13,16 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class vtnCompra : Form
+    public partial class VtnCompra : Form
     {
         private Usuario_Catched Usuario;
-        public vtnCompra(Usuario_Catched oUsuario = null)
+        public VtnCompra(Usuario_Catched oUsuario = null)
         {
             Usuario = oUsuario;
             InitializeComponent();
         }
 
-        private void vtnCompra_Load(object sender, EventArgs e)
+        private void VtnCompra_Load(object sender, EventArgs e)
         {
             CmbTipoDocumento.Items.Add(new { Valor = "Boleta", Texto = "Boleta" });
             CmbTipoDocumento.Items.Add(new { Valor = "Factura", Texto = "Factura" });
@@ -43,7 +43,7 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     TxtIdProveedor.Text = modal.Proveedor.IdProveedor.ToString();
-                    TxtCodigoProveedor.Text = modal.Proveedor.Codigo.ToString();
+                    TxtCedulaProveedor.Text = modal.Proveedor.Cedula.ToString();
                     TxtNombresProveedor.Text = modal.Proveedor.Nombres.ToString();
                 }
                 else
@@ -61,26 +61,26 @@ namespace Presentacion
                 if (result == DialogResult.OK)
                 {
                     TxtIdProducto.Text = modal.Producto.IdProducto.ToString();
-                    TxtCodigoProducto.Text = modal.Producto.Codigo.ToString();
+                    TxtCodigo.Text = modal.Producto.Codigo.ToString();
                     TxtProducto.Text = modal.Producto.Nombre.ToString();
                     TxtPrecioCompra.Select();
                 }
                 else
                 {
-                    TxtCodigoProducto.Select();
+                    TxtCodigo.Select();
                 }
             }
         }
 
         private void BtnBuscarTransportista_Click(object sender, EventArgs e)
         {
-            using (var modal = new vtnModalesTransportista())
+            using (var modal = new VtnModalesTransportista())
             {
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     TxtIdTransportista.Text = modal.Transportista.IdTransportista.ToString();
-                    TxtCodigoTransportista.Text = modal.Transportista.Codigo.ToString();
+                    TxtCedulaTransportista.Text = modal.Transportista.Cedula.ToString();
                     TxtNombresTransportista.Text = modal.Transportista.Nombres.ToString();
                 }
                 else
@@ -113,13 +113,13 @@ namespace Presentacion
                 TxtPreciVenta.Select();
                 return;
             }
-            if (numericUpDown1.Value == 0)
+            if (NudCantidad.Value == 0)
             {
                 MessageBox.Show("No puedes realizar una compra con 0 productos.", "Agregar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                numericUpDown1.Select(); 
+                NudCantidad.Select(); 
                 return;
             }
-            foreach (DataGridViewRow fila in tablaCompras.Rows)
+            foreach (DataGridViewRow fila in TablaCompras.Rows)
             {
                 if (fila.Cells["ID"].Value != null && fila.Cells["ID"].Value.ToString() == TxtIdProducto.Text)
                 {
@@ -129,17 +129,17 @@ namespace Presentacion
             }
             if (!productoExistente)
             {
-                tablaCompras.Rows.Add(new object[]{
+                TablaCompras.Rows.Add(new object[]{
                     TxtIdProducto.Text,
                     TxtProducto.Text,
                     precioCompra.ToString("0.00"),
                     precioVenta.ToString("0.00"),
-                    numericUpDown1.Value.ToString(),
-                    (numericUpDown1.Value * precioCompra).ToString("0.00")
+                    NudCantidad.Value.ToString(),
+                    (NudCantidad.Value * precioCompra).ToString("0.00")
                 });
                 CalcularTotal();
                 Limpiar();
-                TxtCodigoProducto.Select();
+                TxtCodigo.Select();
             }
         }
 
@@ -158,7 +158,7 @@ namespace Presentacion
                 return;
             }
 
-            if (tablaCompras.Rows.Count < 1)
+            if (TablaCompras.Rows.Count < 1)
             {
                 MessageBox.Show("Debe ingresar un producto en la compra.", "Realizar compra", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -170,7 +170,7 @@ namespace Presentacion
             detalla_compra.Columns.Add("Precio_Venta", typeof(decimal));
             detalla_compra.Columns.Add("Cantidad", typeof(int));
             detalla_compra.Columns.Add("Monto_Total", typeof(decimal));
-            foreach (DataGridViewRow row in tablaCompras.Rows)
+            foreach (DataGridViewRow row in TablaCompras.Rows)
             {
                 detalla_compra.Rows.Add(
                     new object[]
@@ -205,13 +205,13 @@ namespace Presentacion
                     System.Windows.Forms.Clipboard.SetText(numeroDocumento);
                 }
                 TxtIdProveedor.Clear();
-                TxtCodigoProveedor.Clear();
+                TxtCedulaProveedor.Clear();
                 TxtNombresProveedor.Clear();
                 TxtIdTransportista.Clear();
                 TxtNombresTransportista.Clear();
-                TxtCodigoTransportista.Clear();
+                TxtCedulaTransportista.Clear();
                 TxtTotalPagar.Clear();
-                tablaCompras.Rows.Clear();
+                TablaCompras.Rows.Clear();
                 CalcularTotal();
             }
             else
@@ -239,12 +239,12 @@ namespace Presentacion
 
         private void TablaCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (tablaCompras.Columns[e.ColumnIndex].Name == "btnEliminar")
+            if (TablaCompras.Columns[e.ColumnIndex].Name == "btnEliminar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
-                    tablaCompras.Rows.RemoveAt(indice);
+                    TablaCompras.Rows.RemoveAt(indice);
                     CalcularTotal();
                 }
             }
@@ -253,20 +253,37 @@ namespace Presentacion
         private void Limpiar()
         {
             TxtIdProducto.Text = "0";
-            TxtCodigoProducto.Text = "";
-            TxtCodigoProducto.BackColor = Color.White;
+            TxtCodigo.Text = "";
+            TxtCodigo.BackColor = Color.White;
             TxtProducto.Text = "";
             TxtPrecioCompra.Text = "";
             TxtPreciVenta.Text = "";
-            numericUpDown1.Value = 0;
+            NudCantidad.Value = 0;
         }
 
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            TxtIdProducto.Text = "0";
+            TxtCodigo.Text = "";
+            TxtProducto.Text = "";
+            TxtPrecioCompra.Text = "";
+            TxtPreciVenta.Text = "";
+            NudCantidad.Value = 0;
+            TxtIdProveedor.Text = "0";
+            TxtCedulaProveedor.Text = "";
+            TxtNombresProveedor.Text = "";
+            TxtIdTransportista.Text = "0";
+            TxtCedulaTransportista.Text = "";
+            TxtNombresTransportista.Text = "";
+            TxtTotalPagar.Text = "";
+            TablaCompras.Rows.Clear();
+        }
         private void CalcularTotal()
         {
             decimal total = 0;
-            if (tablaCompras.Rows.Count > 0)
+            if (TablaCompras.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in tablaCompras.Rows)
+                foreach (DataGridViewRow row in TablaCompras.Rows)
                 {
                     var subTotalCellValue = row.Cells["SubTotal"].Value;
                     if (subTotalCellValue != null)
@@ -334,17 +351,17 @@ namespace Presentacion
         {
             if (e.KeyData == Keys.Enter)
             {
-                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == TxtCodigoProducto.Text && p.Estado == true).FirstOrDefault();
+                Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == TxtCodigo.Text && p.Estado == true).FirstOrDefault();
                 if (oProducto != null)
                 {
-                    TxtCodigoProducto.BackColor = Color.Honeydew;
+                    TxtCodigo.BackColor = Color.Honeydew;
                     TxtIdProducto.Text = oProducto.IdProducto.ToString();
                     TxtProducto.Text = oProducto.Nombre;
                     TxtPrecioCompra.Select();
                 }
                 else
                 {
-                    TxtCodigoProducto.BackColor = Color.MistyRose;
+                    TxtCodigo.BackColor = Color.MistyRose;
                     TxtIdProducto.Text = "0";
                     TxtProducto.Text = "";
                 }

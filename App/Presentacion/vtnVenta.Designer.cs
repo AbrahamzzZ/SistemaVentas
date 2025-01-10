@@ -38,7 +38,7 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablaVentas = new System.Windows.Forms.DataGridView();
+            this.TablaVentas = new System.Windows.Forms.DataGridView();
             this.LblCedula = new System.Windows.Forms.Label();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.TxtCedulaCliente = new System.Windows.Forms.TextBox();
@@ -52,7 +52,8 @@
             this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.numericUpDownCantidad = new System.Windows.Forms.NumericUpDown();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.NudCantidad = new System.Windows.Forms.NumericUpDown();
             this.TxtStock = new System.Windows.Forms.TextBox();
             this.TxtPrecioCompra = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
@@ -66,26 +67,27 @@
             this.lblCodigoProducto = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.lblTotalPagar = new System.Windows.Forms.Label();
-            this.TxtIdOferta = new System.Windows.Forms.TextBox();
+            this.TxtDescuentoOferta = new System.Windows.Forms.TextBox();
             this.BtnCrearVenta = new System.Windows.Forms.Button();
             this.lblPagaCon = new System.Windows.Forms.Label();
             this.TxtPagaCon = new System.Windows.Forms.TextBox();
             this.lblCambio = new System.Windows.Forms.Label();
             this.TxtCambio = new System.Windows.Forms.TextBox();
-            this.TxtPagar = new System.Windows.Forms.TextBox();
+            this.TxtTotalPagar = new System.Windows.Forms.TextBox();
             this.lblDescuento = new System.Windows.Forms.Label();
             this.TxtTotalDescuento = new System.Windows.Forms.TextBox();
             this.BtnBuscarOfertas = new System.Windows.Forms.Button();
             this.lblOferta = new System.Windows.Forms.Label();
             this.TxtNombreOferta = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.LblPorcentaje = new System.Windows.Forms.Label();
             this.lblImportante = new System.Windows.Forms.Label();
             this.lblRegistrarVenta = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaVentas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaVentas)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,10 +148,10 @@
             this.IdProducto.Visible = false;
             this.IdProducto.Width = 125;
             // 
-            // tablaVentas
+            // TablaVentas
             // 
-            this.tablaVentas.AllowUserToAddRows = false;
-            this.tablaVentas.BackgroundColor = System.Drawing.Color.White;
+            this.TablaVentas.AllowUserToAddRows = false;
+            this.TablaVentas.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -158,9 +160,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.tablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.TablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
             this.Producto,
             this.Precio,
@@ -168,19 +170,19 @@
             this.SubTotal,
             this.Descuento,
             this.btnEliminar});
-            this.tablaVentas.Location = new System.Drawing.Point(169, 348);
-            this.tablaVentas.MultiSelect = false;
-            this.tablaVentas.Name = "tablaVentas";
-            this.tablaVentas.ReadOnly = true;
-            this.tablaVentas.RowHeadersWidth = 51;
+            this.TablaVentas.Location = new System.Drawing.Point(169, 348);
+            this.TablaVentas.MultiSelect = false;
+            this.TablaVentas.Name = "TablaVentas";
+            this.TablaVentas.ReadOnly = true;
+            this.TablaVentas.RowHeadersWidth = 51;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.tablaVentas.RowTemplate.Height = 28;
-            this.tablaVentas.Size = new System.Drawing.Size(657, 196);
-            this.tablaVentas.TabIndex = 123;
-            this.tablaVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaVentas_CellContentClick);
-            this.tablaVentas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaVentas_CellPainting);
+            this.TablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.TablaVentas.RowTemplate.Height = 28;
+            this.TablaVentas.Size = new System.Drawing.Size(657, 196);
+            this.TablaVentas.TabIndex = 123;
+            this.TablaVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaVentas_CellContentClick);
+            this.TablaVentas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaVentas_CellPainting);
             // 
             // LblCedula
             // 
@@ -293,7 +295,7 @@
             // 
             // CmbTipoDocumento
             // 
-            this.CmbTipoDocumento.BackColor = System.Drawing.Color.LightGray;
+            this.CmbTipoDocumento.BackColor = System.Drawing.Color.White;
             this.CmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbTipoDocumento.FormattingEnabled = true;
@@ -320,7 +322,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.numericUpDownCantidad);
+            this.groupBox3.Controls.Add(this.BtnLimpiar);
+            this.groupBox3.Controls.Add(this.NudCantidad);
             this.groupBox3.Controls.Add(this.TxtStock);
             this.groupBox3.Controls.Add(this.TxtPrecioCompra);
             this.groupBox3.Controls.Add(this.lblCantidad);
@@ -333,19 +336,31 @@
             this.groupBox3.Controls.Add(this.TxtCodigo);
             this.groupBox3.Controls.Add(this.lblCodigoProducto);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(169, 213);
+            this.groupBox3.Location = new System.Drawing.Point(169, 214);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1138, 111);
             this.groupBox3.TabIndex = 124;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Información Producto";
             // 
-            // numericUpDownCantidad
+            // BtnLimpiar
             // 
-            this.numericUpDownCantidad.Location = new System.Drawing.Point(932, 65);
-            this.numericUpDownCantidad.Name = "numericUpDownCantidad";
-            this.numericUpDownCantidad.Size = new System.Drawing.Size(121, 27);
-            this.numericUpDownCantidad.TabIndex = 112;
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
+            this.BtnLimpiar.Location = new System.Drawing.Point(1068, 62);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(38, 30);
+            this.BtnLimpiar.TabIndex = 113;
+            this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
+            // NudCantidad
+            // 
+            this.NudCantidad.Location = new System.Drawing.Point(932, 65);
+            this.NudCantidad.Name = "NudCantidad";
+            this.NudCantidad.Size = new System.Drawing.Size(101, 27);
+            this.NudCantidad.TabIndex = 112;
             // 
             // TxtStock
             // 
@@ -486,15 +501,15 @@
             this.lblTotalPagar.TabIndex = 106;
             this.lblTotalPagar.Text = "Total a pagar:";
             // 
-            // TxtIdOferta
+            // TxtDescuentoOferta
             // 
-            this.TxtIdOferta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtIdOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIdOferta.Location = new System.Drawing.Point(397, 21);
-            this.TxtIdOferta.Name = "TxtIdOferta";
-            this.TxtIdOferta.ReadOnly = true;
-            this.TxtIdOferta.Size = new System.Drawing.Size(38, 27);
-            this.TxtIdOferta.TabIndex = 111;
+            this.TxtDescuentoOferta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtDescuentoOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDescuentoOferta.Location = new System.Drawing.Point(383, 21);
+            this.TxtDescuentoOferta.Name = "TxtDescuentoOferta";
+            this.TxtDescuentoOferta.ReadOnly = true;
+            this.TxtDescuentoOferta.Size = new System.Drawing.Size(37, 27);
+            this.TxtDescuentoOferta.TabIndex = 111;
             // 
             // BtnCrearVenta
             // 
@@ -549,15 +564,15 @@
             this.TxtCambio.Size = new System.Drawing.Size(114, 27);
             this.TxtCambio.TabIndex = 116;
             // 
-            // TxtPagar
+            // TxtTotalPagar
             // 
-            this.TxtPagar.BackColor = System.Drawing.Color.LightGray;
-            this.TxtPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPagar.Location = new System.Drawing.Point(20, 91);
-            this.TxtPagar.Name = "TxtPagar";
-            this.TxtPagar.ReadOnly = true;
-            this.TxtPagar.Size = new System.Drawing.Size(119, 27);
-            this.TxtPagar.TabIndex = 117;
+            this.TxtTotalPagar.BackColor = System.Drawing.Color.LightGray;
+            this.TxtTotalPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTotalPagar.Location = new System.Drawing.Point(20, 91);
+            this.TxtTotalPagar.Name = "TxtTotalPagar";
+            this.TxtTotalPagar.ReadOnly = true;
+            this.TxtTotalPagar.Size = new System.Drawing.Size(119, 27);
+            this.TxtTotalPagar.TabIndex = 117;
             // 
             // lblDescuento
             // 
@@ -614,18 +629,19 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.LblPorcentaje);
             this.groupBox4.Controls.Add(this.TxtNombreOferta);
             this.groupBox4.Controls.Add(this.lblOferta);
             this.groupBox4.Controls.Add(this.BtnBuscarOfertas);
             this.groupBox4.Controls.Add(this.TxtTotalDescuento);
             this.groupBox4.Controls.Add(this.lblDescuento);
-            this.groupBox4.Controls.Add(this.TxtPagar);
+            this.groupBox4.Controls.Add(this.TxtTotalPagar);
             this.groupBox4.Controls.Add(this.TxtCambio);
             this.groupBox4.Controls.Add(this.lblCambio);
             this.groupBox4.Controls.Add(this.TxtPagaCon);
             this.groupBox4.Controls.Add(this.lblPagaCon);
             this.groupBox4.Controls.Add(this.BtnCrearVenta);
-            this.groupBox4.Controls.Add(this.TxtIdOferta);
+            this.groupBox4.Controls.Add(this.TxtDescuentoOferta);
             this.groupBox4.Controls.Add(this.lblTotalPagar);
             this.groupBox4.Controls.Add(this.BtnAgregar);
             this.groupBox4.Location = new System.Drawing.Point(856, 339);
@@ -633,6 +649,16 @@
             this.groupBox4.Size = new System.Drawing.Size(451, 205);
             this.groupBox4.TabIndex = 125;
             this.groupBox4.TabStop = false;
+            // 
+            // LblPorcentaje
+            // 
+            this.LblPorcentaje.AutoSize = true;
+            this.LblPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPorcentaje.Location = new System.Drawing.Point(421, 24);
+            this.LblPorcentaje.Name = "LblPorcentaje";
+            this.LblPorcentaje.Size = new System.Drawing.Size(24, 20);
+            this.LblPorcentaje.TabIndex = 124;
+            this.LblPorcentaje.Text = "%";
             // 
             // lblImportante
             // 
@@ -666,19 +692,19 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tablaVentas);
+            this.Controls.Add(this.TablaVentas);
             this.Controls.Add(this.lblRegistrarVenta);
             this.Name = "VtnVenta";
             this.Text = "Editar ventas";
             this.Load += new System.EventHandler(this.VtnVenta_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaVentas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaVentas)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
@@ -694,7 +720,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
-        private System.Windows.Forms.DataGridView tablaVentas;
+        private System.Windows.Forms.DataGridView TablaVentas;
         private System.Windows.Forms.Label LblCedula;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.TextBox TxtCedulaCliente;
@@ -708,7 +734,7 @@
         private System.Windows.Forms.ComboBox CmbTipoDocumento;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.NumericUpDown numericUpDownCantidad;
+        private System.Windows.Forms.NumericUpDown NudCantidad;
         private System.Windows.Forms.TextBox TxtStock;
         private System.Windows.Forms.TextBox TxtPrecioCompra;
         private System.Windows.Forms.Label lblCantidad;
@@ -722,13 +748,13 @@
         private System.Windows.Forms.Label lblCodigoProducto;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Label lblTotalPagar;
-        private System.Windows.Forms.TextBox TxtIdOferta;
+        private System.Windows.Forms.TextBox TxtDescuentoOferta;
         private System.Windows.Forms.Button BtnCrearVenta;
         private System.Windows.Forms.Label lblPagaCon;
         private System.Windows.Forms.TextBox TxtPagaCon;
         private System.Windows.Forms.Label lblCambio;
         private System.Windows.Forms.TextBox TxtCambio;
-        private System.Windows.Forms.TextBox TxtPagar;
+        private System.Windows.Forms.TextBox TxtTotalPagar;
         private System.Windows.Forms.Label lblDescuento;
         private System.Windows.Forms.TextBox TxtTotalDescuento;
         private System.Windows.Forms.Button BtnBuscarOfertas;
@@ -737,5 +763,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lblImportante;
         private System.Windows.Forms.Label lblRegistrarVenta;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.Label LblPorcentaje;
     }
 }

@@ -13,7 +13,10 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra la informacion del Negocio
+        /// <summary>
+        /// Método que muestra la información del Negocio
+        /// </summary>
+        /// <returns>Un objeto de tipo Negocio con la información del negocio</returns>
         public Negocio ObtenerInformacionNegocio()
         {
             Negocio obtenerDatos = new Negocio();
@@ -45,7 +48,12 @@ namespace Datos
             return obtenerDatos;
         }
 
-        //Metodo que permite registrar la informacion del Negocio
+        /// <summary>
+        /// Método que permite editar la información del Negocio
+        /// </summary>
+        /// <param name="obj">Objeto de tipo Negocio que contiene los datos actualizados del negocio</param>
+        /// <param name="Mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool EditarNegocio(Negocio obj, out string Mensaje)
         {
             bool Respuesta = false;
@@ -76,7 +84,11 @@ namespace Datos
             return Respuesta;
         }
 
-        //Metodo que permite mostrar el logo del Negocio
+        /// <summary>
+        /// Método que permite mostrar el logo del Negocio
+        /// </summary>
+        /// <param name="obtenido">Indica si el logo fue obtenido correctamente</param>
+        /// <returns>Un arreglo de bytes que representa el logo del negocio</returns>
         public byte[] ObtenerLogoNegocio(out bool obtenido)
         {
             obtenido = true;
@@ -101,7 +113,12 @@ namespace Datos
             return logoByte;
         }
 
-        //Metodo que permite actualizar el logo del Negocio
+        /// <summary>
+        /// Método que permite actualizar el logo del Negocio
+        /// </summary>
+        /// <param name="image">Arreglo de bytes que representa el nuevo logo del negocio</param>
+        /// <param name="mensaje">Mensaje de salida que indica el resultado de la operación</param>
+        /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
         public bool ActualizarLogoNegocio(byte[] image, out string mensaje)
         {
             mensaje = string.Empty;

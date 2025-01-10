@@ -13,7 +13,11 @@ namespace Datos
     {
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Permisos que tienen cada Usuario
+        /// <summary>
+        /// Método que muestra una lista de todos los Permisos que tienen cada Usuario
+        /// </summary>
+        /// <param name="idusuario">ID del usuario</param>
+        /// <returns>Una lista de objetos de tipo Permiso</returns>
         public List<Permiso> PermisosUsuarios(int idusuario)
         {
             List<Permiso> listaPermiso = new List<Permiso>();

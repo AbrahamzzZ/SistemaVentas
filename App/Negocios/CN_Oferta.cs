@@ -13,11 +13,21 @@ namespace Negocios
     {
         private CD_Oferta ObjetoOferta = new CD_Oferta();
 
+        /// <summary>
+        /// Lista todos las ofertas.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Oferta.</returns>
         public List<Oferta> ListarOferta()
         {
             return ObjetoOferta.MostrarOfertas();
         }
 
+        /// <summary>
+        /// Método que valida el registro de una nueva oferta.
+        /// </summary>
+        /// <param name="obj">El objeto Oferta a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Oferta obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -27,7 +37,7 @@ namespace Negocios
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            else if (!EsNombreDescripcionValido(obj.NombreOferta))
+            else if (!EsNombreValido(obj.NombreOferta))
             {
                 mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
@@ -57,6 +67,12 @@ namespace Negocios
             return ObjetoOferta.RegistrarOferta(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que valida la edición de una oferta existente.
+        /// </summary>
+        /// <param name="obj">El objeto Oferta a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Oferta obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -66,7 +82,7 @@ namespace Negocios
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            else if (!EsNombreDescripcionValido(obj.NombreOferta))
+            else if (!EsNombreValido(obj.NombreOferta))
             {
                 mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
@@ -96,6 +112,12 @@ namespace Negocios
             return ObjetoOferta.EditarOferta(obj, out mensaje);
         }
 
+        /// <summary>
+        ///  Método que valida la eliminación de una oferta existente.
+        /// </summary>
+        /// <param name="obj">El objeto Oferta a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Oferta obj, out string mensaje)
         {
             // Validaciones de negocio
@@ -108,7 +130,12 @@ namespace Negocios
             return ObjetoOferta.EliminarOferta(obj, out mensaje);
         }
 
-        private bool EsNombreDescripcionValido(string nombre)
+        /// <summary>
+        /// Verifica si el nombre de la oferta es válida.
+        /// </summary>
+        /// <param name="nombre">El nombre de la oferta.</param>
+        /// <returns>Un booleano que indica si el nombre es válido.</returns>
+        private bool EsNombreValido(string nombre)
         {
             string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
             return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);

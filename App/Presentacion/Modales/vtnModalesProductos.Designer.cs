@@ -32,11 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnModalesProductos));
             this.lblListaProductos = new System.Windows.Forms.Label();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txt1 = new System.Windows.Forms.TextBox();
-            this.cmb1 = new System.Windows.Forms.ComboBox();
+            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.tablaProductos = new System.Windows.Forms.DataGridView();
+            this.TablaProductos = new System.Windows.Forms.DataGridView();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,7 +45,7 @@
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblListaProductos
@@ -58,36 +58,36 @@
             this.lblListaProductos.TabIndex = 96;
             this.lblListaProductos.Text = "Lista de Productos";
             // 
-            // btnBuscar
+            // BtnBuscar
             // 
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
-            this.btnBuscar.Location = new System.Drawing.Point(530, 76);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(35, 31);
-            this.btnBuscar.TabIndex = 95;
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
+            this.BtnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscar.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscar.Location = new System.Drawing.Point(530, 76);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Size = new System.Drawing.Size(35, 31);
+            this.BtnBuscar.TabIndex = 95;
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // txt1
+            // TxtBuscar
             // 
-            this.txt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt1.Location = new System.Drawing.Point(338, 80);
-            this.txt1.Name = "txt1";
-            this.txt1.Size = new System.Drawing.Size(180, 27);
-            this.txt1.TabIndex = 94;
+            this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBuscar.Location = new System.Drawing.Point(338, 80);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(180, 27);
+            this.TxtBuscar.TabIndex = 94;
             // 
-            // cmb1
+            // CmbBuscar
             // 
-            this.cmb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmb1.FormattingEnabled = true;
-            this.cmb1.Location = new System.Drawing.Point(141, 80);
-            this.cmb1.Name = "cmb1";
-            this.cmb1.Size = new System.Drawing.Size(178, 28);
-            this.cmb1.TabIndex = 93;
+            this.CmbBuscar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbBuscar.FormattingEnabled = true;
+            this.CmbBuscar.Location = new System.Drawing.Point(141, 80);
+            this.CmbBuscar.Name = "CmbBuscar";
+            this.CmbBuscar.Size = new System.Drawing.Size(178, 28);
+            this.CmbBuscar.TabIndex = 93;
             // 
             // lblBuscar
             // 
@@ -99,10 +99,10 @@
             this.lblBuscar.TabIndex = 92;
             this.lblBuscar.Text = "Buscar por:";
             // 
-            // tablaProductos
+            // TablaProductos
             // 
-            this.tablaProductos.AllowUserToAddRows = false;
-            this.tablaProductos.BackgroundColor = System.Drawing.Color.White;
+            this.TablaProductos.AllowUserToAddRows = false;
+            this.TablaProductos.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,9 +111,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.tablaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TablaProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.TablaProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
             this.Codigo,
             this.Nombre,
@@ -122,22 +122,22 @@
             this.PrecioCompra,
             this.PrecioVenta,
             this.Estado});
-            this.tablaProductos.Location = new System.Drawing.Point(12, 123);
-            this.tablaProductos.MultiSelect = false;
-            this.tablaProductos.Name = "tablaProductos";
-            this.tablaProductos.ReadOnly = true;
-            this.tablaProductos.RowHeadersWidth = 51;
+            this.TablaProductos.Location = new System.Drawing.Point(12, 123);
+            this.TablaProductos.MultiSelect = false;
+            this.TablaProductos.Name = "TablaProductos";
+            this.TablaProductos.ReadOnly = true;
+            this.TablaProductos.RowHeadersWidth = 51;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaProductos.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.tablaProductos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tablaProductos.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaProductos.RowTemplate.Height = 28;
-            this.tablaProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaProductos.Size = new System.Drawing.Size(553, 324);
-            this.tablaProductos.TabIndex = 91;
-            this.tablaProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProductos_CellDoubleClick);
-            this.tablaProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProductos_CellFormatting);
+            this.TablaProductos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.TablaProductos.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TablaProductos.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaProductos.RowTemplate.Height = 28;
+            this.TablaProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.TablaProductos.Size = new System.Drawing.Size(553, 324);
+            this.TablaProductos.TabIndex = 91;
+            this.TablaProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProductos_CellDoubleClick);
+            this.TablaProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProductos_CellFormatting);
             // 
             // IdProducto
             // 
@@ -154,6 +154,7 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 125;
             // 
             // Nombre
             // 
@@ -212,18 +213,18 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(577, 463);
             this.Controls.Add(this.lblListaProductos);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txt1);
-            this.Controls.Add(this.cmb1);
+            this.Controls.Add(this.BtnBuscar);
+            this.Controls.Add(this.TxtBuscar);
+            this.Controls.Add(this.CmbBuscar);
             this.Controls.Add(this.lblBuscar);
-            this.Controls.Add(this.tablaProductos);
+            this.Controls.Add(this.TablaProductos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "vtnModalesProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados de los productos";
             this.Load += new System.EventHandler(this.VtnModalesProductos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,11 +233,11 @@
         #endregion
 
         private System.Windows.Forms.Label lblListaProductos;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txt1;
-        private System.Windows.Forms.ComboBox cmb1;
+        private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.DataGridView tablaProductos;
+        private System.Windows.Forms.DataGridView TablaProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;

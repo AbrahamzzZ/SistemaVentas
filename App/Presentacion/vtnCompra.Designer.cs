@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class vtnCompra
+    partial class VtnCompra
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vtnCompra));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnCompra));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.NudCantidad = new System.Windows.Forms.NumericUpDown();
             this.TxtPreciVenta = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.TxtTotalPagar = new System.Windows.Forms.TextBox();
             this.lblTotalPagar = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.tablaCompras = new System.Windows.Forms.DataGridView();
+            this.TablaCompras = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,39 +60,40 @@
             this.TxtIdProveedor = new System.Windows.Forms.TextBox();
             this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
             this.BtnBuscarProveedor = new System.Windows.Forms.Button();
-            this.TxtCodigoProveedor = new System.Windows.Forms.TextBox();
+            this.TxtCedulaProveedor = new System.Windows.Forms.TextBox();
             this.lblNombreProveedor = new System.Windows.Forms.Label();
-            this.LblCodigo = new System.Windows.Forms.Label();
+            this.LblCedula = new System.Windows.Forms.Label();
             this.TxtProducto = new System.Windows.Forms.TextBox();
             this.lblProducto = new System.Windows.Forms.Label();
             this.BtnBuscarProducto = new System.Windows.Forms.Button();
             this.TxtIdProducto = new System.Windows.Forms.TextBox();
-            this.TxtCodigoProducto = new System.Windows.Forms.TextBox();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.lblCodigoProducto = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblImportante = new System.Windows.Forms.Label();
-            this.TxtCodigoTransportista = new System.Windows.Forms.TextBox();
+            this.TxtCedulaTransportista = new System.Windows.Forms.TextBox();
             this.TxtNombresTransportista = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LblCedulaTransportista = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.TxtIdTransportista = new System.Windows.Forms.TextBox();
             this.BtnBuscarTransportista = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaCompras)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // numericUpDown1
+            // NudCantidad
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(932, 65);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(121, 27);
-            this.numericUpDown1.TabIndex = 112;
+            this.NudCantidad.Location = new System.Drawing.Point(932, 65);
+            this.NudCantidad.Name = "NudCantidad";
+            this.NudCantidad.Size = new System.Drawing.Size(101, 27);
+            this.NudCantidad.TabIndex = 112;
             // 
             // TxtPreciVenta
             // 
@@ -183,21 +184,21 @@
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
-            // tablaCompras
+            // TablaCompras
             // 
-            this.tablaCompras.AllowUserToAddRows = false;
-            this.tablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TablaCompras.AllowUserToAddRows = false;
+            this.TablaCompras.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.TablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Producto,
             this.PrecioCompra,
@@ -205,19 +206,19 @@
             this.Cantidad,
             this.SubTotal,
             this.btnEliminar});
-            this.tablaCompras.Location = new System.Drawing.Point(169, 348);
-            this.tablaCompras.MultiSelect = false;
-            this.tablaCompras.Name = "tablaCompras";
-            this.tablaCompras.ReadOnly = true;
-            this.tablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.tablaCompras.RowTemplate.Height = 28;
-            this.tablaCompras.Size = new System.Drawing.Size(657, 196);
-            this.tablaCompras.TabIndex = 122;
-            this.tablaCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaCompras_CellContentClick);
-            this.tablaCompras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaCompras_CellPainting);
+            this.TablaCompras.Location = new System.Drawing.Point(169, 348);
+            this.TablaCompras.MultiSelect = false;
+            this.TablaCompras.Name = "TablaCompras";
+            this.TablaCompras.ReadOnly = true;
+            this.TablaCompras.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.TablaCompras.RowTemplate.Height = 28;
+            this.TablaCompras.Size = new System.Drawing.Size(657, 196);
+            this.TablaCompras.TabIndex = 122;
+            this.TablaCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaCompras_CellContentClick);
+            this.TablaCompras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaCompras_CellPainting);
             // 
             // ID
             // 
@@ -313,7 +314,7 @@
             // 
             // CmbTipoDocumento
             // 
-            this.CmbTipoDocumento.BackColor = System.Drawing.Color.LightGray;
+            this.CmbTipoDocumento.BackColor = System.Drawing.Color.White;
             this.CmbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbTipoDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbTipoDocumento.FormattingEnabled = true;
@@ -368,9 +369,9 @@
             this.groupBox2.Controls.Add(this.TxtIdProveedor);
             this.groupBox2.Controls.Add(this.TxtNombresProveedor);
             this.groupBox2.Controls.Add(this.BtnBuscarProveedor);
-            this.groupBox2.Controls.Add(this.TxtCodigoProveedor);
+            this.groupBox2.Controls.Add(this.TxtCedulaProveedor);
             this.groupBox2.Controls.Add(this.lblNombreProveedor);
-            this.groupBox2.Controls.Add(this.LblCodigo);
+            this.groupBox2.Controls.Add(this.LblCedula);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(797, 87);
             this.groupBox2.Name = "groupBox2";
@@ -411,15 +412,15 @@
             this.BtnBuscarProveedor.UseVisualStyleBackColor = true;
             this.BtnBuscarProveedor.Click += new System.EventHandler(this.BtnBuscarProveedor_Click);
             // 
-            // TxtCodigoProveedor
+            // TxtCedulaProveedor
             // 
-            this.TxtCodigoProveedor.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoProveedor.Location = new System.Drawing.Point(185, 31);
-            this.TxtCodigoProveedor.Name = "TxtCodigoProveedor";
-            this.TxtCodigoProveedor.ReadOnly = true;
-            this.TxtCodigoProveedor.Size = new System.Drawing.Size(220, 27);
-            this.TxtCodigoProveedor.TabIndex = 2;
+            this.TxtCedulaProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCedulaProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedulaProveedor.Location = new System.Drawing.Point(185, 31);
+            this.TxtCedulaProveedor.Name = "TxtCedulaProveedor";
+            this.TxtCedulaProveedor.ReadOnly = true;
+            this.TxtCedulaProveedor.Size = new System.Drawing.Size(220, 27);
+            this.TxtCedulaProveedor.TabIndex = 2;
             // 
             // lblNombreProveedor
             // 
@@ -431,15 +432,15 @@
             this.lblNombreProveedor.TabIndex = 1;
             this.lblNombreProveedor.Text = "Nombre Proveedor:";
             // 
-            // LblCodigo
+            // LblCedula
             // 
-            this.LblCodigo.AutoSize = true;
-            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigo.Location = new System.Drawing.Point(17, 35);
-            this.LblCodigo.Name = "LblCodigo";
-            this.LblCodigo.Size = new System.Drawing.Size(133, 18);
-            this.LblCodigo.TabIndex = 0;
-            this.LblCodigo.Text = "Código Proveedor:";
+            this.LblCedula.AutoSize = true;
+            this.LblCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCedula.Location = new System.Drawing.Point(17, 35);
+            this.LblCedula.Name = "LblCedula";
+            this.LblCedula.Size = new System.Drawing.Size(131, 18);
+            this.LblCedula.TabIndex = 0;
+            this.LblCedula.Text = "Cédula Proveedor:";
             // 
             // TxtProducto
             // 
@@ -482,15 +483,15 @@
             this.TxtIdProducto.Size = new System.Drawing.Size(37, 27);
             this.TxtIdProducto.TabIndex = 103;
             // 
-            // TxtCodigoProducto
+            // TxtCodigo
             // 
-            this.TxtCodigoProducto.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoProducto.Location = new System.Drawing.Point(20, 65);
-            this.TxtCodigoProducto.Name = "TxtCodigoProducto";
-            this.TxtCodigoProducto.Size = new System.Drawing.Size(227, 27);
-            this.TxtCodigoProducto.TabIndex = 2;
-            this.TxtCodigoProducto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoProducto_KeyDown);
+            this.TxtCodigo.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(20, 65);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.Size = new System.Drawing.Size(227, 27);
+            this.TxtCodigo.TabIndex = 2;
+            this.TxtCodigo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCodigoProducto_KeyDown);
             // 
             // lblCodigoProducto
             // 
@@ -505,7 +506,8 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.numericUpDown1);
+            this.groupBox3.Controls.Add(this.BtnLimpiar);
+            this.groupBox3.Controls.Add(this.NudCantidad);
             this.groupBox3.Controls.Add(this.TxtPreciVenta);
             this.groupBox3.Controls.Add(this.TxtPrecioCompra);
             this.groupBox3.Controls.Add(this.lblCantidad);
@@ -515,7 +517,7 @@
             this.groupBox3.Controls.Add(this.lblProducto);
             this.groupBox3.Controls.Add(this.BtnBuscarProducto);
             this.groupBox3.Controls.Add(this.TxtIdProducto);
-            this.groupBox3.Controls.Add(this.TxtCodigoProducto);
+            this.groupBox3.Controls.Add(this.TxtCodigo);
             this.groupBox3.Controls.Add(this.lblCodigoProducto);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(169, 214);
@@ -536,15 +538,15 @@
             this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Compra se enc" +
     "uentre totalmente vacía.\r\n\r\n";
             // 
-            // TxtCodigoTransportista
+            // TxtCedulaTransportista
             // 
-            this.TxtCodigoTransportista.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCodigoTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigoTransportista.Location = new System.Drawing.Point(17, 76);
-            this.TxtCodigoTransportista.Name = "TxtCodigoTransportista";
-            this.TxtCodigoTransportista.ReadOnly = true;
-            this.TxtCodigoTransportista.Size = new System.Drawing.Size(167, 27);
-            this.TxtCodigoTransportista.TabIndex = 113;
+            this.TxtCedulaTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedulaTransportista.Location = new System.Drawing.Point(17, 76);
+            this.TxtCedulaTransportista.Name = "TxtCedulaTransportista";
+            this.TxtCedulaTransportista.ReadOnly = true;
+            this.TxtCedulaTransportista.Size = new System.Drawing.Size(167, 27);
+            this.TxtCedulaTransportista.TabIndex = 113;
             // 
             // TxtNombresTransportista
             // 
@@ -556,15 +558,15 @@
             this.TxtNombresTransportista.Size = new System.Drawing.Size(167, 27);
             this.TxtNombresTransportista.TabIndex = 114;
             // 
-            // label1
+            // LblCedulaTransportista
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 18);
-            this.label1.TabIndex = 115;
-            this.label1.Text = "Código Transportista:";
+            this.LblCedulaTransportista.AutoSize = true;
+            this.LblCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCedulaTransportista.Location = new System.Drawing.Point(14, 55);
+            this.LblCedulaTransportista.Name = "LblCedulaTransportista";
+            this.LblCedulaTransportista.Size = new System.Drawing.Size(149, 18);
+            this.LblCedulaTransportista.TabIndex = 115;
+            this.LblCedulaTransportista.Text = "Cédula Transportista:";
             // 
             // label2
             // 
@@ -582,9 +584,9 @@
             this.groupBox5.Controls.Add(this.TxtIdTransportista);
             this.groupBox5.Controls.Add(this.BtnBuscarTransportista);
             this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.TxtCodigoTransportista);
+            this.groupBox5.Controls.Add(this.TxtCedulaTransportista);
             this.groupBox5.Controls.Add(this.TxtNombresTransportista);
-            this.groupBox5.Controls.Add(this.label1);
+            this.groupBox5.Controls.Add(this.LblCedulaTransportista);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(849, 339);
             this.groupBox5.Name = "groupBox5";
@@ -615,7 +617,19 @@
             this.BtnBuscarTransportista.UseVisualStyleBackColor = true;
             this.BtnBuscarTransportista.Click += new System.EventHandler(this.BtnBuscarTransportista_Click);
             // 
-            // vtnCompra
+            // BtnLimpiar
+            // 
+            this.BtnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnLimpiar.Image = global::Presentacion.Properties.Resources.limpiar;
+            this.BtnLimpiar.Location = new System.Drawing.Point(1067, 61);
+            this.BtnLimpiar.Name = "BtnLimpiar";
+            this.BtnLimpiar.Size = new System.Drawing.Size(38, 30);
+            this.BtnLimpiar.TabIndex = 114;
+            this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            // 
+            // VtnCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -624,19 +638,19 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.lblImportante);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.tablaCompras);
+            this.Controls.Add(this.TablaCompras);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblRegistrarCompra);
-            this.Name = "vtnCompra";
+            this.Name = "VtnCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Realizar compras";
-            this.Load += new System.EventHandler(this.vtnCompra_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.Load += new System.EventHandler(this.VtnCompra_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaCompras)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -651,7 +665,7 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown NudCantidad;
         private System.Windows.Forms.TextBox TxtPreciVenta;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPrecioVenta;
@@ -660,7 +674,7 @@
         private System.Windows.Forms.TextBox TxtTotalPagar;
         private System.Windows.Forms.Label lblTotalPagar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.DataGridView tablaCompras;
+        private System.Windows.Forms.DataGridView TablaCompras;
         private System.Windows.Forms.TextBox TxtPrecioCompra;
         private System.Windows.Forms.Label lblPrecioCompra;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -673,14 +687,14 @@
         private System.Windows.Forms.TextBox TxtIdProveedor;
         private System.Windows.Forms.TextBox TxtNombresProveedor;
         private System.Windows.Forms.Button BtnBuscarProveedor;
-        private System.Windows.Forms.TextBox TxtCodigoProveedor;
+        private System.Windows.Forms.TextBox TxtCedulaProveedor;
         private System.Windows.Forms.Label lblNombreProveedor;
-        private System.Windows.Forms.Label LblCodigo;
+        private System.Windows.Forms.Label LblCedula;
         private System.Windows.Forms.TextBox TxtProducto;
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.Button BtnBuscarProducto;
         private System.Windows.Forms.TextBox TxtIdProducto;
-        private System.Windows.Forms.TextBox TxtCodigoProducto;
+        private System.Windows.Forms.TextBox TxtCodigo;
         private System.Windows.Forms.Label lblCodigoProducto;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
@@ -692,11 +706,12 @@
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
         private System.Windows.Forms.Label lblImportante;
         private System.Windows.Forms.TextBox TxtNombresTransportista;
-        private System.Windows.Forms.TextBox TxtCodigoTransportista;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TxtCedulaTransportista;
+        private System.Windows.Forms.Label LblCedulaTransportista;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button BtnBuscarTransportista;
         private System.Windows.Forms.TextBox TxtIdTransportista;
+        private System.Windows.Forms.Button BtnLimpiar;
     }
 }

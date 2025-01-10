@@ -56,10 +56,10 @@ namespace Presentacion
             openFileDialog1.Filter = "Select image(*.Jpg; *.png; *.Gif) |*.Jpg; *.png; *.Gif";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                FotoTransportista.Image = System.Drawing.Image.FromFile(openFileDialog1.FileName);
+                PbFotoTransportista.Image = System.Drawing.Image.FromFile(openFileDialog1.FileName);
                 using (MemoryStream stream = new MemoryStream())
                 {
-                    FotoTransportista.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    PbFotoTransportista.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                     imagen = stream.ToArray();
                 }
             }
@@ -189,7 +189,7 @@ namespace Presentacion
             int idTransportistaIngresado = new CN_Transportista().Registrar(agregarTransportista, imagen, out mensaje);
             if (idTransportistaIngresado != 0)
             {
-                    tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(FotoTransportista.Image), selectedItemCmb1.Valor, selectedItemCmb1.Texto });
+                    tablaTransportista.Rows.Add(new object[] { "", idTransportistaIngresado, TxtCodigo.Text, TxtNombres.Text, TxtApellidos.Text, TxtCedula.Text, TxtTelefono.Text, TxtCorreoElectronico.Text, ImageToByteArray(PbFotoTransportista.Image), selectedItemCmb1.Valor, selectedItemCmb1.Texto });
                     MessageBox.Show("El transportista fue registrado correctamente.", "Registrar transportista", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
             }
@@ -230,9 +230,9 @@ namespace Presentacion
                 CorreoElectronico = TxtCorreoElectronico.Text,
                 Estado = selectedItemCmb1.Valor == 1
             };
-            if (FotoTransportista.Image != null)
+            if (PbFotoTransportista.Image != null)
             {
-                imagen = ImageToByteArray(FotoTransportista.Image);
+                imagen = ImageToByteArray(PbFotoTransportista.Image);
             }
 
             // Delegar la validación y edición a la lógica de negocio
@@ -340,7 +340,7 @@ namespace Presentacion
                     TxtTelefono.Text = tablaTransportista.Rows[indice].Cells["Telefono"].Value.ToString();
                     TxtCorreoElectronico.Text = tablaTransportista.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
                     MemoryStream stream = new MemoryStream((byte[])tablaTransportista.Rows[indice].Cells["Image"].Value);
-                    FotoTransportista.Image = System.Drawing.Image.FromStream(stream);
+                    PbFotoTransportista.Image = System.Drawing.Image.FromStream(stream);
                     foreach (dynamic item in CmbEstado.Items)
                     {
                         // Accede a las propiedades Valor y Texto directamente
@@ -366,6 +366,10 @@ namespace Presentacion
                 return ms.ToArray();
             }
         }
+
+        /// <summary>
+        /// Método que limpia los campos del formulario.
+        /// </summary>
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
@@ -377,9 +381,14 @@ namespace Presentacion
             TxtTelefono.Clear();
             TxtCorreoElectronico.Clear();
             CmbEstado.SelectedIndex = 0;
-            FotoTransportista.Image = null;
+            PbFotoTransportista.Image = null;
         }
 
+        /// <summary>
+        /// Método que genera un código aleatorio de una longitud específica.
+        /// </summary>
+        /// <param name="longitud">La longitud del código a generar.</param>
+        /// <returns>Un string con el código generado.</returns>
         private string GenerarCodigo(int longitud)
         {
             const string caracteres = "0123456789";
