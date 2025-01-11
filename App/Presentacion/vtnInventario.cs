@@ -16,6 +16,15 @@ namespace Presentacion
     public partial class VtnInventario : Form
     {
         private Producto producto;
+
+        private Dictionary<int, Color> zonaColors = new Dictionary<int, Color>() { 
+            {1, Color.LightBlue},   // Zona Norte
+            {2, Color.LightGreen},   // Zona Sur
+            {3, Color.Yellow},       // Zona Central
+            {4, Color.Orange},       // Zona Oeste
+            {5, Color.Pink}          // Zona Este
+        };
+
         public VtnInventario()
         {
             InitializeComponent();
@@ -24,11 +33,8 @@ namespace Presentacion
         private void VtnInventario_Load(object sender, EventArgs e)
         {
             List<Producto> listaProductosConStock = new CN_Producto().ListarProductosConStock();
-            List<int> productosRegistrados = new CN_Inventario().ProductosInventario();
 
-            var productosDisponibles = listaProductosConStock.Where(p => !productosRegistrados.Contains(p.IdProducto)).ToList();
-
-            foreach (var producto in productosDisponibles)
+            foreach (var producto in listaProductosConStock)
             {
                 CmbProducto.Items.Add(producto);
             }
@@ -169,7 +175,7 @@ namespace Presentacion
             {
                 string mensajeError = "Por favor, debe seleccionar una opción:\n";
                 if (selectedItemCmb1 == null) mensajeError += "- Nombre Producto.\n";
-                if (selectedItemCmb2 == null) mensajeError += "- Ubicación almacén.\n";
+                if (selectedItemCmb2 == null) mensajeError += "- Zona almacén.\n";
 
                 MessageBox.Show(mensajeError, "Error en el ComboBox", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -201,7 +207,7 @@ namespace Presentacion
             }
             else
             {
-                MessageBox.Show($"No se pudo registrar el Producto en el Inventario: {mensaje}", "Error al Registrar el producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo registrar el producto en el Inventario: {mensaje}", "Error al Registrar el producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -248,7 +254,7 @@ namespace Presentacion
                 tablaInventario.Rows[indice].Cells["NombreProductos"].Value = editarProductoInventario.oProducto.Nombre;
                 tablaInventario.Rows[indice].Cells["Cantidad"].Value = editarProductoInventario.Cantidad;
                 tablaInventario.Rows[indice].Cells["IDZONA"].Value = editarProductoInventario.oZonaAlmacen.IdZona;
-                tablaInventario.Rows[indice].Cells["UbicacionAlmacen"].Value= editarProductoInventario.oZonaAlmacen.NombreZona;
+                tablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value= editarProductoInventario.oZonaAlmacen.NombreZona;
                 Limpiar();
             }
             else
@@ -304,18 +310,15 @@ namespace Presentacion
             }
         }
 
-        private void TablaInventario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void tablaInventario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (this.tablaInventario.Columns[e.ColumnIndex].Name == "Estado")
+            if (e.RowIndex >= 0 && e.ColumnIndex == tablaInventario.Columns["ZonaAlmacen"].Index)
             {
-                if (e.Value != null && (string)e.Value == "Activo")
+                int zonaId = Convert.ToInt32(tablaInventario.Rows[e.RowIndex].Cells["IDZONA"].Value);
+
+                if (zonaColors.ContainsKey(zonaId))
                 {
-                    DataGridViewRow row = tablaInventario.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
-                }
-                else
-                {
-                    e.CellStyle.BackColor = Color.Red;
+                    e.CellStyle.BackColor = zonaColors[zonaId];
                 }
             }
         }
@@ -337,7 +340,7 @@ namespace Presentacion
                         int valor = item.Valor;
                         string texto = item.Texto;
 
-                        if (tablaInventario.Rows[indice].Cells["UbicacionAlmacen"].Value.ToString() == item.Texto)
+                        if (tablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value.ToString() == item.Texto)
                         {
                             int indice_cmb = CmbZonaAlmacen.Items.IndexOf(item);
                             CmbZonaAlmacen.SelectedIndex = indice_cmb;
@@ -361,6 +364,10 @@ namespace Presentacion
                 }
             }
         }
+
+        /// <summary>
+        /// Método que limpia los campos del formulario.
+        /// </summary>
         public void Limpiar()
         {
             TxtIndice.Text = "-1";
@@ -418,37 +425,6 @@ namespace Presentacion
             {
                 lblCantidadProducto.Text = "Seleccione un producto";
                 TbBarraCantidadProducto.Value = 0;
-            }
-        }
-
-        private void CmbZonaAlmacen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CmbZonaAlmacen.SelectedItem != null)
-            {
-                dynamic selectedItem = CmbZonaAlmacen.SelectedItem;
-                int zonaId = selectedItem.Valor;
-
-                List<Producto> listaProductosConStock = new CN_Producto().ListarProductosConStock();
-                List<int> productosRegistradosEnZona = new CN_Inventario().ProductosPorZona(zonaId);
-
-                var productosDisponiblesEnZona = listaProductosConStock.Where(p => !productosRegistradosEnZona.Contains(p.IdProducto)).ToList();
-
-                CmbProducto.DataSource = null;
-                CmbProducto.Items.Clear();
-
-                foreach (var producto in productosDisponiblesEnZona)
-                {
-                    CmbProducto.Items.Add(producto);
-                }
-
-                if (CmbProducto.Items.Count > 0)
-                {
-                    CmbProducto.SelectedIndex = 0;
-                }
-                else
-                {
-                    CmbProducto.Enabled = false;
-                }
             }
         }
     }

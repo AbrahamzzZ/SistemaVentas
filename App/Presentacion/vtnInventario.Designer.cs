@@ -55,7 +55,7 @@
             this.NombreProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdZona = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UbicacionAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZonaAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CmbZonaAlmacen = new System.Windows.Forms.ComboBox();
             this.TbBarraCantidadProducto = new System.Windows.Forms.TrackBar();
             this.lblCantidadProducto = new System.Windows.Forms.Label();
@@ -293,7 +293,7 @@
             this.NombreProductos,
             this.Cantidad,
             this.IdZona,
-            this.UbicacionAlmacen});
+            this.ZonaAlmacen});
             this.tablaInventario.Location = new System.Drawing.Point(417, 187);
             this.tablaInventario.MultiSelect = false;
             this.tablaInventario.Name = "tablaInventario";
@@ -306,7 +306,7 @@
             this.tablaInventario.Size = new System.Drawing.Size(978, 248);
             this.tablaInventario.TabIndex = 130;
             this.tablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaInventario_CellContentClick);
-            this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaInventario_CellFormatting);
+            this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaInventario_CellFormatting);
             this.tablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaInventario_CellPainting);
             // 
             // btnSeleccionar
@@ -360,13 +360,13 @@
             this.IdZona.Visible = false;
             this.IdZona.Width = 125;
             // 
-            // UbicacionAlmacen
+            // ZonaAlmacen
             // 
-            this.UbicacionAlmacen.HeaderText = "Ubicacion en el almacen";
-            this.UbicacionAlmacen.MinimumWidth = 6;
-            this.UbicacionAlmacen.Name = "UbicacionAlmacen";
-            this.UbicacionAlmacen.ReadOnly = true;
-            this.UbicacionAlmacen.Width = 200;
+            this.ZonaAlmacen.HeaderText = "Zona en el almacén";
+            this.ZonaAlmacen.MinimumWidth = 6;
+            this.ZonaAlmacen.Name = "ZonaAlmacen";
+            this.ZonaAlmacen.ReadOnly = true;
+            this.ZonaAlmacen.Width = 200;
             // 
             // CmbZonaAlmacen
             // 
@@ -377,7 +377,6 @@
             this.CmbZonaAlmacen.Name = "CmbZonaAlmacen";
             this.CmbZonaAlmacen.Size = new System.Drawing.Size(280, 28);
             this.CmbZonaAlmacen.TabIndex = 131;
-            this.CmbZonaAlmacen.SelectedIndexChanged += new System.EventHandler(this.CmbZonaAlmacen_SelectedIndexChanged);
             // 
             // TbBarraCantidadProducto
             // 
@@ -459,14 +458,14 @@
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.DataGridView tablaInventario;
         private System.Windows.Forms.ComboBox CmbZonaAlmacen;
+        private System.Windows.Forms.TrackBar TbBarraCantidadProducto;
+        private System.Windows.Forms.Label lblCantidadProducto;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDPRODUCTO;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdZona;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UbicacionAlmacen;
-        private System.Windows.Forms.TrackBar TbBarraCantidadProducto;
-        private System.Windows.Forms.Label lblCantidadProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZonaAlmacen;
     }
 }
