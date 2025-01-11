@@ -14,21 +14,21 @@ namespace Negocios
 
         private CD_Inventario ObjetoProductoInventario = new CD_Inventario();
 
+        /// <summary>
+        /// Método que lista todos los productos en el inventario.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Inventario.</returns>
         public List<Inventario> ListarProductoInventario()
         {
             return ObjetoProductoInventario.MostrarProductoInventario();
         }
 
-        public List<int> ProductosPorZona(int zonaId)
-        {
-            return ObjetoProductoInventario.ProductosRegistradosPorZona(zonaId);
-        }
-
-        public List<int> ProductosInventario()
-        {
-            return ObjetoProductoInventario.ProductosRegistradosInventario();
-        }
-
+        /// <summary>
+        /// Método que registra un nuevo producto en el inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el resultado de la operación.</returns>
         public int Registrar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -48,6 +48,12 @@ namespace Negocios
             return ObjetoProductoInventario.AgregarProductoInventario(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que edita la información de un producto en el inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Editar(Inventario obj, out string mensaje)
         {
             mensaje = string.Empty;
@@ -67,6 +73,12 @@ namespace Negocios
             return ObjetoProductoInventario.EditarProductoInventario(obj, out mensaje);
         }
 
+        /// <summary>
+        /// Método que elimina un producto del inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool Eliminar(Inventario obj, out string mensaje)
         {
             // Validaciones de negocio

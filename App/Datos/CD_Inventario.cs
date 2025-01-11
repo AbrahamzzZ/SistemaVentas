@@ -14,7 +14,10 @@ namespace Datos
 
         Conexion Conexion = new Conexion();
 
-        //Metodo que muestra una lista de todos los Productos en el Inventario
+        /// <summary>
+        /// Método que muestra una lista de todos los productos que estan en el inventario.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Inventario.</returns>
         public List<Inventario> MostrarProductoInventario()
         {
             List<Inventario> listaMostrarProductoInventario = new List<Inventario>();
@@ -46,7 +49,12 @@ namespace Datos
             return listaMostrarProductoInventario;
         }
 
-        //Metodo que permite registrar un Producto en el Inventario
+        /// <summary>
+        /// Método que permite registrar un producto en el inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a registrar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un entero que indica el ID del inventario generado.</returns>
         public int AgregarProductoInventario(Inventario obj, out string mensaje)
         {
             int idInventarioGenerado = 0;
@@ -73,7 +81,12 @@ namespace Datos
             return idInventarioGenerado;
         }
 
-        //Metodo que permite editar la informacion del Producto en el Inventario
+        /// <summary>
+        /// Método que permite editar la información del producto en el inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a editar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool EditarProductoInventario(Inventario obj, out string mensaje)
         {
             bool respuesta = false;
@@ -102,7 +115,12 @@ namespace Datos
             return respuesta;
         }
 
-        //Metodo que permite eliminar un Producto en el Inventario
+        /// <summary>
+        /// Método que permite eliminar un producto en el inventario.
+        /// </summary>
+        /// <param name="obj">El objeto Inventario a eliminar.</param>
+        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
+        /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool EliminarProductoInventario(Inventario obj, out string mensaje)
         {
             bool respuesta = false;
@@ -127,51 +145,6 @@ namespace Datos
 
             }
             return respuesta;
-        }
-
-        public List<int> ProductosRegistradosInventario()
-        {
-            List<int> idsProductos = new List<int>();
-            try
-            {
-                StringBuilder query = new StringBuilder();
-                query.AppendLine("SELECT DISTINCT ID_PRODUCTO FROM INVENTARIO");
-                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    idsProductos.Add(Convert.ToInt32(reader["ID_PRODUCTO"]));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al obtener IDs de productos registrados: {ex.Message}");
-            }
-            return idsProductos;
-        }
-
-        public List<int> ProductosRegistradosPorZona(int zonaId)
-        {
-            List<int> idsProductos = new List<int>();
-            try
-            {
-                StringBuilder query = new StringBuilder();
-                query.AppendLine("SELECT DISTINCT ID_PRODUCTO FROM INVENTARIO");
-                query.AppendLine("WHERE ID_ZONA = @zonaId");
-
-                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@zonaId", zonaId);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    idsProductos.Add(Convert.ToInt32(reader["ID_PRODUCTO"]));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al obtener IDs de productos registrados por zona: {ex.Message}");
-            }
-            return idsProductos;
         }
     }
 }
