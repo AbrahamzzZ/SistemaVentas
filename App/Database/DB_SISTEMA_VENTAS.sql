@@ -666,50 +666,66 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-	-- Declarar variables locales
+    -- Declarar variables locales
     DECLARE @Cantidad_Comprada INT;
-    DECLARE @Cantidad_Existente INT = 0;
     DECLARE @Limite_Zona INT;
 
     -- Inicializamos las variables de salida
-    SET @RESULTADO = 0;
-    SET @MENSAJE = '';
+    SET @Resultado = 0;
+    SET @Mensaje = '';
+
+    -- Verificar si el producto ya está registrado en el inventario
+    IF EXISTS (
+        SELECT 1
+        FROM INVENTARIO
+        WHERE ID_PRODUCTO = @Id_Producto
+    )
+    BEGIN
+        SET @Mensaje = 'El producto ya está registrado en el inventario.';
+        RETURN;
+    END
 
     -- Obtener la cantidad comprada del producto
     SELECT @Cantidad_Comprada = ISNULL(SUM(CANTIDAD), 0)
     FROM DETALLE_COMPRA
-    WHERE ID_PRODUCTO = @ID_PRODUCTO;
+    WHERE ID_PRODUCTO = @Id_Producto;
 
-	-- Obtener la capacidad total de cada zona del almacen
-	SELECT @Limite_Zona = LIMITE_ESPACIOS
+    -- Obtener la capacidad total de la zona de almacenamiento
+    SELECT @Limite_Zona = LIMITE_ESPACIOS
     FROM ZONA_ALMACEN
-    WHERE ID_ZONA = @ID_ZONA;
+    WHERE ID_ZONA = @Id_Zona;
 
-	-- Validar cantidad contra la cantidad comprada y el espacio disponible
+    -- Validar cantidad contra la cantidad comprada y el espacio disponible
     IF @Cantidad > @Cantidad_Comprada
     BEGIN
         SET @Mensaje = 'La cantidad ingresada excede la cantidad comprada del producto.';
         RETURN;
     END
 
-    -- Registrar el producto en el inventarioy actualizar el espacio disponible
+    IF @Cantidad > @Limite_Zona
+    BEGIN
+        SET @Mensaje = 'La cantidad ingresada excede el espacio disponible en la zona.';
+        RETURN;
+    END
+
+    -- Registrar el producto en el inventario y actualizar el espacio disponible
     BEGIN TRY
         BEGIN TRANSACTION;
 
         INSERT INTO INVENTARIO (ID_PRODUCTO, ID_ZONA, CANTIDAD, FECHA_INGRESO)
-        VALUES (@ID_PRODUCTO, @ID_ZONA, @CANTIDAD, GETDATE());
+        VALUES (@Id_Producto, @Id_Zona, @Cantidad, GETDATE());
 
         UPDATE ZONA_ALMACEN
         SET LIMITE_ESPACIOS = LIMITE_ESPACIOS - @Cantidad
-        WHERE ID_ZONA = @ID_ZONA;
+        WHERE ID_ZONA = @Id_Zona;
 
         SET @Resultado = SCOPE_IDENTITY();
         SET @Mensaje = 'Producto registrado en el inventario exitosamente.';
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
-		ROLLBACK TRANSACTION;
-        SET @MENSAJE = ERROR_MESSAGE();
+        ROLLBACK TRANSACTION;
+        SET @Mensaje = ERROR_MESSAGE();
     END CATCH
 END;
 go
@@ -1737,15 +1753,15 @@ INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELEC
 go
 INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,'Supermercado Paradisia','0969810812','0102030405785','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
 go
-INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Norte', 100, 1);
+INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Norte', 200, 1);
 go
-INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Sur', 100, 1);
+INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Sur', 200, 1);
 go
-INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Este', 100, 1);
+INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Este', 200, 1);
 go
-INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Oeste', 100, 1);
+INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Oeste', 200, 1);
 go
-INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Central', 100, 1);
+INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Central', 200, 1);
 go
 /*INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(1,'Javier Mateo','javierito@gmail.com','Compre unas cajas de bananos y algunas bananas me vinieron negras, exijo una devolucion.',1);
 go
