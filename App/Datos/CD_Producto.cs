@@ -164,6 +164,11 @@ namespace Datos
             return Respuesta;
         }
 
+        /// <summary>
+        /// Método que muestra el stock de un producto específico, esto sirve para el inventario.
+        /// </summary>
+        /// <param name="IdProducto">El ID del producto.</param>
+        /// <returns>Un entero que indica el stock del producto.</returns>
         public int MostrarProductoStock(int IdProducto)
         {
             int stock = 0;
@@ -187,6 +192,10 @@ namespace Datos
             return stock;
         }
 
+        /// <summary>
+        /// Método que lista todos los productos que tienen stock disponible, esto es para el inventario.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Producto.</returns>
         public List<Producto> ListarProductosConStock()
         {
             List<Producto> listaProductos = new List<Producto>();
