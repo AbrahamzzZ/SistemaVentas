@@ -18,10 +18,15 @@ namespace Presentacion
 {
     public partial class VtnVerDetalleVentas : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnDetalleVentas.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnVerDetalleVentas()
         {
             InitializeComponent();
         }
+
         private void VtnVerDetalleVentas_Load(object sender, EventArgs e)
         {
             TxtNumeroDocumentoVenta.Select();

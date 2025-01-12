@@ -704,7 +704,7 @@ BEGIN
 
     IF @Cantidad > @Limite_Zona
     BEGIN
-        SET @Mensaje = 'La cantidad ingresada excede el espacio disponible en la zona.';
+        SET @Mensaje = 'No hay suficiente espacio en la zona del almacén especificada.';
         RETURN;
     END
 

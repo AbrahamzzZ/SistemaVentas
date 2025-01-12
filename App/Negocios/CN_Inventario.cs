@@ -36,7 +36,7 @@ namespace Negocios
             //Validar cantidad
             if (obj.Cantidad <= 0)
             {
-                mensaje = "\n- No se puede registrar un producto con un stock de 0.";
+                mensaje = "\n- No se puede registrar un producto al inventario con una cantidad de 0 unidades.";
             }
 
             // Retornar false si hay mensajes de error
@@ -61,7 +61,7 @@ namespace Negocios
             //Validar cantidad
             if (obj.Cantidad <= 0)
             {
-                mensaje = "\n- No se puede editar un producto con un stock de 0.";
+                mensaje = "\n- No se puede editar un producto al inventario con una cantidad de 0 unidades.";
             }
 
             // Retornar false si hay mensajes de error
@@ -84,7 +84,7 @@ namespace Negocios
             // Validaciones de negocio
             if (obj.IdInventario == 0)
             {
-                mensaje = "Debe seleccionar un Producto dentro del Inventario válida para eliminar.";
+                mensaje = "Debe seleccionar un producto dentro del Inventario válida para eliminar.";
                 return false;
             }
 

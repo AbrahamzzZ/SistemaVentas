@@ -36,7 +36,7 @@
             this.CmbProducto = new System.Windows.Forms.ComboBox();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LblProducto = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -48,7 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.BtnBuscar = new System.Windows.Forms.Button();
-            this.tablaInventario = new System.Windows.Forms.DataGridView();
+            this.TablaInventario = new System.Windows.Forms.DataGridView();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPRODUCTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@
             this.CmbZonaAlmacen = new System.Windows.Forms.ComboBox();
             this.TbBarraCantidadProducto = new System.Windows.Forms.TrackBar();
             this.lblCantidadProducto = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaInventario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbBarraCantidadProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,16 +133,16 @@
             this.lblCantidad.TabIndex = 117;
             this.lblCantidad.Text = "Cantidad:";
             // 
-            // label1
+            // LblProducto
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Wheat;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 174);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 20);
-            this.label1.TabIndex = 116;
-            this.label1.Text = "Nombre del producto:";
+            this.LblProducto.AutoSize = true;
+            this.LblProducto.BackColor = System.Drawing.Color.Wheat;
+            this.LblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblProducto.Location = new System.Drawing.Point(26, 174);
+            this.LblProducto.Name = "LblProducto";
+            this.LblProducto.Size = new System.Drawing.Size(90, 20);
+            this.LblProducto.TabIndex = 116;
+            this.LblProducto.Text = "Producto:";
             // 
             // btnEliminar
             // 
@@ -272,10 +272,10 @@
             this.BtnBuscar.UseVisualStyleBackColor = false;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
-            // tablaInventario
+            // TablaInventario
             // 
-            this.tablaInventario.AllowUserToAddRows = false;
-            this.tablaInventario.BackgroundColor = System.Drawing.Color.White;
+            this.TablaInventario.AllowUserToAddRows = false;
+            this.TablaInventario.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,9 +284,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.tablaInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TablaInventario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.TablaInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaInventario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
             this.ID,
             this.IDPRODUCTO,
@@ -294,20 +294,20 @@
             this.Cantidad,
             this.IdZona,
             this.ZonaAlmacen});
-            this.tablaInventario.Location = new System.Drawing.Point(417, 187);
-            this.tablaInventario.MultiSelect = false;
-            this.tablaInventario.Name = "tablaInventario";
-            this.tablaInventario.ReadOnly = true;
-            this.tablaInventario.RowHeadersWidth = 51;
+            this.TablaInventario.Location = new System.Drawing.Point(417, 187);
+            this.TablaInventario.MultiSelect = false;
+            this.TablaInventario.Name = "TablaInventario";
+            this.TablaInventario.ReadOnly = true;
+            this.TablaInventario.RowHeadersWidth = 51;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.tablaInventario.RowTemplate.Height = 28;
-            this.tablaInventario.Size = new System.Drawing.Size(978, 248);
-            this.tablaInventario.TabIndex = 130;
-            this.tablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaInventario_CellContentClick);
-            this.tablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tablaInventario_CellFormatting);
-            this.tablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaInventario_CellPainting);
+            this.TablaInventario.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.TablaInventario.RowTemplate.Height = 28;
+            this.TablaInventario.Size = new System.Drawing.Size(978, 248);
+            this.TablaInventario.TabIndex = 130;
+            this.TablaInventario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaInventario_CellContentClick);
+            this.TablaInventario.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaInventario_CellFormatting);
+            this.TablaInventario.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaInventario_CellPainting);
             // 
             // btnSeleccionar
             // 
@@ -408,14 +408,14 @@
             this.Controls.Add(this.lblCantidadProducto);
             this.Controls.Add(this.TbBarraCantidadProducto);
             this.Controls.Add(this.CmbZonaAlmacen);
-            this.Controls.Add(this.tablaInventario);
+            this.Controls.Add(this.TablaInventario);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.lblPaisOrigen);
             this.Controls.Add(this.CmbProducto);
             this.Controls.Add(this.TxtCantidad);
             this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.LblProducto);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -430,7 +430,7 @@
             this.Name = "VtnInventario";
             this.Text = "Inventario del supermercado";
             this.Load += new System.EventHandler(this.VtnInventario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaInventario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbBarraCantidadProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -444,7 +444,7 @@
         private System.Windows.Forms.ComboBox CmbProducto;
         private System.Windows.Forms.TextBox TxtCantidad;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LblProducto;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;
@@ -456,7 +456,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.Button BtnBuscar;
-        private System.Windows.Forms.DataGridView tablaInventario;
+        private System.Windows.Forms.DataGridView TablaInventario;
         private System.Windows.Forms.ComboBox CmbZonaAlmacen;
         private System.Windows.Forms.TrackBar TbBarraCantidadProducto;
         private System.Windows.Forms.Label lblCantidadProducto;

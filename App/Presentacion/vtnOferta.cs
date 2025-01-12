@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de oferta.
+    /// </summary>
     public partial class VtnOferta : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnOferta.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnOferta()
         {
             InitializeComponent();

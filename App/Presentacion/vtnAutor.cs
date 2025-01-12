@@ -11,8 +11,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de autor.
+    /// </summary>
     public partial class VtnAutor : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnAutor.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnAutor()
         {
             InitializeComponent();

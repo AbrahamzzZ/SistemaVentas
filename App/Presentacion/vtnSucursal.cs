@@ -18,14 +18,22 @@ using System.Globalization;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de sucursal.
+    /// </summary>
     public partial class VtnSucursal : Form
     {
-        GMarkerGoogle marcador;
-        GMapOverlay moverlay;
-        DataTable dt;
+        private GMarkerGoogle marcador;
+        private GMapOverlay moverlay;
+        private DataTable dt;
         int fila = 0;
-        double latitud = -2.19616;
-        double longitud = -79.88621;
+        private double latitud = -2.19616;
+        private double longitud = -79.88621;
+
+        /// <summary>
+        /// Constructor de la clase VtnSucursal.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnSucursal()
         {
             InitializeComponent();

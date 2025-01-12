@@ -14,11 +14,18 @@ namespace Presentacion.Modales
 {
     public partial class vtnModalesProductos : Form
     {
+        /// <summary>
+        /// Variable donde se va a guardar el producto seleccionado.
+        /// </summary>
         public Producto Producto { get; set; }
+
+        /// <summary>
+        /// Constructor de la clase vtnModalesProductos. 
+        /// Inicializa una nueva instancia de vtnModalesProductos.
+        /// </summary>
         public vtnModalesProductos()
         {
             InitializeComponent();
-            TablaProductos.CellFormatting += TablaProductos_CellFormatting;
         }
 
         private void VtnModalesProductos_Load(object sender, EventArgs e)

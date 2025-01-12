@@ -16,6 +16,12 @@ namespace Presentacion
     public partial class VtnCompra : Form
     {
         private Usuario_Catched Usuario;
+
+        /// <summary> 
+        /// Constructor de la clase VtnCompra. 
+        /// Inicializa la ventana de compra con un usuario específico. 
+        /// </summary> 
+        /// <param name="oUsuario">Usuario que realizará la compra. Puede ser nulo.</param>
         public VtnCompra(Usuario_Catched oUsuario = null)
         {
             Usuario = oUsuario;

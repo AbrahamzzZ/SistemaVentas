@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de informacion del programa.
+    /// </summary>
     public partial class VtnInformacionPrograma : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnInformacionPrograma.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnInformacionPrograma()
         {
             InitializeComponent();

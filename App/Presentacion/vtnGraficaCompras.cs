@@ -17,6 +17,10 @@ namespace Presentacion
 {
     public partial class VtnGraficaCompras : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnGraficaCompras.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnGraficaCompras()
         {
             InitializeComponent();

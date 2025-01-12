@@ -14,7 +14,15 @@ namespace Presentacion.Modales
 {
     public partial class vtnModalesOfertas : Form
     {
+        /// <summary>
+        /// Variable donde se va a guardar la oferta seleccionada.
+        /// </summary>
         public Oferta oferta { get; set; }
+
+        /// <summary>
+        /// Constructor de la clase vtnModalesOfertas. 
+        /// Inicializa una nueva instancia de vtnModalesOfertas y configura los eventos necesarios.
+        /// </summary>
         public vtnModalesOfertas()
         {
             InitializeComponent();

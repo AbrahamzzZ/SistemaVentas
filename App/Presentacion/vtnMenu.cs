@@ -17,6 +17,12 @@ namespace Presentacion
     {
         private Usuario_Catched nombreUsuarioActual;
         private static Form formularioActivo = null;
+
+        /// <summary> 
+        /// Constructor de la clase VtnMenu. 
+        /// Inicializa una nueva instancia de VtnMenu con el usuario proporcionado. 
+        /// </summary>
+        /// <param name="objusuario">Objeto Usuario_Catched que contiene la información del usuario actual.</param>
         public VtnMenu(Usuario_Catched objusuario)
         {
             nombreUsuarioActual = objusuario;

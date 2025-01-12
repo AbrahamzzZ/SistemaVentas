@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de inventario.
+    /// </summary>
     public partial class VtnInventario : Form
     {
         private Producto producto;
@@ -25,6 +28,10 @@ namespace Presentacion
             {5, Color.Pink}          // Zona Este
         };
 
+        /// <summary>
+        /// Constructor de la clase VtnInventario.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnInventario()
         {
             InitializeComponent();
@@ -66,7 +73,7 @@ namespace Presentacion
                 CmbZonaAlmacen.Enabled = false;
             }
 
-            foreach (DataGridViewColumn columna in tablaInventario.Columns)
+            foreach (DataGridViewColumn columna in TablaInventario.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnSeleccionar")
                 {
@@ -81,20 +88,20 @@ namespace Presentacion
             List<Inventario> mostrarInventario = new CN_Inventario().ListarProductoInventario();
             foreach (Inventario productosInventario in mostrarInventario)
             {
-                tablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Nombre,  productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
+                TablaInventario.Rows.Add(new object[] { "", productosInventario.IdInventario, productosInventario.oProducto.IdProducto, productosInventario.oProducto.Nombre,  productosInventario.Cantidad, productosInventario.oZonaAlmacen.IdZona, productosInventario.oZonaAlmacen.NombreZona });
             }
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
-            if (tablaInventario.Rows.Count < 1)
+            if (TablaInventario.Rows.Count < 1)
             {
                 MessageBox.Show("No hay datos en la tabla para exportar.", "Exportar Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 DataTable dt = new DataTable();
-                foreach (DataGridViewColumn columna in tablaInventario.Columns)
+                foreach (DataGridViewColumn columna in TablaInventario.Columns)
                 {
                     if (columna.HeaderText != "" && columna.Visible)
                     {
@@ -102,7 +109,7 @@ namespace Presentacion
                     }
                 }
 
-                foreach (DataGridViewRow row in tablaInventario.Rows)
+                foreach (DataGridViewRow row in TablaInventario.Rows)
                 {
                     if (row.Visible)
                     {
@@ -141,7 +148,7 @@ namespace Presentacion
             string columnaFiltro = valorCmb4.ToString();
             int filasVisibles = 0;
 
-            foreach (DataGridViewRow row in tablaInventario.Rows)
+            foreach (DataGridViewRow row in TablaInventario.Rows)
             {
                 if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
@@ -158,7 +165,7 @@ namespace Presentacion
             {
                 MessageBox.Show("No se encontró información de acuerdo a la opción seleccionada.", "Buscar inventario", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 TxtBuscar.Text = "";
-                foreach (DataGridViewRow row in tablaInventario.Rows)
+                foreach (DataGridViewRow row in TablaInventario.Rows)
                 {
                     row.Visible = true;
                 }
@@ -200,14 +207,14 @@ namespace Presentacion
             int idInventarioIngresado = new CN_Inventario().Registrar(agregarProductoInventario, out mensaje);
             if (idInventarioIngresado != 0)
             {
-                tablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.IdProducto, selectedItemCmb1.Nombre, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                TablaInventario.Rows.Add(new object[] { "", idInventarioIngresado, selectedItemCmb1.IdProducto, selectedItemCmb1.Nombre, TxtCantidad.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
 
-                MessageBox.Show("El producto fue agregado correctamente en el inventario.", "Agregar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("El producto fue registrado correctamente en el inventario.", "Registrar productos al inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
             {
-                MessageBox.Show($"No se pudo registrar el producto en el Inventario: {mensaje}", "Error al Registrar el producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo registrar el producto en el Inventario: {mensaje}", "Error al registrar el producto al inventario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -250,11 +257,11 @@ namespace Presentacion
                 MessageBox.Show("El producto fue modificado correctamente en el inventario.", "Modificar producto en el inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 int indice = Convert.ToInt32(TxtIndice.Text);
-                tablaInventario.Rows[indice].Cells["IDPRODUCTO"].Value = editarProductoInventario.oProducto.IdProducto;
-                tablaInventario.Rows[indice].Cells["NombreProductos"].Value = editarProductoInventario.oProducto.Nombre;
-                tablaInventario.Rows[indice].Cells["Cantidad"].Value = editarProductoInventario.Cantidad;
-                tablaInventario.Rows[indice].Cells["IDZONA"].Value = editarProductoInventario.oZonaAlmacen.IdZona;
-                tablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value= editarProductoInventario.oZonaAlmacen.NombreZona;
+                TablaInventario.Rows[indice].Cells["IDPRODUCTO"].Value = editarProductoInventario.oProducto.IdProducto;
+                TablaInventario.Rows[indice].Cells["NombreProductos"].Value = editarProductoInventario.oProducto.Nombre;
+                TablaInventario.Rows[indice].Cells["Cantidad"].Value = editarProductoInventario.Cantidad;
+                TablaInventario.Rows[indice].Cells["IDZONA"].Value = editarProductoInventario.oZonaAlmacen.IdZona;
+                TablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value= editarProductoInventario.oZonaAlmacen.NombreZona;
                 Limpiar();
             }
             else
@@ -283,7 +290,7 @@ namespace Presentacion
                 bool respuesta = new CN_Inventario().Eliminar(productoEliminadoInventario, out mensaje);
                 if (respuesta)
                 {
-                    tablaInventario.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
+                    TablaInventario.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                     MessageBox.Show("El producto fue eliminado correctamente del inventario.", "Eliminar producto del inventario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
                 }
@@ -310,11 +317,11 @@ namespace Presentacion
             }
         }
 
-        private void tablaInventario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaInventario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == tablaInventario.Columns["ZonaAlmacen"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == TablaInventario.Columns["ZonaAlmacen"].Index)
             {
-                int zonaId = Convert.ToInt32(tablaInventario.Rows[e.RowIndex].Cells["IDZONA"].Value);
+                int zonaId = Convert.ToInt32(TablaInventario.Rows[e.RowIndex].Cells["IDZONA"].Value);
 
                 if (zonaColors.ContainsKey(zonaId))
                 {
@@ -325,14 +332,14 @@ namespace Presentacion
 
         private void TablaInventario_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (tablaInventario.Columns[e.ColumnIndex].Name == "btnSeleccionar")
+            if (TablaInventario.Columns[e.ColumnIndex].Name == "btnSeleccionar")
             {
                 int indice = e.RowIndex;
                 if (indice >= 0)
                 {
                     TxtIndice.Text = indice.ToString();
-                    TxtId.Text = tablaInventario.Rows[indice].Cells["ID"].Value.ToString();
-                    TxtCantidad.Text = tablaInventario.Rows[indice].Cells["Cantidad"].Value.ToString();
+                    TxtId.Text = TablaInventario.Rows[indice].Cells["ID"].Value.ToString();
+                    TxtCantidad.Text = TablaInventario.Rows[indice].Cells["Cantidad"].Value.ToString();
 
                     foreach (dynamic item in CmbZonaAlmacen.Items)
                     {
@@ -340,7 +347,7 @@ namespace Presentacion
                         int valor = item.Valor;
                         string texto = item.Texto;
 
-                        if (tablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value.ToString() == item.Texto)
+                        if (TablaInventario.Rows[indice].Cells["ZonaAlmacen"].Value.ToString() == item.Texto)
                         {
                             int indice_cmb = CmbZonaAlmacen.Items.IndexOf(item);
                             CmbZonaAlmacen.SelectedIndex = indice_cmb;
@@ -354,7 +361,7 @@ namespace Presentacion
                         int valor = item.IdProducto;
                         string texto = item.Nombre;
 
-                        if (tablaInventario.Rows[indice].Cells["NombreProductos"].Value.ToString() == item.Nombre)
+                        if (TablaInventario.Rows[indice].Cells["NombreProductos"].Value.ToString() == item.Nombre)
                         {
                             int indice_cmb = CmbProducto.Items.IndexOf(item);
                             CmbProducto.SelectedIndex = indice_cmb;
@@ -382,10 +389,10 @@ namespace Presentacion
         {
             if (CmbProducto.SelectedItem != null)
             {
-                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
-                if (selectedProduct != null)
+                Producto productoSeleccionado = CmbProducto.SelectedItem as Producto;
+                if (productoSeleccionado != null)
                 {
-                    int idProducto = selectedProduct.IdProducto;
+                    int idProducto = productoSeleccionado.IdProducto;
                     int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
                     lblCantidadProducto.Text = $"Stock disponible: {stockProducto}";
 
@@ -410,10 +417,10 @@ namespace Presentacion
             // Verificar si hay un producto seleccionado
             if (CmbProducto.SelectedItem != null)
             {
-                Producto selectedProduct = CmbProducto.SelectedItem as Producto;
-                if (selectedProduct != null)
+                Producto productoSeleccionado = CmbProducto.SelectedItem as Producto;
+                if (productoSeleccionado != null)
                 {
-                    int idProducto = selectedProduct.IdProducto;
+                    int idProducto = productoSeleccionado.IdProducto;
                     int stockProducto = new CN_Producto().ObtenerStockId(idProducto);
 
                     // Actualizar la etiqueta de stock
