@@ -14,6 +14,10 @@ namespace Presentacion
 {
     public partial class VtnUnidadMedida : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnUnidadMedida.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnUnidadMedida()
         {
             InitializeComponent();

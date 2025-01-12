@@ -12,13 +12,25 @@ using System.Windows.Forms;
 
 namespace Presentacion.Modales
 {
+    /// <summary>
+    /// Clase que representa la ventana modal transportista.
+    /// </summary>
     public partial class VtnModalesTransportista : Form
     {
+        /// <summary>
+        /// Variable donde se va a guardar el transportista seleccionado.
+        /// </summary>
         public Transportista Transportista { get; set; }
+
+        /// <summary> 
+        /// Constructor de la clase vtnModalesTransportista. 
+        /// Inicializa una nueva instancia de vtnModalesTransportistas. 
+        /// </summary>
         public VtnModalesTransportista()
         {
             InitializeComponent();
         }
+
         private void VtnModalesTransportista_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in tablaTransportista.Columns)

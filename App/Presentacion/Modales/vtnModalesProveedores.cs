@@ -12,13 +12,23 @@ using System.Windows.Forms;
 
 namespace Presentacion.Modales
 {
+    /// <summary>
+    /// Clase que representa la ventana modal proveedor.
+    /// </summary>
     public partial class vtnModalesProveedores : Form
     {
+        /// <summary>
+        /// Variable donde se va a guardar el producto seleccionado.
+        /// </summary>
         public Proveedor Proveedor { get; set; }
+
+        /// <summary> 
+        /// Constructor de la clase vtnModalesProveedores. 
+        /// Inicializa una nueva instancia de vtnModalesProveedores. 
+        /// </summary>
         public vtnModalesProveedores()
         {
             InitializeComponent();
-            tablaProveedores.CellFormatting += TablaProveedores_CellFormatting;
         }
 
         private void VtnModalesProveedores_Load(object sender, EventArgs e)

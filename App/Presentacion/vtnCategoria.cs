@@ -14,6 +14,10 @@ namespace Presentacion
 {
     public partial class VtnCategoria : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnCategoria.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnCategoria()
         {
             InitializeComponent();

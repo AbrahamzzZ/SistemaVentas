@@ -15,8 +15,15 @@ using iTextSharp.text;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de gráficas ventas.
+    /// </summary>
     public partial class vtnGraficaVentas : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnGraficaVentas.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public vtnGraficaVentas()
         {
             InitializeComponent();

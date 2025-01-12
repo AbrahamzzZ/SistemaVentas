@@ -14,8 +14,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de proveedor.
+    /// </summary>
     public partial class VtnProveedor : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnProveedor.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnProveedor()
         {
             InitializeComponent();

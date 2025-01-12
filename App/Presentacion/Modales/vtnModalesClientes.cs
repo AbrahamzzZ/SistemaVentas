@@ -14,11 +14,18 @@ namespace Presentacion.Modales
 {
     public partial class vtnModalesClientes : Form
     {
+        /// <summary>
+        /// Variable donde se va a guardar el cliente seleccionado.
+        /// </summary>
         public Cliente Cliente { get; set; }
+
+        /// <summary> 
+        /// Constructor de la clase vtnModalesClientes. 
+        /// Inicializa una nueva instancia de vtnModalesClientes.
+        /// </summary>
         public vtnModalesClientes()
         {
             InitializeComponent();
-            tablaClientes.CellFormatting += TablaClientes_CellFormatting;
         }
 
         private void VtnModalesClientes_Load(object sender, EventArgs e)

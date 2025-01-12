@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana del login.
+    /// </summary>
     public partial class VtnLogin : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnLogin.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnLogin()
         {
             InitializeComponent();

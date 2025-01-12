@@ -18,6 +18,11 @@ namespace Presentacion
     public partial class VtnTransportista : Form
     {
         byte[] imagen = null;
+
+        /// <summary>
+        /// Constructor de la clase VtnTranportista.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnTransportista()
         {
             InitializeComponent();
@@ -358,6 +363,11 @@ namespace Presentacion
             }
         }
 
+        /// <summary> 
+        /// Convierte una imagen en un array de bytes. 
+        /// </summary> 
+        /// <param name="image">La imagen a convertir.</param> 
+        /// <returns>Un array de bytes que representa la imagen.</returns>
         private byte[] ImageToByteArray(System.Drawing.Image image)
         {
             using (MemoryStream ms = new MemoryStream())

@@ -13,8 +13,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de reportes de ventas.
+    /// </summary>
     public partial class vtnReportesVentas : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnReportesVentas.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public vtnReportesVentas()
         {
             InitializeComponent();

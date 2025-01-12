@@ -17,6 +17,12 @@ namespace Presentacion
     {
         private Usuario_Catched usuario;
         private Cliente cliente;
+
+        /// <summary> 
+        /// Constructor de la clase VtnVenta. 
+        /// Inicializa la ventana de venta con un usuario específico. 
+        /// </summary> 
+        /// <param name="oUsuario">Usuario que realizará la venta. Puede ser nulo.</param>
         public VtnVenta(Usuario_Catched oUsuario = null)
         {
             usuario = oUsuario;

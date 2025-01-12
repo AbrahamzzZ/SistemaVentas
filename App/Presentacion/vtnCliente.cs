@@ -13,8 +13,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de cliente.
+    /// </summary>
     public partial class VtnCliente : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnCliente.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnCliente()
         {
             InitializeComponent();

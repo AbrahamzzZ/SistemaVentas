@@ -12,8 +12,15 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de recuperar clave.
+    /// </summary>
     public partial class VtnRecuperarClave : Form
     {
+        /// <summary>
+        /// Constructor de la clase VtnRecuperarClave.
+        /// Inicializa los componentes de la ventana.
+        /// </summary>
         public VtnRecuperarClave()
         {
             InitializeComponent();
