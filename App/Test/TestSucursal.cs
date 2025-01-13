@@ -1,5 +1,6 @@
 using Datos;
 using Entidad;
+using System.Data;
 
 namespace Test
 {
