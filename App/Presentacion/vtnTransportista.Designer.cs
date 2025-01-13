@@ -450,7 +450,7 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 125;
+            this.Codigo.Width = 75;
             // 
             // Nombres
             // 

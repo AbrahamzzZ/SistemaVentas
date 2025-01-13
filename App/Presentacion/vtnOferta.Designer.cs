@@ -57,6 +57,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaOferta = new System.Windows.Forms.DataGridView();
+            this.TxtId = new System.Windows.Forms.TextBox();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.LblCodigo = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,9 +72,6 @@
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxtId = new System.Windows.Forms.TextBox();
-            this.TxtCodigo = new System.Windows.Forms.TextBox();
-            this.LblCodigo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tablaOferta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -398,6 +398,36 @@
             this.tablaOferta.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaOferta_CellFormatting);
             this.tablaOferta.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaOferta_CellPainting);
             // 
+            // TxtId
+            // 
+            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtId.Location = new System.Drawing.Point(276, 77);
+            this.TxtId.Name = "TxtId";
+            this.TxtId.ReadOnly = true;
+            this.TxtId.Size = new System.Drawing.Size(34, 27);
+            this.TxtId.TabIndex = 171;
+            this.TxtId.Text = "0";
+            // 
+            // TxtCodigo
+            // 
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(30, 122);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.ReadOnly = true;
+            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
+            this.TxtCodigo.TabIndex = 172;
+            // 
+            // LblCodigo
+            // 
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(26, 99);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 173;
+            this.LblCodigo.Text = "Código:";
+            // 
             // btnSeleccionar
             // 
             this.btnSeleccionar.HeaderText = "";
@@ -421,7 +451,7 @@
             this.Codigo.MinimumWidth = 6;
             this.Codigo.Name = "Codigo";
             this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 80;
+            this.Codigo.Width = 75;
             // 
             // Oferta
             // 
@@ -462,7 +492,7 @@
             this.FechaInicio.MinimumWidth = 6;
             this.FechaInicio.Name = "FechaInicio";
             this.FechaInicio.ReadOnly = true;
-            this.FechaInicio.Width = 125;
+            this.FechaInicio.Width = 110;
             // 
             // FechaFin
             // 
@@ -496,36 +526,6 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             this.Estado.Width = 87;
-            // 
-            // TxtId
-            // 
-            this.TxtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtId.Location = new System.Drawing.Point(276, 77);
-            this.TxtId.Name = "TxtId";
-            this.TxtId.ReadOnly = true;
-            this.TxtId.Size = new System.Drawing.Size(34, 27);
-            this.TxtId.TabIndex = 171;
-            this.TxtId.Text = "0";
-            // 
-            // TxtCodigo
-            // 
-            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(30, 122);
-            this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.ReadOnly = true;
-            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
-            this.TxtCodigo.TabIndex = 172;
-            // 
-            // LblCodigo
-            // 
-            this.LblCodigo.AutoSize = true;
-            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
-            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigo.Location = new System.Drawing.Point(26, 99);
-            this.LblCodigo.Name = "LblCodigo";
-            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
-            this.LblCodigo.TabIndex = 173;
-            this.LblCodigo.Text = "Código:";
             // 
             // VtnOferta
             // 
