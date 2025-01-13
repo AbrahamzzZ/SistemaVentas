@@ -1,5 +1,6 @@
 using Datos;
 using Entidad;
+using System.Data;
 
 namespace Test
 {
@@ -9,16 +10,39 @@ namespace Test
         [TestMethod]
         public void RegistrarCategoria()
         {
+            CD_Categoria ObjetoCategoria = new CD_Categoria();
+            Categoria categoria = new Categoria();
+
+            categoria.Codigo = "Electrodomesticos";
+            categoria.Descripcion = "Electrodomesticos de todo tipo";
+            categoria.Estado = true;
+
+            Assert.IsTrue(ObjetoCategoria.RegistrarCategoria(categoria, out string mensaje) > 0);
+
         }
 
         [TestMethod]
         public void EditarCategoria()
         {
+            CD_Categoria ObjetoCategoria = new CD_Categoria();
+            Categoria categoria = new Categoria();
+
+            categoria.IdCategoria = 1;
+            categoria.Codigo = "Electrodomesticos";
+            categoria.Descripcion = "Electrodomesticos de todo tipo";
+            categoria.Estado = true;
+
+            Assert.IsTrue(ObjetoCategoria.EditarCategoria(categoria, out string mensaje));
         }
 
         [TestMethod]
         public void EliminarCategoria()
         {
+            CD_Categoria ObjetoCategoria = new CD_Categoria();
+            Categoria categoria = new Categoria();
+            categoria.IdCategoria = 1;
+
+            Assert.IsTrue(ObjetoCategoria.EliminarCategoria(categoria, out string mensaje));
         }
     }
 }
