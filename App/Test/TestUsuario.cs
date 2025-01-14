@@ -51,7 +51,7 @@ namespace Test
             Assert.IsTrue(ObjetoUsuario.EditarUsuario(editarUsuario, out mensaje));
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void EliminarUsuario()
         {
             CD_Usuario ObjetoUsuario = new CD_Usuario();
@@ -63,7 +63,6 @@ namespace Test
             eliminarUsuario.IdUsuario = idUsuario;
 
             Assert.IsTrue(ObjetoUsuario.EliminarUsuario(eliminarUsuario, out mensaje));
-        }*/
-
+        }
     }
 }

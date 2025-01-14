@@ -18,19 +18,23 @@ namespace Datos
         /// </summary>
         public SqlConnection ConexionBD()
         {
-            SqlConnection Conexion = null;
+            SqlConnection ConexionBaseDatos = null;
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
-                Conexion = new SqlConnection(connectionString);
-                Conexion.Open();
+                //Cadena de recuerdo :( 
+                /*string connectionString = ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString;
+                ConexionBaseDatos = new SqlConnection(connectionString);
+                ConexionBaseDatos.Open();*/
+                ConexionBaseDatos = new SqlConnection("server= DESKTOP-8CQM9OG\\SQLSEXPRESS ; database= Sistema_Ventas ; integrated security=true;");
+                ConexionBaseDatos.Open();
+
             }
             catch (Exception con)
             {
                 Console.WriteLine($"Error al crear la conexión: {con.Message}");
                 throw;
             }
-            return Conexion;
+            return ConexionBaseDatos;
         }
     }
 }

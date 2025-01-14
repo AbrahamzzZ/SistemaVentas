@@ -19,7 +19,6 @@ namespace Test
             unidadMedida.Descripcion = "Kilogramos";
             unidadMedida.Simbolo = "Kg";
             unidadMedida.Estado = true;
-            unidadMedida.FechaCreacion = "2021-06-01";
 
             Assert.IsTrue(ObjetoUnidadMedida.RegistrarUnidadMedida(unidadMedida, out string mensaje) > 0);
         }
@@ -36,7 +35,6 @@ namespace Test
             unidadMedida.Descripcion = "Kilogramos";
             unidadMedida.Simbolo = "Kg";
             unidadMedida.Estado = true;
-            unidadMedida.FechaCreacion = "2021-06-01";
 
             Assert.IsTrue(ObjetoUnidadMedida.EditarUnidadMedida(unidadMedida, out string mensaje));
         }
