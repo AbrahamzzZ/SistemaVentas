@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Entidad;
+using System.Data;
 
 namespace Test
 {
@@ -9,16 +10,16 @@ namespace Test
         [TestMethod]
         public void RegistrarVenta()
         {
+            CD_Venta ObjetoVenta = new CD_Venta();
             Venta venta = new Venta();
 
-            // usuario venta
             venta.oUsuario = new Usuario();
             venta.oUsuario.IdUsuario = 1;
 
             venta.TipoDocumento = "boleta";
             venta.NumeroDocumento = "00001";
-            venta.DocumentoCliente = "102";
-            venta.NombreCliente = "Emily Sofia";
+            venta.oCliente = new Cliente();
+            venta.oCliente.IdCliente = 2;
             venta.MontoPago = 16.00m;
             venta.MontoCambio = 1.00m;
             venta.MontoTotal = 15.00m;
@@ -26,13 +27,11 @@ namespace Test
             venta.FechaVenta = "2024-11-22 12:00:00";
 
             // Detalle de venta
-            //venta.oDetalle_Venta = new List<Detalle_Venta>();
-            //Detalle_Venta detalleVenta = new Detalle_Venta();
-
-            CapaDatos datos = new CapaDatos();
+            venta.oDetalle_Venta = new List<Detalle_Venta>();
+            Detalle_Venta detalleVenta = new Detalle_Venta();
             string mensaje = "";
-            Assert.IsTrue(datos.registrarVenta(venta, null, out mensaje));
 
+            Assert.IsTrue(ObjetoVenta.RegistrarVenta(venta, null, out mensaje));
         }
     }
 }

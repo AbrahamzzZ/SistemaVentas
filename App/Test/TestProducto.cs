@@ -9,7 +9,8 @@ namespace Test
         [TestMethod]
         public void RegistrarProducto()
         {
-            Conexion datos = new Conexion();
+            CD_Producto ObjetoProducto = new CD_Producto();
+            Producto productoNuevo = new Producto();
 
             string Codigo = "1009";
             string Descripcion = "12 unidades";
@@ -25,7 +26,7 @@ namespace Test
             bool estado = true;
             string mensaje = "";
 
-            Producto productoNuevo = new Producto();
+
             productoNuevo.Codigo = Codigo;
             productoNuevo.Descripcion = Descripcion;
             productoNuevo.Nombre = Nombre;
@@ -37,15 +38,16 @@ namespace Test
             productoNuevo.PrecioVenta = precioVenta;
             productoNuevo.Estado = estado;
 
-            /*Assert.IsTrue(datos.registrarProducto(productoNuevo, out mensaje) > 0);*/
+            Assert.IsTrue(ObjetoProducto.RegistrarProducto(productoNuevo, out mensaje) > 0);
         }
 
         [TestMethod]
         public void ActualizarProducto()
         {
 
-            Conexion datos = new Conexion();
+            CD_Producto Objetoproducto = new CD_Producto();
             Producto productoActualizado = new Producto();
+
             productoActualizado.IdProducto = 1;
             productoActualizado.Codigo = "00001";
             productoActualizado.Nombre = "Papel Higienico";
@@ -61,45 +63,20 @@ namespace Test
             productoActualizado.Estado = false;
             string mensaje = "";
 
-            /*Assert.IsTrue(datos.editarProducto(productoActualizado, out mensaje));*/
+            //Assert.IsTrue(Objetoproducto.EditarProducto(productoActualizado, out mensaje));
         }
 
         [TestMethod]
         public void EliminarProducto()
         {
-            Conexion datos = new Conexion();
+            CD_Producto ObjetoProducto = new CD_Producto();
             int idProducto = 15;
             string mensaje = "";
 
             Producto productoEliminado = new Producto();
             productoEliminado.IdProducto = idProducto;
 
-            /*Assert.IsTrue(datos.eliminarProducto(productoEliminado, out mensaje));*/
-        }
-
-        [TestMethod]
-        public void ActualizarProducto()
-        {
-
-            CapaDatos datos = new CapaDatos();
-            Producto productoActualizado = new Producto();
-            productoActualizado.IdProducto = 1;
-            productoActualizado.Codigo = "00001";
-            productoActualizado.Nombre = "Papel Higienico";
-            productoActualizado.Descripcion = "Papel higienico de 8 unidades";
-            productoActualizado.oCategoria = new Categoria();
-            productoActualizado.oCategoria.IdCategoria = 12;
-            productoActualizado.oUnidadMedida = new Unidad_Medida();
-            productoActualizado.oUnidadMedida.IdUnidadMedida = 3;
-            productoActualizado.PaisOrigen = "Ecuador";
-            productoActualizado.Stock = 0;
-            productoActualizado.PrecioCompra = 12.00m;
-            productoActualizado.PrecioVenta = 15.00m;
-            productoActualizado.Estado = "No Activo";
-            string mensaje = "";
-
-            Assert.IsTrue(datos.editarProducto(productoActualizado, out mensaje));
+            //Assert.IsTrue(ObjetoProducto.EliminarProducto(productoEliminado, out mensaje));
         }
     }
-
 }

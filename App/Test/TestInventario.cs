@@ -14,14 +14,13 @@ namespace Test
             Inventario inventario = new Inventario();
             Producto producto = new Producto();
             Zona_Almacen zonaAlmacen = new Zona_Almacen();
-            producto.IdProducto = 1;
-            zonaAlmacen.IdZonaAlmacen = 1;
+            producto.IdProducto = 3;
+            zonaAlmacen.IdZona = 1;
             inventario.Cantidad = 10;
-            
             inventario.oProducto = producto;
             inventario.oZonaAlmacen = zonaAlmacen;
-
-            Assert.IsTrue(ObjetoInventario.RegistrarProductoInventario(inventario, out string mensaje) > 0);
+            
+            Assert.IsTrue(ObjetoInventario.AgregarProductoInventario(inventario, out string mensaje) > 0);
 
         }
 
@@ -32,8 +31,8 @@ namespace Test
             Inventario inventario = new Inventario();
             Producto producto = new Producto();
             Zona_Almacen zonaAlmacen = new Zona_Almacen();
-            producto.IdProducto = 2;
-            zonaAlmacen.IdZonaAlmacen = 1;
+            producto.IdProducto = 3;
+            zonaAlmacen.IdZona = 1;
             inventario.Cantidad = 10;
             inventario.IdInventario = 1;
             inventario.oProducto = producto;

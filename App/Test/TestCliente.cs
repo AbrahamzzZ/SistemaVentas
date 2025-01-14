@@ -10,7 +10,7 @@ namespace Test
         [TestMethod]
         public void RegistrarCliente()
         {
-            CD_Cliente ObjetoCliente = new CD_Cliente();
+            /*CD_Cliente ObjetoCliente = new CD_Cliente();
             Cliente registrarCliente = new Cliente();
             registrarCliente.Codigo = "00009";
             registrarCliente.Nombres = "Roberto";
@@ -20,9 +20,22 @@ namespace Test
             registrarCliente.CorreoElectronico = "pablopincay@ug.edu.ec";
             registrarCliente.Estado = true;
 
-            Assert.IsTrue(ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje) > 0);
-            
+            Assert.IsTrue(ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje) > 0);*/
+            CD_Cliente ObjetoCliente = new CD_Cliente();
+            Cliente registrarCliente = new Cliente
+            {
+                Codigo = "766702",
+                Nombres = "Roberto",
+                Apellidos = "Perez",
+                Cedula = "06639567890",
+                Telefono = "0987654321",
+                CorreoElectronico = "pablopincay@ug.edu.ec",
+                Estado = true
+            };
 
+            int resultado = ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje);
+            Console.WriteLine($"Resultado: {resultado}, Mensaje: {mensaje}");
+            Assert.IsTrue(resultado > 0);
         }
 
         [TestMethod]
@@ -30,7 +43,7 @@ namespace Test
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
             Cliente editarCliente = new Cliente();
-            editarCliente.IdCliente = 1;
+            editarCliente.IdCliente = 8;
             editarCliente.Codigo = "00009";
             editarCliente.Nombres = "Roberto";
             editarCliente.Apellidos = "Perez";
@@ -47,7 +60,7 @@ namespace Test
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
             Cliente eliminarCliente = new Cliente();
-            eliminarCliente.IdCliente = 1;
+            eliminarCliente.IdCliente = 8;
 
             Assert.IsTrue(ObjetoCliente.EliminarCliente(eliminarCliente, out string mensaje));
         }

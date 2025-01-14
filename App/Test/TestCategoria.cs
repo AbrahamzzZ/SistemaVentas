@@ -27,7 +27,7 @@ namespace Test
             CD_Categoria ObjetoCategoria = new CD_Categoria();
             Categoria categoria = new Categoria();
 
-            categoria.IdCategoria = 1;
+            categoria.IdCategoria = 17;
             categoria.Codigo = "Electrodomesticos";
             categoria.Descripcion = "Electrodomesticos de todo tipo";
             categoria.Estado = true;
@@ -40,7 +40,7 @@ namespace Test
         {
             CD_Categoria ObjetoCategoria = new CD_Categoria();
             Categoria categoria = new Categoria();
-            categoria.IdCategoria = 1;
+            categoria.IdCategoria = 17;
 
             Assert.IsTrue(ObjetoCategoria.EliminarCategoria(categoria, out string mensaje));
         }

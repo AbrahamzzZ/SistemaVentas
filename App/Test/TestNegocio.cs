@@ -11,7 +11,7 @@ namespace Test
         public void ObtenerInformacionNegocio()
         {
             CD_Negocio ObjetoNegocio = new CD_Negocio();
-            Assert.IsNotNull(ObjetoNegocio.ObtenerInformacionNegocio(negocio));
+            Assert.IsNotNull(ObjetoNegocio.ObtenerInformacionNegocio());
         }
 
         [TestMethod]

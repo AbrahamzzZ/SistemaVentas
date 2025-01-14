@@ -16,16 +16,15 @@ namespace Test
             byte[] imagen = null;
 
             Transportista transportista = new Transportista();
-            transportista.Nombre = "Judai Yuki";
-            transportista.Apellido = "Kurayami";
+            transportista.Nombres = "Judai Yuki";
+            transportista.Apellidos = "Kurayami";
             transportista.Cedula = "1234567890";
             transportista.Telefono = "0987654321";
             transportista.CorreoElectronico = "judaiyami@gx.com";
             transportista.Estado = true;
             transportista.Imagen  = imagen;
 
-            Assert.IsTrue(ObjetoTransportista.RegistrarTransportista(transportista, out string mensaje) > 0);
-
+            Assert.IsTrue(ObjetoTransportista.RegistrarTransportista(transportista, null, out string mensaje) > 0);
         }
 
         [TestMethod]
@@ -37,14 +36,14 @@ namespace Test
 
             Transportista transportista = new Transportista();
             transportista.IdTransportista = 1;
-            transportista.Nombre = "Judai Yuki";
-            transportista.Apellido = "Kurayami";
+            transportista.Nombres = "Judai Yuki";
+            transportista.Apellidos = "Kurayami";
             transportista.Cedula = "1234567890";
             transportista.Telefono = "0987654321";
-            transportista.CorreoElectronico = "judaiyami@gx.com"
+            transportista.CorreoElectronico = "judaiyami@gx.com";
             transportista.Estado = true;
 
-            Assert.IsTrue(ObjetoTransportista.EditarTransportista(transportista, out string mensaje));
+            Assert.IsTrue(ObjetoTransportista.EditarTransportista(transportista, null,out string mensaje));
         }
 
         [TestMethod]
