@@ -13,6 +13,5 @@ namespace Entidad
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
         public string FechaCreacion { get; set; }
-
     }
 }
