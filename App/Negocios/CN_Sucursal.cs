@@ -164,7 +164,7 @@ namespace Negocios
             // Validaciones de negocio
             if (obj.IdSucursal == 0)
             {
-                mensaje = "Debe seleccionar un Usuario válido para eliminar.";
+                mensaje = "Debe seleccionar una Sucursal válida para eliminar.";
                 return false;
             }
 
