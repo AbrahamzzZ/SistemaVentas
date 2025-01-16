@@ -35,15 +35,20 @@ namespace Presentacion
             CmbEstado.SelectedIndex = 0;
 
             List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            foreach (Producto productos in listaProducto)
+            var productosActivos = listaProducto.Where(p => p.Estado).ToList(); // Filtrar solo productos activos
+
+            foreach (Producto producto in productosActivos)
             {
-                CmbProducto.Items.Add(new { Valor = productos.IdProducto, Texto = productos.Nombre });
+                CmbProducto.Items.Add(new { Valor = producto.IdProducto, Texto = producto.Nombre });
             }
+
             CmbProducto.DisplayMember = "Texto";
             CmbProducto.ValueMember = "Valor";
-            if (CmbProducto.Items.Count > 0){
+            if (CmbProducto.Items.Count > 0)
+            {
                 CmbProducto.SelectedIndex = 0;
-            }else{
+            }else
+            {
                 CmbProducto.Enabled = false;
             }
 
@@ -135,30 +140,18 @@ namespace Presentacion
                 Estado = selectedItemCmb2.Valor == 1
             };
 
-
-            List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
-            if (productoSeleccionado != null && !productoSeleccionado.Estado)
+            // Delegar la validación y registro a la lógica de negocio
+            int idOfertaIngresado = new CN_Oferta().Registrar(agregarOferta, out mensaje);
+            if (idOfertaIngresado != 0)
             {
-                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, TxtCodigo.Text, TxtNombre.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                MessageBox.Show("La oferta fue registrada correctamente.", "Registrar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
-                return;
             }
             else
             {
-                // Delegar la validación y registro a la lógica de negocio
-                int idOfertaIngresado = new CN_Oferta().Registrar(agregarOferta, out mensaje);
-                if (idOfertaIngresado != 0)
-                {
-                    tablaOferta.Rows.Add(new object[] { "", idOfertaIngresado, TxtCodigo.Text, TxtNombre.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto, RtextDescripcion.Text, txtFechaInicio.Text, txtFechaFin.Text, TxtDescuento.Text, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
-                    MessageBox.Show("La oferta fue registrada correctamente.", "Registrar oferta.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Limpiar();
-                }
-                else
-                {
-                    // Mostrar mensaje de error proveniente de la capa de negocio
-                    MessageBox.Show($"No se pudo registrar la oferta: {mensaje}", "Error al Registrar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                // Mostrar mensaje de error proveniente de la capa de negocio
+                MessageBox.Show($"No se pudo registrar la oferta: {mensaje}", "Error al Registrar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -204,7 +197,7 @@ namespace Presentacion
                 Estado = selectedItemCmb2.Valor == 1
             };
 
-            List<Producto> listaProducto = new CN_Producto().ListarProducto();
+            /*List<Producto> listaProducto = new CN_Producto().ListarProducto();
             Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
             if (productoSeleccionado != null && !productoSeleccionado.Estado)
             {
@@ -213,7 +206,7 @@ namespace Presentacion
                 return;
             }
             else
-            {
+            {*/
                 // Delegar la validación y edición a la lógica de negocio
                 bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
                 if (modificar)
@@ -238,7 +231,7 @@ namespace Presentacion
                 {
                     MessageBox.Show($"No se pudo modificar la información de la oferta: {mensaje}", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            //}
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -246,7 +239,7 @@ namespace Presentacion
             // Verificar que halla una oferta seleccionada
             if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe seleccionar un Proveedor en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar una Oferta en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

@@ -272,10 +272,10 @@ namespace Presentacion
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificar que halla una categoría seleccionada
+            // Verificar que halla un producto seleccionado
             if (string.IsNullOrWhiteSpace(TxtId.Text))
             {
-                MessageBox.Show("Primero debe seleccionar un Producto qu esta en el Inventario en la tabla para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Primero debe seleccionar un Producto en la tabla del Inventario para poder eliminarlo.", "Faltan datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
