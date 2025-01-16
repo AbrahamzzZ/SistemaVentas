@@ -11,26 +11,33 @@ namespace Test
         public void RegistrarCategoria()
         {
             CD_Categoria ObjetoCategoria = new CD_Categoria();
-            Categoria categoria = new Categoria();
+            Categoria categoria = new Categoria
+            {
+                Codigo = "7820",
+                Descripcion = "Medicamentos",
+                Estado = true,
+                FechaCreacion = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")
+            };
 
-            categoria.Codigo = "Electrodomesticos";
-            categoria.Descripcion = "Electrodomesticos de todo tipo";
-            categoria.Estado = true;
+            string mensaje;
+            int resultado = ObjetoCategoria.RegistrarCategoria(categoria, out mensaje);
 
-            Assert.IsTrue(ObjetoCategoria.RegistrarCategoria(categoria, out string mensaje) > 0);
-
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Categoría registrada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarCategoria()
         {
             CD_Categoria ObjetoCategoria = new CD_Categoria();
-            Categoria categoria = new Categoria();
-
-            categoria.IdCategoria = 17;
-            categoria.Codigo = "Electrodomesticos";
-            categoria.Descripcion = "Electrodomesticos de todo tipo";
-            categoria.Estado = true;
+            Categoria categoria = new Categoria
+            {
+                IdCategoria = 22,
+                Codigo = "7820",
+                Descripcion = "Automoviles",
+                Estado = true,
+            };
 
             Assert.IsTrue(ObjetoCategoria.EditarCategoria(categoria, out string mensaje));
         }
