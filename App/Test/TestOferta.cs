@@ -13,6 +13,7 @@ namespace Test
             CD_Oferta ObjetoOferta = new CD_Oferta();
             Oferta registrarOferta = new Oferta();
             Producto producto = new Producto();
+
             registrarOferta.NombreOferta = "Super Oferta";
             producto.IdProducto = 3;
             registrarOferta.oProducto = producto;
@@ -32,15 +33,16 @@ namespace Test
             CD_Oferta ObjetoOferta = new CD_Oferta();
             Oferta editarOferta = new Oferta();
             Producto producto = new Producto();
+
+            editarOferta.IdOferta = 4;
             producto.IdProducto = 3;
             editarOferta.oProducto = producto;
-            editarOferta.IdOferta = 2;
             editarOferta.Codigo = "00009";
             editarOferta.Descripcion = "Oferta de 3x1";
-            editarOferta.FechaInicio = "2021-06-01";
-            editarOferta.FechaFin = "2021-06-30";
-            editarOferta.Estado = true;
+            editarOferta.FechaInicio = "01/11/2024";
+            editarOferta.FechaFin = "15/02/2025";
             editarOferta.Descuento = (decimal?)0.5;
+            editarOferta.Estado = true;
 
             Assert.IsTrue(ObjetoOferta.EditarOferta(editarOferta, out string mensaje));
         }
@@ -50,9 +52,9 @@ namespace Test
         {
             CD_Oferta ObjetoOferta = new CD_Oferta();
             Oferta eliminarOferta = new Oferta();
-            eliminarOferta.IdOferta = 1;
+            eliminarOferta.IdOferta = 4;
 
-            //Assert.IsTrue(ObjetoOferta.EliminarOferta(eliminarOferta, out string mensaje));
+            Assert.IsTrue(ObjetoOferta.EliminarOferta(eliminarOferta, out string mensaje));
         }
     }
 }

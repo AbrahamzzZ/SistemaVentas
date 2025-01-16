@@ -19,6 +19,7 @@ namespace Test
         {
             CD_Negocio ObjetoNegocio = new CD_Negocio();
             Negocio negocio = new Negocio();
+
             negocio.IdNegocio = 1;
             negocio.Nombre = "Tienda de ropa";
             negocio.Ruc = "1234567890";

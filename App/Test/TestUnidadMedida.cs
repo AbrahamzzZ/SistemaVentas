@@ -12,12 +12,11 @@ namespace Test
         public void RegistrarUnidadMedida()
         {
             CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
-
             Unidad_Medida unidadMedida = new Unidad_Medida();
 
-            unidadMedida.Codigo = "Kg";
-            unidadMedida.Descripcion = "Kilogramos";
-            unidadMedida.Simbolo = "Kg";
+            unidadMedida.Codigo = "7687";
+            unidadMedida.Descripcion = "Mililitros";
+            unidadMedida.Simbolo = "ml";
             unidadMedida.Estado = true;
 
             Assert.IsTrue(ObjetoUnidadMedida.RegistrarUnidadMedida(unidadMedida, out string mensaje) > 0);
@@ -27,13 +26,12 @@ namespace Test
         public void EditarUnidadMedida()
         {
             CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
-
             Unidad_Medida unidadMedida = new Unidad_Medida();
 
             unidadMedida.IdUnidadMedida = 1;
-            unidadMedida.Codigo = "Kg";
-            unidadMedida.Descripcion = "Kilogramos";
-            unidadMedida.Simbolo = "Kg";
+            unidadMedida.Codigo = "7687";
+            unidadMedida.Descripcion = "Mililitros";
+            unidadMedida.Simbolo = "Ml";
             unidadMedida.Estado = true;
 
             Assert.IsTrue(ObjetoUnidadMedida.EditarUnidadMedida(unidadMedida, out string mensaje));
@@ -45,7 +43,7 @@ namespace Test
             CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
 
             Unidad_Medida unidadMedida = new Unidad_Medida();
-            unidadMedida.IdUnidadMedida = 1;
+            unidadMedida.IdUnidadMedida = 6;
 
             Assert.IsTrue(ObjetoUnidadMedida.EliminarUnidadMedida(unidadMedida, out string mensaje));
         }

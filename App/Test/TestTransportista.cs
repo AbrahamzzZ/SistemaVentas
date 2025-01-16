@@ -12,17 +12,16 @@ namespace Test
         public void RegistrarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-
+            Transportista transportista = new Transportista();
             byte[] imagen = null;
 
-            Transportista transportista = new Transportista();
             transportista.Nombres = "Judai Yuki";
             transportista.Apellidos = "Kurayami";
             transportista.Cedula = "1234567890";
             transportista.Telefono = "0987654321";
             transportista.CorreoElectronico = "judaiyami@gx.com";
+            transportista.Imagen = imagen;
             transportista.Estado = true;
-            transportista.Imagen  = imagen;
 
             Assert.IsTrue(ObjetoTransportista.RegistrarTransportista(transportista, null, out string mensaje) > 0);
         }
@@ -31,16 +30,16 @@ namespace Test
         public void EditarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-
+            Transportista transportista = new Transportista();
             byte[] imagen = null;
 
-            Transportista transportista = new Transportista();
             transportista.IdTransportista = 1;
             transportista.Nombres = "Judai Yuki";
             transportista.Apellidos = "Kurayami";
             transportista.Cedula = "1234567890";
             transportista.Telefono = "0987654321";
             transportista.CorreoElectronico = "judaiyami@gx.com";
+            transportista.Imagen = imagen;
             transportista.Estado = true;
 
             Assert.IsTrue(ObjetoTransportista.EditarTransportista(transportista, null,out string mensaje));
@@ -51,7 +50,7 @@ namespace Test
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
             Transportista transportista = new Transportista();
-            transportista.IdTransportista = 1;
+            transportista.IdTransportista = 2;
 
             Assert.IsTrue(ObjetoTransportista.EliminarTransportista(transportista, out string mensaje));
         }

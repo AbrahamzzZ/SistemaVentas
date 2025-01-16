@@ -9,74 +9,62 @@ namespace Test
         [TestMethod]
         public void RegistrarProducto()
         {
-            CD_Producto ObjetoProducto = new CD_Producto();
-            Producto productoNuevo = new Producto();
-
-            string Codigo = "1009";
-            string Descripcion = "12 unidades";
-            string Nombre = "Paracetamol";
+            CD_Producto objetoProducto = new CD_Producto();
+            Producto registrarProducto = new Producto();
             Categoria categoria = new Categoria();
-            categoria.IdCategoria = 12;
             Unidad_Medida unidadMedida = new Unidad_Medida();
-            unidadMedida.IdUnidadMedida = 5;
-            string PaisOrigen = "China";
-            int stock = 0;
-            decimal precioCompra = 0.0m;
-            decimal precioVenta = 0.0m;
-            bool estado = true;
-            string mensaje = "";
 
+            registrarProducto.Codigo = "4243";
+            registrarProducto.Nombre = "Paracetamol";
+            registrarProducto.Descripcion = "12 unidades";
+            categoria.IdCategoria = 6;
+            registrarProducto.oCategoria = categoria;
+            unidadMedida.IdUnidadMedida = 3;
+            registrarProducto.oUnidadMedida = unidadMedida;
+            registrarProducto.PaisOrigen = "China";
+            registrarProducto.Stock = 0;
+            registrarProducto.PrecioCompra = 0.0m;
+            registrarProducto.PrecioVenta = 0.0m;
+            registrarProducto.Estado = true;
 
-            productoNuevo.Codigo = Codigo;
-            productoNuevo.Descripcion = Descripcion;
-            productoNuevo.Nombre = Nombre;
-            productoNuevo.oCategoria = categoria;
-            productoNuevo.oUnidadMedida = unidadMedida;
-            productoNuevo.PaisOrigen = PaisOrigen;
-            productoNuevo.Stock = stock;
-            productoNuevo.PrecioCompra = precioCompra;
-            productoNuevo.PrecioVenta = precioVenta;
-            productoNuevo.Estado = estado;
-
-            Assert.IsTrue(ObjetoProducto.RegistrarProducto(productoNuevo, out mensaje) > 0);
+            Assert.IsTrue(objetoProducto.RegistrarProducto(registrarProducto, out string mensaje) > 0);
         }
 
         [TestMethod]
         public void ActualizarProducto()
         {
 
-            CD_Producto Objetoproducto = new CD_Producto();
-            Producto productoActualizado = new Producto();
+            CD_Producto objetoProducto = new CD_Producto();
+            Producto editarProducto = new Producto();
+            Categoria categoria = new Categoria();
+            Unidad_Medida unidadMedida = new Unidad_Medida();
 
-            productoActualizado.IdProducto = 1;
-            productoActualizado.Codigo = "00001";
-            productoActualizado.Nombre = "Papel Higienico";
-            productoActualizado.Descripcion = "8 unidades";
-            productoActualizado.oCategoria = new Categoria();
-            productoActualizado.oCategoria.IdCategoria = 12;
-            productoActualizado.oUnidadMedida = new Unidad_Medida();
-            productoActualizado.oUnidadMedida.IdUnidadMedida = 3;
-            productoActualizado.PaisOrigen = "Ecuador";
-            productoActualizado.Stock = 0;
-            productoActualizado.PrecioCompra = 12.00m;
-            productoActualizado.PrecioVenta = 15.00m;
-            productoActualizado.Estado = false;
-            string mensaje = "";
+            editarProducto.IdProducto = 15;
+            editarProducto.Codigo = "00001";
+            editarProducto.Nombre = "Papel Higienico";
+            editarProducto.Descripcion = "8 unidades";
+            categoria.IdCategoria = 6;
+            editarProducto.oCategoria = categoria;
+            unidadMedida.IdUnidadMedida = 3;
+            editarProducto.oUnidadMedida = unidadMedida;
+            editarProducto.PaisOrigen = "Ecuador";
+            editarProducto.Stock = 0;
+            editarProducto.PrecioCompra = 0.00m;
+            editarProducto.PrecioVenta = 0.00m;
+            editarProducto.Estado = false;
 
-            //Assert.IsTrue(Objetoproducto.EditarProducto(productoActualizado, out mensaje));
+            Assert.IsTrue(objetoProducto.EditarProducto(editarProducto, out string mensaje));
         }
 
         [TestMethod]
         public void EliminarProducto()
         {
             CD_Producto ObjetoProducto = new CD_Producto();
-            int idProducto = 15;
-            string mensaje = "";
+            Producto eliminarProducto = new Producto();
 
-            Producto productoEliminado = new Producto();
-            productoEliminado.IdProducto = idProducto;
+            eliminarProducto.IdProducto = 15;
 
-            //Assert.IsTrue(ObjetoProducto.EliminarProducto(productoEliminado, out mensaje));
+            Assert.IsTrue(ObjetoProducto.EliminarProducto(eliminarProducto, out string mensaje));
         }
     }
 }

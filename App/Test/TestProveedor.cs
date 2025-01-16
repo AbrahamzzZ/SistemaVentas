@@ -12,6 +12,7 @@ namespace Test
         {
             CD_Proveedor ObjetoProveedor = new CD_Proveedor();
             Proveedor registrarProveedor = new Proveedor();
+
             registrarProveedor.Codigo = "00009";
             registrarProveedor.Nombres = "Farfan";
             registrarProveedor.Apellidos = "Perez";
@@ -21,7 +22,7 @@ namespace Test
             registrarProveedor.Estado = true;
             registrarProveedor.FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd");
 
-            //Assert.IsTrue(ObjetoProveedor.RegistrarProveedor(registrarProveedor, out string mensaje) > 0);   
+            Assert.IsTrue(ObjetoProveedor.RegistrarProveedor(registrarProveedor, out string mensaje) > 0);   
         }
 
         [TestMethod]
@@ -29,6 +30,7 @@ namespace Test
         {
             CD_Proveedor ObjetoProveedor = new CD_Proveedor();
             Proveedor editarProveedor = new Proveedor();
+
             editarProveedor.IdProveedor = 1;
             editarProveedor.Codigo = "00009";
             editarProveedor.Nombres = "Farfan";
@@ -38,7 +40,7 @@ namespace Test
             editarProveedor.CorreoElectronico = "farfanagurto_perez@ug.edu.ec";
             editarProveedor.Estado = true;
 
-            //Assert.IsTrue(ObjetoProveedor.EditarProveedor(editarProveedor, out string mensaje));
+            Assert.IsTrue(ObjetoProveedor.EditarProveedor(editarProveedor, out string mensaje));
 
         }
 
@@ -49,7 +51,7 @@ namespace Test
             Proveedor eliminarProveedor = new Proveedor();
             eliminarProveedor.IdProveedor = 1;
 
-            //Assert.IsTrue(ObjetoProveedor.EliminarProveedor(eliminarProveedor, out string mensaje));
+            Assert.IsTrue(ObjetoProveedor.EliminarProveedor(eliminarProveedor, out string mensaje));
         }
     }
 }
