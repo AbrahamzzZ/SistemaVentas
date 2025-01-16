@@ -1234,7 +1234,7 @@ begin
 end
 go
 
-ALTER PROC PA_REGISTRAR_OFERTA(
+CREATE PROC PA_REGISTRAR_OFERTA(
 @Codigo varchar(10),
 @Nombre_Oferta varchar(50),
 @Id_Producto int,
@@ -1249,13 +1249,6 @@ ALTER PROC PA_REGISTRAR_OFERTA(
 AS
 BEGIN
     SET @Resultado = 0;
-
-    -- Validar si la fecha de inicio es mayor o igual a la fecha actual
-    IF CONVERT(DATE, @Fecha_Inicio, 120) < CONVERT(DATE, GETDATE(), 120)
-    BEGIN
-        SET @Mensaje = 'La fecha de inicio debe ser igual o posterior a la fecha actual.';
-        RETURN;
-    END
 
     -- Verificar si ya existe el código
     IF NOT EXISTS (SELECT 1 FROM OFERTA WHERE CODIGO = @Codigo)
@@ -1289,13 +1282,6 @@ CREATE PROC PA_EDITAR_OFERTA(
 AS
 BEGIN
     SET @Resultado = 0;
-
-    -- Validar si la fecha de inicio es mayor o igual a la fecha actual
-    IF CONVERT(DATE, @Fecha_Inicio, 120) < CONVERT(DATE, GETDATE(), 120)
-    BEGIN
-        SET @Mensaje = 'La fecha de inicio debe ser igual o posterior a la fecha actual.';
-        RETURN;
-    END
 
     -- Verificar si el código ya existe para otra oferta
     IF NOT EXISTS (SELECT * FROM OFERTA WHERE CODIGO = @Codigo AND ID_OFERTA != @Id_Oferta)
