@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de producto.
+    /// </summary>
     public partial class VtnProducto : Form
     {
         /// <summary>
@@ -31,11 +34,15 @@ namespace Presentacion
             CmbEstado.DisplayMember = "Texto";
             CmbEstado.ValueMember = "Valor";
             CmbEstado.SelectedIndex = 0;
+
             List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
-            foreach (Categoria categorias in listaCategoria)
+            var categoriasActivas = listaCategoria.Where(p => p.Estado).ToList(); // Filtrar solo categorias activas
+
+            foreach (Categoria categorias in categoriasActivas)
             {
                 CmbCategoria.Items.Add(new { Valor = categorias.IdCategoria, Texto = categorias.Descripcion });
             }
+
             CmbCategoria.DisplayMember = "Texto";
             CmbCategoria.ValueMember = "Valor";
             if (CmbCategoria.Items.Count > 0)
@@ -48,10 +55,13 @@ namespace Presentacion
             }
 
             List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
-            foreach (Unidad_Medida unidades in listaUnidadMedida)
+            var unidadesMedidaActivas = listaUnidadMedida.Where(p => p.Estado).ToList(); // Filtrar solo unidades de medida activas
+
+            foreach (Unidad_Medida unidades in unidadesMedidaActivas)
             {
                 CmbUnidadMedida.Items.Add(new { Valor = unidades.IdUnidadMedida, Texto = unidades.Descripcion });
             }
+
             CmbUnidadMedida.DisplayMember = "Texto";
             CmbUnidadMedida.ValueMember = "Valor";
             if (CmbUnidadMedida.Items.Count > 0)
@@ -192,24 +202,6 @@ namespace Presentacion
                 oUnidadMedida = new Unidad_Medida { IdUnidadMedida = selectedItemCmb2.Valor },
                 Estado = selectedItemCmb3.Valor == 1
             };
-
-            List<Categoria> listaCategoria = new CN_Categoria().ListarCategoria();
-            Categoria categoriaSeleccionada = listaCategoria.FirstOrDefault(c => c.IdCategoria == selectedItemCmb1.Valor);
-            if (categoriaSeleccionada != null && !categoriaSeleccionada.Estado)
-            {
-                MessageBox.Show("La categoría seleccionada no está habilitada. Por favor, seleccione una categoría activa.", "Categoría no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Limpiar();
-                return;
-            }
-
-            List<Unidad_Medida> listaUnidadMedida = new CN_Unidad_Medida().ListarUnidadesMedida();
-            Unidad_Medida unidadMedidaSeleccionada = listaUnidadMedida.FirstOrDefault(c => c.IdUnidadMedida == selectedItemCmb2.Valor);
-            if (unidadMedidaSeleccionada != null && !unidadMedidaSeleccionada.Estado)
-            {
-                MessageBox.Show("La unidad de medida seleccionada no está habilitada. Por favor, seleccione una unidad de medida activa.", "Unidad de medida no habilitada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Limpiar();
-                return;
-            }
 
             int idProductoIngresado = new CN_Producto().Registrar(agregarProducto, out mensaje);
             if (idProductoIngresado != 0)

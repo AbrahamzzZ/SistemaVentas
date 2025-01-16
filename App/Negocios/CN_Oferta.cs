@@ -48,6 +48,15 @@ namespace Negocios
                 mensaje += "\n- Es necesario la descripción de la oferta.";
             }
 
+            // Validar Fecha Fin
+            if (DateTime.TryParseExact(obj.FechaFin, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaFin))
+            {
+                if (fechaFin < DateTime.Now.Date)
+                {
+                    mensaje += "\n- La fecha fin de la oferta no puede ser una fecha pasada.";
+                }
+            }
+
             // Validar Descuento
             if (!obj.Descuento.HasValue)
             {
@@ -91,6 +100,15 @@ namespace Negocios
             if (string.IsNullOrWhiteSpace(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la oferta.";
+            }
+
+            // Validar Fecha Fin
+            if (DateTime.TryParseExact(obj.FechaFin, "d/M/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaFin))
+            {
+                if (fechaFin < DateTime.Now.Date)
+                {
+                    mensaje += "\n- La fecha fin de la oferta no puede ser una fecha pasada.";
+                }
             }
 
             //Validar Descuento

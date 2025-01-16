@@ -14,6 +14,7 @@ namespace Test
             Inventario inventario = new Inventario();
             Producto producto = new Producto();
             Zona_Almacen zonaAlmacen = new Zona_Almacen();
+
             producto.IdProducto = 3;
             zonaAlmacen.IdZona = 1;
             inventario.Cantidad = 10;
@@ -31,6 +32,7 @@ namespace Test
             Inventario inventario = new Inventario();
             Producto producto = new Producto();
             Zona_Almacen zonaAlmacen = new Zona_Almacen();
+
             producto.IdProducto = 3;
             zonaAlmacen.IdZona = 1;
             inventario.Cantidad = 10;

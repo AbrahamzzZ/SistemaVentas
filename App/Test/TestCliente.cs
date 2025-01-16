@@ -10,28 +10,17 @@ namespace Test
         [TestMethod]
         public void RegistrarCliente()
         {
-            /*CD_Cliente ObjetoCliente = new CD_Cliente();
+            CD_Cliente ObjetoCliente = new CD_Cliente();
             Cliente registrarCliente = new Cliente();
-            registrarCliente.Codigo = "00009";
+
+            registrarCliente.Codigo = "766702";
             registrarCliente.Nombres = "Roberto";
             registrarCliente.Apellidos = "Perez";
-            registrarCliente.Cedula = "1234567890";
+            registrarCliente.Cedula = "06639567890";
             registrarCliente.Telefono = "0987654321";
             registrarCliente.CorreoElectronico = "pablopincay@ug.edu.ec";
             registrarCliente.Estado = true;
 
-            Assert.IsTrue(ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje) > 0);*/
-            CD_Cliente ObjetoCliente = new CD_Cliente();
-            Cliente registrarCliente = new Cliente
-            {
-                Codigo = "766702",
-                Nombres = "Roberto",
-                Apellidos = "Perez",
-                Cedula = "06639567890",
-                Telefono = "0987654321",
-                CorreoElectronico = "pablopincay@ug.edu.ec",
-                Estado = true
-            };
 
             int resultado = ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje);
             Console.WriteLine($"Resultado: {resultado}, Mensaje: {mensaje}");
@@ -43,6 +32,7 @@ namespace Test
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
             Cliente editarCliente = new Cliente();
+
             editarCliente.IdCliente = 8;
             editarCliente.Codigo = "00009";
             editarCliente.Nombres = "Roberto";

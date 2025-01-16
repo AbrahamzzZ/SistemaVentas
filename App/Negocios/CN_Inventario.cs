@@ -84,7 +84,7 @@ namespace Negocios
             // Validaciones de negocio
             if (obj.IdInventario == 0)
             {
-                mensaje = "Debe seleccionar un producto dentro del Inventario válida para eliminar.";
+                mensaje = "Debe seleccionar un producto dentro del Inventario para eliminarlo.";
                 return false;
             }
 
