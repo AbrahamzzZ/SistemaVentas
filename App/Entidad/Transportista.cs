@@ -17,5 +17,6 @@ namespace Entidad
         public string CorreoElectronico { get; set; }
         public byte[] Imagen { get; set; }
         public bool Estado { get; set; }
+        public string FechaRegistro { get; set; }
     }
 }

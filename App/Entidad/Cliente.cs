@@ -16,5 +16,6 @@ namespace Entidad
         public string Telefono { get; set; }
         public string CorreoElectronico { get; set; }
         public bool Estado { get; set; }
+        public string FechaRegistro { get; set; }
     }
 }
