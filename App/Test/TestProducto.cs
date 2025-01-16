@@ -9,62 +9,69 @@ namespace Test
         [TestMethod]
         public void RegistrarProducto()
         {
-            CD_Producto objetoProducto = new CD_Producto();
-            Producto registrarProducto = new Producto();
-            Categoria categoria = new Categoria();
-            Unidad_Medida unidadMedida = new Unidad_Medida();
+            CD_Producto ObjetoProducto = new CD_Producto();
+            Producto producto = new Producto
+            {
+                Codigo = "4243",
+                Nombre = "Paracetamol",
+                Descripcion = "12 unidades",
+                oCategoria = new Categoria { IdCategoria = 6 },
+                oUnidadMedida = new Unidad_Medida { IdUnidadMedida = 5},
+                PaisOrigen = "China",
+                Stock = 0,
+                PrecioCompra = 0.0m,
+                PrecioVenta = 0.0m,
+                Estado = true
+            };
 
-            registrarProducto.Codigo = "4243";
-            registrarProducto.Nombre = "Paracetamol";
-            registrarProducto.Descripcion = "12 unidades";
-            categoria.IdCategoria = 6;
-            registrarProducto.oCategoria = categoria;
-            unidadMedida.IdUnidadMedida = 3;
-            registrarProducto.oUnidadMedida = unidadMedida;
-            registrarProducto.PaisOrigen = "China";
-            registrarProducto.Stock = 0;
-            registrarProducto.PrecioCompra = 0.0m;
-            registrarProducto.PrecioVenta = 0.0m;
-            registrarProducto.Estado = true;
+            string mensaje;
+            int resultado = ObjetoProducto.RegistrarProducto(producto, out mensaje);
 
-            Assert.IsTrue(objetoProducto.RegistrarProducto(registrarProducto, out string mensaje) > 0);
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Producto registrado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void ActualizarProducto()
         {
+            CD_Producto ObjetoProducto = new CD_Producto();
+            Producto producto = new Producto
+            {
+                IdProducto = 12,
+                Codigo = "4243",
+                Nombre = "Paracetamol",
+                Descripcion = "24 unidades",
+                oCategoria = new Categoria { IdCategoria = 11 },
+                oUnidadMedida = new Unidad_Medida { IdUnidadMedida = 4 },
+                PaisOrigen = "China",
+                Stock = 0,
+                PrecioCompra = 0.0m,
+                PrecioVenta = 0.0m,
+                Estado = true
+            };
 
-            CD_Producto objetoProducto = new CD_Producto();
-            Producto editarProducto = new Producto();
-            Categoria categoria = new Categoria();
-            Unidad_Medida unidadMedida = new Unidad_Medida();
+            string mensaje;
+            bool resultado = ObjetoProducto.EditarProducto(producto, out mensaje);
 
-            editarProducto.IdProducto = 15;
-            editarProducto.Codigo = "00001";
-            editarProducto.Nombre = "Papel Higienico";
-            editarProducto.Descripcion = "8 unidades";
-            categoria.IdCategoria = 6;
-            editarProducto.oCategoria = categoria;
-            unidadMedida.IdUnidadMedida = 3;
-            editarProducto.oUnidadMedida = unidadMedida;
-            editarProducto.PaisOrigen = "Ecuador";
-            editarProducto.Stock = 0;
-            editarProducto.PrecioCompra = 0.00m;
-            editarProducto.PrecioVenta = 0.00m;
-            editarProducto.Estado = false;
-
-            Assert.IsTrue(objetoProducto.EditarProducto(editarProducto, out string mensaje));
+            Assert.AreEqual("Producto actualizado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarProducto()
         {
             CD_Producto ObjetoProducto = new CD_Producto();
-            Producto eliminarProducto = new Producto();
+            Producto producto = new Producto
+            {
+                IdProducto = 12
+            };
 
-            eliminarProducto.IdProducto = 15;
+            string mensaje;
+            bool resultado = ObjetoProducto.EliminarProducto(producto, out mensaje);
 
-            Assert.IsTrue(ObjetoProducto.EliminarProducto(eliminarProducto, out string mensaje));
+            Assert.AreEqual("Producto eliminado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

@@ -362,7 +362,7 @@ BEGIN
         BEGIN
             DELETE FROM USUARIO WHERE ID_USUARIO = @Id_Usuario;
             SET @Respuesta = 1;
-            SET @Mensaje = 'Usuario eliminado correctamente.';
+            SET @Mensaje = 'Usuario eliminado exitosamente.';
         END
 
         COMMIT TRANSACTION;
@@ -475,18 +475,29 @@ CREATE PROC PA_REGISTRAR_PRODUCTO(
 @Resultado int output,
 @Mensaje varchar (500) output
 )
-as
-begin
-	set @Resultado = 0
-	if not exists (SELECT 1 FROM PRODUCTO WHERE CODIGO = @Codigo)
-	begin
-		INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES 
-		(@Codigo, @Nombre_Producto, @Descripcion, @Id_Categoria, @Id_Unidad_Medida, @Pais_Origen, @Estado)
-		set @Resultado = SCOPE_IDENTITY()
-	end
-	else
-		set @Mensaje ='Ya existe un producto con el mismo código'
-end;
+AS
+BEGIN
+    BEGIN TRY
+        SET @Resultado = 0;
+
+        IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE CODIGO = @Codigo)
+        BEGIN
+            INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO)
+            VALUES (@Codigo, @Nombre_Producto, @Descripcion, @Id_Categoria, @Id_Unidad_Medida, @Pais_Origen, @Estado);
+
+            SET @Resultado = SCOPE_IDENTITY();
+            SET @Mensaje = 'Producto registrado exitosamente.';
+        END
+        ELSE
+        BEGIN
+            SET @Mensaje = 'Ya existe un producto con el mismo código.';
+        END
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END;
 go
 
 CREATE PROC PA_EDITAR_PRODUCTO(
@@ -501,24 +512,36 @@ CREATE PROC PA_EDITAR_PRODUCTO(
 @Resultado bit output,
 @Mensaje varchar (500) output
 )
-as
-begin 
-	set @Resultado = 1
-	if not exists (SELECT * FROM PRODUCTO WHERE CODIGO = @Codigo and ID_PRODUCTO != @Id_Producto)
-		update PRODUCTO set
-		NOMBRE_PRODUCTO = @Nombre_Producto,
-		DESCRIPCION = @Descripcion,
-		ID_CATEGORIA = @Id_Categoria,
-		ID_UNIDAD_MEDIDA = @Id_Unidad_Medida,
-		PAIS_ORIGEN = @Pais_Origen,
-		ESTADO = @Estado
-		Where ID_PRODUCTO = @Id_Producto
-	else
-	begin
-		set @Resultado = 0
-		set @Mensaje = 'No se puede repetir el código de un producto.'
-	end
-end
+AS
+BEGIN
+    BEGIN TRY
+        SET @Resultado = 1;
+
+        IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE CODIGO = @Codigo AND ID_PRODUCTO != @Id_Producto)
+        BEGIN
+            UPDATE PRODUCTO
+            SET
+                NOMBRE_PRODUCTO = @Nombre_Producto,
+                DESCRIPCION = @Descripcion,
+                ID_CATEGORIA = @Id_Categoria,
+                ID_UNIDAD_MEDIDA = @Id_Unidad_Medida,
+                PAIS_ORIGEN = @Pais_Origen,
+                ESTADO = @Estado
+            WHERE ID_PRODUCTO = @Id_Producto;
+
+            SET @Mensaje = 'Producto actualizado exitosamente.';
+        END
+        ELSE
+        BEGIN
+            SET @Resultado = 0;
+            SET @Mensaje = 'No se puede repetir el código de un producto.';
+        END
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END;
 go
 
 CREATE PROC PA_ELIMINAR_PRODUCTO(
@@ -528,38 +551,35 @@ CREATE PROC PA_ELIMINAR_PRODUCTO(
 )
 AS
 BEGIN
-	set @Respuesta = 0
-	set @Mensaje = ' '
-	declare @Paso_Reglas bit = 1
-	if exists (SELECT * FROM DETALLE_COMPRA dc inner join PRODUCTO p ON p.ID_PRODUCTO = dc.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
-	begin
-		set @Paso_Reglas = 0
-		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una Compra\n'
-	end
-	if exists (SELECT * FROM DETALLE_VENTA dv inner join PRODUCTO p ON p.ID_PRODUCTO = dv.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
-	begin
-		set @Paso_Reglas = 0
-		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a una Venta\n'
-	end
-	if exists (SELECT * FROM INVENTARIO i inner join PRODUCTO p ON p.ID_PRODUCTO = i.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
-	begin
-		set @Paso_Reglas = 0
-		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado en el Inventario\n'
-	end
-	if exists (SELECT * FROM OFERTA o inner join PRODUCTO p ON p.ID_PRODUCTO = o.ID_PRODUCTO Where p.ID_PRODUCTO = @Id_Producto)
-	begin
-		set @Paso_Reglas = 0
-		set @Respuesta = 0
-		set @Mensaje = @Mensaje + 'No se puede eliminar porque se encuentra relacionado a un Oferta\n'
-	end
-	if(@Paso_Reglas = 1)
-	begin 
-		DELETE FROM PRODUCTO Where ID_PRODUCTO = @Id_Producto
-		set @Respuesta = 1
-	end
+    BEGIN TRY
+        SET @Respuesta = 0;
+        SET @Mensaje = '';
+
+        -- Verificar relaciones
+        IF EXISTS (SELECT 1 FROM DETALLE_COMPRA WHERE ID_PRODUCTO = @Id_Producto)
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está relacionado con compras.\n';
+
+        IF EXISTS (SELECT 1 FROM DETALLE_VENTA WHERE ID_PRODUCTO = @Id_Producto)
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está relacionado con ventas.\n';
+
+        IF EXISTS (SELECT 1 FROM INVENTARIO WHERE ID_PRODUCTO = @Id_Producto)
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está en inventario.\n';
+
+        IF EXISTS (SELECT 1 FROM OFERTA WHERE ID_PRODUCTO = @Id_Producto)
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está en ofertas.\n';
+
+        -- Si no hay dependencias, eliminar
+        IF LEN(@Mensaje) = 0
+        BEGIN
+            DELETE FROM PRODUCTO WHERE ID_PRODUCTO = @Id_Producto;
+            SET @Respuesta = 1;
+            SET @Mensaje = 'Producto eliminado exitosamente.';
+        END
+    END TRY
+    BEGIN CATCH
+        SET @Respuesta = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
 END;
 go
 
@@ -582,7 +602,7 @@ BEGIN
         VALUES (@Codigo, @Descripcion, @Simbolo, @Estado);
 
         SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Unidad de medida registrada correctamente.';
+        SET @Mensaje = 'Unidad de medida registrada exitosamente.';
     END
     ELSE
     BEGIN
@@ -615,7 +635,7 @@ BEGIN
         WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
 
         SET @Resultado = 1;
-        SET @Mensaje = 'Unidad de medida actualizada correctamente.';
+        SET @Mensaje = 'Unidad de medida actualizada exitosamente.';
     END
     ELSE
     BEGIN
@@ -641,7 +661,7 @@ BEGIN
         IF @@ROWCOUNT > 0
         BEGIN
             SET @Resultado = 1;
-            SET @Mensaje = 'La unidad de medida ha sido eliminada exitosamente.';
+            SET @Mensaje = 'Unidad de medida eliminada exitosamente.';
         END
         ELSE
         BEGIN
@@ -802,7 +822,7 @@ BEGIN
         WHERE ID_INVENTARIO = @Id_Inventario;
 
         SET @Resultado = 1;
-        SET @Mensaje = 'Producto actualizado correctamente en el inventario.';
+        SET @Mensaje = 'Producto actualizado exitosamente en el inventario.';
 
         COMMIT TRANSACTION;
     END TRY
@@ -848,7 +868,7 @@ BEGIN
             WHERE ID_ZONA = @Id_Zona;
 
             SET @Resultado = 1;
-            SET @Mensaje = 'Producto eliminado del inventario y espacio actualizado exitosamente.';
+            SET @Mensaje = 'Producto eliminado del inventario exitosamente.';
         END
         ELSE
         BEGIN
@@ -970,7 +990,7 @@ BEGIN
 
     IF @@ROWCOUNT > 0
     BEGIN
-        SET @Mensaje = 'El cliente ha sido eliminado exitosamente.';
+        SET @Mensaje = 'Cliente eliminado exitosamente.';
     END
     ELSE
     BEGIN
@@ -1336,7 +1356,7 @@ BEGIN
     IF @@ROWCOUNT > 0
     BEGIN
         SET @Resultado = 1;
-        SET @Mensaje = 'La oferta ha sido eliminada exitosamente.';
+        SET @Mensaje = 'Oferta eliminada exitosamente.';
     END
     ELSE
     BEGIN
@@ -1474,7 +1494,7 @@ BEGIN
     IF @@ROWCOUNT > 0
     BEGIN
         SET @Resultado = 1;
-        SET @Mensaje = 'La sucursal ha sido eliminada exitosamente.';
+        SET @Mensaje = 'Sucursal eliminada exitosamente.';
     END
     ELSE
     BEGIN
@@ -1588,7 +1608,7 @@ BEGIN
 
     IF @@ROWCOUNT > 0
     BEGIN
-        SET @Mensaje = 'El transportista ha sido eliminado exitosamente.';
+        SET @Mensaje = 'Transportista eliminado exitosamente.';
     END
     ELSE
     BEGIN

@@ -11,46 +11,54 @@ namespace Test
         public void RegistrarProductoInventario()
         {
             CD_Inventario ObjetoInventario = new CD_Inventario();
-            Inventario inventario = new Inventario();
-            Producto producto = new Producto();
-            Zona_Almacen zonaAlmacen = new Zona_Almacen();
+            Inventario inventario = new Inventario
+            {
+                oProducto = new Producto { IdProducto = 5 },
+                oZonaAlmacen = new Zona_Almacen { IdZona = 5},
+                Cantidad = 20
+            };
 
-            producto.IdProducto = 3;
-            zonaAlmacen.IdZona = 1;
-            inventario.Cantidad = 10;
-            inventario.oProducto = producto;
-            inventario.oZonaAlmacen = zonaAlmacen;
-            
-            Assert.IsTrue(ObjetoInventario.AgregarProductoInventario(inventario, out string mensaje) > 0);
+            string mensaje;
+            int resultado = ObjetoInventario.AgregarProductoInventario(inventario, out mensaje);
 
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Producto registrado en el inventario exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarProductoInventario()
         {
             CD_Inventario ObjetoInventario = new CD_Inventario();
-            Inventario inventario = new Inventario();
-            Producto producto = new Producto();
-            Zona_Almacen zonaAlmacen = new Zona_Almacen();
+            Inventario inventario = new Inventario
+            {
+                IdInventario = 25,
+                oProducto = new Producto { IdProducto = 5 },
+                oZonaAlmacen = new Zona_Almacen { IdZona = 3 },
+                Cantidad = 20
+            };
 
-            producto.IdProducto = 3;
-            zonaAlmacen.IdZona = 1;
-            inventario.Cantidad = 10;
-            inventario.IdInventario = 1;
-            inventario.oProducto = producto;
-            inventario.oZonaAlmacen = zonaAlmacen;
+            string mensaje;
+            bool resultado = ObjetoInventario.EditarProductoInventario(inventario, out mensaje);
 
-            Assert.IsTrue(ObjetoInventario.EditarProductoInventario(inventario, out string mensaje));
+            Assert.AreEqual("Producto actualizado exitosamente en el inventario.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarProductoInventario()
         {
             CD_Inventario ObjetoInventario = new CD_Inventario();
-            Inventario inventario = new Inventario();
-            inventario.IdInventario = 1;
+            Inventario inventario = new Inventario
+            {
+                IdInventario = 25
+            };
 
-            Assert.IsTrue(ObjetoInventario.EliminarProductoInventario(inventario, out string mensaje));
+            string mensaje;
+            bool resultado = ObjetoInventario.EliminarProductoInventario(inventario, out mensaje);
+
+            Assert.AreEqual("Producto eliminado del inventario exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

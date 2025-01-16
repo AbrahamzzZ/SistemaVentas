@@ -11,48 +11,60 @@ namespace Test
         public void RegistrarUsuario()
         {
             CD_Usuario ObjetoUsuario = new CD_Usuario();
-            Usuario registrarUsuario = new Usuario();
-            Rol rol = new Rol();
+            Usuario usuario = new Usuario
+            {
+                Codigo = "0709",
+                NombreCompleto = "Andrea Romina Martinez Zuñiga",
+                Clave = "123armz/",
+                CorreoElectronico = "andreita@gmail.com",
+                oRol = new Rol { IdRol = 2},
+                Estado = false
+            };
 
-            registrarUsuario.Codigo = "0009";
-            registrarUsuario.NombreCompleto = "Roberto Perez";
-            registrarUsuario.CorreoElectronico = "roberto@gmail.com";
-            registrarUsuario.Clave = "0123";
-            rol.IdRol = 2;
-            registrarUsuario.oRol = rol;
-            registrarUsuario.Estado = true;
+            string mensaje;
+            int resultado = ObjetoUsuario.RegistrarUsuario(usuario, out mensaje);
 
-            Assert.IsTrue(ObjetoUsuario.RegistrarUsuario(registrarUsuario, out string mensaje) > 0);
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Usuario registrado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarUsuario()
         {
             CD_Usuario ObjetoUsuario = new CD_Usuario();
-            Usuario editarUsuario = new Usuario();
-            Rol rol = new Rol();
+            Usuario usuario = new Usuario
+            {
+                IdUsuario = 8,
+                Codigo = "0709",
+                NombreCompleto = "Andrea Romina Martinez Zuñiga",
+                Clave = "123armz/",
+                CorreoElectronico = "andreita@gmail.com",
+                oRol = new Rol { IdRol = 2 },
+                Estado = true
+            };
 
-            editarUsuario.IdUsuario = 8;
-            editarUsuario.Codigo = "0009";
-            editarUsuario.NombreCompleto = "Andrea Noely Gago";
-            editarUsuario.CorreoElectronico = "noelio@gmail.com";
-            editarUsuario.Clave = "343434343";
-            rol.IdRol = 2;
-            editarUsuario.oRol = rol;
-            editarUsuario.Estado = false;
+            string mensaje;
+            bool resultado = ObjetoUsuario.EditarUsuario(usuario, out mensaje);
 
-            Assert.IsTrue(ObjetoUsuario.EditarUsuario(editarUsuario, out string mensaje));
+            Assert.AreEqual("Usuario actualizado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarUsuario()
         {
             CD_Usuario ObjetoUsuario = new CD_Usuario();
-            Usuario eliminarUsuario = new Usuario();
+            Usuario usuario = new Usuario
+            {
+                IdUsuario = 8
+            };
 
-            eliminarUsuario.IdUsuario = 8;
+            string mensaje;
+            bool resultado = ObjetoUsuario.EliminarUsuario(usuario, out mensaje);
 
-            Assert.IsTrue(ObjetoUsuario.EliminarUsuario(eliminarUsuario, out string mensaje));
+            Assert.AreEqual("Usuario eliminado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }
