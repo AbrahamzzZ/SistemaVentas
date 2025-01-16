@@ -1114,33 +1114,47 @@ CREATE PROCEDURE PA_REGISTRAR_COMPRA(
 @Resultado bit output,
 @Mensaje varchar(500) output
 )
-as
-begin
-	begin try
-		declare @Id_Compra int = 0
-		set @Resultado = 1
-		set @Mensaje = ''
-		begin transaction registro
-		INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL) VALUES
-		( @Id_Usuario, @Id_Proveedor, @Id_Transportista, @Tipo_Documento, @Numero_Documento, @Monto_Total);
-		set @Id_Compra = SCOPE_IDENTITY()
+AS
+BEGIN
+    BEGIN TRY
+        DECLARE @Id_Compra INT = 0;
+        SET @Resultado = 1;
+        SET @Mensaje = '';
 
-		INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD, MONTO_TOTAL) 
-		SELECT @Id_Compra, Id_Producto, Precio_Compra, Precio_Venta, Cantidad, Monto_Total FROM @Detalle_Compra
-		update p set p.Stock = p.Stock + dc.Cantidad,
-		p.Precio_Compra = dc.Precio_Compra,
-		p.Precio_Venta = dc.Precio_Venta
-		from PRODUCTO p inner join @Detalle_Compra dc on dc.Id_Producto = p.ID_PRODUCTO
-		update i set i.CANTIDAD = i.CANTIDAD + dc.CANTIDAD from INVENTARIO i
-		INNER JOIN @Detalle_Compra dc ON i.ID_PRODUCTO = dc.ID_PRODUCTO;
-		commit transaction registro
-	end try
-	begin catch
-		set @Resultado = 0
-		set @Mensaje = ERROR_MESSAGE()
-		rollback transaction registro
-	end catch
-end
+        BEGIN TRANSACTION registro;
+
+        INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL)
+        VALUES (@Id_Usuario, @Id_Proveedor, @Id_Transportista, @Tipo_Documento, @Numero_Documento, @Monto_Total);
+
+        SET @Id_Compra = SCOPE_IDENTITY();
+
+        INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD, MONTO_TOTAL)
+        SELECT @Id_Compra, Id_Producto, Precio_Compra, Precio_Venta, Cantidad, Monto_Total
+        FROM @Detalle_Compra;
+
+        UPDATE p
+        SET p.Stock = p.Stock + dc.Cantidad,
+            p.Precio_Compra = dc.Precio_Compra,
+            p.Precio_Venta = dc.Precio_Venta
+        FROM PRODUCTO p
+        INNER JOIN @Detalle_Compra dc ON dc.Id_Producto = p.ID_PRODUCTO;
+
+        UPDATE i
+        SET i.CANTIDAD = i.CANTIDAD + dc.CANTIDAD
+        FROM INVENTARIO i
+        INNER JOIN @Detalle_Compra dc ON i.ID_PRODUCTO = dc.ID_PRODUCTO;
+
+        -- Asignar mensaje de éxito
+        SET @Mensaje = 'Compra registrada con éxito';
+
+        COMMIT TRANSACTION registro;
+    END TRY
+    BEGIN CATCH
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+        ROLLBACK TRANSACTION registro;
+    END CATCH
+END;
 go
 
 CREATE TYPE [dbo].[EDetalle_Venta] AS TABLE(
@@ -1179,13 +1193,15 @@ begin
 		SELECT @Id_Venta,IdProducto, PrecioVenta, Cantidad, SubTotal, Descuento FROM @Detalle_Venta
 		update i set i.CANTIDAD = i.CANTIDAD - dv.CANTIDAD from INVENTARIO i
 		INNER JOIN @Detalle_Venta dv ON i.ID_PRODUCTO = dv.IdProducto;
+		-- Asignar mensaje de éxito
+        SET @Mensaje = 'Venta registrada con éxito';
 		commit transaction registro
 	end try
 	begin catch
 		set @Resultado = 0
 		set @Mensaje = ERROR_MESSAGE()
 	end catch
-end
+end;
 go
 
 CREATE PROC PA_REPORTE_COMPRA(
