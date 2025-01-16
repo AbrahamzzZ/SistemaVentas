@@ -33,23 +33,33 @@ namespace Test
             CD_Categoria ObjetoCategoria = new CD_Categoria();
             Categoria categoria = new Categoria
             {
-                IdCategoria = 22,
+                IdCategoria = 21,
                 Codigo = "7820",
                 Descripcion = "Automoviles",
-                Estado = true,
+                Estado = false,
             };
 
-            Assert.IsTrue(ObjetoCategoria.EditarCategoria(categoria, out string mensaje));
+            string mensaje;
+            bool resultado = ObjetoCategoria.EditarCategoria(categoria, out mensaje);
+
+            Assert.AreEqual("Categoría actualizada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarCategoria()
         {
             CD_Categoria ObjetoCategoria = new CD_Categoria();
-            Categoria categoria = new Categoria();
-            categoria.IdCategoria = 17;
+            Categoria categoria = new Categoria
+            {
+                IdCategoria = 21
+            };
 
-            Assert.IsTrue(ObjetoCategoria.EliminarCategoria(categoria, out string mensaje));
+            string mensaje;
+            bool resultado = ObjetoCategoria.EliminarCategoria(categoria, out mensaje);
+
+            Assert.AreEqual("Categoría eliminada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

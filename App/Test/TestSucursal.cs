@@ -11,45 +11,62 @@ namespace Test
         public void RegistrarSucursal()
         {
             CD_Sucursal ObjetoSucursal = new CD_Sucursal();
-            Sucursal sucursal = new Sucursal();
+            Sucursal sucursal = new Sucursal
+            {
+                Codigo = "1222",
+                Nombre = "GUAYAQUIL_ANTENAS TV CABLE",
+                Direccion = "AV.J.T.MARENGO S/N",
+                Latitud = -2.148076,
+                Longitud = -79.907386,
+                Ciudad = "Guayaquil",
+                Estado = true,
+            };
 
-            sucursal.Codigo = "00001";
-            sucursal.Nombre = "Sucursal 1";
-            sucursal.Direccion = "Av. 9 de Octubre";
-            sucursal.Latitud = 2.123456;
-            sucursal.Longitud = -79.123456;
-            sucursal.Ciudad = "Guayaquil";
-            sucursal.Estado = true;
+            string mensaje;
+            int resultado = ObjetoSucursal.RegistrarSucursal(sucursal, out mensaje);
 
-            Assert.IsTrue(ObjetoSucursal.RegistrarSucursal(sucursal, out string mensaje) > 0);
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Sucursal registrada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarSucursal()
         {
             CD_Sucursal ObjetoSucursal = new CD_Sucursal();
-            Sucursal sucursal = new Sucursal();
+            Sucursal sucursal = new Sucursal
+            {
+                IdSucursal = 5,
+                Codigo = "1222",
+                Nombre = "GUAYAQUIL_ANTENAS TV CABLE",
+                Direccion = "AV.J.T.MARENGO S/N",
+                Latitud = -2.148076,
+                Longitud = -79.907386,
+                Ciudad = "Guayaquil",
+                Estado = false,
+            };
 
-            sucursal.IdSucursal = 1;
-            sucursal.Codigo = "00001";
-            sucursal.Nombre = "Sucursal 1";
-            sucursal.Direccion = "Av. 9 de Octubre";
-            sucursal.Latitud = 2.123456;
-            sucursal.Longitud = -79.123456;
-            sucursal.Ciudad = "Guayaquil";
-            sucursal.Estado = true;
+            string mensaje;
+            bool resultado = ObjetoSucursal.EditarSucursal(sucursal, out mensaje);
 
-            Assert.IsTrue(ObjetoSucursal.EditarSucursal(sucursal, out string mensaje));
+            Assert.AreEqual("Sucursal actualizada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarSucursal()
         {
             CD_Sucursal ObjetoSucursal = new CD_Sucursal();
-            Sucursal sucursal = new Sucursal();
-            sucursal.IdSucursal = 1;
+            Sucursal sucursal = new Sucursal
+            {
+                IdSucursal = 5
+            };
+ 
+            string mensaje;
+            bool resultado = ObjetoSucursal.EliminarSucursal(sucursal, out mensaje);
 
-            Assert.IsTrue(ObjetoSucursal.EliminarSucursal(sucursal, out string mensaje));
+            Assert.AreEqual("Sucursal eliminada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

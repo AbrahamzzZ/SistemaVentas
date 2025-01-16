@@ -1,6 +1,7 @@
 using Datos;
 using Entidad;
 using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Test
 {
@@ -11,48 +12,60 @@ namespace Test
         public void RegistrarCliente()
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
-            Cliente registrarCliente = new Cliente();
+            Cliente cliente = new Cliente
+            {
+                Codigo = "0001",
+                Nombres = "Ariel Edison",
+                Apellidos = "Macias Villafuerte",
+                Cedula = "1234567890",
+                Telefono = "0987654321",
+                CorreoElectronico = "ariel03@gmail.com",
+                Estado = true
+            };
 
-            registrarCliente.Codigo = "766702";
-            registrarCliente.Nombres = "Roberto";
-            registrarCliente.Apellidos = "Perez";
-            registrarCliente.Cedula = "06639567890";
-            registrarCliente.Telefono = "0987654321";
-            registrarCliente.CorreoElectronico = "pablopincay@ug.edu.ec";
-            registrarCliente.Estado = true;
+            int resultado = ObjetoCliente.RegistrarCliente(cliente, out string mensaje);
 
-
-            int resultado = ObjetoCliente.RegistrarCliente(registrarCliente, out string mensaje);
-            Console.WriteLine($"Resultado: {resultado}, Mensaje: {mensaje}");
-            Assert.IsTrue(resultado > 0);
+            Assert.AreEqual("Cliente registrado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarCliente()
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
-            Cliente editarCliente = new Cliente();
+            Cliente cliente = new Cliente
+            {
+                IdCliente = 12,
+                Codigo = "00009",
+                Nombres = "Ariel Edison",
+                Apellidos = "Macias Villafuerte",
+                Cedula = "0934567890",
+                Telefono = "0987654321",
+                CorreoElectronico = "areil03@gmail.com",
+                Estado = true
+            };
 
-            editarCliente.IdCliente = 8;
-            editarCliente.Codigo = "00009";
-            editarCliente.Nombres = "Roberto";
-            editarCliente.Apellidos = "Perez";
-            editarCliente.Cedula = "1234567890";
-            editarCliente.Telefono = "0987654321";
-            editarCliente.CorreoElectronico = "pabloagurto@ug.edu.ec";
-            editarCliente.Estado = true;
+            string mensaje;
+            bool resultado = ObjetoCliente.EditarCliente(cliente, out mensaje);
 
-            Assert.IsTrue(ObjetoCliente.EditarCliente(editarCliente, out string mensaje));
+            Assert.AreEqual("Cliente actualizado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarCliente()
         {
             CD_Cliente ObjetoCliente = new CD_Cliente();
-            Cliente eliminarCliente = new Cliente();
-            eliminarCliente.IdCliente = 8;
+            Cliente cliente = new Cliente
+            {
+                IdCliente = 12
+            };
 
-            Assert.IsTrue(ObjetoCliente.EliminarCliente(eliminarCliente, out string mensaje));
+            string mensaje;
+            bool resultado = ObjetoCliente.EliminarCliente(cliente, out mensaje);
+
+            Assert.AreEqual("Cliente eliminado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

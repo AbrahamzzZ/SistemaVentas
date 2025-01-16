@@ -1,6 +1,7 @@
 using Datos;
 using Entidad;
 using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace Test
@@ -12,47 +13,67 @@ namespace Test
         public void RegistrarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-            Transportista transportista = new Transportista();
             byte[] imagen = null;
+            Transportista transportista = new Transportista
+            {
+                Codigo = "3412",
+                Nombres = "Judai Samuel",
+                Apellidos = "Kurayami Zambrano",
+                Cedula = "1234567890",
+                Telefono = "0987654321",
+                CorreoElectronico = "judaiskz@gmail.com",
+                Imagen = imagen,
+                Estado = true,
+                FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd")
+            };
 
-            transportista.Nombres = "Judai Yuki";
-            transportista.Apellidos = "Kurayami";
-            transportista.Cedula = "1234567890";
-            transportista.Telefono = "0987654321";
-            transportista.CorreoElectronico = "judaiyami@gx.com";
-            transportista.Imagen = imagen;
-            transportista.Estado = true;
+            string mensaje;
+            int resultado = ObjetoTransportista.RegistrarTransportista(transportista, imagen, out mensaje);
 
-            Assert.IsTrue(ObjetoTransportista.RegistrarTransportista(transportista, null, out string mensaje) > 0);
+            Assert.IsTrue(resultado > 0, "El ID generado debe ser mayor a 0.");
+            Assert.AreEqual("Transportista registrado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EditarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-            Transportista transportista = new Transportista();
             byte[] imagen = null;
+            Transportista transportista = new Transportista
+            {
+                IdTransportista = 5,
+                Codigo = "3412",
+                Nombres = "Judai Samuel",
+                Apellidos = "Kurayami Zambrano",
+                Cedula = "0934567890",
+                Telefono = "0987654321",
+                CorreoElectronico = "judaiskz@gmail.com",
+                Imagen = imagen,
+                Estado = false
+            };
 
-            transportista.IdTransportista = 1;
-            transportista.Nombres = "Judai Yuki";
-            transportista.Apellidos = "Kurayami";
-            transportista.Cedula = "1234567890";
-            transportista.Telefono = "0987654321";
-            transportista.CorreoElectronico = "judaiyami@gx.com";
-            transportista.Imagen = imagen;
-            transportista.Estado = true;
+            string mensaje;
+            bool resultado = ObjetoTransportista.EditarTransportista(transportista, imagen, out mensaje);
 
-            Assert.IsTrue(ObjetoTransportista.EditarTransportista(transportista, null,out string mensaje));
+            Assert.AreEqual("Transportista actualizado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
 
         [TestMethod]
         public void EliminarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-            Transportista transportista = new Transportista();
-            transportista.IdTransportista = 2;
+            Transportista transportista = new Transportista
+            {
+                IdTransportista = 5
+            };
 
-            Assert.IsTrue(ObjetoTransportista.EliminarTransportista(transportista, out string mensaje));
+            string mensaje;
+            bool resultado = ObjetoTransportista.EliminarTransportista(transportista, out mensaje);
+
+            Assert.AreEqual("Transportista eliminado exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
     }
 }

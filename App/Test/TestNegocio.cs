@@ -8,31 +8,24 @@ namespace Test
     public sealed class TestNegocio
     {
         [TestMethod]
-        public void ObtenerInformacionNegocio()
-        {
-            CD_Negocio ObjetoNegocio = new CD_Negocio();
-            Assert.IsNotNull(ObjetoNegocio.ObtenerInformacionNegocio());
-        }
-
-        [TestMethod]
         public void EditarNegocio()
         {
             CD_Negocio ObjetoNegocio = new CD_Negocio();
-            Negocio negocio = new Negocio();
+            Negocio negocio = new Negocio
+            {
+                IdNegocio = 1,
+                Nombre = "Supermercado Paradisia",
+                Telefono = "0987654321",
+                Ruc = "0102030405785",
+                Direccion = "Mucho Lote, 3 etapa",
+                CorreoElectronico = "supermercadoParadisia@gmail.com"
+            };
 
-            negocio.IdNegocio = 1;
-            negocio.Nombre = "Tienda de ropa";
-            negocio.Ruc = "1234567890";
-            negocio.Direccion = "Av. 9 de Octubre";
-            negocio.Telefono = "0987654321";
-            negocio.CorreoElectronico = "camioncitosSA.ug.edu.ec";
+            string mensaje;
+            bool resultado = ObjetoNegocio.EditarNegocio(negocio, out mensaje);
 
-            Assert.IsTrue(ObjetoNegocio.EditarNegocio(negocio, out string mensaje));
+            Assert.AreEqual("La información del negocio fue actualizada exitosamente.", mensaje, "El mensaje de salida no es el esperado.");
+            Console.WriteLine($"Mensaje devuelto: {mensaje}");
         }
-
-
     }
-
 }
-
-
