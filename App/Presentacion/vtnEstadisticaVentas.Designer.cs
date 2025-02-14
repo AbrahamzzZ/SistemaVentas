@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BtnCargarDatosVentas = new System.Windows.Forms.Button();
+            this.BtnCargarDatos = new System.Windows.Forms.Button();
             this.graficaVenta = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BtnGenerarPDF = new System.Windows.Forms.Button();
-            this.btnCargarDatos2 = new System.Windows.Forms.Button();
-            this.lblVerProductosVendidos = new System.Windows.Forms.Label();
-            this.lblVerClientesComprado = new System.Windows.Forms.Label();
-            this.lblVentasEmpleado = new System.Windows.Forms.Label();
-            this.btnCargarDatos3 = new System.Windows.Forms.Button();
+            this.BtnCargarDatos2 = new System.Windows.Forms.Button();
+            this.LblVerProductosVendidos = new System.Windows.Forms.Label();
+            this.LblVerTopClientesCompras = new System.Windows.Forms.Label();
+            this.LblVentasEmpleado = new System.Windows.Forms.Label();
+            this.BtnCargarDatos3 = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficaVenta)).BeginInit();
@@ -69,26 +69,26 @@
             this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
             // 
-            // BtnCargarDatosVentas
+            // BtnCargarDatos
             // 
-            this.BtnCargarDatosVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.BtnCargarDatosVentas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnCargarDatosVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCargarDatosVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatosVentas.Location = new System.Drawing.Point(25, 286);
-            this.BtnCargarDatosVentas.Name = "BtnCargarDatosVentas";
-            this.BtnCargarDatosVentas.Size = new System.Drawing.Size(279, 41);
-            this.BtnCargarDatosVentas.TabIndex = 60;
-            this.BtnCargarDatosVentas.Text = "Cargar datos";
-            this.BtnCargarDatosVentas.UseVisualStyleBackColor = false;
-            this.BtnCargarDatosVentas.Click += new System.EventHandler(this.BtnCargarDatosVentas_Click);
+            this.BtnCargarDatos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 286);
+            this.BtnCargarDatos.Name = "BtnCargarDatos";
+            this.BtnCargarDatos.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos.TabIndex = 60;
+            this.BtnCargarDatos.Text = "Cargar datos";
+            this.BtnCargarDatos.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos.Click += new System.EventHandler(this.BtnCargarDatos_Click);
             // 
             // graficaVenta
             // 
-            chartArea6.Name = "ChartArea1";
-            this.graficaVenta.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.graficaVenta.Legends.Add(legend6);
+            chartArea2.Name = "ChartArea1";
+            this.graficaVenta.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graficaVenta.Legends.Add(legend2);
             this.graficaVenta.Location = new System.Drawing.Point(404, 49);
             this.graficaVenta.Name = "graficaVenta";
             this.graficaVenta.Size = new System.Drawing.Size(977, 507);
@@ -101,7 +101,7 @@
             this.BtnGenerarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGenerarPDF.Location = new System.Drawing.Point(25, 518);
+            this.BtnGenerarPDF.Location = new System.Drawing.Point(25, 522);
             this.BtnGenerarPDF.Name = "BtnGenerarPDF";
             this.BtnGenerarPDF.Size = new System.Drawing.Size(279, 41);
             this.BtnGenerarPDF.TabIndex = 67;
@@ -109,64 +109,66 @@
             this.BtnGenerarPDF.UseVisualStyleBackColor = false;
             this.BtnGenerarPDF.Click += new System.EventHandler(this.BtnGenerarPDF_Click);
             // 
-            // btnCargarDatos2
+            // BtnCargarDatos2
             // 
-            this.btnCargarDatos2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCargarDatos2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarDatos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarDatos2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarDatos2.Location = new System.Drawing.Point(25, 371);
-            this.btnCargarDatos2.Name = "btnCargarDatos2";
-            this.btnCargarDatos2.Size = new System.Drawing.Size(279, 41);
-            this.btnCargarDatos2.TabIndex = 68;
-            this.btnCargarDatos2.Text = "Cargar datos";
-            this.btnCargarDatos2.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 371);
+            this.BtnCargarDatos2.Name = "BtnCargarDatos2";
+            this.BtnCargarDatos2.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos2.TabIndex = 68;
+            this.BtnCargarDatos2.Text = "Cargar datos";
+            this.BtnCargarDatos2.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos2.Click += new System.EventHandler(this.BtnCargarDatos2_Click);
             // 
-            // lblVerProductosVendidos
+            // LblVerProductosVendidos
             // 
-            this.lblVerProductosVendidos.AutoSize = true;
-            this.lblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
-            this.lblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
-            this.lblVerProductosVendidos.Name = "lblVerProductosVendidos";
-            this.lblVerProductosVendidos.Size = new System.Drawing.Size(227, 20);
-            this.lblVerProductosVendidos.TabIndex = 69;
-            this.lblVerProductosVendidos.Text = "Ver productos mas vendidos:";
+            this.LblVerProductosVendidos.AutoSize = true;
+            this.LblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
+            this.LblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
+            this.LblVerProductosVendidos.Name = "LblVerProductosVendidos";
+            this.LblVerProductosVendidos.Size = new System.Drawing.Size(227, 20);
+            this.LblVerProductosVendidos.TabIndex = 69;
+            this.LblVerProductosVendidos.Text = "Ver productos mas vendidos:";
             // 
-            // lblVerClientesComprado
+            // LblVerTopClientesCompras
             // 
-            this.lblVerClientesComprado.AutoSize = true;
-            this.lblVerClientesComprado.BackColor = System.Drawing.Color.Wheat;
-            this.lblVerClientesComprado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerClientesComprado.Location = new System.Drawing.Point(21, 344);
-            this.lblVerClientesComprado.Name = "lblVerClientesComprado";
-            this.lblVerClientesComprado.Size = new System.Drawing.Size(224, 20);
-            this.lblVerClientesComprado.TabIndex = 70;
-            this.lblVerClientesComprado.Text = "Ver clientes top en compras:";
+            this.LblVerTopClientesCompras.AutoSize = true;
+            this.LblVerTopClientesCompras.BackColor = System.Drawing.Color.Wheat;
+            this.LblVerTopClientesCompras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVerTopClientesCompras.Location = new System.Drawing.Point(21, 344);
+            this.LblVerTopClientesCompras.Name = "LblVerTopClientesCompras";
+            this.LblVerTopClientesCompras.Size = new System.Drawing.Size(224, 20);
+            this.LblVerTopClientesCompras.TabIndex = 70;
+            this.LblVerTopClientesCompras.Text = "Ver clientes top en compras:";
             // 
-            // lblVentasEmpleado
+            // LblVentasEmpleado
             // 
-            this.lblVentasEmpleado.AutoSize = true;
-            this.lblVentasEmpleado.BackColor = System.Drawing.Color.Wheat;
-            this.lblVentasEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVentasEmpleado.Location = new System.Drawing.Point(21, 431);
-            this.lblVentasEmpleado.Name = "lblVentasEmpleado";
-            this.lblVentasEmpleado.Size = new System.Drawing.Size(241, 20);
-            this.lblVentasEmpleado.TabIndex = 71;
-            this.lblVentasEmpleado.Text = "Ver ventas por cada empleado:";
+            this.LblVentasEmpleado.AutoSize = true;
+            this.LblVentasEmpleado.BackColor = System.Drawing.Color.Wheat;
+            this.LblVentasEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVentasEmpleado.Location = new System.Drawing.Point(21, 431);
+            this.LblVentasEmpleado.Name = "LblVentasEmpleado";
+            this.LblVentasEmpleado.Size = new System.Drawing.Size(241, 20);
+            this.LblVentasEmpleado.TabIndex = 71;
+            this.LblVentasEmpleado.Text = "Ver ventas por cada empleado:";
             // 
-            // btnCargarDatos3
+            // BtnCargarDatos3
             // 
-            this.btnCargarDatos3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCargarDatos3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarDatos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarDatos3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarDatos3.Location = new System.Drawing.Point(25, 457);
-            this.btnCargarDatos3.Name = "btnCargarDatos3";
-            this.btnCargarDatos3.Size = new System.Drawing.Size(279, 41);
-            this.btnCargarDatos3.TabIndex = 72;
-            this.btnCargarDatos3.Text = "Cargar datos";
-            this.btnCargarDatos3.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 457);
+            this.BtnCargarDatos3.Name = "BtnCargarDatos3";
+            this.BtnCargarDatos3.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos3.TabIndex = 72;
+            this.BtnCargarDatos3.Text = "Cargar datos";
+            this.BtnCargarDatos3.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos3.Click += new System.EventHandler(this.BtnCargarDatos3_Click);
             // 
             // lblMensaje
             // 
@@ -186,19 +188,18 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
             this.Controls.Add(this.lblMensaje);
-            this.Controls.Add(this.btnCargarDatos3);
-            this.Controls.Add(this.lblVentasEmpleado);
-            this.Controls.Add(this.lblVerClientesComprado);
-            this.Controls.Add(this.lblVerProductosVendidos);
-            this.Controls.Add(this.btnCargarDatos2);
+            this.Controls.Add(this.BtnCargarDatos3);
+            this.Controls.Add(this.LblVentasEmpleado);
+            this.Controls.Add(this.LblVerTopClientesCompras);
+            this.Controls.Add(this.LblVerProductosVendidos);
+            this.Controls.Add(this.BtnCargarDatos2);
             this.Controls.Add(this.BtnGenerarPDF);
             this.Controls.Add(this.graficaVenta);
-            this.Controls.Add(this.BtnCargarDatosVentas);
+            this.Controls.Add(this.BtnCargarDatos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Name = "VtnEstadisticaVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ver las estadísticas de los productos vendidos";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficaVenta)).EndInit();
             this.ResumeLayout(false);
@@ -210,14 +211,14 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button BtnCargarDatosVentas;
+        private System.Windows.Forms.Button BtnCargarDatos;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficaVenta;
         private System.Windows.Forms.Button BtnGenerarPDF;
-        private System.Windows.Forms.Button btnCargarDatos2;
-        private System.Windows.Forms.Label lblVerProductosVendidos;
-        private System.Windows.Forms.Label lblVerClientesComprado;
-        private System.Windows.Forms.Label lblVentasEmpleado;
-        private System.Windows.Forms.Button btnCargarDatos3;
+        private System.Windows.Forms.Button BtnCargarDatos2;
+        private System.Windows.Forms.Label LblVerProductosVendidos;
+        private System.Windows.Forms.Label LblVerTopClientesCompras;
+        private System.Windows.Forms.Label LblVentasEmpleado;
+        private System.Windows.Forms.Button BtnCargarDatos3;
         private System.Windows.Forms.Label lblMensaje;
     }
 }

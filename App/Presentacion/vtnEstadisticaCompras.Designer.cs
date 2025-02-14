@@ -28,44 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.graficaCompra = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnCargarDatosVentas = new System.Windows.Forms.Button();
+            this.BtnCargarDatos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnGenerarPDF = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
-            this.lblVerProductosVendidos = new System.Windows.Forms.Label();
+            this.LblVerProductosVendidos = new System.Windows.Forms.Label();
+            this.BtnCargarDatos2 = new System.Windows.Forms.Button();
+            this.BtnCargarDatos3 = new System.Windows.Forms.Button();
+            this.LblVerViajeTransportista = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // graficaCompra
             // 
-            chartArea11.Name = "ChartArea1";
-            this.graficaCompra.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.graficaCompra.Legends.Add(legend11);
+            chartArea2.Name = "ChartArea1";
+            this.graficaCompra.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.graficaCompra.Legends.Add(legend2);
             this.graficaCompra.Location = new System.Drawing.Point(404, 49);
             this.graficaCompra.Name = "graficaCompra";
             this.graficaCompra.Size = new System.Drawing.Size(977, 507);
             this.graficaCompra.TabIndex = 65;
             this.graficaCompra.Text = "chart1";
             // 
-            // btnCargarDatosVentas
+            // BtnCargarDatos
             // 
-            this.btnCargarDatosVentas.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCargarDatosVentas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCargarDatosVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCargarDatosVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarDatosVentas.Location = new System.Drawing.Point(25, 286);
-            this.btnCargarDatosVentas.Name = "btnCargarDatosVentas";
-            this.btnCargarDatosVentas.Size = new System.Drawing.Size(279, 41);
-            this.btnCargarDatosVentas.TabIndex = 64;
-            this.btnCargarDatosVentas.Text = "Cargar datos";
-            this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
-            this.btnCargarDatosVentas.Click += new System.EventHandler(this.BtnCargarDatosVentas_Click_1);
+            this.BtnCargarDatos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 286);
+            this.BtnCargarDatos.Name = "BtnCargarDatos";
+            this.BtnCargarDatos.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos.TabIndex = 64;
+            this.BtnCargarDatos.Text = "Cargar datos";
+            this.BtnCargarDatos.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos.Click += new System.EventHandler(this.BtnCargarDatos_Click);
             // 
             // pictureBox1
             // 
@@ -97,7 +101,7 @@
             this.BtnGenerarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGenerarPDF.Location = new System.Drawing.Point(25, 369);
+            this.BtnGenerarPDF.Location = new System.Drawing.Point(25, 522);
             this.BtnGenerarPDF.Name = "BtnGenerarPDF";
             this.BtnGenerarPDF.Size = new System.Drawing.Size(279, 41);
             this.BtnGenerarPDF.TabIndex = 66;
@@ -116,16 +120,66 @@
             this.lblMensaje.TabIndex = 74;
             this.lblMensaje.Text = "Antes de generar el pdf primero tiene que cargas los datos.\r\n";
             // 
-            // lblVerProductosVendidos
+            // LblVerProductosVendidos
             // 
-            this.lblVerProductosVendidos.AutoSize = true;
-            this.lblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
-            this.lblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
-            this.lblVerProductosVendidos.Name = "lblVerProductosVendidos";
-            this.lblVerProductosVendidos.Size = new System.Drawing.Size(244, 20);
-            this.lblVerProductosVendidos.TabIndex = 75;
-            this.lblVerProductosVendidos.Text = "Ver productos mas comprados:";
+            this.LblVerProductosVendidos.AutoSize = true;
+            this.LblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
+            this.LblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
+            this.LblVerProductosVendidos.Name = "LblVerProductosVendidos";
+            this.LblVerProductosVendidos.Size = new System.Drawing.Size(244, 20);
+            this.LblVerProductosVendidos.TabIndex = 75;
+            this.LblVerProductosVendidos.Text = "Ver productos mas comprados:";
+            // 
+            // BtnCargarDatos2
+            // 
+            this.BtnCargarDatos2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 371);
+            this.BtnCargarDatos2.Name = "BtnCargarDatos2";
+            this.BtnCargarDatos2.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos2.TabIndex = 76;
+            this.BtnCargarDatos2.Text = "Cargar datos";
+            this.BtnCargarDatos2.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos2.Click += new System.EventHandler(this.BtnCargarDatos2_Click);
+            // 
+            // BtnCargarDatos3
+            // 
+            this.BtnCargarDatos3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 457);
+            this.BtnCargarDatos3.Name = "BtnCargarDatos3";
+            this.BtnCargarDatos3.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos3.TabIndex = 77;
+            this.BtnCargarDatos3.Text = "Cargar datos";
+            this.BtnCargarDatos3.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos3.Click += new System.EventHandler(this.BtnCargarDatos3_Click);
+            // 
+            // LblVerViajeTransportista
+            // 
+            this.LblVerViajeTransportista.AutoSize = true;
+            this.LblVerViajeTransportista.BackColor = System.Drawing.Color.Wheat;
+            this.LblVerViajeTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVerViajeTransportista.Location = new System.Drawing.Point(21, 431);
+            this.LblVerViajeTransportista.Name = "LblVerViajeTransportista";
+            this.LblVerViajeTransportista.Size = new System.Drawing.Size(251, 20);
+            this.LblVerViajeTransportista.TabIndex = 78;
+            this.LblVerViajeTransportista.Text = "Ver viajes de cada transportista:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Wheat;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(21, 344);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(249, 20);
+            this.label3.TabIndex = 79;
+            this.label3.Text = "Ver proveedores de preferencia:";
             // 
             // VtnGraficaCompras
             // 
@@ -133,16 +187,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
-            this.Controls.Add(this.lblVerProductosVendidos);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LblVerViajeTransportista);
+            this.Controls.Add(this.BtnCargarDatos3);
+            this.Controls.Add(this.BtnCargarDatos2);
+            this.Controls.Add(this.LblVerProductosVendidos);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.BtnGenerarPDF);
             this.Controls.Add(this.graficaCompra);
-            this.Controls.Add(this.btnCargarDatosVentas);
+            this.Controls.Add(this.BtnCargarDatos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Name = "VtnGraficaCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ver gráfica de los productos comprados";
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -153,11 +210,15 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart graficaCompra;
-        private System.Windows.Forms.Button btnCargarDatosVentas;
+        private System.Windows.Forms.Button BtnCargarDatos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnGenerarPDF;
         private System.Windows.Forms.Label lblMensaje;
-        private System.Windows.Forms.Label lblVerProductosVendidos;
+        private System.Windows.Forms.Label LblVerProductosVendidos;
+        private System.Windows.Forms.Button BtnCargarDatos2;
+        private System.Windows.Forms.Button BtnCargarDatos3;
+        private System.Windows.Forms.Label LblVerViajeTransportista;
+        private System.Windows.Forms.Label label3;
     }
 }
