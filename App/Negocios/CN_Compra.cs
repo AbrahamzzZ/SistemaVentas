@@ -60,5 +60,25 @@ namespace Negocios
         {
             return ObjetoCompra.GraficaProductosComprados();
         }
+
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de los proveedores que mas le han comprado productos
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+        public DataTable GraficaCompra2()
+        {
+            return ObjetoCompra.GraficaProveedorPreferencia();
+        }
+
+
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de los viajes de cada transportista
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+        public DataTable GraficaCompra3()
+        {
+            return ObjetoCompra.GraficaViajesRealizados();
+        }
+
     }
 }
