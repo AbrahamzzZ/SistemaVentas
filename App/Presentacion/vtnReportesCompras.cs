@@ -14,6 +14,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de reporte de las compras.
+    /// </summary>
     public partial class vtnReportesCompras : Form
     {
         /// <summary>

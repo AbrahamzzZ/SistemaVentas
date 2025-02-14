@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace Presentacion.Modales
 {
+    /// <summary>
+    /// Clase que representa el modal de los productos.
+    /// </summary>
     public partial class vtnModalesProductos : Form
     {
         /// <summary>

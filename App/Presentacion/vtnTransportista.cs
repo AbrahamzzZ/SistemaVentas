@@ -15,6 +15,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de transportista.
+    /// </summary>
     public partial class VtnTransportista : Form
     {
         byte[] imagen = null;

@@ -28,26 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.graficaCompra = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnCargarDatosVentas = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnGenerarPDF = new System.Windows.Forms.Button();
+            this.lblMensaje = new System.Windows.Forms.Label();
+            this.lblVerProductosVendidos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // graficaCompra
             // 
-            chartArea1.Name = "ChartArea1";
-            this.graficaCompra.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graficaCompra.Legends.Add(legend1);
-            this.graficaCompra.Location = new System.Drawing.Point(387, 29);
+            chartArea11.Name = "ChartArea1";
+            this.graficaCompra.ChartAreas.Add(chartArea11);
+            legend11.Name = "Legend1";
+            this.graficaCompra.Legends.Add(legend11);
+            this.graficaCompra.Location = new System.Drawing.Point(404, 49);
             this.graficaCompra.Name = "graficaCompra";
-            this.graficaCompra.Size = new System.Drawing.Size(984, 527);
+            this.graficaCompra.Size = new System.Drawing.Size(977, 507);
             this.graficaCompra.TabIndex = 65;
             this.graficaCompra.Text = "chart1";
             // 
@@ -57,9 +59,9 @@
             this.btnCargarDatosVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCargarDatosVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarDatosVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCargarDatosVentas.Location = new System.Drawing.Point(70, 355);
+            this.btnCargarDatosVentas.Location = new System.Drawing.Point(25, 286);
             this.btnCargarDatosVentas.Name = "btnCargarDatosVentas";
-            this.btnCargarDatosVentas.Size = new System.Drawing.Size(193, 41);
+            this.btnCargarDatosVentas.Size = new System.Drawing.Size(279, 41);
             this.btnCargarDatosVentas.TabIndex = 64;
             this.btnCargarDatosVentas.Text = "Cargar datos";
             this.btnCargarDatosVentas.UseVisualStyleBackColor = false;
@@ -69,9 +71,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Wheat;
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.grafica;
-            this.pictureBox1.Location = new System.Drawing.Point(70, 143);
+            this.pictureBox1.Location = new System.Drawing.Point(63, 44);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(193, 185);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 190);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 63;
             this.pictureBox1.TabStop = false;
@@ -86,7 +88,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(341, 587);
             this.label2.TabIndex = 62;
-            this.label2.Text = "Gráficas de las compras";
+            this.label2.Text = "Estadística de las compras";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // BtnGenerarPDF
@@ -95,13 +97,35 @@
             this.BtnGenerarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnGenerarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenerarPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGenerarPDF.Location = new System.Drawing.Point(70, 402);
+            this.BtnGenerarPDF.Location = new System.Drawing.Point(25, 369);
             this.BtnGenerarPDF.Name = "BtnGenerarPDF";
-            this.BtnGenerarPDF.Size = new System.Drawing.Size(193, 41);
+            this.BtnGenerarPDF.Size = new System.Drawing.Size(279, 41);
             this.BtnGenerarPDF.TabIndex = 66;
             this.BtnGenerarPDF.Text = "Generar PDF";
             this.BtnGenerarPDF.UseVisualStyleBackColor = false;
             this.BtnGenerarPDF.Click += new System.EventHandler(this.BtnGenerarPDF_Click);
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.lblMensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.Location = new System.Drawing.Point(401, 26);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(510, 20);
+            this.lblMensaje.TabIndex = 74;
+            this.lblMensaje.Text = "Antes de generar el pdf primero tiene que cargas los datos.\r\n";
+            // 
+            // lblVerProductosVendidos
+            // 
+            this.lblVerProductosVendidos.AutoSize = true;
+            this.lblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
+            this.lblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
+            this.lblVerProductosVendidos.Name = "lblVerProductosVendidos";
+            this.lblVerProductosVendidos.Size = new System.Drawing.Size(244, 20);
+            this.lblVerProductosVendidos.TabIndex = 75;
+            this.lblVerProductosVendidos.Text = "Ver productos mas comprados:";
             // 
             // VtnGraficaCompras
             // 
@@ -109,6 +133,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.lblVerProductosVendidos);
+            this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.BtnGenerarPDF);
             this.Controls.Add(this.graficaCompra);
             this.Controls.Add(this.btnCargarDatosVentas);
@@ -120,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -130,5 +157,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnGenerarPDF;
+        private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.Label lblVerProductosVendidos;
     }
 }

@@ -12,8 +12,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de reclamo.
+    /// </summary>
     public partial class VtnReclamo : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public VtnReclamo()
         {
             InitializeComponent();
@@ -200,6 +206,10 @@ namespace Presentacion
                 }
             }
         }
+
+        /// <summary>
+        /// Metodo que limpias los campos
+        /// </summary>
         public void Limpiar()
         {
             TxtIndice.Text = "-1";

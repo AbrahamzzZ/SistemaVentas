@@ -13,6 +13,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de las compras.
+    /// </summary>
     public partial class VtnCompra : Form
     {
         private Usuario_Catched Usuario;

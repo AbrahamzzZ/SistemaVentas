@@ -13,6 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de menú.
+    /// </summary>
     public partial class VtnMenu : Form
     {
         private Usuario_Catched nombreUsuarioActual;
@@ -135,7 +138,7 @@ namespace Presentacion
 
         private void MenuItemGraficasVentas_Click(object sender, EventArgs e)
         {
-            VerPanel(new vtnGraficaVentas());
+            VerPanel(new VtnEstadisticaVentas());
         }
         private void MenuItemVerOfertas_Click(object sender, EventArgs e)
         {
