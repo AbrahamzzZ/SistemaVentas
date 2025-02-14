@@ -13,7 +13,7 @@ namespace Test
         public void RegistrarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-            byte[] imagen = null;
+            byte[]? imagen = null;
             Transportista transportista = new Transportista
             {
                 Codigo = "3412",
@@ -39,7 +39,7 @@ namespace Test
         public void EditarTransportista()
         {
             CD_Transportista ObjetoTransportista = new CD_Transportista();
-            byte[] imagen = null;
+            byte[]? imagen = null;
             Transportista transportista = new Transportista
             {
                 IdTransportista = 5,
