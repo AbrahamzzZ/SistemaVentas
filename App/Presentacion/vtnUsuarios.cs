@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de usuario.
+    /// </summary>
     public partial class VtnUsuarios : Form
     {
         /// <summary>

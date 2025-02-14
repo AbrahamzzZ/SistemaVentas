@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de unidad de medida.
+    /// </summary>
     public partial class VtnUnidadMedida : Form
     {
         /// <summary>

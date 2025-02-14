@@ -87,6 +87,11 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageBytes"></param>
+        /// <returns></returns>
         public Image ByteImage(byte[] imageBytes)
         {
             if(imageBytes == null || imageBytes.Length == 0)

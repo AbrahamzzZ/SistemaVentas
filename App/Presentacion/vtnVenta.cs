@@ -13,6 +13,9 @@ using Entidad;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de las ventas.
+    /// </summary>
     public partial class VtnVenta : Form
     {
         private Usuario_Catched usuario;

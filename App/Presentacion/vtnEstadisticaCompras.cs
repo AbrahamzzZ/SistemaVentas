@@ -15,6 +15,9 @@ using iTextSharp.text;
 
 namespace Presentacion
 {
+    /// <summary>
+    /// Clase que representa la ventana de las estadistica de las compras.
+    /// </summary>
     public partial class VtnGraficaCompras : Form
     {
         /// <summary>

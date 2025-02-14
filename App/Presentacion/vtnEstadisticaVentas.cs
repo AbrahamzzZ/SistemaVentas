@@ -16,15 +16,15 @@ using iTextSharp.text;
 namespace Presentacion
 {
     /// <summary>
-    /// Clase que representa la ventana de gráficas ventas.
+    /// Clase que representa la ventana las estadistica de las ventas.
     /// </summary>
-    public partial class vtnGraficaVentas : Form
+    public partial class VtnEstadisticaVentas : Form
     {
         /// <summary>
         /// Constructor de la clase VtnGraficaVentas.
         /// Inicializa los componentes de la ventana.
         /// </summary>
-        public vtnGraficaVentas()
+        public VtnEstadisticaVentas()
         {
             InitializeComponent();
         }
@@ -137,7 +137,7 @@ namespace Presentacion
 
                                 // Añadir la fecha de generación
                                 iTextSharp.text.Paragraph fecha = new iTextSharp.text.Paragraph(
-                                    $"Generado el: {DateTime.Now.ToString("g")}\n\n",
+                                    $"Generado el: {DateTime.Now:g}\n\n",
                                     new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10)
                                 );
                                 fecha.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
