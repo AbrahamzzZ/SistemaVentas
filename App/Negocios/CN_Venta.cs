@@ -43,7 +43,7 @@ namespace Negocios
         /// <returns>Un booleano que indica si la operación fue exitosa.</returns>
         public bool RestarSotckProducto(int idProducto, int cantidad)
         {
-            return ObjetoVenta.RestarSotck(idProducto, cantidad);
+            return ObjetoVenta.RestarStock(idProducto, cantidad);
         }
 
         /// <summary>
@@ -81,6 +81,24 @@ namespace Negocios
         public DataTable GraficoVenta()
         {
             return ObjetoVenta.GraficaProductosVendidos();
+        }
+
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de los clientes que mas han comprado.
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+        public DataTable GraficoVenta2()
+        {
+            return ObjetoVenta.GraficaTopClientes();
+        }
+
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de las ventas de cada usuario.
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+        public DataTable GraficoVenta3()
+        {
+            return ObjetoVenta.GraficaVentaCadaEmpleado();
         }
     }
 }

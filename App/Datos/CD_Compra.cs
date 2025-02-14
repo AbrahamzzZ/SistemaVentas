@@ -168,7 +168,7 @@ namespace Datos
             {
                 StringBuilder grafica = new StringBuilder();
                 grafica.AppendLine("SELECT P.NOMBRE_PRODUCTO, COUNT(DC.ID_PRODUCTO) AS CANTIDAD_COMPRADA FROM DETALLE_COMPRA DC");
-                grafica.AppendLine("JOIN PRODUCTO P ON DC.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
+                grafica.AppendLine("INNER JOIN PRODUCTO P ON DC.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
 
                 SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
@@ -178,6 +178,56 @@ namespace Datos
             catch (Exception co)
             {
                 Console.WriteLine("Error al generar la gráfica de compras: " + co.Message);
+            }
+            return tabla;
+        }
+
+        /// <summary>
+        /// Método que muestra a los provedores que mas compras le han realizado
+        /// </summary>
+        /// <returns>Un DataTable de los proveedores</returns>
+        public DataTable GraficaProveedorPreferencia()
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                StringBuilder grafica = new StringBuilder();
+                grafica.AppendLine("SELECT P.NOMBRES, COUNT(C.ID_PROVEEDOR) AS COMPRAS_TOTALES FROM COMPRA C");
+                grafica.AppendLine("INNER JOIN PROVEEDOR P ON C.ID_PROVEEDOR = P.ID_PROVEEDOR GROUP BY P.NOMBRES;");
+
+                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+
+                data.Fill(tabla);
+            }
+            catch (Exception co)
+            {
+                Console.WriteLine("Error al generar la gráfica de compras: " + co.Message);
+            }
+            return tabla;
+        }
+
+        /// <summary>
+        /// Método que muestra la cantidad de viajes que ha realizado cada transportista
+        /// </summary>
+        /// <returns>Un DataTable de los transportistas</returns>
+        public DataTable GraficaViajesRealizados()
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                StringBuilder grafica = new StringBuilder();
+                grafica.AppendLine("SELECT T.NOMBRES, COUNT(C.ID_TRANSPORTISTA) AS VIAJES_REALIZADOS FROM COMPRA C");
+                grafica.AppendLine("INNER JOIN TRANSPORTISTA T ON C.ID_TRANSPORTISTA = T.ID_TRANSPORTISTA GROUP BY T.NOMBRES;\r\n");
+
+                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+
+                data.Fill(tabla);
+            }
+            catch (Exception co)
+            {
+                Console.WriteLine("Error: " + co.Message);
             }
             return tabla;
         }
