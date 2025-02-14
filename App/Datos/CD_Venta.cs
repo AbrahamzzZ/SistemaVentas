@@ -32,6 +32,7 @@ namespace Datos
             }
             catch (Exception co)
             {
+                Console.WriteLine($"Error al tener el correlativo de la venta realizada: {co.Message}");
                 IdCorrelativo = 0;
             }
             return IdCorrelativo;
@@ -60,6 +61,7 @@ namespace Datos
             }
             catch (Exception ve)
             {
+                Console.WriteLine($"Error al actualizar el stock: {ve.Message}");
                 Respuesta = false;
             }
             return Respuesta;
@@ -71,7 +73,7 @@ namespace Datos
         /// <param name="idProducto">ID del producto</param>
         /// <param name="cantidad">Cantidad a restar del stock</param>
         /// <returns>Un valor booleano que indica si la operación fue exitosa</returns>
-        public bool RestarSotck(int idProducto, int cantidad)
+        public bool RestarStock(int idProducto, int cantidad)
         {
             bool Respuesta = true;
             try
@@ -86,8 +88,9 @@ namespace Datos
 
                 Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
             }
-            catch (Exception ve)
+            catch (SqlException ve)
             {
+                Console.WriteLine($"Error al actualizar el stock: {ve.Message}");
                 Respuesta = false;
             }
             return Respuesta;
@@ -227,16 +230,66 @@ namespace Datos
             {
                 StringBuilder grafica = new StringBuilder();
                 grafica.AppendLine("SELECT P.NOMBRE_PRODUCTO, COUNT(DV.ID_PRODUCTO) AS CANTIDAD_VENDIDA FROM DETALLE_VENTA DV");
-                grafica.AppendLine("JOIN PRODUCTO P ON DV.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
+                grafica.AppendLine("INNER JOIN PRODUCTO P ON DV.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
 
                 SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
                 SqlDataAdapter data = new SqlDataAdapter(cmd);
 
                 data.Fill(tabla);
             }
-            catch (Exception ex)
+            catch (Exception gr)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Console.WriteLine("Error: " + gr.Message);
+            }
+            return tabla;
+        }
+
+        /// <summary>
+        /// Método que muestra a los clientes que más han comprado
+        /// </summary>
+        /// <returns>Un DataTable con el top de los clientes</returns>
+        public DataTable GraficaTopClientes()
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                StringBuilder grafica = new StringBuilder();
+                grafica.AppendLine("SELECT CL.NOMBRES, COUNT(V.ID_CLIENTE) AS COMPRAS_TOTALES FROM VENTA V");
+                grafica.AppendLine("INNER JOIN CLIENTE CL ON V.ID_CLIENTE = CL.ID_CLIENTE GROUP BY CL.NOMBRES;");
+
+                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+
+                data.Fill(tabla);
+            }
+            catch (Exception gr)
+            {
+                Console.WriteLine("Error: " + gr.Message);
+            }
+            return tabla;
+        }
+
+        /// <summary>
+        /// Método que muestra las ventas realizadas de cada empleado
+        /// </summary>
+        /// <returns>Un DataTable con las ventas de los empleados</returns>
+        public DataTable GraficaVentaCadaEmpleado()
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                StringBuilder grafica = new StringBuilder();
+                grafica.AppendLine("SELECT U.NOMBRE_COMPLETO, COUNT(V.ID_USUARIO) AS VENTAS_EMPLEADO FROM VENTA V");
+                grafica.AppendLine("INNER JOIN USUARIO U ON V.ID_USUARIO = U.ID_USUARIO GROUP BY U.NOMBRE_COMPLETO;");
+
+                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+
+                data.Fill(tabla);
+            }
+            catch (Exception gr)
+            {
+                Console.WriteLine("Error: " + gr.Message);
             }
             return tabla;
         }
