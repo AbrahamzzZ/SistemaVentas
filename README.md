@@ -1,4 +1,4 @@
-# Sistemas de Ventas de Productos
+# Sistemas de Ventas
 
 <img
  align="center"
@@ -11,14 +11,14 @@
 <!-- BADGES -->
 <div>
   <a href="#">
-    <img alt="" align="left" src="https://img.shields.io/github/stars/AbrahamzzZ/AppBuyWindows?color=1D1F22&labelColor=FF9CAC&style=for-the-badge"/>
+    <img alt="" align="left" src="https://img.shields.io/github/stars/AbrahamzzZ/SistemaVentas?color=1D1F22&labelColor=FF9CAC&style=for-the-badge"/>
   </a>
   <a href="#">
-    <img alt="" align="right" src="https://badges.pufler.dev/visits/AbrahamzzZ/AppBuyWindows?style=for-the-badge&color=7ddac5&logoColor=white&labelColor=7ddac5"/>
+    <img alt="" align="right" src="https://badges.pufler.dev/visits/AbrahamzzZ/SistemaVentas?style=for-the-badge&color=7ddac5&logoColor=white&labelColor=7ddac5"/>
   </a>
 </div>
 
-<h1 align="center" style="font-weight:mediun; padding:30px;">🌲 AppBuyWindows | Sistemas de Ventas de Productos</h1>
+<h1 align="center" style="font-weight:mediun; padding:30px;">🌲 Sistemas de Ventas </h1>
 
 Grupo de Construcion de Software Sof-Ve-6-2
 
@@ -45,7 +45,7 @@ En esta sección se explica el proceso de instalación de todas las dependencias
 ### 📝 Clonar Repositorio
 
 ```sh
-git clone https://github.com/AbrahamzzZ/AppBuyWindows.git
+git clone https://github.com/AbrahamzzZ/SistemaVentas.git
 cd AppBuyWindows
 ```
 
