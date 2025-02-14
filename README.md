@@ -53,7 +53,7 @@ o tambien puedes decargar el zip de la ultima release/Commit del Repositorio
 
 <img
  align="center"
- src=".github/assets/download-zip.png"
+ src=".github/assets/SistemaVenta-zip.png"
  alt="Page download zip"
 />
 
