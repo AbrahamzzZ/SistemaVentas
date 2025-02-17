@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class VtnGraficaCompras
+    partial class VtnEstadisticaCompras
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.graficaCompra = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BtnCargarDatos = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -47,10 +47,10 @@
             // 
             // graficaCompra
             // 
-            chartArea2.Name = "ChartArea1";
-            this.graficaCompra.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.graficaCompra.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.graficaCompra.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graficaCompra.Legends.Add(legend1);
             this.graficaCompra.Location = new System.Drawing.Point(404, 49);
             this.graficaCompra.Name = "graficaCompra";
             this.graficaCompra.Size = new System.Drawing.Size(977, 507);
@@ -181,7 +181,7 @@
             this.label3.TabIndex = 79;
             this.label3.Text = "Ver proveedores de preferencia:";
             // 
-            // VtnGraficaCompras
+            // VtnEstadisticaCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,7 +198,7 @@
             this.Controls.Add(this.BtnCargarDatos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
-            this.Name = "VtnGraficaCompras";
+            this.Name = "VtnEstadisticaCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.BtnGenerarExcel = new System.Windows.Forms.Button();
             this.BtnBuscarProveedorTransportista = new System.Windows.Forms.Button();
@@ -39,7 +39,17 @@
             this.lblBuscarPor = new System.Windows.Forms.Label();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.tablaReporteCompras = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblTransportista = new System.Windows.Forms.Label();
+            this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaFin = new System.Windows.Forms.Label();
+            this.lblFechaInicio = new System.Windows.Forms.Label();
+            this.TxtFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.lblReporteCompra = new System.Windows.Forms.Label();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.CmbTransportista = new System.Windows.Forms.ComboBox();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreSurcusal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,15 +65,6 @@
             this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblTransportista = new System.Windows.Forms.Label();
-            this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.lblFechaFin = new System.Windows.Forms.Label();
-            this.lblFechaInicio = new System.Windows.Forms.Label();
-            this.TxtFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.lblReporteCompra = new System.Windows.Forms.Label();
-            this.lblProveedor = new System.Windows.Forms.Label();
-            this.CmbTransportista = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaReporteCompras)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,18 +179,19 @@
             // 
             this.tablaReporteCompras.AllowUserToAddRows = false;
             this.tablaReporteCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaReporteCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaReporteCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaReporteCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaReporteCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaRegistro,
+            this.NombreSurcusal,
             this.TipoDocumento,
             this.NumeroDocumento,
             this.MontoTotal,
@@ -210,12 +212,106 @@
             this.tablaReporteCompras.Name = "tablaReporteCompras";
             this.tablaReporteCompras.ReadOnly = true;
             this.tablaReporteCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaReporteCompras.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaReporteCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaReporteCompras.RowTemplate.Height = 28;
             this.tablaReporteCompras.Size = new System.Drawing.Size(1092, 300);
             this.tablaReporteCompras.TabIndex = 135;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(168, 155);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1138, 408);
+            this.label1.TabIndex = 134;
+            // 
+            // lblTransportista
+            // 
+            this.lblTransportista.AutoSize = true;
+            this.lblTransportista.BackColor = System.Drawing.Color.White;
+            this.lblTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTransportista.Location = new System.Drawing.Point(842, 92);
+            this.lblTransportista.Name = "lblTransportista";
+            this.lblTransportista.Size = new System.Drawing.Size(113, 20);
+            this.lblTransportista.TabIndex = 133;
+            this.lblTransportista.Text = "Transportista:";
+            // 
+            // TxtFechaFin
+            // 
+            this.TxtFechaFin.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaFin.Location = new System.Drawing.Point(620, 90);
+            this.TxtFechaFin.Name = "TxtFechaFin";
+            this.TxtFechaFin.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaFin.TabIndex = 132;
+            // 
+            // lblFechaFin
+            // 
+            this.lblFechaFin.AutoSize = true;
+            this.lblFechaFin.BackColor = System.Drawing.Color.White;
+            this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaFin.Location = new System.Drawing.Point(526, 93);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(83, 20);
+            this.lblFechaFin.TabIndex = 131;
+            this.lblFechaFin.Text = "Fecha fin:";
+            // 
+            // lblFechaInicio
+            // 
+            this.lblFechaInicio.AutoSize = true;
+            this.lblFechaInicio.BackColor = System.Drawing.Color.White;
+            this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInicio.Location = new System.Drawing.Point(190, 93);
+            this.lblFechaInicio.Name = "lblFechaInicio";
+            this.lblFechaInicio.Size = new System.Drawing.Size(104, 20);
+            this.lblFechaInicio.TabIndex = 130;
+            this.lblFechaInicio.Text = "Fecha inicio:";
+            // 
+            // TxtFechaInicio
+            // 
+            this.TxtFechaInicio.CustomFormat = "dd/MM/yyyy";
+            this.TxtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TxtFechaInicio.Location = new System.Drawing.Point(306, 90);
+            this.TxtFechaInicio.Name = "TxtFechaInicio";
+            this.TxtFechaInicio.Size = new System.Drawing.Size(200, 27);
+            this.TxtFechaInicio.TabIndex = 128;
+            // 
+            // lblReporteCompra
+            // 
+            this.lblReporteCompra.BackColor = System.Drawing.Color.White;
+            this.lblReporteCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReporteCompra.Location = new System.Drawing.Point(168, 23);
+            this.lblReporteCompra.Name = "lblReporteCompra";
+            this.lblReporteCompra.Size = new System.Drawing.Size(1138, 111);
+            this.lblReporteCompra.TabIndex = 129;
+            this.lblReporteCompra.Text = "Reportes Compras";
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.BackColor = System.Drawing.Color.White;
+            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedor.Location = new System.Drawing.Point(842, 52);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(90, 20);
+            this.lblProveedor.TabIndex = 144;
+            this.lblProveedor.Text = "Proveedor:";
+            // 
+            // CmbTransportista
+            // 
+            this.CmbTransportista.BackColor = System.Drawing.Color.White;
+            this.CmbTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbTransportista.FormattingEnabled = true;
+            this.CmbTransportista.Location = new System.Drawing.Point(973, 90);
+            this.CmbTransportista.Name = "CmbTransportista";
+            this.CmbTransportista.Size = new System.Drawing.Size(183, 28);
+            this.CmbTransportista.TabIndex = 145;
             // 
             // FechaRegistro
             // 
@@ -224,6 +320,14 @@
             this.FechaRegistro.Name = "FechaRegistro";
             this.FechaRegistro.ReadOnly = true;
             this.FechaRegistro.Width = 125;
+            // 
+            // NombreSurcusal
+            // 
+            this.NombreSurcusal.HeaderText = "Sucursal";
+            this.NombreSurcusal.MinimumWidth = 6;
+            this.NombreSurcusal.Name = "NombreSurcusal";
+            this.NombreSurcusal.ReadOnly = true;
+            this.NombreSurcusal.Width = 150;
             // 
             // TipoDocumento
             // 
@@ -345,100 +449,6 @@
             this.SubTotal.ReadOnly = true;
             this.SubTotal.Width = 125;
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(168, 155);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1138, 408);
-            this.label1.TabIndex = 134;
-            // 
-            // lblTransportista
-            // 
-            this.lblTransportista.AutoSize = true;
-            this.lblTransportista.BackColor = System.Drawing.Color.White;
-            this.lblTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransportista.Location = new System.Drawing.Point(842, 92);
-            this.lblTransportista.Name = "lblTransportista";
-            this.lblTransportista.Size = new System.Drawing.Size(113, 20);
-            this.lblTransportista.TabIndex = 133;
-            this.lblTransportista.Text = "Transportista:";
-            // 
-            // TxtFechaFin
-            // 
-            this.TxtFechaFin.CustomFormat = "dd/MM/yyyy";
-            this.TxtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.TxtFechaFin.Location = new System.Drawing.Point(620, 90);
-            this.TxtFechaFin.Name = "TxtFechaFin";
-            this.TxtFechaFin.Size = new System.Drawing.Size(200, 27);
-            this.TxtFechaFin.TabIndex = 132;
-            // 
-            // lblFechaFin
-            // 
-            this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.BackColor = System.Drawing.Color.White;
-            this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFin.Location = new System.Drawing.Point(526, 93);
-            this.lblFechaFin.Name = "lblFechaFin";
-            this.lblFechaFin.Size = new System.Drawing.Size(83, 20);
-            this.lblFechaFin.TabIndex = 131;
-            this.lblFechaFin.Text = "Fecha fin:";
-            // 
-            // lblFechaInicio
-            // 
-            this.lblFechaInicio.AutoSize = true;
-            this.lblFechaInicio.BackColor = System.Drawing.Color.White;
-            this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaInicio.Location = new System.Drawing.Point(190, 93);
-            this.lblFechaInicio.Name = "lblFechaInicio";
-            this.lblFechaInicio.Size = new System.Drawing.Size(104, 20);
-            this.lblFechaInicio.TabIndex = 130;
-            this.lblFechaInicio.Text = "Fecha inicio:";
-            // 
-            // TxtFechaInicio
-            // 
-            this.TxtFechaInicio.CustomFormat = "dd/MM/yyyy";
-            this.TxtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.TxtFechaInicio.Location = new System.Drawing.Point(306, 90);
-            this.TxtFechaInicio.Name = "TxtFechaInicio";
-            this.TxtFechaInicio.Size = new System.Drawing.Size(200, 27);
-            this.TxtFechaInicio.TabIndex = 128;
-            // 
-            // lblReporteCompra
-            // 
-            this.lblReporteCompra.BackColor = System.Drawing.Color.White;
-            this.lblReporteCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReporteCompra.Location = new System.Drawing.Point(168, 23);
-            this.lblReporteCompra.Name = "lblReporteCompra";
-            this.lblReporteCompra.Size = new System.Drawing.Size(1138, 111);
-            this.lblReporteCompra.TabIndex = 129;
-            this.lblReporteCompra.Text = "Reportes Compras";
-            // 
-            // lblProveedor
-            // 
-            this.lblProveedor.AutoSize = true;
-            this.lblProveedor.BackColor = System.Drawing.Color.White;
-            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProveedor.Location = new System.Drawing.Point(842, 52);
-            this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(90, 20);
-            this.lblProveedor.TabIndex = 144;
-            this.lblProveedor.Text = "Proveedor:";
-            // 
-            // CmbTransportista
-            // 
-            this.CmbTransportista.BackColor = System.Drawing.Color.White;
-            this.CmbTransportista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CmbTransportista.FormattingEnabled = true;
-            this.CmbTransportista.Location = new System.Drawing.Point(973, 90);
-            this.CmbTransportista.Name = "CmbTransportista";
-            this.CmbTransportista.Size = new System.Drawing.Size(183, 28);
-            this.CmbTransportista.TabIndex = 145;
-            // 
             // vtnReportesCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -490,7 +500,10 @@
         private System.Windows.Forms.Label lblFechaInicio;
         private System.Windows.Forms.DateTimePicker TxtFechaInicio;
         private System.Windows.Forms.Label lblReporteCompra;
+        private System.Windows.Forms.Label lblProveedor;
+        private System.Windows.Forms.ComboBox CmbTransportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSurcusal;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;
@@ -506,7 +519,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.Label lblProveedor;
-        private System.Windows.Forms.ComboBox CmbTransportista;
     }
 }

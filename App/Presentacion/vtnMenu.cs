@@ -104,6 +104,7 @@ namespace Presentacion
         {
             VerPanel(new VtnVerDetalleCompras());
         }
+
         private void MenuItemVerProveedores_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnProveedor());
@@ -113,22 +114,25 @@ namespace Presentacion
         {
             VerPanel(new VtnTransportista());
         }
+
         private void MenuItemVerSucursales_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnSucursal());
         }
+
         private void MenuItemVerClientes_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnCliente());
         }
+
         private void MenuItemReportesCompras_Click(object sender, EventArgs e)
         {
             VerPanel(new vtnReportesCompras());
         }
 
-        private void MenuItemGraficasCompras_Click(object sender, EventArgs e)
+        private void MenuItemEstadisticasCompras_Click(object sender, EventArgs e)
         {
-            VerPanel(new VtnGraficaCompras());
+            VerPanel(new VtnEstadisticaCompras());
         }
 
         private void MenuItemReportesVentas_Click(object sender, EventArgs e)
@@ -136,10 +140,11 @@ namespace Presentacion
             VerPanel(new vtnReportesVentas());
         }
 
-        private void MenuItemGraficasVentas_Click(object sender, EventArgs e)
+        private void MenuItemEstadisticaVentas_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnEstadisticaVentas());
         }
+
         private void MenuItemVerOfertas_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnOferta());
@@ -149,6 +154,7 @@ namespace Presentacion
         {
             //VerPanel(new VtnReclamo());
         }
+
         private void MenuItemVerNegocio_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnInformacionNegocio());

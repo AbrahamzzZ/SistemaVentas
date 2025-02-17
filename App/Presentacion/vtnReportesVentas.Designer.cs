@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnBuscarFecha = new System.Windows.Forms.Button();
             this.TxtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFin = new System.Windows.Forms.Label();
@@ -45,6 +45,7 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaReporteVentas = new System.Windows.Forms.DataGridView();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreSurcusal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -222,18 +223,19 @@
             // 
             this.tablaReporteVentas.AllowUserToAddRows = false;
             this.tablaReporteVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaReporteVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaReporteVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaReporteVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaReporteVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaRegistro,
+            this.NombreSurcusal,
             this.TipoDocumento,
             this.NumeroDocumento,
             this.MontoTotal,
@@ -252,9 +254,9 @@
             this.tablaReporteVentas.Name = "tablaReporteVentas";
             this.tablaReporteVentas.ReadOnly = true;
             this.tablaReporteVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaReporteVentas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaReporteVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaReporteVentas.RowTemplate.Height = 28;
             this.tablaReporteVentas.Size = new System.Drawing.Size(1092, 300);
             this.tablaReporteVentas.TabIndex = 159;
@@ -266,6 +268,14 @@
             this.FechaRegistro.Name = "FechaRegistro";
             this.FechaRegistro.ReadOnly = true;
             this.FechaRegistro.Width = 125;
+            // 
+            // NombreSurcusal
+            // 
+            this.NombreSurcusal.HeaderText = "Sucursal";
+            this.NombreSurcusal.MinimumWidth = 6;
+            this.NombreSurcusal.Name = "NombreSurcusal";
+            this.NombreSurcusal.ReadOnly = true;
+            this.NombreSurcusal.Width = 150;
             // 
             // TipoDocumento
             // 
@@ -419,6 +429,7 @@
         private System.Windows.Forms.DataGridView tablaReporteVentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocumentoCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSurcusal;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;

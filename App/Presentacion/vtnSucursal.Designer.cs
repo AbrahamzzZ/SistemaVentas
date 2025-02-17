@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mapa = new GMap.NET.WindowsForms.GMapControl();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblLatitud = new System.Windows.Forms.Label();
@@ -55,10 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.tablaSucursal = new System.Windows.Forms.DataGridView();
-            this.RtxtDireccion = new System.Windows.Forms.RichTextBox();
-            this.lblSucursales = new System.Windows.Forms.Label();
-            this.TxtCodigo = new System.Windows.Forms.TextBox();
-            this.LblCodigo = new System.Windows.Forms.Label();
             this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +65,11 @@
             this.Ciudad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RtxtDireccion = new System.Windows.Forms.RichTextBox();
+            this.lblSucursales = new System.Windows.Forms.Label();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.LblCodigo = new System.Windows.Forms.Label();
+            this.TxtIdNegocio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaSucursal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -225,7 +226,7 @@
             // TxtIndice
             // 
             this.TxtIndice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIndice.Location = new System.Drawing.Point(224, 76);
+            this.TxtIndice.Location = new System.Drawing.Point(178, 77);
             this.TxtIndice.Name = "TxtIndice";
             this.TxtIndice.Size = new System.Drawing.Size(36, 27);
             this.TxtIndice.TabIndex = 152;
@@ -356,15 +357,15 @@
             // 
             this.tablaSucursal.AllowUserToAddRows = false;
             this.tablaSucursal.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaSucursal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tablaSucursal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaSucursal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -382,53 +383,15 @@
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
             this.tablaSucursal.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.tablaSucursal.RowTemplate.Height = 28;
             this.tablaSucursal.Size = new System.Drawing.Size(705, 248);
             this.tablaSucursal.TabIndex = 135;
             this.tablaSucursal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaSucursal_CellContentClick);
             this.tablaSucursal.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaSucursal_CellFormatting);
             this.tablaSucursal.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaSucursal_CellPainting);
-            // 
-            // RtxtDireccion
-            // 
-            this.RtxtDireccion.Location = new System.Drawing.Point(30, 234);
-            this.RtxtDireccion.Name = "RtxtDireccion";
-            this.RtxtDireccion.Size = new System.Drawing.Size(278, 101);
-            this.RtxtDireccion.TabIndex = 158;
-            this.RtxtDireccion.Text = "";
-            // 
-            // lblSucursales
-            // 
-            this.lblSucursales.AutoSize = true;
-            this.lblSucursales.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSucursales.Location = new System.Drawing.Point(770, 43);
-            this.lblSucursales.Name = "lblSucursales";
-            this.lblSucursales.Size = new System.Drawing.Size(406, 32);
-            this.lblSucursales.TabIndex = 159;
-            this.lblSucursales.Text = "Sucursales del supemercado";
-            // 
-            // TxtCodigo
-            // 
-            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(32, 128);
-            this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.ReadOnly = true;
-            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
-            this.TxtCodigo.TabIndex = 160;
-            // 
-            // LblCodigo
-            // 
-            this.LblCodigo.AutoSize = true;
-            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
-            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigo.Location = new System.Drawing.Point(28, 105);
-            this.LblCodigo.Name = "LblCodigo";
-            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
-            this.LblCodigo.TabIndex = 161;
-            this.LblCodigo.Text = "Código:";
             // 
             // btnSeleccionar
             // 
@@ -480,6 +443,7 @@
             this.Latitu.MinimumWidth = 6;
             this.Latitu.Name = "Latitu";
             this.Latitu.ReadOnly = true;
+            this.Latitu.Width = 125;
             // 
             // Longitu
             // 
@@ -487,6 +451,7 @@
             this.Longitu.MinimumWidth = 6;
             this.Longitu.Name = "Longitu";
             this.Longitu.ReadOnly = true;
+            this.Longitu.Width = 125;
             // 
             // Ciudad
             // 
@@ -515,12 +480,61 @@
             this.Estado.ReadOnly = true;
             this.Estado.Width = 90;
             // 
+            // RtxtDireccion
+            // 
+            this.RtxtDireccion.Location = new System.Drawing.Point(30, 234);
+            this.RtxtDireccion.Name = "RtxtDireccion";
+            this.RtxtDireccion.Size = new System.Drawing.Size(278, 101);
+            this.RtxtDireccion.TabIndex = 158;
+            this.RtxtDireccion.Text = "";
+            // 
+            // lblSucursales
+            // 
+            this.lblSucursales.AutoSize = true;
+            this.lblSucursales.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSucursales.Location = new System.Drawing.Point(770, 43);
+            this.lblSucursales.Name = "lblSucursales";
+            this.lblSucursales.Size = new System.Drawing.Size(406, 32);
+            this.lblSucursales.TabIndex = 159;
+            this.lblSucursales.Text = "Sucursales del supemercado";
+            // 
+            // TxtCodigo
+            // 
+            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCodigo.Location = new System.Drawing.Point(32, 128);
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.ReadOnly = true;
+            this.TxtCodigo.Size = new System.Drawing.Size(280, 27);
+            this.TxtCodigo.TabIndex = 160;
+            // 
+            // LblCodigo
+            // 
+            this.LblCodigo.AutoSize = true;
+            this.LblCodigo.BackColor = System.Drawing.Color.Wheat;
+            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCodigo.Location = new System.Drawing.Point(28, 105);
+            this.LblCodigo.Name = "LblCodigo";
+            this.LblCodigo.Size = new System.Drawing.Size(73, 20);
+            this.LblCodigo.TabIndex = 161;
+            this.LblCodigo.Text = "Código:";
+            // 
+            // TxtIdNegocio
+            // 
+            this.TxtIdNegocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdNegocio.Location = new System.Drawing.Point(228, 77);
+            this.TxtIdNegocio.Name = "TxtIdNegocio";
+            this.TxtIdNegocio.ReadOnly = true;
+            this.TxtIdNegocio.Size = new System.Drawing.Size(34, 27);
+            this.TxtIdNegocio.TabIndex = 162;
+            this.TxtIdNegocio.Text = "0";
+            // 
             // VtnSucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
+            this.Controls.Add(this.TxtIdNegocio);
             this.Controls.Add(this.LblCodigo);
             this.Controls.Add(this.TxtCodigo);
             this.Controls.Add(this.lblSucursales);
@@ -600,5 +614,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ciudad;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TextBox TxtIdNegocio;
     }
 }

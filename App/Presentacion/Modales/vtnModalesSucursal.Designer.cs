@@ -1,6 +1,6 @@
 ﻿namespace Presentacion.Modales
 {
-    partial class VtnModalesProveedores
+    partial class VtnModalesSucursal
     {
         /// <summary>
         /// Required designer variable.
@@ -30,24 +30,23 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnModalesProveedores));
-            this.TablaProveedores = new System.Windows.Forms.DataGridView();
-            this.IdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnModalesSucursal));
+            this.TablaSucursales = new System.Windows.Forms.DataGridView();
             this.lblListaProveedor = new System.Windows.Forms.Label();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
             this.lblBuscar = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaProveedores)).BeginInit();
+            this.IdSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaSucursales)).BeginInit();
             this.SuspendLayout();
             // 
-            // TablaProveedores
+            // TablaSucursales
             // 
-            this.TablaProveedores.AllowUserToAddRows = false;
-            this.TablaProveedores.BackgroundColor = System.Drawing.Color.White;
+            this.TablaSucursales.AllowUserToAddRows = false;
+            this.TablaSucursales.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -56,62 +55,28 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TablaProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.TablaProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaProveedores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdProveedor,
-            this.Cedula,
-            this.Nombres,
+            this.TablaSucursales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.TablaSucursales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaSucursales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdSucursal,
+            this.NombreSucursal,
             this.Estado});
-            this.TablaProveedores.Location = new System.Drawing.Point(12, 123);
-            this.TablaProveedores.MultiSelect = false;
-            this.TablaProveedores.Name = "TablaProveedores";
-            this.TablaProveedores.ReadOnly = true;
-            this.TablaProveedores.RowHeadersWidth = 51;
+            this.TablaSucursales.Location = new System.Drawing.Point(12, 123);
+            this.TablaSucursales.MultiSelect = false;
+            this.TablaSucursales.Name = "TablaSucursales";
+            this.TablaSucursales.ReadOnly = true;
+            this.TablaSucursales.RowHeadersWidth = 51;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.TablaProveedores.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.TablaProveedores.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TablaProveedores.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.TablaProveedores.RowTemplate.Height = 28;
-            this.TablaProveedores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TablaProveedores.Size = new System.Drawing.Size(553, 324);
-            this.TablaProveedores.TabIndex = 85;
-            this.TablaProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaProveedores_CellDoubleClick);
-            this.TablaProveedores.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaProveedores_CellFormatting);
-            // 
-            // IdProveedor
-            // 
-            this.IdProveedor.HeaderText = "Id";
-            this.IdProveedor.MinimumWidth = 6;
-            this.IdProveedor.Name = "IdProveedor";
-            this.IdProveedor.ReadOnly = true;
-            this.IdProveedor.Visible = false;
-            this.IdProveedor.Width = 150;
-            // 
-            // Cedula
-            // 
-            this.Cedula.HeaderText = "Cédula";
-            this.Cedula.MinimumWidth = 6;
-            this.Cedula.Name = "Cedula";
-            this.Cedula.ReadOnly = true;
-            this.Cedula.Width = 125;
-            // 
-            // Nombres
-            // 
-            this.Nombres.HeaderText = "Nombres ";
-            this.Nombres.MinimumWidth = 6;
-            this.Nombres.Name = "Nombres";
-            this.Nombres.ReadOnly = true;
-            this.Nombres.Width = 150;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 125;
+            this.TablaSucursales.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.TablaSucursales.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TablaSucursales.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaSucursales.RowTemplate.Height = 28;
+            this.TablaSucursales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.TablaSucursales.Size = new System.Drawing.Size(553, 324);
+            this.TablaSucursales.TabIndex = 91;
+            this.TablaSucursales.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaSucursales_CellDoubleClick);
+            this.TablaSucursales.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaSucursales_CellFormatting);
             // 
             // lblListaProveedor
             // 
@@ -119,9 +84,9 @@
             this.lblListaProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListaProveedor.Location = new System.Drawing.Point(153, 16);
             this.lblListaProveedor.Name = "lblListaProveedor";
-            this.lblListaProveedor.Size = new System.Drawing.Size(302, 32);
-            this.lblListaProveedor.TabIndex = 90;
-            this.lblListaProveedor.Text = "Lista de Proveedores";
+            this.lblListaProveedor.Size = new System.Drawing.Size(281, 32);
+            this.lblListaProveedor.TabIndex = 96;
+            this.lblListaProveedor.Text = "Lista de Sucursales";
             // 
             // BtnBuscar
             // 
@@ -130,7 +95,7 @@
             this.BtnBuscar.Location = new System.Drawing.Point(530, 76);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(35, 31);
-            this.BtnBuscar.TabIndex = 89;
+            this.BtnBuscar.TabIndex = 95;
             this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnBuscar.UseVisualStyleBackColor = true;
@@ -142,7 +107,7 @@
             this.TxtBuscar.Location = new System.Drawing.Point(338, 80);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(180, 27);
-            this.TxtBuscar.TabIndex = 88;
+            this.TxtBuscar.TabIndex = 94;
             // 
             // CmbBuscar
             // 
@@ -152,7 +117,7 @@
             this.CmbBuscar.Location = new System.Drawing.Point(141, 80);
             this.CmbBuscar.Name = "CmbBuscar";
             this.CmbBuscar.Size = new System.Drawing.Size(178, 28);
-            this.CmbBuscar.TabIndex = 87;
+            this.CmbBuscar.TabIndex = 93;
             // 
             // lblBuscar
             // 
@@ -161,16 +126,41 @@
             this.lblBuscar.Location = new System.Drawing.Point(12, 82);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(108, 20);
-            this.lblBuscar.TabIndex = 86;
+            this.lblBuscar.TabIndex = 92;
             this.lblBuscar.Text = "Buscar por:";
             // 
-            // VtnModalesProveedores
+            // IdSucursal
+            // 
+            this.IdSucursal.HeaderText = "Id";
+            this.IdSucursal.MinimumWidth = 6;
+            this.IdSucursal.Name = "IdSucursal";
+            this.IdSucursal.ReadOnly = true;
+            this.IdSucursal.Visible = false;
+            this.IdSucursal.Width = 150;
+            // 
+            // NombreSucursal
+            // 
+            this.NombreSucursal.HeaderText = "Sucursal";
+            this.NombreSucursal.MinimumWidth = 6;
+            this.NombreSucursal.Name = "NombreSucursal";
+            this.NombreSucursal.ReadOnly = true;
+            this.NombreSucursal.Width = 150;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 125;
+            // 
+            // VtnModalesSucursal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(577, 463);
-            this.Controls.Add(this.TablaProveedores);
+            this.Controls.Add(this.TablaSucursales);
             this.Controls.Add(this.lblListaProveedor);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.TxtBuscar);
@@ -178,11 +168,11 @@
             this.Controls.Add(this.lblBuscar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "VtnModalesProveedores";
+            this.Name = "VtnModalesSucursal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Listado de los proveedores";
-            this.Load += new System.EventHandler(this.VtnModalesProveedores_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.TablaProveedores)).EndInit();
+            this.Text = "Lista de las Sucursales";
+            this.Load += new System.EventHandler(this.VtnModalesSucursal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.TablaSucursales)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,16 +180,14 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView TablaProveedores;
+        private System.Windows.Forms.DataGridView TablaSucursales;
         private System.Windows.Forms.Label lblListaProveedor;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProveedor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdSucursal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }

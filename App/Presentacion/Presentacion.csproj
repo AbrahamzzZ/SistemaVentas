@@ -156,6 +156,12 @@
     <Compile Include="Modales\vtnModalesOfertas.Designer.cs">
       <DependentUpon>vtnModalesOfertas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modales\vtnModalesSucursal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modales\vtnModalesSucursal.Designer.cs">
+      <DependentUpon>vtnModalesSucursal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modales\vtnModalesTransportistas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\vtnModalesProveedores.resx">
       <DependentUpon>vtnModalesProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modales\vtnModalesSucursal.resx">
+      <DependentUpon>vtnModalesSucursal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modales\vtnModalesTransportistas.resx">
       <DependentUpon>vtnModalesTransportistas.cs</DependentUpon>

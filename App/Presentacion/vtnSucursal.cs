@@ -23,12 +23,10 @@ namespace Presentacion
     /// </summary>
     public partial class VtnSucursal : Form
     {
-        private GMarkerGoogle marcador;
-        private GMapOverlay moverlay;
-        private DataTable dt;
-        int fila = 0;
-        private double latitud = -2.19616;
-        private double longitud = -79.88621;
+        private readonly GMarkerGoogle marcador;
+        private readonly GMapOverlay moverlay;
+        private readonly double latitud = -2.19616;
+        private readonly double longitud = -79.88621;
 
         /// <summary>
         /// Constructor de la clase VtnSucursal.
@@ -71,6 +69,11 @@ namespace Presentacion
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
             TxtCodigo.Text = GenerarCodigo(4);
+            Negocio mostrarNegocio = new CN_Negocio().ListarNegocio();
+            TxtIdNegocio.Text = mostrarNegocio.IdNegocio.ToString();
+   
+
+            //TxtIdNegocio.Text = mostrarNegocio;
             List<Sucursal> mostrarSucursal = new CN_Sucursal().ListarSucusal();
             foreach (Sucursal sucursal in mostrarSucursal)
             {
@@ -164,6 +167,7 @@ namespace Presentacion
             Sucursal agregarSucursal = new Sucursal()
             {
                 IdSucursal = Convert.ToInt32(TxtId.Text),
+                oNegocio = new Negocio() { IdNegocio = Convert.ToInt32(TxtIdNegocio.Text)},
                 Codigo = TxtCodigo.Text,
                 Nombre = TxtNombre.Text,
                 Direccion = RtxtDireccion.Text,
@@ -314,7 +318,7 @@ namespace Presentacion
                 {
                     tablaSucursal.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                     MessageBox.Show("La sucursal fue eliminada correctamente.", "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    foreach (GMarkerGoogle marcador in moverlay.Markers)
+                    foreach (GMarkerGoogle marcador in moverlay.Markers.Cast<GMarkerGoogle>())
                     {
                         if (marcador.Position.Lat == sucursalEliminado.Latitud && marcador.Position.Lng == sucursalEliminado.Longitud)
                         {
