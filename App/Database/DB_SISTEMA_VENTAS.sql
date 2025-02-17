@@ -1,17 +1,33 @@
 /*Creacion de la Base de Datos*/
 CREATE DATABASE Sistema_Ventas;
 go
-ALTER DATABASE [Sistema_Ventas]
-ADD FILE (
-    NAME=Sistema_Ventas_File,
-    FILENAME='C:\Sistema_Ventas.ndf',
-    SIZE=10MB,
-    MAXSIZE = 500MB,
-    FILEGROWTH = 1MB
-)
+
 USE Sistema_Ventas;
 go
+
 /*Creacion de las Tablas*/
+CREATE TABLE NEGOCIO (ID_NEGOCIO int primary key identity,
+NOMBRE varchar (60),
+TELEFONO varchar (10),
+RUC varchar(13),
+DIRECCION varchar(60),
+CORREO_ELECTRONICO varchar(40),
+LOGO varbinary(max)NUll
+);
+go
+
+CREATE TABLE SUCURSAL(ID_SUCURSAL int primary key identity,
+CODIGO varchar(10),
+ID_NEGOCIO int references NEGOCIO(ID_NEGOCIO),
+NOMBRE_SUCURSAL varchar(30),
+DIRECCION_SUCURSAL varchar(250),
+LATITUD_SUCURSAL double precision,
+LONGITUD_SUCURSAL double precision,
+CIUDAD_SUCURSAL varchar(30),
+ESTADO bit
+);
+go
+
 CREATE TABLE ROL (ID_ROL int primary key identity,
 DESCRIPCION nvarchar(50),
 FECHA_CREACION datetime default getdate());
@@ -64,7 +80,8 @@ CREATE TABLE USUARIO (ID_USUARIO int primary key identity,
 CODIGO varchar(10),
 NOMBRE_COMPLETO varchar(70),
 CORREO_ELECTRONICO nvarchar(50),
-CLAVE varchar(30),
+CLAVE nvarchar(300),
+/*CLAVE_SALT nvarchar(100),*/
 ID_ROL int references ROL(ID_ROL),
 ESTADO bit,
 FECHA_CREACION datetime default getdate()
@@ -122,6 +139,7 @@ CREATE TABLE COMPRA (ID_COMPRA int identity primary key not null,
 ID_USUARIO int references USUARIO(ID_USUARIO),
 ID_PROVEEDOR int references PROVEEDOR(ID_PROVEEDOR),
 ID_TRANSPORTISTA int references TRANSPORTISTA(ID_TRANSPORTISTA),
+ID_SUCURSAL int references SUCURSAL(ID_SUCURSAL),
 TIPO_DOCUMENTO varchar(50),
 NUMERO_DOCUMENTO varchar(50),
 MONTO_TOTAL decimal(10,2),
@@ -143,6 +161,7 @@ go
 CREATE TABLE VENTA ( ID_VENTA int primary key identity,
 ID_USUARIO int references USUARIO (ID_USUARIO),
 TIPO_DOCUMENTO varchar(50),
+ID_SUCURSAL int references SUCURSAL (ID_SUCURSAL),
 ID_CLIENTE int references CLIENTE (ID_CLIENTE),
 NUMERO_DOCUMENTO varchar(50),
 MONTO_PAGO decimal (10,2),
@@ -174,16 +193,6 @@ FECHA_REGISTRO datetime default getdate()
 ); 
 go*/
 
-CREATE TABLE NEGOCIO (ID_NEGOCIO int primary key,
-NOMBRE varchar (60),
-TELEFONO varchar (10),
-RUC varchar(13),
-DIRECCION varchar(60),
-CORREO_ELECTRONICO varchar(40),
-LOGO varbinary(max)NUll
-);
-go
-
 CREATE TABLE OFERTA (ID_OFERTA INT PRIMARY KEY IDENTITY,
 CODIGO varchar(10),
 NOMBRE_OFERTA VARCHAR(50), 
@@ -197,24 +206,14 @@ FECHA_CREACION datetime default getdate()
 );
 go
 
-CREATE TABLE SUCURSAL(ID_SUCURSAL int primary key identity,
-CODIGO varchar(10),
-NOMBRE_SUCURSAL varchar(30),
-DIRECCION_SUCURSAL varchar(250),
-LATITUD_SUCURSAL double precision,
-LONGITUD_SUCURSAL double precision,
-CIUDAD_SUCURSAL varchar(30),
-ESTADO bit
-);
-go
-
 /*Creacion de los Procedimientos Almacenados*/
 go
 CREATE PROC PA_REGISTRAR_USUARIO(
 @Codigo varchar(30),
 @Nombre_Completo varchar(70),
 @Correo_Electronico varchar(50),
-@Clave varchar(30),
+@Clave nvarchar(300),
+/*@Clave_Salt NVARCHAR(100),*/
 @Id_Rol int,
 @Estado bit,
 @Id_Usuario_Resultado int output,
@@ -225,24 +224,21 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
         
-        -- Inicializar salidas
         SET @Id_Usuario_Resultado = 0;
         SET @Mensaje = '';
 
-        -- Verificar si el código ya existe
         IF NOT EXISTS (SELECT 1 FROM USUARIO WHERE CODIGO = @Codigo)
         BEGIN
-            -- Insertar el nuevo usuario
-            INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL, ESTADO)
-            VALUES (@Codigo, @Nombre_Completo, @Correo_Electronico, @Clave, @Id_Rol, @Estado);
 
-            -- Obtener el ID generado
+            INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE/*, CLAVE_SALT */, ID_ROL, ESTADO)
+            VALUES (@Codigo, @Nombre_Completo, @Correo_Electronico, @Clave/*, @Clave_Salt*/, @Id_Rol, @Estado);
+
             SET @Id_Usuario_Resultado = SCOPE_IDENTITY();
             SET @Mensaje = 'Usuario registrado exitosamente.';
         END
         ELSE
         BEGIN
-            -- Código duplicado
+
             SET @Mensaje = 'No se puede repetir el código para más de un usuario.';
         END
 
@@ -316,6 +312,80 @@ BEGIN
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
 END;
+/*CREATE PROC PA_EDITAR_USUARIO(
+    @Id_Usuario int,
+    @Codigo varchar(10),
+    @Nombre_Completo varchar(70),
+    @Correo_Electronico varchar(50),
+    @Clave_Hash NVARCHAR(300) = NULL, -- Clave encriptada opcional
+    @Salt NVARCHAR(100) = NULL,       -- Salt opcional si se cambia la clave
+    @Id_Rol int,
+    @Estado bit,
+    @Respuesta bit output,
+    @Mensaje varchar(500) output
+)
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Inicializar salidas
+        SET @Respuesta = 0;
+        SET @Mensaje = '';
+
+        -- Verificar si el código ya está en uso por otro usuario
+        IF EXISTS (SELECT 1 FROM USUARIO WHERE CODIGO = @Codigo AND ID_USUARIO != @Id_Usuario)
+        BEGIN
+            SET @Mensaje = 'El código ingresado ya está asociado a otro usuario.';
+        END
+        ELSE
+        BEGIN
+            -- Verificar si el usuario con el ID proporcionado existe
+            IF EXISTS (SELECT 1 FROM USUARIO WHERE ID_USUARIO = @Id_Usuario)
+            BEGIN
+                -- Si no se proporciona nueva clave, mantener la actual
+                IF @Clave_Hash IS NULL
+                BEGIN
+                    UPDATE USUARIO
+                    SET CODIGO = @Codigo,
+                        NOMBRE_COMPLETO = @Nombre_Completo,
+                        CORREO_ELECTRONICO = @Correo_Electronico,
+                        ID_ROL = @Id_Rol,
+                        ESTADO = @Estado
+                    WHERE ID_USUARIO = @Id_Usuario;
+                END
+                ELSE
+                BEGIN
+                    UPDATE USUARIO
+                    SET CODIGO = @Codigo,
+                        NOMBRE_COMPLETO = @Nombre_Completo,
+                        CORREO_ELECTRONICO = @Correo_Electronico,
+                        CLAVE = @Clave_Hash,
+                        CLAVE_SALT = @Salt,
+                        ID_ROL = @Id_Rol,
+                        ESTADO = @Estado
+                    WHERE ID_USUARIO = @Id_Usuario;
+                END
+
+                SET @Respuesta = 1;
+                SET @Mensaje = 'Usuario actualizado exitosamente.';
+            END
+            ELSE
+            BEGIN
+                -- Usuario no encontrado
+                SET @Mensaje = 'El usuario especificado no existe.';
+            END
+        END
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        -- Manejo de errores
+        ROLLBACK TRANSACTION;
+        SET @Respuesta = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END;*/
 go
 
 CREATE PROC PA_ELIMINAR_USUARIO(
@@ -675,7 +745,7 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE PA_REGISTRAR_PRODUCTO_INVENTARIO(
+CREATE PROC PA_REGISTRAR_PRODUCTO_INVENTARIO(
 @Id_Producto int,
 @Id_Zona int,
 @Cantidad int,
@@ -750,7 +820,7 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE PA_EDITAR_PRODUCTO_INVENTARIO(
+CREATE PROC PA_EDITAR_PRODUCTO_INVENTARIO(
 @Id_Inventario int,
 @Id_Producto int,
 @Id_Zona int,
@@ -836,7 +906,7 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE PA_ELIMINAR_PRODUCTO_INVENTARIO(
+CREATE PROC PA_ELIMINAR_PRODUCTO_INVENTARIO(
 @Id_Inventario INT,
 @Resultado BIT OUTPUT,
 @Mensaje VARCHAR(500) OUTPUT
@@ -1123,10 +1193,11 @@ CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE(
 )
 go
 
-CREATE PROCEDURE PA_REGISTRAR_COMPRA(
+CREATE PROC PA_REGISTRAR_COMPRA(
 @Id_Usuario int,
 @Id_Proveedor int,
 @Id_Transportista int,
+@Id_Sucursal int,
 @Tipo_Documento varchar(500),
 @Numero_Documento varchar(500),
 @Monto_Total decimal(10,2),
@@ -1143,8 +1214,8 @@ BEGIN
 
         BEGIN TRANSACTION registro;
 
-        INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL)
-        VALUES (@Id_Usuario, @Id_Proveedor, @Id_Transportista, @Tipo_Documento, @Numero_Documento, @Monto_Total);
+        INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, ID_SUCURSAL, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL)
+        VALUES (@Id_Usuario, @Id_Proveedor, @Id_Transportista, @Id_Sucursal, @Tipo_Documento, @Numero_Documento, @Monto_Total);
 
         SET @Id_Compra = SCOPE_IDENTITY();
 
@@ -1190,6 +1261,7 @@ CREATE PROCEDURE PA_REGISTRAR_VENTA(
 @Id_Usuario int,
 @Tipo_Documento varchar(500),
 @Numero_Documento varchar(500),
+@Id_Sucursal int,
 @Id_Cliente int,
 @Monto_Pago decimal(18,2),
 @Monto_Cambio decimal(18,2),
@@ -1199,29 +1271,38 @@ CREATE PROCEDURE PA_REGISTRAR_VENTA(
 @Resultado bit output,
 @Mensaje varchar (500) output
 )
-as
-begin
-	begin try
-		declare @Id_Venta int = 0
-		set @Resultado = 1
-		set @Mensaje = ''
-		begin transaction registro
-		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
-		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
-		set @Id_Venta = SCOPE_IDENTITY()
+AS
+BEGIN
+	BEGIN TRY
+		DECLARE @Id_Venta int = 0
+		SET @Resultado = 1
+		SET @Mensaje = ''
+
+		BEGIN transaction registro
+
+		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_SUCURSAL, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
+		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @Id_Sucursal, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
+
+		SET @Id_Venta = SCOPE_IDENTITY()
+
 		INSERT INTO DETALLE_VENTA(ID_VENTA, ID_PRODUCTO, PRECIO_VENTA, CANTIDAD_PRODUCTO, SUBTOTAL, DESCUENTO)
 		SELECT @Id_Venta,IdProducto, PrecioVenta, Cantidad, SubTotal, Descuento FROM @Detalle_Venta
+
 		update i set i.CANTIDAD = i.CANTIDAD - dv.CANTIDAD from INVENTARIO i
 		INNER JOIN @Detalle_Venta dv ON i.ID_PRODUCTO = dv.IdProducto;
+
 		-- Asignar mensaje de éxito
         SET @Mensaje = 'Venta registrada con éxito';
-		commit transaction registro
-	end try
-	begin catch
-		set @Resultado = 0
-		set @Mensaje = ERROR_MESSAGE()
-	end catch
-end;
+
+		COMMIT TRANSACTION registro
+	END TRY
+	BEGIN CATCH
+
+		SET @Resultado = 0
+		SET @Mensaje = ERROR_MESSAGE()
+
+	END CATCH
+END;
 go
 
 CREATE PROC PA_REPORTE_COMPRA(
@@ -1230,44 +1311,52 @@ CREATE PROC PA_REPORTE_COMPRA(
 @Id_Proveedor int,
 @Id_Transportista int
 )
-as
-begin
-	set dateformat dmy;
-	select convert(char(10), c.FECHA_COMPRA, 103)[FECHA_COMPRA], c.TIPO_DOCUMENTO, C.NUMERO_DOCUMENTO, c.MONTO_TOTAL,
-	u.NOMBRE_COMPLETO[NOMBRE_USUARIO],
-	pr.CODIGO[CODIGO], pr.NOMBRES[NOMBRE_PROVEEDOR],
-	t.CODIGO[CODIGO_TRANSPORTISTA], t.NOMBRES[NOMBRE_TRANSPORTISTA],
-	p.CODIGO[CODIGO_PRODUCTO], p.NOMBRE_PRODUCTO, ca.DESCRIPCION[CATEGORIA], dc.PRECIO_COMPRA, dc.PRECIO_VENTA, dc.CANTIDAD, dc.MONTO_TOTAL[SUBTOTAL]
-	from COMPRA C inner join USUARIO u on u.ID_USUARIO = c.ID_USUARIO
-	inner join PROVEEDOR pr on pr.ID_PROVEEDOR = c.ID_PROVEEDOR
-	inner join TRANSPORTISTA t on t.ID_TRANSPORTISTA = c.ID_TRANSPORTISTA
-	inner join DETALLE_COMPRA dc on dc.ID_COMPRA = c.ID_COMPRA
-	inner join PRODUCTO p on p.ID_PRODUCTO = dc.ID_PRODUCTO
-	inner join CATEGORIA ca on ca.ID_CATEGORIA = p.ID_CATEGORIA
-	where convert(date, c.FECHA_COMPRA) between @Fecha_Inicio and @Fecha_Fin
-	and pr.ID_PROVEEDOR = iif(@Id_Proveedor = 0, pr.ID_PROVEEDOR, @Id_Proveedor)
-	and t.ID_TRANSPORTISTA = iif(@Id_Transportista = 0, t.ID_TRANSPORTISTA, @Id_Transportista)
-end
+AS
+BEGIN
+	SET DATEFORMAT dmy;
+	SELECT convert(char(10), C.FECHA_COMPRA, 103)[FECHA_COMPRA], C.TIPO_DOCUMENTO, C.NUMERO_DOCUMENTO, C.MONTO_TOTAL,
+	U.NOMBRE_COMPLETO[NOMBRE_USUARIO],
+	PR.CODIGO[CODIGO], PR.NOMBRES[NOMBRE_PROVEEDOR],
+	T.CODIGO[CODIGO_TRANSPORTISTA], T.NOMBRES[NOMBRE_TRANSPORTISTA],
+	S.CODIGO[CODIGO_SUCURSAL], S.NOMBRE_SUCURSAL,
+	P.CODIGO[CODIGO_PRODUCTO], P.NOMBRE_PRODUCTO, 
+	CA.DESCRIPCION[CATEGORIA], 
+	DC.PRECIO_COMPRA, DC.PRECIO_VENTA, DC.CANTIDAD, DC.MONTO_TOTAL[SUBTOTAL] FROM COMPRA C 
+	inner join USUARIO U on U.ID_USUARIO = C.ID_USUARIO
+	inner join PROVEEDOR PR on PR.ID_PROVEEDOR = C.ID_PROVEEDOR
+	inner join TRANSPORTISTA T on T.ID_TRANSPORTISTA = C.ID_TRANSPORTISTA
+	inner join SUCURSAL S on S.ID_SUCURSAL = C.ID_SUCURSAL
+	inner join DETALLE_COMPRA DC on DC.ID_COMPRA = C.ID_COMPRA
+	inner join PRODUCTO P on P.ID_PRODUCTO = DC.ID_PRODUCTO
+	inner join CATEGORIA CA on CA.ID_CATEGORIA = P.ID_CATEGORIA
+	WHERE convert(DATE, C.FECHA_COMPRA) between @Fecha_Inicio and @Fecha_Fin
+	and PR.ID_PROVEEDOR = iif(@Id_Proveedor = 0, PR.ID_PROVEEDOR, @Id_Proveedor)
+	and T.ID_TRANSPORTISTA = iif(@Id_Transportista = 0, T.ID_TRANSPORTISTA, @Id_Transportista)
+END;
 go
 
 CREATE PROC PA_REPORTE_VENTA(
 @fecha_Inicio varchar(10),
 @fecha_Fin varchar(10)
 )
-as
-begin
-	set dateformat dmy;
-	select convert(char(10), v.FECHA_VENTA, 103)[FECHA_VENTA], v.TIPO_DOCUMENTO, v.NUMERO_DOCUMENTO, v.MONTO_TOTAL, v.DESCUENTO,
-	u.NOMBRE_COMPLETO[NOMBRE_USUARIO],
-	cl.CEDULA, cl.NOMBRES,
-	p.CODIGO[CODIGO_PRODUCTO], p.NOMBRE_PRODUCTO, ca.DESCRIPCION[CATEGORIA], dv.PRECIO_VENTA, dv.CANTIDAD_PRODUCTO, dv.SUBTOTAL
-	from VENTA v inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO
-	inner join DETALLE_VENTA dv on dv.ID_VENTA = v.ID_VENTA
-	inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO
-	inner join CATEGORIA ca on ca.ID_CATEGORIA = p.ID_CATEGORIA
-	inner join CLIENTE cl on cl.ID_CLIENTE = v.ID_CLIENTE
-	where convert(date, v.FECHA_VENTA) between @fecha_Inicio and @fecha_Fin
-end
+AS
+BEGIN
+	SET DATEFORMAT dmy;
+	SELECT convert(char(10), V.FECHA_VENTA, 103)[FECHA_VENTA], V.TIPO_DOCUMENTO, V.NUMERO_DOCUMENTO, V.MONTO_TOTAL, V.DESCUENTO,
+	U.NOMBRE_COMPLETO[NOMBRE_USUARIO],
+	S.CODIGO[CODIGO_SUCURSAL], S.NOMBRE_SUCURSAL,
+	CL.CEDULA, CL.NOMBRES,
+	P.CODIGO[CODIGO_PRODUCTO], P.NOMBRE_PRODUCTO, 
+	CA.DESCRIPCION[CATEGORIA], 
+	DV.PRECIO_VENTA, DV.CANTIDAD_PRODUCTO, DV.SUBTOTAL FROM VENTA V 
+	inner join USUARIO U on U.ID_USUARIO = V.ID_USUARIO
+	inner join DETALLE_VENTA DV on dv.ID_VENTA = v.ID_VENTA
+	inner join PRODUCTO P on P.ID_PRODUCTO = DV.ID_PRODUCTO
+	inner join CATEGORIA CA on CA.ID_CATEGORIA = P.ID_CATEGORIA
+	inner join SUCURSAL S on S.ID_SUCURSAL = V.ID_SUCURSAL
+	inner join CLIENTE CL on CL.ID_CLIENTE = V.ID_CLIENTE
+	WHERE convert(date, v.FECHA_VENTA) between @fecha_Inicio and @fecha_Fin
+END;
 go
 
 CREATE PROC PA_REGISTRAR_OFERTA(
@@ -1410,6 +1499,7 @@ end
 go*/
 
 CREATE PROC PA_REGISTRAR_SUCURSAL(
+@Id_Negocio int,
 @Codigo varchar(10),
 @Nombre_Sucursal varchar(30),
 @Direccion_Sucursal varchar(250),
@@ -1427,8 +1517,8 @@ BEGIN
     -- Verificar si ya existe una sucursal con el mismo código
     IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo)
     BEGIN
-        INSERT INTO SUCURSAL(CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO)
-        VALUES (@Codigo, @Nombre_Sucursal, @Direccion_Sucursal, @Latitud_Sucursal, @Longitud_Sucursal, @Ciudad_Sucursal, @Estado);
+        INSERT INTO SUCURSAL(ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO)
+        VALUES (@Id_Negocio, @Codigo, @Nombre_Sucursal, @Direccion_Sucursal, @Latitud_Sucursal, @Longitud_Sucursal, @Ciudad_Sucursal, @Estado);
 
         SET @Resultado = SCOPE_IDENTITY();
         SET @Mensaje = 'Sucursal registrada exitosamente.';
@@ -1788,7 +1878,7 @@ INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELEC
 go
 INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) VALUES ('1267','Sebastian Andres','Gonzales Lopez','0951135233','0936472943','sagl@gmail.com',1);
 go
-INSERT INTO NEGOCIO (ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES(1,'Supermercado Paradisia','0969810812','0102030405785','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
+INSERT INTO NEGOCIO (NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO) VALUES('Supermercado Paradisia','0969810812','0102030405785','Mucho Lote 3 etapa','SupermercadoParadisia@gmail.com');
 go
 INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Norte', 200, 1);
 go
@@ -1806,6 +1896,6 @@ INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DES
 go
 INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,'Julio Andres','julito@gmail.com','Cuando compre la cocina decia que venia con un set de ollas pero al momento de la entrega no me vino eso.',0);
 go*/
-INSERT INTO SUCURSAL (CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES ('7247', 'GUAYAQUIL_9 DE OCT y LOS RIOS','AV. 9 DE OCTUBRE 803 Y LOS RIOS',-2.187746,-79.894365,'Guayaquil',1);
+INSERT INTO SUCURSAL (ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (1, '7247', 'SUCURSAL_9 DE OCT y LOS RIOS','AV. 9 DE OCTUBRE 803 Y LOS RIOS',-2.187746,-79.894365,'Guayaquil',1);
 go
-INSERT INTO SUCURSAL (CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES ('6584','GUAYAQUIL_ALBANBORJA','AV.CARLOS JULIO AROSEMENA S/N',-2.169321,-79.917047,'Guayaquil',0);
+INSERT INTO SUCURSAL (ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (1, '6584','SUCURSAL_ALBANBORJA','AV.CARLOS JULIO AROSEMENA S/N',-2.169321,-79.917047,'Guayaquil',0);
