@@ -9,6 +9,7 @@ namespace Entidad
     public class Reporte_Venta
     {
         public string FechaRegistro { get; set; }
+        public string Sucursal { get; set; }
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
         public string MontoTotal { get; set; }
