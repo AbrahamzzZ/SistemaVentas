@@ -275,7 +275,7 @@
             this.NombreSurcusal.MinimumWidth = 6;
             this.NombreSurcusal.Name = "NombreSurcusal";
             this.NombreSurcusal.ReadOnly = true;
-            this.NombreSurcusal.Width = 150;
+            this.NombreSurcusal.Width = 180;
             // 
             // TipoDocumento
             // 

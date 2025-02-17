@@ -41,6 +41,7 @@ namespace Presentacion
             if (oVenta.IdVenta != 0)
             {
                 TxtFechaVenta.Text = oVenta.FechaVenta;
+                TxtSucursal.Text = oVenta.oSucursal.Nombre;
                 TxtTipoDocumento.Text = oVenta.TipoDocumento;
                 TxtNombreCompletoUsuario.Text = oVenta.oUsuario.NombreCompleto;
                 TxtCedulaCliente.Text = oVenta.oCliente.Cedula;
@@ -66,6 +67,7 @@ namespace Presentacion
         {
             TxtNumeroDocumentoVenta.Text = "";
             TxtFechaVenta.Text = "";
+            TxtSucursal.Text = "";
             TxtTipoDocumento.Text = "";
             TxtNombreCompletoUsuario.Text = "";
             TxtCedulaCliente.Text = "";
@@ -95,6 +97,7 @@ namespace Presentacion
 
             texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
             texto_html = texto_html.Replace("@numerodocumento", TxtNumeroDocumentoVenta.Text);
+            texto_html = texto_html.Replace("@sucursal", TxtSucursal.Text);
 
             texto_html = texto_html.Replace("@cedulacliente", TxtCedulaCliente.Text);
             texto_html = texto_html.Replace("@nombrecliente", TxtNombresCliente.Text);

@@ -150,7 +150,7 @@ namespace Datos
                 obtener.AppendLine("SELECT V.ID_VENTA, U.NOMBRE_COMPLETO, S.NOMBRE_SUCURSAL, V.TIPO_DOCUMENTO, V.NUMERO_DOCUMENTO, C.CEDULA, C.NOMBRES, V.MONTO_PAGO, V.MONTO_CAMBIO, V.MONTO_TOTAL, V.DESCUENTO, Convert(char(10),V.FECHA_VENTA,103)[FECHA_VENTA] from VENTA V");
                 obtener.AppendLine("inner join USUARIO U on U.ID_USUARIO = V.ID_USUARIO");
                 obtener.AppendLine("inner join CLIENTE C on C.ID_CLIENTE = V.ID_CLIENTE");
-                obtener.AppendLine("inner join SUCURSAL S on S.ID_SUCURSAL = S.ID_SUCURSAL");
+                obtener.AppendLine("inner join SUCURSAL S on S.ID_SUCURSAL = V.ID_SUCURSAL");
                 obtener.AppendLine("WHERE V.NUMERO_DOCUMENTO = @numero");
 
                 SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
@@ -164,7 +164,7 @@ namespace Datos
                     {
                         IdVenta = int.Parse(leer["ID_VENTA"].ToString()),
                         oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
-                        TipoDocumento = leer["TIPO_DOCUMNTO"].ToString(),
+                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
                         oCliente = new Cliente() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },

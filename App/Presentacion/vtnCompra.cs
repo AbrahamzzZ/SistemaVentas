@@ -99,6 +99,23 @@ namespace Presentacion
             }
         }
 
+        private void BtnModalSucursal_Click(object sender, EventArgs e)
+        {
+            using (var modal = new VtnModalesSucursal())
+            {
+                var result = modal.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    TxtIdSucursal.Text = modal.Sucursal.IdSucursal.ToString();
+                    TxtSucursal.Text = modal.Sucursal.Nombre.ToString();
+                }
+                else
+                {
+                    TxtIdSucursal.Select();
+                }
+            }
+        }
+
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             decimal precioCompra = 0;
@@ -199,6 +216,7 @@ namespace Presentacion
                 oUsuario = new Usuario() { IdUsuario = Usuario.IdUsuario },
                 oProveedor = new Proveedor() { IdProveedor = Convert.ToInt32(TxtIdProveedor.Text) },
                 oTransportista = new Transportista() { IdTransportista = Convert.ToInt32(TxtIdTransportista.Text)},
+                oSucursal = new Sucursal() { IdSucursal = Convert.ToInt32(TxtIdSucursal.Text)},
                 TipoDocumento = tipoDocumento,
                 NumeroDocumento = numeroDocumento,
                 MontoTotal = Convert.ToDecimal(TxtTotalPagar.Text)
@@ -219,6 +237,8 @@ namespace Presentacion
                 TxtIdTransportista.Clear();
                 TxtNombresTransportista.Clear();
                 TxtCedulaTransportista.Clear();
+                TxtIdSucursal.Clear();
+                TxtSucursal.Clear();
                 TxtTotalPagar.Clear();
                 TablaCompras.Rows.Clear();
                 CalcularTotal();
@@ -272,6 +292,8 @@ namespace Presentacion
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
+            TxtIdSucursal.Text = "0";
+            TxtSucursal.Text = "";
             TxtIdProducto.Text = "0";
             TxtCodigo.Text = "";
             TxtProducto.Text = "";

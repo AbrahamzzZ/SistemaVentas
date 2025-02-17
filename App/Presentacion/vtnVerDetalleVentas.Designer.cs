@@ -28,31 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.GroupBoxBuscar = new System.Windows.Forms.GroupBox();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxtNumeroDocumentoVenta = new System.Windows.Forms.TextBox();
             this.LblNumeroDocumentoVenta = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxInformacionVenta = new System.Windows.Forms.GroupBox();
             this.TxtNombreCompletoUsuario = new System.Windows.Forms.TextBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.TxtTipoDocumento = new System.Windows.Forms.TextBox();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.TxtFechaVenta = new System.Windows.Forms.TextBox();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxCliente = new System.Windows.Forms.GroupBox();
             this.TxtCedulaCliente = new System.Windows.Forms.TextBox();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.TxtNombresCliente = new System.Windows.Forms.TextBox();
             this.LblCedulaCliente = new System.Windows.Forms.Label();
             this.tablaDetallesVentas = new System.Windows.Forms.DataGridView();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtMontoCambio = new System.Windows.Forms.TextBox();
             this.TxtMontoPago = new System.Windows.Forms.TextBox();
             this.lblMontoCambio = new System.Windows.Forms.Label();
@@ -65,27 +60,36 @@
             this.lblMontoTotal = new System.Windows.Forms.Label();
             this.PanelPrincipal = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GroupBoxSucursal = new System.Windows.Forms.GroupBox();
+            this.TxtSucursal = new System.Windows.Forms.TextBox();
+            this.LblSucursal = new System.Windows.Forms.Label();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupBoxBuscar.SuspendLayout();
+            this.GroupBoxInformacionVenta.SuspendLayout();
+            this.GroupBoxCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDetallesVentas)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.PanelPrincipal.SuspendLayout();
+            this.GroupBoxSucursal.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // GroupBoxBuscar
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.BtnLimpiar);
-            this.groupBox2.Controls.Add(this.BtnBuscar);
-            this.groupBox2.Controls.Add(this.TxtNumeroDocumentoVenta);
-            this.groupBox2.Controls.Add(this.LblNumeroDocumentoVenta);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(489, 61);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(679, 80);
-            this.groupBox2.TabIndex = 123;
-            this.groupBox2.TabStop = false;
+            this.GroupBoxBuscar.BackColor = System.Drawing.Color.White;
+            this.GroupBoxBuscar.Controls.Add(this.BtnLimpiar);
+            this.GroupBoxBuscar.Controls.Add(this.BtnBuscar);
+            this.GroupBoxBuscar.Controls.Add(this.TxtNumeroDocumentoVenta);
+            this.GroupBoxBuscar.Controls.Add(this.LblNumeroDocumentoVenta);
+            this.GroupBoxBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxBuscar.Location = new System.Drawing.Point(488, 61);
+            this.GroupBoxBuscar.Name = "GroupBoxBuscar";
+            this.GroupBoxBuscar.Size = new System.Drawing.Size(680, 95);
+            this.GroupBoxBuscar.TabIndex = 123;
+            this.GroupBoxBuscar.TabStop = false;
             // 
             // BtnLimpiar
             // 
@@ -119,7 +123,7 @@
             // 
             this.TxtNumeroDocumentoVenta.BackColor = System.Drawing.Color.LightGray;
             this.TxtNumeroDocumentoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNumeroDocumentoVenta.Location = new System.Drawing.Point(174, 35);
+            this.TxtNumeroDocumentoVenta.Location = new System.Drawing.Point(174, 38);
             this.TxtNumeroDocumentoVenta.Name = "TxtNumeroDocumentoVenta";
             this.TxtNumeroDocumentoVenta.Size = new System.Drawing.Size(184, 27);
             this.TxtNumeroDocumentoVenta.TabIndex = 2;
@@ -129,28 +133,28 @@
             // 
             this.LblNumeroDocumentoVenta.AutoSize = true;
             this.LblNumeroDocumentoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNumeroDocumentoVenta.Location = new System.Drawing.Point(37, 40);
+            this.LblNumeroDocumentoVenta.Location = new System.Drawing.Point(37, 43);
             this.LblNumeroDocumentoVenta.Name = "LblNumeroDocumentoVenta";
             this.LblNumeroDocumentoVenta.Size = new System.Drawing.Size(109, 18);
             this.LblNumeroDocumentoVenta.TabIndex = 0;
             this.LblNumeroDocumentoVenta.Text = "N. Documento:";
             // 
-            // groupBox3
+            // GroupBoxInformacionVenta
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.TxtNombreCompletoUsuario);
-            this.groupBox3.Controls.Add(this.lblUsuario);
-            this.groupBox3.Controls.Add(this.TxtTipoDocumento);
-            this.groupBox3.Controls.Add(this.lblTipoDocumento);
-            this.groupBox3.Controls.Add(this.TxtFechaVenta);
-            this.groupBox3.Controls.Add(this.lblFecha);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(41, 61);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(354, 239);
-            this.groupBox3.TabIndex = 124;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Información Venta";
+            this.GroupBoxInformacionVenta.BackColor = System.Drawing.Color.White;
+            this.GroupBoxInformacionVenta.Controls.Add(this.TxtNombreCompletoUsuario);
+            this.GroupBoxInformacionVenta.Controls.Add(this.lblUsuario);
+            this.GroupBoxInformacionVenta.Controls.Add(this.TxtTipoDocumento);
+            this.GroupBoxInformacionVenta.Controls.Add(this.lblTipoDocumento);
+            this.GroupBoxInformacionVenta.Controls.Add(this.TxtFechaVenta);
+            this.GroupBoxInformacionVenta.Controls.Add(this.lblFecha);
+            this.GroupBoxInformacionVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxInformacionVenta.Location = new System.Drawing.Point(41, 61);
+            this.GroupBoxInformacionVenta.Name = "GroupBoxInformacionVenta";
+            this.GroupBoxInformacionVenta.Size = new System.Drawing.Size(354, 239);
+            this.GroupBoxInformacionVenta.TabIndex = 124;
+            this.GroupBoxInformacionVenta.TabStop = false;
+            this.GroupBoxInformacionVenta.Text = "Información Venta";
             // 
             // TxtNombreCompletoUsuario
             // 
@@ -212,26 +216,26 @@
             this.lblFecha.TabIndex = 0;
             this.lblFecha.Text = "Fecha venta:";
             // 
-            // groupBox1
+            // GroupBoxCliente
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.TxtCedulaCliente);
-            this.groupBox1.Controls.Add(this.lblNombreCliente);
-            this.groupBox1.Controls.Add(this.TxtNombresCliente);
-            this.groupBox1.Controls.Add(this.LblCedulaCliente);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(489, 192);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(679, 108);
-            this.groupBox1.TabIndex = 125;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Información Cliente";
+            this.GroupBoxCliente.BackColor = System.Drawing.Color.White;
+            this.GroupBoxCliente.Controls.Add(this.TxtCedulaCliente);
+            this.GroupBoxCliente.Controls.Add(this.lblNombreCliente);
+            this.GroupBoxCliente.Controls.Add(this.TxtNombresCliente);
+            this.GroupBoxCliente.Controls.Add(this.LblCedulaCliente);
+            this.GroupBoxCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxCliente.Location = new System.Drawing.Point(488, 180);
+            this.GroupBoxCliente.Name = "GroupBoxCliente";
+            this.GroupBoxCliente.Size = new System.Drawing.Size(680, 108);
+            this.GroupBoxCliente.TabIndex = 125;
+            this.GroupBoxCliente.TabStop = false;
+            this.GroupBoxCliente.Text = "Información Cliente";
             // 
             // TxtCedulaCliente
             // 
             this.TxtCedulaCliente.BackColor = System.Drawing.Color.LightGray;
             this.TxtCedulaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCedulaCliente.Location = new System.Drawing.Point(40, 56);
+            this.TxtCedulaCliente.Location = new System.Drawing.Point(61, 56);
             this.TxtCedulaCliente.Name = "TxtCedulaCliente";
             this.TxtCedulaCliente.ReadOnly = true;
             this.TxtCedulaCliente.Size = new System.Drawing.Size(210, 27);
@@ -241,7 +245,7 @@
             // 
             this.lblNombreCliente.AutoSize = true;
             this.lblNombreCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreCliente.Location = new System.Drawing.Point(303, 35);
+            this.lblNombreCliente.Location = new System.Drawing.Point(371, 34);
             this.lblNombreCliente.Name = "lblNombreCliente";
             this.lblNombreCliente.Size = new System.Drawing.Size(135, 18);
             this.lblNombreCliente.TabIndex = 105;
@@ -251,7 +255,7 @@
             // 
             this.TxtNombresCliente.BackColor = System.Drawing.Color.LightGray;
             this.TxtNombresCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombresCliente.Location = new System.Drawing.Point(303, 56);
+            this.TxtNombresCliente.Location = new System.Drawing.Point(372, 56);
             this.TxtNombresCliente.Name = "TxtNombresCliente";
             this.TxtNombresCliente.ReadOnly = true;
             this.TxtNombresCliente.Size = new System.Drawing.Size(210, 27);
@@ -261,7 +265,7 @@
             // 
             this.LblCedulaCliente.AutoSize = true;
             this.LblCedulaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCedulaCliente.Location = new System.Drawing.Point(40, 35);
+            this.LblCedulaCliente.Location = new System.Drawing.Point(60, 34);
             this.LblCedulaCliente.Name = "LblCedulaCliente";
             this.LblCedulaCliente.Size = new System.Drawing.Size(107, 18);
             this.LblCedulaCliente.TabIndex = 0;
@@ -271,15 +275,15 @@
             // 
             this.tablaDetallesVentas.AllowUserToAddRows = false;
             this.tablaDetallesVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaDetallesVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaDetallesVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.tablaDetallesVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaDetallesVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -287,17 +291,186 @@
             this.Cantidad,
             this.SubTotal,
             this.Descuento});
-            this.tablaDetallesVentas.Location = new System.Drawing.Point(41, 321);
+            this.tablaDetallesVentas.Location = new System.Drawing.Point(41, 453);
             this.tablaDetallesVentas.MultiSelect = false;
             this.tablaDetallesVentas.Name = "tablaDetallesVentas";
             this.tablaDetallesVentas.ReadOnly = true;
             this.tablaDetallesVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaDetallesVentas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaDetallesVentas.RowsDefaultCellStyle = dataGridViewCellStyle28;
             this.tablaDetallesVentas.RowTemplate.Height = 28;
-            this.tablaDetallesVentas.Size = new System.Drawing.Size(795, 200);
+            this.tablaDetallesVentas.Size = new System.Drawing.Size(1127, 200);
             this.tablaDetallesVentas.TabIndex = 127;
+            // 
+            // TxtMontoCambio
+            // 
+            this.TxtMontoCambio.BackColor = System.Drawing.Color.LightGray;
+            this.TxtMontoCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoCambio.Location = new System.Drawing.Point(420, 56);
+            this.TxtMontoCambio.Name = "TxtMontoCambio";
+            this.TxtMontoCambio.ReadOnly = true;
+            this.TxtMontoCambio.Size = new System.Drawing.Size(90, 27);
+            this.TxtMontoCambio.TabIndex = 119;
+            // 
+            // TxtMontoPago
+            // 
+            this.TxtMontoPago.BackColor = System.Drawing.Color.LightGray;
+            this.TxtMontoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoPago.Location = new System.Drawing.Point(282, 56);
+            this.TxtMontoPago.Name = "TxtMontoPago";
+            this.TxtMontoPago.ReadOnly = true;
+            this.TxtMontoPago.Size = new System.Drawing.Size(90, 27);
+            this.TxtMontoPago.TabIndex = 118;
+            // 
+            // lblMontoCambio
+            // 
+            this.lblMontoCambio.AutoSize = true;
+            this.lblMontoCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoCambio.Location = new System.Drawing.Point(406, 32);
+            this.lblMontoCambio.Name = "lblMontoCambio";
+            this.lblMontoCambio.Size = new System.Drawing.Size(122, 20);
+            this.lblMontoCambio.TabIndex = 117;
+            this.lblMontoCambio.Text = "Monto Cambio:";
+            // 
+            // lblMontoPago
+            // 
+            this.lblMontoPago.AutoSize = true;
+            this.lblMontoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoPago.Location = new System.Drawing.Point(278, 32);
+            this.lblMontoPago.Name = "lblMontoPago";
+            this.lblMontoPago.Size = new System.Drawing.Size(103, 20);
+            this.lblMontoPago.TabIndex = 116;
+            this.lblMontoPago.Text = "Monto Pago:";
+            // 
+            // btnDescargarPdf
+            // 
+            this.btnDescargarPdf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDescargarPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDescargarPdf.Location = new System.Drawing.Point(540, 25);
+            this.btnDescargarPdf.Name = "btnDescargarPdf";
+            this.btnDescargarPdf.Size = new System.Drawing.Size(121, 67);
+            this.btnDescargarPdf.TabIndex = 113;
+            this.btnDescargarPdf.Text = "Descargar PDF";
+            this.btnDescargarPdf.UseVisualStyleBackColor = true;
+            this.btnDescargarPdf.Click += new System.EventHandler(this.BtnDescargarPdf_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.Color.White;
+            this.groupBox4.Controls.Add(this.lblDescuento);
+            this.groupBox4.Controls.Add(this.TxtDescuento);
+            this.groupBox4.Controls.Add(this.TxtMontoCambio);
+            this.groupBox4.Controls.Add(this.TxtMontoPago);
+            this.groupBox4.Controls.Add(this.lblMontoCambio);
+            this.groupBox4.Controls.Add(this.lblMontoPago);
+            this.groupBox4.Controls.Add(this.btnDescargarPdf);
+            this.groupBox4.Controls.Add(this.TxtMontoTotal);
+            this.groupBox4.Controls.Add(this.lblMontoTotal);
+            this.groupBox4.Location = new System.Drawing.Point(488, 316);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(680, 108);
+            this.groupBox4.TabIndex = 126;
+            this.groupBox4.TabStop = false;
+            // 
+            // lblDescuento
+            // 
+            this.lblDescuento.AutoSize = true;
+            this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescuento.Location = new System.Drawing.Point(22, 32);
+            this.lblDescuento.Name = "lblDescuento";
+            this.lblDescuento.Size = new System.Drawing.Size(95, 20);
+            this.lblDescuento.TabIndex = 121;
+            this.lblDescuento.Text = "Descuento:";
+            // 
+            // TxtDescuento
+            // 
+            this.TxtDescuento.BackColor = System.Drawing.Color.LightGray;
+            this.TxtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDescuento.Location = new System.Drawing.Point(23, 56);
+            this.TxtDescuento.Name = "TxtDescuento";
+            this.TxtDescuento.ReadOnly = true;
+            this.TxtDescuento.Size = new System.Drawing.Size(90, 27);
+            this.TxtDescuento.TabIndex = 120;
+            // 
+            // TxtMontoTotal
+            // 
+            this.TxtMontoTotal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoTotal.Location = new System.Drawing.Point(149, 56);
+            this.TxtMontoTotal.Name = "TxtMontoTotal";
+            this.TxtMontoTotal.ReadOnly = true;
+            this.TxtMontoTotal.Size = new System.Drawing.Size(90, 27);
+            this.TxtMontoTotal.TabIndex = 115;
+            // 
+            // lblMontoTotal
+            // 
+            this.lblMontoTotal.AutoSize = true;
+            this.lblMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoTotal.Location = new System.Drawing.Point(144, 34);
+            this.lblMontoTotal.Name = "lblMontoTotal";
+            this.lblMontoTotal.Size = new System.Drawing.Size(102, 20);
+            this.lblMontoTotal.TabIndex = 114;
+            this.lblMontoTotal.Text = "Monto Total:";
+            // 
+            // PanelPrincipal
+            // 
+            this.PanelPrincipal.AutoScroll = true;
+            this.PanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.PanelPrincipal.Controls.Add(this.GroupBoxSucursal);
+            this.PanelPrincipal.Controls.Add(this.label1);
+            this.PanelPrincipal.Controls.Add(this.groupBox4);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxCliente);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxBuscar);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxInformacionVenta);
+            this.PanelPrincipal.Controls.Add(this.tablaDetallesVentas);
+            this.PanelPrincipal.Location = new System.Drawing.Point(131, 23);
+            this.PanelPrincipal.Name = "PanelPrincipal";
+            this.PanelPrincipal.Size = new System.Drawing.Size(1212, 540);
+            this.PanelPrincipal.TabIndex = 129;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(256, 38);
+            this.label1.TabIndex = 129;
+            this.label1.Text = "Detalles ventas";
+            // 
+            // GroupBoxSucursal
+            // 
+            this.GroupBoxSucursal.BackColor = System.Drawing.Color.White;
+            this.GroupBoxSucursal.Controls.Add(this.TxtSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.LblSucursal);
+            this.GroupBoxSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxSucursal.Location = new System.Drawing.Point(41, 316);
+            this.GroupBoxSucursal.Name = "GroupBoxSucursal";
+            this.GroupBoxSucursal.Size = new System.Drawing.Size(354, 108);
+            this.GroupBoxSucursal.TabIndex = 131;
+            this.GroupBoxSucursal.TabStop = false;
+            this.GroupBoxSucursal.Text = "Información Sucursal";
+            // 
+            // TxtSucursal
+            // 
+            this.TxtSucursal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSucursal.Location = new System.Drawing.Point(20, 56);
+            this.TxtSucursal.Name = "TxtSucursal";
+            this.TxtSucursal.ReadOnly = true;
+            this.TxtSucursal.Size = new System.Drawing.Size(310, 27);
+            this.TxtSucursal.TabIndex = 113;
+            // 
+            // LblSucursal
+            // 
+            this.LblSucursal.AutoSize = true;
+            this.LblSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSucursal.Location = new System.Drawing.Point(23, 34);
+            this.LblSucursal.Name = "LblSucursal";
+            this.LblSucursal.Size = new System.Drawing.Size(70, 18);
+            this.LblSucursal.TabIndex = 115;
+            this.LblSucursal.Text = "Sucursal:";
             // 
             // Producto
             // 
@@ -305,7 +478,7 @@
             this.Producto.MinimumWidth = 6;
             this.Producto.Name = "Producto";
             this.Producto.ReadOnly = true;
-            this.Producto.Width = 125;
+            this.Producto.Width = 140;
             // 
             // PrecioVenta
             // 
@@ -339,140 +512,6 @@
             this.Descuento.ReadOnly = true;
             this.Descuento.Width = 125;
             // 
-            // TxtMontoCambio
-            // 
-            this.TxtMontoCambio.BackColor = System.Drawing.Color.LightGray;
-            this.TxtMontoCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoCambio.Location = new System.Drawing.Point(19, 157);
-            this.TxtMontoCambio.Name = "TxtMontoCambio";
-            this.TxtMontoCambio.ReadOnly = true;
-            this.TxtMontoCambio.Size = new System.Drawing.Size(120, 27);
-            this.TxtMontoCambio.TabIndex = 119;
-            // 
-            // TxtMontoPago
-            // 
-            this.TxtMontoPago.BackColor = System.Drawing.Color.LightGray;
-            this.TxtMontoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoPago.Location = new System.Drawing.Point(19, 100);
-            this.TxtMontoPago.Name = "TxtMontoPago";
-            this.TxtMontoPago.ReadOnly = true;
-            this.TxtMontoPago.Size = new System.Drawing.Size(120, 27);
-            this.TxtMontoPago.TabIndex = 118;
-            // 
-            // lblMontoCambio
-            // 
-            this.lblMontoCambio.AutoSize = true;
-            this.lblMontoCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontoCambio.Location = new System.Drawing.Point(15, 134);
-            this.lblMontoCambio.Name = "lblMontoCambio";
-            this.lblMontoCambio.Size = new System.Drawing.Size(122, 20);
-            this.lblMontoCambio.TabIndex = 117;
-            this.lblMontoCambio.Text = "Monto Cambio:";
-            // 
-            // lblMontoPago
-            // 
-            this.lblMontoPago.AutoSize = true;
-            this.lblMontoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontoPago.Location = new System.Drawing.Point(16, 77);
-            this.lblMontoPago.Name = "lblMontoPago";
-            this.lblMontoPago.Size = new System.Drawing.Size(103, 20);
-            this.lblMontoPago.TabIndex = 116;
-            this.lblMontoPago.Text = "Monto Pago:";
-            // 
-            // btnDescargarPdf
-            // 
-            this.btnDescargarPdf.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDescargarPdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDescargarPdf.Location = new System.Drawing.Point(157, 85);
-            this.btnDescargarPdf.Name = "btnDescargarPdf";
-            this.btnDescargarPdf.Size = new System.Drawing.Size(120, 99);
-            this.btnDescargarPdf.TabIndex = 113;
-            this.btnDescargarPdf.Text = "Descargar PDF";
-            this.btnDescargarPdf.UseVisualStyleBackColor = true;
-            this.btnDescargarPdf.Click += new System.EventHandler(this.BtnDescargarPdf_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.lblDescuento);
-            this.groupBox4.Controls.Add(this.TxtDescuento);
-            this.groupBox4.Controls.Add(this.TxtMontoCambio);
-            this.groupBox4.Controls.Add(this.TxtMontoPago);
-            this.groupBox4.Controls.Add(this.lblMontoCambio);
-            this.groupBox4.Controls.Add(this.lblMontoPago);
-            this.groupBox4.Controls.Add(this.btnDescargarPdf);
-            this.groupBox4.Controls.Add(this.TxtMontoTotal);
-            this.groupBox4.Controls.Add(this.lblMontoTotal);
-            this.groupBox4.Location = new System.Drawing.Point(870, 312);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(296, 209);
-            this.groupBox4.TabIndex = 126;
-            this.groupBox4.TabStop = false;
-            // 
-            // lblDescuento
-            // 
-            this.lblDescuento.AutoSize = true;
-            this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuento.Location = new System.Drawing.Point(16, 18);
-            this.lblDescuento.Name = "lblDescuento";
-            this.lblDescuento.Size = new System.Drawing.Size(95, 20);
-            this.lblDescuento.TabIndex = 121;
-            this.lblDescuento.Text = "Descuento:";
-            // 
-            // TxtDescuento
-            // 
-            this.TxtDescuento.BackColor = System.Drawing.Color.LightGray;
-            this.TxtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescuento.Location = new System.Drawing.Point(19, 41);
-            this.TxtDescuento.Name = "TxtDescuento";
-            this.TxtDescuento.ReadOnly = true;
-            this.TxtDescuento.Size = new System.Drawing.Size(120, 27);
-            this.TxtDescuento.TabIndex = 120;
-            // 
-            // TxtMontoTotal
-            // 
-            this.TxtMontoTotal.BackColor = System.Drawing.Color.LightGray;
-            this.TxtMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoTotal.Location = new System.Drawing.Point(157, 41);
-            this.TxtMontoTotal.Name = "TxtMontoTotal";
-            this.TxtMontoTotal.ReadOnly = true;
-            this.TxtMontoTotal.Size = new System.Drawing.Size(120, 27);
-            this.TxtMontoTotal.TabIndex = 115;
-            // 
-            // lblMontoTotal
-            // 
-            this.lblMontoTotal.AutoSize = true;
-            this.lblMontoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontoTotal.Location = new System.Drawing.Point(154, 18);
-            this.lblMontoTotal.Name = "lblMontoTotal";
-            this.lblMontoTotal.Size = new System.Drawing.Size(102, 20);
-            this.lblMontoTotal.TabIndex = 114;
-            this.lblMontoTotal.Text = "Monto Total:";
-            // 
-            // PanelPrincipal
-            // 
-            this.PanelPrincipal.BackColor = System.Drawing.Color.White;
-            this.PanelPrincipal.Controls.Add(this.label1);
-            this.PanelPrincipal.Controls.Add(this.groupBox4);
-            this.PanelPrincipal.Controls.Add(this.groupBox1);
-            this.PanelPrincipal.Controls.Add(this.groupBox2);
-            this.PanelPrincipal.Controls.Add(this.groupBox3);
-            this.PanelPrincipal.Controls.Add(this.tablaDetallesVentas);
-            this.PanelPrincipal.Location = new System.Drawing.Point(131, 23);
-            this.PanelPrincipal.Name = "PanelPrincipal";
-            this.PanelPrincipal.Size = new System.Drawing.Size(1212, 540);
-            this.PanelPrincipal.TabIndex = 129;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 38);
-            this.label1.TabIndex = 129;
-            this.label1.Text = "Detalles ventas";
-            // 
             // VtnVerDetalleVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -484,36 +523,38 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver los detalles de las ventas realizadas";
             this.Load += new System.EventHandler(this.VtnVerDetalleVentas_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GroupBoxBuscar.ResumeLayout(false);
+            this.GroupBoxBuscar.PerformLayout();
+            this.GroupBoxInformacionVenta.ResumeLayout(false);
+            this.GroupBoxInformacionVenta.PerformLayout();
+            this.GroupBoxCliente.ResumeLayout(false);
+            this.GroupBoxCliente.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDetallesVentas)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.PanelPrincipal.ResumeLayout(false);
             this.PanelPrincipal.PerformLayout();
+            this.GroupBoxSucursal.ResumeLayout(false);
+            this.GroupBoxSucursal.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox GroupBoxBuscar;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.TextBox TxtNumeroDocumentoVenta;
         private System.Windows.Forms.Label LblNumeroDocumentoVenta;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GroupBoxInformacionVenta;
         private System.Windows.Forms.TextBox TxtNombreCompletoUsuario;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TextBox TxtTipoDocumento;
         private System.Windows.Forms.Label lblTipoDocumento;
         private System.Windows.Forms.TextBox TxtFechaVenta;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GroupBoxCliente;
         private System.Windows.Forms.TextBox TxtCedulaCliente;
         private System.Windows.Forms.Label lblNombreCliente;
         private System.Windows.Forms.TextBox TxtNombresCliente;
@@ -529,12 +570,15 @@
         private System.Windows.Forms.Label lblMontoTotal;
         private System.Windows.Forms.TextBox TxtDescuento;
         private System.Windows.Forms.Label lblDescuento;
+        private System.Windows.Forms.Panel PanelPrincipal;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox GroupBoxSucursal;
+        private System.Windows.Forms.TextBox TxtSucursal;
+        private System.Windows.Forms.Label LblSucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
-        private System.Windows.Forms.Panel PanelPrincipal;
-        private System.Windows.Forms.Label label1;
     }
 }

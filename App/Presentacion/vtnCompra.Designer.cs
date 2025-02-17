@@ -29,36 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnCompra));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.NudCantidad = new System.Windows.Forms.NumericUpDown();
             this.TxtPreciVenta = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxPagarCompra = new System.Windows.Forms.GroupBox();
             this.BtnCrearCompra = new System.Windows.Forms.Button();
             this.TxtTotalPagar = new System.Windows.Forms.TextBox();
             this.lblTotalPagar = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.TablaCompras = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TxtPrecioCompra = new System.Windows.Forms.TextBox();
             this.lblPrecioCompra = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxInformacionCompra = new System.Windows.Forms.GroupBox();
             this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.TxtFecha = new System.Windows.Forms.TextBox();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.lblRegistrarCompra = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxProvedor = new System.Windows.Forms.GroupBox();
             this.TxtIdProveedor = new System.Windows.Forms.TextBox();
-            this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
             this.BtnBuscarProveedor = new System.Windows.Forms.Button();
             this.TxtCedulaProveedor = new System.Windows.Forms.TextBox();
             this.lblNombreProveedor = new System.Windows.Forms.Label();
@@ -69,23 +60,40 @@
             this.TxtIdProducto = new System.Windows.Forms.TextBox();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.lblCodigoProducto = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxProducto = new System.Windows.Forms.GroupBox();
+            this.BtnLimpiar = new System.Windows.Forms.Button();
             this.lblImportante = new System.Windows.Forms.Label();
             this.TxtCedulaTransportista = new System.Windows.Forms.TextBox();
             this.TxtNombresTransportista = new System.Windows.Forms.TextBox();
             this.LblCedulaTransportista = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxTransportista = new System.Windows.Forms.GroupBox();
             this.TxtIdTransportista = new System.Windows.Forms.TextBox();
             this.BtnBuscarTransportista = new System.Windows.Forms.Button();
-            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.PanelPrincipal = new System.Windows.Forms.Panel();
+            this.LblRegistrarCompra = new System.Windows.Forms.Label();
+            this.TxtNombresProveedor = new System.Windows.Forms.TextBox();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.GroupBoxSucursal = new System.Windows.Forms.GroupBox();
+            this.TxtSucursal = new System.Windows.Forms.TextBox();
+            this.LblSucursal = new System.Windows.Forms.Label();
+            this.BtnModalSucursal = new System.Windows.Forms.Button();
+            this.TxtIdSucursal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            this.GroupBoxPagarCompra.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaCompras)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.GroupBoxInformacionCompra.SuspendLayout();
+            this.GroupBoxProvedor.SuspendLayout();
+            this.GroupBoxProducto.SuspendLayout();
+            this.GroupBoxTransportista.SuspendLayout();
+            this.PanelPrincipal.SuspendLayout();
+            this.GroupBoxSucursal.SuspendLayout();
             this.SuspendLayout();
             // 
             // NudCantidad
@@ -125,18 +133,18 @@
             this.lblPrecioVenta.TabIndex = 108;
             this.lblPrecioVenta.Text = "Precio Venta:";
             // 
-            // groupBox4
+            // GroupBoxPagarCompra
             // 
-            this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.BtnCrearCompra);
-            this.groupBox4.Controls.Add(this.TxtTotalPagar);
-            this.groupBox4.Controls.Add(this.lblTotalPagar);
-            this.groupBox4.Controls.Add(this.BtnAgregar);
-            this.groupBox4.Location = new System.Drawing.Point(1121, 339);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(186, 205);
-            this.groupBox4.TabIndex = 121;
-            this.groupBox4.TabStop = false;
+            this.GroupBoxPagarCompra.BackColor = System.Drawing.Color.White;
+            this.GroupBoxPagarCompra.Controls.Add(this.BtnCrearCompra);
+            this.GroupBoxPagarCompra.Controls.Add(this.TxtTotalPagar);
+            this.GroupBoxPagarCompra.Controls.Add(this.lblTotalPagar);
+            this.GroupBoxPagarCompra.Controls.Add(this.BtnAgregar);
+            this.GroupBoxPagarCompra.Location = new System.Drawing.Point(974, 475);
+            this.GroupBoxPagarCompra.Name = "GroupBoxPagarCompra";
+            this.GroupBoxPagarCompra.Size = new System.Drawing.Size(186, 205);
+            this.GroupBoxPagarCompra.TabIndex = 121;
+            this.GroupBoxPagarCompra.TabStop = false;
             // 
             // BtnCrearCompra
             // 
@@ -188,15 +196,15 @@
             // 
             this.TablaCompras.AllowUserToAddRows = false;
             this.TablaCompras.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TablaCompras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.TablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -206,76 +214,19 @@
             this.Cantidad,
             this.SubTotal,
             this.btnEliminar});
-            this.TablaCompras.Location = new System.Drawing.Point(169, 348);
+            this.TablaCompras.Location = new System.Drawing.Point(35, 484);
             this.TablaCompras.MultiSelect = false;
             this.TablaCompras.Name = "TablaCompras";
             this.TablaCompras.ReadOnly = true;
             this.TablaCompras.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.TablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaCompras.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.TablaCompras.RowTemplate.Height = 28;
-            this.TablaCompras.Size = new System.Drawing.Size(657, 196);
+            this.TablaCompras.Size = new System.Drawing.Size(903, 196);
             this.TablaCompras.TabIndex = 122;
             this.TablaCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaCompras_CellContentClick);
             this.TablaCompras.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaCompras_CellPainting);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.MinimumWidth = 6;
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 125;
-            // 
-            // PrecioCompra
-            // 
-            this.PrecioCompra.HeaderText = "Precio Compra";
-            this.PrecioCompra.MinimumWidth = 6;
-            this.PrecioCompra.Name = "PrecioCompra";
-            this.PrecioCompra.ReadOnly = true;
-            this.PrecioCompra.Width = 135;
-            // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.HeaderText = "Precio Venta";
-            this.PrecioVenta.MinimumWidth = 6;
-            this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.ReadOnly = true;
-            this.PrecioVenta.Visible = false;
-            this.PrecioVenta.Width = 125;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.MinimumWidth = 6;
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 125;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "Sub Total";
-            this.SubTotal.MinimumWidth = 6;
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 125;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.HeaderText = "";
-            this.btnEliminar.MinimumWidth = 6;
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.ReadOnly = true;
-            this.btnEliminar.Width = 30;
             // 
             // TxtPrecioCompra
             // 
@@ -297,20 +248,20 @@
             this.lblPrecioCompra.TabIndex = 107;
             this.lblPrecioCompra.Text = "Precio Compra:";
             // 
-            // groupBox1
+            // GroupBoxInformacionCompra
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.CmbTipoDocumento);
-            this.groupBox1.Controls.Add(this.TxtFecha);
-            this.groupBox1.Controls.Add(this.lblTipoDocumento);
-            this.groupBox1.Controls.Add(this.lblFecha);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(169, 87);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 111);
-            this.groupBox1.TabIndex = 118;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Información Compra";
+            this.GroupBoxInformacionCompra.BackColor = System.Drawing.Color.White;
+            this.GroupBoxInformacionCompra.Controls.Add(this.CmbTipoDocumento);
+            this.GroupBoxInformacionCompra.Controls.Add(this.TxtFecha);
+            this.GroupBoxInformacionCompra.Controls.Add(this.lblTipoDocumento);
+            this.GroupBoxInformacionCompra.Controls.Add(this.lblFecha);
+            this.GroupBoxInformacionCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxInformacionCompra.Location = new System.Drawing.Point(35, 72);
+            this.GroupBoxInformacionCompra.Name = "GroupBoxInformacionCompra";
+            this.GroupBoxInformacionCompra.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxInformacionCompra.TabIndex = 118;
+            this.GroupBoxInformacionCompra.TabStop = false;
+            this.GroupBoxInformacionCompra.Text = "Información Compra";
             // 
             // CmbTipoDocumento
             // 
@@ -353,32 +304,22 @@
             this.lblFecha.TabIndex = 0;
             this.lblFecha.Text = "Fecha:";
             // 
-            // lblRegistrarCompra
+            // GroupBoxProvedor
             // 
-            this.lblRegistrarCompra.BackColor = System.Drawing.Color.White;
-            this.lblRegistrarCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrarCompra.Location = new System.Drawing.Point(131, 23);
-            this.lblRegistrarCompra.Name = "lblRegistrarCompra";
-            this.lblRegistrarCompra.Size = new System.Drawing.Size(1212, 540);
-            this.lblRegistrarCompra.TabIndex = 117;
-            this.lblRegistrarCompra.Text = "Registrar Compra";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.TxtIdProveedor);
-            this.groupBox2.Controls.Add(this.TxtNombresProveedor);
-            this.groupBox2.Controls.Add(this.BtnBuscarProveedor);
-            this.groupBox2.Controls.Add(this.TxtCedulaProveedor);
-            this.groupBox2.Controls.Add(this.lblNombreProveedor);
-            this.groupBox2.Controls.Add(this.LblCedula);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(797, 87);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(510, 111);
-            this.groupBox2.TabIndex = 119;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Información Proveedor";
+            this.GroupBoxProvedor.BackColor = System.Drawing.Color.White;
+            this.GroupBoxProvedor.Controls.Add(this.TxtIdProveedor);
+            this.GroupBoxProvedor.Controls.Add(this.TxtNombresProveedor);
+            this.GroupBoxProvedor.Controls.Add(this.BtnBuscarProveedor);
+            this.GroupBoxProvedor.Controls.Add(this.TxtCedulaProveedor);
+            this.GroupBoxProvedor.Controls.Add(this.lblNombreProveedor);
+            this.GroupBoxProvedor.Controls.Add(this.LblCedula);
+            this.GroupBoxProvedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxProvedor.Location = new System.Drawing.Point(650, 72);
+            this.GroupBoxProvedor.Name = "GroupBoxProvedor";
+            this.GroupBoxProvedor.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxProvedor.TabIndex = 119;
+            this.GroupBoxProvedor.TabStop = false;
+            this.GroupBoxProvedor.Text = "Información Proveedor";
             // 
             // TxtIdProveedor
             // 
@@ -389,16 +330,6 @@
             this.TxtIdProveedor.ReadOnly = true;
             this.TxtIdProveedor.Size = new System.Drawing.Size(37, 27);
             this.TxtIdProveedor.TabIndex = 102;
-            // 
-            // TxtNombresProveedor
-            // 
-            this.TxtNombresProveedor.BackColor = System.Drawing.Color.LightGray;
-            this.TxtNombresProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombresProveedor.Location = new System.Drawing.Point(185, 68);
-            this.TxtNombresProveedor.Name = "TxtNombresProveedor";
-            this.TxtNombresProveedor.ReadOnly = true;
-            this.TxtNombresProveedor.Size = new System.Drawing.Size(220, 27);
-            this.TxtNombresProveedor.TabIndex = 101;
             // 
             // BtnBuscarProveedor
             // 
@@ -503,119 +434,29 @@
             this.lblCodigoProducto.TabIndex = 0;
             this.lblCodigoProducto.Text = "Código Producto:";
             // 
-            // groupBox3
+            // GroupBoxProducto
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.BtnLimpiar);
-            this.groupBox3.Controls.Add(this.NudCantidad);
-            this.groupBox3.Controls.Add(this.TxtPreciVenta);
-            this.groupBox3.Controls.Add(this.TxtPrecioCompra);
-            this.groupBox3.Controls.Add(this.lblCantidad);
-            this.groupBox3.Controls.Add(this.lblPrecioVenta);
-            this.groupBox3.Controls.Add(this.lblPrecioCompra);
-            this.groupBox3.Controls.Add(this.TxtProducto);
-            this.groupBox3.Controls.Add(this.lblProducto);
-            this.groupBox3.Controls.Add(this.BtnBuscarProducto);
-            this.groupBox3.Controls.Add(this.TxtIdProducto);
-            this.groupBox3.Controls.Add(this.TxtCodigo);
-            this.groupBox3.Controls.Add(this.lblCodigoProducto);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(169, 214);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1138, 111);
-            this.groupBox3.TabIndex = 120;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Información Producto";
-            // 
-            // lblImportante
-            // 
-            this.lblImportante.BackColor = System.Drawing.Color.White;
-            this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportante.Location = new System.Drawing.Point(466, 23);
-            this.lblImportante.Name = "lblImportante";
-            this.lblImportante.Size = new System.Drawing.Size(867, 31);
-            this.lblImportante.TabIndex = 127;
-            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Compra se enc" +
-    "uentre totalmente vacía.\r\n\r\n";
-            // 
-            // TxtCedulaTransportista
-            // 
-            this.TxtCedulaTransportista.BackColor = System.Drawing.Color.LightGray;
-            this.TxtCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCedulaTransportista.Location = new System.Drawing.Point(17, 76);
-            this.TxtCedulaTransportista.Name = "TxtCedulaTransportista";
-            this.TxtCedulaTransportista.ReadOnly = true;
-            this.TxtCedulaTransportista.Size = new System.Drawing.Size(167, 27);
-            this.TxtCedulaTransportista.TabIndex = 113;
-            // 
-            // TxtNombresTransportista
-            // 
-            this.TxtNombresTransportista.BackColor = System.Drawing.Color.LightGray;
-            this.TxtNombresTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombresTransportista.Location = new System.Drawing.Point(17, 149);
-            this.TxtNombresTransportista.Name = "TxtNombresTransportista";
-            this.TxtNombresTransportista.ReadOnly = true;
-            this.TxtNombresTransportista.Size = new System.Drawing.Size(167, 27);
-            this.TxtNombresTransportista.TabIndex = 114;
-            // 
-            // LblCedulaTransportista
-            // 
-            this.LblCedulaTransportista.AutoSize = true;
-            this.LblCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCedulaTransportista.Location = new System.Drawing.Point(14, 55);
-            this.LblCedulaTransportista.Name = "LblCedulaTransportista";
-            this.LblCedulaTransportista.Size = new System.Drawing.Size(149, 18);
-            this.LblCedulaTransportista.TabIndex = 115;
-            this.LblCedulaTransportista.Text = "Cédula Transportista:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(14, 128);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 18);
-            this.label2.TabIndex = 116;
-            this.label2.Text = "Nombre Transportista:";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.BackColor = System.Drawing.Color.White;
-            this.groupBox5.Controls.Add(this.TxtIdTransportista);
-            this.groupBox5.Controls.Add(this.BtnBuscarTransportista);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.TxtCedulaTransportista);
-            this.groupBox5.Controls.Add(this.TxtNombresTransportista);
-            this.groupBox5.Controls.Add(this.LblCedulaTransportista);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(849, 339);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(252, 205);
-            this.groupBox5.TabIndex = 128;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Información Transportista";
-            // 
-            // TxtIdTransportista
-            // 
-            this.TxtIdTransportista.BackColor = System.Drawing.Color.LightGray;
-            this.TxtIdTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIdTransportista.Location = new System.Drawing.Point(197, 149);
-            this.TxtIdTransportista.Name = "TxtIdTransportista";
-            this.TxtIdTransportista.ReadOnly = true;
-            this.TxtIdTransportista.Size = new System.Drawing.Size(37, 27);
-            this.TxtIdTransportista.TabIndex = 118;
-            // 
-            // BtnBuscarTransportista
-            // 
-            this.BtnBuscarTransportista.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnBuscarTransportista.Image = global::Presentacion.Properties.Resources.buscar;
-            this.BtnBuscarTransportista.Location = new System.Drawing.Point(197, 72);
-            this.BtnBuscarTransportista.Name = "BtnBuscarTransportista";
-            this.BtnBuscarTransportista.Size = new System.Drawing.Size(38, 31);
-            this.BtnBuscarTransportista.TabIndex = 117;
-            this.BtnBuscarTransportista.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnBuscarTransportista.UseVisualStyleBackColor = true;
-            this.BtnBuscarTransportista.Click += new System.EventHandler(this.BtnBuscarTransportista_Click);
+            this.GroupBoxProducto.BackColor = System.Drawing.Color.White;
+            this.GroupBoxProducto.Controls.Add(this.BtnLimpiar);
+            this.GroupBoxProducto.Controls.Add(this.NudCantidad);
+            this.GroupBoxProducto.Controls.Add(this.TxtPreciVenta);
+            this.GroupBoxProducto.Controls.Add(this.TxtPrecioCompra);
+            this.GroupBoxProducto.Controls.Add(this.lblCantidad);
+            this.GroupBoxProducto.Controls.Add(this.lblPrecioVenta);
+            this.GroupBoxProducto.Controls.Add(this.lblPrecioCompra);
+            this.GroupBoxProducto.Controls.Add(this.TxtProducto);
+            this.GroupBoxProducto.Controls.Add(this.lblProducto);
+            this.GroupBoxProducto.Controls.Add(this.BtnBuscarProducto);
+            this.GroupBoxProducto.Controls.Add(this.TxtIdProducto);
+            this.GroupBoxProducto.Controls.Add(this.TxtCodigo);
+            this.GroupBoxProducto.Controls.Add(this.lblCodigoProducto);
+            this.GroupBoxProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxProducto.Location = new System.Drawing.Point(35, 344);
+            this.GroupBoxProducto.Name = "GroupBoxProducto";
+            this.GroupBoxProducto.Size = new System.Drawing.Size(1125, 115);
+            this.GroupBoxProducto.TabIndex = 120;
+            this.GroupBoxProducto.TabStop = false;
+            this.GroupBoxProducto.Text = "Información Producto";
             // 
             // BtnLimpiar
             // 
@@ -629,36 +470,275 @@
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
+            // lblImportante
+            // 
+            this.lblImportante.BackColor = System.Drawing.Color.White;
+            this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImportante.Location = new System.Drawing.Point(322, 8);
+            this.lblImportante.Name = "lblImportante";
+            this.lblImportante.Size = new System.Drawing.Size(867, 31);
+            this.lblImportante.TabIndex = 127;
+            this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Compra se enc" +
+    "uentre totalmente vacía.\r\n\r\n";
+            // 
+            // TxtCedulaTransportista
+            // 
+            this.TxtCedulaTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCedulaTransportista.Location = new System.Drawing.Point(185, 31);
+            this.TxtCedulaTransportista.Name = "TxtCedulaTransportista";
+            this.TxtCedulaTransportista.ReadOnly = true;
+            this.TxtCedulaTransportista.Size = new System.Drawing.Size(220, 27);
+            this.TxtCedulaTransportista.TabIndex = 113;
+            // 
+            // TxtNombresTransportista
+            // 
+            this.TxtNombresTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombresTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombresTransportista.Location = new System.Drawing.Point(185, 68);
+            this.TxtNombresTransportista.Name = "TxtNombresTransportista";
+            this.TxtNombresTransportista.ReadOnly = true;
+            this.TxtNombresTransportista.Size = new System.Drawing.Size(220, 27);
+            this.TxtNombresTransportista.TabIndex = 114;
+            // 
+            // LblCedulaTransportista
+            // 
+            this.LblCedulaTransportista.AutoSize = true;
+            this.LblCedulaTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCedulaTransportista.Location = new System.Drawing.Point(17, 35);
+            this.LblCedulaTransportista.Name = "LblCedulaTransportista";
+            this.LblCedulaTransportista.Size = new System.Drawing.Size(149, 18);
+            this.LblCedulaTransportista.TabIndex = 115;
+            this.LblCedulaTransportista.Text = "Cédula Transportista:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(17, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(157, 18);
+            this.label2.TabIndex = 116;
+            this.label2.Text = "Nombre Transportista:";
+            // 
+            // GroupBoxTransportista
+            // 
+            this.GroupBoxTransportista.BackColor = System.Drawing.Color.White;
+            this.GroupBoxTransportista.Controls.Add(this.TxtIdTransportista);
+            this.GroupBoxTransportista.Controls.Add(this.BtnBuscarTransportista);
+            this.GroupBoxTransportista.Controls.Add(this.label2);
+            this.GroupBoxTransportista.Controls.Add(this.TxtCedulaTransportista);
+            this.GroupBoxTransportista.Controls.Add(this.TxtNombresTransportista);
+            this.GroupBoxTransportista.Controls.Add(this.LblCedulaTransportista);
+            this.GroupBoxTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxTransportista.Location = new System.Drawing.Point(650, 210);
+            this.GroupBoxTransportista.Name = "GroupBoxTransportista";
+            this.GroupBoxTransportista.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxTransportista.TabIndex = 128;
+            this.GroupBoxTransportista.TabStop = false;
+            this.GroupBoxTransportista.Text = "Información Transportista";
+            // 
+            // TxtIdTransportista
+            // 
+            this.TxtIdTransportista.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdTransportista.Location = new System.Drawing.Point(440, 68);
+            this.TxtIdTransportista.Name = "TxtIdTransportista";
+            this.TxtIdTransportista.ReadOnly = true;
+            this.TxtIdTransportista.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdTransportista.TabIndex = 118;
+            // 
+            // BtnBuscarTransportista
+            // 
+            this.BtnBuscarTransportista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnBuscarTransportista.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnBuscarTransportista.Location = new System.Drawing.Point(440, 31);
+            this.BtnBuscarTransportista.Name = "BtnBuscarTransportista";
+            this.BtnBuscarTransportista.Size = new System.Drawing.Size(38, 31);
+            this.BtnBuscarTransportista.TabIndex = 117;
+            this.BtnBuscarTransportista.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnBuscarTransportista.UseVisualStyleBackColor = true;
+            this.BtnBuscarTransportista.Click += new System.EventHandler(this.BtnBuscarTransportista_Click);
+            // 
+            // PanelPrincipal
+            // 
+            this.PanelPrincipal.AutoScroll = true;
+            this.PanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.PanelPrincipal.Controls.Add(this.GroupBoxSucursal);
+            this.PanelPrincipal.Controls.Add(this.LblRegistrarCompra);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxInformacionCompra);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxProducto);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxPagarCompra);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxTransportista);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxProvedor);
+            this.PanelPrincipal.Controls.Add(this.lblImportante);
+            this.PanelPrincipal.Controls.Add(this.TablaCompras);
+            this.PanelPrincipal.Location = new System.Drawing.Point(131, 23);
+            this.PanelPrincipal.Name = "PanelPrincipal";
+            this.PanelPrincipal.Size = new System.Drawing.Size(1212, 540);
+            this.PanelPrincipal.TabIndex = 129;
+            // 
+            // LblRegistrarCompra
+            // 
+            this.LblRegistrarCompra.AutoSize = true;
+            this.LblRegistrarCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRegistrarCompra.Location = new System.Drawing.Point(3, 2);
+            this.LblRegistrarCompra.Name = "LblRegistrarCompra";
+            this.LblRegistrarCompra.Size = new System.Drawing.Size(252, 32);
+            this.LblRegistrarCompra.TabIndex = 131;
+            this.LblRegistrarCompra.Text = "Registrar Compra";
+            // 
+            // TxtNombresProveedor
+            // 
+            this.TxtNombresProveedor.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombresProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombresProveedor.Location = new System.Drawing.Point(185, 68);
+            this.TxtNombresProveedor.Name = "TxtNombresProveedor";
+            this.TxtNombresProveedor.ReadOnly = true;
+            this.TxtNombresProveedor.Size = new System.Drawing.Size(220, 27);
+            this.TxtNombresProveedor.TabIndex = 101;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "Producto";
+            this.Producto.MinimumWidth = 6;
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 140;
+            // 
+            // PrecioCompra
+            // 
+            this.PrecioCompra.HeaderText = "Precio Compra";
+            this.PrecioCompra.MinimumWidth = 6;
+            this.PrecioCompra.Name = "PrecioCompra";
+            this.PrecioCompra.ReadOnly = true;
+            this.PrecioCompra.Width = 135;
+            // 
+            // PrecioVenta
+            // 
+            this.PrecioVenta.HeaderText = "Precio Venta";
+            this.PrecioVenta.MinimumWidth = 6;
+            this.PrecioVenta.Name = "PrecioVenta";
+            this.PrecioVenta.ReadOnly = true;
+            this.PrecioVenta.Visible = false;
+            this.PrecioVenta.Width = 125;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MinimumWidth = 6;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 125;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "Sub Total";
+            this.SubTotal.MinimumWidth = 6;
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 125;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.HeaderText = "";
+            this.btnEliminar.MinimumWidth = 6;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.ReadOnly = true;
+            this.btnEliminar.Width = 30;
+            // 
+            // GroupBoxSucursal
+            // 
+            this.GroupBoxSucursal.BackColor = System.Drawing.Color.White;
+            this.GroupBoxSucursal.Controls.Add(this.TxtIdSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.BtnModalSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.TxtSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.LblSucursal);
+            this.GroupBoxSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxSucursal.Location = new System.Drawing.Point(35, 210);
+            this.GroupBoxSucursal.Name = "GroupBoxSucursal";
+            this.GroupBoxSucursal.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxSucursal.TabIndex = 132;
+            this.GroupBoxSucursal.TabStop = false;
+            this.GroupBoxSucursal.Text = "Información Sucursal";
+            // 
+            // TxtSucursal
+            // 
+            this.TxtSucursal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSucursal.Location = new System.Drawing.Point(20, 56);
+            this.TxtSucursal.Name = "TxtSucursal";
+            this.TxtSucursal.ReadOnly = true;
+            this.TxtSucursal.Size = new System.Drawing.Size(310, 27);
+            this.TxtSucursal.TabIndex = 113;
+            // 
+            // LblSucursal
+            // 
+            this.LblSucursal.AutoSize = true;
+            this.LblSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSucursal.Location = new System.Drawing.Point(22, 34);
+            this.LblSucursal.Name = "LblSucursal";
+            this.LblSucursal.Size = new System.Drawing.Size(70, 18);
+            this.LblSucursal.TabIndex = 115;
+            this.LblSucursal.Text = "Sucursal:";
+            // 
+            // BtnModalSucursal
+            // 
+            this.BtnModalSucursal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModalSucursal.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnModalSucursal.Location = new System.Drawing.Point(441, 56);
+            this.BtnModalSucursal.Name = "BtnModalSucursal";
+            this.BtnModalSucursal.Size = new System.Drawing.Size(38, 31);
+            this.BtnModalSucursal.TabIndex = 116;
+            this.BtnModalSucursal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnModalSucursal.UseVisualStyleBackColor = true;
+            this.BtnModalSucursal.Click += new System.EventHandler(this.BtnModalSucursal_Click);
+            // 
+            // TxtIdSucursal
+            // 
+            this.TxtIdSucursal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdSucursal.Location = new System.Drawing.Point(373, 56);
+            this.TxtIdSucursal.Name = "TxtIdSucursal";
+            this.TxtIdSucursal.ReadOnly = true;
+            this.TxtIdSucursal.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdSucursal.TabIndex = 119;
+            // 
             // VtnCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.lblImportante);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.TablaCompras);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.lblRegistrarCompra);
+            this.Controls.Add(this.PanelPrincipal);
             this.Name = "VtnCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Realizar compras";
             this.Load += new System.EventHandler(this.VtnCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.GroupBoxPagarCompra.ResumeLayout(false);
+            this.GroupBoxPagarCompra.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaCompras)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.GroupBoxInformacionCompra.ResumeLayout(false);
+            this.GroupBoxInformacionCompra.PerformLayout();
+            this.GroupBoxProvedor.ResumeLayout(false);
+            this.GroupBoxProvedor.PerformLayout();
+            this.GroupBoxProducto.ResumeLayout(false);
+            this.GroupBoxProducto.PerformLayout();
+            this.GroupBoxTransportista.ResumeLayout(false);
+            this.GroupBoxTransportista.PerformLayout();
+            this.PanelPrincipal.ResumeLayout(false);
+            this.PanelPrincipal.PerformLayout();
+            this.GroupBoxSucursal.ResumeLayout(false);
+            this.GroupBoxSucursal.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -669,7 +749,7 @@
         private System.Windows.Forms.TextBox TxtPreciVenta;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPrecioVenta;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox GroupBoxPagarCompra;
         private System.Windows.Forms.Button BtnCrearCompra;
         private System.Windows.Forms.TextBox TxtTotalPagar;
         private System.Windows.Forms.Label lblTotalPagar;
@@ -677,15 +757,13 @@
         private System.Windows.Forms.DataGridView TablaCompras;
         private System.Windows.Forms.TextBox TxtPrecioCompra;
         private System.Windows.Forms.Label lblPrecioCompra;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GroupBoxInformacionCompra;
         private System.Windows.Forms.ComboBox CmbTipoDocumento;
         private System.Windows.Forms.TextBox TxtFecha;
         private System.Windows.Forms.Label lblTipoDocumento;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.Label lblRegistrarCompra;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox GroupBoxProvedor;
         private System.Windows.Forms.TextBox TxtIdProveedor;
-        private System.Windows.Forms.TextBox TxtNombresProveedor;
         private System.Windows.Forms.Button BtnBuscarProveedor;
         private System.Windows.Forms.TextBox TxtCedulaProveedor;
         private System.Windows.Forms.Label lblNombreProveedor;
@@ -696,7 +774,19 @@
         private System.Windows.Forms.TextBox TxtIdProducto;
         private System.Windows.Forms.TextBox TxtCodigo;
         private System.Windows.Forms.Label lblCodigoProducto;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GroupBoxProducto;
+        private System.Windows.Forms.Label lblImportante;
+        private System.Windows.Forms.TextBox TxtNombresTransportista;
+        private System.Windows.Forms.TextBox TxtCedulaTransportista;
+        private System.Windows.Forms.Label LblCedulaTransportista;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox GroupBoxTransportista;
+        private System.Windows.Forms.Button BtnBuscarTransportista;
+        private System.Windows.Forms.TextBox TxtIdTransportista;
+        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.Panel PanelPrincipal;
+        private System.Windows.Forms.Label LblRegistrarCompra;
+        private System.Windows.Forms.TextBox TxtNombresProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCompra;
@@ -704,14 +794,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
-        private System.Windows.Forms.Label lblImportante;
-        private System.Windows.Forms.TextBox TxtNombresTransportista;
-        private System.Windows.Forms.TextBox TxtCedulaTransportista;
-        private System.Windows.Forms.Label LblCedulaTransportista;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button BtnBuscarTransportista;
-        private System.Windows.Forms.TextBox TxtIdTransportista;
-        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.GroupBox GroupBoxSucursal;
+        private System.Windows.Forms.Button BtnModalSucursal;
+        private System.Windows.Forms.TextBox TxtSucursal;
+        private System.Windows.Forms.Label LblSucursal;
+        private System.Windows.Forms.TextBox TxtIdSucursal;
     }
 }
