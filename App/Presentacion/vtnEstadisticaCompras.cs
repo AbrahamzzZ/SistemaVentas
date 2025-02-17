@@ -18,13 +18,13 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de las estadistica de las compras.
     /// </summary>
-    public partial class VtnGraficaCompras : Form
+    public partial class VtnEstadisticaCompras : Form
     {
         /// <summary>
         /// Constructor de la clase VtnGraficaCompras.
         /// Inicializa los componentes de la ventana.
         /// </summary>
-        public VtnGraficaCompras()
+        public VtnEstadisticaCompras()
         {
             InitializeComponent();
         }

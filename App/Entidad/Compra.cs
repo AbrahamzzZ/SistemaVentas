@@ -12,6 +12,7 @@ namespace Entidad
         public Usuario oUsuario { get; set; }
         public Proveedor oProveedor { get; set; }
         public Transportista oTransportista { get; set; }
+        public Sucursal oSucursal { get; set; }
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
         public decimal MontoTotal { get; set; }

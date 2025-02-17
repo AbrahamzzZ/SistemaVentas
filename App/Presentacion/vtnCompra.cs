@@ -46,7 +46,7 @@ namespace Presentacion
 
         private void BtnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            using (var modal = new vtnModalesProveedores())
+            using (var modal = new VtnModalesProveedores())
             {
                 var result = modal.ShowDialog();
                 if (result == DialogResult.OK)

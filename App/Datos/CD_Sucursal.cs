@@ -62,6 +62,7 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_SUCURSAL", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Id_Negocio", obj.oNegocio.IdNegocio);
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Sucursal", obj.Nombre);
                 cmd.Parameters.AddWithValue("Direccion_Sucursal", obj.Direccion);

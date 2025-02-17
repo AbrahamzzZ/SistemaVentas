@@ -50,13 +50,13 @@ namespace Presentacion
                 {
                     tablaReporteVentas.Rows.Add(new object[]
                     {
-                        row.FechaRegistro, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.CedulaCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
+                        row.FechaRegistro, row.Sucursal, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.CedulaCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
                     });
                 }
             }
             else
             {
-                MessageBox.Show("No hay ventas en las fechas especificadas.", "Tabla Reporte Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay ventas en las fechas especificadas.", "Reportes Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void BtnBuscar_Click(object sender, EventArgs e)

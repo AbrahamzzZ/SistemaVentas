@@ -113,6 +113,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
+                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.oCliente.IdCliente);
                 cmd.Parameters.AddWithValue("Monto_Pago", obj.MontoPago);
                 cmd.Parameters.AddWithValue("Monto_Cambio", obj.MontoCambio);
@@ -130,7 +131,7 @@ namespace Datos
             catch (Exception ve)
             {
                 Respuesta = false;
-                Mensaje = ve.Message;
+                Console.WriteLine($"Error al registrar la venta: {ve.Message}");
             }
             return Respuesta;
         }
@@ -146,10 +147,11 @@ namespace Datos
             try
             {
                 StringBuilder obtener = new StringBuilder();
-                obtener.AppendLine("select v.ID_VENTA, u.NOMBRE_COMPLETO, v.TIPO_DOCUMENTO, v.NUMERO_DOCUMENTO, c.CEDULA, c.NOMBRES, v.MONTO_PAGO, v.MONTO_CAMBIO, v.MONTO_TOTAL, v.DESCUENTO, Convert(char(10),v.FECHA_VENTA,103)[FECHA_VENTA] from VENTA v");
-                obtener.AppendLine("inner join USUARIO u on u.ID_USUARIO = v.ID_USUARIO");
-                obtener.AppendLine("inner join CLIENTE c on c.ID_CLIENTE = v.ID_CLIENTE");
-                obtener.AppendLine("WHERE v.NUMERO_DOCUMENTO = @numero");
+                obtener.AppendLine("SELECT V.ID_VENTA, U.NOMBRE_COMPLETO, S.NOMBRE_SUCURSAL, V.TIPO_DOCUMENTO, V.NUMERO_DOCUMENTO, C.CEDULA, C.NOMBRES, V.MONTO_PAGO, V.MONTO_CAMBIO, V.MONTO_TOTAL, V.DESCUENTO, Convert(char(10),V.FECHA_VENTA,103)[FECHA_VENTA] from VENTA V");
+                obtener.AppendLine("inner join USUARIO U on U.ID_USUARIO = V.ID_USUARIO");
+                obtener.AppendLine("inner join CLIENTE C on C.ID_CLIENTE = V.ID_CLIENTE");
+                obtener.AppendLine("inner join SUCURSAL S on S.ID_SUCURSAL = S.ID_SUCURSAL");
+                obtener.AppendLine("WHERE V.NUMERO_DOCUMENTO = @numero");
 
                 SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("@numero", numero);
@@ -160,22 +162,24 @@ namespace Datos
                 {
                     obj = new Venta()
                     {
-                        IdVenta = int.Parse(leer["Id_Venta"].ToString()),
-                        oUsuario = new Usuario() { NombreCompleto = leer["Nombre_Completo"].ToString() },
-                        TipoDocumento = leer["Tipo_Documento"].ToString(),
-                        NumeroDocumento = leer["Numero_Documento"].ToString(),
-                        oCliente = new Cliente() { Cedula = leer["Cedula"].ToString(), Nombres = leer["Nombres"].ToString() },
-                        MontoPago = Convert.ToDecimal(leer["Monto_Pago"].ToString()),
-                        MontoCambio = Convert.ToDecimal(leer["Monto_Cambio"].ToString()),
-                        MontoTotal = Convert.ToDecimal(leer["Monto_Total"].ToString()),
-                        Descuento = Convert.ToDecimal(leer["Descuento"].ToString()),
-                        FechaVenta = leer["Fecha_Venta"].ToString()
+                        IdVenta = int.Parse(leer["ID_VENTA"].ToString()),
+                        oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
+                        TipoDocumento = leer["TIPO_DOCUMNTO"].ToString(),
+                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                        oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
+                        oCliente = new Cliente() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
+                        MontoPago = Convert.ToDecimal(leer["MONTO_PAGO"].ToString()),
+                        MontoCambio = Convert.ToDecimal(leer["MONTO_CAMBIO"].ToString()),
+                        MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"].ToString()),
+                        Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString()),
+                        FechaVenta = leer["FECHA_VENTA"].ToString()
                     };
                 }
             }
             catch (Exception ve)
             {
                 obj = new Venta();
+                Console.WriteLine($"Error al obtener la información de la venta: {ve.Message}");
             }
             return obj;
         }

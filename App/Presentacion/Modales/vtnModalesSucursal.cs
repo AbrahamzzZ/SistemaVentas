@@ -13,27 +13,27 @@ using System.Windows.Forms;
 namespace Presentacion.Modales
 {
     /// <summary>
-    /// Clase que representa la ventana modal proveedor.
+    /// Clase que representa la ventana modal sucursal.
     /// </summary>
-    public partial class VtnModalesProveedores : Form
+    public partial class VtnModalesSucursal: Form
     {
         /// <summary>
-        /// Variable donde se va a guardar el proveedor seleccionado.
+        /// Variable donde se va a guardar la sucursal seleccionada.
         /// </summary>
-        public Proveedor Proveedor { get; set; }
+        public Sucursal Sucursal { get; set; }
 
         /// <summary> 
-        /// Constructor de la clase vtnModalesProveedores. 
-        /// Inicializa una nueva instancia de vtnModalesProveedores. 
+        /// Constructor de la clase vtnModalesSucursales. 
+        /// Inicializa una nueva instancia de vtnModalesSucursales.
         /// </summary>
-        public VtnModalesProveedores()
+        public VtnModalesSucursal()
         {
             InitializeComponent();
         }
 
-        private void VtnModalesProveedores_Load(object sender, EventArgs e)
+        private void VtnModalesSucursal_Load(object sender, EventArgs e)
         {
-            foreach (DataGridViewColumn columna in TablaProveedores.Columns)
+            foreach (DataGridViewColumn columna in TablaSucursales.Columns)
             {
                 if (columna.Visible == true)
                 {
@@ -44,10 +44,10 @@ namespace Presentacion.Modales
             CmbBuscar.DisplayMember = "Texto";
             CmbBuscar.ValueMember = "Valor";
             CmbBuscar.SelectedIndex = 0;
-            List<Proveedor> mostrarProveedor = new CN_Proveedor().ListarProveedores();
-            foreach (Proveedor proveedor in mostrarProveedor)
+            List<Sucursal> mostrarSucursal = new CN_Sucursal().ListarSucusal();
+            foreach (Sucursal sucursal in mostrarSucursal)
             {
-                TablaProveedores.Rows.Add(new object[] { proveedor.IdProveedor, proveedor.Cedula, proveedor.Nombres , proveedor.Estado});
+                TablaSucursales.Rows.Add(new object[] { sucursal.IdSucursal, sucursal.Nombre, sucursal.Estado });
             }
         }
 
@@ -58,7 +58,7 @@ namespace Presentacion.Modales
             string columnaFiltro = valorCmb1.ToString();
 
             int filasVisibles = 0;
-            foreach (DataGridViewRow row in TablaProveedores.Rows)
+            foreach (DataGridViewRow row in TablaSucursales.Rows)
             {
                 if (row.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(TxtBuscar.Text.Trim().ToUpper()))
                 {
@@ -72,31 +72,31 @@ namespace Presentacion.Modales
             }
         }
 
-        private void TablaProveedores_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void TablaSucursales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int iRow = e.RowIndex;
             int iColumn = e.ColumnIndex;
             if (iRow >= 0 && iColumn > 0)
             {
-                Proveedor = new Proveedor()
+                Sucursal = new Sucursal()
                 {
-                    IdProveedor = Convert.ToInt32(TablaProveedores.Rows[iRow].Cells["IdProveedor"].Value.ToString()),
-                    Cedula = TablaProveedores.Rows[iRow].Cells["Cedula"].Value.ToString(),
-                    Nombres = TablaProveedores.Rows[iRow].Cells["Nombres"].Value.ToString(),
-                    Estado = Convert.ToBoolean(TablaProveedores.Rows[iRow].Cells["Estado"].Value.ToString())
+                    IdSucursal = Convert.ToInt32(TablaSucursales.Rows[iRow].Cells["IdSucursal"].Value.ToString()),
+                    Nombre = TablaSucursales.Rows[iRow].Cells["NombreSucursal"].Value.ToString(),
+                    Estado = Convert.ToBoolean(TablaSucursales.Rows[iRow].Cells["Estado"].Value.ToString())
                 };
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
 
-        private void TablaProveedores_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void TablaSucursales_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (TablaProveedores.Columns[e.ColumnIndex].Name == "Estado")
+            if (TablaSucursales.Columns[e.ColumnIndex].Name == "Estado")
             {
-                bool valorEstado = Convert.ToBoolean(TablaProveedores.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                bool valorEstado = Convert.ToBoolean(TablaSucursales.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
-                e.Value = valorEstado ? "Activo" : "No Activo";
+                e.Value = valorEstado ? "Abierto" : "Cerrado";
 
                 e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
             }

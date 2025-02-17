@@ -55,6 +55,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Id_Proveedor", obj.oProveedor.IdProveedor);
                 cmd.Parameters.AddWithValue("Id_Transportista", obj.oTransportista.IdTransportista);
+                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.Nombre);
                 cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
                 cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);
@@ -88,11 +89,12 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("select c.ID_COMPRA, u.NOMBRE_COMPLETO, pr.CEDULA, pr.NOMBRES, t.CEDULA[CEDULA_TRANSPORTISTA], t.NOMBRES[NOMBRE_TRANSPORTISTA], c.TIPO_DOCUMENTO, c.NUMERO_DOCUMENTO, c.MONTO_TOTAL, convert(char(10),c.FECHA_COMPRA,103)[FECHA_COMPRA]");
-                mostrar.AppendLine("from COMPRA c inner join USUARIO u on u.ID_USUARIO = c.ID_USUARIO");
-                mostrar.AppendLine("inner join PROVEEDOR pr on pr.ID_PROVEEDOR = c.ID_PROVEEDOR");
-                mostrar.AppendLine("inner join TRANSPORTISTA t on t.ID_TRANSPORTISTA = c.ID_TRANSPORTISTA");
-                mostrar.AppendLine("where c.NUMERO_DOCUMENTO = @numero");
+                mostrar.AppendLine("SELECT C.ID_COMPRA, U.NOMBRE_COMPLETO, S.NOMBRE_SUCURSAL, P.CEDULA, P.NOMBRES, T.CEDULA[CEDULA_TRANSPORTISTA], T.NOMBRES[NOMBRE_TRANSPORTISTA], C.TIPO_DOCUMENTO, C.NUMERO_DOCUMENTO, C.MONTO_TOTAL, convert(char(10), C.FECHA_COMPRA,103)[FECHA_COMPRA] FROM COMPRA C");
+                mostrar.AppendLine("inner join USUARIO U on U.ID_USUARIO = C.ID_USUARIO");
+                mostrar.AppendLine("inner join PROVEEDOR P on P.ID_PROVEEDOR = C.ID_PROVEEDOR");
+                mostrar.AppendLine("inner join TRANSPORTISTA T on T.ID_TRANSPORTISTA = C.ID_TRANSPORTISTA");
+                mostrar.AppendLine("inner join SUCURSAL S on S.ID_SUCURSAL = C.ID_SUCURSAL");
+                mostrar.AppendLine("WHERE C.NUMERO_DOCUMENTO = @numero");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("@numero", numero);
                 cmd.CommandType = CommandType.Text;
@@ -106,6 +108,7 @@ namespace Datos
                         oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
                         oProveedor = new Proveedor() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
                         oTransportista = new Transportista() { Cedula = leer["CEDULA_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
+                        oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
                         TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"]),
@@ -115,7 +118,7 @@ namespace Datos
             }
             catch (Exception co)
             {
-                Console.WriteLine($"Error al obtener la compra: {co.Message}");
+                Console.WriteLine($"Error al obtener la informació de la compra: {co.Message}");
             }
             return obj;
         }
