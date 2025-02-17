@@ -46,7 +46,7 @@ En esta sección se explica el proceso de instalación de todas las dependencias
 
 ```sh
 git clone https://github.com/AbrahamzzZ/SistemaVentas.git
-cd AppBuyWindows
+cd SistemaVentas
 ```
 
 o tambien puedes decargar el zip de la ultima release/Commit del Repositorio
