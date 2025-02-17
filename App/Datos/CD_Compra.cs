@@ -55,7 +55,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Id_Proveedor", obj.oProveedor.IdProveedor);
                 cmd.Parameters.AddWithValue("Id_Transportista", obj.oTransportista.IdTransportista);
-                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.Nombre);
+                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
                 cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
                 cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);

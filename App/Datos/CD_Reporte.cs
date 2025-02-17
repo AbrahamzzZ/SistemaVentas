@@ -40,6 +40,7 @@ namespace Datos
                     lista.Add(new Reporte_Compra()
                     {
                         FechaRegistro = leer["FECHA_COMPRA"].ToString(),
+                        Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
                         TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = leer["MONTO_TOTAL"].ToString(),
@@ -88,6 +89,7 @@ namespace Datos
                     lista.Add(new Reporte_Venta()
                     {
                         FechaRegistro = leer["FECHA_VENTA"].ToString(),
+                        Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
                         TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = leer["MONTO_TOTAL"].ToString(),
