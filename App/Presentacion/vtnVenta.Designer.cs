@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnVenta));
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,13 +45,13 @@
             this.BtnBuscarCliente = new System.Windows.Forms.Button();
             this.TxtNombresCliente = new System.Windows.Forms.TextBox();
             this.TxtIdCliente = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxCliente = new System.Windows.Forms.GroupBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
             this.TxtFecha = new System.Windows.Forms.TextBox();
             this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GroupBoxInformacionVenta = new System.Windows.Forms.GroupBox();
+            this.GroupBoxProducto = new System.Windows.Forms.GroupBox();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.NudCantidad = new System.Windows.Forms.NumericUpDown();
             this.TxtStock = new System.Windows.Forms.TextBox();
@@ -67,7 +67,6 @@
             this.lblCodigoProducto = new System.Windows.Forms.Label();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.lblTotalPagar = new System.Windows.Forms.Label();
-            this.TxtDescuentoOferta = new System.Windows.Forms.TextBox();
             this.BtnCrearVenta = new System.Windows.Forms.Button();
             this.lblPagaCon = new System.Windows.Forms.Label();
             this.TxtPagaCon = new System.Windows.Forms.TextBox();
@@ -76,19 +75,30 @@
             this.TxtTotalPagar = new System.Windows.Forms.TextBox();
             this.lblDescuento = new System.Windows.Forms.Label();
             this.TxtTotalDescuento = new System.Windows.Forms.TextBox();
-            this.BtnBuscarOfertas = new System.Windows.Forms.Button();
             this.lblOferta = new System.Windows.Forms.Label();
-            this.TxtNombreOferta = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.LblPorcentaje = new System.Windows.Forms.Label();
             this.lblImportante = new System.Windows.Forms.Label();
-            this.lblRegistrarVenta = new System.Windows.Forms.Label();
+            this.PanelPrincipal = new System.Windows.Forms.Panel();
+            this.LblRegistrarVenta = new System.Windows.Forms.Label();
+            this.GroupBoxSucursal = new System.Windows.Forms.GroupBox();
+            this.TxtIdSucursal = new System.Windows.Forms.TextBox();
+            this.BtnModalSucursal = new System.Windows.Forms.Button();
+            this.TxtSucursal = new System.Windows.Forms.TextBox();
+            this.LblSucursal = new System.Windows.Forms.Label();
+            this.GroupBoxOferta = new System.Windows.Forms.GroupBox();
+            this.TxtDescuentoOferta = new System.Windows.Forms.TextBox();
+            this.BtnModalOferta = new System.Windows.Forms.Button();
+            this.TxtNombreOferta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.TablaVentas)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.GroupBoxCliente.SuspendLayout();
+            this.GroupBoxInformacionVenta.SuspendLayout();
+            this.GroupBoxProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.PanelPrincipal.SuspendLayout();
+            this.GroupBoxSucursal.SuspendLayout();
+            this.GroupBoxOferta.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEliminar
@@ -152,15 +162,15 @@
             // 
             this.TablaVentas.AllowUserToAddRows = false;
             this.TablaVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.TablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
@@ -170,16 +180,16 @@
             this.SubTotal,
             this.Descuento,
             this.btnEliminar});
-            this.TablaVentas.Location = new System.Drawing.Point(169, 348);
+            this.TablaVentas.Location = new System.Drawing.Point(35, 484);
             this.TablaVentas.MultiSelect = false;
             this.TablaVentas.Name = "TablaVentas";
             this.TablaVentas.ReadOnly = true;
             this.TablaVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.TablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.TablaVentas.RowTemplate.Height = 28;
-            this.TablaVentas.Size = new System.Drawing.Size(657, 196);
+            this.TablaVentas.Size = new System.Drawing.Size(797, 196);
             this.TablaVentas.TabIndex = 123;
             this.TablaVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaVentas_CellContentClick);
             this.TablaVentas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaVentas_CellPainting);
@@ -246,22 +256,22 @@
             this.TxtIdCliente.Size = new System.Drawing.Size(37, 27);
             this.TxtIdCliente.TabIndex = 102;
             // 
-            // groupBox2
+            // GroupBoxCliente
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.TxtIdCliente);
-            this.groupBox2.Controls.Add(this.TxtNombresCliente);
-            this.groupBox2.Controls.Add(this.BtnBuscarCliente);
-            this.groupBox2.Controls.Add(this.TxtCedulaCliente);
-            this.groupBox2.Controls.Add(this.lblNombreCliente);
-            this.groupBox2.Controls.Add(this.LblCedula);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(797, 87);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(510, 111);
-            this.groupBox2.TabIndex = 122;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Información Cliente";
+            this.GroupBoxCliente.BackColor = System.Drawing.Color.White;
+            this.GroupBoxCliente.Controls.Add(this.TxtIdCliente);
+            this.GroupBoxCliente.Controls.Add(this.TxtNombresCliente);
+            this.GroupBoxCliente.Controls.Add(this.BtnBuscarCliente);
+            this.GroupBoxCliente.Controls.Add(this.TxtCedulaCliente);
+            this.GroupBoxCliente.Controls.Add(this.lblNombreCliente);
+            this.GroupBoxCliente.Controls.Add(this.LblCedula);
+            this.GroupBoxCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxCliente.Location = new System.Drawing.Point(650, 72);
+            this.GroupBoxCliente.Name = "GroupBoxCliente";
+            this.GroupBoxCliente.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxCliente.TabIndex = 122;
+            this.GroupBoxCliente.TabStop = false;
+            this.GroupBoxCliente.Text = "Información Cliente";
             // 
             // lblFecha
             // 
@@ -304,44 +314,44 @@
             this.CmbTipoDocumento.Size = new System.Drawing.Size(250, 28);
             this.CmbTipoDocumento.TabIndex = 99;
             // 
-            // groupBox1
+            // GroupBoxInformacionVenta
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.CmbTipoDocumento);
-            this.groupBox1.Controls.Add(this.TxtFecha);
-            this.groupBox1.Controls.Add(this.lblTipoDocumento);
-            this.groupBox1.Controls.Add(this.lblFecha);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(169, 87);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 111);
-            this.groupBox1.TabIndex = 121;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Información Venta";
+            this.GroupBoxInformacionVenta.BackColor = System.Drawing.Color.White;
+            this.GroupBoxInformacionVenta.Controls.Add(this.CmbTipoDocumento);
+            this.GroupBoxInformacionVenta.Controls.Add(this.TxtFecha);
+            this.GroupBoxInformacionVenta.Controls.Add(this.lblTipoDocumento);
+            this.GroupBoxInformacionVenta.Controls.Add(this.lblFecha);
+            this.GroupBoxInformacionVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxInformacionVenta.Location = new System.Drawing.Point(35, 72);
+            this.GroupBoxInformacionVenta.Name = "GroupBoxInformacionVenta";
+            this.GroupBoxInformacionVenta.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxInformacionVenta.TabIndex = 121;
+            this.GroupBoxInformacionVenta.TabStop = false;
+            this.GroupBoxInformacionVenta.Text = "Información Venta";
             // 
-            // groupBox3
+            // GroupBoxProducto
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.BtnLimpiar);
-            this.groupBox3.Controls.Add(this.NudCantidad);
-            this.groupBox3.Controls.Add(this.TxtStock);
-            this.groupBox3.Controls.Add(this.TxtPrecioCompra);
-            this.groupBox3.Controls.Add(this.lblCantidad);
-            this.groupBox3.Controls.Add(this.lblStock);
-            this.groupBox3.Controls.Add(this.lblPrecioCompra);
-            this.groupBox3.Controls.Add(this.TxtProducto);
-            this.groupBox3.Controls.Add(this.lblProducto);
-            this.groupBox3.Controls.Add(this.BtnBuscarProducto);
-            this.groupBox3.Controls.Add(this.TxtIdProducto);
-            this.groupBox3.Controls.Add(this.TxtCodigo);
-            this.groupBox3.Controls.Add(this.lblCodigoProducto);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(169, 214);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1138, 111);
-            this.groupBox3.TabIndex = 124;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Información Producto";
+            this.GroupBoxProducto.BackColor = System.Drawing.Color.White;
+            this.GroupBoxProducto.Controls.Add(this.BtnLimpiar);
+            this.GroupBoxProducto.Controls.Add(this.NudCantidad);
+            this.GroupBoxProducto.Controls.Add(this.TxtStock);
+            this.GroupBoxProducto.Controls.Add(this.TxtPrecioCompra);
+            this.GroupBoxProducto.Controls.Add(this.lblCantidad);
+            this.GroupBoxProducto.Controls.Add(this.lblStock);
+            this.GroupBoxProducto.Controls.Add(this.lblPrecioCompra);
+            this.GroupBoxProducto.Controls.Add(this.TxtProducto);
+            this.GroupBoxProducto.Controls.Add(this.lblProducto);
+            this.GroupBoxProducto.Controls.Add(this.BtnBuscarProducto);
+            this.GroupBoxProducto.Controls.Add(this.TxtIdProducto);
+            this.GroupBoxProducto.Controls.Add(this.TxtCodigo);
+            this.GroupBoxProducto.Controls.Add(this.lblCodigoProducto);
+            this.GroupBoxProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxProducto.Location = new System.Drawing.Point(35, 344);
+            this.GroupBoxProducto.Name = "GroupBoxProducto";
+            this.GroupBoxProducto.Size = new System.Drawing.Size(1125, 115);
+            this.GroupBoxProducto.TabIndex = 124;
+            this.GroupBoxProducto.TabStop = false;
+            this.GroupBoxProducto.Text = "Información Producto";
             // 
             // BtnLimpiar
             // 
@@ -481,7 +491,7 @@
             this.BtnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
-            this.BtnAgregar.Location = new System.Drawing.Point(297, 62);
+            this.BtnAgregar.Location = new System.Drawing.Point(157, 74);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(138, 74);
             this.BtnAgregar.TabIndex = 0;
@@ -495,27 +505,17 @@
             // 
             this.lblTotalPagar.AutoSize = true;
             this.lblTotalPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPagar.Location = new System.Drawing.Point(17, 70);
+            this.lblTotalPagar.Location = new System.Drawing.Point(23, 18);
             this.lblTotalPagar.Name = "lblTotalPagar";
             this.lblTotalPagar.Size = new System.Drawing.Size(98, 18);
             this.lblTotalPagar.TabIndex = 106;
             this.lblTotalPagar.Text = "Total a pagar:";
             // 
-            // TxtDescuentoOferta
-            // 
-            this.TxtDescuentoOferta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtDescuentoOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescuentoOferta.Location = new System.Drawing.Point(383, 21);
-            this.TxtDescuentoOferta.Name = "TxtDescuentoOferta";
-            this.TxtDescuentoOferta.ReadOnly = true;
-            this.TxtDescuentoOferta.Size = new System.Drawing.Size(37, 27);
-            this.TxtDescuentoOferta.TabIndex = 111;
-            // 
             // BtnCrearVenta
             // 
             this.BtnCrearVenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCrearVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCrearVenta.Location = new System.Drawing.Point(297, 152);
+            this.BtnCrearVenta.Location = new System.Drawing.Point(157, 154);
             this.BtnCrearVenta.Name = "BtnCrearVenta";
             this.BtnCrearVenta.Size = new System.Drawing.Size(138, 36);
             this.BtnCrearVenta.TabIndex = 112;
@@ -527,7 +527,7 @@
             // 
             this.lblPagaCon.AutoSize = true;
             this.lblPagaCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPagaCon.Location = new System.Drawing.Point(157, 70);
+            this.lblPagaCon.Location = new System.Drawing.Point(23, 77);
             this.lblPagaCon.Name = "lblPagaCon";
             this.lblPagaCon.Size = new System.Drawing.Size(75, 18);
             this.lblPagaCon.TabIndex = 113;
@@ -537,9 +537,9 @@
             // 
             this.TxtPagaCon.BackColor = System.Drawing.Color.LightGray;
             this.TxtPagaCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPagaCon.Location = new System.Drawing.Point(160, 91);
+            this.TxtPagaCon.Location = new System.Drawing.Point(26, 99);
             this.TxtPagaCon.Name = "TxtPagaCon";
-            this.TxtPagaCon.Size = new System.Drawing.Size(114, 27);
+            this.TxtPagaCon.Size = new System.Drawing.Size(115, 27);
             this.TxtPagaCon.TabIndex = 114;
             this.TxtPagaCon.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPagaCon_KeyDown);
             this.TxtPagaCon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPagaCon_KeyPress);
@@ -548,7 +548,7 @@
             // 
             this.lblCambio.AutoSize = true;
             this.lblCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCambio.Location = new System.Drawing.Point(157, 135);
+            this.lblCambio.Location = new System.Drawing.Point(154, 18);
             this.lblCambio.Name = "lblCambio";
             this.lblCambio.Size = new System.Drawing.Size(64, 18);
             this.lblCambio.TabIndex = 115;
@@ -558,27 +558,27 @@
             // 
             this.TxtCambio.BackColor = System.Drawing.Color.LightGray;
             this.TxtCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCambio.Location = new System.Drawing.Point(160, 161);
+            this.TxtCambio.Location = new System.Drawing.Point(157, 39);
             this.TxtCambio.Name = "TxtCambio";
             this.TxtCambio.ReadOnly = true;
-            this.TxtCambio.Size = new System.Drawing.Size(114, 27);
+            this.TxtCambio.Size = new System.Drawing.Size(137, 27);
             this.TxtCambio.TabIndex = 116;
             // 
             // TxtTotalPagar
             // 
             this.TxtTotalPagar.BackColor = System.Drawing.Color.LightGray;
             this.TxtTotalPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotalPagar.Location = new System.Drawing.Point(20, 91);
+            this.TxtTotalPagar.Location = new System.Drawing.Point(26, 39);
             this.TxtTotalPagar.Name = "TxtTotalPagar";
             this.TxtTotalPagar.ReadOnly = true;
-            this.TxtTotalPagar.Size = new System.Drawing.Size(119, 27);
+            this.TxtTotalPagar.Size = new System.Drawing.Size(115, 27);
             this.TxtTotalPagar.TabIndex = 117;
             // 
             // lblDescuento
             // 
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescuento.Location = new System.Drawing.Point(17, 135);
+            this.lblDescuento.Location = new System.Drawing.Point(23, 136);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(113, 18);
             this.lblDescuento.TabIndex = 118;
@@ -588,51 +588,25 @@
             // 
             this.TxtTotalDescuento.BackColor = System.Drawing.Color.LightGray;
             this.TxtTotalDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotalDescuento.Location = new System.Drawing.Point(20, 161);
+            this.TxtTotalDescuento.Location = new System.Drawing.Point(26, 159);
             this.TxtTotalDescuento.Name = "TxtTotalDescuento";
             this.TxtTotalDescuento.ReadOnly = true;
-            this.TxtTotalDescuento.Size = new System.Drawing.Size(119, 27);
+            this.TxtTotalDescuento.Size = new System.Drawing.Size(115, 27);
             this.TxtTotalDescuento.TabIndex = 120;
-            // 
-            // BtnBuscarOfertas
-            // 
-            this.BtnBuscarOfertas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnBuscarOfertas.Image = global::Presentacion.Properties.Resources.buscar;
-            this.BtnBuscarOfertas.Location = new System.Drawing.Point(92, 22);
-            this.BtnBuscarOfertas.Name = "BtnBuscarOfertas";
-            this.BtnBuscarOfertas.Size = new System.Drawing.Size(38, 30);
-            this.BtnBuscarOfertas.TabIndex = 121;
-            this.BtnBuscarOfertas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnBuscarOfertas.UseVisualStyleBackColor = true;
-            this.BtnBuscarOfertas.Click += new System.EventHandler(this.BtnBuscarOfertas_Click);
             // 
             // lblOferta
             // 
             this.lblOferta.AutoSize = true;
             this.lblOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOferta.Location = new System.Drawing.Point(16, 28);
+            this.lblOferta.Location = new System.Drawing.Point(21, 34);
             this.lblOferta.Name = "lblOferta";
             this.lblOferta.Size = new System.Drawing.Size(61, 20);
             this.lblOferta.TabIndex = 122;
             this.lblOferta.Text = "Oferta:";
             // 
-            // TxtNombreOferta
-            // 
-            this.TxtNombreOferta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtNombreOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreOferta.Location = new System.Drawing.Point(148, 22);
-            this.TxtNombreOferta.Name = "TxtNombreOferta";
-            this.TxtNombreOferta.ReadOnly = true;
-            this.TxtNombreOferta.Size = new System.Drawing.Size(227, 27);
-            this.TxtNombreOferta.TabIndex = 123;
-            // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.LblPorcentaje);
-            this.groupBox4.Controls.Add(this.TxtNombreOferta);
-            this.groupBox4.Controls.Add(this.lblOferta);
-            this.groupBox4.Controls.Add(this.BtnBuscarOfertas);
             this.groupBox4.Controls.Add(this.TxtTotalDescuento);
             this.groupBox4.Controls.Add(this.lblDescuento);
             this.groupBox4.Controls.Add(this.TxtTotalPagar);
@@ -641,12 +615,11 @@
             this.groupBox4.Controls.Add(this.TxtPagaCon);
             this.groupBox4.Controls.Add(this.lblPagaCon);
             this.groupBox4.Controls.Add(this.BtnCrearVenta);
-            this.groupBox4.Controls.Add(this.TxtDescuentoOferta);
             this.groupBox4.Controls.Add(this.lblTotalPagar);
             this.groupBox4.Controls.Add(this.BtnAgregar);
-            this.groupBox4.Location = new System.Drawing.Point(856, 339);
+            this.groupBox4.Location = new System.Drawing.Point(847, 475);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(451, 205);
+            this.groupBox4.Size = new System.Drawing.Size(313, 205);
             this.groupBox4.TabIndex = 125;
             this.groupBox4.TabStop = false;
             // 
@@ -654,7 +627,7 @@
             // 
             this.LblPorcentaje.AutoSize = true;
             this.LblPorcentaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPorcentaje.Location = new System.Drawing.Point(421, 24);
+            this.LblPorcentaje.Location = new System.Drawing.Point(411, 59);
             this.LblPorcentaje.Name = "LblPorcentaje";
             this.LblPorcentaje.Size = new System.Drawing.Size(24, 20);
             this.LblPorcentaje.TabIndex = 124;
@@ -664,22 +637,145 @@
             // 
             this.lblImportante.BackColor = System.Drawing.Color.White;
             this.lblImportante.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportante.Location = new System.Drawing.Point(469, 23);
+            this.lblImportante.Location = new System.Drawing.Point(322, 8);
             this.lblImportante.Name = "lblImportante";
             this.lblImportante.Size = new System.Drawing.Size(863, 42);
             this.lblImportante.TabIndex = 126;
             this.lblImportante.Text = "IMPORTANTE Antes de ir a otro menú por favor verifique que la tabla Venta se encu" +
     "entre totalmente vacía.";
             // 
-            // lblRegistrarVenta
+            // PanelPrincipal
             // 
-            this.lblRegistrarVenta.BackColor = System.Drawing.Color.White;
-            this.lblRegistrarVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegistrarVenta.Location = new System.Drawing.Point(131, 23);
-            this.lblRegistrarVenta.Name = "lblRegistrarVenta";
-            this.lblRegistrarVenta.Size = new System.Drawing.Size(1212, 540);
-            this.lblRegistrarVenta.TabIndex = 120;
-            this.lblRegistrarVenta.Text = "Registrar Venta";
+            this.PanelPrincipal.AutoScroll = true;
+            this.PanelPrincipal.BackColor = System.Drawing.Color.White;
+            this.PanelPrincipal.Controls.Add(this.GroupBoxOferta);
+            this.PanelPrincipal.Controls.Add(this.LblRegistrarVenta);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxSucursal);
+            this.PanelPrincipal.Controls.Add(this.TablaVentas);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxProducto);
+            this.PanelPrincipal.Controls.Add(this.lblImportante);
+            this.PanelPrincipal.Controls.Add(this.groupBox4);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxInformacionVenta);
+            this.PanelPrincipal.Controls.Add(this.GroupBoxCliente);
+            this.PanelPrincipal.Location = new System.Drawing.Point(131, 23);
+            this.PanelPrincipal.Name = "PanelPrincipal";
+            this.PanelPrincipal.Size = new System.Drawing.Size(1212, 540);
+            this.PanelPrincipal.TabIndex = 127;
+            // 
+            // LblRegistrarVenta
+            // 
+            this.LblRegistrarVenta.AutoSize = true;
+            this.LblRegistrarVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRegistrarVenta.Location = new System.Drawing.Point(3, 2);
+            this.LblRegistrarVenta.Name = "LblRegistrarVenta";
+            this.LblRegistrarVenta.Size = new System.Drawing.Size(226, 32);
+            this.LblRegistrarVenta.TabIndex = 134;
+            this.LblRegistrarVenta.Text = "Registrar Venta";
+            // 
+            // GroupBoxSucursal
+            // 
+            this.GroupBoxSucursal.BackColor = System.Drawing.Color.White;
+            this.GroupBoxSucursal.Controls.Add(this.TxtIdSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.BtnModalSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.TxtSucursal);
+            this.GroupBoxSucursal.Controls.Add(this.LblSucursal);
+            this.GroupBoxSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxSucursal.Location = new System.Drawing.Point(35, 210);
+            this.GroupBoxSucursal.Name = "GroupBoxSucursal";
+            this.GroupBoxSucursal.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxSucursal.TabIndex = 133;
+            this.GroupBoxSucursal.TabStop = false;
+            this.GroupBoxSucursal.Text = "Información Sucursal";
+            // 
+            // TxtIdSucursal
+            // 
+            this.TxtIdSucursal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtIdSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIdSucursal.Location = new System.Drawing.Point(373, 56);
+            this.TxtIdSucursal.Name = "TxtIdSucursal";
+            this.TxtIdSucursal.ReadOnly = true;
+            this.TxtIdSucursal.Size = new System.Drawing.Size(37, 27);
+            this.TxtIdSucursal.TabIndex = 119;
+            // 
+            // BtnModalSucursal
+            // 
+            this.BtnModalSucursal.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModalSucursal.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnModalSucursal.Location = new System.Drawing.Point(441, 56);
+            this.BtnModalSucursal.Name = "BtnModalSucursal";
+            this.BtnModalSucursal.Size = new System.Drawing.Size(38, 31);
+            this.BtnModalSucursal.TabIndex = 116;
+            this.BtnModalSucursal.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnModalSucursal.UseVisualStyleBackColor = true;
+            this.BtnModalSucursal.Click += new System.EventHandler(this.BtnModalSucursal_Click);
+            // 
+            // TxtSucursal
+            // 
+            this.TxtSucursal.BackColor = System.Drawing.Color.LightGray;
+            this.TxtSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSucursal.Location = new System.Drawing.Point(20, 56);
+            this.TxtSucursal.Name = "TxtSucursal";
+            this.TxtSucursal.ReadOnly = true;
+            this.TxtSucursal.Size = new System.Drawing.Size(310, 27);
+            this.TxtSucursal.TabIndex = 113;
+            // 
+            // LblSucursal
+            // 
+            this.LblSucursal.AutoSize = true;
+            this.LblSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSucursal.Location = new System.Drawing.Point(22, 34);
+            this.LblSucursal.Name = "LblSucursal";
+            this.LblSucursal.Size = new System.Drawing.Size(70, 18);
+            this.LblSucursal.TabIndex = 115;
+            this.LblSucursal.Text = "Sucursal:";
+            // 
+            // GroupBoxOferta
+            // 
+            this.GroupBoxOferta.BackColor = System.Drawing.Color.White;
+            this.GroupBoxOferta.Controls.Add(this.LblPorcentaje);
+            this.GroupBoxOferta.Controls.Add(this.TxtDescuentoOferta);
+            this.GroupBoxOferta.Controls.Add(this.BtnModalOferta);
+            this.GroupBoxOferta.Controls.Add(this.lblOferta);
+            this.GroupBoxOferta.Controls.Add(this.TxtNombreOferta);
+            this.GroupBoxOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxOferta.Location = new System.Drawing.Point(650, 210);
+            this.GroupBoxOferta.Name = "GroupBoxOferta";
+            this.GroupBoxOferta.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxOferta.TabIndex = 134;
+            this.GroupBoxOferta.TabStop = false;
+            this.GroupBoxOferta.Text = "Información Oferta";
+            // 
+            // TxtDescuentoOferta
+            // 
+            this.TxtDescuentoOferta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtDescuentoOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDescuentoOferta.Location = new System.Drawing.Point(368, 56);
+            this.TxtDescuentoOferta.Name = "TxtDescuentoOferta";
+            this.TxtDescuentoOferta.ReadOnly = true;
+            this.TxtDescuentoOferta.Size = new System.Drawing.Size(37, 27);
+            this.TxtDescuentoOferta.TabIndex = 119;
+            // 
+            // BtnModalOferta
+            // 
+            this.BtnModalOferta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModalOferta.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnModalOferta.Location = new System.Drawing.Point(453, 56);
+            this.BtnModalOferta.Name = "BtnModalOferta";
+            this.BtnModalOferta.Size = new System.Drawing.Size(38, 31);
+            this.BtnModalOferta.TabIndex = 116;
+            this.BtnModalOferta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnModalOferta.UseVisualStyleBackColor = true;
+            this.BtnModalOferta.Click += new System.EventHandler(this.BtnModalOferta_Click);
+            // 
+            // TxtNombreOferta
+            // 
+            this.TxtNombreOferta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombreOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombreOferta.Location = new System.Drawing.Point(20, 56);
+            this.TxtNombreOferta.Name = "TxtNombreOferta";
+            this.TxtNombreOferta.ReadOnly = true;
+            this.TxtNombreOferta.Size = new System.Drawing.Size(310, 27);
+            this.TxtNombreOferta.TabIndex = 113;
             // 
             // VtnVenta
             // 
@@ -687,26 +783,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1402, 587);
-            this.Controls.Add(this.lblImportante);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.TablaVentas);
-            this.Controls.Add(this.lblRegistrarVenta);
+            this.Controls.Add(this.PanelPrincipal);
             this.Name = "VtnVenta";
-            this.Text = "Editar ventas";
+            this.Text = "Realizar ventas";
             this.Load += new System.EventHandler(this.VtnVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TablaVentas)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.GroupBoxCliente.ResumeLayout(false);
+            this.GroupBoxCliente.PerformLayout();
+            this.GroupBoxInformacionVenta.ResumeLayout(false);
+            this.GroupBoxInformacionVenta.PerformLayout();
+            this.GroupBoxProducto.ResumeLayout(false);
+            this.GroupBoxProducto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.PanelPrincipal.ResumeLayout(false);
+            this.PanelPrincipal.PerformLayout();
+            this.GroupBoxSucursal.ResumeLayout(false);
+            this.GroupBoxSucursal.PerformLayout();
+            this.GroupBoxOferta.ResumeLayout(false);
+            this.GroupBoxOferta.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -727,13 +823,13 @@
         private System.Windows.Forms.Button BtnBuscarCliente;
         private System.Windows.Forms.TextBox TxtNombresCliente;
         private System.Windows.Forms.TextBox TxtIdCliente;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox GroupBoxCliente;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblTipoDocumento;
         private System.Windows.Forms.TextBox TxtFecha;
         private System.Windows.Forms.ComboBox CmbTipoDocumento;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GroupBoxInformacionVenta;
+        private System.Windows.Forms.GroupBox GroupBoxProducto;
         private System.Windows.Forms.NumericUpDown NudCantidad;
         private System.Windows.Forms.TextBox TxtStock;
         private System.Windows.Forms.TextBox TxtPrecioCompra;
@@ -748,7 +844,6 @@
         private System.Windows.Forms.Label lblCodigoProducto;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Label lblTotalPagar;
-        private System.Windows.Forms.TextBox TxtDescuentoOferta;
         private System.Windows.Forms.Button BtnCrearVenta;
         private System.Windows.Forms.Label lblPagaCon;
         private System.Windows.Forms.TextBox TxtPagaCon;
@@ -757,13 +852,21 @@
         private System.Windows.Forms.TextBox TxtTotalPagar;
         private System.Windows.Forms.Label lblDescuento;
         private System.Windows.Forms.TextBox TxtTotalDescuento;
-        private System.Windows.Forms.Button BtnBuscarOfertas;
         private System.Windows.Forms.Label lblOferta;
-        private System.Windows.Forms.TextBox TxtNombreOferta;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lblImportante;
-        private System.Windows.Forms.Label lblRegistrarVenta;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Label LblPorcentaje;
+        private System.Windows.Forms.Panel PanelPrincipal;
+        private System.Windows.Forms.GroupBox GroupBoxSucursal;
+        private System.Windows.Forms.TextBox TxtIdSucursal;
+        private System.Windows.Forms.Button BtnModalSucursal;
+        private System.Windows.Forms.TextBox TxtSucursal;
+        private System.Windows.Forms.Label LblSucursal;
+        private System.Windows.Forms.Label LblRegistrarVenta;
+        private System.Windows.Forms.GroupBox GroupBoxOferta;
+        private System.Windows.Forms.TextBox TxtDescuentoOferta;
+        private System.Windows.Forms.Button BtnModalOferta;
+        private System.Windows.Forms.TextBox TxtNombreOferta;
     }
 }

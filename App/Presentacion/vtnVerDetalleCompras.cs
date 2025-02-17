@@ -41,6 +41,7 @@ namespace Presentacion
             if (oCompra.IdCompra != 0)
             {
                 TxtFechaCompra.Text = oCompra.FechaCompra;
+                TxtSucursal.Text = oCompra.oSucursal.Nombre;
                 TxtTipoDocumento.Text = oCompra.TipoDocumento;
                 TxtNombreCompletoUsuario.Text = oCompra.oUsuario.NombreCompleto;
                 TxtCedulaProveedor.Text = oCompra.oProveedor.Cedula;
@@ -65,6 +66,7 @@ namespace Presentacion
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             TxtNumeroDocumentoCompra.Text = "";
+            TxtSucursal.Text = "";
             TxtFechaCompra.Text = "";
             TxtTipoDocumento.Text = "";
             TxtNombreCompletoUsuario.Text = "";
@@ -95,6 +97,7 @@ namespace Presentacion
 
             texto_html = texto_html.Replace("@tipodocumento", TxtTipoDocumento.Text.ToUpper());
             texto_html = texto_html.Replace("@numerodocumento", TxtNumeroDocumentoCompra.Text);
+            texto_html = texto_html.Replace("@sucursal", TxtSucursal.Text);
 
             texto_html = texto_html.Replace("@cedulaproveedor", TxtCedulaProveedor.Text);
             texto_html = texto_html.Replace("@nombreproveedor", TxtNombresProveedor.Text);

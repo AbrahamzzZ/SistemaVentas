@@ -84,7 +84,25 @@ namespace Presentacion
                 }
             }
         }
-        private void BtnBuscarOfertas_Click(object sender, EventArgs e)
+
+        private void BtnModalSucursal_Click(object sender, EventArgs e)
+        {
+            using (var modal = new VtnModalesSucursal())
+            {
+                var result = modal.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    TxtIdSucursal.Text = modal.Sucursal.IdSucursal.ToString();
+                    TxtSucursal.Text = modal.Sucursal.Nombre.ToString();
+                }
+                else
+                {
+                    TxtIdSucursal.Select();
+                }
+            }
+        }
+
+        private void BtnModalOferta_Click(object sender, EventArgs e)
         {
             using (var modal = new vtnModalesOfertas())
             {
@@ -210,6 +228,7 @@ namespace Presentacion
                     TipoDocumento = tipoDocumento,
                     NumeroDocumento = numeroDocumento,
                     oCliente = new Cliente() { IdCliente = Convert.ToInt32(TxtIdCliente.Text) },
+                    oSucursal = new Sucursal() { IdSucursal = Convert.ToInt32(TxtIdSucursal.Text)},
                     MontoTotal = Convert.ToDecimal(TxtTotalPagar.Text),
                     Descuento = Convert.ToDecimal(TxtTotalDescuento.Text),
                     MontoPago = Convert.ToDecimal(TxtPagaCon.Text),
@@ -226,12 +245,15 @@ namespace Presentacion
                     {
                         System.Windows.Forms.Clipboard.SetText(numeroDocumento);
                     }
-                    TxtCedulaCliente.Text = "";
-                    TxtNombresCliente.Text = "";
-                    TxtTotalPagar.Text = "";
-                    TxtTotalDescuento.Text = "";
-                    TxtPagaCon.Text = "";
-                    TxtCambio.Text = "";
+
+                    TxtIdSucursal.Clear();
+                    TxtSucursal.Clear();
+                    TxtCedulaCliente.Clear();
+                    TxtNombresCliente.Clear();
+                    TxtTotalPagar.Clear();
+                    TxtTotalDescuento.Clear();
+                    TxtPagaCon.Clear();
+                    TxtCambio.Clear();
                     TablaVentas.Rows.Clear();
                     CalcularTotal();
                 }
@@ -341,6 +363,8 @@ namespace Presentacion
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
+            TxtIdSucursal.Text = "0";
+            TxtSucursal.Text = "";
             TxtIdProducto.Text = "0";
             TxtCodigo.Text = "";
             TxtProducto.Text = "";
