@@ -96,6 +96,7 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             string mensaje = string.Empty;
+            //string saltGenerado = Seguridad.GenerarSalt();
 
             // Verificar si los ComboBoxes tienen valores seleccionados
             if (selectedItemCmb1 == null || selectedItemCmb2 == null)
@@ -115,6 +116,8 @@ namespace Presentacion
                 Codigo = TxtCodigo.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
+                /*Clave = Seguridad.HashClave(TxtClave.Text, saltGenerado),
+                Salt = saltGenerado,*/
                 Clave = TxtClave.Text,
                 oRol = new Rol { IdRol = selectedItemCmb1.Valor },
                 Estado = selectedItemCmb2.Valor == 1
@@ -147,6 +150,7 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             string mensaje;
+            //string saltGenerado = Seguridad.GenerarSalt();
 
             // Verificar si los ComboBoxes tienen valores seleccionados
             if (selectedItemCmb1 == null || selectedItemCmb2 == null)
@@ -166,6 +170,8 @@ namespace Presentacion
                 Codigo = TxtCodigo.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
+                /*Clave = Seguridad.HashClave(TxtClave.Text, saltGenerado),
+                Salt = saltGenerado,*/
                 Clave = TxtClave.Text,
                 oRol = new Rol { IdRol = selectedItemCmb1.Valor },
                 Estado = selectedItemCmb2.Valor == 1
