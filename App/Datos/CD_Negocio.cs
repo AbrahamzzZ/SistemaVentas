@@ -109,6 +109,7 @@ namespace Datos
             {
                 obtenido = false;
                 logoByte = new byte[0];
+                Console.WriteLine($"Error al obtener el logo del negocio: {ne.Message}");
             }
             return logoByte;
         }
