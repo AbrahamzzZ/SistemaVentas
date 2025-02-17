@@ -55,7 +55,7 @@ namespace Datos
             Usuario usuario = null;
             try
             {
-                string consulta = "SELECT CLAVE FROM USUARIO WHERE CORREO_ELECTRONICO = @correoElectronico";
+                string consulta = "SELECT SALT FROM USUARIO WHERE CORREO_ELECTRONICO = @correoElectronico";
                 SqlCommand cmd = new SqlCommand(consulta, Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("@correoElectronico", correoElectronico);
                 cmd.CommandType = CommandType.Text;
@@ -124,6 +124,7 @@ namespace Datos
         {
             int IdUsuarioGenerado = 0;
             Mensaje = string.Empty;
+
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_USUARIO", Conexion.ConexionBD());
@@ -131,6 +132,8 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
                 cmd.Parameters.AddWithValue("Clave", obj.Clave);
+                /*cmd.Parameters.AddWithValue("Clave_Hash", obj.Clave);
+                cmd.Parameters.AddWithValue("Salt", obj.Salt);*/
                 cmd.Parameters.AddWithValue("Id_Rol", obj.oRol.IdRol);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
                 cmd.Parameters.Add("Id_Usuario_Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -168,6 +171,8 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                /*cmd.Parameters.AddWithValue("Clave_Hash", obj.Clave);
+                cmd.Parameters.AddWithValue("Salt", obj.Salt);*/
                 cmd.Parameters.AddWithValue("Clave", obj.Clave);
                 cmd.Parameters.AddWithValue("Id_Rol", obj.oRol.IdRol);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
