@@ -14,6 +14,7 @@ namespace Test
             Sucursal sucursal = new Sucursal
             {
                 Codigo = "1222",
+                oNegocio = new Negocio() { IdNegocio = 1},
                 Nombre = "GUAYAQUIL_ANTENAS TV CABLE",
                 Direccion = "AV.J.T.MARENGO S/N",
                 Latitud = -2.148076,

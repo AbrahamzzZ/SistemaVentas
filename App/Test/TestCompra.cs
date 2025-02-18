@@ -16,6 +16,7 @@ namespace Test
                 oUsuario = new Usuario { IdUsuario = 1 },
                 oProveedor = new Proveedor { IdProveedor = 1 },
                 oTransportista = new Transportista { IdTransportista = 1 },
+                oSucursal = new Sucursal { IdSucursal = 1 },
                 TipoDocumento = "Boleta",
                 NumeroDocumento = "00006",
                 MontoTotal = 500.00m,
