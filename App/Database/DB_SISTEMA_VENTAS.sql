@@ -455,21 +455,32 @@ CREATE PROC PA_REGISTRAR_CATEGORIA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    IF NOT EXISTS (SELECT 1 FROM CATEGORIA WHERE CODIGO = @Codigo)
-    BEGIN
-        INSERT INTO CATEGORIA (CODIGO, DESCRIPCION, ESTADO) 
-        VALUES (@Codigo, @Descripcion, @Estado);
+		IF NOT EXISTS (SELECT 1 FROM CATEGORIA WHERE CODIGO = @Codigo)
+		BEGIN
+			INSERT INTO CATEGORIA (CODIGO, DESCRIPCION, ESTADO) 
+			VALUES (@Codigo, @Descripcion, @Estado);
 
-        SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Categoría registrada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una categoría.';
-    END
+			SET @Resultado = SCOPE_IDENTITY();
+			SET @Mensaje = 'Categoría registrada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se puede repetir el código de una categoría.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = ERROR_MESSAGE();
+	END CATCH
 END;
 go
 
@@ -483,24 +494,35 @@ CREATE PROC PA_EDITAR_CATEGORIA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    IF NOT EXISTS (SELECT 1 FROM CATEGORIA WHERE CODIGO = @Codigo AND ID_CATEGORIA != @Id_Categoria)
-    BEGIN
-        UPDATE CATEGORIA 
-        SET CODIGO = @Codigo,
-            DESCRIPCION = @Descripcion,
-            ESTADO = @Estado
-        WHERE ID_CATEGORIA = @Id_Categoria;
+		IF NOT EXISTS (SELECT 1 FROM CATEGORIA WHERE CODIGO = @Codigo AND ID_CATEGORIA != @Id_Categoria)
+		BEGIN
+			UPDATE CATEGORIA 
+			SET CODIGO = @Codigo,
+				DESCRIPCION = @Descripcion,
+				ESTADO = @Estado
+			WHERE ID_CATEGORIA = @Id_Categoria;
 
-        SET @Resultado = 1;
-        SET @Mensaje = 'Categoría actualizada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una categoría.';
-    END
+			SET @Resultado = 1;
+			SET @Mensaje = 'Categoría actualizada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se puede repetir el código de una categoría.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = ERROR_MESSAGE();
+	END CATCH
 END;
 go
 
@@ -511,26 +533,38 @@ CREATE PROC PA_ELIMINAR_CATEGORIA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
 
-    IF NOT EXISTS (
-        SELECT 1 
-        FROM CATEGORIA c 
-        INNER JOIN PRODUCTO p ON p.ID_CATEGORIA = c.ID_CATEGORIA 
-        WHERE c.ID_CATEGORIA = @Id_Categoria
-    )
-    BEGIN
-        DELETE FROM CATEGORIA 
-        WHERE ID_CATEGORIA = @Id_Categoria;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-        SET @Resultado = 1;
-        SET @Mensaje = 'Categoría eliminada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'La categoría ya se encuentra relacionada a un producto.';
-    END
+		IF NOT EXISTS (
+			SELECT 1 
+			FROM CATEGORIA c 
+			INNER JOIN PRODUCTO p ON p.ID_CATEGORIA = c.ID_CATEGORIA 
+			WHERE c.ID_CATEGORIA = @Id_Categoria
+		)
+		BEGIN
+			DELETE FROM CATEGORIA 
+			WHERE ID_CATEGORIA = @Id_Categoria;
+
+			SET @Resultado = 1;
+			SET @Mensaje = 'Categoría eliminada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'La categoría ya se encuentra relacionada a un producto.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = ERROR_MESSAGE();
+	END CATCH
 END;
 go
 
@@ -548,7 +582,10 @@ CREATE PROC PA_REGISTRAR_PRODUCTO(
 AS
 BEGIN
     BEGIN TRY
+		BEGIN TRANSACTION;
+
         SET @Resultado = 0;
+		SET @Mensaje = '';
 
         IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE CODIGO = @Codigo)
         BEGIN
@@ -562,8 +599,12 @@ BEGIN
         BEGIN
             SET @Mensaje = 'Ya existe un producto con el mismo código.';
         END
+
+		COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
@@ -585,7 +626,10 @@ CREATE PROC PA_EDITAR_PRODUCTO(
 AS
 BEGIN
     BEGIN TRY
-        SET @Resultado = 1;
+		BEGIN TRANSACTION;
+
+        SET @Resultado = 0;
+		SET @Mensaje = '';
 
         IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE CODIGO = @Codigo AND ID_PRODUCTO != @Id_Producto)
         BEGIN
@@ -603,11 +647,15 @@ BEGIN
         END
         ELSE
         BEGIN
-            SET @Resultado = 0;
+            SET @Resultado = 1;
             SET @Mensaje = 'No se puede repetir el código de un producto.';
         END
+
+		COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
@@ -622,6 +670,7 @@ CREATE PROC PA_ELIMINAR_PRODUCTO(
 AS
 BEGIN
     BEGIN TRY
+		BEGIN TRANSACTION;
         SET @Respuesta = 0;
         SET @Mensaje = '';
 
@@ -645,8 +694,12 @@ BEGIN
             SET @Respuesta = 1;
             SET @Mensaje = 'Producto eliminado exitosamente.';
         END
+
+		COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Respuesta = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
@@ -663,21 +716,33 @@ CREATE PROC PA_REGISTRAR_UNIDAD_MEDIDA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    -- Verificar si ya existe la unidad de medida con el mismo código
-    IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo)
-    BEGIN
-        INSERT INTO UNIDAD_MEDIDA(CODIGO, DESCRIPCION, SIMBOLO, ESTADO)
-        VALUES (@Codigo, @Descripcion, @Simbolo, @Estado);
+		-- Verificar si ya existe la unidad de medida con el mismo código
+		IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo)
+		BEGIN
+			INSERT INTO UNIDAD_MEDIDA(CODIGO, DESCRIPCION, SIMBOLO, ESTADO)
+			VALUES (@Codigo, @Descripcion, @Simbolo, @Estado);
 
-        SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Unidad de medida registrada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
-    END
+			SET @Resultado = SCOPE_IDENTITY();
+			SET @Mensaje = 'Unidad de medida registrada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -692,25 +757,36 @@ CREATE PROC PA_EDITAR_UNIDAD_MEDIDA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si el código ya existe para otra unidad de medida
-    IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo AND ID_UNIDAD_MEDIDA != @Id_Unidad_Medida)
-    BEGIN
-        UPDATE UNIDAD_MEDIDA
-        SET 
-            DESCRIPCION = @Descripcion,
-            SIMBOLO = @Simbolo, 
-            ESTADO = @Estado
-        WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
+		-- Verificar si el código ya existe para otra unidad de medida
+		IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo AND ID_UNIDAD_MEDIDA != @Id_Unidad_Medida)
+		BEGIN
+			UPDATE UNIDAD_MEDIDA
+			SET 
+				DESCRIPCION = @Descripcion,
+				SIMBOLO = @Simbolo, 
+				ESTADO = @Estado
+			WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
 
-        SET @Resultado = 1;
-        SET @Mensaje = 'Unidad de medida actualizada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
-    END
+			SET @Resultado = 1;
+			SET @Mensaje = 'Unidad de medida actualizada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -721,27 +797,38 @@ CREATE PROC PA_ELIMINAR_UNIDAD_MEDIDA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si la unidad de medida está asociada a algún producto
-    IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida)
-    BEGIN
-        DELETE FROM UNIDAD_MEDIDA WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
+		-- Verificar si la unidad de medida está asociada a algún producto
+		IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida)
+		BEGIN
+			DELETE FROM UNIDAD_MEDIDA WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
 
-        IF @@ROWCOUNT > 0
-        BEGIN
-            SET @Resultado = 1;
-            SET @Mensaje = 'Unidad de medida eliminada exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Mensaje = 'No se encontró ninguna unidad de medida con el ID especificado.';
-        END
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'La unidad de medida ya se encuentra relacionada a un producto y no puede eliminarse.';
-    END
+			IF @@ROWCOUNT > 0
+			BEGIN
+				SET @Resultado = 1;
+				SET @Mensaje = 'Unidad de medida eliminada exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Mensaje = 'No se encontró ninguna unidad de medida con el ID especificado.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'La unidad de medida ya se encuentra relacionada a un producto y no puede eliminarse.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -971,29 +1058,40 @@ CREATE PROC PA_REGISTRAR_CLIENTE(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    -- Validación de duplicidad de Código y Cédula
-    IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula)
-        BEGIN
-            INSERT INTO CLIENTE(CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO)
-            VALUES (@Codigo, @Nombre_Cliente, @Apellido_Cliente, @Cedula, @Telefono, @Correo_Electronico, @Estado);
+		-- Validación de duplicidad de Código y Cédula
+		IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula)
+			BEGIN
+				INSERT INTO CLIENTE(CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO)
+				VALUES (@Codigo, @Nombre_Cliente, @Apellido_Cliente, @Cedula, @Telefono, @Correo_Electronico, @Estado);
 
-            SET @Resultado = SCOPE_IDENTITY();
-            SET @Mensaje = 'Cliente registrado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe un cliente con el mismo código.';
-    END
+				SET @Resultado = SCOPE_IDENTITY();
+				SET @Mensaje = 'Cliente registrado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe un cliente con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1011,38 +1109,49 @@ CREATE PROC PA_EDITAR_CLIENTE(
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 1;
+		SET @Mensaje = '';
 
-    -- Validación de duplicidad de Código y Cédula
-    IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo AND ID_CLIENTE != @Id_Cliente)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula AND ID_CLIENTE != @Id_Cliente)
-        BEGIN
-            UPDATE CLIENTE
-            SET
-                CODIGO = @Codigo,
-                NOMBRES = @Nombre_Cliente,
-                APELLIDOS = @Apellido_Cliente,
-                CEDULA = @Cedula,
-                TELEFONO = @Telefono,
-                CORREO_ELECTRONICO = @Correo_Electronico,
-                ESTADO = @Estado
-            WHERE ID_CLIENTE = @Id_Cliente;
+		-- Validación de duplicidad de Código y Cédula
+		IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo AND ID_CLIENTE != @Id_Cliente)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula AND ID_CLIENTE != @Id_Cliente)
+			BEGIN
+				UPDATE CLIENTE
+				SET
+					CODIGO = @Codigo,
+					NOMBRES = @Nombre_Cliente,
+					APELLIDOS = @Apellido_Cliente,
+					CEDULA = @Cedula,
+					TELEFONO = @Telefono,
+					CORREO_ELECTRONICO = @Correo_Electronico,
+					ESTADO = @Estado
+				WHERE ID_CLIENTE = @Id_Cliente;
 
-            SET @Mensaje = 'Cliente actualizado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
+				SET @Mensaje = 'Cliente actualizado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Resultado = 0;
+				SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 0;
+			SET @Mensaje = 'Ya existe un cliente con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'Ya existe un cliente con el mismo código.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1053,20 +1162,31 @@ CREATE PROC PA_ELIMINAR_CLIENTE(
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 1;
+		SET @Mensaje = '';
 
-    DELETE FROM CLIENTE WHERE ID_CLIENTE = @Id_Cliente;
+		DELETE FROM CLIENTE WHERE ID_CLIENTE = @Id_Cliente;
 
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SET @Mensaje = 'Cliente eliminado exitosamente.';
-    END
-    ELSE
-    BEGIN
+		IF @@ROWCOUNT > 0
+		BEGIN
+			SET @Mensaje = 'Cliente eliminado exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 0;
+			SET @Mensaje = 'No se encontró ningún cliente con el ID especificado.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'No se encontró ningún cliente con el ID especificado.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1083,28 +1203,39 @@ CREATE PROC PA_REGISTRAR_PROVEEDOR(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CODIGO = @Codigo)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CEDULA = @Cedula)
-        BEGIN
-            INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) 
-            VALUES (@Codigo, @Nombres_Proveedor, @Apellidos_Proveedor, @Cedula, @Telefono, @Correo_Electronico, @Estado);
+		IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CODIGO = @Codigo)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CEDULA = @Cedula)
+			BEGIN
+				INSERT INTO PROVEEDOR (CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO) 
+				VALUES (@Codigo, @Nombres_Proveedor, @Apellidos_Proveedor, @Cedula, @Telefono, @Correo_Electronico, @Estado);
 
-            SET @Resultado = SCOPE_IDENTITY();
-            SET @Mensaje = 'Proveedor registrado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
-    END
+				SET @Resultado = SCOPE_IDENTITY();
+				SET @Mensaje = 'Proveedor registrado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1122,37 +1253,48 @@ CREATE PROC PA_EDITAR_PROVEEDOR(
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 1;
+		SET @Mensaje = '';
 
-    IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CODIGO = @Codigo AND ID_PROVEEDOR != @Id_Proveedor)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CEDULA = @Cedula AND ID_PROVEEDOR != @Id_Proveedor)
-        BEGIN
-            UPDATE PROVEEDOR 
-            SET 
-                CODIGO = @Codigo,
-                NOMBRES = @Nombres_Proveedor,
-                APELLIDOS = @Apellidos_Proveedor,
-                CEDULA = @Cedula,
-                TELEFONO = @Telefono,
-                CORREO_ELECTRONICO = @Correo_Electronico,
-                ESTADO = @Estado
-            WHERE ID_PROVEEDOR = @Id_Proveedor;
+		IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CODIGO = @Codigo AND ID_PROVEEDOR != @Id_Proveedor)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM PROVEEDOR WHERE CEDULA = @Cedula AND ID_PROVEEDOR != @Id_Proveedor)
+			BEGIN
+				UPDATE PROVEEDOR 
+				SET 
+					CODIGO = @Codigo,
+					NOMBRES = @Nombres_Proveedor,
+					APELLIDOS = @Apellidos_Proveedor,
+					CEDULA = @Cedula,
+					TELEFONO = @Telefono,
+					CORREO_ELECTRONICO = @Correo_Electronico,
+					ESTADO = @Estado
+				WHERE ID_PROVEEDOR = @Id_Proveedor;
 
-            SET @Mensaje = 'Proveedor actualizado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
+				SET @Mensaje = 'Proveedor actualizado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Resultado = 0;
+				SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 0;
+			SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1163,24 +1305,35 @@ CREATE PROC PA_ELIMINAR_PROVEEDOR(
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    IF NOT EXISTS (
-        SELECT 1 
-        FROM PROVEEDOR p 
-        INNER JOIN COMPRA c ON p.ID_PROVEEDOR = c.ID_PROVEEDOR 
-        WHERE p.ID_PROVEEDOR = @Id_Proveedor
-    )
-    BEGIN
-        DELETE FROM PROVEEDOR WHERE ID_PROVEEDOR = @Id_Proveedor;
-        SET @Mensaje = 'Proveedor eliminado exitosamente.';
-    END
-    ELSE
-    BEGIN
+		IF NOT EXISTS (
+			SELECT 1 
+			FROM PROVEEDOR p 
+			INNER JOIN COMPRA c ON p.ID_PROVEEDOR = c.ID_PROVEEDOR 
+			WHERE p.ID_PROVEEDOR = @Id_Proveedor
+		)
+		BEGIN
+			DELETE FROM PROVEEDOR WHERE ID_PROVEEDOR = @Id_Proveedor;
+			SET @Mensaje = 'Proveedor eliminado exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 1;
+			SET @Mensaje = 'El proveedor se encuentra relacionado a una compra.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'El proveedor se encuentra relacionado a una compra.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1241,6 +1394,7 @@ BEGIN
         COMMIT TRANSACTION registro;
     END TRY
     BEGIN CATCH
+		--Manejo de errores
         SET @Resultado = 0;
         SET @Mensaje = ERROR_MESSAGE();
         ROLLBACK TRANSACTION registro;
@@ -1278,7 +1432,7 @@ BEGIN
 		SET @Resultado = 1
 		SET @Mensaje = ''
 
-		BEGIN transaction registro
+		BEGIN TRANSACTION registro
 
 		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_SUCURSAL, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
 		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @Id_Sucursal, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
@@ -1297,7 +1451,7 @@ BEGIN
 		COMMIT TRANSACTION registro
 	END TRY
 	BEGIN CATCH
-
+		--Manejo de errores
 		SET @Resultado = 0
 		SET @Mensaje = ERROR_MESSAGE()
 
@@ -1373,21 +1527,32 @@ CREATE PROC PA_REGISTRAR_OFERTA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si ya existe el código
-    IF NOT EXISTS (SELECT 1 FROM OFERTA WHERE CODIGO = @Codigo)
-    BEGIN
-        INSERT INTO OFERTA (CODIGO, NOMBRE_OFERTA, ID_PRODUCTO, DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, ESTADO)
-        VALUES (@Codigo, @Nombre_Oferta, @Id_Producto, @Descripcion, @Fecha_Inicio, @Fecha_Fin, @Descuento, @Estado);
+		-- Verificar si ya existe el código
+		IF NOT EXISTS (SELECT 1 FROM OFERTA WHERE CODIGO = @Codigo)
+		BEGIN
+			INSERT INTO OFERTA (CODIGO, NOMBRE_OFERTA, ID_PRODUCTO, DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, ESTADO)
+			VALUES (@Codigo, @Nombre_Oferta, @Id_Producto, @Descripcion, @Fecha_Inicio, @Fecha_Fin, @Descuento, @Estado);
 
-        SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Oferta registrada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe una oferta con el mismo código.';
-    END
+			SET @Resultado = SCOPE_IDENTITY();
+			SET @Mensaje = 'Oferta registrada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe una oferta con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		SET @Resultado = 0
+		SET @Mensaje = ERROR_MESSAGE()
+
+	END CATCH
 END;
 go
 
@@ -1406,29 +1571,39 @@ CREATE PROC PA_EDITAR_OFERTA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si el código ya existe para otra oferta
-    IF NOT EXISTS (SELECT * FROM OFERTA WHERE CODIGO = @Codigo AND ID_OFERTA != @Id_Oferta)
-    BEGIN
-        UPDATE OFERTA
-        SET 
-            NOMBRE_OFERTA = @Nombre_Oferta,
-            ID_PRODUCTO = @Id_Producto,
-            DESCRIPCION = @Descripcion,
-            FECHA_INICIO = @Fecha_Inicio,
-            FECHA_FIN = @Fecha_Fin,
-            DESCUENTO = @Descuento,
-            ESTADO = @Estado
-        WHERE ID_OFERTA = @Id_Oferta;
+		-- Verificar si el código ya existe para otra oferta
+		IF NOT EXISTS (SELECT * FROM OFERTA WHERE CODIGO = @Codigo AND ID_OFERTA != @Id_Oferta)
+		BEGIN
+			UPDATE OFERTA
+			SET 
+				NOMBRE_OFERTA = @Nombre_Oferta,
+				ID_PRODUCTO = @Id_Producto,
+				DESCRIPCION = @Descripcion,
+				FECHA_INICIO = @Fecha_Inicio,
+				FECHA_FIN = @Fecha_Fin,
+				DESCUENTO = @Descuento,
+				ESTADO = @Estado
+			WHERE ID_OFERTA = @Id_Oferta;
 
-        SET @Resultado = 1;
-        SET @Mensaje = 'Oferta actualizada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe una oferta con el mismo código.';
-    END
+			SET @Resultado = 1;
+			SET @Mensaje = 'Oferta actualizada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe una oferta con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		SET @Resultado = 0
+		SET @Mensaje = ERROR_MESSAGE()
+	END CATCH
 END;
 go
 
@@ -1439,18 +1614,30 @@ CREATE PROC PA_ELIMINAR_OFERTA (
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    DELETE FROM OFERTA WHERE ID_OFERTA = @Id_Oferta;
+	BEGIN TRY
+		BEGIN TRANSACTION;
 
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SET @Resultado = 1;
-        SET @Mensaje = 'Oferta eliminada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se encontró ninguna oferta con el ID especificado.';
-    END
+		SET @Resultado = 0;
+		DELETE FROM OFERTA WHERE ID_OFERTA = @Id_Oferta;
+
+		IF @@ROWCOUNT > 0
+		BEGIN
+			SET @Resultado = 1;
+			SET @Mensaje = 'Oferta eliminada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se encontró ninguna oferta con el ID especificado.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1512,21 +1699,32 @@ CREATE PROC PA_REGISTRAR_SUCURSAL(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si ya existe una sucursal con el mismo código
-    IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo)
-    BEGIN
-        INSERT INTO SUCURSAL(ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO)
-        VALUES (@Id_Negocio, @Codigo, @Nombre_Sucursal, @Direccion_Sucursal, @Latitud_Sucursal, @Longitud_Sucursal, @Ciudad_Sucursal, @Estado);
+		-- Verificar si ya existe una sucursal con el mismo código
+		IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo)
+		BEGIN
+			INSERT INTO SUCURSAL(ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO)
+			VALUES (@Id_Negocio, @Codigo, @Nombre_Sucursal, @Direccion_Sucursal, @Latitud_Sucursal, @Longitud_Sucursal, @Ciudad_Sucursal, @Estado);
 
-        SET @Resultado = SCOPE_IDENTITY();
-        SET @Mensaje = 'Sucursal registrada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
-    END
+			SET @Resultado = SCOPE_IDENTITY();
+			SET @Mensaje = 'Sucursal registrada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1544,29 +1742,40 @@ CREATE PROC PA_EDITAR_SUCURSAL(
 )
 AS
 BEGIN 
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    -- Verificar si el código de la sucursal ya existe para otra sucursal
-    IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo AND ID_SUCURSAL != @Id_Sucursal)
-    BEGIN
-        UPDATE SUCURSAL
-        SET
-			CODIGO = @Codigo,
-            NOMBRE_SUCURSAL = @Nombre_Sucursal,
-            DIRECCION_SUCURSAL = @Direccion_Sucursal,
-            LATITUD_SUCURSAL = @Latitud_Sucursal,
-            LONGITUD_SUCURSAL = @Longitud_Sucursal,
-            CIUDAD_SUCURSAL = @Ciudad_Sucursal,
-            ESTADO = @Estado
-        WHERE ID_SUCURSAL = @Id_Sucursal;
+		-- Verificar si el código de la sucursal ya existe para otra sucursal
+		IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo AND ID_SUCURSAL != @Id_Sucursal)
+		BEGIN
+			UPDATE SUCURSAL
+			SET
+				CODIGO = @Codigo,
+				NOMBRE_SUCURSAL = @Nombre_Sucursal,
+				DIRECCION_SUCURSAL = @Direccion_Sucursal,
+				LATITUD_SUCURSAL = @Latitud_Sucursal,
+				LONGITUD_SUCURSAL = @Longitud_Sucursal,
+				CIUDAD_SUCURSAL = @Ciudad_Sucursal,
+				ESTADO = @Estado
+			WHERE ID_SUCURSAL = @Id_Sucursal;
 
-        SET @Resultado = 1;
-        SET @Mensaje = 'Sucursal actualizada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
-    END 
+			SET @Resultado = 1;
+			SET @Mensaje = 'Sucursal actualizada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
+		END 
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1577,19 +1786,30 @@ CREATE PROC PA_ELIMINAR_SUCURSAL (
 )
 AS
 BEGIN
-    SET @Resultado = 0;
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
 
-    DELETE FROM SUCURSAL WHERE ID_SUCURSAL = @Id_Sucursal;
+		DELETE FROM SUCURSAL WHERE ID_SUCURSAL = @Id_Sucursal;
 
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SET @Resultado = 1;
-        SET @Mensaje = 'Sucursal eliminada exitosamente.';
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'No se encontró ninguna sucursal con el ID especificado.';
-    END
+		IF @@ROWCOUNT > 0
+		BEGIN
+			SET @Resultado = 1;
+			SET @Mensaje = 'Sucursal eliminada exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'No se encontró ninguna sucursal con el ID especificado.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1607,29 +1827,40 @@ CREATE PROC PA_REGISTRAR_TRANSPORTISTA(
 )
 AS
 BEGIN
-    SET @Resultado = 0;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 0;
+		SET @Mensaje = '';
 
-    -- Validación de duplicidad de Código y Cédula
-    IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula)
-        BEGIN
-            INSERT INTO TRANSPORTISTA(CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, IMAGEN, ESTADO)
-            VALUES (@Codigo, @Nombres, @Apellidos, @Cedula, @Telefono, @Correo_Electronico, @Imagen, @Estado);
+		-- Validación de duplicidad de Código y Cédula
+		IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula)
+			BEGIN
+				INSERT INTO TRANSPORTISTA(CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, IMAGEN, ESTADO)
+				VALUES (@Codigo, @Nombres, @Apellidos, @Cedula, @Telefono, @Correo_Electronico, @Imagen, @Estado);
 
-            SET @Resultado = SCOPE_IDENTITY();
-            SET @Mensaje = 'Transportista registrado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
-        SET @Mensaje = 'Ya existe un transportista con el mismo código.';
-    END
+				SET @Resultado = SCOPE_IDENTITY();
+				SET @Mensaje = 'Transportista registrado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Mensaje = 'Ya existe un transportista con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1648,39 +1879,50 @@ CREATE PROC PA_EDITAR_TRANSPORTISTA(
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 1;
+		SET @Mensaje = '';
 
-    -- Validación de duplicidad de Código y Cédula
-    IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo AND ID_TRANSPORTISTA != @Id_Transportista)
-    BEGIN
-        IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula AND ID_TRANSPORTISTA != @Id_Transportista)
-        BEGIN
-            UPDATE TRANSPORTISTA
-            SET
-                CODIGO = @Codigo,
-                NOMBRES = @Nombres,
-                APELLIDOS = @Apellidos,
-                CEDULA = @Cedula,
-                TELEFONO = @Telefono,
-                CORREO_ELECTRONICO = @Correo_Electronico,
-                IMAGEN = @Imagen,
-                ESTADO = @Estado
-            WHERE ID_TRANSPORTISTA = @Id_Transportista;
+		-- Validación de duplicidad de Código y Cédula
+		IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo AND ID_TRANSPORTISTA != @Id_Transportista)
+		BEGIN
+			IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula AND ID_TRANSPORTISTA != @Id_Transportista)
+			BEGIN
+				UPDATE TRANSPORTISTA
+				SET
+					CODIGO = @Codigo,
+					NOMBRES = @Nombres,
+					APELLIDOS = @Apellidos,
+					CEDULA = @Cedula,
+					TELEFONO = @Telefono,
+					CORREO_ELECTRONICO = @Correo_Electronico,
+					IMAGEN = @Imagen,
+					ESTADO = @Estado
+				WHERE ID_TRANSPORTISTA = @Id_Transportista;
 
-            SET @Mensaje = 'Transportista actualizado exitosamente.';
-        END
-        ELSE
-        BEGIN
-            SET @Resultado = 0;
-            SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
-        END
-    END
-    ELSE
-    BEGIN
+				SET @Mensaje = 'Transportista actualizado exitosamente.';
+			END
+			ELSE
+			BEGIN
+				SET @Resultado = 0;
+				SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
+			END
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 0;
+			SET @Mensaje = 'Ya existe un transportista con el mismo código.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'Ya existe un transportista con el mismo código.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1691,20 +1933,31 @@ CREATE PROC PA_ELIMINAR_TRANSPORTISTA (
 )
 AS
 BEGIN
-    SET @Resultado = 1;
-    SET @Mensaje = '';
+	BEGIN TRY
+		BEGIN TRANSACTION;
+		SET @Resultado = 1;
+		SET @Mensaje = '';
 
-    DELETE FROM TRANSPORTISTA WHERE ID_TRANSPORTISTA = @Id_Transportista;
+		DELETE FROM TRANSPORTISTA WHERE ID_TRANSPORTISTA = @Id_Transportista;
 
-    IF @@ROWCOUNT > 0
-    BEGIN
-        SET @Mensaje = 'Transportista eliminado exitosamente.';
-    END
-    ELSE
-    BEGIN
+		IF @@ROWCOUNT > 0
+		BEGIN
+			SET @Mensaje = 'Transportista eliminado exitosamente.';
+		END
+		ELSE
+		BEGIN
+			SET @Resultado = 0;
+			SET @Mensaje = 'No se encontró ningún transportista con el ID especificado.';
+		END
+
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		--Manejo de errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
-        SET @Mensaje = 'No se encontró ningún transportista con el ID especificado.';
-    END
+        SET @Mensaje = ERROR_MESSAGE();		
+	END CATCH
 END;
 go
 
@@ -1721,18 +1974,17 @@ CREATE PROC PA_EDITAR_NEGOCIO(
 AS
 BEGIN
     BEGIN TRY
-        -- Inicializar valores de salida
+		BEGIN TRANSACTION;
+
         SET @Resultado = 0;
         SET @Mensaje = '';
 
-        -- Verificar si el negocio existe
         IF NOT EXISTS (SELECT 1 FROM NEGOCIO WHERE ID_NEGOCIO = @Id_Negocio)
         BEGIN
             SET @Mensaje = 'El negocio con el ID proporcionado no existe.';
             RETURN;
         END
 
-        -- Realizar la actualización
         UPDATE NEGOCIO
         SET 
             NOMBRE = @Nombre,
@@ -1743,7 +1995,6 @@ BEGIN
         WHERE 
             ID_NEGOCIO = @Id_Negocio;
 
-        -- Comprobar si la actualización afectó filas
         IF @@ROWCOUNT = 0
         BEGIN
             SET @Mensaje = 'No se realizaron cambios en la información del negocio.';
@@ -1753,9 +2004,12 @@ BEGIN
             SET @Resultado = 1;
             SET @Mensaje = 'La información del negocio fue actualizada exitosamente.';
         END
+
+		COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
         -- Capturar errores
+		ROLLBACK TRANSACTION;
         SET @Resultado = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH

@@ -15,6 +15,7 @@ namespace Test
             {
                 oUsuario = new Usuario { IdUsuario = 1 },
                 TipoDocumento = "Factura",
+                oSucursal = new Sucursal { IdSucursal = 1},
                 oCliente = new Cliente { IdCliente = 3 },
                 NumeroDocumento = "00003",
                 MontoPago = 120.00m,     
