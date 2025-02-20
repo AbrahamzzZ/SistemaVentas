@@ -233,7 +233,7 @@ namespace Datos
             try
             {
                 StringBuilder grafica = new StringBuilder();
-                grafica.AppendLine("SELECT P.NOMBRE_PRODUCTO, COUNT(DV.ID_PRODUCTO) AS CANTIDAD_VENDIDA FROM DETALLE_VENTA DV");
+                grafica.AppendLine("SELECT TOP 5 P.NOMBRE_PRODUCTO, COUNT(DV.ID_PRODUCTO) AS CANTIDAD_VENDIDA FROM DETALLE_VENTA DV");
                 grafica.AppendLine("INNER JOIN PRODUCTO P ON DV.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
 
                 SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
@@ -258,7 +258,7 @@ namespace Datos
             try
             {
                 StringBuilder grafica = new StringBuilder();
-                grafica.AppendLine("SELECT CL.NOMBRES, COUNT(V.ID_CLIENTE) AS COMPRAS_TOTALES FROM VENTA V");
+                grafica.AppendLine("SELECT TOP 5 CL.NOMBRES, COUNT(V.ID_CLIENTE) AS COMPRAS_TOTALES FROM VENTA V");
                 grafica.AppendLine("INNER JOIN CLIENTE CL ON V.ID_CLIENTE = CL.ID_CLIENTE GROUP BY CL.NOMBRES;");
 
                 SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
@@ -283,7 +283,7 @@ namespace Datos
             try
             {
                 StringBuilder grafica = new StringBuilder();
-                grafica.AppendLine("SELECT U.NOMBRE_COMPLETO, COUNT(V.ID_USUARIO) AS VENTAS_EMPLEADO FROM VENTA V");
+                grafica.AppendLine("SELECT TOP 5 U.NOMBRE_COMPLETO, COUNT(V.ID_USUARIO) AS VENTAS_EMPLEADO FROM VENTA V");
                 grafica.AppendLine("INNER JOIN USUARIO U ON V.ID_USUARIO = U.ID_USUARIO GROUP BY U.NOMBRE_COMPLETO;");
 
                 SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
@@ -294,6 +294,31 @@ namespace Datos
             catch (Exception gr)
             {
                 Console.WriteLine("Error: " + gr.Message);
+            }
+            return tabla;
+        }
+
+        /// <summary>
+        /// Método que muestra las sucursales donde mas han vendido productos
+        /// </summary>
+        /// <returns>Un DataTable con las ventas de cada sucursal</returns>
+        public DataTable GraficaSucursalesVentas()
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                StringBuilder grafica = new StringBuilder();
+                grafica.AppendLine("SELECT TOP 5 S.NOMBRE_SUCURSAL, COUNT(V.ID_SUCURSAL) AS SUCURSALES FROM VENTA V");
+                grafica.AppendLine("INNER JOIN SUCURSAL S ON V.ID_SUCURSAL = S.ID_SUCURSAL GROUP BY S.NOMBRE_SUCURSAL;");
+
+                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+
+                data.Fill(tabla);
+            }
+            catch (Exception co)
+            {
+                Console.WriteLine("Error: " + co.Message);
             }
             return tabla;
         }
