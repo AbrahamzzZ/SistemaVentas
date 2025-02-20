@@ -91,6 +91,26 @@ namespace Presentacion
             }
         }
 
+        private void BtnCargarDatos4_Click(object sender, EventArgs e)
+        {
+            LimpiarGrafica();
+            DataTable dt = new CN_Compra().GraficaCompra4();
+            if(dt.Rows.Count > 0)
+            {
+                graficaCompra.Titles.Add("Compras");
+                foreach(DataRow row in dt.Rows)
+                {
+                    Series serie = graficaCompra.Series.Add(row["Nombre_Sucursal"].ToString());
+                    serie.Points.Add(Convert.ToInt32(row["Sucursales"].ToString()));
+                    serie.Label = row["Sucursales"].ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron datos para generar la gráfica.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void BtnGenerarPDF_Click(object sender, EventArgs e)
         {
             try

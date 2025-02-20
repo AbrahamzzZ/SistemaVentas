@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnCargarDatos = new System.Windows.Forms.Button();
@@ -41,6 +41,8 @@
             this.LblVentasEmpleado = new System.Windows.Forms.Label();
             this.BtnCargarDatos3 = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
+            this.BtnCargarDatos4 = new System.Windows.Forms.Button();
+            this.LblVentasSucursales = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficaVenta)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +52,7 @@
             this.label2.BackColor = System.Drawing.Color.Wheat;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(341, 587);
@@ -62,9 +64,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Wheat;
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.grafica;
-            this.pictureBox1.Location = new System.Drawing.Point(63, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(91, 47);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(140, 130);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
@@ -75,7 +77,7 @@
             this.BtnCargarDatos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 286);
+            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 216);
             this.BtnCargarDatos.Name = "BtnCargarDatos";
             this.BtnCargarDatos.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos.TabIndex = 60;
@@ -85,10 +87,10 @@
             // 
             // graficaVenta
             // 
-            chartArea2.Name = "ChartArea1";
-            this.graficaVenta.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.graficaVenta.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.graficaVenta.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graficaVenta.Legends.Add(legend1);
             this.graficaVenta.Location = new System.Drawing.Point(404, 49);
             this.graficaVenta.Name = "graficaVenta";
             this.graficaVenta.Size = new System.Drawing.Size(977, 507);
@@ -115,7 +117,7 @@
             this.BtnCargarDatos2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 371);
+            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 301);
             this.BtnCargarDatos2.Name = "BtnCargarDatos2";
             this.BtnCargarDatos2.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos2.TabIndex = 68;
@@ -128,7 +130,7 @@
             this.LblVerProductosVendidos.AutoSize = true;
             this.LblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
             this.LblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
+            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 184);
             this.LblVerProductosVendidos.Name = "LblVerProductosVendidos";
             this.LblVerProductosVendidos.Size = new System.Drawing.Size(227, 20);
             this.LblVerProductosVendidos.TabIndex = 69;
@@ -139,7 +141,7 @@
             this.LblVerTopClientesCompras.AutoSize = true;
             this.LblVerTopClientesCompras.BackColor = System.Drawing.Color.Wheat;
             this.LblVerTopClientesCompras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVerTopClientesCompras.Location = new System.Drawing.Point(21, 344);
+            this.LblVerTopClientesCompras.Location = new System.Drawing.Point(21, 274);
             this.LblVerTopClientesCompras.Name = "LblVerTopClientesCompras";
             this.LblVerTopClientesCompras.Size = new System.Drawing.Size(224, 20);
             this.LblVerTopClientesCompras.TabIndex = 70;
@@ -150,7 +152,7 @@
             this.LblVentasEmpleado.AutoSize = true;
             this.LblVentasEmpleado.BackColor = System.Drawing.Color.Wheat;
             this.LblVentasEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVentasEmpleado.Location = new System.Drawing.Point(21, 431);
+            this.LblVentasEmpleado.Location = new System.Drawing.Point(21, 359);
             this.LblVentasEmpleado.Name = "LblVentasEmpleado";
             this.LblVentasEmpleado.Size = new System.Drawing.Size(241, 20);
             this.LblVentasEmpleado.TabIndex = 71;
@@ -162,7 +164,7 @@
             this.BtnCargarDatos3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 457);
+            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 385);
             this.BtnCargarDatos3.Name = "BtnCargarDatos3";
             this.BtnCargarDatos3.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos3.TabIndex = 72;
@@ -181,12 +183,39 @@
             this.lblMensaje.TabIndex = 73;
             this.lblMensaje.Text = "Antes de generar el pdf primero tiene que cargas los datos.\r\n";
             // 
+            // BtnCargarDatos4
+            // 
+            this.BtnCargarDatos4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos4.Location = new System.Drawing.Point(25, 462);
+            this.BtnCargarDatos4.Name = "BtnCargarDatos4";
+            this.BtnCargarDatos4.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos4.TabIndex = 74;
+            this.BtnCargarDatos4.Text = "Cargar datos";
+            this.BtnCargarDatos4.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos4.Click += new System.EventHandler(this.BtnCargarDatos4_Click);
+            // 
+            // LblVentasSucursales
+            // 
+            this.LblVentasSucursales.AutoSize = true;
+            this.LblVentasSucursales.BackColor = System.Drawing.Color.Wheat;
+            this.LblVentasSucursales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVentasSucursales.Location = new System.Drawing.Point(26, 438);
+            this.LblVentasSucursales.Name = "LblVentasSucursales";
+            this.LblVentasSucursales.Size = new System.Drawing.Size(205, 20);
+            this.LblVentasSucursales.TabIndex = 82;
+            this.LblVentasSucursales.Text = "Ver ventas por sucursales";
+            // 
             // VtnEstadisticaVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.LblVentasSucursales);
+            this.Controls.Add(this.BtnCargarDatos4);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.BtnCargarDatos3);
             this.Controls.Add(this.LblVentasEmpleado);
@@ -220,5 +249,7 @@
         private System.Windows.Forms.Label LblVentasEmpleado;
         private System.Windows.Forms.Button BtnCargarDatos3;
         private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.Button BtnCargarDatos4;
+        private System.Windows.Forms.Label LblVentasSucursales;
     }
 }

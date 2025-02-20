@@ -41,6 +41,8 @@
             this.BtnCargarDatos3 = new System.Windows.Forms.Button();
             this.LblVerViajeTransportista = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.BtnCargarDatos4 = new System.Windows.Forms.Button();
+            this.LblComprasSucursales = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.graficaCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +65,7 @@
             this.BtnCargarDatos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 286);
+            this.BtnCargarDatos.Location = new System.Drawing.Point(25, 216);
             this.BtnCargarDatos.Name = "BtnCargarDatos";
             this.BtnCargarDatos.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos.TabIndex = 64;
@@ -75,9 +77,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Wheat;
             this.pictureBox1.Image = global::Presentacion.Properties.Resources.grafica;
-            this.pictureBox1.Location = new System.Drawing.Point(63, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(91, 47);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 190);
+            this.pictureBox1.Size = new System.Drawing.Size(140, 130);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 63;
             this.pictureBox1.TabStop = false;
@@ -87,7 +89,7 @@
             this.label2.BackColor = System.Drawing.Color.Wheat;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(341, 587);
@@ -125,7 +127,7 @@
             this.LblVerProductosVendidos.AutoSize = true;
             this.LblVerProductosVendidos.BackColor = System.Drawing.Color.Wheat;
             this.LblVerProductosVendidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 254);
+            this.LblVerProductosVendidos.Location = new System.Drawing.Point(21, 184);
             this.LblVerProductosVendidos.Name = "LblVerProductosVendidos";
             this.LblVerProductosVendidos.Size = new System.Drawing.Size(244, 20);
             this.LblVerProductosVendidos.TabIndex = 75;
@@ -137,7 +139,7 @@
             this.BtnCargarDatos2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 371);
+            this.BtnCargarDatos2.Location = new System.Drawing.Point(25, 301);
             this.BtnCargarDatos2.Name = "BtnCargarDatos2";
             this.BtnCargarDatos2.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos2.TabIndex = 76;
@@ -151,7 +153,7 @@
             this.BtnCargarDatos3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarDatos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarDatos3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 457);
+            this.BtnCargarDatos3.Location = new System.Drawing.Point(25, 385);
             this.BtnCargarDatos3.Name = "BtnCargarDatos3";
             this.BtnCargarDatos3.Size = new System.Drawing.Size(279, 41);
             this.BtnCargarDatos3.TabIndex = 77;
@@ -164,7 +166,7 @@
             this.LblVerViajeTransportista.AutoSize = true;
             this.LblVerViajeTransportista.BackColor = System.Drawing.Color.Wheat;
             this.LblVerViajeTransportista.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVerViajeTransportista.Location = new System.Drawing.Point(21, 431);
+            this.LblVerViajeTransportista.Location = new System.Drawing.Point(21, 360);
             this.LblVerViajeTransportista.Name = "LblVerViajeTransportista";
             this.LblVerViajeTransportista.Size = new System.Drawing.Size(251, 20);
             this.LblVerViajeTransportista.TabIndex = 78;
@@ -175,11 +177,36 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Wheat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 344);
+            this.label3.Location = new System.Drawing.Point(21, 274);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(249, 20);
             this.label3.TabIndex = 79;
             this.label3.Text = "Ver proveedores de preferencia:";
+            // 
+            // BtnCargarDatos4
+            // 
+            this.BtnCargarDatos4.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BtnCargarDatos4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnCargarDatos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCargarDatos4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarDatos4.Location = new System.Drawing.Point(25, 463);
+            this.BtnCargarDatos4.Name = "BtnCargarDatos4";
+            this.BtnCargarDatos4.Size = new System.Drawing.Size(279, 41);
+            this.BtnCargarDatos4.TabIndex = 80;
+            this.BtnCargarDatos4.Text = "Cargar datos";
+            this.BtnCargarDatos4.UseVisualStyleBackColor = false;
+            this.BtnCargarDatos4.Click += new System.EventHandler(this.BtnCargarDatos4_Click);
+            // 
+            // LblComprasSucursales
+            // 
+            this.LblComprasSucursales.AutoSize = true;
+            this.LblComprasSucursales.BackColor = System.Drawing.Color.Wheat;
+            this.LblComprasSucursales.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblComprasSucursales.Location = new System.Drawing.Point(21, 439);
+            this.LblComprasSucursales.Name = "LblComprasSucursales";
+            this.LblComprasSucursales.Size = new System.Drawing.Size(221, 20);
+            this.LblComprasSucursales.TabIndex = 81;
+            this.LblComprasSucursales.Text = "Ver compras por sucursales";
             // 
             // VtnEstadisticaCompras
             // 
@@ -187,6 +214,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1383, 587);
+            this.Controls.Add(this.LblComprasSucursales);
+            this.Controls.Add(this.BtnCargarDatos4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.LblVerViajeTransportista);
             this.Controls.Add(this.BtnCargarDatos3);
@@ -220,5 +249,7 @@
         private System.Windows.Forms.Button BtnCargarDatos3;
         private System.Windows.Forms.Label LblVerViajeTransportista;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button BtnCargarDatos4;
+        private System.Windows.Forms.Label LblComprasSucursales;
     }
 }
