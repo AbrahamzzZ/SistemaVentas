@@ -36,7 +36,7 @@ namespace Presentacion
             if (dt.Rows.Count > 0)
             {
                 graficaVenta.Titles.Add("Productos Vendidos");
-                graficaVenta.ChartAreas[0].AxisX.MajorGrid.Enabled = false; 
+                graficaVenta.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
                 graficaVenta.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
 
                 foreach (DataRow row in dt.Rows)
@@ -59,7 +59,7 @@ namespace Presentacion
             if (dt.Rows.Count > 0)
             {
                 graficaVenta.Titles.Add("Top Clientes");
-                foreach(DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
                     Series serie = graficaVenta.Series.Add(row["Nombres"].ToString());
                     serie.Points.Add(Convert.ToInt32(row["Compras_Totales"].ToString()));
@@ -76,10 +76,10 @@ namespace Presentacion
         {
             LimpiarGrafica();
             DataTable dt = new CN_Venta().GraficoVenta3();
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
                 graficaVenta.Titles.Add("Ventas de cada empleado");
-                foreach(DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
                     Series serie = graficaVenta.Series.Add(row["Nombre_Completo"].ToString());
                     serie.Points.Add(Convert.ToInt32(row["Ventas_Empleado"].ToString()));
@@ -202,6 +202,26 @@ namespace Presentacion
         {
             graficaVenta.Series.Clear();
             graficaVenta.Titles.Clear();
+        }
+
+        private void BtnCargarDatos4_Click(object sender, EventArgs e)
+        {
+            LimpiarGrafica();
+            DataTable dt = new CN_Venta().GraficaVenta4();
+            if (dt.Rows.Count > 0)
+            {
+                graficaVenta.Titles.Add("Ventas");
+                foreach (DataRow row in dt.Rows)
+                {
+                    Series serie = graficaVenta.Series.Add(row["Nombre_Sucursal"].ToString());
+                    serie.Points.Add(Convert.ToInt32(row["Sucursales"].ToString()));
+                    serie.Label = row["Sucursales"].ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron datos para generar la gráfica.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
