@@ -80,5 +80,13 @@ namespace Negocios
             return ObjetoCompra.GraficaViajesRealizados();
         }
 
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de las compras de productos de cada sucursal
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+        public DataTable GraficaCompra4()
+        {
+            return ObjetoCompra.GraficaSucursalesCompras();
+        }
     }
 }

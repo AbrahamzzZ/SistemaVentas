@@ -100,5 +100,15 @@ namespace Negocios
         {
             return ObjetoVenta.GraficaVentaCadaEmpleado();
         }
+
+        /// <summary>
+        /// Método que obtiene los datos para la gráfica de las ventas de productos de cada sucursal
+        /// </summary>
+        /// <returns>Un DataTable con los datos de la gráfica.</returns>
+
+        public DataTable GraficaVenta4()
+        {
+            return ObjetoVenta.GraficaSucursalesVentas();
+        }
     }
 }
