@@ -55,7 +55,7 @@ namespace Presentacion
             List<Usuario> mostrarUsuario = new CN_Usuario().ListarUsuario();
             foreach (Usuario rol in mostrarUsuario)
             {
-                tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Codigo, rol.NombreCompleto, rol.CorreoElectronico, rol.Clave, rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
+                tablaUsuarios.Rows.Add(new object[] { "", rol.IdUsuario, rol.Codigo, rol.NombreCompleto, rol.CorreoElectronico,rol.oRol.IdRol, rol.oRol.Descripcion, rol.Estado == true ? 1 : 0, rol.Estado == true ? "Activo" : "No Activo" });
             }
             TxtNombreCompleto.Select();
         }
@@ -96,7 +96,7 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             string mensaje = string.Empty;
-            //string saltGenerado = Seguridad.GenerarSalt();
+            string saltGenerado = Seguridad.GenerarSalt();
 
             // Verificar si los ComboBoxes tienen valores seleccionados
             if (selectedItemCmb1 == null || selectedItemCmb2 == null)
@@ -116,9 +116,8 @@ namespace Presentacion
                 Codigo = TxtCodigo.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
-                /*Clave = Seguridad.HashClave(TxtClave.Text, saltGenerado),
-                Salt = saltGenerado,*/
-                Clave = TxtClave.Text,
+                ClaveEncriptada = Seguridad.HashClave(TxtClave.Text, saltGenerado),
+                Salt = saltGenerado,
                 oRol = new Rol { IdRol = selectedItemCmb1.Valor },
                 Estado = selectedItemCmb2.Valor == 1
             };
@@ -128,7 +127,7 @@ namespace Presentacion
             if (idUsuarioIngresado != 0)
             {
                 // Agregar a la tabla y mostrar mensaje de éxito
-                tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, TxtCodigo.Text, TxtNombreCompleto.Text, TxtCorreoElectronico.Text, TxtClave.Text, selectedItemCmb1.Valor,selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
+                tablaUsuarios.Rows.Add(new object[] { "", idUsuarioIngresado, TxtCodigo.Text, TxtNombreCompleto.Text, TxtCorreoElectronico.Text, selectedItemCmb1.Valor,selectedItemCmb1.Texto, selectedItemCmb2.Valor, selectedItemCmb2.Texto });
 
                 MessageBox.Show("El usuario fue registrado correctamente.", "Registrar usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
@@ -150,7 +149,6 @@ namespace Presentacion
             dynamic selectedItemCmb1 = CmbRol.SelectedItem;
             dynamic selectedItemCmb2 = CmbEstado.SelectedItem;
             string mensaje;
-            //string saltGenerado = Seguridad.GenerarSalt();
 
             // Verificar si los ComboBoxes tienen valores seleccionados
             if (selectedItemCmb1 == null || selectedItemCmb2 == null)
@@ -163,6 +161,21 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
+            Usuario usuarioOriginal = new CN_Usuario().ObtenerPorId(Convert.ToInt32(TxtId.Text));
+            string claveEncriptada;
+            string salt;
+
+            if (!string.IsNullOrWhiteSpace(TxtClave.Text))
+            {
+                salt = Seguridad.GenerarSalt(); // Se genera un nuevo salt
+                claveEncriptada = Seguridad.HashClave(TxtClave.Text, salt); // Se encripta la nueva clave
+            }
+            else
+            {
+                salt = usuarioOriginal.Salt; // Mantener el salt original
+                claveEncriptada = usuarioOriginal.ClaveEncriptada; // Mantener la clave encriptada original
+            }
+
             // Crear el objeto Usuario
             Usuario usuarioModificado = new Usuario()
             {
@@ -170,9 +183,9 @@ namespace Presentacion
                 Codigo = TxtCodigo.Text,
                 NombreCompleto = TxtNombreCompleto.Text,
                 CorreoElectronico = TxtCorreoElectronico.Text,
-                /*Clave = Seguridad.HashClave(TxtClave.Text, saltGenerado),
-                Salt = saltGenerado,*/
-                Clave = TxtClave.Text,
+                ClaveEncriptada = claveEncriptada,
+                Salt = salt,
+
                 oRol = new Rol { IdRol = selectedItemCmb1.Valor },
                 Estado = selectedItemCmb2.Valor == 1
             };
@@ -188,7 +201,6 @@ namespace Presentacion
                 tablaUsuarios.Rows[indice].Cells["Codigo"].Value = usuarioModificado.Codigo;
                 tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value = usuarioModificado.NombreCompleto;
                 tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value = usuarioModificado.CorreoElectronico;
-                tablaUsuarios.Rows[indice].Cells["Clave"].Value = usuarioModificado.Clave;
                 tablaUsuarios.Rows[indice].Cells["IdRol"].Value = usuarioModificado.oRol.IdRol;
                 tablaUsuarios.Rows[indice].Cells["Rol"].Value = selectedItemCmb1.Texto;
                 tablaUsuarios.Rows[indice].Cells["EstadoValor"].Value = usuarioModificado.Estado ? 1 : 0;
@@ -277,7 +289,7 @@ namespace Presentacion
                     TxtCodigo.Text = tablaUsuarios.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombreCompleto.Text = tablaUsuarios.Rows[indice].Cells["NombresCompleto"].Value.ToString();
                     TxtCorreoElectronico.Text = tablaUsuarios.Rows[indice].Cells["CorreoElectronico"].Value.ToString();
-                    TxtClave.Text = tablaUsuarios.Rows[indice].Cells["Clave"].Value.ToString();
+                    TxtClave.Enabled = false;
 
                     foreach (dynamic item in CmbRol.Items)
                     {
@@ -320,6 +332,7 @@ namespace Presentacion
             TxtNombreCompleto.Clear();
             TxtCorreoElectronico.Clear();
             TxtClave.Clear();
+            TxtClave.Enabled = true;
             CmbRol.SelectedIndex = 0;
             CmbEstado.SelectedIndex = 0;
         }

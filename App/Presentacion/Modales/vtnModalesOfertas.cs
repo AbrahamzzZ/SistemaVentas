@@ -101,6 +101,15 @@ namespace Presentacion.Modales
 
                 e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
             }
+
+            if (this.TablaOfertas.Columns[e.ColumnIndex].Name == "Descuento" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal descuento))
+                {
+                    e.Value = descuento.ToString("0.##") + " %";
+                    e.FormattingApplied = true;
+                }
+            }
         }
     }
 }

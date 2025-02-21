@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnVenta));
             this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,16 +80,16 @@
             this.LblPorcentaje = new System.Windows.Forms.Label();
             this.lblImportante = new System.Windows.Forms.Label();
             this.PanelPrincipal = new System.Windows.Forms.Panel();
+            this.GroupBoxOferta = new System.Windows.Forms.GroupBox();
+            this.TxtDescuentoOferta = new System.Windows.Forms.TextBox();
+            this.BtnModalOferta = new System.Windows.Forms.Button();
+            this.TxtNombreOferta = new System.Windows.Forms.TextBox();
             this.LblRegistrarVenta = new System.Windows.Forms.Label();
             this.GroupBoxSucursal = new System.Windows.Forms.GroupBox();
             this.TxtIdSucursal = new System.Windows.Forms.TextBox();
             this.BtnModalSucursal = new System.Windows.Forms.Button();
             this.TxtSucursal = new System.Windows.Forms.TextBox();
             this.LblSucursal = new System.Windows.Forms.Label();
-            this.GroupBoxOferta = new System.Windows.Forms.GroupBox();
-            this.TxtDescuentoOferta = new System.Windows.Forms.TextBox();
-            this.BtnModalOferta = new System.Windows.Forms.Button();
-            this.TxtNombreOferta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.TablaVentas)).BeginInit();
             this.GroupBoxCliente.SuspendLayout();
             this.GroupBoxInformacionVenta.SuspendLayout();
@@ -97,8 +97,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudCantidad)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.PanelPrincipal.SuspendLayout();
-            this.GroupBoxSucursal.SuspendLayout();
             this.GroupBoxOferta.SuspendLayout();
+            this.GroupBoxSucursal.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnEliminar
@@ -162,15 +162,15 @@
             // 
             this.TablaVentas.AllowUserToAddRows = false;
             this.TablaVentas.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.TablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.TablaVentas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.TablaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProducto,
@@ -185,9 +185,9 @@
             this.TablaVentas.Name = "TablaVentas";
             this.TablaVentas.ReadOnly = true;
             this.TablaVentas.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.TablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.TablaVentas.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.TablaVentas.RowTemplate.Height = 28;
             this.TablaVentas.Size = new System.Drawing.Size(797, 196);
             this.TablaVentas.TabIndex = 123;
@@ -662,6 +662,54 @@
             this.PanelPrincipal.Size = new System.Drawing.Size(1212, 540);
             this.PanelPrincipal.TabIndex = 127;
             // 
+            // GroupBoxOferta
+            // 
+            this.GroupBoxOferta.BackColor = System.Drawing.Color.White;
+            this.GroupBoxOferta.Controls.Add(this.LblPorcentaje);
+            this.GroupBoxOferta.Controls.Add(this.TxtDescuentoOferta);
+            this.GroupBoxOferta.Controls.Add(this.BtnModalOferta);
+            this.GroupBoxOferta.Controls.Add(this.lblOferta);
+            this.GroupBoxOferta.Controls.Add(this.TxtNombreOferta);
+            this.GroupBoxOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBoxOferta.Location = new System.Drawing.Point(650, 210);
+            this.GroupBoxOferta.Name = "GroupBoxOferta";
+            this.GroupBoxOferta.Size = new System.Drawing.Size(510, 115);
+            this.GroupBoxOferta.TabIndex = 134;
+            this.GroupBoxOferta.TabStop = false;
+            this.GroupBoxOferta.Text = "Información Oferta";
+            // 
+            // TxtDescuentoOferta
+            // 
+            this.TxtDescuentoOferta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtDescuentoOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDescuentoOferta.Location = new System.Drawing.Point(354, 56);
+            this.TxtDescuentoOferta.Name = "TxtDescuentoOferta";
+            this.TxtDescuentoOferta.ReadOnly = true;
+            this.TxtDescuentoOferta.Size = new System.Drawing.Size(51, 27);
+            this.TxtDescuentoOferta.TabIndex = 119;
+            // 
+            // BtnModalOferta
+            // 
+            this.BtnModalOferta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnModalOferta.Image = global::Presentacion.Properties.Resources.buscar;
+            this.BtnModalOferta.Location = new System.Drawing.Point(453, 56);
+            this.BtnModalOferta.Name = "BtnModalOferta";
+            this.BtnModalOferta.Size = new System.Drawing.Size(38, 31);
+            this.BtnModalOferta.TabIndex = 116;
+            this.BtnModalOferta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnModalOferta.UseVisualStyleBackColor = true;
+            this.BtnModalOferta.Click += new System.EventHandler(this.BtnModalOferta_Click);
+            // 
+            // TxtNombreOferta
+            // 
+            this.TxtNombreOferta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtNombreOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombreOferta.Location = new System.Drawing.Point(20, 56);
+            this.TxtNombreOferta.Name = "TxtNombreOferta";
+            this.TxtNombreOferta.ReadOnly = true;
+            this.TxtNombreOferta.Size = new System.Drawing.Size(310, 27);
+            this.TxtNombreOferta.TabIndex = 113;
+            // 
             // LblRegistrarVenta
             // 
             this.LblRegistrarVenta.AutoSize = true;
@@ -729,54 +777,6 @@
             this.LblSucursal.TabIndex = 115;
             this.LblSucursal.Text = "Sucursal:";
             // 
-            // GroupBoxOferta
-            // 
-            this.GroupBoxOferta.BackColor = System.Drawing.Color.White;
-            this.GroupBoxOferta.Controls.Add(this.LblPorcentaje);
-            this.GroupBoxOferta.Controls.Add(this.TxtDescuentoOferta);
-            this.GroupBoxOferta.Controls.Add(this.BtnModalOferta);
-            this.GroupBoxOferta.Controls.Add(this.lblOferta);
-            this.GroupBoxOferta.Controls.Add(this.TxtNombreOferta);
-            this.GroupBoxOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBoxOferta.Location = new System.Drawing.Point(650, 210);
-            this.GroupBoxOferta.Name = "GroupBoxOferta";
-            this.GroupBoxOferta.Size = new System.Drawing.Size(510, 115);
-            this.GroupBoxOferta.TabIndex = 134;
-            this.GroupBoxOferta.TabStop = false;
-            this.GroupBoxOferta.Text = "Información Oferta";
-            // 
-            // TxtDescuentoOferta
-            // 
-            this.TxtDescuentoOferta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtDescuentoOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescuentoOferta.Location = new System.Drawing.Point(368, 56);
-            this.TxtDescuentoOferta.Name = "TxtDescuentoOferta";
-            this.TxtDescuentoOferta.ReadOnly = true;
-            this.TxtDescuentoOferta.Size = new System.Drawing.Size(37, 27);
-            this.TxtDescuentoOferta.TabIndex = 119;
-            // 
-            // BtnModalOferta
-            // 
-            this.BtnModalOferta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnModalOferta.Image = global::Presentacion.Properties.Resources.buscar;
-            this.BtnModalOferta.Location = new System.Drawing.Point(453, 56);
-            this.BtnModalOferta.Name = "BtnModalOferta";
-            this.BtnModalOferta.Size = new System.Drawing.Size(38, 31);
-            this.BtnModalOferta.TabIndex = 116;
-            this.BtnModalOferta.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnModalOferta.UseVisualStyleBackColor = true;
-            this.BtnModalOferta.Click += new System.EventHandler(this.BtnModalOferta_Click);
-            // 
-            // TxtNombreOferta
-            // 
-            this.TxtNombreOferta.BackColor = System.Drawing.Color.LightGray;
-            this.TxtNombreOferta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreOferta.Location = new System.Drawing.Point(20, 56);
-            this.TxtNombreOferta.Name = "TxtNombreOferta";
-            this.TxtNombreOferta.ReadOnly = true;
-            this.TxtNombreOferta.Size = new System.Drawing.Size(310, 27);
-            this.TxtNombreOferta.TabIndex = 113;
-            // 
             // VtnVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -799,10 +799,10 @@
             this.groupBox4.PerformLayout();
             this.PanelPrincipal.ResumeLayout(false);
             this.PanelPrincipal.PerformLayout();
-            this.GroupBoxSucursal.ResumeLayout(false);
-            this.GroupBoxSucursal.PerformLayout();
             this.GroupBoxOferta.ResumeLayout(false);
             this.GroupBoxOferta.PerformLayout();
+            this.GroupBoxSucursal.ResumeLayout(false);
+            this.GroupBoxSucursal.PerformLayout();
             this.ResumeLayout(false);
 
         }

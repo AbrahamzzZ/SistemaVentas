@@ -103,9 +103,9 @@
             // 
             // txtFechaFin
             // 
-            this.txtFechaFin.CustomFormat = "dd/MM/yyyy";
+            this.txtFechaFin.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.txtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtFechaFin.Location = new System.Drawing.Point(30, 431);
             this.txtFechaFin.Name = "txtFechaFin";
             this.txtFechaFin.Size = new System.Drawing.Size(280, 27);
@@ -135,9 +135,9 @@
             // 
             // txtFechaInicio
             // 
-            this.txtFechaInicio.CustomFormat = "dd/MM/yyyy";
+            this.txtFechaInicio.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.txtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtFechaInicio.Location = new System.Drawing.Point(30, 378);
             this.txtFechaInicio.Name = "txtFechaInicio";
             this.txtFechaInicio.Size = new System.Drawing.Size(280, 27);
@@ -492,7 +492,7 @@
             this.FechaInicio.MinimumWidth = 6;
             this.FechaInicio.Name = "FechaInicio";
             this.FechaInicio.ReadOnly = true;
-            this.FechaInicio.Width = 110;
+            this.FechaInicio.Width = 120;
             // 
             // FechaFin
             // 
@@ -500,7 +500,7 @@
             this.FechaFin.MinimumWidth = 6;
             this.FechaFin.Name = "FechaFin";
             this.FechaFin.ReadOnly = true;
-            this.FechaFin.Width = 90;
+            this.FechaFin.Width = 120;
             // 
             // Descuento
             // 

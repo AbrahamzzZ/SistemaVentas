@@ -278,12 +278,6 @@
     <Compile Include="vtnReclamo.Designer.cs">
       <DependentUpon>vtnReclamo.cs</DependentUpon>
     </Compile>
-    <Compile Include="vtnRecuperarClave.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vtnRecuperarClave.Designer.cs">
-      <DependentUpon>vtnRecuperarClave.cs</DependentUpon>
-    </Compile>
     <Compile Include="vtnReportesCompras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +289,12 @@
     </Compile>
     <Compile Include="vtnReportesVentas.Designer.cs">
       <DependentUpon>vtnReportesVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vtnRestablecerClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vtnRestablecerClave.Designer.cs">
+      <DependentUpon>vtnRestablecerClave.cs</DependentUpon>
     </Compile>
     <Compile Include="vtnSucursal.cs">
       <SubType>Form</SubType>
@@ -411,14 +411,14 @@
     <EmbeddedResource Include="vtnReclamo.resx">
       <DependentUpon>vtnReclamo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vtnRecuperarClave.resx">
-      <DependentUpon>vtnRecuperarClave.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="vtnReportesCompras.resx">
       <DependentUpon>vtnReportesCompras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vtnReportesVentas.resx">
       <DependentUpon>vtnReportesVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vtnRestablecerClave.resx">
+      <DependentUpon>vtnRestablecerClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vtnSucursal.resx">
       <DependentUpon>vtnSucursal.cs</DependentUpon>
