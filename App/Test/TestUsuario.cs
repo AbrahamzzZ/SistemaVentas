@@ -1,4 +1,5 @@
 ﻿using Datos;
+using Negocios;
 using Entidad;
 
 namespace Test
@@ -10,12 +11,15 @@ namespace Test
         [TestMethod]
         public void RegistrarUsuario()
         {
+            string saltGenerado = Seguridad.GenerarSalt();
+
             CD_Usuario ObjetoUsuario = new CD_Usuario();
             Usuario usuario = new Usuario
             {
                 Codigo = "0709",
                 NombreCompleto = "Andrea Romina Martinez Zuñiga",
-                Clave = "123armz/",
+                ClaveEncriptada = Seguridad.HashClave("7890poiu-", saltGenerado),
+                Salt = saltGenerado,
                 CorreoElectronico = "andreita@gmail.com",
                 oRol = new Rol { IdRol = 2},
                 Estado = false
@@ -32,13 +36,16 @@ namespace Test
         [TestMethod]
         public void EditarUsuario()
         {
+            string saltGenerado = Seguridad.GenerarSalt();
+
             CD_Usuario ObjetoUsuario = new CD_Usuario();
             Usuario usuario = new Usuario
             {
-                IdUsuario = 8,
+                IdUsuario = 6,
                 Codigo = "0709",
                 NombreCompleto = "Andrea Romina Martinez Zuñiga",
-                Clave = "123armz/",
+                ClaveEncriptada = Seguridad.HashClave("7890poiu-",saltGenerado),
+                Salt = saltGenerado,
                 CorreoElectronico = "andreita@gmail.com",
                 oRol = new Rol { IdRol = 2 },
                 Estado = true

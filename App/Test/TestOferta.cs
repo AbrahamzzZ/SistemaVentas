@@ -1,6 +1,7 @@
 using Datos;
 using Entidad;
 using System.Data;
+using System.Globalization;
 
 namespace Test
 {
@@ -17,8 +18,8 @@ namespace Test
                 Codigo = "0982",
                 oProducto = new Producto { IdProducto = 7},
                 Descripcion = "Extra grandes",
-                FechaInicio = "01/12/2024",
-                FechaFin = "02/02/2025",
+                FechaInicio = DateTime.ParseExact("01/12/2024 12:00:00", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                FechaFin = DateTime.ParseExact("02/02/2025 23:59:59", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
                 Descuento = (decimal?)30,
                 Estado = false
             };
@@ -37,13 +38,13 @@ namespace Test
             CD_Oferta ObjetoOferta = new CD_Oferta();
             Oferta oferta = new Oferta
             {
-                IdOferta = 9,
+                IdOferta = 1,
                 NombreOferta = "Super Oferta",
                 Codigo = "0982",
                 oProducto = new Producto { IdProducto = 7 },
                 Descripcion = "Extra grandes",
-                FechaInicio = "01/12/2024",
-                FechaFin = "01/20/2025",
+                FechaInicio = DateTime.ParseExact("01/12/2024 12:00:00", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                FechaFin = DateTime.ParseExact("27/02/2025 23:59:59", "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
                 Descuento = (decimal?)30,
                 Estado = true
             };
