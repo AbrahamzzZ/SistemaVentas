@@ -37,8 +37,8 @@ namespace Datos
                         NombreOferta = leer["NOMBRE_OFERTA"].ToString(),
                         oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
                         Descripcion = leer["DESCRIPCION"].ToString(),
-                        FechaInicio = leer["FECHA_INICIO"].ToString(),
-                        FechaFin = leer["FECHA_FIN"].ToString(),
+                        FechaInicio = Convert.ToDateTime(leer["FECHA_INICIO"]),
+                        FechaFin = Convert.ToDateTime(leer["FECHA_FIN"]),
                         Descuento = Convert.ToDecimal(leer["DESCUENTO"]),
                         Estado = Convert.ToBoolean(leer["ESTADO"])
                     });

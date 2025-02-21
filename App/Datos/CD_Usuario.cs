@@ -14,50 +14,18 @@ namespace Datos
         Conexion Conexion = new Conexion();
 
         /// <summary>
-        /// Método que permite ingresar el Usuario al sistema
+        /// Método que permite ingresar al Usuario al sistema.
         /// </summary>
-        /// <returns>Una lista de objetos de tipo Usuario</returns>
-        public List<Usuario> IngresarUsuarioLogin()
-        {
-            List<Usuario> listaUsuario = new List<Usuario>();
-            try
-            {
-                string registrar = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CLAVE, ESTADO FROM USUARIO";
-                SqlCommand cmd = new SqlCommand(registrar, Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
-                {
-                    listaUsuario.Add(new Usuario()
-                    {
-                        IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
-                        Clave = leer["CLAVE"].ToString(),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
-                }
-            }
-            catch (Exception)
-            {
-                listaUsuario = new List<Usuario>();
-            }
-            return listaUsuario;
-        }
-
-        /// <summary>
-        /// Metodo que permite recuperar la clave del Usuario
-        /// </summary>
-        /// <param name="correoElectronico">Correo electrónico del usuario cuya clave se desea recuperar.</param>
-        /// <returns>Un objeto Usuario que contiene la clave del usuario si se encuentra; de lo contrario, null.</returns>
-        public Usuario RecuperarClave(string correoElectronico)
+        /// <param name="codigo">Código del usuario.</param>
+        /// <returns>Un objeto de tipo Usuario.</returns>
+        public Usuario IngresarUsuarioLogin(string codigo)
         {
             Usuario usuario = null;
             try
             {
-                string consulta = "SELECT SALT FROM USUARIO WHERE CORREO_ELECTRONICO = @correoElectronico";
+                string consulta = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CLAVE, CLAVE_SALT, ESTADO FROM USUARIO WHERE CODIGO = @codigo";
                 SqlCommand cmd = new SqlCommand(consulta, Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@correoElectronico", correoElectronico);
+                cmd.Parameters.AddWithValue("@codigo", codigo);
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
 
@@ -65,13 +33,78 @@ namespace Datos
                 {
                     usuario = new Usuario()
                     {
-                        Clave = leer["CLAVE"].ToString()
+                        IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
+                        Codigo = leer["CODIGO"].ToString(),
+                        NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
+                        ClaveEncriptada = leer["CLAVE"].ToString(), // Recuperar la clave encriptada
+                        Salt = leer["CLAVE_SALT"].ToString(), // Recuperar el *salt*
+                        Estado = Convert.ToBoolean(leer["ESTADO"])
+                    };
+                }
+            }
+            catch (Exception)
+            {
+                usuario = null;
+            }
+            return usuario;
+        }
+
+        public bool GenerarTokenRecuperacion(string correoElectronico, ref string tokenGenerado)
+        {
+            try
+            {
+                string consulta = "UPDATE USUARIO SET TOKEN_RECUPERACION = @token WHERE CORREO_ELECTRONICO = @correo";
+
+                using (SqlCommand cmd = new SqlCommand(consulta, Conexion.ConexionBD()))
+                {
+                    cmd.Parameters.AddWithValue("@token", tokenGenerado);
+                    cmd.Parameters.AddWithValue("@correo", correoElectronico);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al generar token: " + ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Método que permite mostrar la información de un usuario mediante su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario.</param>
+        /// <returns>Un objeto Usuario que contiene la informacion de ese usuario.</returns>
+        public Usuario UsuarioID(int id)
+        {
+            Usuario usuario = null;
+            try
+            {
+                string consulta = "SELECT ID_USUARIO, CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ESTADO, ID_ROL FROM USUARIO WHERE ID_USUARIO = @id";
+                SqlCommand cmd = new SqlCommand(consulta, Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandType = CommandType.Text;
+                SqlDataReader leer = cmd.ExecuteReader();
+
+                if (leer.Read())
+                {
+                    usuario = new Usuario()
+                    {
+                        IdUsuario = Convert.ToInt32(leer["ID_USUARIO"]),
+                        Codigo = leer["CODIGO"].ToString(),
+                        NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
+                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
+                        ClaveEncriptada = leer["CLAVE"].ToString(), // Ahora devuelve la clave encriptada real
+                        Salt = leer["CLAVE_SALT"].ToString(), // También obtiene el salt del usuario
+                        Estado = Convert.ToBoolean(leer["ESTADO"]),
+                        oRol = new Rol() { IdRol = Convert.ToInt32(leer["ID_ROL"]) }
                     };
                 }
             }
             catch (Exception us)
             {
-                Console.WriteLine($"Error al mostrar la clave: {us.Message}");// Se registra el error
+                Console.WriteLine($"Error al mostrar el ID del usuario: {us.Message}");// Se registra el error
                 throw;// Permite que el error se propague si es necesario.
             }
             return usuario;
@@ -87,7 +120,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("SELECT u.ID_USUARIO, u.CODIGO, u.NOMBRE_COMPLETO, u.CORREO_ELECTRONICO, u.CLAVE, u.ESTADO, r.ID_ROL, r.DESCRIPCION FROM USUARIO u");
+                mostrar.AppendLine("SELECT u.ID_USUARIO, u.CODIGO, u.NOMBRE_COMPLETO, u.CORREO_ELECTRONICO, u.ESTADO, r.ID_ROL, r.DESCRIPCION FROM USUARIO u");
                 mostrar.AppendLine("inner join ROL r on r.ID_ROL = u.ID_ROL");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
@@ -100,7 +133,6 @@ namespace Datos
                         Codigo = leer["CODIGO"].ToString(),
                         NombreCompleto = leer["NOMBRE_COMPLETO"].ToString(),
                         CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
-                        Clave = leer["CLAVE"].ToString(),
                         Estado = Convert.ToBoolean(leer["ESTADO"]),
                         oRol = new Rol() { IdRol = Convert.ToInt32(leer["ID_ROL"]), Descripcion = leer["DESCRIPCION"].ToString() },
                     });
@@ -131,9 +163,8 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Clave", obj.Clave);
-                /*cmd.Parameters.AddWithValue("Clave_Hash", obj.Clave);
-                cmd.Parameters.AddWithValue("Salt", obj.Salt);*/
+                cmd.Parameters.AddWithValue("Clave_Hash", obj.ClaveEncriptada);
+                cmd.Parameters.AddWithValue("Salt", obj.Salt);
                 cmd.Parameters.AddWithValue("Id_Rol", obj.oRol.IdRol);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
                 cmd.Parameters.Add("Id_Usuario_Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -171,9 +202,8 @@ namespace Datos
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Completo", obj.NombreCompleto);
                 cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                /*cmd.Parameters.AddWithValue("Clave_Hash", obj.Clave);
-                cmd.Parameters.AddWithValue("Salt", obj.Salt);*/
-                cmd.Parameters.AddWithValue("Clave", obj.Clave);
+                cmd.Parameters.AddWithValue("Clave_Hash", obj.ClaveEncriptada);
+                cmd.Parameters.AddWithValue("Salt", obj.Salt);
                 cmd.Parameters.AddWithValue("Id_Rol", obj.oRol.IdRol);
                 cmd.Parameters.AddWithValue("Estado", obj.Estado);
                 cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
