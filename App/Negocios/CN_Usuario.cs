@@ -18,53 +18,24 @@ namespace Negocios
         /// <summary>
         /// Método que muestra al usuario logueado.
         /// </summary>
-        /// <returns>Una lista de objetos de tipo Usuario.</returns>
-        public List<Usuario> Ingresar()
+        /// <param name="codigo">Código del usuario a ingresar.</param>
+        /// <returns>Un objeto de tipo Usuario.</returns>
+        public Usuario Ingresar(string codigo)
         {
-            return ObjetoUsuario.IngresarUsuarioLogin();
+            return ObjetoUsuario.IngresarUsuarioLogin(codigo);
+        }
+
+        public bool Token(string correoElectronico, ref string tokenGenerado)
+        {
+            return ObjetoUsuario.GenerarTokenRecuperacion(correoElectronico, ref tokenGenerado);
         }
 
         /// <summary>
-        /// Método que muestra la clave del usuario mediante el correo electrónico.
+        /// 
         /// </summary>
-        /// <param name="correoElectronico">El correo electrónico del usuario.</param>
-        /// <param name="mensaje">Mensaje de salida con el resultado de la operación.</param>
-        /// <returns>Un objeto Usuario con la clave del usuario.</returns>
-        public Usuario MostrarClave(string correoElectronico, out string mensaje)
-        {
-            mensaje = string.Empty;
-
-            if (string.IsNullOrWhiteSpace(correoElectronico))
-            {
-                mensaje = "Por favor, ingrese un correo electrónico.";
-                return null;
-            }
-
-            if (!EsCorreoValido(correoElectronico))
-            {
-                mensaje = "El correo electrónico ingresado no es válido.";
-                return null;
-            }
-
-            // Si las validaciones pasan, buscar el usuario por correo electrónico
-            return ObjetoUsuario.RecuperarClave(correoElectronico);
-        }
-
-        /// <summary>
-        /// Método que enlista todos los usuarios para que aparezcan en la tabla de la ventana Usuario.
-        /// </summary>
-        /// <returns>Una lista de objetos de tipo Usuario.</returns>
-        public List<Usuario> ListarUsuario()
-        {
-            return ObjetoUsuario.MostrarUsuarios();
-        }
-
-        /// <summary>
-        /// Método que valida las credenciales para iniciar sesión.
-        /// </summary>
-        /// <param name="codigo">El código del usuario.</param>
-        /// <param name="clave">La clave del usuario.</param>
-        /// <returns>Un mensaje indicando el resultado de la validación.</returns>
+        /// <param name="codigo"></param>
+        /// <param name="clave"></param>
+        /// <returns></returns>
         public string ValidarLogin(string codigo, string clave)
         {
             if (string.IsNullOrWhiteSpace(codigo) || string.IsNullOrWhiteSpace(clave))
@@ -77,8 +48,7 @@ namespace Negocios
             }
 
             // Buscar el usuario por código y clave
-            List<Usuario> listaUsuarios = ObjetoUsuario.IngresarUsuarioLogin();
-            Usuario usuario = listaUsuarios.FirstOrDefault(u => u.Codigo == codigo && u.Clave == clave);
+            Usuario usuario = ObjetoUsuario.IngresarUsuarioLogin(codigo);
 
             if (usuario == null)
             {
@@ -98,7 +68,26 @@ namespace Negocios
                 return "El usuario no está habilitado. Por favor, contacte al administrador.";
             }
 
-            return string.Empty; 
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Método que enlista todos los usuarios para que aparezcan en la tabla de la ventana Usuario.
+        /// </summary>
+        /// <returns>Una lista de objetos de tipo Usuario.</returns>
+        public List<Usuario> ListarUsuario()
+        {
+            return ObjetoUsuario.MostrarUsuarios();
+        }
+
+        /// <summary>
+        /// Método que muestra la información de un usuario en especifico por su ID.
+        /// </summary>
+        /// <param name="id">El ID del usuario.</param>
+        /// <returns>Un objeto Usuario con el ID del usuario.</returns>
+        public Usuario ObtenerPorId(int id)
+        {
+            return ObjetoUsuario.UsuarioID(id);
         }
 
         /// <summary>
@@ -131,12 +120,12 @@ namespace Negocios
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
-            // Validar Clave
-            if (string.IsNullOrWhiteSpace(obj.Clave))
+            // Validar ClaveEncriptada
+            if (string.IsNullOrWhiteSpace(obj.ClaveEncriptada))
             {
                 mensaje += "\n- Es necesario la clave del usuario.";
             }
-            else if (!EsClaveValida(obj.Clave))
+            else if (!EsClaveValida(obj.ClaveEncriptada))
             {
                 mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
             }
@@ -181,15 +170,15 @@ namespace Negocios
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
-            // Validar Clave
-            if (string.IsNullOrWhiteSpace(obj.Clave))
+            // Validar ClaveEncriptada
+            /*if (string.IsNullOrWhiteSpace(obj.ClaveEncriptada))
             {
                 mensaje += "\n- Es necesario la clave del usuario.";
             }
-            else if (!EsClaveValida(obj.Clave))
+            else if (!EsClaveValida(obj.ClaveEncriptada))
             {
                 mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
-            }
+            }*/
 
             // Retornar false si hay mensajes de error
             if (!string.IsNullOrWhiteSpace(mensaje))
@@ -262,7 +251,7 @@ namespace Negocios
         /// <summary>
         /// Verifica si la clave del usuario es válida.
         /// </summary>
-        /// <param name="clave">Clave del usuario.</param>
+        /// <param name="clave">ClaveEncriptada del usuario.</param>
         /// <returns>Un booleano que indica si la clave es válida.</returns>
         private bool EsClaveValida(string clave)
         {

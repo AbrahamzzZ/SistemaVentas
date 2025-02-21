@@ -30,5 +30,17 @@ namespace Negocios
                 return Convert.ToBase64String(hash);
             }
         }
+
+        public static string GenerarToken()
+        {
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] token = new byte[10];
+                rng.GetBytes(token);
+                return BitConverter.ToString(token).Replace("-", "").Substring(0, 10);
+            }
+        }
+
+
     }
 }
