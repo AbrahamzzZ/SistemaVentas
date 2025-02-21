@@ -13,8 +13,9 @@ namespace Entidad
         public string Codigo { get; set; }
         public string NombreCompleto { get; set; }
         public string CorreoElectronico { get; set; }
-        public string Clave { get; set; }
+        public string ClaveEncriptada { get; set; }
         public string Salt { get; set; }
+        public string TokenRecuperacion { get; set; }
         public Rol oRol { get; set; }
         public bool Estado { get; set; }
     }
