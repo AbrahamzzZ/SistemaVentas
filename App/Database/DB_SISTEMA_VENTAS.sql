@@ -81,7 +81,8 @@ CODIGO varchar(10),
 NOMBRE_COMPLETO varchar(70),
 CORREO_ELECTRONICO nvarchar(50),
 CLAVE nvarchar(300),
-/*CLAVE_SALT nvarchar(100),*/
+CLAVE_SALT nvarchar(100),
+TOKEN_RECUPERACION NVARCHAR(100) NULL,
 ID_ROL int references ROL(ID_ROL),
 ESTADO bit,
 FECHA_CREACION datetime default getdate()
@@ -112,7 +113,7 @@ NOMBRE_PRODUCTO nvarchar(30),
 ID_CATEGORIA int references CATEGORIA(ID_CATEGORIA),
 ID_UNIDAD_MEDIDA int references UNIDAD_MEDIDA(ID_UNIDAD_MEDIDA),
 PAIS_ORIGEN varchar(30),
-STOCK int not null default 0,
+STOCK int NOT NULL default 0,
 PRECIO_COMPRA decimal (10,2) default 0,
 PRECIO_VENTA decimal (10,2) default 0,
 ESTADO bit,
@@ -120,7 +121,7 @@ ESTADO bit,
 go
 
 CREATE TABLE ZONA_ALMACEN (ID_ZONA int IDENTITY PRIMARY KEY,
-NOMBRE_ZONA varchar(20) UNIQUE NOT NULL, 
+NOMBRE_ZONA varchar(20), 
 LIMITE_ESPACIOS int NOT NULL DEFAULT 200,
 ESTADO bit,
 FECHA_REGISTRO datetime default getdate()
@@ -195,12 +196,12 @@ go*/
 
 CREATE TABLE OFERTA (ID_OFERTA INT PRIMARY KEY IDENTITY,
 CODIGO varchar(10),
-NOMBRE_OFERTA VARCHAR(50), 
+NOMBRE_OFERTA varchar(50), 
 ID_PRODUCTO int references PRODUCTO(ID_PRODUCTO),
 DESCRIPCION varchar(250),
-FECHA_INICIO varchar(20),
-FECHA_FIN varchar(20),
-DESCUENTO decimal(4) default 0,
+FECHA_INICIO date,
+FECHA_FIN date,
+DESCUENTO decimal(5,2) default 0,
 ESTADO bit,
 FECHA_CREACION datetime default getdate()
 );
@@ -212,8 +213,8 @@ CREATE PROC PA_REGISTRAR_USUARIO(
 @Codigo varchar(30),
 @Nombre_Completo varchar(70),
 @Correo_Electronico varchar(50),
-@Clave nvarchar(300),
-/*@Clave_Salt NVARCHAR(100),*/
+@Clave_Hash nvarchar(300),
+@Salt nvarchar(100),
 @Id_Rol int,
 @Estado bit,
 @Id_Usuario_Resultado int output,
@@ -230,8 +231,8 @@ BEGIN
         IF NOT EXISTS (SELECT 1 FROM USUARIO WHERE CODIGO = @Codigo)
         BEGIN
 
-            INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE/*, CLAVE_SALT */, ID_ROL, ESTADO)
-            VALUES (@Codigo, @Nombre_Completo, @Correo_Electronico, @Clave/*, @Clave_Salt*/, @Id_Rol, @Estado);
+            INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, TOKEN_RECUPERACION, ID_ROL, ESTADO)
+            VALUES (@Codigo, @Nombre_Completo, @Correo_Electronico, @Clave_Hash, @Salt, NULL, @Id_Rol, @Estado);
 
             SET @Id_Usuario_Resultado = SCOPE_IDENTITY();
             SET @Mensaje = 'Usuario registrado exitosamente.';
@@ -253,7 +254,7 @@ BEGIN
 END;
 go
 
-CREATE PROC PA_EDITAR_USUARIO(
+/*CREATE PROC PA_EDITAR_USUARIO(
 @Id_Usuario int,
 @Codigo varchar(10),
 @Nombre_Completo varchar(70),
@@ -311,14 +312,15 @@ BEGIN
         SET @Respuesta = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
-END;
-/*CREATE PROC PA_EDITAR_USUARIO(
+END;*/
+CREATE PROC PA_EDITAR_USUARIO(
     @Id_Usuario int,
     @Codigo varchar(10),
     @Nombre_Completo varchar(70),
     @Correo_Electronico varchar(50),
     @Clave_Hash NVARCHAR(300) = NULL, -- Clave encriptada opcional
     @Salt NVARCHAR(100) = NULL,       -- Salt opcional si se cambia la clave
+	@TokenRecuperacion nvarchar(100) = NULL, 
     @Id_Rol int,
     @Estado bit,
     @Respuesta bit output,
@@ -344,28 +346,40 @@ BEGIN
             IF EXISTS (SELECT 1 FROM USUARIO WHERE ID_USUARIO = @Id_Usuario)
             BEGIN
                 -- Si no se proporciona nueva clave, mantener la actual
-                IF @Clave_Hash IS NULL
-                BEGIN
-                    UPDATE USUARIO
-                    SET CODIGO = @Codigo,
-                        NOMBRE_COMPLETO = @Nombre_Completo,
-                        CORREO_ELECTRONICO = @Correo_Electronico,
-                        ID_ROL = @Id_Rol,
-                        ESTADO = @Estado
-                    WHERE ID_USUARIO = @Id_Usuario;
-                END
-                ELSE
-                BEGIN
-                    UPDATE USUARIO
-                    SET CODIGO = @Codigo,
-                        NOMBRE_COMPLETO = @Nombre_Completo,
-                        CORREO_ELECTRONICO = @Correo_Electronico,
-                        CLAVE = @Clave_Hash,
-                        CLAVE_SALT = @Salt,
-                        ID_ROL = @Id_Rol,
-                        ESTADO = @Estado
-                    WHERE ID_USUARIO = @Id_Usuario;
-                END
+                IF @Clave_Hash IS NULL AND @TokenRecuperacion IS NULL
+				BEGIN
+					UPDATE USUARIO
+					SET CODIGO = @Codigo,
+						NOMBRE_COMPLETO = @Nombre_Completo,
+						CORREO_ELECTRONICO = @Correo_Electronico,
+						ID_ROL = @Id_Rol,
+						ESTADO = @Estado
+					WHERE ID_USUARIO = @Id_Usuario;
+				END
+				ELSE IF @Clave_Hash IS NULL AND @TokenRecuperacion IS NOT NULL
+				BEGIN
+					UPDATE USUARIO
+					SET CODIGO = @Codigo,
+						NOMBRE_COMPLETO = @Nombre_Completo,
+						CORREO_ELECTRONICO = @Correo_Electronico,
+						TOKEN_RECUPERACION = @TokenRecuperacion,
+						ID_ROL = @Id_Rol,
+						ESTADO = @Estado
+					WHERE ID_USUARIO = @Id_Usuario;
+				END
+				ELSE
+				BEGIN
+					UPDATE USUARIO
+					SET CODIGO = @Codigo,
+						NOMBRE_COMPLETO = @Nombre_Completo,
+						CORREO_ELECTRONICO = @Correo_Electronico,
+						CLAVE = @Clave_Hash,
+						CLAVE_SALT = @Salt,
+						TOKEN_RECUPERACION = NULL, -- Si cambia la clave, se invalida el token
+						ID_ROL = @Id_Rol,
+						ESTADO = @Estado
+					WHERE ID_USUARIO = @Id_Usuario;
+				END
 
                 SET @Respuesta = 1;
                 SET @Mensaje = 'Usuario actualizado exitosamente.';
@@ -385,7 +399,7 @@ BEGIN
         SET @Respuesta = 0;
         SET @Mensaje = ERROR_MESSAGE();
     END CATCH
-END;*/
+END;
 go
 
 CREATE PROC PA_ELIMINAR_USUARIO(
@@ -1395,9 +1409,9 @@ BEGIN
     END TRY
     BEGIN CATCH
 		--Manejo de errores
+		ROLLBACK TRANSACTION registro;
         SET @Resultado = 0;
         SET @Mensaje = ERROR_MESSAGE();
-        ROLLBACK TRANSACTION registro;
     END CATCH
 END;
 go
@@ -1432,7 +1446,7 @@ BEGIN
 		SET @Resultado = 1
 		SET @Mensaje = ''
 
-		BEGIN TRANSACTION registro
+		BEGIN TRANSACTION registro;
 
 		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_SUCURSAL, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
 		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @Id_Sucursal, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
@@ -1448,10 +1462,11 @@ BEGIN
 		-- Asignar mensaje de éxito
         SET @Mensaje = 'Venta registrada con éxito';
 
-		COMMIT TRANSACTION registro
+		COMMIT TRANSACTION registro;
 	END TRY
 	BEGIN CATCH
 		--Manejo de errores
+		ROLLBACK TRANSACTION registro;
 		SET @Resultado = 0
 		SET @Mensaje = ERROR_MESSAGE()
 
@@ -1518,9 +1533,9 @@ CREATE PROC PA_REGISTRAR_OFERTA(
 @Nombre_Oferta varchar(50),
 @Id_Producto int,
 @Descripcion varchar(250),
-@Fecha_Inicio varchar(20),
-@Fecha_Fin varchar(20),
-@Descuento decimal(10,2),
+@Fecha_Inicio datetime,
+@Fecha_Fin datetime,
+@Descuento decimal(5,2),
 @Estado bit,
 @Resultado int output,
 @Mensaje varchar (500) output
@@ -1549,6 +1564,7 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		--Manejo de errores
+		ROLLBACK TRANSACTION;
 		SET @Resultado = 0
 		SET @Mensaje = ERROR_MESSAGE()
 
@@ -1562,9 +1578,9 @@ CREATE PROC PA_EDITAR_OFERTA(
 @Nombre_Oferta varchar(50),
 @Id_Producto int,
 @Descripcion varchar(250),
-@Fecha_Inicio varchar(20),
-@Fecha_Fin varchar(20),
-@Descuento decimal(10,2),
+@Fecha_Inicio datetime,
+@Fecha_Fin datetime,
+@Descuento decimal(5,2),
 @Estado bit,
 @Resultado bit output,
 @Mensaje varchar (500) output
@@ -1601,6 +1617,7 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		--Manejo de errores
+		ROLLBACK TRANSACTION;
 		SET @Resultado = 0
 		SET @Mensaje = ERROR_MESSAGE()
 	END CATCH
@@ -2022,15 +2039,15 @@ INSERT INTO ROL (DESCRIPCION) VALUES('Administrador');
 go
 INSERT INTO ROL (DESCRIPCION) VALUES ('Empleado');
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00001','Abraham Andres Farfan Sanchez','hermanosfarfan@gmail.com','jawi2010.',1,1);
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00001', 'Abraham Andres Farfan Sanchez', 'hermanosfarfan@gmail.com', HASHBYTES('SHA2_256', 'jawi2010.'), NEWID(), 1, 1);
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00002','Maria Belen Becerra Lopez','belencita@gmail.com','1234abcd-',2,1);
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00002', 'Maria Belen Becerra Lopez', 'belencita@gmail.com', HASHBYTES('SHA2_256', '1234abcd-'), NEWID(), 2, 1);
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00003','Mateo Juan Alvarado Noboa','luispro@gmail.com','tierra123/',1,0);
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00003', 'Mateo Juan Alvarado Noboa', 'luispro@gmail.com', HASHBYTES('SHA2_256', 'tierra123/'), NEWID(), 1, 0);
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00004','Jose Maria Velazco Torres','jose@gmail.com','12_julio',2,1);
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00004', 'Jose Maria Velazco Torres', 'jose@gmail.com', HASHBYTES('SHA2_256', '12_julio'), NEWID(), 2, 1);
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, ID_ROL,ESTADO) VALUES ('00005','Esteban Leonardo Leon Marcillo','leonardo128@gmail.com','freefire_04',2,0);
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00005', 'Esteban Leonardo Leon Marcillo', 'leonardo128@gmail.com', HASHBYTES('SHA2_256', 'freefire_04'), NEWID(), 2, 0);
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (1,'MenuUsuarios'),

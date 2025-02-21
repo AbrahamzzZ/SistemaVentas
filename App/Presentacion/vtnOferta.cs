@@ -133,8 +133,8 @@ namespace Presentacion
                 Codigo = TxtCodigo.Text,
                 NombreOferta = TxtNombre.Text,
                 Descripcion = RtextDescripcion.Text,
-                FechaInicio = txtFechaInicio.Text,
-                FechaFin = txtFechaFin.Text,
+                FechaInicio = Convert.ToDateTime(txtFechaInicio.Text),
+                FechaFin = Convert.ToDateTime(txtFechaFin.Text),
                 Descuento = descuento,
                 oProducto = new Producto { IdProducto = selectedItemCmb1.Valor },
                 Estado = selectedItemCmb2.Valor == 1
@@ -191,47 +191,36 @@ namespace Presentacion
                 oProducto = new Producto { IdProducto = selectedItemCmb1.Valor },
                 NombreOferta = TxtNombre.Text,
                 Descripcion = RtextDescripcion.Text,
-                FechaInicio = txtFechaInicio.Text,
-                FechaFin = txtFechaFin.Text,
+                FechaInicio = Convert.ToDateTime(txtFechaInicio.Text),
+                FechaFin = Convert.ToDateTime(txtFechaFin.Text),
                 Descuento = descuento,
                 Estado = selectedItemCmb2.Valor == 1
             };
 
-            /*List<Producto> listaProducto = new CN_Producto().ListarProducto();
-            Producto productoSeleccionado = listaProducto.FirstOrDefault(c => c.IdProducto == selectedItemCmb1.Valor);
-            if (productoSeleccionado != null && !productoSeleccionado.Estado)
+            // Delegar la validación y edición a la lógica de negocio
+            bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
+            if (modificar)
             {
-                MessageBox.Show("El producto seleccionado no está habilitado. Por favor, seleccione un producto activo.", "Producto no habilitado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("La información de la oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                int indice = Convert.ToInt32(TxtIndice.Text);
+                tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;
+                tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
+                tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
+                tablaOferta.Rows[indice].Cells["Producto"].Value = selectedItemCmb1.Texto;
+                tablaOferta.Rows[indice].Cells["Descripcion"].Value = ofertaModificado.Descripcion;
+                tablaOferta.Rows[indice].Cells["FechaInicio"].Value = ofertaModificado.FechaInicio;
+                tablaOferta.Rows[indice].Cells["FechaFin"].Value = ofertaModificado.FechaFin;
+                tablaOferta.Rows[indice].Cells["Descuento"].Value = ofertaModificado.Descuento;
+                tablaOferta.Rows[indice].Cells["EstadoValor"].Value = ofertaModificado.Estado ? 1 : 0;
+                tablaOferta.Rows[indice].Cells["Estado"].Value = ofertaModificado.Estado ? "Activo" : "No Activo";
+
                 Limpiar();
-                return;
             }
             else
-            {*/
-                // Delegar la validación y edición a la lógica de negocio
-                bool modificar = new CN_Oferta().Editar(ofertaModificado, out mensaje);
-                if (modificar)
-                {
-                    MessageBox.Show("La información de la oferta fue modificada correctamente.", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    int indice = Convert.ToInt32(TxtIndice.Text);
-                    tablaOferta.Rows[indice].Cells["Codigo"].Value = ofertaModificado.Codigo;
-                    tablaOferta.Rows[indice].Cells["Oferta"].Value = ofertaModificado.NombreOferta;
-                    tablaOferta.Rows[indice].Cells["IDPRODUCTO"].Value = ofertaModificado.oProducto.IdProducto;
-                    tablaOferta.Rows[indice].Cells["Producto"].Value = selectedItemCmb1.Texto;
-                    tablaOferta.Rows[indice].Cells["Descripcion"].Value = ofertaModificado.Descripcion;
-                    tablaOferta.Rows[indice].Cells["FechaInicio"].Value = ofertaModificado.FechaInicio;
-                    tablaOferta.Rows[indice].Cells["FechaFin"].Value = ofertaModificado.FechaFin;
-                    tablaOferta.Rows[indice].Cells["Descuento"].Value = ofertaModificado.Descuento;
-                    tablaOferta.Rows[indice].Cells["EstadoValor"].Value = ofertaModificado.Estado ? 1 : 0;
-                    tablaOferta.Rows[indice].Cells["Estado"].Value = ofertaModificado.Estado ? "Activo" : "No Activo";
-
-                    Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show($"No se pudo modificar la información de la oferta: {mensaje}", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            //}
+            {
+                MessageBox.Show($"No se pudo modificar la información de la oferta: {mensaje}", "Modificar oferta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -294,6 +283,14 @@ namespace Presentacion
                 else
                 {
                     e.CellStyle.BackColor = Color.Red;
+                }
+            }
+
+            if (this.tablaOferta.Columns[e.ColumnIndex].Name == "Descuento" && e.Value != null)
+            {
+                if (decimal.TryParse(e.Value.ToString(), out decimal descuento)){
+                    e.Value = descuento.ToString("0.##") + " %";
+                    e.FormattingApplied = true;
                 }
             }
         }

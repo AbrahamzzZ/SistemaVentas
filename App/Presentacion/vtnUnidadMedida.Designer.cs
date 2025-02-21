@@ -171,7 +171,7 @@
             this.lblClave.Name = "lblClave";
             this.lblClave.Size = new System.Drawing.Size(62, 20);
             this.lblClave.TabIndex = 89;
-            this.lblClave.Text = "Clave:";
+            this.lblClave.Text = "ClaveEncriptada:";
             // 
             // BtnLimpiar
             // 

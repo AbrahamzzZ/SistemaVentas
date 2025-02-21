@@ -53,17 +53,17 @@ namespace Presentacion
 
             if (string.IsNullOrEmpty(mensaje))
             {
-                List<Usuario> usuarioLogin = new CN_Usuario().Ingresar();
-                Usuario_Catched usuario = Usuario_Catched.GetInstance();
-                Usuario usuarioEncontrado = usuarioLogin.FirstOrDefault(u => u.Codigo == TxtCodigo.Text && u.Clave == TxtClave.Text);
-                usuario.IdUsuario = usuarioEncontrado.IdUsuario;
-                usuario.Codigo = usuarioEncontrado.Codigo;
-                usuario.NombreCompleto = usuarioEncontrado.NombreCompleto;
-                usuario.Clave = usuarioEncontrado.Clave;
-                usuario.Estado = usuarioEncontrado.Estado;
+                Usuario usuario = new CN_Usuario().Ingresar(TxtCodigo.Text);
+                Usuario_Catched usuarioSesion = Usuario_Catched.GetInstance();
+
+                usuarioSesion.IdUsuario = usuario.IdUsuario;
+                usuarioSesion.Codigo = usuario.Codigo;
+                usuarioSesion.NombreCompleto = usuario.NombreCompleto;
+                usuarioSesion.ClaveEncriptada = usuario.ClaveEncriptada;
+                usuarioSesion.Estado = usuario.Estado;
 
                 MessageBox.Show("Bienvenido al sistema " + usuario.NombreCompleto + ".", "Inicio de sesión exitoso.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                VtnMenu menu = new VtnMenu(usuario);
+                VtnMenu menu = new VtnMenu(usuarioSesion);
                 menu.Show();
                 this.Hide();
                 menu.FormClosing += Cerrar;
@@ -95,9 +95,10 @@ namespace Presentacion
 
         private void LblHagaClicAqui_Click(object sender, EventArgs e)
         {
-            VtnRecuperarClave recuperacion = new VtnRecuperarClave();
+            VtnRestablecerClave restablecer = new VtnRestablecerClave();
             this.Hide();
-            recuperacion.ShowDialog();
+            //recuperacion.ShowDialog();
+            restablecer.ShowDialog();
             this.Show();
         }
 

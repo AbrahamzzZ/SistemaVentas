@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.TxtIndice = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
@@ -38,7 +38,7 @@
             this.CmbRol = new System.Windows.Forms.ComboBox();
             this.TxtClave = new System.Windows.Forms.TextBox();
             this.lblRol = new System.Windows.Forms.Label();
-            this.lblClave = new System.Windows.Forms.Label();
+            this.LblClave = new System.Windows.Forms.Label();
             this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
             this.lblCorreoElectronico = new System.Windows.Forms.Label();
             this.TxtNombreCompleto = new System.Windows.Forms.TextBox();
@@ -54,7 +54,6 @@
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombresCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorreoElectronico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDROL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,16 +151,16 @@
             this.lblRol.TabIndex = 58;
             this.lblRol.Text = "Rol:";
             // 
-            // lblClave
+            // LblClave
             // 
-            this.lblClave.AutoSize = true;
-            this.lblClave.BackColor = System.Drawing.Color.Wheat;
-            this.lblClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClave.Location = new System.Drawing.Point(26, 310);
-            this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(62, 20);
-            this.lblClave.TabIndex = 57;
-            this.lblClave.Text = "Clave:";
+            this.LblClave.AutoSize = true;
+            this.LblClave.BackColor = System.Drawing.Color.Wheat;
+            this.LblClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblClave.Location = new System.Drawing.Point(26, 310);
+            this.LblClave.Name = "LblClave";
+            this.LblClave.Size = new System.Drawing.Size(62, 20);
+            this.LblClave.TabIndex = 57;
+            this.LblClave.Text = "Clave:";
             // 
             // TxtCorreoElectronico
             // 
@@ -261,15 +260,15 @@
             // 
             this.tablaUsuarios.AllowUserToAddRows = false;
             this.tablaUsuarios.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tablaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tablaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.tablaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar,
@@ -277,7 +276,6 @@
             this.Codigo,
             this.NombresCompleto,
             this.CorreoElectronico,
-            this.Clave,
             this.IDROL,
             this.Rol,
             this.EstadoValor,
@@ -287,9 +285,9 @@
             this.tablaUsuarios.Name = "tablaUsuarios";
             this.tablaUsuarios.ReadOnly = true;
             this.tablaUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.tablaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.tablaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.tablaUsuarios.RowTemplate.Height = 28;
             this.tablaUsuarios.Size = new System.Drawing.Size(978, 248);
             this.tablaUsuarios.TabIndex = 45;
@@ -337,15 +335,6 @@
             this.CorreoElectronico.Name = "CorreoElectronico";
             this.CorreoElectronico.ReadOnly = true;
             this.CorreoElectronico.Width = 220;
-            // 
-            // Clave
-            // 
-            this.Clave.HeaderText = "Clave";
-            this.Clave.MinimumWidth = 6;
-            this.Clave.Name = "Clave";
-            this.Clave.ReadOnly = true;
-            this.Clave.Visible = false;
-            this.Clave.Width = 125;
             // 
             // IDROL
             // 
@@ -467,7 +456,7 @@
             this.Controls.Add(this.CmbRol);
             this.Controls.Add(this.TxtClave);
             this.Controls.Add(this.lblRol);
-            this.Controls.Add(this.lblClave);
+            this.Controls.Add(this.LblClave);
             this.Controls.Add(this.TxtCorreoElectronico);
             this.Controls.Add(this.lblCorreoElectronico);
             this.Controls.Add(this.TxtNombreCompleto);
@@ -503,7 +492,7 @@
         private System.Windows.Forms.ComboBox CmbRol;
         private System.Windows.Forms.TextBox TxtClave;
         private System.Windows.Forms.Label lblRol;
-        private System.Windows.Forms.Label lblClave;
+        private System.Windows.Forms.Label LblClave;
         private System.Windows.Forms.TextBox TxtCorreoElectronico;
         private System.Windows.Forms.Label lblCorreoElectronico;
         private System.Windows.Forms.TextBox TxtNombreCompleto;
@@ -521,12 +510,12 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.ComboBox CmbBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
         private System.Windows.Forms.DataGridViewButtonColumn btnSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombresCompleto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorreoElectronico;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDROL;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
