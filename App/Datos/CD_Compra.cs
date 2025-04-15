@@ -12,7 +12,7 @@ namespace Datos
 {
     public class CD_Compra
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra el correlativo de cada Compra

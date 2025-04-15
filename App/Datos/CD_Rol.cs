@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CD_Rol
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra una lista de todos los Roles que existen

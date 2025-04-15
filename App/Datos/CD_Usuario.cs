@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CD_Usuario
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que permite ingresar al Usuario al sistema.

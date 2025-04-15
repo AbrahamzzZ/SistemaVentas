@@ -20,7 +20,7 @@ namespace Datos
         /// <returns>Retorna una conexión SQL abierta.</returns>
         public SqlConnection ConexionBD()
         {
-            SqlConnection ConexionBaseDatos = null;
+            SqlConnection ConexionBaseDatos;
             try
             {
                 // Usar esta cadena de conexión para ocultarla dentro del código
