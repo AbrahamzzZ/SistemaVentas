@@ -2,16 +2,12 @@
 using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Negocios
 {
     public class CN_Categoria
     {
-        private CD_Categoria ObjetoCategoria = new CD_Categoria();
+        private readonly CD_Categoria ObjetoCategoria = new CD_Categoria();
 
         /// <summary>
         /// Lista todas las categorías.
@@ -33,17 +29,17 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la categoría.";
             }
-            else if (!EsDescripcionValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Descripcion))
             {
                 mensaje += "\n- El nombre de la categoría solo puede contener letras y no números.";
             }
 
             // Retorna 0 si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -62,17 +58,17 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la categoría.";
             }
-            else if (!EsDescripcionValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Descripcion))
             {
                 mensaje += "\n- El nombre de la categoría solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -95,17 +91,6 @@ namespace Negocios
                 return false;
             }
             return ObjetoCategoria.EliminarCategoria(obj, out mensaje);
-        }
-
-        /// <summary>
-        /// Verifica si la descripción de la categoría es válida.
-        /// </summary>
-        /// <param name="nombre">La descripción de la categoría.</param>
-        /// <returns>Un booleano que indica si la descripción es válida.</returns>
-        private bool EsDescripcionValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

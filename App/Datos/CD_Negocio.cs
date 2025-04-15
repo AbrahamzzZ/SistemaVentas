@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CD_Negocio
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra la información del Negocio

@@ -36,7 +36,6 @@
             this.CmbEstado = new System.Windows.Forms.ComboBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.CmbRol = new System.Windows.Forms.ComboBox();
-            this.TxtClave = new System.Windows.Forms.TextBox();
             this.lblRol = new System.Windows.Forms.Label();
             this.LblClave = new System.Windows.Forms.Label();
             this.TxtCorreoElectronico = new System.Windows.Forms.TextBox();
@@ -64,6 +63,7 @@
             this.lblUsuarios = new System.Windows.Forms.Label();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.CmbBuscar = new System.Windows.Forms.ComboBox();
+            this.TxtClave = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,14 +131,6 @@
             this.CmbRol.Name = "CmbRol";
             this.CmbRol.Size = new System.Drawing.Size(280, 28);
             this.CmbRol.TabIndex = 60;
-            // 
-            // TxtClave
-            // 
-            this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtClave.Location = new System.Drawing.Point(30, 332);
-            this.TxtClave.Name = "TxtClave";
-            this.TxtClave.Size = new System.Drawing.Size(280, 27);
-            this.TxtClave.TabIndex = 59;
             // 
             // lblRol
             // 
@@ -442,6 +434,14 @@
             this.CmbBuscar.Size = new System.Drawing.Size(230, 28);
             this.CmbBuscar.TabIndex = 46;
             // 
+            // TxtClave
+            // 
+            this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtClave.Location = new System.Drawing.Point(30, 332);
+            this.TxtClave.Name = "TxtClave";
+            this.TxtClave.Size = new System.Drawing.Size(280, 27);
+            this.TxtClave.TabIndex = 59;
+            // 
             // VtnUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -490,7 +490,6 @@
         private System.Windows.Forms.ComboBox CmbEstado;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.ComboBox CmbRol;
-        private System.Windows.Forms.TextBox TxtClave;
         private System.Windows.Forms.Label lblRol;
         private System.Windows.Forms.Label LblClave;
         private System.Windows.Forms.TextBox TxtCorreoElectronico;
@@ -520,5 +519,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Rol;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TextBox TxtClave;
     }
 }

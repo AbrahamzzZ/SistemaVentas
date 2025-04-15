@@ -9,7 +9,7 @@ namespace Datos
 {
     public class CD_Proveedor
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra una lista de todos los Proveedores que existen

@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Negocio
     {
-        private CD_Negocio ObjetoNegocio = new CD_Negocio();
+        private readonly CD_Negocio ObjetoNegocio = new CD_Negocio();
 
         /// <summary>
         /// Método que obtiene la información del negocio.
@@ -33,53 +33,53 @@ namespace Negocios
             mensaje = string.Empty;
 
             //Validad Nombre
-            if (string.IsNullOrWhiteSpace(obj.Nombre))
+            if (Validaciones.EsTextoVacio(obj.Nombre))
             {
                 mensaje += "\n- Es necesario el nombre del negocio.";
             }
-            else if (!EsNombreValido(obj.Nombre))
+            else if (!Validaciones.EsSoloLetras(obj.Nombre))
             {
                 mensaje += "\n- El nombre del negocio solo puede contener letras y no números.";
             }
 
             //Validar Telefono
-            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            if (Validaciones.EsTextoVacio(obj.Telefono))
             {
                 mensaje += "\n- Es necesario el telefóno del negocio.";
             }
-            else if (!EsTelefonoValido(obj.Telefono))
+            else if (!Validaciones.EsTelefonoValido(obj.Telefono))
             {
                 mensaje += "\n- El teléfono del negocio solo pueden contener exactamente 10 números y no letras.";
             }
 
             //Validar RUC
-            if (string.IsNullOrWhiteSpace(obj.Ruc))
+            if (Validaciones.EsTextoVacio(obj.Ruc))
             {
                 mensaje += "\n- Es necesario el RUC del negocio.";
             }
-            else if (!EsRucValido(obj.Ruc))
+            else if (!Validaciones.EsRucValido(obj.Ruc))
             {
                 mensaje += "\n- El RUC del negocio solo pueden contener exactamente 13 números y no letras.";
             }
 
             //Validar Direccion
-            if (string.IsNullOrWhiteSpace(obj.Direccion))
+            if (Validaciones.EsTextoVacio(obj.Direccion))
             {
                 mensaje += "\n- Es necesario la dirección del negocio.";
             }
 
             //Validar Correo Electronico
-            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            if (Validaciones.EsTextoVacio(obj.CorreoElectronico))
             {
                 mensaje += "\n- Es necesario el correo electrónico del negocio.";
             }
-            else if (!EsCorreoValido(obj.CorreoElectronico))
+            else if (!Validaciones.EsCorreoValido(obj.CorreoElectronico))
             {
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -106,59 +106,6 @@ namespace Negocios
         public bool ActualizarLogo(byte[] image, out string mensaje)
         {
             return ObjetoNegocio.ActualizarLogoNegocio(image, out mensaje);
-        }
-
-        /// <summary>
-        /// Método que verifica si el nombre es válido.
-        /// </summary>
-        /// <param name="nombre">El nombre del negocio.</param>
-        /// <returns>Un booleano que indica si el nombre es válido.</returns>
-        private bool EsNombreValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
-        }
-
-        /// <summary>
-        /// Método que verifica si el RUC es válido.
-        /// </summary>
-        /// <param name="ruc">El RUC del negocio.</param>
-        /// <returns>Un booleano que indica si el RUC es válido.</returns>
-        private bool EsRucValido(string ruc)
-        {
-            // Verificar que tenga exactamente 13 digitos (Ecuador)
-            if ((ruc.Length != 11 && ruc.Length != 13) || !ruc.All(char.IsDigit))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Método que verifica si el teléfono es válido.
-        /// </summary>
-        /// <param name="telefono">El teléfono del negocio.</param>
-        /// <returns>Un booleano que indica si el teléfono es válido.</returns>
-        private bool EsTelefonoValido(string telefono)
-        {
-            // Verificar que tenga exactamente 10 caracteres
-            if (telefono.Length != 10)
-            {
-                return false;
-            }
-
-            return telefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
-        }
-
-        /// <summary>
-        /// Método que verifica si el correo electrónico es válido.
-        /// </summary>
-        /// <param name="correo">El correo electrónico del negocio.</param>
-        /// <returns>Un booleano que indica si el correo electrónico es válido.</returns>
-        private bool EsCorreoValido(string correo)
-        {
-            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
-            return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
         }
     }
 }

@@ -36,8 +36,14 @@
             this.CmBuscar = new System.Windows.Forms.ComboBox();
             this.lblPanel = new System.Windows.Forms.Label();
             this.tablaUnidadMedida = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Simbolo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblEstado = new System.Windows.Forms.Label();
-            this.lblClave = new System.Windows.Forms.Label();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.TxtIndice = new System.Windows.Forms.TextBox();
             this.TxtId = new System.Windows.Forms.TextBox();
@@ -54,13 +60,6 @@
             this.TxtSimbolo = new System.Windows.Forms.TextBox();
             this.TxtCodigo = new System.Windows.Forms.TextBox();
             this.LblCodigo = new System.Windows.Forms.Label();
-            this.btnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Simbolo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaUnidadMedida)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,6 +152,64 @@
             this.tablaUnidadMedida.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaUnidadMedida_CellFormatting);
             this.tablaUnidadMedida.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.TablaUnidadMedida_CellPainting);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.HeaderText = "";
+            this.btnSeleccionar.MinimumWidth = 6;
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 30;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "Id Unidad Medida";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 50;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Código";
+            this.Codigo.MinimumWidth = 6;
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 125;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.MinimumWidth = 6;
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 155;
+            // 
+            // Simbolo
+            // 
+            this.Simbolo.HeaderText = "Símbolo";
+            this.Simbolo.MinimumWidth = 6;
+            this.Simbolo.Name = "Simbolo";
+            this.Simbolo.ReadOnly = true;
+            this.Simbolo.Width = 75;
+            // 
+            // EstadoValor
+            // 
+            this.EstadoValor.HeaderText = "Estado valor";
+            this.EstadoValor.MinimumWidth = 6;
+            this.EstadoValor.Name = "EstadoValor";
+            this.EstadoValor.ReadOnly = true;
+            this.EstadoValor.Visible = false;
+            this.EstadoValor.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            this.Estado.Width = 90;
+            // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
@@ -162,16 +219,6 @@
             this.lblEstado.Size = new System.Drawing.Size(73, 20);
             this.lblEstado.TabIndex = 91;
             this.lblEstado.Text = "Estado:";
-            // 
-            // lblClave
-            // 
-            this.lblClave.AutoSize = true;
-            this.lblClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClave.Location = new System.Drawing.Point(-137, 334);
-            this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(62, 20);
-            this.lblClave.TabIndex = 89;
-            this.lblClave.Text = "ClaveEncriptada:";
             // 
             // BtnLimpiar
             // 
@@ -353,64 +400,6 @@
             this.LblCodigo.TabIndex = 113;
             this.LblCodigo.Text = "Código:";
             // 
-            // btnSeleccionar
-            // 
-            this.btnSeleccionar.HeaderText = "";
-            this.btnSeleccionar.MinimumWidth = 6;
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.ReadOnly = true;
-            this.btnSeleccionar.Width = 30;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "Id Unidad Medida";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 50;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Código";
-            this.Codigo.MinimumWidth = 6;
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 125;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.MinimumWidth = 6;
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 155;
-            // 
-            // Simbolo
-            // 
-            this.Simbolo.HeaderText = "Símbolo";
-            this.Simbolo.MinimumWidth = 6;
-            this.Simbolo.Name = "Simbolo";
-            this.Simbolo.ReadOnly = true;
-            this.Simbolo.Width = 75;
-            // 
-            // EstadoValor
-            // 
-            this.EstadoValor.HeaderText = "Estado valor";
-            this.EstadoValor.MinimumWidth = 6;
-            this.EstadoValor.Name = "EstadoValor";
-            this.EstadoValor.ReadOnly = true;
-            this.EstadoValor.Visible = false;
-            this.EstadoValor.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            this.Estado.Width = 90;
-            // 
             // VtnUnidadMedida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -427,7 +416,6 @@
             this.Controls.Add(this.CmBuscar);
             this.Controls.Add(this.tablaUnidadMedida);
             this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.lblClave);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.TxtIndice);
             this.Controls.Add(this.TxtId);
@@ -459,7 +447,6 @@
         private System.Windows.Forms.Label lblPanel;
         private System.Windows.Forms.DataGridView tablaUnidadMedida;
         private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.Label lblClave;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.TextBox TxtIndice;
         private System.Windows.Forms.TextBox TxtId;

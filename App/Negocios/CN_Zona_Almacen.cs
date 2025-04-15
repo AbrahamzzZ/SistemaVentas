@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Zona_Almacen
     {
-        private CD_Zona_Almacen ObjetoZonaAlmacen = new CD_Zona_Almacen();
+        private readonly CD_Zona_Almacen ObjetoZonaAlmacen = new CD_Zona_Almacen();
 
         /// <summary>
         /// Lista todas las Zonas de Almacenamiento.

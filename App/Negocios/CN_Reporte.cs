@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Reporte
     {
-        private CD_Reporte ObjetoReporte = new CD_Reporte();
+        private readonly CD_Reporte ObjetoReporte = new CD_Reporte();
 
         /// <summary>
         /// Método que genera un reporte de productos comprados.

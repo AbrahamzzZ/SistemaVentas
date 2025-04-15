@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CD_Producto
     {
-        Conexion Conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Metodo que muestra una lista de todos los Productos que existen

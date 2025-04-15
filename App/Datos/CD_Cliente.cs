@@ -11,7 +11,7 @@ namespace Datos
 {
     public class CD_Cliente
     {
-        Conexion conexion = new Conexion();
+        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra una lista de todos los Clientes que existen
@@ -24,7 +24,7 @@ namespace Datos
             {
                 StringBuilder mostrar = new StringBuilder();
                 mostrar.AppendLine("SELECT ID_CLIENTE, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM CLIENTE;");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion.ConexionBD());
+                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader leer = cmd.ExecuteReader();
                 while (leer.Read())
@@ -62,7 +62,7 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CLIENTE", conexion.ConexionBD());
+                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
                 cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
@@ -100,7 +100,7 @@ namespace Datos
             try
             {
 
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", conexion.ConexionBD());
+                SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
                 cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                 cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
@@ -138,7 +138,7 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", conexion.ConexionBD());
+                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", Conexion.ConexionBD());
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
                 cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;

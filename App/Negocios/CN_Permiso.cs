@@ -10,7 +10,7 @@ namespace Negocios
 {
     public class CN_Permiso
     {
-        private CD_Permiso ObjetoPermiso = new CD_Permiso();
+        private readonly CD_Permiso ObjetoPermiso = new CD_Permiso();
 
         /// <summary>
         /// Método que obtiene la lista de permisos de un usuario específico.

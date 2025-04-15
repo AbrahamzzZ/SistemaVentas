@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Unidad_Medida
     {
-        private CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
+        private readonly CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
 
         /// <summary>
         /// Lista todas las unidades de medida
@@ -33,27 +33,27 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la unidad de medida.";
             }
-            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Descripcion))
             {
                 mensaje += "\n La descripción de la unidad de medida solo puede contener letras y no números.";
             }
 
             // Validar Simbolo
-            if (string.IsNullOrWhiteSpace(obj.Simbolo))
+            if (Validaciones.EsTextoVacio(obj.Simbolo))
             {
                 mensaje += "\n- Es necesario el simbolo de la unidad de medida.";
             }
-            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Simbolo))
             {
                 mensaje += "\n- El simbolo de la unidad de medida solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -72,27 +72,27 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la unidad de medida.";
             }
-            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Descripcion))
             {
                 mensaje += "\n- La descripción de la unidad de medida solo puede contener letras y no números.";
             }
 
             // Validar Simbolo
-            if (string.IsNullOrWhiteSpace(obj.Simbolo))
+            if (Validaciones.EsTextoVacio(obj.Simbolo))
             {
                 mensaje += "\n- Es necesario el simbolo de la unidad de medida.";
             }
-            else if (!EsDescripcionSimboloValido(obj.Descripcion))
+            else if (!Validaciones.EsSoloLetras(obj.Simbolo))
             {
                 mensaje += "\n- El simbolo de la unidad de medida solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -116,17 +116,6 @@ namespace Negocios
             }
 
             return ObjetoUnidadMedida.EliminarUnidadMedida(obj, out mensaje);
-        }
-
-        /// <summary>
-        /// Verifica si la descripción y el simbolo de la undida de media son válidos.
-        /// </summary>
-        /// <param name="nombre">La descripción y el simbolo de la unidad de medida.</param>
-        /// <returns>Un booleano que indica si la descripción y el simbolo son válidos.</returns>
-        private bool EsDescripcionSimboloValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

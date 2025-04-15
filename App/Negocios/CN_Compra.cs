@@ -12,7 +12,7 @@ namespace Negocios
 {
     public class CN_Compra
     {
-        private CD_Compra ObjetoCompra = new CD_Compra();
+        private readonly CD_Compra ObjetoCompra = new CD_Compra();
 
         /// <summary>
         /// Método que obtiene el correlativo de compra.

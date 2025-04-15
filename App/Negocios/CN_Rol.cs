@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Rol
     {
-        private CD_Rol ObjetoRol = new CD_Rol();
+        private readonly CD_Rol ObjetoRol = new CD_Rol();
 
         /// <summary>
         /// Método que obtiene la lista de roles de usuarios.

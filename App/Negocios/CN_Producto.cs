@@ -2,16 +2,12 @@
 using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Negocios
 {
     public class CN_Producto
     {
-        private CD_Producto ObjetoProducto = new CD_Producto();
+        private readonly CD_Producto ObjetoProducto = new CD_Producto();
 
         /// <summary>
         /// Método que lista todos los productos.
@@ -42,33 +38,33 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre Completo
-            if (string.IsNullOrWhiteSpace(obj.Nombre))
+            if (Validaciones.EsTextoVacio(obj.Nombre))
             {
                 mensaje += "\n- Es necesario el nombre completo del producto.";
             }
-            else if (!EsNombreValido(obj.Nombre))
+            else if (!Validaciones.EsSoloLetras(obj.Nombre))
             {
                 mensaje += "\n- El nombre del producto solo puede contener letras y no números.";
             }
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción del producto.";
             }
 
             // Validar Pais de Origen
-            if (string.IsNullOrWhiteSpace(obj.PaisOrigen))
+            if (Validaciones.EsTextoVacio(obj.PaisOrigen))
             {
                 mensaje += "\n- Es necesario el pais de origen del producto.";
             }
-            else if (!EsNombreValido(obj.PaisOrigen))
+            else if (!Validaciones.EsSoloLetras(obj.PaisOrigen))
             {
                 mensaje += "\n- El pais de origen del producto solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -87,33 +83,33 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre Completo
-            if (string.IsNullOrWhiteSpace(obj.Nombre))
+            if (Validaciones.EsTextoVacio(obj.Nombre))
             {
                 mensaje += "\n- Es necesario el nombre completo del producto.";
             }
-            else if (!EsNombreValido(obj.Nombre))
+            else if (!Validaciones.EsSoloLetras(obj.Nombre))
             {
                 mensaje += "\n- El nombre del producto solo puede contener letras y no números.";
             }
 
-            // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            // Validar Descripcion  
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción del producto.";
             }
 
             // Validar Pais de Origen
-            if (string.IsNullOrWhiteSpace(obj.PaisOrigen))
+            if (Validaciones.EsTextoVacio(obj.PaisOrigen))
             {
                 mensaje += "\n- Es necesario el pais de origen del producto.";
             }
-            else if (!EsNombreValido(obj.PaisOrigen))
+            else if (!Validaciones.EsSoloLetras(obj.PaisOrigen))
             {
                 mensaje += "\n- El pais de origen del producto solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -147,17 +143,6 @@ namespace Negocios
         public int ObtenerStockId(int IdProducto)
         {
             return ObjetoProducto.MostrarProductoStock(IdProducto);
-        }
-
-        /// <summary>
-        /// Método que verifica si el nombre es válido.
-        /// </summary>
-        /// <param name="nombre">El nombre del producto.</param>
-        /// <returns>Un booleano que indica si el nombre es válido.</returns>
-        private bool EsNombreValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

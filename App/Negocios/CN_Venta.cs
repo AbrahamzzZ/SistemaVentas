@@ -12,7 +12,7 @@ namespace Negocios
 {
     public class CN_Venta
     {
-        private CD_Venta ObjetoVenta = new CD_Venta();
+        private readonly CD_Venta ObjetoVenta = new CD_Venta();
 
         /// <summary>
         /// Método que obtiene el correlativo de venta.
