@@ -109,6 +109,21 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
+            // Validar que la clave no esté vacía
+            string claveIngresada = TxtClave.Text;
+            if (Validaciones.EsTextoVacio(claveIngresada))
+            {
+                MessageBox.Show("\n- Es necesario la clave del usuario.", "Registrar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validar la complejidad de la clave
+            if (!Validaciones.EsClaveValida(claveIngresada))
+            {
+                MessageBox.Show("\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.", "Registrar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Crear el objeto Usuario
             Usuario agregarUsuario = new Usuario()
             {
@@ -159,6 +174,21 @@ namespace Presentacion
 
                 MessageBox.Show(mensajeError, "Faltan campos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Salir del método si hay errores
+            }
+
+            // Validar que la clave no esté vacía
+            string claveIngresada = TxtClave.Text;
+            if (Validaciones.EsTextoVacio(claveIngresada))
+            {
+                MessageBox.Show("\n- Es necesario la clave del usuario.", "Registrar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Validar la complejidad de la clave
+            if (!Validaciones.EsClaveValida(claveIngresada))
+            {
+                MessageBox.Show("\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.", "Registrar Usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             Usuario usuarioOriginal = new CN_Usuario().ObtenerPorId(Convert.ToInt32(TxtId.Text));
@@ -353,5 +383,6 @@ namespace Presentacion
             }
             return new string(resultado);
         }
+
     }
 }
