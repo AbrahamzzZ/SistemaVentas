@@ -121,7 +121,7 @@ namespace Presentacion
             }
 
             decimal? descuento = null;
-            if (!string.IsNullOrWhiteSpace(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
+            if (!Validaciones.EsTextoVacio(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
             {
                 descuento = tempDescuento;
             }
@@ -178,7 +178,7 @@ namespace Presentacion
             }
 
             decimal? descuento = null;
-            if (!string.IsNullOrWhiteSpace(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
+            if (!Validaciones.EsTextoVacio(TxtDescuento.Text) && decimal.TryParse(TxtDescuento.Text, out decimal tempDescuento))
             {
                 descuento = tempDescuento;
             }
