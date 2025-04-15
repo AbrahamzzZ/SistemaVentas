@@ -11,7 +11,7 @@ namespace Negocios
 {
     public class CN_Transportista
     {
-        private CD_Transportista ObjetoTransportista = new CD_Transportista();
+        private readonly CD_Transportista ObjetoTransportista = new CD_Transportista();
 
         /// <summary>
         /// Lista todos los transportistas.
@@ -34,51 +34,51 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombres
-            if (string.IsNullOrWhiteSpace(obj.Nombres))
+            if (Validaciones.EsTextoVacio(obj.Nombres))
             {
                 mensaje += "\n- Es necesario los nombres del proveedor.";
             }
-            else if (!EsNombreApellidoValido(obj.Nombres))
+            else if (!Validaciones.EsSoloLetras(obj.Nombres))
             {
                 mensaje += "\n- Los nombres del proveedor solo pueden contener letras y no números.";
             }
 
             // Validar Apellidos
-            if (string.IsNullOrWhiteSpace(obj.Apellidos))
+            if (Validaciones.EsTextoVacio(obj.Apellidos))
             {
                 mensaje += "\n- Es necesario los apellidos del proveedor.";
             }
-            else if (!EsNombreApellidoValido(obj.Apellidos))
+            else if (!Validaciones.EsSoloLetras(obj.Apellidos))
             {
                 mensaje += "\n- Los apellidos del proveedor solo pueden contener letras y no números.";
             }
 
             //Validar Cedula
-            if (string.IsNullOrWhiteSpace(obj.Cedula))
+            if (Validaciones.EsTextoVacio(obj.Cedula))
             {
                 mensaje += "\n- Es necesario la cédula del proveedor.";
             }
-            else if (!EsCedulaTelefonoValido(obj.Cedula))
+            else if (!Validaciones.EsCedulaValida(obj.Cedula))
             {
                 mensaje += "\n- La cédula del proveedor solo pueden contener exactamente 10 números y no letras.";
             }
 
             //Validar Telefono
-            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            if (Validaciones.EsTextoVacio(obj.Telefono))
             {
                 mensaje += "\n- Es necesario el telefóno del proveedor.";
             }
-            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            else if (!Validaciones.EsTelefonoValido(obj.Telefono))
             {
                 mensaje += "\n- El telefóno del proveedor solo pueden contener exactamente 10 números y no letras.";
             }
 
             // Validar Correo Electrónico
-            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            if (Validaciones.EsTextoVacio(obj.CorreoElectronico))
             {
                 mensaje += "\n- Es necesario el correo electrónico del proveedor.";
             }
-            else if (!EsCorreoValido(obj.CorreoElectronico))
+            else if (!Validaciones.EsCorreoValido(obj.CorreoElectronico))
             {
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
@@ -91,7 +91,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -111,51 +111,51 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombres
-            if (string.IsNullOrWhiteSpace(obj.Nombres))
+            if (Validaciones.EsTextoVacio(obj.Nombres))
             {
                 mensaje += "\n- Es necesario los nombres del proveedor.";
             }
-            else if (!EsNombreApellidoValido(obj.Nombres))
+            else if (!Validaciones.EsTextoVacio(obj.Nombres))
             {
                 mensaje += "\n- Los nombres del proveedor solo pueden contener letras y no números.";
             }
 
             // Validar Apellidos
-            if (string.IsNullOrWhiteSpace(obj.Apellidos))
+            if (Validaciones.EsTextoVacio(obj.Apellidos))
             {
                 mensaje += "\n- Es necesario los apellidos del proveedor.";
             }
-            else if (!EsNombreApellidoValido(obj.Apellidos))
+            else if (!Validaciones.EsTextoVacio(obj.Apellidos))
             {
                 mensaje += "\n- Los apellidos del proveedor solo pueden contener letras y no números.";
             }
 
             //Validar Cedula
-            if (string.IsNullOrWhiteSpace(obj.Cedula))
+            if (Validaciones.EsTextoVacio(obj.Cedula))
             {
                 mensaje += "\n- Es necesario la cédula del proveedor.";
             }
-            else if (!EsCedulaTelefonoValido(obj.Cedula))
+            else if (!Validaciones.EsCedulaValida(obj.Cedula))
             {
                 mensaje += "\n- La cédula del proveedor solo pueden contener exactamente 10 números y no letras.";
             }
 
             //Validar Telefono
-            if (string.IsNullOrWhiteSpace(obj.Telefono))
+            if (Validaciones.EsTextoVacio(obj.Telefono))
             {
                 mensaje += "\n- Es necesario el telefóno del proveedor.";
             }
-            else if (!EsCedulaTelefonoValido(obj.Telefono))
+            else if (!Validaciones.EsTelefonoValido(obj.Telefono))
             {
                 mensaje += "\n- El telefóno del proveedor solo pueden contener exactamente 10 números y no letras.";
             }
 
             // Validar Correo Electrónico
-            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            if (Validaciones.EsTextoVacio(obj.CorreoElectronico))
             {
                 mensaje += "\n- Es necesario el correo electrónico del proveedor.";
             }
-            else if (!EsCorreoValido(obj.CorreoElectronico))
+            else if (!Validaciones.EsCorreoValido(obj.CorreoElectronico))
             {
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
@@ -168,7 +168,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -191,39 +191,6 @@ namespace Negocios
                 return false;
             }
             return ObjetoTransportista.EliminarTransportista(obj, out mensaje);
-        }
-
-        private bool EsCedulaTelefonoValido(string cedulaTelefono)
-        {
-            // Verificar que tenga exactamente 10 caracteres
-            if (cedulaTelefono.Length != 10)
-            {
-                return false;
-            }
-
-            return cedulaTelefono.All(char.IsDigit); // Verifica que todos los caracteres sean dígitos
-        }
-
-        /// <summary>
-        /// Verifica si los nombres y apellidos del transportista son válidos.
-        /// </summary>
-        /// <param name="nombresApellidos">Los nombres y apellidos del transportista.</param>
-        /// <returns>Un booleano que indica si los nombres y apellidos son válidos.</returns>
-        private bool EsNombreApellidoValido(string nombresApellidos)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombresApellidos, patron);
-        }
-
-        /// <summary>
-        /// Verifica si el correo electrónico del transportista es válido.
-        /// </summary>
-        /// <param name="correo">Correo electrónico del transportista.</param>
-        /// <returns>Un booleano que indica si el coreo electrónico es válido.</returns>
-        private bool EsCorreoValido(string correo)
-        {
-            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Patrón de correo válido
-            return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
         }
     }
 }

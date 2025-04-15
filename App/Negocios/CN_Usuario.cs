@@ -4,15 +4,12 @@ using Entidad;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocios
 {
     public class CN_Usuario
     {
-        private CD_Usuario ObjetoUsuario = new CD_Usuario();
+        private readonly CD_Usuario ObjetoUsuario = new CD_Usuario();
         private static int intentos = 0;
 
         /// <summary>
@@ -38,11 +35,11 @@ namespace Negocios
         /// <returns></returns>
         public string ValidarLogin(string codigo, string clave)
         {
-            if (string.IsNullOrWhiteSpace(codigo) || string.IsNullOrWhiteSpace(clave))
+            if (Validaciones.EsTextoVacio(codigo) || Validaciones.EsTextoVacio(clave))
             {
                 return "Por favor, llene todos los campos para iniciar sesión.";
             }
-            else if (!EsCodigoValido(codigo))
+            else if (!Validaciones.EsCodigoValido(codigo))
             {
                 return "Debe ingresar números y no letras en el campo código.";
             }
@@ -101,37 +98,27 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre Completo
-            if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
+            if (Validaciones.EsTextoVacio(obj.NombreCompleto))
             {
                 mensaje += "\n- Es necesario el nombreCompleto completo del usuario.";
             }
-            else if (!EsNombreValido(obj.NombreCompleto))
+            else if (!Validaciones.EsSoloLetras(obj.NombreCompleto))
             {
                 mensaje += "\n- El nombreCompleto del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
-            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            if (Validaciones.EsTextoVacio(obj.CorreoElectronico))
             {
                 mensaje += "\n- Es necesario el correo electrónico del usuario.";
             }
-            else if (!EsCorreoValido(obj.CorreoElectronico))
+            else if (!Validaciones.EsCorreoValido(obj.CorreoElectronico))
             {
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
-            // Validar ClaveEncriptada
-            if (string.IsNullOrWhiteSpace(obj.ClaveEncriptada))
-            {
-                mensaje += "\n- Es necesario la clave del usuario.";
-            }
-            else if (!EsClaveValida(obj.ClaveEncriptada))
-            {
-                mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
-            }
-
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0; 
             }
@@ -151,37 +138,27 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre Completo
-            if (string.IsNullOrWhiteSpace(obj.NombreCompleto))
+            if (Validaciones.EsTextoVacio(obj.NombreCompleto))
             {
                 mensaje += "\n- Es necesario el nombreCompleto completo del usuario.";
             }
-            else if (!EsNombreValido(obj.NombreCompleto))
+            else if (!Validaciones.EsSoloLetras(obj.NombreCompleto))
             {
                 mensaje += "\n- El nombreCompleto del usuario solo puede contener letras y no números.";
             }
 
             // Validar Correo Electrónico
-            if (string.IsNullOrWhiteSpace(obj.CorreoElectronico))
+            if (Validaciones.EsTextoVacio(obj.CorreoElectronico))
             {
                 mensaje += "\n- Es necesario el correo electrónico del usuario.";
             }
-            else if (!EsCorreoValido(obj.CorreoElectronico))
+            else if (!Validaciones.EsCorreoValido(obj.CorreoElectronico))
             {
                 mensaje += "\n- El correo electrónico no tiene un formato válido.";
             }
 
-            // Validar ClaveEncriptada
-            /*if (string.IsNullOrWhiteSpace(obj.ClaveEncriptada))
-            {
-                mensaje += "\n- Es necesario la clave del usuario.";
-            }
-            else if (!EsClaveValida(obj.ClaveEncriptada))
-            {
-                mensaje += "\n- La clave debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial.";
-            }*/
-
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -214,55 +191,6 @@ namespace Negocios
 
             // Llamar al método de la capa de datos si pasa las validaciones
             return ObjetoUsuario.EliminarUsuario(obj, out mensaje);
-        }
-
-        /// <summary>
-        /// Verifica si el código del usuario es válido.
-        /// </summary>
-        /// <param name="codigo">El código del usuario.</param>
-        /// <returns>Un booleano que indica si el código es válido.</returns>
-        private bool EsCodigoValido(string codigo)
-        {
-            return codigo.All(char.IsDigit); 
-        }
-
-        /// <summary>
-        /// Verifica si el nombreCompleto completo del usuario es válido.
-        /// </summary>
-        /// <param name="nombreCompleto">El nombreCompleto completo del usuario.</param>
-        /// <returns>Un booleano que indica si el nombreCompleto completo es válido.</returns>
-        private bool EsNombreValido(string nombreCompleto)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; 
-            return System.Text.RegularExpressions.Regex.IsMatch(nombreCompleto, patron);
-        }
-
-        /// <summary>
-        /// Verifica si el correo electrónico del usuario es válido.
-        /// </summary>
-        /// <param name="correo">Correo electrónico del usuario.</param>
-        /// <returns>Un booleano que indica si el coreo electrónico es válido.</returns>
-        private bool EsCorreoValido(string correo)
-        {
-            string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; 
-            return System.Text.RegularExpressions.Regex.IsMatch(correo, patron);
-        }
-
-        /// <summary>
-        /// Verifica si la clave del usuario es válida.
-        /// </summary>
-        /// <param name="clave">ClaveEncriptada del usuario.</param>
-        /// <returns>Un booleano que indica si la clave es válida.</returns>
-        private bool EsClaveValida(string clave)
-        {
-            if (clave.Length < 8)
-                return false;
-
-            bool tieneLetra = clave.Any(char.IsLetter);
-            bool tieneNumero = clave.Any(char.IsDigit);
-            bool tieneCaracterEspecial = clave.Any(c => !char.IsLetterOrDigit(c));
-
-            return tieneLetra && tieneNumero && tieneCaracterEspecial;
         }
     }
 }

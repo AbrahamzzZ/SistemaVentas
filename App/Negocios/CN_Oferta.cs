@@ -2,16 +2,12 @@
 using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Negocios
 {
     public class CN_Oferta
     {
-        private CD_Oferta ObjetoOferta = new CD_Oferta();
+        private readonly CD_Oferta ObjetoOferta = new CD_Oferta();
 
         /// <summary>
         /// Lista todos las ofertas.
@@ -33,17 +29,17 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre
-            if (string.IsNullOrWhiteSpace(obj.NombreOferta))
+            if (Validaciones.EsTextoVacio(obj.NombreOferta))
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            else if (!EsNombreValido(obj.NombreOferta))
+            else if (!Validaciones.EsSoloLetras(obj.NombreOferta))
             {
                 mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la oferta.";
             }
@@ -72,7 +68,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -91,17 +87,17 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre
-            if (string.IsNullOrWhiteSpace(obj.NombreOferta))
+            if (Validaciones.EsTextoVacio(obj.NombreOferta))
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            else if (!EsNombreValido(obj.NombreOferta))
+            else if (!Validaciones.EsSoloLetras(obj.NombreOferta))
             {
                 mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
 
             // Validar Descripcion
-            if (string.IsNullOrWhiteSpace(obj.Descripcion))
+            if (Validaciones.EsTextoVacio(obj.Descripcion))
             {
                 mensaje += "\n- Es necesario la descripción de la oferta.";
             }
@@ -130,7 +126,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -154,17 +150,6 @@ namespace Negocios
             }
 
             return ObjetoOferta.EliminarOferta(obj, out mensaje);
-        }
-
-        /// <summary>
-        /// Verifica si el nombre de la oferta es válida.
-        /// </summary>
-        /// <param name="nombre">El nombre de la oferta.</param>
-        /// <returns>Un booleano que indica si el nombre es válido.</returns>
-        private bool EsNombreValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

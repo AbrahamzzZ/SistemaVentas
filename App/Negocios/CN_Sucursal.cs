@@ -3,16 +3,12 @@ using Entidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Negocios
 {
     public class CN_Sucursal
     {
-        private CD_Sucursal ObjetoSucursal = new CD_Sucursal();
+        private readonly CD_Sucursal ObjetoSucursal = new CD_Sucursal();
 
         /// <summary>
         /// Lista todos las sucursales.
@@ -34,17 +30,13 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre
-            if (string.IsNullOrWhiteSpace(obj.Nombre))
+            if (Validaciones.EsTextoVacio(obj.Nombre))
             {
                 mensaje += "\n- Es necesario el nombre de la sucursal.";
             }
-            else if (!EsNombreValido(obj.Nombre))
-            {
-                mensaje += "\n- El nombre de la sucursal solo puede contener letras y no números.";
-            }
 
             // Validar Direccion
-            if (string.IsNullOrWhiteSpace(obj.Direccion))
+            if (Validaciones.EsTextoVacio(obj.Direccion))
             {
                 mensaje += "\n- Es necesario la direccion de la sucursal.";
             }
@@ -70,17 +62,17 @@ namespace Negocios
             }
 
             // Validar Ciudad
-            if (string.IsNullOrWhiteSpace(obj.Ciudad))
+            if (Validaciones.EsTextoVacio(obj.Ciudad))
             {
                 mensaje += "\n- Es necesario la ciudad donde esta la sucursal.";
             }
-            else if (!EsNombreValido(obj.Ciudad))
+            else if (!Validaciones.EsSoloLetras(obj.Ciudad))
             {
                 mensaje += "\n- La ciudad donde queda la sucursal solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -99,17 +91,13 @@ namespace Negocios
             mensaje = string.Empty;
 
             // Validar Nombre
-            if (string.IsNullOrWhiteSpace(obj.Nombre))
+            if (Validaciones.EsTextoVacio(obj.Nombre))
             {
                 mensaje += "\n- Es necesario el nombre de la sucursal.";
             }
-            else if (!EsNombreValido(obj.Nombre))
-            {
-                mensaje += "\n- El nombre de la sucursal solo puede contener letras y no números.";
-            }
 
             // Validar Direccion
-            if (string.IsNullOrWhiteSpace(obj.Direccion))
+            if (Validaciones.EsTextoVacio(obj.Direccion))
             {
                 mensaje += "\n- Es necesario la direccion de la sucursal.";
             }
@@ -135,17 +123,17 @@ namespace Negocios
             }
 
             // Validar Ciudad
-            if (string.IsNullOrWhiteSpace(obj.Ciudad))
+            if (Validaciones.EsTextoVacio(obj.Ciudad))
             {
                 mensaje += "\n- Es necesario la ciudad donde esta la sucursal.";
             }
-            else if (!EsNombreValido(obj.Ciudad))
+            else if (!Validaciones.EsSoloLetras(obj.Ciudad))
             {
                 mensaje += "\n- La ciudad donde queda la sucursal solo puede contener letras y no números.";
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
@@ -169,17 +157,6 @@ namespace Negocios
             }
 
             return ObjetoSucursal.EliminarSucursal(obj, out mensaje);
-        }
-
-        /// <summary>
-        /// Verifica si el nombre de la sucursal es válida.
-        /// </summary>
-        /// <param name="nombre">El nombre de la sucursal.</param>
-        /// <returns>Un booleano que indica se el nombre es válida.</returns>
-        private bool EsNombreValido(string nombre)
-        {
-            string patron = @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ_\s]+$"; // Permite letras, espacios y caracteres con tilde
-            return System.Text.RegularExpressions.Regex.IsMatch(nombre, patron);
         }
     }
 }

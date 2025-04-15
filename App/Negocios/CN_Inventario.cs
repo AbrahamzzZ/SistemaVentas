@@ -12,7 +12,7 @@ namespace Negocios
     public class CN_Inventario
     {
 
-        private CD_Inventario ObjetoProductoInventario = new CD_Inventario();
+        private readonly CD_Inventario ObjetoProductoInventario = new CD_Inventario();
 
         /// <summary>
         /// Método que lista todos los productos en el inventario.
@@ -40,7 +40,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return 0;
             }
@@ -65,7 +65,7 @@ namespace Negocios
             }
 
             // Retornar false si hay mensajes de error
-            if (!string.IsNullOrWhiteSpace(mensaje))
+            if (!Validaciones.EsTextoVacio(mensaje))
             {
                 return false;
             }
