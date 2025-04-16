@@ -8,8 +8,8 @@ go
 /*Creacion de las Tablas*/
 CREATE TABLE NEGOCIO (ID_NEGOCIO int primary key identity,
 NOMBRE varchar (60),
-TELEFONO varchar (10),
-RUC varchar(13),
+TELEFONO varchar (10) unique,
+RUC varchar(13) unique,
 DIRECCION varchar(60),
 CORREO_ELECTRONICO varchar(40),
 LOGO varbinary(max)NUll
@@ -17,7 +17,7 @@ LOGO varbinary(max)NUll
 go
 
 CREATE TABLE SUCURSAL(ID_SUCURSAL int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 ID_NEGOCIO int references NEGOCIO(ID_NEGOCIO),
 NOMBRE_SUCURSAL varchar(30),
 DIRECCION_SUCURSAL varchar(250),
@@ -40,11 +40,11 @@ FECHA_CREACION datetime default getdate());
 go
 
 CREATE TABLE PROVEEDOR (ID_PROVEEDOR int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 NOMBRES varchar(30),
 APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
+CEDULA varchar(10) unique,
+TELEFONO varchar(10) unique,
 CORREO_ELECTRONICO nvarchar(50),
 ESTADO bit,
 FECHA_REGISTRO datetime default getdate()
@@ -52,11 +52,11 @@ FECHA_REGISTRO datetime default getdate()
 go
 
 CREATE TABLE TRANSPORTISTA(ID_TRANSPORTISTA int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 NOMBRES varchar(30),
 APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
+CEDULA varchar(10) unique,
+TELEFONO varchar(10) unique,
 CORREO_ELECTRONICO nvarchar(50),
 IMAGEN varbinary(max)NUll,
 ESTADO bit,
@@ -65,11 +65,11 @@ FECHA_REGISTRO datetime default getdate()
 go
 
 CREATE TABLE CLIENTE (ID_CLIENTE int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 NOMBRES varchar(30),
 APELLIDOS varchar(30),
-CEDULA varchar(10),
-TELEFONO varchar(10),
+CEDULA varchar(10) unique,
+TELEFONO varchar(10) unique,
 CORREO_ELECTRONICO nvarchar(50),
 ESTADO bit,
 FECHA_REGISTRO datetime default getdate()
@@ -77,7 +77,7 @@ FECHA_REGISTRO datetime default getdate()
 go
 
 CREATE TABLE USUARIO (ID_USUARIO int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 NOMBRE_COMPLETO varchar(70),
 CORREO_ELECTRONICO nvarchar(50),
 CLAVE nvarchar(300),
@@ -90,7 +90,7 @@ FECHA_CREACION datetime default getdate()
 go
 
 CREATE TABLE CATEGORIA( ID_CATEGORIA int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 DESCRIPCION nvarchar(50),
 ESTADO bit,
 FECHA_CREACION datetime default getdate()
@@ -98,7 +98,7 @@ FECHA_CREACION datetime default getdate()
 go
 
 CREATE TABLE UNIDAD_MEDIDA (ID_UNIDAD_MEDIDA int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 DESCRIPCION nvarchar(50),
 SIMBOLO nvarchar(10),
 ESTADO bit,
@@ -107,7 +107,7 @@ FECHA_CREACION datetime default getdate()
 go
 
 CREATE TABLE PRODUCTO( ID_PRODUCTO int primary key identity,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 DESCRIPCION nvarchar(50),
 NOMBRE_PRODUCTO nvarchar(30),
 ID_CATEGORIA int references CATEGORIA(ID_CATEGORIA),
@@ -142,7 +142,7 @@ ID_PROVEEDOR int references PROVEEDOR(ID_PROVEEDOR),
 ID_TRANSPORTISTA int references TRANSPORTISTA(ID_TRANSPORTISTA),
 ID_SUCURSAL int references SUCURSAL(ID_SUCURSAL),
 TIPO_DOCUMENTO varchar(50),
-NUMERO_DOCUMENTO varchar(50),
+NUMERO_DOCUMENTO varchar(50) unique,
 MONTO_TOTAL decimal(10,2),
 FECHA_COMPRA datetime default getdate()
 );
@@ -164,7 +164,7 @@ ID_USUARIO int references USUARIO (ID_USUARIO),
 TIPO_DOCUMENTO varchar(50),
 ID_SUCURSAL int references SUCURSAL (ID_SUCURSAL),
 ID_CLIENTE int references CLIENTE (ID_CLIENTE),
-NUMERO_DOCUMENTO varchar(50),
+NUMERO_DOCUMENTO varchar(50) unique,
 MONTO_PAGO decimal (10,2),
 MONTO_CAMBIO decimal (10,2),
 MONTO_TOTAL decimal (10,2),
@@ -195,7 +195,7 @@ FECHA_REGISTRO datetime default getdate()
 go*/
 
 CREATE TABLE OFERTA (ID_OFERTA INT PRIMARY KEY IDENTITY,
-CODIGO varchar(10),
+CODIGO varchar(10) unique,
 NOMBRE_OFERTA varchar(50), 
 ID_PRODUCTO int references PRODUCTO(ID_PRODUCTO),
 DESCRIPCION varchar(250),
