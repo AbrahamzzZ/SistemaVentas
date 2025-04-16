@@ -17,7 +17,7 @@ namespace Test
                 Codigo = "0001",
                 Nombres = "Ariel Edison",
                 Apellidos = "Macias Villafuerte",
-                Cedula = "1234567890",
+                Cedula = "0934567891",
                 Telefono = "0987654321",
                 CorreoElectronico = "ariel03@gmail.com",
                 Estado = true
