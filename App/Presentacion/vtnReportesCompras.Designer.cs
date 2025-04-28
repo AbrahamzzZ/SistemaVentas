@@ -49,10 +49,10 @@
             this.lblProveedor = new System.Windows.Forms.Label();
             this.CmbTransportista = new System.Windows.Forms.ComboBox();
             this.FechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreSurcusal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreSurcusal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsuarioRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocumentoProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -191,10 +191,10 @@
             this.tablaReporteCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaReporteCompras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FechaRegistro,
-            this.NombreSurcusal,
-            this.TipoDocumento,
             this.NumeroDocumento,
+            this.TipoDocumento,
             this.MontoTotal,
+            this.NombreSurcusal,
             this.UsuarioRegistro,
             this.DocumentoProveedor,
             this.NombreProveedor,
@@ -321,13 +321,13 @@
             this.FechaRegistro.ReadOnly = true;
             this.FechaRegistro.Width = 125;
             // 
-            // NombreSurcusal
+            // NumeroDocumento
             // 
-            this.NombreSurcusal.HeaderText = "Sucursal";
-            this.NombreSurcusal.MinimumWidth = 6;
-            this.NombreSurcusal.Name = "NombreSurcusal";
-            this.NombreSurcusal.ReadOnly = true;
-            this.NombreSurcusal.Width = 180;
+            this.NumeroDocumento.HeaderText = "Numero documento";
+            this.NumeroDocumento.MinimumWidth = 6;
+            this.NumeroDocumento.Name = "NumeroDocumento";
+            this.NumeroDocumento.ReadOnly = true;
+            this.NumeroDocumento.Width = 125;
             // 
             // TipoDocumento
             // 
@@ -337,14 +337,6 @@
             this.TipoDocumento.ReadOnly = true;
             this.TipoDocumento.Width = 135;
             // 
-            // NumeroDocumento
-            // 
-            this.NumeroDocumento.HeaderText = "Numero documento";
-            this.NumeroDocumento.MinimumWidth = 6;
-            this.NumeroDocumento.Name = "NumeroDocumento";
-            this.NumeroDocumento.ReadOnly = true;
-            this.NumeroDocumento.Width = 125;
-            // 
             // MontoTotal
             // 
             this.MontoTotal.HeaderText = "Monto total";
@@ -353,13 +345,21 @@
             this.MontoTotal.ReadOnly = true;
             this.MontoTotal.Width = 125;
             // 
+            // NombreSurcusal
+            // 
+            this.NombreSurcusal.HeaderText = "Sucursal";
+            this.NombreSurcusal.MinimumWidth = 6;
+            this.NombreSurcusal.Name = "NombreSurcusal";
+            this.NombreSurcusal.ReadOnly = true;
+            this.NombreSurcusal.Width = 200;
+            // 
             // UsuarioRegistro
             // 
             this.UsuarioRegistro.HeaderText = "Usuario registro";
             this.UsuarioRegistro.MinimumWidth = 6;
             this.UsuarioRegistro.Name = "UsuarioRegistro";
             this.UsuarioRegistro.ReadOnly = true;
-            this.UsuarioRegistro.Width = 125;
+            this.UsuarioRegistro.Width = 180;
             // 
             // DocumentoProveedor
             // 
@@ -367,7 +367,7 @@
             this.DocumentoProveedor.MinimumWidth = 6;
             this.DocumentoProveedor.Name = "DocumentoProveedor";
             this.DocumentoProveedor.ReadOnly = true;
-            this.DocumentoProveedor.Width = 125;
+            this.DocumentoProveedor.Width = 140;
             // 
             // NombreProveedor
             // 
@@ -383,7 +383,7 @@
             this.DocumentoTransportista.MinimumWidth = 6;
             this.DocumentoTransportista.Name = "DocumentoTransportista";
             this.DocumentoTransportista.ReadOnly = true;
-            this.DocumentoTransportista.Width = 125;
+            this.DocumentoTransportista.Width = 140;
             // 
             // NombreTransportista
             // 
@@ -503,10 +503,10 @@
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.ComboBox CmbTransportista;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSurcusal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreSurcusal;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioRegistro;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocumentoProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreProveedor;

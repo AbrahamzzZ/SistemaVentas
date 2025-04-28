@@ -49,7 +49,7 @@ namespace Presentacion
                 tablaDetallesVentas.Rows.Clear();
                 foreach (Detalle_Venta dv in oVenta.oDetalle_Venta)
                 {
-                    tablaDetallesVentas.Rows.Add(new object[] { dv.oProducto.Nombre, dv.PrecioVenta, dv.CantidadProducto, dv.SubTotal, dv.Descuento });
+                    tablaDetallesVentas.Rows.Add(new object[] { dv.oProducto.Nombre, dv.PrecioVenta, dv.Cantidad, dv.SubTotal, dv.Descuento });
                 }
 
                 TxtMontoTotal.Text = oVenta.MontoTotal.ToString("0.00");

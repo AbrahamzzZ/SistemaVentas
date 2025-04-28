@@ -52,7 +52,7 @@ namespace Presentacion
                 tablaDetallesCompras.Rows.Clear();
                 foreach (Detalle_Compra dc in oCompra.oDetalle_Compra)
                 {
-                    tablaDetallesCompras.Rows.Add(new object[] { dc.oProducto.Nombre, dc.PrecioCompra, dc.Cantidad, dc.MontoTotal });
+                    tablaDetallesCompras.Rows.Add(new object[] { dc.oProducto.Nombre, dc.PrecioCompra, dc.Cantidad, dc.SubTotal });
                 }
 
                 TxtMontoTotal.Text = oCompra.MontoTotal.ToString("0.00");
