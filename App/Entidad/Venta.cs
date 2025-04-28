@@ -9,9 +9,9 @@ namespace Entidad
     public class Venta
     {
         public int IdVenta { get; set; }
-        public Usuario oUsuario { get; set; }
-        public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
+        public string TipoDocumento { get; set; }
+        public Usuario oUsuario { get; set; }
         public Sucursal oSucursal { get; set; }
         public Cliente oCliente { get; set; }
         public decimal MontoPago { get; set; }
