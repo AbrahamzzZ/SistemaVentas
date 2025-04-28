@@ -100,7 +100,7 @@ namespace Datos
                         NombreProducto = leer["NOMBRE_PRODUCTO"].ToString(),
                         Categoria = leer["CATEGORIA"].ToString(),
                         PrecioVenta = leer["PRECIO_VENTA"].ToString(),
-                        Cantidad = leer["CANTIDAD_PRODUCTO"].ToString(),
+                        Cantidad = leer["CANTIDAD"].ToString(),
                         SubTotal = leer["SUBTOTAL"].ToString(),
                         Descuento = leer["DESCUENTO"].ToString()
                     });

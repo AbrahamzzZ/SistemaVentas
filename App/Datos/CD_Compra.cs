@@ -52,12 +52,12 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_COMPRA", Conexion.ConexionBD());
+                cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
+                cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
+                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
                 cmd.Parameters.AddWithValue("Id_Proveedor", obj.oProveedor.IdProveedor);
                 cmd.Parameters.AddWithValue("Id_Transportista", obj.oTransportista.IdTransportista);
-                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
-                cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
-                cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
                 cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);
                 cmd.Parameters.AddWithValue("Detalle_Compra", DetalleCompra);
                 cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -105,12 +105,12 @@ namespace Datos
                     obj = new Compra()
                     {
                         IdCompra = Convert.ToInt32(leer["ID_COMPRA"]),
+                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
+                        oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
                         oProveedor = new Proveedor() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
                         oTransportista = new Transportista() { Cedula = leer["CEDULA_TRANSPORTISTA"].ToString(), Nombres = leer["NOMBRE_TRANSPORTISTA"].ToString() },
-                        oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
-                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
-                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
                         MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"]),
                         FechaCompra = leer["FECHA_COMPRA"].ToString()
                     };
@@ -134,7 +134,7 @@ namespace Datos
             try
             {
                 StringBuilder mostrar = new StringBuilder();
-                mostrar.AppendLine("select p.NOMBRE_PRODUCTO, dc.PRECIO_COMPRA, dc.CANTIDAD, dc.MONTO_TOTAL from DETALLE_COMPRA dc");
+                mostrar.AppendLine("select p.NOMBRE_PRODUCTO, dc.PRECIO_COMPRA, dc.CANTIDAD, dc.SUBTOTAL from DETALLE_COMPRA dc");
                 mostrar.AppendLine("inner join PRODUCTO p on p.ID_PRODUCTO = dc.ID_PRODUCTO");
                 mostrar.AppendLine("where dc.ID_COMPRA = @idCompra");
                 SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
@@ -149,7 +149,7 @@ namespace Datos
                         oProducto = new Producto() { Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
                         PrecioCompra = Convert.ToDecimal(leer["PRECIO_COMPRA"].ToString()),
                         Cantidad = Convert.ToInt32(leer["CANTIDAD"].ToString()),
-                        MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"].ToString()),
+                        SubTotal = Convert.ToDecimal(leer["SUBTOTAL"].ToString()),
                     });
                 }
             }
