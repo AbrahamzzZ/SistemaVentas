@@ -110,9 +110,9 @@ namespace Datos
             try
             {
                 SqlCommand cmd = new SqlCommand("PA_REGISTRAR_VENTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
                 cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
+                cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
                 cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
                 cmd.Parameters.AddWithValue("Id_Cliente", obj.oCliente.IdCliente);
                 cmd.Parameters.AddWithValue("Monto_Pago", obj.MontoPago);
@@ -163,9 +163,9 @@ namespace Datos
                     obj = new Venta()
                     {
                         IdVenta = int.Parse(leer["ID_VENTA"].ToString()),
-                        oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
-                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
                         NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
+                        oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
                         oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
                         oCliente = new Cliente() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
                         MontoPago = Convert.ToDecimal(leer["MONTO_PAGO"].ToString()),
@@ -195,7 +195,7 @@ namespace Datos
             try
             {
                 StringBuilder obtener = new StringBuilder();
-                obtener.AppendLine("SELECT p.NOMBRE_PRODUCTO, dv.PRECIO_VENTA, dv.CANTIDAD_PRODUCTO, dv.SUBTOTAL, dv.DESCUENTO from DETALLE_VENTA dv");
+                obtener.AppendLine("SELECT p.NOMBRE_PRODUCTO, dv.PRECIO_VENTA, dv.CANTIDAD, dv.SUBTOTAL, dv.DESCUENTO from DETALLE_VENTA dv");
                 obtener.AppendLine("inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO");
                 obtener.AppendLine("WHERE dv.ID_VENTA = @idVenta");
 
@@ -210,7 +210,7 @@ namespace Datos
                     {
                         oProducto = new Producto() { Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
                         PrecioVenta = Convert.ToDecimal(leer["PRECIO_VENTA"].ToString()),
-                        CantidadProducto = Convert.ToInt32(leer["CANTIDAD_PRODUCTO"].ToString()),
+                        Cantidad = Convert.ToInt32(leer["CANTIDAD"].ToString()),
                         SubTotal = Convert.ToDecimal(leer["SUBTOTAL"].ToString()),
                         Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString())
                     });

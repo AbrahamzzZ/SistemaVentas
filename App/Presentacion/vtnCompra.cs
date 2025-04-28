@@ -195,7 +195,7 @@ namespace Presentacion
             detalla_compra.Columns.Add("Precio_Compra", typeof(decimal));
             detalla_compra.Columns.Add("Precio_Venta", typeof(decimal));
             detalla_compra.Columns.Add("Cantidad", typeof(int));
-            detalla_compra.Columns.Add("Monto_Total", typeof(decimal));
+            detalla_compra.Columns.Add("SubTotal", typeof(decimal));
             foreach (DataGridViewRow row in TablaCompras.Rows)
             {
                 detalla_compra.Rows.Add(

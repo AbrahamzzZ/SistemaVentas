@@ -50,7 +50,7 @@ namespace Presentacion
                 {
                     tablaReporteVentas.Rows.Add(new object[]
                     {
-                        row.FechaRegistro, row.Sucursal, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.CedulaCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
+                        row.FechaRegistro, row.NumeroDocumento, row.TipoDocumento,  row.MontoTotal, row.Sucursal, row.UsuarioRegistro, row.CedulaCliente, row.NombreCliente, row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioVenta, row.Cantidad, row.SubTotal, row.Descuento
                     });
                 }
             }

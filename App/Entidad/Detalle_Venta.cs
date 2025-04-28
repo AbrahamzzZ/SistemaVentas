@@ -12,7 +12,7 @@ namespace Entidad
         public Venta oVenta { get; set; }
         public Producto oProducto { get; set; }
         public decimal PrecioVenta { get; set; }
-        public int CantidadProducto { get; set; }
+        public int Cantidad { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Descuento { get; set; }
     }

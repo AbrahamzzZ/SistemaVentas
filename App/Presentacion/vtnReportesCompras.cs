@@ -81,7 +81,7 @@ namespace Presentacion
                 {
                     tablaReporteCompras.Rows.Add(new object[]
                     {
-                        row.FechaRegistro, row.Sucursal, row.TipoDocumento, row.NumeroDocumento, row.MontoTotal, row.UsuarioRegistro, row.DocumentoProveedor, row.NombreProveedor, row.DocumentoTranportista, row.NombreTransportista ,row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioCompra, row.PrecioVenta, row.Cantidad, row.SubTotal
+                        row.FechaRegistro, row.NumeroDocumento, row.TipoDocumento, row.MontoTotal, row.Sucursal, row.UsuarioRegistro, row.DocumentoProveedor, row.NombreProveedor, row.DocumentoTranportista, row.NombreTransportista ,row.CodigoProducto, row.NombreProducto, row.Categoria, row.PrecioCompra, row.PrecioVenta, row.Cantidad, row.SubTotal
                     });
                 }
             }
