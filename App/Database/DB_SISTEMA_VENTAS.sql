@@ -137,12 +137,12 @@ FECHA_INGRESO datetime default getdate()
 go
 
 CREATE TABLE COMPRA (ID_COMPRA int identity primary key not null,
+NUMERO_DOCUMENTO varchar(50) unique,
+TIPO_DOCUMENTO varchar(50),
 ID_USUARIO int references USUARIO(ID_USUARIO),
+ID_SUCURSAL int references SUCURSAL(ID_SUCURSAL),
 ID_PROVEEDOR int references PROVEEDOR(ID_PROVEEDOR),
 ID_TRANSPORTISTA int references TRANSPORTISTA(ID_TRANSPORTISTA),
-ID_SUCURSAL int references SUCURSAL(ID_SUCURSAL),
-TIPO_DOCUMENTO varchar(50),
-NUMERO_DOCUMENTO varchar(50) unique,
 MONTO_TOTAL decimal(10,2),
 FECHA_COMPRA datetime default getdate()
 );
@@ -154,17 +154,17 @@ ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
 PRECIO_COMPRA decimal (10,2) default 0,
 PRECIO_VENTA decimal (10,2) default 0,
 CANTIDAD int,
-MONTO_TOTAL decimal (10,2),
+SUBTOTAL decimal (10,2),
 FECHA_REGISTRO datetime default getdate()
 );
 go
 
 CREATE TABLE VENTA ( ID_VENTA int primary key identity,
-ID_USUARIO int references USUARIO (ID_USUARIO),
+NUMERO_DOCUMENTO varchar(50) unique,
 TIPO_DOCUMENTO varchar(50),
+ID_USUARIO int references USUARIO (ID_USUARIO),
 ID_SUCURSAL int references SUCURSAL (ID_SUCURSAL),
 ID_CLIENTE int references CLIENTE (ID_CLIENTE),
-NUMERO_DOCUMENTO varchar(50) unique,
 MONTO_PAGO decimal (10,2),
 MONTO_CAMBIO decimal (10,2),
 MONTO_TOTAL decimal (10,2),
@@ -177,7 +177,7 @@ CREATE TABLE DETALLE_VENTA ( ID_DETALLE_VENTA int primary key identity,
 ID_VENTA int references VENTA (ID_VENTA),
 ID_PRODUCTO int references PRODUCTO (ID_PRODUCTO),
 PRECIO_VENTA decimal (10,2),
-CANTIDAD_PRODUCTO int,
+CANTIDAD int,
 SUBTOTAL decimal (10,2),
 DESCUENTO decimal (10,2),
 FECHA_REGISTRO datetime default getdate()
@@ -1356,17 +1356,17 @@ CREATE TYPE [dbo].[EDetalle_Compra] AS TABLE(
 [Precio_Compra] decimal(10,2) null,
 [Precio_Venta] decimal (10,2) null,
 [Cantidad] int null,
-[Monto_Total] decimal (10,2) null
+[SubTotal] decimal (10,2) null
 )
 go
 
 CREATE PROC PA_REGISTRAR_COMPRA(
+@Numero_Documento varchar(500),
+@Tipo_Documento varchar(500),
 @Id_Usuario int,
+@Id_Sucursal int,
 @Id_Proveedor int,
 @Id_Transportista int,
-@Id_Sucursal int,
-@Tipo_Documento varchar(500),
-@Numero_Documento varchar(500),
 @Monto_Total decimal(10,2),
 @Detalle_Compra [EDetalle_Compra] READONLY,
 @Resultado bit output,
@@ -1381,13 +1381,13 @@ BEGIN
 
         BEGIN TRANSACTION registro;
 
-        INSERT INTO COMPRA (ID_USUARIO, ID_PROVEEDOR, ID_TRANSPORTISTA, ID_SUCURSAL, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, MONTO_TOTAL)
-        VALUES (@Id_Usuario, @Id_Proveedor, @Id_Transportista, @Id_Sucursal, @Tipo_Documento, @Numero_Documento, @Monto_Total);
+        INSERT INTO COMPRA (TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_USUARIO,  ID_SUCURSAL, ID_PROVEEDOR, ID_TRANSPORTISTA, MONTO_TOTAL)
+        VALUES (@Tipo_Documento, @Numero_Documento, @Id_Usuario,  @Id_Sucursal, @Id_Proveedor, @Id_Transportista, @Monto_Total);
 
         SET @Id_Compra = SCOPE_IDENTITY();
 
-        INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD, MONTO_TOTAL)
-        SELECT @Id_Compra, Id_Producto, Precio_Compra, Precio_Venta, Cantidad, Monto_Total
+        INSERT INTO DETALLE_COMPRA (ID_COMPRA, ID_PRODUCTO, PRECIO_COMPRA, PRECIO_VENTA, CANTIDAD, SUBTOTAL)
+        SELECT @Id_Compra, Id_Producto, Precio_Compra, Precio_Venta, Cantidad, SubTotal
         FROM @Detalle_Compra;
 
         UPDATE p
@@ -1426,9 +1426,9 @@ CREATE TYPE [dbo].[EDetalle_Venta] AS TABLE(
 go
 
 CREATE PROCEDURE PA_REGISTRAR_VENTA(
-@Id_Usuario int,
-@Tipo_Documento varchar(500),
 @Numero_Documento varchar(500),
+@Tipo_Documento varchar(500),
+@Id_Usuario int,
 @Id_Sucursal int,
 @Id_Cliente int,
 @Monto_Pago decimal(18,2),
@@ -1448,12 +1448,12 @@ BEGIN
 
 		BEGIN TRANSACTION registro;
 
-		INSERT INTO VENTA(ID_USUARIO, TIPO_DOCUMENTO, NUMERO_DOCUMENTO, ID_SUCURSAL, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
-		VALUES (@Id_Usuario, @Tipo_Documento, @Numero_Documento, @Id_Sucursal, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
+		INSERT INTO VENTA( NUMERO_DOCUMENTO, TIPO_DOCUMENTO, ID_USUARIO, ID_SUCURSAL, ID_CLIENTE, MONTO_PAGO, MONTO_CAMBIO, MONTO_TOTAL, DESCUENTO)
+		VALUES (@Numero_Documento, @Tipo_Documento, @Id_Usuario, @Id_Sucursal, @ID_Cliente, @Monto_Pago, @Monto_Cambio, @Monto_Total, @Descuento)
 
 		SET @Id_Venta = SCOPE_IDENTITY()
 
-		INSERT INTO DETALLE_VENTA(ID_VENTA, ID_PRODUCTO, PRECIO_VENTA, CANTIDAD_PRODUCTO, SUBTOTAL, DESCUENTO)
+		INSERT INTO DETALLE_VENTA(ID_VENTA, ID_PRODUCTO, PRECIO_VENTA, CANTIDAD, SUBTOTAL, DESCUENTO)
 		SELECT @Id_Venta,IdProducto, PrecioVenta, Cantidad, SubTotal, Descuento FROM @Detalle_Venta
 
 		update i set i.CANTIDAD = i.CANTIDAD - dv.CANTIDAD from INVENTARIO i
@@ -1483,18 +1483,18 @@ CREATE PROC PA_REPORTE_COMPRA(
 AS
 BEGIN
 	SET DATEFORMAT dmy;
-	SELECT convert(char(10), C.FECHA_COMPRA, 103)[FECHA_COMPRA], C.TIPO_DOCUMENTO, C.NUMERO_DOCUMENTO, C.MONTO_TOTAL,
+	SELECT convert(char(10), C.FECHA_COMPRA, 103)[FECHA_COMPRA], C.NUMERO_DOCUMENTO, C.TIPO_DOCUMENTO, C.MONTO_TOTAL,
 	U.NOMBRE_COMPLETO[NOMBRE_USUARIO],
+	S.NOMBRE_SUCURSAL,
 	PR.CODIGO[CODIGO], PR.NOMBRES[NOMBRE_PROVEEDOR],
 	T.CODIGO[CODIGO_TRANSPORTISTA], T.NOMBRES[NOMBRE_TRANSPORTISTA],
-	S.NOMBRE_SUCURSAL,
 	P.CODIGO[CODIGO_PRODUCTO], P.NOMBRE_PRODUCTO, 
 	CA.DESCRIPCION[CATEGORIA], 
-	DC.PRECIO_COMPRA, DC.PRECIO_VENTA, DC.CANTIDAD, DC.MONTO_TOTAL[SUBTOTAL] FROM COMPRA C 
+	DC.PRECIO_COMPRA, DC.PRECIO_VENTA, DC.CANTIDAD, DC.SUBTOTAL FROM COMPRA C 
 	inner join USUARIO U on U.ID_USUARIO = C.ID_USUARIO
+	inner join SUCURSAL S on S.ID_SUCURSAL = C.ID_SUCURSAL
 	inner join PROVEEDOR PR on PR.ID_PROVEEDOR = C.ID_PROVEEDOR
 	inner join TRANSPORTISTA T on T.ID_TRANSPORTISTA = C.ID_TRANSPORTISTA
-	inner join SUCURSAL S on S.ID_SUCURSAL = C.ID_SUCURSAL
 	inner join DETALLE_COMPRA DC on DC.ID_COMPRA = C.ID_COMPRA
 	inner join PRODUCTO P on P.ID_PRODUCTO = DC.ID_PRODUCTO
 	inner join CATEGORIA CA on CA.ID_CATEGORIA = P.ID_CATEGORIA
@@ -1511,18 +1511,18 @@ CREATE PROC PA_REPORTE_VENTA(
 AS
 BEGIN
 	SET DATEFORMAT dmy;
-	SELECT convert(char(10), V.FECHA_VENTA, 103)[FECHA_VENTA], V.TIPO_DOCUMENTO, V.NUMERO_DOCUMENTO, V.MONTO_TOTAL, V.DESCUENTO,
+	SELECT convert(char(10), V.FECHA_VENTA, 103)[FECHA_VENTA], V.NUMERO_DOCUMENTO, V.TIPO_DOCUMENTO, V.MONTO_TOTAL, V.DESCUENTO,
 	U.NOMBRE_COMPLETO[NOMBRE_USUARIO],
 	S.NOMBRE_SUCURSAL,
 	CL.CEDULA, CL.NOMBRES,
 	P.CODIGO[CODIGO_PRODUCTO], P.NOMBRE_PRODUCTO, 
 	CA.DESCRIPCION[CATEGORIA], 
-	DV.PRECIO_VENTA, DV.CANTIDAD_PRODUCTO, DV.SUBTOTAL FROM VENTA V 
+	DV.PRECIO_VENTA, DV.CANTIDAD, DV.SUBTOTAL FROM VENTA V 
 	inner join USUARIO U on U.ID_USUARIO = V.ID_USUARIO
+	inner join SUCURSAL S on S.ID_SUCURSAL = V.ID_SUCURSAL
 	inner join DETALLE_VENTA DV on dv.ID_VENTA = v.ID_VENTA
 	inner join PRODUCTO P on P.ID_PRODUCTO = DV.ID_PRODUCTO
 	inner join CATEGORIA CA on CA.ID_CATEGORIA = P.ID_CATEGORIA
-	inner join SUCURSAL S on S.ID_SUCURSAL = V.ID_SUCURSAL
 	inner join CLIENTE CL on CL.ID_CLIENTE = V.ID_CLIENTE
 	WHERE convert(date, v.FECHA_VENTA) between @fecha_Inicio and @fecha_Fin
 END;
