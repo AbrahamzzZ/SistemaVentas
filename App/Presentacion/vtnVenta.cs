@@ -78,7 +78,7 @@ namespace Presentacion
                     TxtIdProducto.Text = modal.Producto.IdProducto.ToString();
                     TxtCodigo.Text = modal.Producto.Codigo.ToString();
                     TxtProducto.Text = modal.Producto.Nombre.ToString();
-                    TxtPrecioCompra.Text = modal.Producto.PrecioVenta.ToString("0.00");
+                    TxtPrecioVenta.Text = modal.Producto.PrecioVenta.ToString("0.00");
                     TxtStock.Text = modal.Producto.Stock.ToString();
                     NudCantidad.Select();
                 }
@@ -131,10 +131,10 @@ namespace Presentacion
                 MessageBox.Show("Debe seleccionar un producto.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!decimal.TryParse(TxtPrecioCompra.Text, out precio))
+            if (!decimal.TryParse(TxtPrecioVenta.Text, out precio))
             {
                 MessageBox.Show("Formato moneda incorrecta.", "Agregar venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                TxtPrecioCompra.Select();
+                TxtPrecioVenta.Select();
                 return;
             }
             if (Convert.ToInt32(TxtStock.Text) < Convert.ToInt32(NudCantidad.Value.ToString()))
@@ -354,7 +354,7 @@ namespace Presentacion
             TxtCodigo.Text = "";
             TxtCodigo.BackColor = Color.White;
             TxtProducto.Text = "";
-            TxtPrecioCompra.Text = "";
+            TxtPrecioVenta.Text = "";
             TxtStock.Text = "";
             NudCantidad.Value = 0;
             TxtNombreOferta.Text = "";
@@ -368,7 +368,7 @@ namespace Presentacion
             TxtIdProducto.Text = "0";
             TxtCodigo.Text = "";
             TxtProducto.Text = "";
-            TxtPrecioCompra.Text = "";
+            TxtPrecioVenta.Text = "";
             TxtStock.Text = "";
             NudCantidad.Value = 0;
             TxtIdCliente.Text = "0";
@@ -427,7 +427,7 @@ namespace Presentacion
                     TxtCodigo.BackColor = Color.Honeydew;
                     TxtIdProducto.Text = oProducto.IdProducto.ToString();
                     TxtProducto.Text = oProducto.Nombre;
-                    TxtPrecioCompra.Text = oProducto.PrecioVenta.ToString("0.00");
+                    TxtPrecioVenta.Text = oProducto.PrecioVenta.ToString("0.00");
                     TxtStock.Text = oProducto.Stock.ToString();
                     NudCantidad.Select();
                 }
@@ -436,7 +436,7 @@ namespace Presentacion
                     TxtCodigo.BackColor = Color.MistyRose;
                     TxtIdProducto.Text = "0";
                     TxtProducto.Text = "";
-                    TxtPrecioCompra.Text = "";
+                    TxtPrecioVenta.Text = "";
                     TxtStock.Text = "";
                     NudCantidad.Value = 0;
                 }
@@ -451,7 +451,7 @@ namespace Presentacion
             }
             else
             {
-                if (TxtPrecioCompra.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
+                if (TxtPrecioVenta.Text.Trim().Length == 0 && e.KeyChar.ToString() == ".")
                 {
                     e.Handled = true;
                 }

@@ -55,7 +55,7 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.NudCantidad = new System.Windows.Forms.NumericUpDown();
             this.TxtStock = new System.Windows.Forms.TextBox();
-            this.TxtPrecioCompra = new System.Windows.Forms.TextBox();
+            this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblStock = new System.Windows.Forms.Label();
             this.lblPrecioCompra = new System.Windows.Forms.Label();
@@ -335,7 +335,7 @@
             this.GroupBoxProducto.Controls.Add(this.BtnLimpiar);
             this.GroupBoxProducto.Controls.Add(this.NudCantidad);
             this.GroupBoxProducto.Controls.Add(this.TxtStock);
-            this.GroupBoxProducto.Controls.Add(this.TxtPrecioCompra);
+            this.GroupBoxProducto.Controls.Add(this.TxtPrecioVenta);
             this.GroupBoxProducto.Controls.Add(this.lblCantidad);
             this.GroupBoxProducto.Controls.Add(this.lblStock);
             this.GroupBoxProducto.Controls.Add(this.lblPrecioCompra);
@@ -383,16 +383,16 @@
             this.TxtStock.TabIndex = 111;
             this.TxtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtStock_KeyPress);
             // 
-            // TxtPrecioCompra
+            // TxtPrecioVenta
             // 
-            this.TxtPrecioCompra.BackColor = System.Drawing.Color.LightGray;
-            this.TxtPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecioCompra.Location = new System.Drawing.Point(615, 65);
-            this.TxtPrecioCompra.Name = "TxtPrecioCompra";
-            this.TxtPrecioCompra.ReadOnly = true;
-            this.TxtPrecioCompra.Size = new System.Drawing.Size(114, 27);
-            this.TxtPrecioCompra.TabIndex = 110;
-            this.TxtPrecioCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioCompra_KeyPress);
+            this.TxtPrecioVenta.BackColor = System.Drawing.Color.LightGray;
+            this.TxtPrecioVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPrecioVenta.Location = new System.Drawing.Point(615, 65);
+            this.TxtPrecioVenta.Name = "TxtPrecioVenta";
+            this.TxtPrecioVenta.ReadOnly = true;
+            this.TxtPrecioVenta.Size = new System.Drawing.Size(114, 27);
+            this.TxtPrecioVenta.TabIndex = 110;
+            this.TxtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioCompra_KeyPress);
             // 
             // lblCantidad
             // 
@@ -420,9 +420,9 @@
             this.lblPrecioCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrecioCompra.Location = new System.Drawing.Point(615, 40);
             this.lblPrecioCompra.Name = "lblPrecioCompra";
-            this.lblPrecioCompra.Size = new System.Drawing.Size(113, 18);
+            this.lblPrecioCompra.Size = new System.Drawing.Size(96, 18);
             this.lblPrecioCompra.TabIndex = 107;
-            this.lblPrecioCompra.Text = "Precio Compra:";
+            this.lblPrecioCompra.Text = "Precio Venta:";
             // 
             // TxtProducto
             // 
@@ -832,7 +832,7 @@
         private System.Windows.Forms.GroupBox GroupBoxProducto;
         private System.Windows.Forms.NumericUpDown NudCantidad;
         private System.Windows.Forms.TextBox TxtStock;
-        private System.Windows.Forms.TextBox TxtPrecioCompra;
+        private System.Windows.Forms.TextBox TxtPrecioVenta;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label lblPrecioCompra;
