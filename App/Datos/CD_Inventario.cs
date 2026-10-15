@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Inventario
+    public class CD_Inventario : ICD_Inventario
     {
-
-        private readonly Conexion Conexion = new Conexion();
 
         /// <summary>
         /// Método que muestra una lista de todos los productos que estan en el inventario.
@@ -27,18 +25,23 @@ namespace Datos
                 mostrar.AppendLine("SELECT i.ID_INVENTARIO, z.ID_ZONA, p.ID_PRODUCTO, p.NOMBRE_PRODUCTO, i.CANTIDAD, z.NOMBRE_ZONA FROM INVENTARIO i");
                 mostrar.AppendLine("INNER JOIN PRODUCTO p ON p.ID_PRODUCTO = i.ID_PRODUCTO");
                 mostrar.AppendLine("INNER JOIN ZONA_ALMACEN z ON z.ID_ZONA = i.ID_ZONA");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarProductoInventario.Add(new Inventario()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdInventario = Convert.ToInt32(leer["ID_INVENTARIO"]),
-                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
-                        oZonaAlmacen = new Zona_Almacen() { IdZona = Convert.ToInt32(leer["ID_ZONA"]), NombreZona = leer["NOMBRE_ZONA"].ToString() },
-                        Cantidad = Convert.ToInt32(leer["CANTIDAD"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarProductoInventario.Add(new Inventario()
+                            {
+                                IdInventario = Convert.ToInt32(leer["ID_INVENTARIO"]),
+                                oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
+                                oZonaAlmacen = new Zona_Almacen() { IdZona = Convert.ToInt32(leer["ID_ZONA"]), NombreZona = leer["NOMBRE_ZONA"].ToString() },
+                                Cantidad = Convert.ToInt32(leer["CANTIDAD"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception inv)
@@ -61,17 +64,20 @@ namespace Datos
             mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PRODUCTO_INVENTARIO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("ID_PRODUCTO", obj.oProducto.IdProducto);
-                cmd.Parameters.AddWithValue("ID_ZONA", obj.oZonaAlmacen.IdZona);
-                cmd.Parameters.AddWithValue("CANTIDAD", obj.Cantidad);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PRODUCTO_INVENTARIO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("ID_PRODUCTO", obj.oProducto.IdProducto);
+                    cmd.Parameters.AddWithValue("ID_ZONA", obj.oZonaAlmacen.IdZona);
+                    cmd.Parameters.AddWithValue("CANTIDAD", obj.Cantidad);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                idInventarioGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    idInventarioGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception inv)
             {
@@ -93,19 +99,22 @@ namespace Datos
             mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_PRODUCTO_INVENTARIO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Inventario", obj.IdInventario);
-                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
-                cmd.Parameters.AddWithValue("Cantidad", obj.Cantidad);
-                cmd.Parameters.AddWithValue("Id_Zona", obj.oZonaAlmacen.IdZona);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_PRODUCTO_INVENTARIO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Inventario", obj.IdInventario);
+                    cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
+                    cmd.Parameters.AddWithValue("Cantidad", obj.Cantidad);
+                    cmd.Parameters.AddWithValue("Id_Zona", obj.oZonaAlmacen.IdZona);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception inv)
             {
@@ -127,16 +136,19 @@ namespace Datos
             mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PRODUCTO_INVENTARIO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Inventario", obj.IdInventario);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PRODUCTO_INVENTARIO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Inventario", obj.IdInventario);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception inv)
             {

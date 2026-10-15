@@ -10,10 +10,8 @@ using System.Security.Cryptography;
 
 namespace Datos
 {
-    public class CD_Venta
+    public class CD_Venta : ICD_Venta
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra el correlativo de cada Venta
         /// </summary>
@@ -26,9 +24,12 @@ namespace Datos
                 StringBuilder obtenerCorrelatico = new StringBuilder();
                 obtenerCorrelatico.AppendLine("SELECT count (*) + 1 FROM VENTA;");
 
-                SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                IdCorrelativo = Convert.ToInt32(cmd.ExecuteScalar());
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), conexion))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    IdCorrelativo = Convert.ToInt32(cmd.ExecuteScalar());
+                }
             }
             catch (Exception co)
             {
@@ -52,12 +53,15 @@ namespace Datos
                 StringBuilder obtenerCorrelatico = new StringBuilder();
                 obtenerCorrelatico.AppendLine("UPDATE PRODUCTO SET STOCK = STOCK + @Cantidad WHERE Id_Producto = @idProducto");
 
-                SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@Cantidad", cantidad);
-                cmd.Parameters.AddWithValue("@idProducto", idProducto);
-                cmd.CommandType = CommandType.Text;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), conexion))
+                {
+                    cmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                    cmd.CommandType = CommandType.Text;
 
-                Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                }
             }
             catch (Exception ve)
             {
@@ -81,12 +85,15 @@ namespace Datos
                 StringBuilder obtenerCorrelatico = new StringBuilder();
                 obtenerCorrelatico.AppendLine("UPDATE PRODUCTO SET STOCK = STOCK - @Cantidad WHERE Id_Producto = @idProducto");
 
-                SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@Cantidad", cantidad);
-                cmd.Parameters.AddWithValue("@idProducto", idProducto);
-                cmd.CommandType = CommandType.Text;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtenerCorrelatico.ToString(), conexion))
+                {
+                    cmd.Parameters.AddWithValue("@Cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                    cmd.CommandType = CommandType.Text;
 
-                Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                    Respuesta = cmd.ExecuteNonQuery() > 0 ? true : false;
+                }
             }
             catch (SqlException ve)
             {
@@ -109,24 +116,27 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_VENTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
-                cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
-                cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
-                cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
-                cmd.Parameters.AddWithValue("Id_Cliente", obj.oCliente.IdCliente);
-                cmd.Parameters.AddWithValue("Monto_Pago", obj.MontoPago);
-                cmd.Parameters.AddWithValue("Monto_Cambio", obj.MontoCambio);
-                cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);
-                cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
-                cmd.Parameters.AddWithValue("Detalle_Venta", DetalleVenta);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_VENTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Tipo_Documento", obj.TipoDocumento);
+                    cmd.Parameters.AddWithValue("Numero_Documento", obj.NumeroDocumento);
+                    cmd.Parameters.AddWithValue("Id_Usuario", obj.oUsuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("Id_Sucursal", obj.oSucursal.IdSucursal);
+                    cmd.Parameters.AddWithValue("Id_Cliente", obj.oCliente.IdCliente);
+                    cmd.Parameters.AddWithValue("Monto_Pago", obj.MontoPago);
+                    cmd.Parameters.AddWithValue("Monto_Cambio", obj.MontoCambio);
+                    cmd.Parameters.AddWithValue("Monto_Total", obj.MontoTotal);
+                    cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
+                    cmd.Parameters.AddWithValue("Detalle_Venta", DetalleVenta);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.ExecuteNonQuery();
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    cmd.ExecuteNonQuery();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception ve)
             {
@@ -153,27 +163,32 @@ namespace Datos
                 obtener.AppendLine("inner join SUCURSAL S on S.ID_SUCURSAL = V.ID_SUCURSAL");
                 obtener.AppendLine("WHERE V.NUMERO_DOCUMENTO = @numero");
 
-                SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@numero", numero);
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtener.ToString(), conexion))
                 {
-                    obj = new Venta()
+                    cmd.Parameters.AddWithValue("@numero", numero);
+                    cmd.CommandType = System.Data.CommandType.Text;
+
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdVenta = int.Parse(leer["ID_VENTA"].ToString()),
-                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
-                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
-                        oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
-                        oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
-                        oCliente = new Cliente() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
-                        MontoPago = Convert.ToDecimal(leer["MONTO_PAGO"].ToString()),
-                        MontoCambio = Convert.ToDecimal(leer["MONTO_CAMBIO"].ToString()),
-                        MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"].ToString()),
-                        Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString()),
-                        FechaVenta = leer["FECHA_VENTA"].ToString()
-                    };
+                        while (leer.Read())
+                        {
+                            obj = new Venta()
+                            {
+                                IdVenta = int.Parse(leer["ID_VENTA"].ToString()),
+                                NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                                TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
+                                oUsuario = new Usuario() { NombreCompleto = leer["NOMBRE_COMPLETO"].ToString() },
+                                oSucursal = new Sucursal() { Nombre = leer["NOMBRE_SUCURSAL"].ToString() },
+                                oCliente = new Cliente() { Cedula = leer["CEDULA"].ToString(), Nombres = leer["NOMBRES"].ToString() },
+                                MontoPago = Convert.ToDecimal(leer["MONTO_PAGO"].ToString()),
+                                MontoCambio = Convert.ToDecimal(leer["MONTO_CAMBIO"].ToString()),
+                                MontoTotal = Convert.ToDecimal(leer["MONTO_TOTAL"].ToString()),
+                                Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString()),
+                                FechaVenta = leer["FECHA_VENTA"].ToString()
+                            };
+                        }
+                    }
                 }
             }
             catch (Exception ve)
@@ -199,21 +214,26 @@ namespace Datos
                 obtener.AppendLine("inner join PRODUCTO p on p.ID_PRODUCTO = dv.ID_PRODUCTO");
                 obtener.AppendLine("WHERE dv.ID_VENTA = @idVenta");
 
-                SqlCommand cmd = new SqlCommand(obtener.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@idVenta", idVenta);
-                cmd.CommandType = CommandType.Text;
-
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtener.ToString(), conexion))
                 {
-                    oLista.Add(new Detalle_Venta()
+                    cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                    cmd.CommandType = CommandType.Text;
+
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        oProducto = new Producto() { Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
-                        PrecioVenta = Convert.ToDecimal(leer["PRECIO_VENTA"].ToString()),
-                        Cantidad = Convert.ToInt32(leer["CANTIDAD"].ToString()),
-                        SubTotal = Convert.ToDecimal(leer["SUBTOTAL"].ToString()),
-                        Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString())
-                    });
+                        while (leer.Read())
+                        {
+                            oLista.Add(new Detalle_Venta()
+                            {
+                                oProducto = new Producto() { Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
+                                PrecioVenta = Convert.ToDecimal(leer["PRECIO_VENTA"].ToString()),
+                                Cantidad = Convert.ToInt32(leer["CANTIDAD"].ToString()),
+                                SubTotal = Convert.ToDecimal(leer["SUBTOTAL"].ToString()),
+                                Descuento = Convert.ToDecimal(leer["DESCUENTO"].ToString())
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception dev)
@@ -236,10 +256,13 @@ namespace Datos
                 grafica.AppendLine("SELECT TOP 5 P.NOMBRE_PRODUCTO, COUNT(DV.ID_PRODUCTO) AS CANTIDAD_VENDIDA FROM DETALLE_VENTA DV");
                 grafica.AppendLine("INNER JOIN PRODUCTO P ON DV.ID_PRODUCTO = P.ID_PRODUCTO GROUP BY P.NOMBRE_PRODUCTO;");
 
-                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
-                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(grafica.ToString(), conexion))
+                {
+                    SqlDataAdapter data = new SqlDataAdapter(cmd);
 
-                data.Fill(tabla);
+                    data.Fill(tabla);
+                }
             }
             catch (Exception gr)
             {
@@ -261,10 +284,13 @@ namespace Datos
                 grafica.AppendLine("SELECT TOP 5 CL.NOMBRES, COUNT(V.ID_CLIENTE) AS COMPRAS_TOTALES FROM VENTA V");
                 grafica.AppendLine("INNER JOIN CLIENTE CL ON V.ID_CLIENTE = CL.ID_CLIENTE GROUP BY CL.NOMBRES;");
 
-                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
-                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(grafica.ToString(), conexion))
+                {
+                    SqlDataAdapter data = new SqlDataAdapter(cmd);
 
-                data.Fill(tabla);
+                    data.Fill(tabla);
+                }
             }
             catch (Exception gr)
             {
@@ -286,10 +312,13 @@ namespace Datos
                 grafica.AppendLine("SELECT TOP 5 U.NOMBRE_COMPLETO, COUNT(V.ID_USUARIO) AS VENTAS_EMPLEADO FROM VENTA V");
                 grafica.AppendLine("INNER JOIN USUARIO U ON V.ID_USUARIO = U.ID_USUARIO GROUP BY U.NOMBRE_COMPLETO;");
 
-                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
-                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(grafica.ToString(), conexion))
+                {
+                    SqlDataAdapter data = new SqlDataAdapter(cmd);
 
-                data.Fill(tabla);
+                    data.Fill(tabla);
+                }
             }
             catch (Exception gr)
             {
@@ -311,10 +340,13 @@ namespace Datos
                 grafica.AppendLine("SELECT TOP 5 S.NOMBRE_SUCURSAL, COUNT(V.ID_SUCURSAL) AS SUCURSALES FROM VENTA V");
                 grafica.AppendLine("INNER JOIN SUCURSAL S ON V.ID_SUCURSAL = S.ID_SUCURSAL GROUP BY S.NOMBRE_SUCURSAL;");
 
-                SqlCommand cmd = new SqlCommand(grafica.ToString(), Conexion.ConexionBD());
-                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(grafica.ToString(), conexion))
+                {
+                    SqlDataAdapter data = new SqlDataAdapter(cmd);
 
-                data.Fill(tabla);
+                    data.Fill(tabla);
+                }
             }
             catch (Exception co)
             {

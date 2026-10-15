@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Unidad_Medida
+    public class CD_Unidad_Medida : ICD_Unidad_Medida
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todas las Unidades de Medida que existen
         /// </summary>
@@ -24,19 +22,24 @@ namespace Datos
             {
                 StringBuilder mostrar = new StringBuilder();
                 mostrar.AppendLine("SELECT ID_UNIDAD_MEDIDA, CODIGO, DESCRIPCION, SIMBOLO, ESTADO FROM UNIDAD_MEDIDA");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarUnidadesMedidas.Add(new Unidad_Medida()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdUnidadMedida = Convert.ToInt32(leer["ID_UNIDAD_MEDIDA"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        Descripcion = leer["DESCRIPCION"].ToString(),
-                        Simbolo = leer["SIMBOLO"].ToString(),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarUnidadesMedidas.Add(new Unidad_Medida()
+                            {
+                                IdUnidadMedida = Convert.ToInt32(leer["ID_UNIDAD_MEDIDA"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                Descripcion = leer["DESCRIPCION"].ToString(),
+                                Simbolo = leer["SIMBOLO"].ToString(),
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception un)
@@ -59,19 +62,22 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_UNIDAD_MEDIDA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_UNIDAD_MEDIDA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdUnidadMedidaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdUnidadMedidaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception un)
             {
@@ -94,20 +100,23 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_UNIDAD_MEDIDA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.IdUnidadMedida);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_UNIDAD_MEDIDA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.IdUnidadMedida);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Simbolo", obj.Simbolo);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception un)
             {
@@ -128,16 +137,19 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_UNIDAD_MEDIDA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.IdUnidadMedida);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_UNIDAD_MEDIDA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.IdUnidadMedida);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception un)
             {

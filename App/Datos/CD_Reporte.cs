@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Reporte
+    public class CD_Reporte : ICD_Reporte
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra un reporte de las Compras realizadas
         /// </summary>
@@ -27,36 +25,41 @@ namespace Datos
             try
             {
                 StringBuilder reporte = new StringBuilder();
-                SqlCommand cmd = new SqlCommand("PA_REPORTE_COMPRA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Fecha_Inicio", fechaInicio);
-                cmd.Parameters.AddWithValue("Fecha_Fin", fechaFin);
-                cmd.Parameters.AddWithValue("Id_Proveedor", idProveedor);
-                cmd.Parameters.AddWithValue("Id_Transportista", idTransportista);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REPORTE_COMPRA", conexion))
                 {
-                    lista.Add(new Reporte_Compra()
+                    cmd.Parameters.AddWithValue("Fecha_Inicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("Fecha_Fin", fechaFin);
+                    cmd.Parameters.AddWithValue("Id_Proveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("Id_Transportista", idTransportista);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        FechaRegistro = leer["FECHA_COMPRA"].ToString(),
-                        Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
-                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
-                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
-                        MontoTotal = leer["MONTO_TOTAL"].ToString(),
-                        UsuarioRegistro = leer["NOMBRE_USUARIO"].ToString(),
-                        DocumentoProveedor = leer["CODIGO"].ToString(),
-                        NombreProveedor = leer["NOMBRE_PROVEEDOR"].ToString(),
-                        DocumentoTranportista = leer["CODIGO_TRANSPORTISTA"].ToString(),
-                        NombreTransportista = leer["NOMBRE_TRANSPORTISTA"].ToString(),
-                        CodigoProducto = leer["CODIGO_PRODUCTO"].ToString(),
-                        NombreProducto = leer["NOMBRE_PRODUCTO"].ToString(),
-                        Categoria = leer["CATEGORIA"].ToString(),
-                        PrecioCompra = leer["PRECIO_COMPRA"].ToString(),
-                        PrecioVenta = leer["PRECIO_VENTA"].ToString(),
-                        Cantidad = leer["CANTIDAD"].ToString(),
-                        SubTotal = leer["SUBTOTAL"].ToString()
-                    });
+                        while (leer.Read())
+                        {
+                            lista.Add(new Reporte_Compra()
+                            {
+                                FechaRegistro = leer["FECHA_COMPRA"].ToString(),
+                                Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
+                                TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
+                                NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                                MontoTotal = leer["MONTO_TOTAL"].ToString(),
+                                UsuarioRegistro = leer["NOMBRE_USUARIO"].ToString(),
+                                DocumentoProveedor = leer["CODIGO"].ToString(),
+                                NombreProveedor = leer["NOMBRE_PROVEEDOR"].ToString(),
+                                DocumentoTranportista = leer["CODIGO_TRANSPORTISTA"].ToString(),
+                                NombreTransportista = leer["NOMBRE_TRANSPORTISTA"].ToString(),
+                                CodigoProducto = leer["CODIGO_PRODUCTO"].ToString(),
+                                NombreProducto = leer["NOMBRE_PRODUCTO"].ToString(),
+                                Categoria = leer["CATEGORIA"].ToString(),
+                                PrecioCompra = leer["PRECIO_COMPRA"].ToString(),
+                                PrecioVenta = leer["PRECIO_VENTA"].ToString(),
+                                Cantidad = leer["CANTIDAD"].ToString(),
+                                SubTotal = leer["SUBTOTAL"].ToString()
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception rep)
@@ -78,32 +81,37 @@ namespace Datos
             try
             {
                 StringBuilder reporte = new StringBuilder();
-                SqlCommand cmd = new SqlCommand("PA_REPORTE_VENTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("fecha_Inicio", fechaInicio);
-                cmd.Parameters.AddWithValue("fecha_Fin", fechaFin);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REPORTE_VENTA", conexion))
                 {
-                    lista.Add(new Reporte_Venta()
+                    cmd.Parameters.AddWithValue("fecha_Inicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("fecha_Fin", fechaFin);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        FechaRegistro = leer["FECHA_VENTA"].ToString(),
-                        Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
-                        TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
-                        NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
-                        MontoTotal = leer["MONTO_TOTAL"].ToString(),
-                        UsuarioRegistro = leer["NOMBRE_USUARIO"].ToString(),
-                        CedulaCliente = leer["CEDULA"].ToString(),
-                        NombreCliente = leer["NOMBRES"].ToString(),
-                        CodigoProducto = leer["CODIGO_PRODUCTO"].ToString(),
-                        NombreProducto = leer["NOMBRE_PRODUCTO"].ToString(),
-                        Categoria = leer["CATEGORIA"].ToString(),
-                        PrecioVenta = leer["PRECIO_VENTA"].ToString(),
-                        Cantidad = leer["CANTIDAD"].ToString(),
-                        SubTotal = leer["SUBTOTAL"].ToString(),
-                        Descuento = leer["DESCUENTO"].ToString()
-                    });
+                        while (leer.Read())
+                        {
+                            lista.Add(new Reporte_Venta()
+                            {
+                                FechaRegistro = leer["FECHA_VENTA"].ToString(),
+                                Sucursal = leer["NOMBRE_SUCURSAL"].ToString(),
+                                TipoDocumento = leer["TIPO_DOCUMENTO"].ToString(),
+                                NumeroDocumento = leer["NUMERO_DOCUMENTO"].ToString(),
+                                MontoTotal = leer["MONTO_TOTAL"].ToString(),
+                                UsuarioRegistro = leer["NOMBRE_USUARIO"].ToString(),
+                                CedulaCliente = leer["CEDULA"].ToString(),
+                                NombreCliente = leer["NOMBRES"].ToString(),
+                                CodigoProducto = leer["CODIGO_PRODUCTO"].ToString(),
+                                NombreProducto = leer["NOMBRE_PRODUCTO"].ToString(),
+                                Categoria = leer["CATEGORIA"].ToString(),
+                                PrecioVenta = leer["PRECIO_VENTA"].ToString(),
+                                Cantidad = leer["CANTIDAD"].ToString(),
+                                SubTotal = leer["SUBTOTAL"].ToString(),
+                                Descuento = leer["DESCUENTO"].ToString()
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception rep)

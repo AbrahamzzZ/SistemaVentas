@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Rol
+    public class CD_Rol : ICD_Rol
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todos los Roles que existen
         /// </summary>
@@ -24,16 +22,21 @@ namespace Datos
             {
                 StringBuilder rol = new StringBuilder();
                 rol.AppendLine("SELECT ID_ROL, DESCRIPCION FROM ROL");
-                SqlCommand cmd = new SqlCommand(rol.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(rol.ToString(), conexion))
                 {
-                    listaRoles.Add(new Rol()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdRol = Convert.ToInt32(leer["ID_ROL"]),
-                        Descripcion = leer["DESCRIPCION"].ToString(),
-                    }); ;
+                        while (leer.Read())
+                        {
+                            listaRoles.Add(new Rol()
+                            {
+                                IdRol = Convert.ToInt32(leer["ID_ROL"]),
+                                Descripcion = leer["DESCRIPCION"].ToString(),
+                            }); ;
+                        }
+                    }
                 }
             }
             catch (Exception ro)

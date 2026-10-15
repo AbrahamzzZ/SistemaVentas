@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Oferta
+    public class CD_Oferta : ICD_Oferta
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todas las Ofertas que existen
         /// </summary>
@@ -25,23 +23,28 @@ namespace Datos
                 StringBuilder mostrar = new StringBuilder();
                 mostrar.AppendLine("SELECT ID_OFERTA, o.CODIGO, NOMBRE_OFERTA, p.ID_PRODUCTO, p.NOMBRE_PRODUCTO, O.DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, O.ESTADO FROM OFERTA O");
                 mostrar.AppendLine("INNER JOIN PRODUCTO p ON p.ID_PRODUCTO = O.ID_PRODUCTO;");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarOferta.Add(new Oferta()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdOferta = Convert.ToInt32(leer["ID_OFERTA"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        NombreOferta = leer["NOMBRE_OFERTA"].ToString(),
-                        oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
-                        Descripcion = leer["DESCRIPCION"].ToString(),
-                        FechaInicio = Convert.ToDateTime(leer["FECHA_INICIO"]),
-                        FechaFin = Convert.ToDateTime(leer["FECHA_FIN"]),
-                        Descuento = Convert.ToDecimal(leer["DESCUENTO"]),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarOferta.Add(new Oferta()
+                            {
+                                IdOferta = Convert.ToInt32(leer["ID_OFERTA"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                NombreOferta = leer["NOMBRE_OFERTA"].ToString(),
+                                oProducto = new Producto() { IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]), Nombre = leer["NOMBRE_PRODUCTO"].ToString() },
+                                Descripcion = leer["DESCRIPCION"].ToString(),
+                                FechaInicio = Convert.ToDateTime(leer["FECHA_INICIO"]),
+                                FechaFin = Convert.ToDateTime(leer["FECHA_FIN"]),
+                                Descuento = Convert.ToDecimal(leer["DESCUENTO"]),
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception of)
@@ -64,23 +67,26 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_OFERTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
-                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
-                cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);
-                cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_OFERTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
+                    cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
+                    cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);
+                    cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdOfertaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdOfertaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception of)
             {
@@ -102,24 +108,27 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_OFERTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Oferta", obj.IdOferta);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
-                cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
-                cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);
-                cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_OFERTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Oferta", obj.IdOferta);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Oferta", obj.NombreOferta);
+                    cmd.Parameters.AddWithValue("Id_Producto", obj.oProducto.IdProducto);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Fecha_Inicio", obj.FechaInicio);
+                    cmd.Parameters.AddWithValue("Fecha_Fin", obj.FechaFin);
+                    cmd.Parameters.AddWithValue("Descuento", obj.Descuento);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception of)
             {
@@ -141,16 +150,19 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_OFERTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Oferta", obj.IdOferta);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_OFERTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Oferta", obj.IdOferta);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception of)
             {
