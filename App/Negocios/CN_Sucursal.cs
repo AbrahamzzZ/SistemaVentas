@@ -8,7 +8,23 @@ namespace Negocios
 {
     public class CN_Sucursal
     {
-        private readonly CD_Sucursal ObjetoSucursal = new CD_Sucursal();
+        private readonly ICD_Sucursal ObjetoSucursal;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Sucursal() : this(new CD_Sucursal())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Sucursal(ICD_Sucursal datos)
+        {
+            ObjetoSucursal = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todos las sucursales.

@@ -7,7 +7,23 @@ namespace Negocios
 {
     public class CN_Categoria
     {
-        private readonly CD_Categoria ObjetoCategoria = new CD_Categoria();
+        private readonly ICD_Categoria ObjetoCategoria;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Categoria() : this(new CD_Categoria())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Categoria(ICD_Categoria datos)
+        {
+            ObjetoCategoria = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todas las categorías.

@@ -11,7 +11,23 @@ namespace Negocios
 {
     public class CN_Reporte
     {
-        private readonly CD_Reporte ObjetoReporte = new CD_Reporte();
+        private readonly ICD_Reporte ObjetoReporte;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Reporte() : this(new CD_Reporte())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Reporte(ICD_Reporte datos)
+        {
+            ObjetoReporte = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que genera un reporte de productos comprados.

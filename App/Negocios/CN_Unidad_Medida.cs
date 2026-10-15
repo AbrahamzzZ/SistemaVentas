@@ -11,7 +11,23 @@ namespace Negocios
 {
     public class CN_Unidad_Medida
     {
-        private readonly CD_Unidad_Medida ObjetoUnidadMedida = new CD_Unidad_Medida();
+        private readonly ICD_Unidad_Medida ObjetoUnidadMedida;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Unidad_Medida() : this(new CD_Unidad_Medida())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Unidad_Medida(ICD_Unidad_Medida datos)
+        {
+            ObjetoUnidadMedida = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todas las unidades de medida
