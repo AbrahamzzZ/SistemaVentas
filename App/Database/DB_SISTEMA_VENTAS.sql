@@ -184,16 +184,6 @@ FECHA_REGISTRO datetime default getdate()
 );
 go
 
-/*CREATE TABLE RECLAMO(ID_RECLAMO int primary key identity,
-ID_CLIENTE int references CLIENTE(ID_CLIENTE),
-NOMBRE_CLIENTE nvarchar(50),
-CORREO_ELECTRONICO_CLIENTE nvarchar(50),
-DESCRIPCION nvarchar(500),
-ESTADO bit,
-FECHA_REGISTRO datetime default getdate()
-); 
-go*/
-
 CREATE TABLE OFERTA (ID_OFERTA INT PRIMARY KEY IDENTITY,
 CODIGO varchar(10) unique,
 NOMBRE_OFERTA varchar(50), 
@@ -1658,50 +1648,6 @@ BEGIN
 END;
 go
 
-/*CREATE PROC PA_EDITAR_RECLAMO(
-@Id_Reclamo int,
-@Estado bit,
-@Resultado bit output,
-@Mensaje varchar (500) output
-)
-as
-begin 
-    UPDATE RECLAMO SET ESTADO = @Estado
-    WHERE ID_RECLAMO = @Id_Reclamo
-    if @@ROWCOUNT = 1
-    begin
-        set @Resultado = 1
-        set @Mensaje = 'El estado del reclamo ha sido actualizado exitosamente.'
-    end
-    else
-    begin
-        set @Resultado = 0
-        set @Mensaje = 'No se puede repetir el mismo ID del reclamo.'
-    end
-end
-go
-
-CREATE PROC PA_ELIMINAR_RECLAMO (
-@Id_Reclamo int,
-@Resultado bit output,
-@Mensaje varchar(500) output
-)
-as
-begin
-    set @Resultado = 1;
-    DELETE FROM RECLAMO WHERE ID_RECLAMO = @Id_Reclamo;
-    if @@ROWCOUNT > 0
-    begin
-        SET @Mensaje = 'El reclamo del cliente ha sido eliminada exitosamente.';
-    end
-    else
-    begin
-        set @Resultado = 0;
-        set @Mensaje = 'No se encontró ningun reclamo con el ID especificado.';
-    end
-end
-go*/
-
 CREATE PROC PA_REGISTRAR_SUCURSAL(
 @Id_Negocio int,
 @Codigo varchar(10),
@@ -2060,7 +2006,6 @@ INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (1,'MenuClientes'),
 (1,'MenuReportes'),
 (1,'MenuOfertas'),
-(1,'MenuReclamos'),
 (1,'MenuAcercaDe');
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
@@ -2070,7 +2015,6 @@ INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (2,'MenuTransportistas'),
 (2,'MenuClientes'),
 (2,'MenuOfertas'),
-(2,'MenuReclamos'),
 (2,'MenuAcercaDe');
 go
 INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('6564', 'Frutas y Verduras',1);
@@ -2161,12 +2105,6 @@ INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Oes
 go
 INSERT INTO ZONA_ALMACEN(NOMBRE_ZONA, LIMITE_ESPACIOS, ESTADO) VALUES ('Zona-Central', 200, 1);
 go
-/*INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(1,'Javier Mateo','javierito@gmail.com','Compre unas cajas de bananos y algunas bananas me vinieron negras, exijo una devolucion.',1);
-go
-INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,'Julio Andres','julito@gmail.com','El televisor LG que compre no me vino con el soporte y los tornillos para ponerlo en la pared.',0);
-go
-INSERT INTO RECLAMO (ID_CLIENTE, NOMBRE_CLIENTE, CORREO_ELECTRONICO_CLIENTE, DESCRIPCION, ESTADO) VALUES(2,'Julio Andres','julito@gmail.com','Cuando compre la cocina decia que venia con un set de ollas pero al momento de la entrega no me vino eso.',0);
-go*/
 INSERT INTO SUCURSAL (ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (1, '7247', 'SUCURSAL_9 DE OCT y LOS RIOS','AV. 9 DE OCTUBRE 803 Y LOS RIOS',-2.187746,-79.894365,'Guayaquil',1);
 go
 INSERT INTO SUCURSAL (ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO) VALUES (1, '6584','SUCURSAL_ALBANBORJA','AV.CARLOS JULIO AROSEMENA S/N',-2.169321,-79.917047,'Guayaquil',0);

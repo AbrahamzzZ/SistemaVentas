@@ -150,11 +150,6 @@ namespace Presentacion
             VerPanel(new VtnOferta());
         }
 
-        private void MenuItemVerReclamos_Click(object sender, EventArgs e)
-        {
-            //VerPanel(new VtnReclamo());
-        }
-
         private void MenuItemVerNegocio_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnInformacionNegocio());

@@ -348,16 +348,6 @@ namespace Presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap reclamo {
-            get {
-                object obj = ResourceManager.GetObject("reclamo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap reporte {
             get {
                 object obj = ResourceManager.GetObject("reporte", resourceCulture);
