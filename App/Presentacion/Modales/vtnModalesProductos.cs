@@ -20,6 +20,7 @@ namespace Presentacion.Modales
         /// <summary>
         /// Variable donde se va a guardar el producto seleccionado.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Producto Producto { get; set; }
 
         /// <summary>

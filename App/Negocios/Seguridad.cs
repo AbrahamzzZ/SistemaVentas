@@ -13,7 +13,7 @@ namespace Negocios
         public static string GenerarSalt()
         {
             byte[] saltBytes = new byte[16];
-            using(var rng = new RNGCryptoServiceProvider())
+            using(var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(saltBytes);
             }
@@ -33,7 +33,7 @@ namespace Negocios
 
         public static string GenerarToken()
         {
-            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 byte[] token = new byte[10];
                 rng.GetBytes(token);

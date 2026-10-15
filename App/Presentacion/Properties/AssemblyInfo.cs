@@ -19,6 +19,10 @@ using System.Runtime.InteropServices;
 // COM, establezca el atributo ComVisible en true en este tipo.
 [assembly: ComVisible(false)]
 
+// Aplicación WinForms: solo se ejecuta en Windows. Normalmente lo genera el SDK, pero este proyecto
+// conserva su AssemblyInfo.cs (GenerateAssemblyInfo=false), así que se declara aquí.
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
 [assembly: Guid("f7bf48ad-c64c-43a2-a96c-7778e7a19ac9")]
 

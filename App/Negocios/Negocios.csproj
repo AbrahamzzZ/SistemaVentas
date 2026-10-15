@@ -1,76 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{64198BBA-1AEE-49F1-BAB3-F6916043216F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>Negocios</RootNamespace>
     <AssemblyName>Negocios</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <ProjectGuid>{64198BBA-1AEE-49F1-BAB3-F6916043216F}</ProjectGuid>
+    <!-- Se conserva Properties\AssemblyInfo.cs -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\Datos\Datos.csproj" />
+    <ProjectReference Include="..\Entidad\Entidad.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CN_Inventario.cs" />
-    <Compile Include="CN_Usuario.cs" />
-    <Compile Include="CN_Categoria.cs" />
-    <Compile Include="CN_Cliente.cs" />
-    <Compile Include="CN_Compra.cs" />
-    <Compile Include="CN_Negocio.cs" />
-    <Compile Include="CN_Oferta.cs" />
-    <Compile Include="CN_Permiso.cs" />
-    <Compile Include="CN_Producto.cs" />
-    <Compile Include="CN_Proveedor.cs" />
-    <Compile Include="CN_Reporte.cs" />
-    <Compile Include="CN_Rol.cs" />
-    <Compile Include="CN_Sucursal.cs" />
-    <Compile Include="CN_Transportista.cs" />
-    <Compile Include="CN_Unidad_Medida.cs" />
-    <Compile Include="CN_Venta.cs" />
-    <Compile Include="CN_Zona_Almacen.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seguridad.cs" />
-    <Compile Include="Validaciones.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{c53d0739-9aa6-4272-90b4-c3b667782b4b}</Project>
-      <Name>Datos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entidad\Entidad.csproj">
-      <Project>{891bb10e-c262-47ab-a923-7e6aa192df3e}</Project>
-      <Name>Entidad</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

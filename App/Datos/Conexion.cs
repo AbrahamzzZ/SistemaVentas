@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
 
 namespace Datos
 {
@@ -47,17 +45,9 @@ namespace Datos
             return cadena;
         }
 
-        [MethodImpl(MethodImplOptions.NoInlining)]
         private static string LeerCadenaAppConfig()
         {
-            try
-            {
-                return ConfigurationManager.ConnectionStrings[NombreCadenaConfig]?.ConnectionString;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return ConfigurationManager.ConnectionStrings[NombreCadenaConfig]?.ConnectionString;
         }
     }
 }
