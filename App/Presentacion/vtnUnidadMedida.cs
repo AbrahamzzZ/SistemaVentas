@@ -15,7 +15,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de unidad de medida.
     /// </summary>
-    public partial class VtnUnidadMedida : Form
+    public partial class VtnUnidadMedida : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnUnidadMedida.
@@ -232,11 +232,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaUnidadMedida.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = System.Drawing.Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = System.Drawing.Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

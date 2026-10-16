@@ -2006,7 +2006,7 @@ INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (1,'MenuClientes'),
 (1,'MenuReportes'),
 (1,'MenuOfertas'),
-(1,'MenuAcercaDe');
+(1,'MenuConfiguracion');
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (2,'MenuVentas'),
@@ -2015,7 +2015,7 @@ INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (2,'MenuTransportistas'),
 (2,'MenuClientes'),
 (2,'MenuOfertas'),
-(2,'MenuAcercaDe');
+(2,'MenuConfiguracion');
 go
 INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('6564', 'Frutas y Verduras',1);
 go

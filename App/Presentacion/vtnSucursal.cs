@@ -1,6 +1,4 @@
 ﻿using Entidad;
-using GMap.NET.MapProviders;
-using GMap.NET.WindowsForms.Markers;
 using GMap.NET;
 using Negocios;
 using System;
@@ -12,22 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GMap.NET.WindowsForms;
 using ClosedXML.Excel;
-using System.Globalization;
 
 namespace Presentacion
 {
     /// <summary>
     /// Clase que representa la ventana de sucursal.
     /// </summary>
-    public partial class VtnSucursal : Form
+    public partial class VtnSucursal : FormularioBase
     {
-        private readonly GMarkerGoogle marcador;
-        private readonly GMapOverlay moverlay;
-        private readonly double latitud = -2.19616;
-        private readonly double longitud = -79.88621;
-
         /// <summary>
         /// Constructor de la clase VtnSucursal.
         /// Inicializa los componentes de la ventana.
@@ -35,28 +26,20 @@ namespace Presentacion
         public VtnSucursal()
         {
             InitializeComponent();
-            moverlay = new GMapOverlay("markers");
         }
 
         private void VtnSucursal_Load(object sender, EventArgs e)
         {
-            mapa.DragButton = MouseButtons.Left;
-            mapa.CanDragMap = true;
-            mapa.MapProvider = GMapProviders.GoogleMap;
-            mapa.Position = new PointLatLng(latitud, longitud);
-            mapa.MinZoom = 0;
-            mapa.MaxZoom = 30;
-            mapa.Zoom = 15;
-            mapa.AutoScroll = true;
-
             CmbEstado.Items.Add(new { Valor = 1, Texto = "Abierto" });
             CmbEstado.Items.Add(new { Valor = 0, Texto = "Cerrado" });
             CmbEstado.DisplayMember = "Texto";
             CmbEstado.ValueMember = "Valor";
             CmbEstado.SelectedIndex = 0;
 
-            ToolTip toolTip1 = new ToolTip();
-            toolTip1.SetToolTip(BtnAgregar, "Cuando ponga la latitud y la longitud no se olvide de cambiar el . por la , para asi poder registrar la sucursal.");
+            ToolTip ayuda = new ToolTip();
+            ayuda.SetToolTip(BtnElegirMapa, "Marque en el mapa dónde está la sucursal para llenar la latitud y la longitud.");
+            ayuda.SetToolTip(TxtLatitud, "Puede escribirla con punto o coma decimal, o elegirla en el mapa.");
+            ayuda.SetToolTip(TxtLogintud, "Puede escribirla con punto o coma decimal, o elegirla en el mapa.");
 
             foreach (DataGridViewColumn columna in tablaSucursal.Columns)
             {
@@ -71,17 +54,12 @@ namespace Presentacion
             TxtCodigo.Text = GenerarCodigo(4);
             Negocio mostrarNegocio = new CN_Negocio().ListarNegocio();
             TxtIdNegocio.Text = mostrarNegocio.IdNegocio.ToString();
-   
 
-            //TxtIdNegocio.Text = mostrarNegocio;
             List<Sucursal> mostrarSucursal = new CN_Sucursal().ListarSucusal();
             foreach (Sucursal sucursal in mostrarSucursal)
             {
-                tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Codigo, sucursal.Nombre, sucursal.Direccion, sucursal.Latitud, sucursal.Longitud, sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
-                GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng((double)sucursal.Latitud, (double)sucursal.Longitud), GMarkerGoogleType.red_dot);
-                moverlay.Markers.Add(marcadorSucursal);
+                tablaSucursal.Rows.Add(new object[] { "", sucursal.IdSucursal, sucursal.Codigo, sucursal.Nombre, sucursal.Direccion, FormatearCoordenada(sucursal.Latitud), FormatearCoordenada(sucursal.Longitud), sucursal.Ciudad, sucursal.Estado == true ? 1 : 0, sucursal.Estado == true ? "Abierto" : "Cerrado" });
             }
-            mapa.Overlays.Add(moverlay);
             TxtNombre.Select();
         }
 
@@ -131,36 +109,9 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
-            double? latitud = null;
-            double? longitud = null;
-
-            try
+            if (!LeerCoordenadas(out double? latitud, out double? longitud))
             {
-                // Respaldar la cultura actual
-                var culturaActual = System.Threading.Thread.CurrentThread.CurrentCulture;
-
-                // Cambiar temporalmente la cultura para usar punto como separador decimal
-                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
-                // Convertir los valores ingresados
-                if (!string.IsNullOrWhiteSpace(TxtLatitud.Text))
-                {
-                    latitud = Convert.ToDouble(TxtLatitud.Text);
-                }
-                if (!string.IsNullOrWhiteSpace(TxtLogintud.Text))
-                {
-                    longitud = Convert.ToDouble(TxtLogintud.Text);
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Ingrese coordenadas válidas en formato numérico (con punto como separador decimal).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Salir del método si hay un error
-            }
-            finally
-            {
-                // Restaurar la cultura original
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-EC");
+                return;
             }
 
             // Crear el objeto Sucursal
@@ -182,18 +133,9 @@ namespace Presentacion
             if (idSucursalIngresado != 0)
             {
                 // Agregar a la tabla y mostrar mensaje de éxito
-                tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, TxtCodigo.Text, TxtNombre.Text, RtxtDireccion.Text, TxtLatitud.Text, TxtLogintud.Text, TxtCiudad.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
-                
-                MessageBox.Show("La sucursal fue registrada correctamente.", "Registrar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng((double)agregarSucursal.Latitud, (double)agregarSucursal.Longitud), GMarkerGoogleType.red_dot);
-                marcadorSucursal.ToolTipText = $"{agregarSucursal.Nombre}\n{agregarSucursal.Direccion}";
-                marcadorSucursal.ToolTip.Fill = Brushes.Black;
-                marcadorSucursal.ToolTip.Foreground = Brushes.White;
-                marcadorSucursal.ToolTip.Stroke = Pens.Black;
-                marcadorSucursal.ToolTip.TextPadding = new Size(20, 20);
-                moverlay.Markers.Add(marcadorSucursal);
+                tablaSucursal.Rows.Add(new object[] { "", idSucursalIngresado, TxtCodigo.Text, TxtNombre.Text, RtxtDireccion.Text, FormatearCoordenada(latitud), FormatearCoordenada(longitud), TxtCiudad.Text, selectedItemCmb1.Valor, selectedItemCmb1.Texto });
 
-                mapa.Refresh();
+                MessageBox.Show("La sucursal fue registrada correctamente.", "Registrar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else
@@ -223,36 +165,9 @@ namespace Presentacion
                 return; // Salir del método si hay errores
             }
 
-            double? latitud = null;
-            double? longitud = null;
-
-            try
+            if (!LeerCoordenadas(out double? latitud, out double? longitud))
             {
-                // Respaldar la cultura actual
-                var culturaActual = System.Threading.Thread.CurrentThread.CurrentCulture;
-
-                // Cambiar temporalmente la cultura para usar punto como separador decimal
-                System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
-                // Convertir los valores ingresados
-                if (!string.IsNullOrWhiteSpace(TxtLatitud.Text))
-                {
-                    latitud = Convert.ToDouble(TxtLatitud.Text);
-                }
-                if (!string.IsNullOrWhiteSpace(TxtLogintud.Text))
-                {
-                    longitud = Convert.ToDouble(TxtLogintud.Text);
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Ingrese coordenadas válidas en formato numérico (con punto como separador decimal).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Salir del método si hay un error
-            }
-            finally
-            {
-                // Restaurar la cultura original
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-EC");
+                return;
             }
 
             // Crear el objeto Sucursal
@@ -280,13 +195,12 @@ namespace Presentacion
                 tablaSucursal.Rows[indice].Cells["Codigo"].Value = sucursalModificado.Codigo;
                 tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value = sucursalModificado.Nombre;
                 tablaSucursal.Rows[indice].Cells["Direccion"].Value = sucursalModificado.Direccion;
-                tablaSucursal.Rows[indice].Cells["Latitu"].Value = sucursalModificado.Latitud;
-                tablaSucursal.Rows[indice].Cells["Longitu"].Value = sucursalModificado.Longitud;
+                tablaSucursal.Rows[indice].Cells["Latitu"].Value = FormatearCoordenada(sucursalModificado.Latitud);
+                tablaSucursal.Rows[indice].Cells["Longitu"].Value = FormatearCoordenada(sucursalModificado.Longitud);
                 tablaSucursal.Rows[indice].Cells["Ciudad"].Value = sucursalModificado.Ciudad;
                 tablaSucursal.Rows[indice].Cells["EstadoValor"].Value = sucursalModificado.Estado ? 1 : 0;
                 tablaSucursal.Rows[indice].Cells["Estado"].Value = sucursalModificado.Estado ? "Abierto" : "Cerrado";
 
-                mapa.Refresh();
                 Limpiar();
             }
             else
@@ -318,15 +232,6 @@ namespace Presentacion
                 {
                     tablaSucursal.Rows.RemoveAt(Convert.ToInt32(TxtIndice.Text));
                     MessageBox.Show("La sucursal fue eliminada correctamente.", "Eliminar sucursal", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    foreach (GMarkerGoogle marcador in moverlay.Markers.Cast<GMarkerGoogle>())
-                    {
-                        if (marcador.Position.Lat == sucursalEliminado.Latitud && marcador.Position.Lng == sucursalEliminado.Longitud)
-                        {
-                            moverlay.Markers.Remove(marcador);
-                            break;
-                        }
-                    }
-                    mapa.Refresh();
                     Limpiar();
                 }
                 else
@@ -335,6 +240,35 @@ namespace Presentacion
                 }
             }
 
+        }
+
+        private void BtnVerMapa_Click(object sender, EventArgs e)
+        {
+            List<Sucursal> sucursales = SucursalesDeLaTabla();
+            int.TryParse(TxtId.Text, out int idSeleccionada);
+            Sucursal seleccionada = sucursales.FirstOrDefault(s => s.IdSucursal == idSeleccionada);
+
+            VtnMapaSucursal.Mostrar(TopLevelControl ?? this, sucursales, seleccionada);
+        }
+
+        private void BtnElegirMapa_Click(object sender, EventArgs e)
+        {
+            // Si ya hay coordenadas escritas, el mapa empieza ahí
+            PointLatLng? actual = null;
+            if (Coordenada.TryLeer(TxtLatitud.Text, out double lat) && Coordenada.TryLeer(TxtLogintud.Text, out double lng))
+            {
+                actual = new PointLatLng(lat, lng);
+            }
+
+            // Las demás sucursales se muestran como referencia
+            int.TryParse(TxtId.Text, out int idActual);
+            List<Sucursal> otras = SucursalesDeLaTabla().Where(s => s.IdSucursal != idActual).ToList();
+
+            if (VtnMapaSucursal.ElegirUbicacion(TopLevelControl ?? this, otras, actual, out PointLatLng elegida))
+            {
+                TxtLatitud.Text = Coordenada.Formatear(elegida.Lat);
+                TxtLogintud.Text = Coordenada.Formatear(elegida.Lng);
+            }
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)
@@ -409,12 +343,11 @@ namespace Presentacion
             {
                 if (e.Value != null && (string)e.Value == "Abierto")
                 {
-                    DataGridViewRow row = tablaSucursal.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }
@@ -431,8 +364,8 @@ namespace Presentacion
                     TxtCodigo.Text = tablaSucursal.Rows[indice].Cells["Codigo"].Value.ToString();
                     TxtNombre.Text = tablaSucursal.Rows[indice].Cells["NombreSucursal"].Value.ToString();
                     RtxtDireccion.Text = tablaSucursal.Rows[indice].Cells["Direccion"].Value.ToString();
-                    TxtLatitud.Text = tablaSucursal.Rows[indice].Cells["Latitu"].Value.ToString();
-                    TxtLogintud.Text = tablaSucursal.Rows[indice].Cells["Longitu"].Value.ToString();
+                    TxtLatitud.Text = FormatearCoordenada(Coordenada.Leer(tablaSucursal.Rows[indice].Cells["Latitu"].Value));
+                    TxtLogintud.Text = FormatearCoordenada(Coordenada.Leer(tablaSucursal.Rows[indice].Cells["Longitu"].Value));
                     TxtCiudad.Text = tablaSucursal.Rows[indice].Cells["Ciudad"].Value.ToString();
 
                     foreach (dynamic item in CmbEstado.Items)
@@ -448,21 +381,6 @@ namespace Presentacion
                             break;
                         }
                     }
-                    double latitudSucursal = Convert.ToDouble(TxtLatitud.Text);
-                    double longitudSucursal = Convert.ToDouble(TxtLogintud.Text);
-                    string nombreSucursal = TxtNombre.Text;
-                    string direccionSucursal = RtxtDireccion.Text;
-
-                    GMarkerGoogle marcadorSucursal = new GMarkerGoogle(new PointLatLng(latitudSucursal, longitudSucursal), GMarkerGoogleType.red_dot);
-                    marcadorSucursal.ToolTipText = $"{nombreSucursal}\n{direccionSucursal}";
-                    marcadorSucursal.ToolTip.Fill = Brushes.Black;
-                    marcadorSucursal.ToolTip.Foreground = Brushes.White;
-                    marcadorSucursal.ToolTip.Stroke = Pens.Black;
-                    marcadorSucursal.ToolTip.TextPadding = new Size(20, 20);
-                    moverlay.Markers.Add(marcadorSucursal);
-                    mapa.Position = new PointLatLng(latitudSucursal, longitudSucursal);
-                    mapa.Zoom = 15;
-                    mapa.Refresh();
                 }
             }
         }
@@ -481,9 +399,65 @@ namespace Presentacion
             TxtLogintud.Clear();
             TxtCiudad.Clear();
             CmbEstado.SelectedIndex = 0;
-            mapa.Position = new PointLatLng(latitud, longitud);
         }
 
+        /// <summary>
+        /// Lee la latitud y la longitud escritas; acepta punto o coma decimal.
+        /// Los campos vacíos quedan en null para que la capa de negocio indique que faltan.
+        /// </summary>
+        /// <returns>false si alguna coordenada no es un número válido.</returns>
+        private bool LeerCoordenadas(out double? latitud, out double? longitud)
+        {
+            latitud = null;
+            longitud = null;
+            if (!string.IsNullOrWhiteSpace(TxtLatitud.Text))
+            {
+                if (!Coordenada.TryLeer(TxtLatitud.Text, out double valor))
+                {
+                    MessageBox.Show("La latitud debe ser un número, por ejemplo -2.187746.", "Coordenada no válida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                latitud = valor;
+            }
+            if (!string.IsNullOrWhiteSpace(TxtLogintud.Text))
+            {
+                if (!Coordenada.TryLeer(TxtLogintud.Text, out double valor))
+                {
+                    MessageBox.Show("La longitud debe ser un número, por ejemplo -79.894365.", "Coordenada no válida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                longitud = valor;
+            }
+            return true;
+        }
+
+        private static string FormatearCoordenada(double? valor)
+        {
+            return valor.HasValue ? Coordenada.Formatear(valor.Value) : string.Empty;
+        }
+
+        /// <summary>
+        /// Arma la lista de sucursales con los datos que muestra la tabla (incluye los cambios recientes).
+        /// </summary>
+        private List<Sucursal> SucursalesDeLaTabla()
+        {
+            var sucursales = new List<Sucursal>();
+            foreach (DataGridViewRow fila in tablaSucursal.Rows)
+            {
+                sucursales.Add(new Sucursal
+                {
+                    IdSucursal = Convert.ToInt32(fila.Cells["ID"].Value),
+                    Codigo = Convert.ToString(fila.Cells["Codigo"].Value),
+                    Nombre = Convert.ToString(fila.Cells["NombreSucursal"].Value),
+                    Direccion = Convert.ToString(fila.Cells["Direccion"].Value),
+                    Latitud = Coordenada.Leer(fila.Cells["Latitu"].Value),
+                    Longitud = Coordenada.Leer(fila.Cells["Longitu"].Value),
+                    Ciudad = Convert.ToString(fila.Cells["Ciudad"].Value),
+                    Estado = Convert.ToInt32(fila.Cells["EstadoValor"].Value) == 1
+                });
+            }
+            return sucursales;
+        }
 
         /// <summary>
         /// Método que genera un código aleatorio de una longitud específica.

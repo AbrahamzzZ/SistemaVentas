@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compilar",
+            "detail": "Compila la solución completa",
+            "type": "process",
+            "command": "dotnet",
+            "args": ["build", "${workspaceFolder}/App/SistemaVenta.sln", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pruebas",
+            "detail": "Ejecuta las pruebas unitarias",
+            "type": "process",
+            "command": "dotnet",
+            "args": ["test", "${workspaceFolder}/App/Test/Test.csproj"],
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

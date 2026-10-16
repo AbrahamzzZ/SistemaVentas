@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de informacion del negocio.
     /// </summary>
-    public partial class VtnInformacionNegocio : Form
+    public partial class VtnInformacionNegocio : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnInformacionNegocio.

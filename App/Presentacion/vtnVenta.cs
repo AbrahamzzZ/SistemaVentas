@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de las ventas.
     /// </summary>
-    public partial class VtnVenta : Form
+    public partial class VtnVenta : FormularioBase
     {
         private Usuario_Catched usuario;
         private Cliente cliente;
@@ -424,7 +424,7 @@ namespace Presentacion
                 Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == TxtCodigo.Text && p.Estado == true).FirstOrDefault();
                 if (oProducto != null)
                 {
-                    TxtCodigo.BackColor = Color.Honeydew;
+                    TxtCodigo.BackColor = Tema.PrimarioClaro;
                     TxtIdProducto.Text = oProducto.IdProducto.ToString();
                     TxtProducto.Text = oProducto.Nombre;
                     TxtPrecioVenta.Text = oProducto.PrecioVenta.ToString("0.00");
@@ -433,7 +433,7 @@ namespace Presentacion
                 }
                 else
                 {
-                    TxtCodigo.BackColor = Color.MistyRose;
+                    TxtCodigo.BackColor = Tema.PeligroClaro;
                     TxtIdProducto.Text = "0";
                     TxtProducto.Text = "";
                     TxtPrecioVenta.Text = "";

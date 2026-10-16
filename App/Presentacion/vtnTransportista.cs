@@ -18,7 +18,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de transportista.
     /// </summary>
-    public partial class VtnTransportista : Form
+    public partial class VtnTransportista : FormularioBase
     {
         byte[] imagen = null;
 
@@ -323,11 +323,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaTransportista.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

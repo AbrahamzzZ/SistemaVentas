@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de cliente.
     /// </summary>
-    public partial class VtnCliente : Form
+    public partial class VtnCliente : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnCliente.
@@ -293,11 +293,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaCliente.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

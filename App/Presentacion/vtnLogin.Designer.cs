@@ -28,217 +28,357 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VtnLogin));
-            this.lblIniciarSesion = new System.Windows.Forms.Label();
-            this.lblOlvidoClave = new System.Windows.Forms.Label();
-            this.lblClave = new System.Windows.Forms.Label();
-            this.TxtClave = new System.Windows.Forms.TextBox();
-            this.TxtCodigo = new System.Windows.Forms.TextBox();
-            this.LblCodigo = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.PanelMarca = new System.Windows.Forms.Panel();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.lblMarcaSubtitulo = new System.Windows.Forms.Label();
+            this.lblMarcaTitulo = new System.Windows.Forms.Label();
+            this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.PanelFormulario = new System.Windows.Forms.Panel();
+            this.lnkOlvidoClave = new System.Windows.Forms.LinkLabel();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.TxtTiempo = new System.Windows.Forms.Timer(this.components);
-            this.lblHagaClicAqui = new System.Windows.Forms.Label();
-            this.lblHora = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnVerContrasenia = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.lblAviso = new System.Windows.Forms.Label();
+            this.PanelClave = new System.Windows.Forms.Panel();
+            this.btnVerClave = new System.Windows.Forms.Button();
+            this.TxtClave = new System.Windows.Forms.TextBox();
+            this.lblClave = new System.Windows.Forms.Label();
+            this.PanelCodigo = new System.Windows.Forms.Panel();
+            this.TxtCodigo = new System.Windows.Forms.TextBox();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.PanelMarca.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            this.PanelFormulario.SuspendLayout();
+            this.PanelClave.SuspendLayout();
+            this.PanelCodigo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblIniciarSesion
-            // 
-            this.lblIniciarSesion.AutoSize = true;
-            this.lblIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIniciarSesion.Location = new System.Drawing.Point(250, 22);
-            this.lblIniciarSesion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblIniciarSesion.Name = "lblIniciarSesion";
-            this.lblIniciarSesion.Size = new System.Drawing.Size(168, 29);
-            this.lblIniciarSesion.TabIndex = 22;
-            this.lblIniciarSesion.Text = "Iniciar sesión";
-            // 
-            // lblOlvidoClave
-            // 
-            this.lblOlvidoClave.AutoSize = true;
-            this.lblOlvidoClave.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblOlvidoClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOlvidoClave.Location = new System.Drawing.Point(49, 323);
-            this.lblOlvidoClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblOlvidoClave.Name = "lblOlvidoClave";
-            this.lblOlvidoClave.Size = new System.Drawing.Size(148, 20);
-            this.lblOlvidoClave.TabIndex = 20;
-            this.lblOlvidoClave.Text = "Olvido su clave?";
-            // 
-            // lblClave
-            // 
-            this.lblClave.AutoSize = true;
-            this.lblClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClave.Location = new System.Drawing.Point(49, 275);
-            this.lblClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(153, 20);
-            this.lblClave.TabIndex = 19;
-            this.lblClave.Text = "Ingrese su clave:";
-            // 
-            // TxtClave
-            // 
-            this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtClave.Location = new System.Drawing.Point(255, 272);
-            this.TxtClave.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtClave.Name = "TxtClave";
-            this.TxtClave.Size = new System.Drawing.Size(277, 26);
-            this.TxtClave.TabIndex = 18;
-            this.TxtClave.UseSystemPasswordChar = true;
-            // 
-            // TxtCodigo
-            // 
-            this.TxtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCodigo.Location = new System.Drawing.Point(255, 222);
-            this.TxtCodigo.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.Size = new System.Drawing.Size(277, 26);
-            this.TxtCodigo.TabIndex = 17;
-            // 
-            // LblCodigo
-            // 
-            this.LblCodigo.AutoSize = true;
-            this.LblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCodigo.Location = new System.Drawing.Point(49, 228);
-            this.LblCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblCodigo.Name = "LblCodigo";
-            this.LblCodigo.Size = new System.Drawing.Size(164, 20);
-            this.LblCodigo.TabIndex = 16;
-            this.LblCodigo.Text = "Ingrese su código:";
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.Wheat;
-            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(377, 382);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(155, 41);
-            this.btnSalir.TabIndex = 15;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
-            // 
+            //
+            // PanelMarca
+            //
+            this.PanelMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
+            this.PanelMarca.Controls.Add(this.lblVersion);
+            this.PanelMarca.Controls.Add(this.lblMarcaSubtitulo);
+            this.PanelMarca.Controls.Add(this.lblMarcaTitulo);
+            this.PanelMarca.Controls.Add(this.PictureBoxLogo);
+            this.PanelMarca.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelMarca.Location = new System.Drawing.Point(0, 0);
+            this.PanelMarca.Name = "PanelMarca";
+            this.PanelMarca.Size = new System.Drawing.Size(340, 500);
+            this.PanelMarca.TabIndex = 0;
+            this.PanelMarca.Tag = "SinTema";
+            this.PanelMarca.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMarca_Paint);
+            this.PanelMarca.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // lblVersion
+            //
+            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(201)))));
+            this.lblVersion.Location = new System.Drawing.Point(20, 462);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(300, 20);
+            this.lblVersion.TabIndex = 3;
+            this.lblVersion.Text = "Versión";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblVersion.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // lblMarcaSubtitulo
+            //
+            this.lblMarcaSubtitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblMarcaSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblMarcaSubtitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(201)))));
+            this.lblMarcaSubtitulo.Location = new System.Drawing.Point(30, 334);
+            this.lblMarcaSubtitulo.Name = "lblMarcaSubtitulo";
+            this.lblMarcaSubtitulo.Size = new System.Drawing.Size(280, 48);
+            this.lblMarcaSubtitulo.TabIndex = 2;
+            this.lblMarcaSubtitulo.Text = "Ventas, compras e inventario de tu minimarket en un solo lugar.";
+            this.lblMarcaSubtitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblMarcaSubtitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // lblMarcaTitulo
+            //
+            this.lblMarcaTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblMarcaTitulo.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.lblMarcaTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblMarcaTitulo.Location = new System.Drawing.Point(20, 288);
+            this.lblMarcaTitulo.Name = "lblMarcaTitulo";
+            this.lblMarcaTitulo.Size = new System.Drawing.Size(300, 42);
+            this.lblMarcaTitulo.TabIndex = 1;
+            this.lblMarcaTitulo.Text = "Sistema de Ventas";
+            this.lblMarcaTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMarcaTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // PictureBoxLogo
+            //
+            this.PictureBoxLogo.BackColor = System.Drawing.Color.White;
+            this.PictureBoxLogo.Image = global::Presentacion.Properties.Resources.Logo1;
+            this.PictureBoxLogo.Location = new System.Drawing.Point(100, 82);
+            this.PictureBoxLogo.Name = "PictureBoxLogo";
+            this.PictureBoxLogo.Size = new System.Drawing.Size(140, 130);
+            this.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBoxLogo.TabIndex = 0;
+            this.PictureBoxLogo.TabStop = false;
+            this.PictureBoxLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // PanelFormulario
+            //
+            this.PanelFormulario.BackColor = System.Drawing.Color.White;
+            this.PanelFormulario.Controls.Add(this.lnkOlvidoClave);
+            this.PanelFormulario.Controls.Add(this.btnIngresar);
+            this.PanelFormulario.Controls.Add(this.lblAviso);
+            this.PanelFormulario.Controls.Add(this.PanelClave);
+            this.PanelFormulario.Controls.Add(this.lblClave);
+            this.PanelFormulario.Controls.Add(this.PanelCodigo);
+            this.PanelFormulario.Controls.Add(this.lblCodigo);
+            this.PanelFormulario.Controls.Add(this.lblSubtitulo);
+            this.PanelFormulario.Controls.Add(this.lblTitulo);
+            this.PanelFormulario.Controls.Add(this.btnCerrar);
+            this.PanelFormulario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelFormulario.Location = new System.Drawing.Point(340, 0);
+            this.PanelFormulario.Name = "PanelFormulario";
+            this.PanelFormulario.Size = new System.Drawing.Size(480, 500);
+            this.PanelFormulario.TabIndex = 1;
+            this.PanelFormulario.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // lnkOlvidoClave
+            //
+            this.lnkOlvidoClave.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(32)))));
+            this.lnkOlvidoClave.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.lnkOlvidoClave.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lnkOlvidoClave.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
+            this.lnkOlvidoClave.Location = new System.Drawing.Point(63, 418);
+            this.lnkOlvidoClave.Name = "lnkOlvidoClave";
+            this.lnkOlvidoClave.Size = new System.Drawing.Size(354, 24);
+            this.lnkOlvidoClave.TabIndex = 5;
+            this.lnkOlvidoClave.TabStop = true;
+            this.lnkOlvidoClave.Text = "¿Olvidaste tu contraseña?";
+            this.lnkOlvidoClave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lnkOlvidoClave.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LnkOlvidoClave_LinkClicked);
+            //
             // btnIngresar
-            // 
-            this.btnIngresar.BackColor = System.Drawing.Color.Wheat;
+            //
+            this.btnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(125)))), ((int)(((byte)(50)))));
             this.btnIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnIngresar.FlatAppearance.BorderSize = 0;
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(75, 382);
-            this.btnIngresar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIngresar.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnIngresar.ForeColor = System.Drawing.Color.White;
+            this.btnIngresar.Location = new System.Drawing.Point(63, 358);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(155, 41);
-            this.btnIngresar.TabIndex = 14;
-            this.btnIngresar.Text = "Ingresar";
+            this.btnIngresar.Size = new System.Drawing.Size(354, 46);
+            this.btnIngresar.TabIndex = 4;
+            this.btnIngresar.Text = "Iniciar sesión";
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
-            // 
-            // TxtTiempo
-            // 
-            this.TxtTiempo.Tick += new System.EventHandler(this.TxtTiempo_Tick);
-            // 
-            // lblHagaClicAqui
-            // 
-            this.lblHagaClicAqui.AutoSize = true;
-            this.lblHagaClicAqui.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblHagaClicAqui.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHagaClicAqui.Location = new System.Drawing.Point(252, 323);
-            this.lblHagaClicAqui.Name = "lblHagaClicAqui";
-            this.lblHagaClicAqui.Size = new System.Drawing.Size(112, 18);
-            this.lblHagaClicAqui.TabIndex = 25;
-            this.lblHagaClicAqui.Text = "Haga clic aquí...";
-            this.lblHagaClicAqui.Click += new System.EventHandler(this.LblHagaClicAqui_Click);
-            // 
-            // lblHora
-            // 
-            this.lblHora.AutoSize = true;
-            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Location = new System.Drawing.Point(12, 22);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(46, 20);
-            this.lblHora.TabIndex = 24;
-            this.lblHora.Text = "hora";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Presentacion.Properties.Resources.login;
-            this.pictureBox1.Location = new System.Drawing.Point(255, 65);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(147, 133);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnVerContrasenia
-            // 
-            this.btnVerContrasenia.BackColor = System.Drawing.Color.Wheat;
-            this.btnVerContrasenia.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVerContrasenia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerContrasenia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerContrasenia.Image = global::Presentacion.Properties.Resources.mostrarcontraseña;
-            this.btnVerContrasenia.Location = new System.Drawing.Point(550, 269);
-            this.btnVerContrasenia.Margin = new System.Windows.Forms.Padding(4);
-            this.btnVerContrasenia.Name = "btnVerContrasenia";
-            this.btnVerContrasenia.Size = new System.Drawing.Size(39, 32);
-            this.btnVerContrasenia.TabIndex = 21;
-            this.btnVerContrasenia.UseVisualStyleBackColor = false;
-            this.btnVerContrasenia.Click += new System.EventHandler(this.BtnVerContrasenia_Click);
-            // 
+            //
+            // lblAviso
+            //
+            this.lblAviso.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblAviso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblAviso.Location = new System.Drawing.Point(63, 322);
+            this.lblAviso.Name = "lblAviso";
+            this.lblAviso.Size = new System.Drawing.Size(354, 32);
+            this.lblAviso.TabIndex = 9;
+            this.lblAviso.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            //
+            // PanelClave
+            //
+            this.PanelClave.BackColor = System.Drawing.Color.White;
+            this.PanelClave.Controls.Add(this.btnVerClave);
+            this.PanelClave.Controls.Add(this.TxtClave);
+            this.PanelClave.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.PanelClave.Location = new System.Drawing.Point(63, 276);
+            this.PanelClave.Name = "PanelClave";
+            this.PanelClave.Size = new System.Drawing.Size(354, 44);
+            this.PanelClave.TabIndex = 3;
+            this.PanelClave.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelCampo_Paint);
+            this.PanelClave.Click += new System.EventHandler(this.PanelClave_Click);
+            //
+            // btnVerClave
+            //
+            this.btnVerClave.BackColor = System.Drawing.Color.White;
+            this.btnVerClave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerClave.FlatAppearance.BorderSize = 0;
+            this.btnVerClave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.btnVerClave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(245)))), ((int)(((byte)(233)))));
+            this.btnVerClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerClave.Font = new System.Drawing.Font("Segoe MDL2 Assets", 12F);
+            this.btnVerClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            this.btnVerClave.Location = new System.Drawing.Point(312, 6);
+            this.btnVerClave.Name = "btnVerClave";
+            this.btnVerClave.Size = new System.Drawing.Size(36, 32);
+            this.btnVerClave.TabIndex = 1;
+            this.btnVerClave.TabStop = false;
+            this.btnVerClave.Tag = "SinTema";
+            this.btnVerClave.Text = "";
+            this.btnVerClave.UseVisualStyleBackColor = false;
+            this.btnVerClave.Click += new System.EventHandler(this.BtnVerClave_Click);
+            //
+            // TxtClave
+            //
+            this.TxtClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtClave.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.TxtClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.TxtClave.Location = new System.Drawing.Point(14, 11);
+            this.TxtClave.Name = "TxtClave";
+            this.TxtClave.PlaceholderText = "Ingresa tu contraseña";
+            this.TxtClave.Size = new System.Drawing.Size(290, 20);
+            this.TxtClave.TabIndex = 0;
+            this.TxtClave.UseSystemPasswordChar = true;
+            this.TxtClave.TextChanged += new System.EventHandler(this.Campo_TextChanged);
+            this.TxtClave.Enter += new System.EventHandler(this.Campo_FocoCambiado);
+            this.TxtClave.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtClave_KeyUp);
+            this.TxtClave.Leave += new System.EventHandler(this.Campo_FocoCambiado);
+            //
+            // lblClave
+            //
+            this.lblClave.AutoSize = true;
+            this.lblClave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblClave.Location = new System.Drawing.Point(61, 252);
+            this.lblClave.Name = "lblClave";
+            this.lblClave.Size = new System.Drawing.Size(72, 17);
+            this.lblClave.TabIndex = 8;
+            this.lblClave.Text = "Contraseña";
+            //
+            // PanelCodigo
+            //
+            this.PanelCodigo.BackColor = System.Drawing.Color.White;
+            this.PanelCodigo.Controls.Add(this.TxtCodigo);
+            this.PanelCodigo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.PanelCodigo.Location = new System.Drawing.Point(63, 194);
+            this.PanelCodigo.Name = "PanelCodigo";
+            this.PanelCodigo.Size = new System.Drawing.Size(354, 44);
+            this.PanelCodigo.TabIndex = 2;
+            this.PanelCodigo.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelCampo_Paint);
+            this.PanelCodigo.Click += new System.EventHandler(this.PanelCodigo_Click);
+            //
+            // TxtCodigo
+            //
+            this.TxtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCodigo.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.TxtCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.TxtCodigo.Location = new System.Drawing.Point(14, 11);
+            this.TxtCodigo.MaxLength = 10;
+            this.TxtCodigo.Name = "TxtCodigo";
+            this.TxtCodigo.PlaceholderText = "Ej. 00001";
+            this.TxtCodigo.Size = new System.Drawing.Size(326, 20);
+            this.TxtCodigo.TabIndex = 0;
+            this.TxtCodigo.TextChanged += new System.EventHandler(this.Campo_TextChanged);
+            this.TxtCodigo.Enter += new System.EventHandler(this.Campo_FocoCambiado);
+            this.TxtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCodigo_KeyPress);
+            this.TxtCodigo.Leave += new System.EventHandler(this.Campo_FocoCambiado);
+            //
+            // lblCodigo
+            //
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblCodigo.Location = new System.Drawing.Point(61, 170);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(117, 17);
+            this.lblCodigo.TabIndex = 7;
+            this.lblCodigo.Text = "Código de usuario";
+            //
+            // lblSubtitulo
+            //
+            this.lblSubtitulo.AutoSize = true;
+            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            this.lblSubtitulo.Location = new System.Drawing.Point(62, 116);
+            this.lblSubtitulo.Name = "lblSubtitulo";
+            this.lblSubtitulo.Size = new System.Drawing.Size(258, 19);
+            this.lblSubtitulo.TabIndex = 6;
+            this.lblSubtitulo.Text = "Ingresa tus credenciales para continuar.";
+            this.lblSubtitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // lblTitulo
+            //
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Semibold", 22F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblTitulo.Location = new System.Drawing.Point(57, 70);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(165, 41);
+            this.lblTitulo.TabIndex = 5;
+            this.lblTitulo.Text = "Bienvenido";
+            this.lblTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ArrastrarVentana);
+            //
+            // btnCerrar
+            //
+            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrar.BackColor = System.Drawing.Color.White;
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe MDL2 Assets", 9F);
+            this.btnCerrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(97)))), ((int)(((byte)(97)))));
+            this.btnCerrar.Location = new System.Drawing.Point(434, 0);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(46, 34);
+            this.btnCerrar.TabIndex = 6;
+            this.btnCerrar.TabStop = false;
+            this.btnCerrar.Tag = "SinTema";
+            this.btnCerrar.Text = "";
+            this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
+            this.btnCerrar.MouseEnter += new System.EventHandler(this.BtnCerrar_MouseEnter);
+            this.btnCerrar.MouseLeave += new System.EventHandler(this.BtnCerrar_MouseLeave);
+            //
             // VtnLogin
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(625, 444);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblIniciarSesion);
-            this.Controls.Add(this.btnVerContrasenia);
-            this.Controls.Add(this.lblOlvidoClave);
-            this.Controls.Add(this.lblClave);
-            this.Controls.Add(this.TxtClave);
-            this.Controls.Add(this.TxtCodigo);
-            this.Controls.Add(this.LblCodigo);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnIngresar);
-            this.Controls.Add(this.lblHagaClicAqui);
-            this.Controls.Add(this.lblHora);
+            //
+            this.AcceptButton = this.btnIngresar;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(820, 500);
+            this.Controls.Add(this.PanelFormulario);
+            this.Controls.Add(this.PanelMarca);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "VtnLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Iniciar sesión";
             this.Load += new System.EventHandler(this.VtnLogin_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VtnLogin_KeyDown);
+            this.PanelMarca.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            this.PanelFormulario.ResumeLayout(false);
+            this.PanelFormulario.PerformLayout();
+            this.PanelClave.ResumeLayout(false);
+            this.PanelClave.PerformLayout();
+            this.PanelCodigo.ResumeLayout(false);
+            this.PanelCodigo.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblIniciarSesion;
-        private System.Windows.Forms.Button btnVerContrasenia;
-        private System.Windows.Forms.Label lblOlvidoClave;
-        private System.Windows.Forms.Label lblClave;
-        private System.Windows.Forms.TextBox TxtClave;
+        private System.Windows.Forms.Panel PanelMarca;
+        private System.Windows.Forms.PictureBox PictureBoxLogo;
+        private System.Windows.Forms.Label lblMarcaTitulo;
+        private System.Windows.Forms.Label lblMarcaSubtitulo;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Panel PanelFormulario;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblSubtitulo;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Panel PanelCodigo;
         private System.Windows.Forms.TextBox TxtCodigo;
-        private System.Windows.Forms.Label LblCodigo;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblClave;
+        private System.Windows.Forms.Panel PanelClave;
+        private System.Windows.Forms.TextBox TxtClave;
+        private System.Windows.Forms.Button btnVerClave;
+        private System.Windows.Forms.Label lblAviso;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.Timer TxtTiempo;
-        private System.Windows.Forms.Label lblHagaClicAqui;
-        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.LinkLabel lnkOlvidoClave;
     }
 }
-

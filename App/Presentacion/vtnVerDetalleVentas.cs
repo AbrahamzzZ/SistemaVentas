@@ -19,7 +19,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de los detalles de las ventas.
     /// </summary>
-    public partial class VtnVerDetalleVentas : Form
+    public partial class VtnVerDetalleVentas : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnDetalleVentas.

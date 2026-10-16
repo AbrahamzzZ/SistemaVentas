@@ -17,7 +17,7 @@ namespace Presentacion
     /// <summary>
     /// 
     /// </summary>
-    public partial class VtnRestablecerClave: Form
+    public partial class VtnRestablecerClave : FormularioBase
     {
         /// <summary>
         /// 

@@ -17,7 +17,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de proveedor.
     /// </summary>
-    public partial class VtnProveedor : Form
+    public partial class VtnProveedor : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnProveedor.
@@ -293,11 +293,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaProveedores.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de inventario.
     /// </summary>
-    public partial class VtnInventario : Form
+    public partial class VtnInventario : FormularioBase
     {
         private Producto producto;
 
