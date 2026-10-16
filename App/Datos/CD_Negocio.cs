@@ -1,7 +1,6 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Negocio
+    public class CD_Negocio : ICD_Negocio
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra la información del Negocio
         /// </summary>
@@ -23,21 +20,25 @@ namespace Datos
             try
             {
                 string obtener = "SELECT ID_NEGOCIO, NOMBRE, TELEFONO, RUC, DIRECCION, CORREO_ELECTRONICO FROM NEGOCIO WHERE ID_NEGOCIO = 1";
-                SqlCommand cmd = new SqlCommand(obtener, Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtener, conexion))
                 {
-                    obtenerDatos = new Negocio()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdNegocio = Convert.ToInt32(leer["ID_NEGOCIO"]),
-                        Nombre = leer["NOMBRE"].ToString(),
-                        Telefono = leer["TELEFONO"].ToString(),
-                        Ruc = leer["RUC"].ToString(),
-                        Direccion = leer["DIRECCION"].ToString(),
-                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString()
-                    };
+                        while (leer.Read())
+                        {
+                            obtenerDatos = new Negocio()
+                            {
+                                IdNegocio = Convert.ToInt32(leer["ID_NEGOCIO"]),
+                                Nombre = leer["NOMBRE"].ToString(),
+                                Telefono = leer["TELEFONO"].ToString(),
+                                Ruc = leer["RUC"].ToString(),
+                                Direccion = leer["DIRECCION"].ToString(),
+                                CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString()
+                            };
+                        }
+                    }
                 }
             }
             catch (Exception ne)
@@ -60,21 +61,24 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_NEGOCIO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Negocio", obj.IdNegocio);
-                cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Ruc", obj.Ruc);
-                cmd.Parameters.AddWithValue("Direccion", obj.Direccion);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_NEGOCIO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Negocio", obj.IdNegocio);
+                    cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Ruc", obj.Ruc);
+                    cmd.Parameters.AddWithValue("Direccion", obj.Direccion);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception ne)
             {
@@ -96,13 +100,17 @@ namespace Datos
             try
             {
                 string obtenerLogo = "SELECT LOGO FROM NEGOCIO WHERE ID_NEGOCIO = 1";
-                SqlCommand cmd = new SqlCommand(obtenerLogo, Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(obtenerLogo, conexion))
                 {
-                    logoByte = (byte[])leer["LOGO"];
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
+                    {
+                        while (leer.Read())
+                        {
+                            logoByte = (byte[])leer["LOGO"];
+                        }
+                    }
                 }
             }
             catch (Exception ne)
@@ -130,14 +138,17 @@ namespace Datos
                 actualizarLogo.AppendLine("UPDATE NEGOCIO SET LOGO = @Image");
                 actualizarLogo.AppendLine("WHERE ID_NEGOCIO = 1");
 
-                SqlCommand cmd = new SqlCommand(actualizarLogo.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@Image", image);
-                cmd.CommandType = CommandType.Text;
-
-                if (cmd.ExecuteNonQuery() < 1)
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(actualizarLogo.ToString(), conexion))
                 {
-                    mensaje = "No se pudo actulizar el logo.";
-                    respuesta = false;
+                    cmd.Parameters.AddWithValue("@Image", image);
+                    cmd.CommandType = CommandType.Text;
+
+                    if (cmd.ExecuteNonQuery() < 1)
+                    {
+                        mensaje = "No se pudo actulizar el logo.";
+                        respuesta = false;
+                    }
                 }
             }
             catch (Exception ne)

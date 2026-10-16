@@ -20,6 +20,7 @@ namespace Presentacion.Modales
         /// <summary>
         /// Variable donde se va a guardar el cliente seleccionado.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Cliente Cliente { get; set; }
 
         /// <summary> 

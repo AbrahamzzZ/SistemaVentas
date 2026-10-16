@@ -1,7 +1,6 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Permiso
+    public class CD_Permiso : ICD_Permiso
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todos los Permisos que tienen cada Usuario
         /// </summary>
@@ -28,17 +25,22 @@ namespace Datos
                 permisos.AppendLine("inner join ROL r on r.ID_ROL = p.ID_ROL");
                 permisos.AppendLine("inner join USUARIO u on u.ID_ROL = r.ID_ROL");
                 permisos.AppendLine("WHERE U.ID_USUARIO = @id_usuario");
-                SqlCommand cmd = new SqlCommand(permisos.ToString(), Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("@id_usuario", idusuario);
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(permisos.ToString(), conexion))
                 {
-                    listaPermiso.Add(new Permiso()
+                    cmd.Parameters.AddWithValue("@id_usuario", idusuario);
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        oRol = new Rol() { IdRol = Convert.ToInt32(leer["ID_ROL"]) },
-                        NombreMenu = leer["NOMBRE_MENU"].ToString(),
-                    });
+                        while (leer.Read())
+                        {
+                            listaPermiso.Add(new Permiso()
+                            {
+                                oRol = new Rol() { IdRol = Convert.ToInt32(leer["ID_ROL"]) },
+                                NombreMenu = leer["NOMBRE_MENU"].ToString(),
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception pe)

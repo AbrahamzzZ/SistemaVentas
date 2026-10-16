@@ -9,7 +9,23 @@ namespace Negocios
     public class CN_Cliente
     {
 
-        private readonly CD_Cliente ObjetoCliente = new CD_Cliente();
+        private readonly ICD_Cliente ObjetoCliente;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Cliente() : this(new CD_Cliente())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Cliente(ICD_Cliente datos)
+        {
+            ObjetoCliente = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todos los clientes.

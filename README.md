@@ -1,91 +1,120 @@
-# Sistemas de Ventas
+# 🌲 Sistema de Ventas de Productos
 
 <img
  align="center"
  src=".github/assets/image.png"
- alt="Page Preview"
+ alt="Vista previa de la aplicación"
 />
 
 <br>
 
-<!-- BADGES -->
 <div>
-  <a href="#">
-    <img alt="" align="left" src="https://img.shields.io/github/stars/AbrahamzzZ/SistemaVentas?color=1D1F22&labelColor=FF9CAC&style=for-the-badge"/>
+  <a href="https://github.com/AbrahamzzZ/SistemaVentas/actions/workflows/pruebas-unitarias.yml">
+    <img alt="Pruebas unitarias" src="https://github.com/AbrahamzzZ/SistemaVentas/actions/workflows/pruebas-unitarias.yml/badge.svg"/>
   </a>
-  <a href="#">
-    <img alt="" align="right" src="https://badges.pufler.dev/visits/AbrahamzzZ/SistemaVentas?style=for-the-badge&color=7ddac5&logoColor=white&labelColor=7ddac5"/>
+  <img alt=".NET 10" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white"/>
+  <a href="./LICENSE">
+    <img alt="Licencia MIT" src="https://img.shields.io/badge/licencia-MIT-green"/>
   </a>
 </div>
 
-<h1 align="center" style="font-weight:mediun; padding:30px;">🌲 Sistemas de Ventas </h1>
+Aplicación de escritorio para la gestión de ventas, compras e inventario de un supermercado: productos, categorías, clientes, proveedores, transportistas, sucursales, ofertas, usuarios con roles y permisos, reportes en PDF y Excel, y estadísticas.
 
-Grupo de Construcion de Software Sof-Ve-6-2
+Grupo de Construcción de Software Sof-Ve-6-2
 
 ## 📝 Tabla de Contenidos
 
-- [Instalacion](#-instalacion)
-  - [📦 Requerimientos de Instalacion](#-requerimientos-de-instalacion)
-  - [📝 Clonar Repositorio](#-clonar-repositorio)
-- [📦 Instalacion de base de datos](#-instalacion-de-base-de-datos)
-- [🚀 Ejecución del Proyecto](#-ejecuccion-del-proyecto)
+- [🧱 Arquitectura](#-arquitectura)
+- [📦 Requisitos](#-requisitos)
+- [📥 Clonar el repositorio](#-clonar-el-repositorio)
+- [💾 Instalación de la base de datos](#-instalación-de-la-base-de-datos)
+- [🚀 Ejecución del proyecto](#-ejecución-del-proyecto)
+- [🧪 Pruebas unitarias](#-pruebas-unitarias)
 - [📝 Licencia](#-licencia)
 
-## Instalacion
+## 🧱 Arquitectura
 
-En esta sección se explica el proceso de instalación de todas las dependencias necesarias para ejecutar el proyecto.
+La solución (`App/SistemaVenta.sln`) está organizada en capas:
 
-### 📦 Requerimientos de Instalacion
+| Proyecto | Descripción |
+|---|---|
+| `Presentacion` | Aplicación Windows Forms (.NET 10). |
+| `Negocios` | Reglas de negocio y validaciones. |
+| `Datos` | Acceso a SQL Server mediante procedimientos almacenados. |
+| `Entidad` | Clases del modelo (Producto, Venta, Cliente, ...). |
+| `Test` | Pruebas unitarias de la capa de negocio (MSTest + Moq). |
 
-- [Visual Studio 2022 - Descarga](https://visualstudio.microsoft.com/es/downloads/)
-- [Sql Server - Descarga](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
-- [Git - Descarga](https://git-scm.com/downloads)
-- [.Net 8 SDK - Descarga](https://dotnet.microsoft.com/download/dotnet/8.0)
+## 📦 Requisitos
 
-### 📝 Clonar Repositorio
+- [Visual Studio 2026](https://visualstudio.microsoft.com/es/downloads/) con la carga de trabajo **Desarrollo de escritorio de .NET**
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+- [SQL Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads) (Express o LocalDB son suficientes)
+- [Git](https://git-scm.com/downloads)
+
+> [!NOTE]
+> Para solo ejecutar la aplicación, sin compilarla, basta con el [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0).
+
+## 📥 Clonar el repositorio
 
 ```sh
 git clone https://github.com/AbrahamzzZ/SistemaVentas.git
 cd SistemaVentas
 ```
 
-o tambien puedes decargar el zip de la ultima release/Commit del Repositorio
+También puede descargar el ZIP desde el botón **Code → Download ZIP** del repositorio.
 
 <img
  align="center"
  src=".github/assets/SistemaVenta-zip.png"
- alt="Page download zip"
+ alt="Descargar el repositorio como ZIP"
 />
 
-## 📦 Instalacion de base de datos
+## 💾 Instalación de la base de datos
 
-En esta sección se explica el proceso de instalación de la base de datos.
+El script `App/Database/DB_SISTEMA_VENTAS.sql` crea la base de datos `Sistema_Ventas` con sus tablas, procedimientos almacenados y datos de ejemplo.
 
-> [!WARNING]  
-> ⚠ Recuerde tener instalado el [Sql Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
-
-```sh
-sqlcmd -S [nombre_servidor] -U [usuario] -P [contraseña]
-```
+Con autenticación de Windows:
 
 ```sh
-sqlcmd -S localhost -U sa -P TuPassword -d master -i "./DataBase/DB_SISTEMA_VENTAS.sql"
+sqlcmd -S [nombre_servidor] -E -f 1252 -i "App/Database/DB_SISTEMA_VENTAS.sql"
 ```
 
-> [!WARNING]  
-> ⚠ Recuerde cambiar la contraseña de la base de datos por tu contraseña
-
-> [!WARNING]  
-> ⚠ Recuerde cambiar el nombre del servidor por tu nombre
-
-## 🚀 Ejecución del Proyecto
-
-En esta sección se explica el proceso de ejecución del proyecto.
+Con autenticación de SQL Server:
 
 ```sh
-dotnet run
+sqlcmd -S [nombre_servidor] -U [usuario] -P [contraseña] -f 1252 -i "App/Database/DB_SISTEMA_VENTAS.sql"
 ```
+
+> [!WARNING]
+> ⚠ Reemplace `[nombre_servidor]` por el de su instancia, por ejemplo `localhost\SQLEXPRESS` o `(localdb)\MSSQLLocalDB`.
+> El parámetro `-f 1252` es necesario para que las tildes de los mensajes se guarden correctamente.
+
+## 🚀 Ejecución del proyecto
+
+1. Configure la cadena de conexión `ConexionBD` en `App/Presentacion/App.config` con el nombre de su servidor:
+
+   ```xml
+   <add name="ConexionBD" connectionString="server=localhost\SQLEXPRESS;database=Sistema_Ventas;integrated security=true;TrustServerCertificate=true;" />
+   ```
+
+   También puede definir la variable de entorno `SISTEMA_VENTAS_DB` con la cadena de conexión; si existe, tiene prioridad sobre `App.config`.
+
+2. Ejecute la aplicación desde Visual Studio (F5) o con:
+
+   ```sh
+   dotnet run --project App/Presentacion
+   ```
+
+## 🧪 Pruebas unitarias
+
+Las pruebas validan las reglas de la capa de negocio usando mocks de la capa de datos, por lo que no necesitan una base de datos:
+
+```sh
+dotnet test App/Test
+```
+
+En cada Pull Request hacia `main`, GitHub Actions compila y ejecuta las pruebas automáticamente ([`.github/workflows/pruebas-unitarias.yml`](.github/workflows/pruebas-unitarias.yml)).
 
 ## 📝 Licencia
 
-Este proyecto está licenciado bajo licencia **MIT**, si desea saber más, visite la sección [License](./LICENSE) para su información completa.
+Este proyecto está licenciado bajo la licencia **MIT**. Consulte el archivo [LICENSE](./LICENSE) para más información.

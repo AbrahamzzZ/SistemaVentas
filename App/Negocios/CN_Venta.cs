@@ -12,7 +12,23 @@ namespace Negocios
 {
     public class CN_Venta
     {
-        private readonly CD_Venta ObjetoVenta = new CD_Venta();
+        private readonly ICD_Venta ObjetoVenta;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Venta() : this(new CD_Venta())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Venta(ICD_Venta datos)
+        {
+            ObjetoVenta = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que obtiene el correlativo de venta.

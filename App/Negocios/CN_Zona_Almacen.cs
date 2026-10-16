@@ -11,7 +11,23 @@ namespace Negocios
 {
     public class CN_Zona_Almacen
     {
-        private readonly CD_Zona_Almacen ObjetoZonaAlmacen = new CD_Zona_Almacen();
+        private readonly ICD_Zona_Almacen ObjetoZonaAlmacen;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Zona_Almacen() : this(new CD_Zona_Almacen())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Zona_Almacen(ICD_Zona_Almacen datos)
+        {
+            ObjetoZonaAlmacen = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todas las Zonas de Almacenamiento.

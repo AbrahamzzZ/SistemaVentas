@@ -118,7 +118,7 @@ namespace Negocios
         public static bool EsRucValido(string ruc)
         {
             // Verificar que tenga exactamente 13 digitos (Ecuador)
-            if ((ruc.Length != 11 && ruc.Length != 13) || !ruc.All(char.IsDigit))
+            if (ruc.Length != 13 || !ruc.All(char.IsDigit))
             {
                 return false;
             }

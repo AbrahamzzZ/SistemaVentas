@@ -12,7 +12,23 @@ namespace Negocios
     public class CN_Inventario
     {
 
-        private readonly CD_Inventario ObjetoProductoInventario = new CD_Inventario();
+        private readonly ICD_Inventario ObjetoProductoInventario;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Inventario() : this(new CD_Inventario())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Inventario(ICD_Inventario datos)
+        {
+            ObjetoProductoInventario = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que lista todos los productos en el inventario.

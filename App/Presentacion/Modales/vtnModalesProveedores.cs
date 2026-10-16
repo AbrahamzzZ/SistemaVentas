@@ -20,6 +20,7 @@ namespace Presentacion.Modales
         /// <summary>
         /// Variable donde se va a guardar el proveedor seleccionado.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Proveedor Proveedor { get; set; }
 
         /// <summary> 

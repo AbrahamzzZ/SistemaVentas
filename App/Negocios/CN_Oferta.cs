@@ -7,7 +7,23 @@ namespace Negocios
 {
     public class CN_Oferta
     {
-        private readonly CD_Oferta ObjetoOferta = new CD_Oferta();
+        private readonly ICD_Oferta ObjetoOferta;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Oferta() : this(new CD_Oferta())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Oferta(ICD_Oferta datos)
+        {
+            ObjetoOferta = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todos las ofertas.
@@ -32,10 +48,6 @@ namespace Negocios
             if (Validaciones.EsTextoVacio(obj.NombreOferta))
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
-            }
-            else if (!Validaciones.EsSoloLetras(obj.NombreOferta))
-            {
-                mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
             }
 
             // Validar Descripcion
@@ -91,10 +103,6 @@ namespace Negocios
             {
                 mensaje += "\n- Es necesario el nombre de la oferta.";
             }
-            else if (!Validaciones.EsSoloLetras(obj.NombreOferta))
-            {
-                mensaje += "\n- El nombre de la oferta solo puede contener letras y no números.";
-            }
 
             // Validar Descripcion
             if (Validaciones.EsTextoVacio(obj.Descripcion))
@@ -145,7 +153,7 @@ namespace Negocios
             // Validaciones de negocio
             if (obj.IdOferta == 0)
             {
-                mensaje = "Debe seleccionar un Proveedor válido para eliminar.";
+                mensaje = "Debe seleccionar una Oferta válida para eliminar.";
                 return false;
             }
 

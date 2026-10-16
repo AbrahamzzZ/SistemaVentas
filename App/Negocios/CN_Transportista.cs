@@ -11,7 +11,23 @@ namespace Negocios
 {
     public class CN_Transportista
     {
-        private readonly CD_Transportista ObjetoTransportista = new CD_Transportista();
+        private readonly ICD_Transportista ObjetoTransportista;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Transportista() : this(new CD_Transportista())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Transportista(ICD_Transportista datos)
+        {
+            ObjetoTransportista = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todos los transportistas.
@@ -115,7 +131,7 @@ namespace Negocios
             {
                 mensaje += "\n- Es necesario los nombres del proveedor.";
             }
-            else if (!Validaciones.EsTextoVacio(obj.Nombres))
+            else if (!Validaciones.EsSoloLetras(obj.Nombres))
             {
                 mensaje += "\n- Los nombres del proveedor solo pueden contener letras y no números.";
             }
@@ -125,7 +141,7 @@ namespace Negocios
             {
                 mensaje += "\n- Es necesario los apellidos del proveedor.";
             }
-            else if (!Validaciones.EsTextoVacio(obj.Apellidos))
+            else if (!Validaciones.EsSoloLetras(obj.Apellidos))
             {
                 mensaje += "\n- Los apellidos del proveedor solo pueden contener letras y no números.";
             }

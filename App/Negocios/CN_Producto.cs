@@ -7,7 +7,23 @@ namespace Negocios
 {
     public class CN_Producto
     {
-        private readonly CD_Producto ObjetoProducto = new CD_Producto();
+        private readonly ICD_Producto ObjetoProducto;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Producto() : this(new CD_Producto())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Producto(ICD_Producto datos)
+        {
+            ObjetoProducto = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que lista todos los productos.

@@ -1,7 +1,6 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Producto
+    public class CD_Producto : ICD_Producto
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Metodo que muestra una lista de todos los Productos que existen
         /// </summary>
@@ -26,25 +23,30 @@ namespace Datos
                 mostrar.AppendLine("SELECT ID_PRODUCTO, p.CODIGO, NOMBRE_PRODUCTO, p.DESCRIPCION, c.ID_CATEGORIA, c.DESCRIPCION[DESCRIPCION_CATEGORIA], u.ID_UNIDAD_MEDIDA, u.DESCRIPCION[DESCRIPCION_UNIDAD_MEDIDA], PAIS_ORIGEN, STOCK, PRECIO_COMPRA, PRECIO_VENTA, p.ESTADO FROM PRODUCTO P");
                 mostrar.AppendLine("inner join CATEGORIA c on c.ID_CATEGORIA = p.ID_CATEGORIA");
                 mostrar.AppendLine("inner join UNIDAD_MEDIDA u on u.ID_UNIDAD_MEDIDA = p.ID_UNIDAD_MEDIDA");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarProducto.Add(new Producto()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        Nombre = leer["NOMBRE_PRODUCTO"].ToString(),
-                        Descripcion = leer["DESCRIPCION"].ToString(),
-                        oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(leer["ID_CATEGORIA"]), Descripcion = leer["DESCRIPCION_CATEGORIA"].ToString() },
-                        oUnidadMedida = new Unidad_Medida() { IdUnidadMedida = Convert.ToInt32(leer["ID_UNIDAD_MEDIDA"]), Descripcion = leer["DESCRIPCION_UNIDAD_MEDIDA"].ToString() },
-                        PaisOrigen = leer["PAIS_ORIGEN"].ToString(),
-                        Stock = Convert.ToInt32(leer["STOCK"]),
-                        PrecioCompra = Convert.ToDecimal(leer["PRECIO_COMPRA"]),
-                        PrecioVenta = Convert.ToDecimal(leer["PRECIO_VENTA"]),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarProducto.Add(new Producto()
+                            {
+                                IdProducto = Convert.ToInt32(leer["ID_PRODUCTO"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                Nombre = leer["NOMBRE_PRODUCTO"].ToString(),
+                                Descripcion = leer["DESCRIPCION"].ToString(),
+                                oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(leer["ID_CATEGORIA"]), Descripcion = leer["DESCRIPCION_CATEGORIA"].ToString() },
+                                oUnidadMedida = new Unidad_Medida() { IdUnidadMedida = Convert.ToInt32(leer["ID_UNIDAD_MEDIDA"]), Descripcion = leer["DESCRIPCION_UNIDAD_MEDIDA"].ToString() },
+                                PaisOrigen = leer["PAIS_ORIGEN"].ToString(),
+                                Stock = Convert.ToInt32(leer["STOCK"]),
+                                PrecioCompra = Convert.ToDecimal(leer["PRECIO_COMPRA"]),
+                                PrecioVenta = Convert.ToDecimal(leer["PRECIO_VENTA"]),
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception pr)
@@ -67,22 +69,25 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PRODUCTO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Producto", obj.Nombre);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Id_Categoria", obj.oCategoria.IdCategoria);
-                cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.oUnidadMedida.IdUnidadMedida);
-                cmd.Parameters.AddWithValue("Pais_Origen", obj.PaisOrigen);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PRODUCTO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Producto", obj.Nombre);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Id_Categoria", obj.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.oUnidadMedida.IdUnidadMedida);
+                    cmd.Parameters.AddWithValue("Pais_Origen", obj.PaisOrigen);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdProductoGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdProductoGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {
@@ -105,23 +110,26 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_PRODUCTO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Producto", obj.IdProducto);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Producto", obj.Nombre);
-                cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("Id_Categoria", obj.oCategoria.IdCategoria);
-                cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.oUnidadMedida.IdUnidadMedida);
-                cmd.Parameters.AddWithValue("Pais_Origen", obj.PaisOrigen);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_PRODUCTO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Producto", obj.IdProducto);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Producto", obj.Nombre);
+                    cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Id_Categoria", obj.oCategoria.IdCategoria);
+                    cmd.Parameters.AddWithValue("Id_Unidad_Medida", obj.oUnidadMedida.IdUnidadMedida);
+                    cmd.Parameters.AddWithValue("Pais_Origen", obj.PaisOrigen);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {
@@ -144,16 +152,19 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PRODUCTO", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Producto", obj.IdProducto);
-                cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PRODUCTO", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Producto", obj.IdProducto);
+                    cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {
@@ -175,7 +186,7 @@ namespace Datos
             try
             {
                 string query = "SELECT STOCK FROM PRODUCTO WHERE ID_PRODUCTO = @idProducto";
-                using (SqlConnection connection = Conexion.ConexionBD())
+                using (SqlConnection connection = Conexion.Abrir())
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -205,16 +216,21 @@ namespace Datos
                 query.AppendLine("SELECT * FROM PRODUCTO");
                 query.AppendLine("WHERE Estado = 1 AND Stock > 0");
 
-                SqlCommand cmd = new SqlCommand(query.ToString(), Conexion.ConexionBD());
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(query.ToString(), conexion))
                 {
-                    Producto obj = new Producto();
-                    obj.IdProducto = Convert.ToInt32(reader["Id_Producto"]);
-                    obj.Nombre = reader["Nombre_Producto"].ToString();
-                    obj.Stock = Convert.ToInt32(reader["Stock"]);
-                    obj.Estado = Convert.ToBoolean(reader["Estado"]);
-                    listaProductos.Add(obj);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Producto obj = new Producto();
+                            obj.IdProducto = Convert.ToInt32(reader["Id_Producto"]);
+                            obj.Nombre = reader["Nombre_Producto"].ToString();
+                            obj.Stock = Convert.ToInt32(reader["Stock"]);
+                            obj.Estado = Convert.ToBoolean(reader["Estado"]);
+                            listaProductos.Add(obj);
+                        }
+                    }
                 }
             }
             catch (Exception ex)

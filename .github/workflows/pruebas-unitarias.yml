@@ -1,0 +1,34 @@
+name: Pruebas unitarias
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pruebas:
+    name: Compilar y ejecutar pruebas
+    # Las pruebas solo compilan Test, Negocios, Datos y Entidad en .NET 10, que corre en Linux.
+    # La app WinForms (Presentacion) no se compila aquí.
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Ejecutar pruebas
+        run: dotnet test App/Test/Test.csproj --configuration Release --logger trx --results-directory TestResults
+
+      - name: Guardar resultados
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultados-pruebas
+          path: TestResults

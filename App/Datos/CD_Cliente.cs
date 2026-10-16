@@ -1,7 +1,6 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Cliente
+    public class CD_Cliente : ICD_Cliente
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todos los Clientes que existen
         /// </summary>
@@ -24,22 +21,27 @@ namespace Datos
             {
                 StringBuilder mostrar = new StringBuilder();
                 mostrar.AppendLine("SELECT ID_CLIENTE, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM CLIENTE;");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarCliente.Add(new Cliente()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdCliente = Convert.ToInt32(leer["ID_CLIENTE"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        Nombres = leer["NOMBRES"].ToString(),
-                        Apellidos = leer["APELLIDOS"].ToString(),
-                        Cedula = leer["CEDULA"].ToString(),
-                        Telefono = leer["TELEFONO"].ToString(),
-                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarCliente.Add(new Cliente()
+                            {
+                                IdCliente = Convert.ToInt32(leer["ID_CLIENTE"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                Nombres = leer["NOMBRES"].ToString(),
+                                Apellidos = leer["APELLIDOS"].ToString(),
+                                Cedula = leer["CEDULA"].ToString(),
+                                Telefono = leer["TELEFONO"].ToString(),
+                                CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception cl)
@@ -62,22 +64,25 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CLIENTE", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_CLIENTE", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdClienteGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdClienteGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception cl)
             {
@@ -100,23 +105,26 @@ namespace Datos
             try
             {
 
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_CLIENTE", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombre_Cliente", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellido_Cliente", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception cl)
             {
@@ -138,16 +146,19 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_CLIENTE", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Cliente", obj.IdCliente);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception cl)
             {

@@ -20,6 +20,7 @@ namespace Presentacion.Modales
         /// <summary>
         /// Variable donde se va a guardar el transportista seleccionado.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Transportista Transportista { get; set; }
 
         /// <summary> 

@@ -2,15 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 
 namespace Datos
 {
-    public class CD_Proveedor
+    public class CD_Proveedor : ICD_Proveedor
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todos los Proveedores que existen
         /// </summary>
@@ -22,22 +19,27 @@ namespace Datos
             {
                 StringBuilder mostrar = new StringBuilder();
                 mostrar.AppendLine("SELECT ID_PROVEEDOR, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, ESTADO FROM PROVEEDOR;");
-                SqlCommand cmd = new SqlCommand(mostrar.ToString(), Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar.ToString(), conexion))
                 {
-                    listaMostrarProveedor.Add(new Proveedor()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdProveedor = Convert.ToInt32(leer["ID_PROVEEDOR"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        Nombres = leer["NOMBRES"].ToString(),
-                        Apellidos = leer["APELLIDOS"].ToString(),
-                        Cedula = leer["CEDULA"].ToString(),
-                        Telefono = leer["TELEFONO"].ToString(),
-                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaMostrarProveedor.Add(new Proveedor()
+                            {
+                                IdProveedor = Convert.ToInt32(leer["ID_PROVEEDOR"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                Nombres = leer["NOMBRES"].ToString(),
+                                Apellidos = leer["APELLIDOS"].ToString(),
+                                Cedula = leer["CEDULA"].ToString(),
+                                Telefono = leer["TELEFONO"].ToString(),
+                                CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception pr)
@@ -60,22 +62,25 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PROVEEDOR", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_PROVEEDOR", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdProveedorGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdProveedorGenerado = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {
@@ -97,23 +102,26 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_PROVEEDOR", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_PROVEEDOR", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombres_Proveedor", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos_Proveedor", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {
@@ -135,16 +143,19 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PROVEEDOR", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_PROVEEDOR", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Proveedor", obj.IdProveedor);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception pr)
             {

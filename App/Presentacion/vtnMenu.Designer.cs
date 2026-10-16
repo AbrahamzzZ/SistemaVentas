@@ -69,8 +69,6 @@
             this.MenuItemEstadisticaVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuOfertas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemVerOfertas = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuReclamos = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemVerReclamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -123,7 +121,6 @@
             this.MenuClientes,
             this.MenuReportes,
             this.MenuOfertas,
-            this.MenuReclamos,
             this.MenuAcercaDe});
             this.MenuPrincipal.Location = new System.Drawing.Point(0, 78);
             this.MenuPrincipal.Name = "MenuPrincipal";
@@ -464,27 +461,6 @@
             this.menuItemVerOfertas.Text = "Ver ofertas";
             this.menuItemVerOfertas.Click += new System.EventHandler(this.MenuItemVerOfertas_Click);
             // 
-            // MenuReclamos
-            // 
-            this.MenuReclamos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemVerReclamos});
-            this.MenuReclamos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MenuReclamos.Image = global::Presentacion.Properties.Resources.reclamo;
-            this.MenuReclamos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuReclamos.Name = "MenuReclamos";
-            this.MenuReclamos.Size = new System.Drawing.Size(96, 69);
-            this.MenuReclamos.Text = "Reclamos";
-            this.MenuReclamos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MenuReclamos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuItemVerReclamos
-            // 
-            this.menuItemVerReclamos.BackColor = System.Drawing.Color.Wheat;
-            this.menuItemVerReclamos.Name = "menuItemVerReclamos";
-            this.menuItemVerReclamos.Size = new System.Drawing.Size(192, 28);
-            this.menuItemVerReclamos.Text = "Ver reclamos";
-            this.menuItemVerReclamos.Click += new System.EventHandler(this.MenuItemVerReclamos_Click);
-            // 
             // MenuAcercaDe
             // 
             this.MenuAcercaDe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -687,9 +663,7 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemEstadisticaVentas;
         private System.Windows.Forms.ToolStripMenuItem MenuOfertas;
         private System.Windows.Forms.ToolStripMenuItem menuItemVerOfertas;
-        private System.Windows.Forms.ToolStripMenuItem MenuReclamos;
         private System.Windows.Forms.ToolStripMenuItem MenuAcercaDe;
-        private System.Windows.Forms.ToolStripMenuItem menuItemVerReclamos;
         private System.Windows.Forms.ToolStripMenuItem menuItemNegocio;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem menuItemAutor;

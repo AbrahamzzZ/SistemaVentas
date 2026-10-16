@@ -9,7 +9,23 @@ namespace Negocios
 {
     public class CN_Usuario
     {
-        private readonly CD_Usuario ObjetoUsuario = new CD_Usuario();
+        private readonly ICD_Usuario ObjetoUsuario;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Usuario() : this(new CD_Usuario())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Usuario(ICD_Usuario datos)
+        {
+            ObjetoUsuario = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
         private static int intentos = 0;
 
         /// <summary>

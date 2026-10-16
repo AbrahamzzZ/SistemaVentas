@@ -1,7 +1,6 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -9,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class CD_Transportista
+    public class CD_Transportista : ICD_Transportista
     {
-        private readonly Conexion Conexion = new Conexion();
-
         /// <summary>
         /// Método que muestra una lista de todos los Transportistas que existen
         /// </summary>
@@ -23,23 +20,28 @@ namespace Datos
             try
             {
                 string mostrar = "SELECT ID_TRANSPORTISTA, CODIGO, NOMBRES, APELLIDOS, CEDULA, TELEFONO, CORREO_ELECTRONICO, IMAGEN, ESTADO FROM TRANSPORTISTA";
-                SqlCommand cmd = new SqlCommand(mostrar, Conexion.ConexionBD());
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader leer = cmd.ExecuteReader();
-                while (leer.Read())
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand(mostrar, conexion))
                 {
-                    listaTransportista.Add(new Transportista()
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader leer = cmd.ExecuteReader())
                     {
-                        IdTransportista = Convert.ToInt32(leer["ID_TRANSPORTISTA"]),
-                        Codigo = leer["CODIGO"].ToString(),
-                        Nombres = leer["NOMBRES"].ToString(),
-                        Apellidos = leer["APELLIDOS"].ToString(),
-                        Cedula = leer["CEDULA"].ToString(),
-                        Telefono = leer["TELEFONO"].ToString(),
-                        CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
-                        Imagen = (byte[])leer["IMAGEN"],
-                        Estado = Convert.ToBoolean(leer["ESTADO"])
-                    });
+                        while (leer.Read())
+                        {
+                            listaTransportista.Add(new Transportista()
+                            {
+                                IdTransportista = Convert.ToInt32(leer["ID_TRANSPORTISTA"]),
+                                Codigo = leer["CODIGO"].ToString(),
+                                Nombres = leer["NOMBRES"].ToString(),
+                                Apellidos = leer["APELLIDOS"].ToString(),
+                                Cedula = leer["CEDULA"].ToString(),
+                                Telefono = leer["TELEFONO"].ToString(),
+                                CorreoElectronico = leer["CORREO_ELECTRONICO"].ToString(),
+                                Imagen = (byte[])leer["IMAGEN"],
+                                Estado = Convert.ToBoolean(leer["ESTADO"])
+                            });
+                        }
+                    }
                 }
             }
             catch (Exception tr)
@@ -63,23 +65,26 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_REGISTRAR_TRANSPORTISTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Imagen", imagen);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_REGISTRAR_TRANSPORTISTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Imagen", imagen);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                IdTransportistaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    IdTransportistaGenerada = Convert.ToInt32(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception tr)
             {
@@ -102,24 +107,27 @@ namespace Datos
             Mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_EDITAR_TRANSPORTISTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
-                cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
-                cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
-                cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
-                cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
-                cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
-                cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
-                cmd.Parameters.AddWithValue("Imagen", imagen);
-                cmd.Parameters.AddWithValue("Estado", obj.Estado);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_EDITAR_TRANSPORTISTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
+                    cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
+                    cmd.Parameters.AddWithValue("Nombres", obj.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos", obj.Apellidos);
+                    cmd.Parameters.AddWithValue("Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("Telefono", obj.Telefono);
+                    cmd.Parameters.AddWithValue("Correo_Electronico", obj.CorreoElectronico);
+                    cmd.Parameters.AddWithValue("Imagen", imagen);
+                    cmd.Parameters.AddWithValue("Estado", obj.Estado);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception tr)
             {
@@ -141,16 +149,19 @@ namespace Datos
             mensaje = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("PA_ELIMINAR_TRANSPORTISTA", Conexion.ConexionBD());
-                cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
-                cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                using (SqlConnection conexion = Conexion.Abrir())
+                using (SqlCommand cmd = new SqlCommand("PA_ELIMINAR_TRANSPORTISTA", conexion))
+                {
+                    cmd.Parameters.AddWithValue("Id_Transportista", obj.IdTransportista);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
 
-                Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                    Respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+                }
             }
             catch (Exception tr)
             {

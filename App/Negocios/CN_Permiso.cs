@@ -10,7 +10,23 @@ namespace Negocios
 {
     public class CN_Permiso
     {
-        private readonly CD_Permiso ObjetoPermiso = new CD_Permiso();
+        private readonly ICD_Permiso ObjetoPermiso;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Permiso() : this(new CD_Permiso())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Permiso(ICD_Permiso datos)
+        {
+            ObjetoPermiso = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que obtiene la lista de permisos de un usuario específico.

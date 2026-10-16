@@ -12,7 +12,23 @@ namespace Negocios
 {
     public class CN_Compra
     {
-        private readonly CD_Compra ObjetoCompra = new CD_Compra();
+        private readonly ICD_Compra ObjetoCompra;
+
+        /// <summary>
+        /// Constructor usado por la aplicación: trabaja con la base de datos real.
+        /// </summary>
+        public CN_Compra() : this(new CD_Compra())
+        {
+        }
+
+        /// <summary>
+        /// Constructor que recibe la capa de datos; permite inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Compra(ICD_Compra datos)
+        {
+            ObjetoCompra = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que obtiene el correlativo de compra.

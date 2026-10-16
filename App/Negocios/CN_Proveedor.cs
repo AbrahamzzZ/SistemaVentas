@@ -12,7 +12,23 @@ namespace Negocios
 {
     public class CN_Proveedor
     {
-        private readonly CD_Proveedor ObjetoProveedor = new CD_Proveedor();
+        private readonly ICD_Proveedor ObjetoProveedor;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Proveedor() : this(new CD_Proveedor())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Proveedor(ICD_Proveedor datos)
+        {
+            ObjetoProveedor = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Lista todos los proveedores.

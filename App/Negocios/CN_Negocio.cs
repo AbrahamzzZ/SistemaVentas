@@ -11,7 +11,23 @@ namespace Negocios
 {
     public class CN_Negocio
     {
-        private readonly CD_Negocio ObjetoNegocio = new CD_Negocio();
+        private readonly ICD_Negocio ObjetoNegocio;
+
+        /// <summary>
+        /// Constructor usado por la aplicación.
+        /// </summary>
+        public CN_Negocio() : this(new CD_Negocio())
+        {
+        }
+
+        /// <summary>
+        /// Constructor usado para inyectar un mock en las pruebas unitarias.
+        /// </summary>
+        /// <param name="datos">Implementación de la capa de datos.</param>
+        public CN_Negocio(ICD_Negocio datos)
+        {
+            ObjetoNegocio = datos ?? throw new ArgumentNullException(nameof(datos));
+        }
 
         /// <summary>
         /// Método que obtiene la información del negocio.
