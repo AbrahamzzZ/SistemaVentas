@@ -133,23 +133,11 @@
   <data name="usuarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\usuarios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ordinateur" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ordinateur.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="grafica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grafica.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="objetivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\objetivo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="agregar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\agregar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="autor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\colaborador3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="transportista" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\transportista.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,9 +148,6 @@
   <data name="salir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\salir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="c#" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\c#.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="reporte" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reporte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -172,9 +157,6 @@
   <data name="sucursal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sucursal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sqlServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sqlServer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="visto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\visto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -183,9 +165,6 @@
   </data>
   <data name="Logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mostrarcontraseña" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mostrarcontraseña.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -201,9 +180,6 @@
   </data>
   <data name="supermercado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\supermercadoGranAki.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="informacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\informacion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="clientes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clientes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -15,7 +15,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de categoría.
     /// </summary>
-    public partial class VtnCategoria : Form
+    public partial class VtnCategoria : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnCategoria.
@@ -229,11 +229,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaCategoria.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = System.Drawing.Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = System.Drawing.Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace Presentacion.Modales
     /// <summary>
     /// Clase que representa la ventana modal sucursal.
     /// </summary>
-    public partial class VtnModalesSucursal: Form
+    public partial class VtnModalesSucursal : FormularioBase
     {
         /// <summary>
         /// Variable donde se va a guardar la sucursal seleccionada.
@@ -99,7 +99,7 @@ namespace Presentacion.Modales
 
                 e.Value = valorEstado ? "Abierto" : "Cerrado";
 
-                e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
+                Tema.EstiloEstado(e.CellStyle, valorEstado);
             }
         }
     }

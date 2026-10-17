@@ -38,9 +38,63 @@ namespace Negocios
             return ObjetoUsuario.IngresarUsuarioLogin(codigo);
         }
 
-        public bool Token(string correoElectronico, ref string tokenGenerado)
+        public bool GenerarTokenRecuperacion(string correoElectronico, out string tokenGenerado)
         {
-            return ObjetoUsuario.GenerarTokenRecuperacion(correoElectronico, ref tokenGenerado);
+            tokenGenerado = string.Empty;
+            if (!Validaciones.EsCorreoValido(correoElectronico ?? string.Empty))
+            {
+                return false;
+            }
+
+            string token = Seguridad.GenerarToken();
+            if (!ObjetoUsuario.GuardarTokenRecuperacion(
+                correoElectronico.Trim(),
+                Seguridad.HashToken(token),
+                DateTime.UtcNow.AddMinutes(15)))
+            {
+                return false;
+            }
+
+            tokenGenerado = token;
+            return true;
+        }
+
+        public bool ValidarTokenRecuperacion(string correoElectronico, string token)
+        {
+            if (!Validaciones.EsCorreoValido(correoElectronico ?? string.Empty) ||
+                string.IsNullOrWhiteSpace(token))
+            {
+                return false;
+            }
+
+            return ObjetoUsuario.ValidarTokenRecuperacion(
+                correoElectronico.Trim(),
+                Seguridad.HashToken(token.Trim()));
+        }
+
+        public bool CambiarClaveRecuperacion(string correoElectronico, string token, string nuevaClave)
+        {
+            if (!Validaciones.EsCorreoValido(correoElectronico ?? string.Empty) ||
+                string.IsNullOrWhiteSpace(token) ||
+                !Validaciones.EsClaveValida(nuevaClave ?? string.Empty))
+            {
+                return false;
+            }
+
+            string salt = Seguridad.GenerarSalt();
+            string claveHash = Seguridad.HashClave(nuevaClave, salt);
+            return ObjetoUsuario.RestablecerClaveRecuperacion(
+                correoElectronico.Trim(),
+                Seguridad.HashToken(token.Trim()),
+                claveHash,
+                salt);
+        }
+
+        public void InvalidarTokenRecuperacion(string correoElectronico, string token)
+        {
+            ObjetoUsuario.InvalidarTokenRecuperacion(
+                correoElectronico.Trim(),
+                Seguridad.HashToken(token));
         }
 
         /// <summary>
@@ -73,14 +127,23 @@ namespace Negocios
                 return "Las credenciales ingresadas son incorrectas.";
             }
 
-            // Reiniciar el contador de intentos si el login fue exitoso
-            intentos = 0;
+            if (!Seguridad.VerificarClave(clave, usuario.ClaveEncriptada, usuario.Salt))
+            {
+                intentos++;
+                if (intentos >= 4)
+                {
+                    return "Se ha alcanzado el límite de intentos fallidos. Inténtelo más tarde.";
+                }
+
+                return "Las credenciales ingresadas son incorrectas.";
+            }
 
             if (!usuario.Estado)
             {
                 return "El usuario no está habilitado. Por favor, contacte al administrador.";
             }
 
+            intentos = 0;
             return string.Empty;
         }
 

@@ -15,7 +15,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de usuario.
     /// </summary>
-    public partial class VtnUsuarios : Form
+    public partial class VtnUsuarios : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnUsuario.
@@ -298,11 +298,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaUsuarios.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
         }

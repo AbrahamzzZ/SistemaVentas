@@ -15,7 +15,7 @@ namespace Presentacion.Modales
     /// <summary>
     /// Clase que representa el modal de las ofertas.
     /// </summary>
-    public partial class vtnModalesOfertas : Form
+    public partial class vtnModalesOfertas : FormularioBase
     {
         /// <summary>
         /// Variable donde se va a guardar la oferta seleccionada.
@@ -100,7 +100,7 @@ namespace Presentacion.Modales
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 
-                e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
+                Tema.EstiloEstado(e.CellStyle, valorEstado);
             }
 
             if (this.TablaOfertas.Columns[e.ColumnIndex].Name == "Descuento" && e.Value != null)

@@ -15,7 +15,7 @@ namespace Presentacion.Modales
     /// <summary>
     /// Clase que representa la ventana modal transportista.
     /// </summary>
-    public partial class VtnModalesTransportista : Form
+    public partial class VtnModalesTransportista : FormularioBase
     {
         /// <summary>
         /// Variable donde se va a guardar el transportista seleccionado.
@@ -98,7 +98,7 @@ namespace Presentacion.Modales
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 
-                e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
+                Tema.EstiloEstado(e.CellStyle, valorEstado);
             }
         }
     }

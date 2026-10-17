@@ -30,7 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.mapa = new GMap.NET.WindowsForms.GMapControl();
+            this.BtnVerMapa = new System.Windows.Forms.Button();
+            this.BtnElegirMapa = new System.Windows.Forms.Button();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.lblLatitud = new System.Windows.Forms.Label();
             this.TxtLatitud = new System.Windows.Forms.TextBox();
@@ -73,30 +74,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaSucursal)).BeginInit();
             this.SuspendLayout();
             // 
-            // mapa
+            // BtnVerMapa
             // 
-            this.mapa.Bearing = 0F;
-            this.mapa.CanDragMap = true;
-            this.mapa.EmptyTileColor = System.Drawing.Color.Navy;
-            this.mapa.GrayScaleMode = false;
-            this.mapa.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.mapa.Location = new System.Drawing.Point(417, 187);
-            this.mapa.MarkersEnabled = true;
-            this.mapa.MaxZoom = 2;
-            this.mapa.MinZoom = 2;
-            this.mapa.MouseWheelZoomEnabled = true;
-            this.mapa.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.mapa.Name = "mapa";
-            this.mapa.NegativeMode = false;
-            this.mapa.PolygonsEnabled = true;
-            this.mapa.RetryLoadTile = 0;
-            this.mapa.RoutesEnabled = true;
-            this.mapa.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.mapa.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.mapa.ShowTileGridLines = false;
-            this.mapa.Size = new System.Drawing.Size(248, 248);
-            this.mapa.TabIndex = 157;
-            this.mapa.Zoom = 0D;
+            this.BtnVerMapa.BackColor = System.Drawing.Color.Wheat;
+            this.BtnVerMapa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVerMapa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVerMapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVerMapa.Location = new System.Drawing.Point(582, 131);
+            this.BtnVerMapa.Name = "BtnVerMapa";
+            this.BtnVerMapa.Size = new System.Drawing.Size(155, 41);
+            this.BtnVerMapa.TabIndex = 157;
+            this.BtnVerMapa.Text = "Ver mapa";
+            this.BtnVerMapa.UseVisualStyleBackColor = false;
+            this.BtnVerMapa.Click += new System.EventHandler(this.BtnVerMapa_Click);
+            // 
+            // BtnElegirMapa
+            // 
+            this.BtnElegirMapa.BackColor = System.Drawing.Color.Wheat;
+            this.BtnElegirMapa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnElegirMapa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnElegirMapa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnElegirMapa.Location = new System.Drawing.Point(228, 361);
+            this.BtnElegirMapa.Name = "BtnElegirMapa";
+            this.BtnElegirMapa.Size = new System.Drawing.Size(80, 80);
+            this.BtnElegirMapa.TabIndex = 158;
+            this.BtnElegirMapa.Text = "Elegir en el mapa";
+            this.BtnElegirMapa.UseVisualStyleBackColor = false;
+            this.BtnElegirMapa.Click += new System.EventHandler(this.BtnElegirMapa_Click);
             // 
             // BtnExportarExcel
             // 
@@ -128,7 +132,7 @@
             this.TxtLatitud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtLatitud.Location = new System.Drawing.Point(28, 361);
             this.TxtLatitud.Name = "TxtLatitud";
-            this.TxtLatitud.Size = new System.Drawing.Size(280, 27);
+            this.TxtLatitud.Size = new System.Drawing.Size(190, 27);
             this.TxtLatitud.TabIndex = 154;
             // 
             // BtnBuscar
@@ -298,7 +302,7 @@
             this.TxtLogintud.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtLogintud.Location = new System.Drawing.Point(28, 414);
             this.TxtLogintud.Name = "TxtLogintud";
-            this.TxtLogintud.Size = new System.Drawing.Size(280, 27);
+            this.TxtLogintud.Size = new System.Drawing.Size(190, 27);
             this.TxtLogintud.TabIndex = 145;
             // 
             // lblDireccion
@@ -377,7 +381,7 @@
             this.Ciudad,
             this.EstadoValor,
             this.Estado});
-            this.tablaSucursal.Location = new System.Drawing.Point(690, 187);
+            this.tablaSucursal.Location = new System.Drawing.Point(417, 187);
             this.tablaSucursal.MultiSelect = false;
             this.tablaSucursal.Name = "tablaSucursal";
             this.tablaSucursal.ReadOnly = true;
@@ -386,7 +390,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
             this.tablaSucursal.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.tablaSucursal.RowTemplate.Height = 28;
-            this.tablaSucursal.Size = new System.Drawing.Size(705, 248);
+            this.tablaSucursal.Size = new System.Drawing.Size(978, 248);
             this.tablaSucursal.TabIndex = 135;
             this.tablaSucursal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TablaSucursal_CellContentClick);
             this.tablaSucursal.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TablaSucursal_CellFormatting);
@@ -538,9 +542,10 @@
             this.Controls.Add(this.TxtCodigo);
             this.Controls.Add(this.lblSucursales);
             this.Controls.Add(this.RtxtDireccion);
-            this.Controls.Add(this.mapa);
+            this.Controls.Add(this.BtnVerMapa);
             this.Controls.Add(this.BtnExportarExcel);
             this.Controls.Add(this.lblLatitud);
+            this.Controls.Add(this.BtnElegirMapa);
             this.Controls.Add(this.TxtLatitud);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnModificar);
@@ -574,7 +579,8 @@
         }
 
         #endregion
-        private GMap.NET.WindowsForms.GMapControl mapa;
+        private System.Windows.Forms.Button BtnVerMapa;
+        private System.Windows.Forms.Button BtnElegirMapa;
         private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Label lblLatitud;
         private System.Windows.Forms.TextBox TxtLatitud;

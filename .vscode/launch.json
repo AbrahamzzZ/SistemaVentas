@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Usa la cadena de conexión "ConexionBD" de App/Presentacion/App.config
+            "name": "SistemaVentas (App.config)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "compilar",
+            "program": "${workspaceFolder}/App/Presentacion/bin/Debug/net10.0-windows/SistemaVentas.dll",
+            "cwd": "${workspaceFolder}/App/Presentacion/bin/Debug/net10.0-windows",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            // Usa SQL Server LocalDB (viene con Visual Studio) sin modificar App.config.
+            // Crear la base: sqlcmd -S "(localdb)\MSSQLLocalDB" -f 1252 -i App/Database/DB_SISTEMA_VENTAS.sql
+            "name": "SistemaVentas (LocalDB)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "compilar",
+            "program": "${workspaceFolder}/App/Presentacion/bin/Debug/net10.0-windows/SistemaVentas.dll",
+            "cwd": "${workspaceFolder}/App/Presentacion/bin/Debug/net10.0-windows",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "env": {
+                "SISTEMA_VENTAS_DB": "Server=(localdb)\\MSSQLLocalDB;Database=Sistema_Ventas;Integrated Security=true;"
+            }
+        }
+    ]
+}

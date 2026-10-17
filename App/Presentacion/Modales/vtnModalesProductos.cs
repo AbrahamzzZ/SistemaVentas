@@ -15,7 +15,7 @@ namespace Presentacion.Modales
     /// <summary>
     /// Clase que representa el modal de los productos.
     /// </summary>
-    public partial class vtnModalesProductos : Form
+    public partial class vtnModalesProductos : FormularioBase
     {
         /// <summary>
         /// Variable donde se va a guardar el producto seleccionado.
@@ -102,7 +102,7 @@ namespace Presentacion.Modales
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 
-                e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
+                Tema.EstiloEstado(e.CellStyle, valorEstado);
             }
         }
     }

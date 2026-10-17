@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de las compras.
     /// </summary>
-    public partial class VtnCompra : Form
+    public partial class VtnCompra : FormularioBase
     {
         private Usuario_Catched Usuario;
 
@@ -385,14 +385,14 @@ namespace Presentacion
                 Producto oProducto = new CN_Producto().ListarProducto().Where(p => p.Codigo == TxtCodigo.Text && p.Estado == true).FirstOrDefault();
                 if (oProducto != null)
                 {
-                    TxtCodigo.BackColor = Color.Honeydew;
+                    TxtCodigo.BackColor = Tema.PrimarioClaro;
                     TxtIdProducto.Text = oProducto.IdProducto.ToString();
                     TxtProducto.Text = oProducto.Nombre;
                     TxtPrecioCompra.Select();
                 }
                 else
                 {
-                    TxtCodigo.BackColor = Color.MistyRose;
+                    TxtCodigo.BackColor = Tema.PeligroClaro;
                     TxtIdProducto.Text = "0";
                     TxtProducto.Text = "";
                 }

@@ -69,12 +69,8 @@
             this.MenuItemEstadisticaVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuOfertas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemVerOfertas = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuAcercaDe = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNegocio = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemAutor = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemPrograma = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuTitulo = new System.Windows.Forms.MenuStrip();
             this.panel = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
@@ -121,7 +117,7 @@
             this.MenuClientes,
             this.MenuReportes,
             this.MenuOfertas,
-            this.MenuAcercaDe});
+            this.MenuConfiguracion});
             this.MenuPrincipal.Location = new System.Drawing.Point(0, 78);
             this.MenuPrincipal.Name = "MenuPrincipal";
             this.MenuPrincipal.Size = new System.Drawing.Size(1382, 73);
@@ -461,22 +457,18 @@
             this.menuItemVerOfertas.Text = "Ver ofertas";
             this.menuItemVerOfertas.Click += new System.EventHandler(this.MenuItemVerOfertas_Click);
             // 
-            // MenuAcercaDe
+            // MenuConfiguracion
             // 
-            this.MenuAcercaDe.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemNegocio,
-            this.toolStripSeparator8,
-            this.menuItemAutor,
-            this.toolStripSeparator9,
-            this.menuItemPrograma});
-            this.MenuAcercaDe.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MenuAcercaDe.Image = global::Presentacion.Properties.Resources.informacion;
-            this.MenuAcercaDe.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.MenuAcercaDe.Name = "MenuAcercaDe";
-            this.MenuAcercaDe.Size = new System.Drawing.Size(99, 69);
-            this.MenuAcercaDe.Text = "Acerca de";
-            this.MenuAcercaDe.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MenuAcercaDe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.MenuConfiguracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemNegocio});
+            this.MenuConfiguracion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuConfiguracion.Image = global::Presentacion.Properties.Resources.mantenimiento;
+            this.MenuConfiguracion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.MenuConfiguracion.Name = "MenuConfiguracion";
+            this.MenuConfiguracion.Size = new System.Drawing.Size(99, 69);
+            this.MenuConfiguracion.Text = "Configuración";
+            this.MenuConfiguracion.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.MenuConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // menuItemNegocio
             // 
@@ -485,32 +477,6 @@
             this.menuItemNegocio.Size = new System.Drawing.Size(169, 28);
             this.menuItemNegocio.Text = "Negocio";
             this.menuItemNegocio.Click += new System.EventHandler(this.MenuItemVerNegocio_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(166, 6);
-            // 
-            // menuItemAutor
-            // 
-            this.menuItemAutor.BackColor = System.Drawing.Color.Wheat;
-            this.menuItemAutor.Name = "menuItemAutor";
-            this.menuItemAutor.Size = new System.Drawing.Size(169, 28);
-            this.menuItemAutor.Text = "Autor";
-            this.menuItemAutor.Click += new System.EventHandler(this.MenuItemVerAutor_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(166, 6);
-            // 
-            // menuItemPrograma
-            // 
-            this.menuItemPrograma.BackColor = System.Drawing.Color.Wheat;
-            this.menuItemPrograma.Name = "menuItemPrograma";
-            this.menuItemPrograma.Size = new System.Drawing.Size(169, 28);
-            this.menuItemPrograma.Text = "Programa";
-            this.menuItemPrograma.Click += new System.EventHandler(this.MenuItemVerPrograma_Click);
             // 
             // MenuTitulo
             // 
@@ -663,12 +629,8 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemEstadisticaVentas;
         private System.Windows.Forms.ToolStripMenuItem MenuOfertas;
         private System.Windows.Forms.ToolStripMenuItem menuItemVerOfertas;
-        private System.Windows.Forms.ToolStripMenuItem MenuAcercaDe;
+        private System.Windows.Forms.ToolStripMenuItem MenuConfiguracion;
         private System.Windows.Forms.ToolStripMenuItem menuItemNegocio;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripMenuItem menuItemAutor;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripMenuItem menuItemPrograma;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem menuItemUnidadesMedida;
     }

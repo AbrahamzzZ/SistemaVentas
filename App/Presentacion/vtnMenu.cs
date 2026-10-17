@@ -16,7 +16,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de menú.
     /// </summary>
-    public partial class VtnMenu : Form
+    public partial class VtnMenu : FormularioBase
     {
         private Usuario_Catched nombreUsuarioActual;
         private static Form formularioActivo = null;
@@ -35,6 +35,7 @@ namespace Presentacion
 
         private void VtnMenu_Load(object sender, EventArgs e)
         {
+            Tema.EstiloBotonBarra(BtnRegresar);
             List<Permiso> listaVerificar = new CN_Permiso().Permisos(nombreUsuarioActual.IdUsuario);
 
             foreach (ToolStripMenuItem iconMenu in MenuPrincipal.Items)
@@ -153,16 +154,6 @@ namespace Presentacion
         private void MenuItemVerNegocio_Click(object sender, EventArgs e)
         {
             VerPanel(new VtnInformacionNegocio());
-        }
-
-        private void MenuItemVerAutor_Click(object sender, EventArgs e)
-        {
-            VerPanel(new VtnAutor());
-        }
-
-        private void MenuItemVerPrograma_Click(object sender, EventArgs e)
-        {
-            VerPanel(new VtnInformacionPrograma());
         }
 
         private void FechaHora_Tick(object sender, EventArgs e)

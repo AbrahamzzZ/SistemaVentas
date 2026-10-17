@@ -1,120 +1,144 @@
-# 🌲 Sistema de Ventas de Productos
+# Sistema de Ventas
 
-<img
- align="center"
- src=".github/assets/image.png"
- alt="Vista previa de la aplicación"
-/>
+Aplicación de escritorio para administrar las operaciones de un negocio minorista. Permite gestionar ventas, compras, inventario, productos, clientes, proveedores, sucursales, usuarios y permisos desde una interfaz Windows Forms.
 
-<br>
+## Funcionalidades
 
-<div>
-  <a href="https://github.com/AbrahamzzZ/SistemaVentas/actions/workflows/pruebas-unitarias.yml">
-    <img alt="Pruebas unitarias" src="https://github.com/AbrahamzzZ/SistemaVentas/actions/workflows/pruebas-unitarias.yml/badge.svg"/>
-  </a>
-  <img alt=".NET 10" src="https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white"/>
-  <a href="./LICENSE">
-    <img alt="Licencia MIT" src="https://img.shields.io/badge/licencia-MIT-green"/>
-  </a>
-</div>
+- Registro y consulta de ventas y compras, con sus respectivos detalles.
+- Administración de productos, categorías, unidades de medida, ofertas e inventario.
+- Gestión de clientes, proveedores, transportistas y sucursales.
+- Administración de usuarios, roles y permisos.
+- Generación de reportes en PDF y Excel, y consulta de estadísticas.
+- Configuración de la información del negocio.
 
-Aplicación de escritorio para la gestión de ventas, compras e inventario de un supermercado: productos, categorías, clientes, proveedores, transportistas, sucursales, ofertas, usuarios con roles y permisos, reportes en PDF y Excel, y estadísticas.
+## Tecnologías
 
-Grupo de Construcción de Software Sof-Ve-6-2
+- C# y Windows Forms sobre .NET 10.
+- SQL Server para la persistencia de datos.
+- MSTest y Moq para las pruebas automatizadas.
 
-## 📝 Tabla de Contenidos
+La solución está organizada en los siguientes proyectos:
 
-- [🧱 Arquitectura](#-arquitectura)
-- [📦 Requisitos](#-requisitos)
-- [📥 Clonar el repositorio](#-clonar-el-repositorio)
-- [💾 Instalación de la base de datos](#-instalación-de-la-base-de-datos)
-- [🚀 Ejecución del proyecto](#-ejecución-del-proyecto)
-- [🧪 Pruebas unitarias](#-pruebas-unitarias)
-- [📝 Licencia](#-licencia)
-
-## 🧱 Arquitectura
-
-La solución (`App/SistemaVenta.sln`) está organizada en capas:
-
-| Proyecto | Descripción |
-|---|---|
-| `Presentacion` | Aplicación Windows Forms (.NET 10). |
+| Proyecto | Responsabilidad |
+| --- | --- |
+| `Presentacion` | Interfaz de escritorio Windows Forms. |
 | `Negocios` | Reglas de negocio y validaciones. |
-| `Datos` | Acceso a SQL Server mediante procedimientos almacenados. |
-| `Entidad` | Clases del modelo (Producto, Venta, Cliente, ...). |
-| `Test` | Pruebas unitarias de la capa de negocio (MSTest + Moq). |
+| `Datos` | Acceso a SQL Server. |
+| `Entidad` | Entidades y modelos de datos. |
+| `Test` | Pruebas unitarias de la capa de negocio. |
 
-## 📦 Requisitos
+## Requisitos
 
-- [Visual Studio 2026](https://visualstudio.microsoft.com/es/downloads/) con la carga de trabajo **Desarrollo de escritorio de .NET**
-- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
-- [SQL Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads) (Express o LocalDB son suficientes)
-- [Git](https://git-scm.com/downloads)
+- Windows.
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
+- [Visual Studio 2026](https://visualstudio.microsoft.com/es/downloads/) con la carga de trabajo **Desarrollo de escritorio de .NET**, si se desea trabajar desde el IDE.
+- SQL Server, por ejemplo SQL Server Express o LocalDB.
+- `sqlcmd` para ejecutar el script de creación de la base de datos.
+- Git para clonar el repositorio.
 
-> [!NOTE]
-> Para solo ejecutar la aplicación, sin compilarla, basta con el [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0).
+Para ejecutar una versión ya compilada, se necesita .NET 10 Desktop Runtime en lugar del SDK.
 
-## 📥 Clonar el repositorio
+## Obtener el código
 
-```sh
-git clone https://github.com/AbrahamzzZ/SistemaVentas.git
-cd SistemaVentas
+```powershell
+git clone https://github.com/AbrahamzzZ/AppBuyWindows.git
+cd AppBuyWindows
 ```
 
-También puede descargar el ZIP desde el botón **Code → Download ZIP** del repositorio.
+## Configurar la base de datos
 
-<img
- align="center"
- src=".github/assets/SistemaVenta-zip.png"
- alt="Descargar el repositorio como ZIP"
-/>
+El script [`App/Database/DB_SISTEMA_VENTAS.sql`](App/Database/DB_SISTEMA_VENTAS.sql) crea la base de datos `Sistema_Ventas`, sus tablas, procedimientos almacenados y datos de ejemplo.
 
-## 💾 Instalación de la base de datos
+Con autenticación de Windows, ejecute el siguiente comando desde la raíz del repositorio y reemplace el servidor por el nombre de su instancia:
 
-El script `App/Database/DB_SISTEMA_VENTAS.sql` crea la base de datos `Sistema_Ventas` con sus tablas, procedimientos almacenados y datos de ejemplo.
-
-Con autenticación de Windows:
-
-```sh
-sqlcmd -S [nombre_servidor] -E -f 1252 -i "App/Database/DB_SISTEMA_VENTAS.sql"
+```powershell
+sqlcmd -S "localhost\SQLEXPRESS" -E -f 1252 -i "App/Database/DB_SISTEMA_VENTAS.sql"
 ```
 
-Con autenticación de SQL Server:
+El parámetro `-f 1252` permite conservar correctamente los caracteres acentuados del script. La cuenta de Windows que ejecuta `sqlcmd` debe tener permisos para crear la base de datos.
 
-```sh
-sqlcmd -S [nombre_servidor] -U [usuario] -P [contraseña] -f 1252 -i "App/Database/DB_SISTEMA_VENTAS.sql"
+## Configurar la conexión
+
+La aplicación busca la cadena de conexión en la variable de entorno `SISTEMA_VENTAS_DB`. Si la variable no está definida, utiliza la entrada `ConexionBD` de `App/Presentacion/App.config`.
+
+Para una ejecución desde PowerShell, puede definir la variable en la sesión actual:
+
+```powershell
+$env:SISTEMA_VENTAS_DB = "Server=localhost\SQLEXPRESS;Database=Sistema_Ventas;Integrated Security=True;TrustServerCertificate=True"
 ```
 
-> [!WARNING]
-> ⚠ Reemplace `[nombre_servidor]` por el de su instancia, por ejemplo `localhost\SQLEXPRESS` o `(localdb)\MSSQLLocalDB`.
-> El parámetro `-f 1252` es necesario para que las tildes de los mensajes se guarden correctamente.
+Después, inicie la aplicación desde esa misma sesión. Para conservar la configuración entre sesiones, defina la variable de entorno desde la configuración de Windows.
 
-## 🚀 Ejecución del proyecto
+Como alternativa, configure la cadena en la sección `connectionStrings` de `App/Presentacion/App.config`:
 
-1. Configure la cadena de conexión `ConexionBD` en `App/Presentacion/App.config` con el nombre de su servidor:
-
-   ```xml
-   <add name="ConexionBD" connectionString="server=localhost\SQLEXPRESS;database=Sistema_Ventas;integrated security=true;TrustServerCertificate=true;" />
-   ```
-
-   También puede definir la variable de entorno `SISTEMA_VENTAS_DB` con la cadena de conexión; si existe, tiene prioridad sobre `App.config`.
-
-2. Ejecute la aplicación desde Visual Studio (F5) o con:
-
-   ```sh
-   dotnet run --project App/Presentacion
-   ```
-
-## 🧪 Pruebas unitarias
-
-Las pruebas validan las reglas de la capa de negocio usando mocks de la capa de datos, por lo que no necesitan una base de datos:
-
-```sh
-dotnet test App/Test
+```xml
+<connectionStrings>
+  <add name="ConexionBD"
+       connectionString="Server=localhost\SQLEXPRESS;Database=Sistema_Ventas;Integrated Security=True;TrustServerCertificate=True;"
+       providerName="Microsoft.Data.SqlClient" />
+</connectionStrings>
 ```
 
-En cada Pull Request hacia `main`, GitHub Actions compila y ejecuta las pruebas automáticamente ([`.github/workflows/pruebas-unitarias.yml`](.github/workflows/pruebas-unitarias.yml)).
+Si usa autenticación de SQL Server, reemplace la autenticación integrada por las credenciales correspondientes. No publique contraseñas ni cadenas de conexión con credenciales en el repositorio.
 
-## 📝 Licencia
+## Recuperación de contraseña
 
-Este proyecto está licenciado bajo la licencia **MIT**. Consulte el archivo [LICENSE](./LICENSE) para más información.
+La recuperación envía un código de un solo uso al correo registrado del usuario. El código vence en 15 minutos, se almacena como hash y se invalida al cambiar la contraseña. Se permiten como máximo cinco intentos de verificación por código.
+
+Las contraseñas se almacenan con PBKDF2-HMAC-SHA-256, 600 000 iteraciones, una sal aleatoria de 16 bytes y un resultado de 32 bytes. El algoritmo y el número de iteraciones se guardan junto a la sal para identificar los parámetros de cada clave. Las cuentas de bases existentes creadas con el formato anterior deberán restablecer su contraseña para poder iniciar sesión.
+
+Para una base existente, ejecute una sola vez en SQL Server:
+
+```sql
+IF COL_LENGTH('dbo.USUARIO', 'TOKEN_RECUPERACION_EXPIRA') IS NULL
+    ALTER TABLE dbo.USUARIO ADD TOKEN_RECUPERACION_EXPIRA datetime2 NULL;
+
+IF COL_LENGTH('dbo.USUARIO', 'INTENTOS_RECUPERACION') IS NULL
+    ALTER TABLE dbo.USUARIO ADD INTENTOS_RECUPERACION tinyint NOT NULL
+        CONSTRAINT DF_USUARIO_INTENTOS_RECUPERACION DEFAULT 0;
+```
+
+Configure el SMTP con variables de entorno antes de iniciar la aplicación:
+
+| Variable | Uso |
+| --- | --- |
+| `SISTEMA_VENTAS_SMTP_HOST` | Servidor SMTP. |
+| `SISTEMA_VENTAS_SMTP_FROM` | Dirección remitente autorizada por el servidor. |
+| `SISTEMA_VENTAS_SMTP_USER` | Usuario SMTP; opcional si el servidor no requiere autenticación. |
+| `SISTEMA_VENTAS_SMTP_PASSWORD` | Contraseña SMTP; debe configurarse junto con el usuario. |
+| `SISTEMA_VENTAS_SMTP_PORT` | Puerto; por defecto `587`. |
+| `SISTEMA_VENTAS_SMTP_ENABLE_SSL` | Habilita TLS; por defecto `true`. |
+
+No agregue credenciales SMTP al repositorio. Como esta aplicación de escritorio necesita acceder a la configuración SMTP desde el equipo donde se ejecuta, este enfoque es apropiado para un entorno controlado o académico; para producción distribuida, el envío debe realizarlo un servicio backend que mantenga las credenciales fuera de los equipos cliente.
+
+## Compilar y ejecutar
+
+Desde la raíz del repositorio, restaure las dependencias y compile la solución:
+
+```powershell
+dotnet build App/SistemaVenta.sln
+```
+
+Para iniciar la aplicación:
+
+```powershell
+dotnet run --project App/Presentacion/Presentacion.csproj
+```
+
+También puede abrir `App/SistemaVenta.sln` en Visual Studio, establecer `Presentacion` como proyecto de inicio y ejecutar la solución.
+
+## Pruebas
+
+Las pruebas unitarias de la capa de negocio usan mocks para la capa de datos y no requieren conectarse a SQL Server:
+
+```powershell
+dotnet test App/Test/Test.csproj
+```
+
+## Documentación adicional
+
+En [`Docs`](Docs/) se encuentran los manuales y documentos del proyecto, incluidos el [manual de usuario](<Docs/MANUAL DE USUARIO GRUPO-B.docx>), el [manual técnico](<Docs/MANUAL TECNICO GRUPO-B.docx>), el [documento de instalación](<Docs/DOCUMENTO DE INSTALACIÓN DEL SOFTWARE GRUPO-B.docx>), los requerimientos y el plan de pruebas.
+
+## Licencia
+
+Este proyecto se distribuye bajo la licencia MIT. Consulte [`LICENSE`](LICENSE) para ver sus términos.

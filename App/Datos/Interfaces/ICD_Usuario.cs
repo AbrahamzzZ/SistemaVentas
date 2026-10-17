@@ -18,7 +18,10 @@ namespace Datos
         /// <returns>Un objeto de tipo Usuario.</returns>
         Usuario IngresarUsuarioLogin(string codigo);
 
-        bool GenerarTokenRecuperacion(string correoElectronico, ref string tokenGenerado);
+        bool GuardarTokenRecuperacion(string correoElectronico, string tokenHash, DateTime expiracionUtc);
+        bool ValidarTokenRecuperacion(string correoElectronico, string tokenHash);
+        bool RestablecerClaveRecuperacion(string correoElectronico, string tokenHash, string claveHash, string salt);
+        void InvalidarTokenRecuperacion(string correoElectronico, string tokenHash);
 
         /// <summary>
         /// Método que permite mostrar la información de un usuario mediante su ID.

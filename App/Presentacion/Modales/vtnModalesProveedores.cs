@@ -15,7 +15,7 @@ namespace Presentacion.Modales
     /// <summary>
     /// Clase que representa la ventana modal proveedor.
     /// </summary>
-    public partial class VtnModalesProveedores : Form
+    public partial class VtnModalesProveedores : FormularioBase
     {
         /// <summary>
         /// Variable donde se va a guardar el proveedor seleccionado.
@@ -99,7 +99,7 @@ namespace Presentacion.Modales
 
                 e.Value = valorEstado ? "Activo" : "No Activo";
 
-                e.CellStyle.BackColor = valorEstado ? Color.Green : Color.Red;
+                Tema.EstiloEstado(e.CellStyle, valorEstado);
             }
         }
     }

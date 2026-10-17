@@ -15,7 +15,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de oferta.
     /// </summary>
-    public partial class VtnOferta : Form
+    public partial class VtnOferta : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnOferta.
@@ -278,11 +278,11 @@ namespace Presentacion
                 if (e.Value != null && (string)e.Value == "Activo")
                 {
                     DataGridViewRow row = tablaOferta.Rows[e.RowIndex];
-                    e.CellStyle.BackColor = Color.ForestGreen;
+                    Tema.EstiloEstado(e.CellStyle, true);
                 }
                 else
                 {
-                    e.CellStyle.BackColor = Color.Red;
+                    Tema.EstiloEstado(e.CellStyle, false);
                 }
             }
 

@@ -1,15 +1,7 @@
-﻿using Entidad;
 using Negocios;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Data.Common;
 using System.Net.Mail;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -17,8 +9,13 @@ namespace Presentacion
     /// <summary>
     /// 
     /// </summary>
-    public partial class VtnRestablecerClave: Form
+    public partial class VtnRestablecerClave : FormularioBase
     {
+        private readonly CN_Usuario _usuarioNegocio = new CN_Usuario();
+        private string _correoVerificado;
+        private string _tokenVerificado;
+        private bool _tokenValido;
+
         /// <summary>
         /// 
         /// </summary>
@@ -27,44 +24,159 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        private void BtnEnviarCorreoElectronico_Click(object sender, EventArgs e)
+        private async void BtnEnviarCorreoElectronico_Click(object sender, EventArgs e)
         {
-            string token = Seguridad.GenerarToken();
-
-            string correoElectronico = TxtCorreoElectronico.Text;
-            if (string.IsNullOrWhiteSpace(correoElectronico))
+            string correoElectronico = TxtCorreoElectronico.Text.Trim();
+            if (!Validaciones.EsCorreoValido(correoElectronico))
             {
-                MessageBox.Show("Ingrese un correo electrónico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ingrese un correo electrónico válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            CN_Usuario usuarioNegocio = new CN_Usuario();
-            if (usuarioNegocio.Token(correoElectronico, ref token))
+            _tokenValido = false;
+            _correoVerificado = null;
+            _tokenVerificado = null;
+            TxtToken.Clear();
+            TxtClave.Enabled = false;
+            TxtConfirmarClave.Enabled = false;
+            BtnCambiarClave.Enabled = false;
+            BtnEnviarToken.Enabled = false;
+            TxtToken.Enabled = false;
+            BtnEnviarCorreoElectronico.Enabled = false;
+            string token = string.Empty;
+
+            try
             {
-                // Enviar el token por correo electrónico
-                if (EnviarCorreo(correoElectronico, token))
+                if (_usuarioNegocio.GenerarTokenRecuperacion(correoElectronico, out token))
                 {
-                    MessageBox.Show("Se ha enviado el token a su correo electrónico.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        await ServicioCorreoRecuperacion.EnviarAsync(correoElectronico, token);
+                    }
+                    catch (SmtpException)
+                    {
+                        _usuarioNegocio.InvalidarTokenRecuperacion(correoElectronico, token);
+                        throw;
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        _usuarioNegocio.InvalidarTokenRecuperacion(correoElectronico, token);
+                        throw;
+                    }
+
+                    TxtToken.Enabled = true;
+                    TxtCorreoElectronico.Enabled = false;
+                    BtnEnviarToken.Enabled = true;
+                    MessageBox.Show(
+                        "Si el correo pertenece a un usuario activo, recibirás un código válido durante 15 minutos.",
+                        "Solicitud procesada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo enviar el correo electrónico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        "Si el correo pertenece a un usuario activo, recibirás un código válido durante 15 minutos.",
+                        "Solicitud procesada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (SmtpException ex)
             {
-                MessageBox.Show("No se encontró un usuario con ese correo electrónico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se pudo enviar el correo de recuperación: {ex.Message}", "Error de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Configuración de correo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (DbException)
+            {
+                MessageBox.Show("No se pudo guardar la solicitud en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (!_tokenValido)
+                {
+                    BtnEnviarCorreoElectronico.Enabled = true;
+                }
             }
         }
 
         private void BtnEnviarToken_Click(object sender, EventArgs e)
         {
-            
+            string correoElectronico = TxtCorreoElectronico.Text.Trim();
+            bool tokenValido;
+            try
+            {
+                tokenValido = _usuarioNegocio.ValidarTokenRecuperacion(correoElectronico, TxtToken.Text);
+            }
+            catch (DbException)
+            {
+                MessageBox.Show("No se pudo verificar el código en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!tokenValido)
+            {
+                _tokenValido = false;
+                TxtClave.Enabled = false;
+                TxtConfirmarClave.Enabled = false;
+                BtnCambiarClave.Enabled = false;
+                MessageBox.Show("El código no es válido, venció o alcanzó el límite de intentos.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _correoVerificado = correoElectronico;
+            _tokenVerificado = TxtToken.Text.Trim();
+            _tokenValido = true;
+            TxtCorreoElectronico.Enabled = false;
+            TxtToken.Enabled = false;
+            BtnEnviarCorreoElectronico.Enabled = false;
+            BtnEnviarToken.Enabled = false;
+            TxtClave.Enabled = true;
+            TxtConfirmarClave.Enabled = true;
+            BtnCambiarClave.Enabled = true;
+            TxtClave.Focus();
+            MessageBox.Show("Código verificado. Ingrese y confirme su nueva contraseña.", "Código verificado", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BtnCambiarClave_Click(object sender, EventArgs e)
         {
+            if (!_tokenValido)
+            {
+                MessageBox.Show("Primero debe verificar el código enviado a su correo.", "Verificación requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            if (!Validaciones.EsClaveValida(TxtClave.Text))
+            {
+                MessageBox.Show("La contraseña debe tener al menos 8 caracteres, una letra, un número y un carácter especial.", "Contraseña no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!string.Equals(TxtClave.Text, TxtConfirmarClave.Text, StringComparison.Ordinal))
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                if (!_usuarioNegocio.CambiarClaveRecuperacion(_correoVerificado, _tokenVerificado, TxtClave.Text))
+                {
+                    _tokenValido = false;
+                    MessageBox.Show("El código venció o ya fue utilizado. Solicite uno nuevo.", "Código no válido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                MessageBox.Show("La contraseña se cambió correctamente. Ya puede iniciar sesión.", "Contraseña actualizada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            catch (DbException)
+            {
+                MessageBox.Show("No se pudo actualizar la contraseña en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnRegresar_Click(object sender, EventArgs e)
@@ -72,31 +184,5 @@ namespace Presentacion
             this.Hide();
         }
 
-        private bool EnviarCorreo(string destinatario, string token)
-        {
-            /*try
-            {
-                MailMessage correo = new MailMessage();
-                correo.From = new MailAddress(TxtCorreoElectronico.Text); 
-                correo.To.Add(destinatario);
-                correo.Subject = "Recuperación de Contraseña - Supermercado Paradisia";
-                correo.Body = $"Su código de recuperación es: <b>{token}</b>. Este código es válido por 15 minutos.";
-                correo.IsBodyHtml = true;
-
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.Credentials = new NetworkCredential(TxtCorreoElectronico.Text, "tu_contraseña"); 
-                smtp.EnableSsl = true;
-
-                smtp.Send(correo);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al enviar correo: " + ex.Message);
-                return false;
-            }*/
-            return false;
-        }
-            
     }
 }

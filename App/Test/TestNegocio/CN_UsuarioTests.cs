@@ -25,7 +25,7 @@ namespace Test.CapaNegocio
         }
 
         private static void ReiniciarIntentos() =>
-            new CN_Usuario(MockLogin(EntidadesDePrueba.Usuario()).Object).ValidarLogin("00004", "clave");
+            new CN_Usuario(MockLogin(EntidadesDePrueba.Usuario()).Object).ValidarLogin("00004", "clave123");
 
         [TestMethod]
         [DataRow("", "clave123")]
@@ -78,6 +78,17 @@ namespace Test.CapaNegocio
             ReiniciarIntentos();
 
             string resultado = new CN_Usuario(MockLogin(null).Object).ValidarLogin("99999", "clave123");
+
+            Assert.AreEqual("Las credenciales ingresadas son incorrectas.", resultado);
+        }
+
+        [TestMethod]
+        public void ValidarLogin_ClaveIncorrecta_IndicaCredencialesIncorrectas()
+        {
+            ReiniciarIntentos();
+
+            string resultado = new CN_Usuario(MockLogin(EntidadesDePrueba.Usuario()).Object)
+                .ValidarLogin("00004", "clave-incorrecta");
 
             Assert.AreEqual("Las credenciales ingresadas son incorrectas.", resultado);
         }
@@ -175,6 +186,94 @@ namespace Test.CapaNegocio
 
             Assert.IsTrue(resultado);
             Assert.AreEqual(mensajeDatos, mensaje);
+        }
+
+        [TestMethod]
+        public void GenerarTokenRecuperacion_CorreoValido_GuardaSoloElHashConVencimiento()
+        {
+            var datos = new Mock<ICD_Usuario>();
+            datos.Setup(d => d.GuardarTokenRecuperacion(
+                "usuario@ejemplo.com",
+                It.IsAny<string>(),
+                It.IsAny<DateTime>())).Returns(true);
+
+            DateTime antes = DateTime.UtcNow;
+            bool resultado = new CN_Usuario(datos.Object)
+                .GenerarTokenRecuperacion("usuario@ejemplo.com", out string token);
+            DateTime despues = DateTime.UtcNow;
+
+            Assert.IsTrue(resultado);
+            Assert.AreEqual(32, token.Length);
+            datos.Verify(d => d.GuardarTokenRecuperacion(
+                "usuario@ejemplo.com",
+                Seguridad.HashToken(token),
+                It.Is<DateTime>(expiracion => expiracion >= antes.AddMinutes(14) && expiracion <= despues.AddMinutes(16))),
+                Times.Once);
+        }
+
+        [TestMethod]
+        public void GenerarTokenRecuperacion_CorreoInvalido_NoConsultaLaCapaDeDatos()
+        {
+            var datos = new Mock<ICD_Usuario>(MockBehavior.Strict);
+
+            bool resultado = new CN_Usuario(datos.Object)
+                .GenerarTokenRecuperacion("correo-invalido", out string token);
+
+            Assert.IsFalse(resultado);
+            Assert.AreEqual(string.Empty, token);
+        }
+
+        [TestMethod]
+        public void ValidarTokenRecuperacion_HasheaElCodigoAntesDeConsultarDatos()
+        {
+            var datos = new Mock<ICD_Usuario>();
+            const string codigo = "0123456789ABCDEF0123456789ABCDEF";
+            datos.Setup(d => d.ValidarTokenRecuperacion("usuario@ejemplo.com", Seguridad.HashToken(codigo)))
+                .Returns(true);
+
+            bool resultado = new CN_Usuario(datos.Object)
+                .ValidarTokenRecuperacion("usuario@ejemplo.com", codigo);
+
+            Assert.IsTrue(resultado);
+        }
+
+        [TestMethod]
+        public void CambiarClaveRecuperacion_ClaveDebil_NoConsultaLaCapaDeDatos()
+        {
+            var datos = new Mock<ICD_Usuario>(MockBehavior.Strict);
+
+            bool resultado = new CN_Usuario(datos.Object)
+                .CambiarClaveRecuperacion("usuario@ejemplo.com", "codigo", "debil");
+
+            Assert.IsFalse(resultado);
+        }
+
+        [TestMethod]
+        public void CambiarClaveRecuperacion_ClaveValida_GuardaHashYSaltYTokenHasheado()
+        {
+            var datos = new Mock<ICD_Usuario>();
+            const string codigo = "0123456789ABCDEF0123456789ABCDEF";
+            string? saltGuardado = null;
+            string? hashGuardado = null;
+            datos.Setup(d => d.RestablecerClaveRecuperacion(
+                    "usuario@ejemplo.com",
+                    Seguridad.HashToken(codigo),
+                    It.IsAny<string>(),
+                    It.IsAny<string>()))
+                .Callback<string, string, string, string>((_, _, hash, salt) =>
+                {
+                    hashGuardado = hash;
+                    saltGuardado = salt;
+                })
+                .Returns(true);
+
+            bool resultado = new CN_Usuario(datos.Object)
+                .CambiarClaveRecuperacion("usuario@ejemplo.com", codigo, "ClaveNueva123!");
+
+            Assert.IsTrue(resultado);
+            Assert.IsNotNull(saltGuardado);
+            Assert.AreNotEqual("ClaveNueva123!", hashGuardado);
+            Assert.AreEqual(Seguridad.HashClave("ClaveNueva123!", saltGuardado), hashGuardado);
         }
     }
 }

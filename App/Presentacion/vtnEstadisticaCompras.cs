@@ -18,7 +18,7 @@ namespace Presentacion
     /// <summary>
     /// Clase que representa la ventana de las estadistica de las compras.
     /// </summary>
-    public partial class VtnEstadisticaCompras : Form
+    public partial class VtnEstadisticaCompras : FormularioBase
     {
         /// <summary>
         /// Constructor de la clase VtnGraficaCompras.
