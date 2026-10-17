@@ -83,10 +83,21 @@ CORREO_ELECTRONICO nvarchar(50),
 CLAVE nvarchar(300),
 CLAVE_SALT nvarchar(100),
 TOKEN_RECUPERACION NVARCHAR(100) NULL,
+TOKEN_RECUPERACION_EXPIRA datetime2 NULL,
+INTENTOS_RECUPERACION tinyint NOT NULL CONSTRAINT DF_USUARIO_INTENTOS_RECUPERACION DEFAULT 0,
 ID_ROL int references ROL(ID_ROL),
 ESTADO bit,
 FECHA_CREACION datetime default getdate()
 );
+go
+
+IF COL_LENGTH('USUARIO', 'TOKEN_RECUPERACION_EXPIRA') IS NULL
+    ALTER TABLE USUARIO ADD TOKEN_RECUPERACION_EXPIRA datetime2 NULL;
+go
+
+IF COL_LENGTH('USUARIO', 'INTENTOS_RECUPERACION') IS NULL
+    ALTER TABLE USUARIO ADD INTENTOS_RECUPERACION tinyint NOT NULL
+        CONSTRAINT DF_USUARIO_INTENTOS_RECUPERACION DEFAULT 0;
 go
 
 CREATE TABLE CATEGORIA( ID_CATEGORIA int primary key identity,
@@ -230,7 +241,7 @@ BEGIN
         ELSE
         BEGIN
 
-            SET @Mensaje = 'No se puede repetir el código para más de un usuario.';
+            SET @Mensaje = 'No se puede repetir el cï¿½digo para mï¿½s de un usuario.';
         END
 
         COMMIT TRANSACTION;
@@ -264,10 +275,10 @@ BEGIN
         SET @Respuesta = 0;
         SET @Mensaje = '';
 
-        -- Verificar si el código ya está en uso por otro usuario
+        -- Verificar si el cï¿½digo ya estï¿½ en uso por otro usuario
         IF EXISTS (SELECT 1 FROM USUARIO WHERE CODIGO = @Codigo AND ID_USUARIO != @Id_Usuario)
         BEGIN
-            SET @Mensaje = 'El código ingresado ya está asociado a otro usuario.';
+            SET @Mensaje = 'El cï¿½digo ingresado ya estï¿½ asociado a otro usuario.';
         END
         ELSE
         BEGIN
@@ -325,10 +336,10 @@ BEGIN
         SET @Respuesta = 0;
         SET @Mensaje = '';
 
-        -- Verificar si el código ya está en uso por otro usuario
+        -- Verificar si el cï¿½digo ya estï¿½ en uso por otro usuario
         IF EXISTS (SELECT 1 FROM USUARIO WHERE CODIGO = @Codigo AND ID_USUARIO != @Id_Usuario)
         BEGIN
-            SET @Mensaje = 'El código ingresado ya está asociado a otro usuario.';
+            SET @Mensaje = 'El cï¿½digo ingresado ya estï¿½ asociado a otro usuario.';
         END
         ELSE
         BEGIN
@@ -407,7 +418,7 @@ BEGIN
         SET @Mensaje = '';
         DECLARE @paso_Reglas BIT = 1;
 
-        -- Verificar relación con compras
+        -- Verificar relaciï¿½n con compras
         IF EXISTS (
             SELECT 1 
             FROM COMPRA c
@@ -419,7 +430,7 @@ BEGIN
             SET @Mensaje = @Mensaje + 'No se puede eliminar este usuario porque se encuentra relacionado a una compra. ';
         END
 
-        -- Verificar relación con ventas
+        -- Verificar relaciï¿½n con ventas
         IF EXISTS (
             SELECT 1 
             FROM VENTA v
@@ -431,7 +442,7 @@ BEGIN
             SET @Mensaje = @Mensaje + 'No se puede eliminar este usuario porque se encuentra relacionado a una venta. ';
         END
 
-        -- Eliminar usuario si pasó las reglas
+        -- Eliminar usuario si pasï¿½ las reglas
         IF @paso_Reglas = 1
         BEGIN
             DELETE FROM USUARIO WHERE ID_USUARIO = @Id_Usuario;
@@ -470,11 +481,11 @@ BEGIN
 			VALUES (@Codigo, @Descripcion, @Estado);
 
 			SET @Resultado = SCOPE_IDENTITY();
-			SET @Mensaje = 'Categoría registrada exitosamente.';
+			SET @Mensaje = 'Categorï¿½a registrada exitosamente.';
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se puede repetir el código de una categoría.';
+			SET @Mensaje = 'No se puede repetir el cï¿½digo de una categorï¿½a.';
 		END
 
 		COMMIT TRANSACTION;
@@ -512,11 +523,11 @@ BEGIN
 			WHERE ID_CATEGORIA = @Id_Categoria;
 
 			SET @Resultado = 1;
-			SET @Mensaje = 'Categoría actualizada exitosamente.';
+			SET @Mensaje = 'Categorï¿½a actualizada exitosamente.';
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se puede repetir el código de una categoría.';
+			SET @Mensaje = 'No se puede repetir el cï¿½digo de una categorï¿½a.';
 		END
 
 		COMMIT TRANSACTION;
@@ -554,11 +565,11 @@ BEGIN
 			WHERE ID_CATEGORIA = @Id_Categoria;
 
 			SET @Resultado = 1;
-			SET @Mensaje = 'Categoría eliminada exitosamente.';
+			SET @Mensaje = 'Categorï¿½a eliminada exitosamente.';
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'La categoría ya se encuentra relacionada a un producto.';
+			SET @Mensaje = 'La categorï¿½a ya se encuentra relacionada a un producto.';
 		END
 
 		COMMIT TRANSACTION;
@@ -601,7 +612,7 @@ BEGIN
         END
         ELSE
         BEGIN
-            SET @Mensaje = 'Ya existe un producto con el mismo código.';
+            SET @Mensaje = 'Ya existe un producto con el mismo cï¿½digo.';
         END
 
 		COMMIT TRANSACTION;
@@ -652,7 +663,7 @@ BEGIN
         ELSE
         BEGIN
             SET @Resultado = 1;
-            SET @Mensaje = 'No se puede repetir el código de un producto.';
+            SET @Mensaje = 'No se puede repetir el cï¿½digo de un producto.';
         END
 
 		COMMIT TRANSACTION;
@@ -680,16 +691,16 @@ BEGIN
 
         -- Verificar relaciones
         IF EXISTS (SELECT 1 FROM DETALLE_COMPRA WHERE ID_PRODUCTO = @Id_Producto)
-            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está relacionado con compras.\n';
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque estï¿½ relacionado con compras.\n';
 
         IF EXISTS (SELECT 1 FROM DETALLE_VENTA WHERE ID_PRODUCTO = @Id_Producto)
-            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está relacionado con ventas.\n';
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque estï¿½ relacionado con ventas.\n';
 
         IF EXISTS (SELECT 1 FROM INVENTARIO WHERE ID_PRODUCTO = @Id_Producto)
-            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está en inventario.\n';
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque estï¿½ en inventario.\n';
 
         IF EXISTS (SELECT 1 FROM OFERTA WHERE ID_PRODUCTO = @Id_Producto)
-            SET @Mensaje = @Mensaje + 'No se puede eliminar porque está en ofertas.\n';
+            SET @Mensaje = @Mensaje + 'No se puede eliminar porque estï¿½ en ofertas.\n';
 
         -- Si no hay dependencias, eliminar
         IF LEN(@Mensaje) = 0
@@ -725,7 +736,7 @@ BEGIN
 		SET @Resultado = 0;
 		SET @Mensaje = '';
 
-		-- Verificar si ya existe la unidad de medida con el mismo código
+		-- Verificar si ya existe la unidad de medida con el mismo cï¿½digo
 		IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo)
 		BEGIN
 			INSERT INTO UNIDAD_MEDIDA(CODIGO, DESCRIPCION, SIMBOLO, ESTADO)
@@ -736,7 +747,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
+			SET @Mensaje = 'No se puede repetir el cï¿½digo de una unidad de medida.';
 		END
 
 		COMMIT TRANSACTION;
@@ -765,7 +776,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si el código ya existe para otra unidad de medida
+		-- Verificar si el cï¿½digo ya existe para otra unidad de medida
 		IF NOT EXISTS (SELECT 1 FROM UNIDAD_MEDIDA WHERE CODIGO = @Codigo AND ID_UNIDAD_MEDIDA != @Id_Unidad_Medida)
 		BEGIN
 			UPDATE UNIDAD_MEDIDA
@@ -780,7 +791,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se puede repetir el código de una unidad de medida.';
+			SET @Mensaje = 'No se puede repetir el cï¿½digo de una unidad de medida.';
 		END
 
 		COMMIT TRANSACTION;
@@ -805,7 +816,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si la unidad de medida está asociada a algún producto
+		-- Verificar si la unidad de medida estï¿½ asociada a algï¿½n producto
 		IF NOT EXISTS (SELECT 1 FROM PRODUCTO WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida)
 		BEGIN
 			DELETE FROM UNIDAD_MEDIDA WHERE ID_UNIDAD_MEDIDA = @Id_Unidad_Medida;
@@ -817,7 +828,7 @@ BEGIN
 			END
 			ELSE
 			BEGIN
-				SET @Mensaje = 'No se encontró ninguna unidad de medida con el ID especificado.';
+				SET @Mensaje = 'No se encontrï¿½ ninguna unidad de medida con el ID especificado.';
 			END
 		END
 		ELSE
@@ -855,14 +866,14 @@ BEGIN
     SET @Resultado = 0;
     SET @Mensaje = '';
 
-    -- Verificar si el producto ya está registrado en el inventario
+    -- Verificar si el producto ya estï¿½ registrado en el inventario
     IF EXISTS (
         SELECT 1
         FROM INVENTARIO
         WHERE ID_PRODUCTO = @Id_Producto
     )
     BEGIN
-        SET @Mensaje = 'El producto ya está registrado en el inventario.';
+        SET @Mensaje = 'El producto ya estï¿½ registrado en el inventario.';
         RETURN;
     END
 
@@ -885,7 +896,7 @@ BEGIN
 
     IF @Cantidad > @Limite_Zona
     BEGIN
-        SET @Mensaje = 'No hay suficiente espacio en la zona del almacén especificada.';
+        SET @Mensaje = 'No hay suficiente espacio en la zona del almacï¿½n especificada.';
         RETURN;
     END
 
@@ -957,7 +968,7 @@ BEGIN
             IF @EspacioDisponible < @Cantidad
             BEGIN
                 SET @Resultado = 0;
-                SET @Mensaje = 'No hay suficiente espacio en la nueva zona del almacén especificada.';
+                SET @Mensaje = 'No hay suficiente espacio en la nueva zona del almacï¿½n especificada.';
                 ROLLBACK TRANSACTION;
                 RETURN;
             END
@@ -1011,7 +1022,7 @@ BEGIN
         DECLARE @Id_Zona INT;
         DECLARE @Cantidad INT;
 
-        -- Obtener información de la zona y cantidad asociadas al inventario
+        -- Obtener informaciï¿½n de la zona y cantidad asociadas al inventario
         SELECT @Id_Zona = ID_ZONA, @Cantidad = CANTIDAD 
         FROM INVENTARIO 
         WHERE ID_INVENTARIO = @Id_Inventario;
@@ -1020,7 +1031,7 @@ BEGIN
         DELETE FROM INVENTARIO 
         WHERE ID_INVENTARIO = @Id_Inventario;
 
-        -- Verificar si se eliminó una fila
+        -- Verificar si se eliminï¿½ una fila
         IF @@ROWCOUNT > 0
         BEGIN
             -- Actualizar la capacidad disponible en la zona correspondiente
@@ -1067,7 +1078,7 @@ BEGIN
 		SET @Resultado = 0;
 		SET @Mensaje = '';
 
-		-- Validación de duplicidad de Código y Cédula
+		-- Validaciï¿½n de duplicidad de Cï¿½digo y Cï¿½dula
 		IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo)
 		BEGIN
 			IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula)
@@ -1080,12 +1091,12 @@ BEGIN
 			END
 			ELSE
 			BEGIN
-				SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
+				SET @Mensaje = 'Ya existe un cliente con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe un cliente con el mismo código.';
+			SET @Mensaje = 'Ya existe un cliente con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1118,7 +1129,7 @@ BEGIN
 		SET @Resultado = 1;
 		SET @Mensaje = '';
 
-		-- Validación de duplicidad de Código y Cédula
+		-- Validaciï¿½n de duplicidad de Cï¿½digo y Cï¿½dula
 		IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CODIGO = @Codigo AND ID_CLIENTE != @Id_Cliente)
 		BEGIN
 			IF NOT EXISTS (SELECT 1 FROM CLIENTE WHERE CEDULA = @Cedula AND ID_CLIENTE != @Id_Cliente)
@@ -1139,13 +1150,13 @@ BEGIN
 			ELSE
 			BEGIN
 				SET @Resultado = 0;
-				SET @Mensaje = 'Ya existe un cliente con la misma cédula.';
+				SET @Mensaje = 'Ya existe un cliente con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
 			SET @Resultado = 0;
-			SET @Mensaje = 'Ya existe un cliente con el mismo código.';
+			SET @Mensaje = 'Ya existe un cliente con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1180,7 +1191,7 @@ BEGIN
 		ELSE
 		BEGIN
 			SET @Resultado = 0;
-			SET @Mensaje = 'No se encontró ningún cliente con el ID especificado.';
+			SET @Mensaje = 'No se encontrï¿½ ningï¿½n cliente con el ID especificado.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1224,12 +1235,12 @@ BEGIN
 			END
 			ELSE
 			BEGIN
-				SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
+				SET @Mensaje = 'Ya existe un proveedor con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
+			SET @Mensaje = 'Ya existe un proveedor con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1282,13 +1293,13 @@ BEGIN
 			ELSE
 			BEGIN
 				SET @Resultado = 0;
-				SET @Mensaje = 'Ya existe un proveedor con la misma cédula.';
+				SET @Mensaje = 'Ya existe un proveedor con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
 			SET @Resultado = 0;
-			SET @Mensaje = 'Ya existe un proveedor con el mismo código.';
+			SET @Mensaje = 'Ya existe un proveedor con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1392,8 +1403,8 @@ BEGIN
         FROM INVENTARIO i
         INNER JOIN @Detalle_Compra dc ON i.ID_PRODUCTO = dc.ID_PRODUCTO;
 
-        -- Asignar mensaje de éxito
-        SET @Mensaje = 'Compra registrada con éxito';
+        -- Asignar mensaje de ï¿½xito
+        SET @Mensaje = 'Compra registrada con ï¿½xito';
 
         COMMIT TRANSACTION registro;
     END TRY
@@ -1449,8 +1460,8 @@ BEGIN
 		update i set i.CANTIDAD = i.CANTIDAD - dv.CANTIDAD from INVENTARIO i
 		INNER JOIN @Detalle_Venta dv ON i.ID_PRODUCTO = dv.IdProducto;
 
-		-- Asignar mensaje de éxito
-        SET @Mensaje = 'Venta registrada con éxito';
+		-- Asignar mensaje de ï¿½xito
+        SET @Mensaje = 'Venta registrada con ï¿½xito';
 
 		COMMIT TRANSACTION registro;
 	END TRY
@@ -1536,7 +1547,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si ya existe el código
+		-- Verificar si ya existe el cï¿½digo
 		IF NOT EXISTS (SELECT 1 FROM OFERTA WHERE CODIGO = @Codigo)
 		BEGIN
 			INSERT INTO OFERTA (CODIGO, NOMBRE_OFERTA, ID_PRODUCTO, DESCRIPCION, FECHA_INICIO, FECHA_FIN, DESCUENTO, ESTADO)
@@ -1547,7 +1558,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe una oferta con el mismo código.';
+			SET @Mensaje = 'Ya existe una oferta con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1581,7 +1592,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si el código ya existe para otra oferta
+		-- Verificar si el cï¿½digo ya existe para otra oferta
 		IF NOT EXISTS (SELECT * FROM OFERTA WHERE CODIGO = @Codigo AND ID_OFERTA != @Id_Oferta)
 		BEGIN
 			UPDATE OFERTA
@@ -1600,7 +1611,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe una oferta con el mismo código.';
+			SET @Mensaje = 'Ya existe una oferta con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1634,7 +1645,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se encontró ninguna oferta con el ID especificado.';
+			SET @Mensaje = 'No se encontrï¿½ ninguna oferta con el ID especificado.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1666,7 +1677,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si ya existe una sucursal con el mismo código
+		-- Verificar si ya existe una sucursal con el mismo cï¿½digo
 		IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo)
 		BEGIN
 			INSERT INTO SUCURSAL(ID_NEGOCIO, CODIGO, NOMBRE_SUCURSAL, DIRECCION_SUCURSAL, LATITUD_SUCURSAL, LONGITUD_SUCURSAL, CIUDAD_SUCURSAL, ESTADO)
@@ -1677,7 +1688,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
+			SET @Mensaje = 'Ya existe una sucursal con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1709,7 +1720,7 @@ BEGIN
 		BEGIN TRANSACTION;
 		SET @Resultado = 0;
 
-		-- Verificar si el código de la sucursal ya existe para otra sucursal
+		-- Verificar si el cï¿½digo de la sucursal ya existe para otra sucursal
 		IF NOT EXISTS (SELECT 1 FROM SUCURSAL WHERE CODIGO = @Codigo AND ID_SUCURSAL != @Id_Sucursal)
 		BEGIN
 			UPDATE SUCURSAL
@@ -1728,7 +1739,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe una sucursal con el mismo código.';
+			SET @Mensaje = 'Ya existe una sucursal con el mismo cï¿½digo.';
 		END 
 
 		COMMIT TRANSACTION;
@@ -1762,7 +1773,7 @@ BEGIN
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'No se encontró ninguna sucursal con el ID especificado.';
+			SET @Mensaje = 'No se encontrï¿½ ninguna sucursal con el ID especificado.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1795,7 +1806,7 @@ BEGIN
 		SET @Resultado = 0;
 		SET @Mensaje = '';
 
-		-- Validación de duplicidad de Código y Cédula
+		-- Validaciï¿½n de duplicidad de Cï¿½digo y Cï¿½dula
 		IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo)
 		BEGIN
 			IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula)
@@ -1808,12 +1819,12 @@ BEGIN
 			END
 			ELSE
 			BEGIN
-				SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
+				SET @Mensaje = 'Ya existe un transportista con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
-			SET @Mensaje = 'Ya existe un transportista con el mismo código.';
+			SET @Mensaje = 'Ya existe un transportista con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1847,7 +1858,7 @@ BEGIN
 		SET @Resultado = 1;
 		SET @Mensaje = '';
 
-		-- Validación de duplicidad de Código y Cédula
+		-- Validaciï¿½n de duplicidad de Cï¿½digo y Cï¿½dula
 		IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CODIGO = @Codigo AND ID_TRANSPORTISTA != @Id_Transportista)
 		BEGIN
 			IF NOT EXISTS (SELECT 1 FROM TRANSPORTISTA WHERE CEDULA = @Cedula AND ID_TRANSPORTISTA != @Id_Transportista)
@@ -1869,13 +1880,13 @@ BEGIN
 			ELSE
 			BEGIN
 				SET @Resultado = 0;
-				SET @Mensaje = 'Ya existe un transportista con la misma cédula.';
+				SET @Mensaje = 'Ya existe un transportista con la misma cï¿½dula.';
 			END
 		END
 		ELSE
 		BEGIN
 			SET @Resultado = 0;
-			SET @Mensaje = 'Ya existe un transportista con el mismo código.';
+			SET @Mensaje = 'Ya existe un transportista con el mismo cï¿½digo.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1910,7 +1921,7 @@ BEGIN
 		ELSE
 		BEGIN
 			SET @Resultado = 0;
-			SET @Mensaje = 'No se encontró ningún transportista con el ID especificado.';
+			SET @Mensaje = 'No se encontrï¿½ ningï¿½n transportista con el ID especificado.';
 		END
 
 		COMMIT TRANSACTION;
@@ -1960,12 +1971,12 @@ BEGIN
 
         IF @@ROWCOUNT = 0
         BEGIN
-            SET @Mensaje = 'No se realizaron cambios en la información del negocio.';
+            SET @Mensaje = 'No se realizaron cambios en la informaciï¿½n del negocio.';
         END
         ELSE
         BEGIN
             SET @Resultado = 1;
-            SET @Mensaje = 'La información del negocio fue actualizada exitosamente.';
+            SET @Mensaje = 'La informaciï¿½n del negocio fue actualizada exitosamente.';
         END
 
 		COMMIT TRANSACTION;
@@ -1979,21 +1990,16 @@ BEGIN
 END;
 go
 
-/*Inserciones necesarias para que la aplicación funcione*/
+/*Inserciones necesarias para que la aplicaciï¿½n funcione*/
 go
 INSERT INTO ROL (DESCRIPCION) VALUES('Administrador');
 go
 INSERT INTO ROL (DESCRIPCION) VALUES ('Empleado');
 go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00001', 'Abraham Andres Farfan Sanchez', 'hermanosfarfan@gmail.com', HASHBYTES('SHA2_256', 'jawi2010.'), NEWID(), 1, 1);
-go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00002', 'Maria Belen Becerra Lopez', 'belencita@gmail.com', HASHBYTES('SHA2_256', '1234abcd-'), NEWID(), 2, 1);
-go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00003', 'Mateo Jose Alvarado Noboa', 'luispro@gmail.com', HASHBYTES('SHA2_256', 'tierra123/'), NEWID(), 1, 0);
-go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00004', 'Jose Maria Velazco Torres', 'jose@gmail.com', HASHBYTES('SHA2_256', '12_julio'), NEWID(), 2, 1);
-go
-INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO) VALUES ('00005', 'Esteban Leonardo Leon Marcillo', 'leonardo128@gmail.com', HASHBYTES('SHA2_256', 'freefire_04'), NEWID(), 2, 0);
+DECLARE @SaltUsuario00001 varchar(100) = 'PBKDF2-SHA256$600000$aj238cKJRq+RLtUIc7wU4A==';
+DECLARE @HashUsuario00001 varchar(44) = '+VWTNZCYEhesYhhqv5LLLavNfPvlENRT8/f2P7NIvcM=';
+INSERT INTO USUARIO (CODIGO, NOMBRE_COMPLETO, CORREO_ELECTRONICO, CLAVE, CLAVE_SALT, ID_ROL, ESTADO)
+VALUES ('00001', 'Abraham Andres Farfan Sanchez', 'hermanosfarfan@gmail.com', @HashUsuario00001, @SaltUsuario00001, 1, 1);
 go
 INSERT INTO PERMISO (ID_ROL,NOMBRE_MENU) VALUES
 (1,'MenuUsuarios'),
@@ -2041,7 +2047,7 @@ INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('3098', 'Cuidado Pers
 go
 INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('4802', 'Cuidado del Hogar',1);
 go
-INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('6796', 'Electrodomésticos',1);
+INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('6796', 'Electrodomï¿½sticos',1);
 go
 INSERT INTO CATEGORIA(CODIGO, DESCRIPCION, ESTADO) VALUES ('1378', 'Jarnideria y Plantas',1);
 go
@@ -2057,11 +2063,11 @@ INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('2328', 
 go
 INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('9631', 'Litro', 'L', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('3484', 'Galón', 'G', 1);
+INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('3484', 'Galï¿½n', 'G', 1);
 go
 INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('8610', 'Metro', 'm', 1);
 go
-INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('8931', 'Centímetro', 'cm', 1);
+INSERT INTO UNIDAD_MEDIDA (CODIGO, DESCRIPCION, SIMBOLO, ESTADO) VALUES('8931', 'Centï¿½metro', 'cm', 1);
 go
 INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('6634','Papel Higienico','8 unidades',12,3,'Ecuador',0);
 go
@@ -2071,9 +2077,9 @@ INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNI
 go
 INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('2256','Sillas Plasticas','Fibra de carbono',12,3,'Ecuador',0);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('4621','Vino Blanco','Elaborado en 1978',4,6,'España',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('4621','Vino Blanco','Elaborado en 1978',4,6,'Espaï¿½a',1);
 go
-INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('0674','Television LG','Color negro',13,8,'Japón',1);
+INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('0674','Television LG','Color negro',13,8,'Japï¿½n',1);
 go
 INSERT INTO PRODUCTO (CODIGO, NOMBRE_PRODUCTO, DESCRIPCION, ID_CATEGORIA, ID_UNIDAD_MEDIDA, PAIS_ORIGEN, ESTADO) VALUES('7425','Caja de Cereza','Cerezas extra grandes',1,3,'Chile',1);
 go
