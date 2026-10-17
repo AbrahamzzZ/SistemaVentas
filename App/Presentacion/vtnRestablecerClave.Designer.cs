@@ -38,13 +38,15 @@
             this.BtnEnviarToken = new System.Windows.Forms.Button();
             this.LblNuevaClave = new System.Windows.Forms.Label();
             this.TxtClave = new System.Windows.Forms.TextBox();
+            this.LblConfirmarClave = new System.Windows.Forms.Label();
+            this.TxtConfirmarClave = new System.Windows.Forms.TextBox();
             this.BtnCambiarClave = new System.Windows.Forms.Button();
             this.lblMensaje = new System.Windows.Forms.Label();
             this.BtnRegresar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // LblRestablecerClave
-            // 
+            //
             this.LblRestablecerClave.AutoSize = true;
             this.LblRestablecerClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblRestablecerClave.Location = new System.Drawing.Point(133, 44);
@@ -53,9 +55,9 @@
             this.LblRestablecerClave.Size = new System.Drawing.Size(280, 29);
             this.LblRestablecerClave.TabIndex = 9;
             this.LblRestablecerClave.Text = "Recuperación de clave";
-            // 
+            //
             // LblCorreoElectronico
-            // 
+            //
             this.LblCorreoElectronico.AutoSize = true;
             this.LblCorreoElectronico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCorreoElectronico.Location = new System.Drawing.Point(27, 196);
@@ -106,6 +108,8 @@
             this.TxtToken.Location = new System.Drawing.Point(30, 308);
             this.TxtToken.Margin = new System.Windows.Forms.Padding(4);
             this.TxtToken.Name = "TxtToken";
+            this.TxtToken.Enabled = false;
+            this.TxtToken.MaxLength = 32;
             this.TxtToken.Size = new System.Drawing.Size(300, 26);
             this.TxtToken.TabIndex = 16;
             // 
@@ -120,7 +124,8 @@
             this.BtnEnviarToken.Name = "BtnEnviarToken";
             this.BtnEnviarToken.Size = new System.Drawing.Size(135, 35);
             this.BtnEnviarToken.TabIndex = 17;
-            this.BtnEnviarToken.Text = "Enviar";
+            this.BtnEnviarToken.Text = "Verificar";
+            this.BtnEnviarToken.Enabled = false;
             this.BtnEnviarToken.UseVisualStyleBackColor = false;
             this.BtnEnviarToken.Click += new System.EventHandler(this.BtnEnviarToken_Click);
             // 
@@ -138,13 +143,36 @@
             // TxtClave
             // 
             this.TxtClave.Enabled = false;
+            this.TxtClave.UseSystemPasswordChar = true;
             this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtClave.Location = new System.Drawing.Point(30, 401);
             this.TxtClave.Margin = new System.Windows.Forms.Padding(4);
             this.TxtClave.Name = "TxtClave";
             this.TxtClave.Size = new System.Drawing.Size(300, 26);
             this.TxtClave.TabIndex = 19;
+            //
+            // LblConfirmarClave
+            //
+            this.LblConfirmarClave.AutoSize = true;
+            this.LblConfirmarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblConfirmarClave.Location = new System.Drawing.Point(27, 438);
+            this.LblConfirmarClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblConfirmarClave.Name = "LblConfirmarClave";
+            this.LblConfirmarClave.Size = new System.Drawing.Size(204, 20);
+            this.LblConfirmarClave.TabIndex = 23;
+            this.LblConfirmarClave.Text = "Confirme nueva clave:";
+            //
+            // TxtConfirmarClave
             // 
+            this.TxtConfirmarClave.Enabled = false;
+            this.TxtConfirmarClave.UseSystemPasswordChar = true;
+            this.TxtConfirmarClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtConfirmarClave.Location = new System.Drawing.Point(30, 464);
+            this.TxtConfirmarClave.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtConfirmarClave.Name = "TxtConfirmarClave";
+            this.TxtConfirmarClave.Size = new System.Drawing.Size(300, 26);
+            this.TxtConfirmarClave.TabIndex = 24;
+            //
             // BtnCambiarClave
             // 
             this.BtnCambiarClave.BackColor = System.Drawing.Color.Wheat;
@@ -157,6 +185,7 @@
             this.BtnCambiarClave.Size = new System.Drawing.Size(135, 35);
             this.BtnCambiarClave.TabIndex = 20;
             this.BtnCambiarClave.Text = "Cambiar";
+            this.BtnCambiarClave.Enabled = false;
             this.BtnCambiarClave.UseVisualStyleBackColor = false;
             this.BtnCambiarClave.Click += new System.EventHandler(this.BtnCambiarClave_Click);
             // 
@@ -178,7 +207,7 @@
             this.BtnRegresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnRegresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRegresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRegresar.Location = new System.Drawing.Point(205, 487);
+            this.BtnRegresar.Location = new System.Drawing.Point(205, 530);
             this.BtnRegresar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnRegresar.Name = "BtnRegresar";
             this.BtnRegresar.Size = new System.Drawing.Size(135, 35);
@@ -192,10 +221,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(550, 550);
+            this.ClientSize = new System.Drawing.Size(550, 580);
             this.Controls.Add(this.BtnRegresar);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.BtnCambiarClave);
+            this.Controls.Add(this.TxtConfirmarClave);
+            this.Controls.Add(this.LblConfirmarClave);
             this.Controls.Add(this.TxtClave);
             this.Controls.Add(this.LblNuevaClave);
             this.Controls.Add(this.BtnEnviarToken);
@@ -226,6 +257,8 @@
         private System.Windows.Forms.Button BtnEnviarToken;
         private System.Windows.Forms.Label LblNuevaClave;
         private System.Windows.Forms.TextBox TxtClave;
+        private System.Windows.Forms.Label LblConfirmarClave;
+        private System.Windows.Forms.TextBox TxtConfirmarClave;
         private System.Windows.Forms.Button BtnCambiarClave;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button BtnRegresar;

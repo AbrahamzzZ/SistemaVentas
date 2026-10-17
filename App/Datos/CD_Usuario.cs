@@ -50,26 +50,122 @@ namespace Datos
             return usuario;
         }
 
-        public bool GenerarTokenRecuperacion(string correoElectronico, ref string tokenGenerado)
+        public bool GuardarTokenRecuperacion(string correoElectronico, string tokenHash, DateTime expiracionUtc)
         {
-            try
+            const string consulta = @"
+                WITH UsuariosCoincidentes AS
+                (
+                    SELECT ID_USUARIO, COUNT(*) OVER() AS CANTIDAD
+                    FROM USUARIO
+                    WHERE CORREO_ELECTRONICO = @correo AND ESTADO = 1
+                )
+                UPDATE U
+                SET TOKEN_RECUPERACION = @tokenHash,
+                    TOKEN_RECUPERACION_EXPIRA = @expiracionUtc,
+                    INTENTOS_RECUPERACION = 0
+                FROM USUARIO AS U
+                INNER JOIN UsuariosCoincidentes AS C ON C.ID_USUARIO = U.ID_USUARIO
+                WHERE C.CANTIDAD = 1;";
+
+            using (SqlConnection conexion = Conexion.Abrir())
+            using (SqlCommand cmd = new SqlCommand(consulta, conexion))
             {
-                string consulta = "UPDATE USUARIO SET TOKEN_RECUPERACION = @token WHERE CORREO_ELECTRONICO = @correo";
+                cmd.Parameters.Add("@tokenHash", SqlDbType.NVarChar, 100).Value = tokenHash;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 50).Value = correoElectronico;
+                cmd.Parameters.Add("@expiracionUtc", SqlDbType.DateTime2).Value = expiracionUtc;
+                return cmd.ExecuteNonQuery() == 1;
+            }
+        }
 
-                using (SqlConnection conexion = Conexion.Abrir())
-                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+        public bool ValidarTokenRecuperacion(string correoElectronico, string tokenHash)
+        {
+            const string consultaValida = @"
+                SELECT COUNT(*)
+                FROM USUARIO
+                WHERE CORREO_ELECTRONICO = @correo AND ESTADO = 1
+                    AND TOKEN_RECUPERACION = @tokenHash
+                    AND TOKEN_RECUPERACION_EXPIRA > SYSUTCDATETIME()
+                    AND INTENTOS_RECUPERACION < 5;";
+
+            using (SqlConnection conexion = Conexion.Abrir())
+            using (SqlCommand cmd = new SqlCommand(consultaValida, conexion))
+            {
+                cmd.Parameters.Add("@tokenHash", SqlDbType.NVarChar, 100).Value = tokenHash;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 50).Value = correoElectronico;
+                if (Convert.ToInt32(cmd.ExecuteScalar()) == 1)
                 {
-                    cmd.Parameters.AddWithValue("@token", tokenGenerado);
-                    cmd.Parameters.AddWithValue("@correo", correoElectronico);
-
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-                    return filasAfectadas > 0;
+                    return true;
                 }
             }
-            catch (Exception ex)
+
+            const string registrarIntento = @"
+                UPDATE USUARIO
+                SET INTENTOS_RECUPERACION = INTENTOS_RECUPERACION + 1,
+                    TOKEN_RECUPERACION = CASE WHEN INTENTOS_RECUPERACION + 1 >= 5 THEN NULL ELSE TOKEN_RECUPERACION END,
+                    TOKEN_RECUPERACION_EXPIRA = CASE WHEN INTENTOS_RECUPERACION + 1 >= 5 THEN NULL ELSE TOKEN_RECUPERACION_EXPIRA END
+                WHERE ID_USUARIO =
+                    (SELECT MIN(ID_USUARIO) FROM USUARIO
+                     WHERE CORREO_ELECTRONICO = @correo AND ESTADO = 1
+                     HAVING COUNT(*) = 1)
+                    AND TOKEN_RECUPERACION IS NOT NULL
+                    AND TOKEN_RECUPERACION <> @tokenHash
+                    AND TOKEN_RECUPERACION_EXPIRA > SYSUTCDATETIME()
+                    AND INTENTOS_RECUPERACION < 5;";
+
+            using (SqlConnection conexion = Conexion.Abrir())
+            using (SqlCommand cmd = new SqlCommand(registrarIntento, conexion))
             {
-                Console.WriteLine("Error al generar token: " + ex.Message);
-                return false;
+                cmd.Parameters.Add("@tokenHash", SqlDbType.NVarChar, 100).Value = tokenHash;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 50).Value = correoElectronico;
+                cmd.ExecuteNonQuery();
+            }
+
+            return false;
+        }
+
+        public bool RestablecerClaveRecuperacion(string correoElectronico, string tokenHash, string claveHash, string salt)
+        {
+            const string consulta = @"
+                UPDATE USUARIO
+                SET CLAVE = @claveHash,
+                    CLAVE_SALT = @salt,
+                    TOKEN_RECUPERACION = NULL,
+                    TOKEN_RECUPERACION_EXPIRA = NULL,
+                    INTENTOS_RECUPERACION = 0
+                WHERE ID_USUARIO =
+                    (SELECT MIN(ID_USUARIO) FROM USUARIO
+                     WHERE CORREO_ELECTRONICO = @correo AND ESTADO = 1
+                     HAVING COUNT(*) = 1)
+                    AND TOKEN_RECUPERACION = @tokenHash
+                    AND TOKEN_RECUPERACION_EXPIRA > SYSUTCDATETIME()
+                    AND INTENTOS_RECUPERACION < 5;";
+
+            using (SqlConnection conexion = Conexion.Abrir())
+            using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+            {
+                cmd.Parameters.Add("@claveHash", SqlDbType.NVarChar, 300).Value = claveHash;
+                cmd.Parameters.Add("@salt", SqlDbType.NVarChar, 100).Value = salt;
+                cmd.Parameters.Add("@tokenHash", SqlDbType.NVarChar, 100).Value = tokenHash;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 50).Value = correoElectronico;
+                return cmd.ExecuteNonQuery() == 1;
+            }
+        }
+
+        public void InvalidarTokenRecuperacion(string correoElectronico, string tokenHash)
+        {
+            const string consulta = @"
+                UPDATE USUARIO
+                SET TOKEN_RECUPERACION = NULL,
+                    TOKEN_RECUPERACION_EXPIRA = NULL,
+                    INTENTOS_RECUPERACION = 0
+                WHERE CORREO_ELECTRONICO = @correo AND TOKEN_RECUPERACION = @tokenHash;";
+
+            using (SqlConnection conexion = Conexion.Abrir())
+            using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+            {
+                cmd.Parameters.Add("@tokenHash", SqlDbType.NVarChar, 100).Value = tokenHash;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 50).Value = correoElectronico;
+                cmd.ExecuteNonQuery();
             }
         }
 

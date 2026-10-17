@@ -46,14 +46,20 @@ namespace Test
 
         public static byte[] Imagen() => new byte[] { 0x89, 0x50, 0x4E, 0x47 };
 
-        public static Usuario Usuario() => new Usuario
+        public static Usuario Usuario()
         {
-            IdUsuario = 2,
-            Codigo = "00004",
-            NombreCompleto = "José María Velazco Torres",
-            CorreoElectronico = "jose@gmail.com",
-            Estado = true
-        };
+            string salt = Seguridad.GenerarSalt();
+            return new Usuario
+            {
+                IdUsuario = 2,
+                Codigo = "00004",
+                NombreCompleto = "José María Velazco Torres",
+                ClaveEncriptada = Seguridad.HashClave("clave123", salt),
+                Salt = salt,
+                CorreoElectronico = "jose@gmail.com",
+                Estado = true
+            };
+        }
 
         public static Producto Producto() => new Producto
         {
